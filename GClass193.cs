@@ -1,0 +1,534 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: GClass193
+// Assembly: Aurora, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: DAB8E3AD-3A24-426F-849E-98EC2E2DD9EB
+// Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
+
+using Aurora;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+
+#nullable disable
+public class GClass193
+{
+  private sealed class Class1162
+  {
+    public bool bool_0;
+    public GClass193 gclass193_0;
+    public bool bool_1;
+
+    internal bool method_0(GClass22 gclass22_0)
+    {
+      if (gclass22_0.gclass187_0 != null || gclass22_0.int_38 != 0 && !this.bool_0 || !(gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M) || !gclass22_0.bool_2 || gclass22_0.gclass21_0 != this.gclass193_0.gclass21_0)
+        return false;
+      if (!this.bool_1)
+        return true;
+      return gclass22_0.decimal_14 >= this.gclass193_0.gclass22_0.decimal_14 * 0.8M && gclass22_0.decimal_14 <= this.gclass193_0.gclass22_0.decimal_14 * 1.2M;
+    }
+
+    internal bool method_1(GClass22 gclass22_0)
+    {
+      if (gclass22_0.gclass187_0 != null || gclass22_0.int_38 != 0 && !this.bool_0 || !(gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M) || gclass22_0.gclass21_0 != this.gclass193_0.gclass21_0)
+        return false;
+      if (!this.bool_1)
+        return true;
+      return gclass22_0.decimal_14 >= this.gclass193_0.gclass22_0.decimal_14 * 0.8M && gclass22_0.decimal_14 <= this.gclass193_0.gclass22_0.decimal_14 * 1.2M;
+    }
+
+    internal bool method_2(GClass40 gclass40_0)
+    {
+      return gclass40_0.gclass21_0 == this.gclass193_0.gclass21_0;
+    }
+
+    internal bool method_3(GClass22 gclass22_0)
+    {
+      return gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M && gclass22_0.bool_2 && gclass22_0.gclass21_0 == this.gclass193_0.gclass21_0 && gclass22_0.gclass187_0 == null;
+    }
+
+    internal bool method_4(GClass22 gclass22_0)
+    {
+      return gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M && gclass22_0.gclass21_0 == this.gclass193_0.gclass21_0 && gclass22_0.gclass187_0 == null;
+    }
+
+    internal bool method_5(GClass40 gclass40_0)
+    {
+      return gclass40_0.gclass21_0 == this.gclass193_0.gclass21_0;
+    }
+
+    internal bool method_6(GClass40 gclass40_0)
+    {
+      return this.gclass193_0.gclass0_0.method_520(gclass40_0.gclass85_0.double_2, this.gclass193_0.gclass146_0.method_87(), gclass40_0.gclass85_0.double_3, this.gclass193_0.gclass146_0.method_88());
+    }
+  }
+  
+  public GClass0 gclass0_0;
+  public GClass21 gclass21_0;
+  public GClass146 gclass146_0;
+  public GClass40 gclass40_0;
+  public GClass40 gclass40_1;
+  public GClass22 gclass22_0;
+  public GClass22 gclass22_1;
+  public GClass85 gclass85_0;
+  public GClass83 gclass83_0;
+  public AuroraShipyardType auroraShipyardType_0;
+  public AuroraShipyardUpgradeType auroraShipyardUpgradeType_0;
+  public int int_0;
+  public int int_1;
+  public int int_2;
+  public int int_3;
+  public Decimal decimal_0;
+  public Decimal decimal_1;
+  public Decimal decimal_2;
+  public double double_0;
+  public double double_1;
+  public bool bool_0;
+  public string string_0;
+  public Decimal decimal_3;
+  public Decimal decimal_4;
+  public GClass22 gclass22_2;
+  public GClass22 gclass22_3;
+  public GClass85 gclass85_1;
+  public GClass83 gclass83_1;
+  public GClass40 gclass40_2;
+  public GClass123 gclass123_0;
+  public AuroraSYTaskType auroraSYTaskType_0;
+  public Decimal decimal_5;
+  public string string_1 = "";
+  public bool bool_1;
+
+  public GClass193(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+
+  public List<GClass192> method_0()
+  {
+    try
+    {
+      return this.gclass0_0.dictionary_32.Values.Where<GClass192>((Func<GClass192, bool>) (gclass192_0 => gclass192_0.gclass193_0 == this)).ToList<GClass192>();
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2922);
+      return (List<GClass192>) null;
+    }
+  }
+
+  public int method_1()
+  {
+    try
+    {
+      return this.gclass0_0.dictionary_32.Values.Count<GClass192>((Func<GClass192, bool>) (gclass192_0 => gclass192_0.gclass193_0 == this));
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2923);
+      return 0;
+    }
+  }
+
+  public void method_2()
+  {
+    try
+    {
+      GClass192 gclass192 = new GClass192();
+      gclass192.int_0 = this.gclass0_0.method_26(GEnum0.const_2);
+      gclass192.gclass21_0 = this.gclass21_0;
+      gclass192.gclass146_0 = this.gclass146_0;
+      gclass192.gclass193_0 = this;
+      gclass192.gclass40_0 = (GClass40) null;
+      gclass192.gclass22_0 = this.gclass22_0;
+      gclass192.gclass22_1 = (GClass22) null;
+      gclass192.gclass85_0 = (GClass85) null;
+      gclass192.gclass123_0 = this.gclass22_0.gclass123_0.method_25();
+      gclass192.auroraSYTaskType_0 = AuroraSYTaskType.Construction;
+      gclass192.decimal_0 = this.gclass22_0.decimal_4;
+      gclass192.decimal_1 = 0M;
+      gclass192.bool_0 = this.gclass22_0.bool_2;
+      gclass192.string_0 = "";
+      gclass192.bool_2 = false;
+      gclass192.bool_1 = this.gclass21_0.bool_0;
+      this.gclass0_0.dictionary_32.Add(gclass192.int_0, gclass192);
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2924);
+    }
+  }
+
+  public void method_3(
+    AuroraSYTaskType auroraSYTaskType_1,
+    GClass40 gclass40_3,
+    GClass22 gclass22_4,
+    GClass22 gclass22_5,
+    GClass85 gclass85_2,
+    GClass123 gclass123_1,
+    Decimal decimal_6,
+    string string_2)
+  {
+    try
+    {
+      GClass192 gclass192 = new GClass192();
+      gclass192.int_0 = this.gclass0_0.method_26(GEnum0.const_2);
+      gclass192.gclass21_0 = this.gclass21_0;
+      gclass192.gclass146_0 = this.gclass146_0;
+      gclass192.gclass193_0 = this;
+      gclass192.gclass40_0 = gclass40_3;
+      gclass192.gclass22_0 = gclass22_4;
+      gclass192.gclass22_1 = gclass22_5;
+      gclass192.gclass85_0 = gclass85_2;
+      gclass192.gclass123_0 = gclass123_1.method_25();
+      gclass192.auroraSYTaskType_0 = auroraSYTaskType_1;
+      gclass192.decimal_0 = decimal_6;
+      gclass192.decimal_1 = 0M;
+      gclass192.bool_0 = gclass22_4.bool_2;
+      gclass192.string_0 = string_2;
+      gclass192.bool_2 = false;
+      gclass192.bool_1 = this.gclass21_0.bool_0;
+      gclass192.bool_3 = false;
+      this.gclass0_0.dictionary_32.Add(gclass192.int_0, gclass192);
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2925);
+    }
+  }
+
+  public bool method_4(
+    CheckState checkState_0,
+    CheckState checkState_1,
+    ComboBox comboBox_0,
+    ComboBox comboBox_1,
+    ComboBox comboBox_2)
+  {
+    try
+    {
+      if (this.auroraSYTaskType_0 == AuroraSYTaskType.Construction)
+      {
+        if (this.gclass22_2 == null)
+        {
+          int num = (int) MessageBox.Show("Please select a class to construct", "Task Not Possible");
+          return false;
+        }
+        if (!this.gclass22_2.method_29(this.gclass146_0))
+        {
+          int num = (int) MessageBox.Show("A ship cannot be built if it contains alien components that are not available in the population stockpile", "Task Not Possible");
+          return false;
+        }
+        if (this.gclass22_2.method_28())
+        {
+          int num = (int) MessageBox.Show("A ship cannot be built if it contains prototype components", "Task Not Possible");
+          return false;
+        }
+        if (checkState_1 == CheckState.Unchecked && this.gclass85_1 == null)
+        {
+          int num = (int) MessageBox.Show("Please select a target fleet");
+          return false;
+        }
+        if (checkState_1 == CheckState.Checked && this.gclass83_1 == null)
+        {
+          int num = (int) MessageBox.Show("Please select a target naval administration command");
+          return false;
+        }
+        GClass40 gclass40 = this.gclass0_0.dictionary_4.Values.FirstOrDefault<GClass40>((Func<GClass40, bool>) (gclass40_3 => gclass40_3.gclass21_0 == this.gclass21_0 && gclass40_3.ShipName == this.string_1));
+        if (gclass40 != null)
+        {
+          int num = (int) MessageBox.Show($"That name is already in use for a unit of the {gclass40.gclass22_0.ClassName} class");
+          return false;
+        }
+        this.gclass22_2.bool_3 = true;
+      }
+      else if (this.auroraSYTaskType_0 != AuroraSYTaskType.Refit && this.auroraSYTaskType_0 != AuroraSYTaskType.AutoRefit)
+      {
+        if ((this.auroraSYTaskType_0 == AuroraSYTaskType.Repair || this.auroraSYTaskType_0 == AuroraSYTaskType.Scrap) && this.gclass40_2 == null)
+        {
+          int num = (int) MessageBox.Show("No Ship Selected", "Task Not Possible");
+          return false;
+        }
+      }
+      else
+      {
+        if (!this.gclass22_3.method_30(this.gclass22_2, this.gclass146_0))
+        {
+          int num = (int) MessageBox.Show("A ship cannot be refitted if the refit requires alien components that are not available in the population stockpile", "Task Not Possible");
+          return false;
+        }
+        if (this.gclass22_2.method_28())
+        {
+          int num = (int) MessageBox.Show("A ship cannot be refitted to a class that contains prototype components", "Task Not Possible");
+          return false;
+        }
+        if (this.gclass40_2 == null)
+        {
+          int num = (int) MessageBox.Show("No Ship Selected", "Task Not Possible");
+          return false;
+        }
+        if (this.gclass22_3 == this.gclass22_2)
+        {
+          int num = (int) MessageBox.Show("You cannot refit a class to the same class", "Task Not Possible");
+          return false;
+        }
+        if (this.decimal_5 == 0M)
+        {
+          int num = (int) MessageBox.Show("Cannot create refit tasks that have zero cost", "Task Not Possible");
+          return false;
+        }
+        this.gclass22_2.bool_3 = true;
+      }
+      GClass192 gclass192_0 = new GClass192();
+      gclass192_0.int_0 = this.gclass0_0.method_26(GEnum0.const_2);
+      gclass192_0.gclass21_0 = this.gclass21_0;
+      gclass192_0.gclass146_0 = this.gclass146_0;
+      gclass192_0.gclass193_0 = this;
+      gclass192_0.gclass40_0 = this.gclass40_2;
+      gclass192_0.auroraSYTaskType_0 = this.auroraSYTaskType_0;
+      if (checkState_1 != CheckState.Unchecked && gclass192_0.auroraSYTaskType_0 == AuroraSYTaskType.Construction)
+      {
+        gclass192_0.gclass85_0 = (GClass85) null;
+        gclass192_0.gclass83_0 = this.gclass83_1;
+      }
+      else
+      {
+        gclass192_0.gclass85_0 = this.gclass85_1;
+        gclass192_0.gclass83_0 = (GClass83) null;
+      }
+      gclass192_0.gclass123_0 = this.gclass123_0.method_25();
+      gclass192_0.decimal_0 = this.decimal_5;
+      gclass192_0.decimal_1 = 0M;
+      gclass192_0.string_0 = this.string_1;
+      gclass192_0.bool_2 = false;
+      gclass192_0.bool_1 = this.gclass21_0.bool_0;
+      gclass192_0.bool_0 = this.gclass22_2.bool_2;
+      if (gclass192_0.auroraSYTaskType_0 != AuroraSYTaskType.Construction && gclass192_0.gclass40_0 != null)
+        gclass192_0.gclass85_0 = gclass192_0.gclass40_0.gclass85_0;
+      if (this.auroraSYTaskType_0 != AuroraSYTaskType.Refit && this.auroraSYTaskType_0 != AuroraSYTaskType.AutoRefit)
+      {
+        gclass192_0.gclass22_0 = this.gclass22_2;
+        gclass192_0.gclass22_1 = (GClass22) null;
+      }
+      else
+      {
+        gclass192_0.gclass22_0 = this.gclass22_3;
+        gclass192_0.gclass22_1 = this.gclass22_2;
+      }
+      if (this.auroraSYTaskType_0 == AuroraSYTaskType.Construction)
+      {
+        this.gclass146_0.method_33(gclass192_0, checkState_0);
+        gclass192_0.gclass22_0.bool_3 = true;
+        gclass192_0.bool_3 = true;
+      }
+      if (this.auroraSYTaskType_0 == AuroraSYTaskType.Refit || this.auroraSYTaskType_0 == AuroraSYTaskType.AutoRefit)
+      {
+        this.gclass146_0.method_34(gclass192_0, checkState_0);
+        gclass192_0.bool_3 = true;
+      }
+      this.gclass0_0.dictionary_32.Add(gclass192_0.int_0, gclass192_0);
+      if (gclass192_0.gclass85_0 != null)
+        gclass192_0.gclass85_0.method_263();
+      if (this.auroraSYTaskType_0 != AuroraSYTaskType.Refit && this.auroraSYTaskType_0 != AuroraSYTaskType.AutoRefit)
+      {
+        if (this.auroraSYTaskType_0 == AuroraSYTaskType.Scrap)
+          gclass192_0.gclass146_0.method_129((GClass22) comboBox_1.SelectedItem, comboBox_2, false, false, true);
+        else if (this.auroraSYTaskType_0 == AuroraSYTaskType.Repair)
+          gclass192_0.gclass146_0.method_129((GClass22) comboBox_1.SelectedItem, comboBox_2, false, true, true);
+      }
+      else
+        gclass192_0.gclass146_0.method_129((GClass22) comboBox_0.SelectedItem, comboBox_2, true, false, true);
+      return true;
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2926);
+      return false;
+    }
+  }
+
+  public void method_5(
+    ComboBox comboBox_0,
+    ComboBox comboBox_1,
+    ComboBox comboBox_2,
+    ComboBox comboBox_3,
+    ComboBox comboBox_4,
+    ComboBox comboBox_5,
+    ListView listView_0,
+    TextBox textBox_0,
+    Label label_0,
+    Label label_1,
+    ListView listView_1)
+  {
+    try
+    {
+      textBox_0.Text = "N/A";
+      label_0.Text = "N/A";
+      label_1.Text = "N/A";
+      listView_0.Items.Clear();
+      this.gclass22_2 = (GClass22) comboBox_1.SelectedItem;
+      this.gclass22_3 = (GClass22) comboBox_2.SelectedItem;
+      this.gclass40_2 = (GClass40) comboBox_3.SelectedItem;
+      this.gclass85_1 = (GClass85) comboBox_4.SelectedItem;
+      this.gclass83_1 = (GClass83) null;
+      this.gclass123_0 = (GClass123) null;
+      this.decimal_5 = 0M;
+      this.string_1 = "None";
+      listView_1.Items.Clear();
+      if (this.gclass22_2 == null)
+        return;
+      this.method_7(this.gclass22_2);
+      switch (comboBox_0.Text)
+      {
+        case "Construction":
+          this.string_1 = this.gclass22_2.method_39();
+          textBox_0.Text = this.string_1;
+          this.decimal_5 = this.gclass22_2.decimal_4;
+          this.gclass22_2.gclass123_0.method_31(listView_0, this.gclass146_0.gclass123_0);
+          this.gclass123_0 = this.gclass22_2.gclass123_0.method_25();
+          this.auroraSYTaskType_0 = AuroraSYTaskType.Construction;
+          this.gclass83_1 = (GClass83) comboBox_5.SelectedItem;
+          break;
+        case "Repair":
+          if (this.gclass40_2 == null)
+            return;
+          this.decimal_5 = this.gclass40_2.method_206();
+          this.auroraSYTaskType_0 = AuroraSYTaskType.Repair;
+          this.gclass123_0 = this.gclass40_2.method_207();
+          this.string_1 = this.gclass40_2.ShipName;
+          break;
+        case "Scrap":
+          if (this.gclass40_2 == null)
+            return;
+          this.decimal_5 = this.gclass22_2.decimal_4 * GClass226.decimal_39;
+          this.gclass22_2.gclass123_0.method_32(listView_0, this.gclass146_0.gclass123_0, GClass226.decimal_39);
+          this.gclass123_0 = this.gclass22_2.gclass123_0.method_26(GClass226.decimal_39);
+          this.auroraSYTaskType_0 = AuroraSYTaskType.Scrap;
+          this.string_1 = this.gclass40_2.ShipName;
+          break;
+        case "Refit":
+          if (this.gclass22_3 == null || this.gclass40_2 == null)
+            return;
+          GClass123 gclass123_1_1 = new GClass123(this.gclass0_0);
+          this.decimal_5 = this.gclass22_3.method_40(this.gclass22_2, gclass123_1_1, listView_1);
+          gclass123_1_1.method_31(listView_0, this.gclass146_0.gclass123_0);
+          this.gclass123_0 = gclass123_1_1;
+          this.auroraSYTaskType_0 = AuroraSYTaskType.Refit;
+          this.string_1 = this.gclass40_2.ShipName;
+          break;
+        case "Auto Refit":
+          if (this.gclass22_3 == null || this.gclass40_2 == null)
+            return;
+          GClass123 gclass123_1_2 = new GClass123(this.gclass0_0);
+          this.decimal_5 = this.gclass22_3.method_40(this.gclass22_2, gclass123_1_2, listView_1);
+          gclass123_1_2.method_31(listView_0, this.gclass146_0.gclass123_0);
+          this.gclass123_0 = gclass123_1_2;
+          this.auroraSYTaskType_0 = AuroraSYTaskType.AutoRefit;
+          this.string_1 = this.gclass40_2.ShipName;
+          break;
+      }
+      label_0.Text = GClass226.smethod_42(this.decimal_5, 1);
+      this.decimal_5 = Math.Abs(this.decimal_5);
+      Decimal num = this.decimal_5 / this.decimal_4 * GClass226.decimal_29;
+      label_1.Text = this.gclass0_0.method_583((double) (this.gclass0_0.decimal_0 + num));
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2927);
+    }
+  }
+
+  public void method_6()
+  {
+    try
+    {
+      this.decimal_3 = (1M + ((this.auroraShipyardType_0 != AuroraShipyardType.Naval ? this.decimal_0 * GClass226.decimal_67 / (Decimal) (GClass226.int_20 * 50) : this.decimal_0 / (Decimal) (GClass226.int_20 * 50)) - 1M) / 2M) * this.gclass146_0.decimal_65;
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2928);
+    }
+  }
+
+  public void method_7(GClass22 gclass22_4)
+  {
+    try
+    {
+      Decimal decimal14 = gclass22_4.decimal_14;
+      if (gclass22_4.bool_2)
+        decimal14 *= GClass226.decimal_22;
+      this.decimal_4 = (1M + (decimal14 / (Decimal) GClass226.int_20 - 1M) / 2M) * this.gclass146_0.decimal_65;
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2929);
+    }
+  }
+
+  public List<GClass22> method_8()
+  {
+    try
+    {
+      List<GClass22> gclass22List = new List<GClass22>();
+      if (this.gclass22_0 == null)
+        return gclass22List;
+      gclass22List.Add(this.gclass22_0);
+      foreach (GClass22 gclass22_0 in this.auroraShipyardType_0 != AuroraShipyardType.Commercial ? this.gclass0_0.dictionary_3.Values.Where<GClass22>((Func<GClass22, bool>) (gclass22_4 => gclass22_4.gclass187_0 == null && gclass22_4.int_38 == 0 && gclass22_4.int_39 == 0 && gclass22_4.decimal_14 <= this.decimal_0 / 50M && gclass22_4 != this.gclass22_0 && gclass22_4.gclass21_0 == this.gclass21_0)).OrderBy<GClass22, string>((Func<GClass22, string>) (gclass22_0 => gclass22_0.ClassName)).ToList<GClass22>() : this.gclass0_0.dictionary_3.Values.Where<GClass22>((Func<GClass22, bool>) (gclass22_4 => gclass22_4.gclass187_0 == null && gclass22_4.int_38 == 0 && gclass22_4.int_39 == 0 && gclass22_4.decimal_14 <= this.decimal_0 / 50M && gclass22_4 != this.gclass22_0 && gclass22_4.bool_2 && gclass22_4.gclass21_0 == this.gclass21_0)).OrderBy<GClass22, string>((Func<GClass22, string>) (gclass22_0 => gclass22_0.ClassName)).ToList<GClass22>())
+      {
+        if (!(gclass22_0.decimal_14 < this.gclass22_0.decimal_14 * 0.8M) && !(gclass22_0.decimal_14 > this.gclass22_0.decimal_14 * 1.2M) && this.gclass22_0.method_40(gclass22_0, (GClass123) null, (ListView) null) <= this.gclass22_0.decimal_4 / 5M)
+          gclass22List.Add(gclass22_0);
+      }
+      return gclass22List;
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2930);
+      return (List<GClass22>) null;
+    }
+  }
+
+  public List<GClass22> method_9(bool bool_2, bool bool_3, bool bool_4)
+  {
+    // ISSUE: object of a compiler-generated type is created
+    // ISSUE: variable of a compiler-generated type
+    GClass193.Class1162 class1162 = new GClass193.Class1162();
+    // ISSUE: reference to a compiler-generated field
+    class1162.bool_0 = bool_2;
+    // ISSUE: reference to a compiler-generated field
+    class1162.gclass193_0 = this;
+    // ISSUE: reference to a compiler-generated field
+    class1162.bool_1 = bool_3;
+    try
+    {
+      // ISSUE: reference to a compiler-generated field
+      if (this.gclass22_0 == null && class1162.bool_1)
+        return new List<GClass22>();
+      List<GClass22> gclass22List = new List<GClass22>();
+      List<GClass22> first;
+      // ISSUE: reference to a compiler-generated field
+      if (class1162.bool_1)
+      {
+        if (this.gclass22_0 == null)
+          return new List<GClass22>();
+        // ISSUE: reference to a compiler-generated method
+        // ISSUE: reference to a compiler-generated method
+        // ISSUE: reference to a compiler-generated method
+        first = (this.auroraShipyardType_0 != AuroraShipyardType.Commercial ? (IEnumerable<GClass22>) this.gclass0_0.dictionary_3.Values.Where<GClass22>(new Func<GClass22, bool>(class1162.method_1)).OrderBy<GClass22, string>((Func<GClass22, string>) (gclass22_0 => gclass22_0.ClassName)).ToList<GClass22>() : (IEnumerable<GClass22>) this.gclass0_0.dictionary_3.Values.Where<GClass22>(new Func<GClass22, bool>(class1162.method_0)).OrderBy<GClass22, string>((Func<GClass22, string>) (gclass22_0 => gclass22_0.ClassName)).ToList<GClass22>()).Intersect<GClass22>((IEnumerable<GClass22>) this.gclass0_0.dictionary_4.Values.Where<GClass40>(new Func<GClass40, bool>(class1162.method_2)).Select<GClass40, GClass22>((Func<GClass40, GClass22>) (gclass40_0 => gclass40_0.gclass22_0)).Distinct<GClass22>().ToList<GClass22>()).ToList<GClass22>();
+      }
+      else
+      {
+        // ISSUE: reference to a compiler-generated method
+        // ISSUE: reference to a compiler-generated method
+        first = this.auroraShipyardType_0 != AuroraShipyardType.Commercial ? this.gclass0_0.dictionary_3.Values.Where<GClass22>(new Func<GClass22, bool>(class1162.method_4)).OrderBy<GClass22, string>((Func<GClass22, string>) (gclass22_0 => gclass22_0.ClassName)).ToList<GClass22>() : this.gclass0_0.dictionary_3.Values.Where<GClass22>(new Func<GClass22, bool>(class1162.method_3)).OrderBy<GClass22, string>((Func<GClass22, string>) (gclass22_0 => gclass22_0.ClassName)).ToList<GClass22>();
+      }
+      if (bool_4)
+      {
+        // ISSUE: reference to a compiler-generated method
+        // ISSUE: reference to a compiler-generated method
+        List<GClass22> list = this.gclass0_0.dictionary_4.Values.Where<GClass40>(new Func<GClass40, bool>(class1162.method_5)).Where<GClass40>(new Func<GClass40, bool>(class1162.method_6)).Select<GClass40, GClass22>((Func<GClass40, GClass22>) (gclass40_0 => gclass40_0.gclass22_0)).Distinct<GClass22>().ToList<GClass22>();
+        first = first.Intersect<GClass22>((IEnumerable<GClass22>) list).ToList<GClass22>();
+      }
+      return first;
+    }
+    catch (Exception ex)
+    {
+      GClass226.smethod_74(ex, 2931);
+      return (List<GClass22>) null;
+    }
+  }
+}

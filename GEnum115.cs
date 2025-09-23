@@ -1,0 +1,44 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: GEnum115
+// Assembly: Aurora, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: DAB8E3AD-3A24-426F-849E-98EC2E2DD9EB
+// Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
+
+#nullable disable
+public enum GEnum115
+{
+  const_0,
+  const_1,
+  const_2,
+  const_3,
+  const_4,
+  const_5,
+  const_6,
+  const_7,
+  const_8,
+  const_9,
+  const_10,
+  const_11,
+  const_12,
+  const_13,
+  const_14,
+  const_15,
+  const_16,
+  const_17,
+  const_18,
+  const_19,
+  const_20,
+  const_21,
+  const_22,
+  const_23,
+  const_24,
+  const_25,
+  const_26,
+  const_27,
+  const_28,
+  const_29,
+  const_30,
+  const_31,
+  const_32,
+  const_33,
+}
