@@ -1,4 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AApplicationConfiguration_002Eg_002Ecs_002Fl_003AC_0021_003FUsers_003Fenigm_003FAppData_003FLocal_003FTemp_003FSourceGeneratedDocuments_003F9E08D663A70CEB133B3A0EF5_003FSystem_002EWindows_002EForms_002EAnalyzers_002ECSharp_003FSystem_002EWindows_002EForms_002EGenerators_002EApplicationConfigurationGenerator_003FApplicationConfiguration_002Eg_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AByte_002Ecs_002Fl_003AC_0021_003FUsers_003Fenigm_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FSourcesCache_003F613493476d9451bbf35e618b8279fa5dacc0916d8067d3b47648bdcbc097beb_003FByte_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AColumnTypeMapper_002Ecs_002Fl_003AC_0021_003FUsers_003Fenigm_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fb56c950516084f1da984e971f37fb4ac1a00_003F08_003F2da9c971_003FColumnTypeMapper_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACustomPropertyTypeMap_002Ecs_002Fl_003AC_0021_003FUsers_003Fenigm_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FSourcesCache_003F6852ea19449787a2fc7a1b69f1a041883473c765ff4431caa8407a521fa0994e_003FCustomPropertyTypeMap_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -14,4 +15,84 @@
 &lt;/AssemblyExplorer&gt;</s:String>
 	
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FAddMoons/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FAurora_002FProperties_002FResources/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FGalacticMap/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FGroundUnitDesign/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FGroundUnitDesign/@EntryIndexRemoved">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FAddMoons/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FAddPlanet/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FChangeLocation/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FClassDesign/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FcmdSelect/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FCommandersWindow/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FCreateProject/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FDiplomacy/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FEconomics/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FEvents/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FFleetWindow/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FfrmMedalAward/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FfrmMedals/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FfrmNPRSetup/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FfrmSectors/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FGalacticMap/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FGameDetails/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FGroundUnitDesign/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FManageNPRTemplates/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FMessageEntry/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FMineralPopUp/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FMinerals/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FMissileDesign/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FPopulationText/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FRaceComparison/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FRaceCreation/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FRaceWindow/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FSelectKnownSystem/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FSelectRace/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FStarSetup/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FSystemBodySetup/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FSystemView/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FTacticalMap/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FTechnologyView/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FTurretDesign/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=aurora_002Ddeop_002FUIForms_002FUserSelection/@EntryIndexedValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowOnlyErrors/@EntryValue">False</s:Boolean>
+	
+	</wpf:ResourceDictionary>

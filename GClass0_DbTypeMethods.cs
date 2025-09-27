@@ -972,15 +972,15 @@ public partial class GClass0
                 {
                 }
 
-                Color color1 = Color.FromArgb(byte.MaxValue, Color.FromArgb(raceRecord.Allied));
+                Color color1 = Color.FromArgb(255, Color.FromArgb(raceRecord.Allied));
                 raceRecord.ContactStatusColorDic.Add(AuroraContactStatus.Allied, color1);
-                Color color2 = Color.FromArgb(byte.MaxValue, Color.FromArgb(raceRecord.Friendly));
+                Color color2 = Color.FromArgb(255, Color.FromArgb(raceRecord.Friendly));
                 raceRecord.ContactStatusColorDic.Add(AuroraContactStatus.Friendly, color2);
-                Color color3 = Color.FromArgb(byte.MaxValue, Color.FromArgb(raceRecord.Neutral));
+                Color color3 = Color.FromArgb(255, Color.FromArgb(raceRecord.Neutral));
                 raceRecord.ContactStatusColorDic.Add(AuroraContactStatus.Neutral, color3);
-                Color color4 = Color.FromArgb(byte.MaxValue, Color.FromArgb(raceRecord.Hostile));
+                Color color4 = Color.FromArgb(255, Color.FromArgb(raceRecord.Hostile));
                 raceRecord.ContactStatusColorDic.Add(AuroraContactStatus.Hostile, color4);
-                Color color5 = Color.FromArgb(byte.MaxValue, Color.FromArgb(raceRecord.Civilian));
+                Color color5 = Color.FromArgb(255, Color.FromArgb(raceRecord.Civilian));
                 raceRecord.ContactStatusColorDic.Add(AuroraContactStatus.Civilian, color5);
                 this.RaceTitleList.Add(raceRecord.RaceTitle);
                 this.FCTRaceRecordDic.Add(raceRecord.RaceID, raceRecord);
@@ -6221,8 +6221,8 @@ public partial class GClass0
                     colourSetting.EventType = this.DIMEventTypeDictionary[eventTypeID];
                     int textColour = Convert.ToInt32(row["TextColour"]);
                     int alertColour = Convert.ToInt32(row["AlertColour"]);
-                    colourSetting.TextColour = Color.FromArgb(byte.MaxValue, Color.FromArgb(alertColour));
-                    colourSetting.AlertColour = Color.FromArgb(byte.MaxValue, Color.FromArgb(textColour));
+                    colourSetting.TextColour = Color.FromArgb(255, Color.FromArgb(alertColour));
+                    colourSetting.AlertColour = Color.FromArgb(255, Color.FromArgb(textColour));
                     if (this.FCTRaceRecordDic.ContainsKey(colourSetting.RaceID))
                         this.FCTRaceRecordDic[colourSetting.RaceID].EventColourSettings.Add(eventTypeID, colourSetting);
                 }

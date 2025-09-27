@@ -1400,7 +1400,7 @@ public partial class RacialSystemSurvey
             Star197 gclass197 = this.gclass0_0.StarDictionary.Values
                 .Where<Star197>(gclass197_0 => gclass197_0.SystemData == this.ActualSystemData)
                 .OrderBy<Star197, int>(gclass197_0 => gclass197_0.Component).FirstOrDefault<Star197>();
-            SolidBrush solidBrush1 = new SolidBrush(Color.FromArgb(byte.MaxValue, gclass197.StellarType.Red,
+            SolidBrush solidBrush1 = new SolidBrush(Color.FromArgb(255, gclass197.StellarType.Red,
                 gclass197.StellarType.Green, gclass197.StellarType.Blue));
             RectangleF rect = new RectangleF(num5, num5, num2, num2);
             graphics_0.FillEllipse(solidBrush1, rect);
@@ -1463,7 +1463,7 @@ public partial class RacialSystemSurvey
             {
                 double double_10 = this.Race.double_1 * 0.75;
                 double num2 = this.Race.double_1 * 0.125;
-                this.gclass0_0.method_529(graphics_0, Color.FromArgb(byte.MaxValue, AuroraUtils.color_19), 0,
+                this.gclass0_0.method_529(graphics_0, Color.FromArgb(255, AuroraUtils.color_19), 0,
                     this.double_9 + num2, this.double_10 + num2, double_10);
             }
 
@@ -1502,7 +1502,7 @@ public partial class RacialSystemSurvey
 
             if (this.Race.chkSectors == CheckState.Checked && this.gclass62_0 != null)
             {
-                pen1.Color = Color.FromArgb(byte.MaxValue, this.gclass62_0.color_0);
+                pen1.Color = Color.FromArgb(255, this.gclass62_0.color_0);
                 pen1.Width = 5f;
                 graphics_0.DrawEllipse(pen1, (float)this.double_9, (float)this.double_10,
                     (float)this.Race.double_1, (float)this.Race.double_1);
@@ -1513,7 +1513,7 @@ public partial class RacialSystemSurvey
             if (this.Race.chkUnexJP == CheckState.Checked && this.int_25 > 0)
                 this.method_29(graphics_0, font_0, Color.Orange);
             if (this.Race.chkPopulatedSystem == CheckState.Checked && this.decimal_10 > 0M)
-                this.method_29(graphics_0, font_0, Color.FromArgb(byte.MaxValue, AuroraUtils.color_20));
+                this.method_29(graphics_0, font_0, Color.FromArgb(255, AuroraUtils.color_20));
             if (this.Race.chkPossibleDormantJP == CheckState.Checked && this.ClosedWP == 1)
                 this.method_29(graphics_0, font_0, Color.Yellow);
             if (this.Race.chkGroundSurveyLocations == CheckState.Checked && this.bool_9)

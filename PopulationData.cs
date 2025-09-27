@@ -2482,8 +2482,8 @@ public partial class PopulationData
                 List<GClass229> gclass229List = this.method_30();
                 pen.DashStyle = DashStyle.Dash;
                 pen.DashPattern = new float[2] { 10f, 3f };
-                pen.Color = Color.FromArgb(byte.MaxValue, 185, 15);
-                solidBrush_0.Color = Color.FromArgb(byte.MaxValue, 185, 15);
+                pen.Color = Color.FromArgb(255, 185, 15);
+                solidBrush_0.Color = Color.FromArgb(255, 185, 15);
                 foreach (GClass229 gclass229 in gclass229List)
                 {
                     double key = (int)(gclass229.int_0 / gclass202_1.KmPerPixel);
