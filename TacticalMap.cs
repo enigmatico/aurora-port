@@ -23,7 +23,7 @@ public class TacticalMap : Form
     public GClass0 gclass0_0;
     public GClass0 gclass0_1;
     private List<GClass87> list_0 = new List<GClass87>();
-    public GameRace gclass21_0;
+    public GameRace Race;
     public RacialSystemSurvey gclass202_0;
     public WayPointType wayPointType_0;
     public string string_0 = "";
@@ -473,15 +473,15 @@ public class TacticalMap : Form
             Graphics graphics = e.Graphics;
             this.gclass0_0.method_705(graphics, this.Font, this.gclass202_0);
             if (this.chkEvents.CheckState == CheckState.Checked)
-                this.list_0 = this.gclass0_0.method_566(this.gclass21_0, graphics, this.Font,
+                this.list_0 = this.gclass0_0.method_566(this.Race, graphics, this.Font,
                     this.chkEventsAllRaces.CheckState);
             this.gclass0_0.method_704(graphics, this.Font, this.gclass202_0);
             if (this.gclass227_0 != null)
                 this.gclass227_0.method_1(graphics, this.Font, this.gclass202_0);
-            if (this.gclass21_0 == null)
+            if (this.Race == null)
                 return;
             this.Text =
-                $"{this.gclass21_0.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.gclass21_0.WealthPoints)}";
+                $"{this.Race.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.Race.WealthPoints)}";
         }
         catch (Exception ex)
         {
@@ -507,20 +507,20 @@ public class TacticalMap : Form
         try
         {
             RacialSystemSurvey gclass202 = null;
-            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
-            this.gclass0_0.raceRecord_0 = this.gclass21_0;
+            this.Race = (GameRace)this.cboRaces.SelectedValue;
+            this.gclass0_0.raceRecord_0 = this.Race;
             this.Text =
-                $"{this.gclass21_0.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.gclass21_0.WealthPoints)}";
-            this.gclass21_0.method_326(this.cboContactRaceFilter, "All Races");
-            List<RacialSystemSurvey> gclass202List = this.gclass21_0.method_321();
+                $"{this.Race.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.Race.WealthPoints)}";
+            this.Race.method_326(this.cboContactRaceFilter, "All Races");
+            List<RacialSystemSurvey> gclass202List = this.Race.method_321();
             this.gclass0_0.bool_9 = true;
             if (this.gclass202_0 != null)
             {
-                if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
-                    gclass202 = this.gclass21_0.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
+                if (this.Race.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
+                    gclass202 = this.Race.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
             }
             else
-                gclass202 = this.gclass21_0.method_190();
+                gclass202 = this.Race.method_190();
 
             this.cboSystems.DisplayMember = "Name";
             this.cboSystems.DataSource = gclass202List;
@@ -528,13 +528,13 @@ public class TacticalMap : Form
                 this.cboSystems.SelectedItem = gclass202;
             this.gclass0_0.bool_9 = false;
             this.method_10();
-            this.gclass21_0.method_334(this.lstRuins);
-            this.gclass21_0.method_336(this.lstAnomalies);
-            this.gclass21_0.method_339(this.lstWrecks);
+            this.Race.method_334(this.lstRuins);
+            this.Race.method_336(this.lstAnomalies);
+            this.Race.method_339(this.lstWrecks);
             this.method_7();
             this.method_12();
             if (!this.bool_2)
-                this.gclass0_0.method_511(this.gclass21_0, this);
+                this.gclass0_0.method_511(this.Race, this);
             this.bool_2 = false;
         }
         catch (Exception ex)
@@ -548,15 +548,15 @@ public class TacticalMap : Form
         try
         {
             RacialSystemSurvey gclass202 = null;
-            List<RacialSystemSurvey> gclass202List = this.gclass21_0.method_321();
+            List<RacialSystemSurvey> gclass202List = this.Race.method_321();
             this.gclass0_0.bool_9 = true;
             if (this.gclass202_0 != null)
             {
-                if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
-                    gclass202 = this.gclass21_0.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
+                if (this.Race.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
+                    gclass202 = this.Race.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
             }
             else
-                gclass202 = this.gclass21_0.method_190();
+                gclass202 = this.Race.method_190();
 
             this.cboSystems.DisplayMember = "Name";
             this.cboSystems.DataSource = gclass202List;
@@ -574,7 +574,7 @@ public class TacticalMap : Form
     {
         try
         {
-            this.gclass21_0.method_335(this.lstvSurveySites);
+            this.Race.method_335(this.lstvSurveySites);
         }
         catch (Exception ex)
         {
@@ -598,9 +598,9 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.cboSystems.Items.Count != this.gclass21_0.RacialSystemDictionary.Count)
+            if (this.cboSystems.Items.Count != this.Race.RacialSystemDictionary.Count)
             {
-                this.gclass202_0 = this.gclass21_0.RacialSystemDictionary.Values
+                this.gclass202_0 = this.Race.RacialSystemDictionary.Values
                     .OrderByDescending<RacialSystemSurvey, Decimal>(gclass202_0 => gclass202_0.DiscoveredTime)
                     .FirstOrDefault<RacialSystemSurvey>();
                 this.method_5();
@@ -621,7 +621,7 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.gclass21_0 != gclass202_1.Race)
+            if (this.Race != gclass202_1.Race)
                 this.method_4(gclass202_1.Race);
             if (this.cboSystems.SelectedValue == gclass202_1 || !this.cboSystems.Items.Contains(gclass202_1))
                 return;
@@ -654,15 +654,15 @@ public class TacticalMap : Form
             this.gclass202_0 = (RacialSystemSurvey)this.cboSystems.SelectedValue;
             if (this.gclass202_0 == null)
                 return;
-            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
-            this.gclass21_0.method_340(this.gclass202_0.ActualSystemData, this.tvMinerals, this.txtMinerals);
+            this.Race = (GameRace)this.cboRaces.SelectedValue;
+            this.Race.method_340(this.gclass202_0.ActualSystemData, this.tvMinerals, this.txtMinerals);
             this.gclass202_0.method_14(this.lstvWaypoints);
             this.method_20();
-            this.gclass21_0.method_385(this.gclass202_0, this.tvSystemBodies);
+            this.Race.method_385(this.gclass202_0, this.tvSystemBodies);
             if (this.chkContactsCurrentSystem.CheckState == CheckState.Checked)
-                this.gclass21_0.method_317(this.tvContacts, null, this.gclass202_0, false);
+                this.Race.method_317(this.tvContacts, null, this.gclass202_0, false);
             else
-                this.gclass21_0.method_318(this.tvContacts);
+                this.Race.method_318(this.tvContacts);
             this.gclass0_0.method_703(this.gclass202_0);
             this.Refresh();
         }
@@ -676,7 +676,7 @@ public class TacticalMap : Form
     {
         try
         {
-            this.gclass21_0.ContactFilterRace = (AlienRaceInfo)this.cboContactRaceFilter.SelectedValue;
+            this.Race.ContactFilterRace = (AlienRaceInfo)this.cboContactRaceFilter.SelectedValue;
             if (this.gclass0_0.bool_9)
                 return;
             this.Refresh();
@@ -694,7 +694,7 @@ public class TacticalMap : Form
             if (this.gclass0_0.bool_9)
                 return;
             CheckBox checkBox = (CheckBox)sender;
-            this.gclass21_0.method_320(checkBox.Name, checkBox.CheckState);
+            this.Race.method_320(checkBox.Name, checkBox.CheckState);
             this.gclass0_0.bool_11 = AuroraUtils.smethod_27(this.chkAllRace.CheckState);
             this.gclass0_0.bool_12 = AuroraUtils.smethod_27(this.chkDisplayAllForms.CheckState);
             this.Refresh();
@@ -712,7 +712,7 @@ public class TacticalMap : Form
             if (this.gclass0_0.bool_9)
                 return;
             CheckBox checkBox = (CheckBox)sender;
-            this.gclass21_0.method_320(checkBox.Name, checkBox.CheckState);
+            this.Race.method_320(checkBox.Name, checkBox.CheckState);
             switch (checkBox.Name)
             {
                 case "chkSystemOnly":
@@ -722,11 +722,11 @@ public class TacticalMap : Form
                 case "chkContactsCurrentSystem":
                     if (checkBox.CheckState == CheckState.Checked)
                     {
-                        this.gclass21_0.method_317(this.tvContacts, null, this.gclass202_0, false);
+                        this.Race.method_317(this.tvContacts, null, this.gclass202_0, false);
                         break;
                     }
 
-                    this.gclass21_0.method_318(this.tvContacts);
+                    this.Race.method_318(this.tvContacts);
                     break;
             }
         }
@@ -796,7 +796,7 @@ public class TacticalMap : Form
                             case 'S':
                                 if (name == "cmdSM")
                                 {
-                                    this.gclass21_0.method_175(button.Name, bool_24, this.gclass202_0);
+                                    this.Race.method_175(button.Name, bool_24, this.gclass202_0);
                                     this.method_13();
                                     goto label_32;
                                 }
@@ -914,7 +914,7 @@ public class TacticalMap : Form
                 }
             }
 
-            if (this.gclass21_0.method_175(button.Name, bool_24, this.gclass202_0))
+            if (this.Race.method_175(button.Name, bool_24, this.gclass202_0))
                 this.Refresh();
             label_32:
             this.gclass0_0.method_515();
@@ -994,77 +994,77 @@ public class TacticalMap : Form
     {
         try
         {
-            this.chkStarOrbits.CheckState = this.gclass21_0.chkStarOrbits;
-            this.chkPlanetOrbits.CheckState = this.gclass21_0.chkPlanetOrbits;
-            this.chkDwarfOrbits.CheckState = this.gclass21_0.chkDwarfOrbits;
-            this.chkMoonOrbits.CheckState = this.gclass21_0.chkMoonOrbits;
-            this.chkAsteroidOrbits.CheckState = this.gclass21_0.chkAsteroidOrbits;
-            this.chkSelectedOrbit.CheckState = this.gclass21_0.chkSelectedOrbit;
-            this.chkPlanets.CheckState = this.gclass21_0.chkPlanets;
-            this.chkDwarf.CheckState = this.gclass21_0.chkDwarf;
-            this.chkMoons.CheckState = this.gclass21_0.chkMoons;
-            this.chkAst.CheckState = this.gclass21_0.chkAst;
-            this.chkWP.CheckState = this.gclass21_0.chkWP;
-            this.chkEvents.CheckState = this.gclass21_0.chkEvents;
-            this.chkEventsAllRaces.CheckState = this.gclass21_0.chkEventsAllRaces;
-            this.chkStarNames.CheckState = this.gclass21_0.chkStarNames;
-            this.chkPlanetNames.CheckState = this.gclass21_0.chkPlanetNames;
-            this.chkDwarfNames.CheckState = this.gclass21_0.chkDwarfNames;
-            this.chkMoonNames.CheckState = this.gclass21_0.chkMoonNames;
-            this.chkAstNames.CheckState = this.gclass21_0.chkAstNames;
-            this.chkFleets.CheckState = this.gclass21_0.chkFleets;
-            this.chkMoveTail.CheckState = this.gclass21_0.chkMoveTail;
-            this.chkColonies.CheckState = this.gclass21_0.chkColonies;
-            this.chkCentre.CheckState = this.gclass21_0.chkCentre;
-            this.chkSL.CheckState = this.gclass21_0.chkSL;
-            this.chkWaypoint.CheckState = this.gclass21_0.chkWaypoint;
-            this.chkOrder.CheckState = this.gclass21_0.chkOrder;
-            this.chkNoOverlap.CheckState = this.gclass21_0.chkNoOverlap;
-            this.chkActiveSensors.CheckState = this.gclass21_0.chkActiveSensors;
-            this.chkUseHullNumbers.CheckState = this.gclass21_0.chkUseHullNumbers;
-            this.chkPassive10.CheckState = this.gclass21_0.chkPassive10;
-            this.chkPassive100.CheckState = this.gclass21_0.chkPassive100;
-            this.chkPassive1000.CheckState = this.gclass21_0.chkPassive1000;
-            this.chkPassive10000.CheckState = this.gclass21_0.chkPassive10000;
-            this.chkTracking.CheckState = this.gclass21_0.chkTracking;
-            this.chkActiveOnly.CheckState = this.gclass21_0.chkActiveOnly;
-            this.chkShowDist.CheckState = this.gclass21_0.chkShowDist;
-            this.chkSBSurvey.CheckState = this.gclass21_0.chkSBSurvey;
-            this.chkMinerals.CheckState = this.gclass21_0.chkMinerals;
-            this.chkCometPath.CheckState = this.gclass21_0.chkCometPath;
-            this.chkAstColOnly.CheckState = this.gclass21_0.chkAstColOnly;
-            this.chkAstMinOnly.CheckState = this.gclass21_0.chkAstMinOnly;
-            this.chkTAD.CheckState = this.gclass21_0.chkTAD;
-            this.chkSalvoOrigin.CheckState = this.gclass21_0.chkSalvoOrigin;
-            this.chkFiringRanges.CheckState = this.gclass21_0.chkFiringRanges;
-            this.chkAllRace.CheckState = this.gclass21_0.chkAllRace;
-            this.chkDisplayAllForms.CheckState = this.gclass21_0.chkDisplayAllForms;
-            this.chkSalvoTarget.CheckState = this.gclass21_0.chkSalvoTarget;
-            this.chkEscorts.CheckState = this.gclass21_0.chkEscorts;
-            this.chkFireControlRange.CheckState = this.gclass21_0.chkFireControlRange;
-            this.chkHideIDs.CheckState = this.gclass21_0.chkHideIDs;
-            this.chkHideWreckIDs.CheckState = this.gclass21_0.chkHideWreckIDs;
-            this.chkHideSL.CheckState = this.gclass21_0.chkHideSL;
-            this.chkPackets.CheckState = this.gclass21_0.chkPackets;
-            this.chkMPC.CheckState = this.gclass21_0.chkMPC;
-            this.chkLifepods.CheckState = this.gclass21_0.chkLifepods;
-            this.chkWrecks.CheckState = this.gclass21_0.chkWrecks;
-            this.chkHostileSensors.CheckState = this.gclass21_0.chkHostileSensors;
-            this.chkBearing.CheckState = this.gclass21_0.chkBearing;
-            this.chkGeoPoints.CheckState = this.gclass21_0.chkGeoPoints;
-            this.chkCoordinates.CheckState = this.gclass21_0.chkCoordinates;
-            this.chkLostContacts.CheckState = this.gclass21_0.chkLostContacts;
-            this.chkLostContactsOneYear.CheckState = this.gclass21_0.chkLostContactsOneYear;
-            this.chkLostContacts.CheckState = this.gclass21_0.chkLostContacts;
-            this.chkSystemOnly.CheckState = this.gclass21_0.chkSystemOnly;
-            this.chkShowCivilianOOB.CheckState = this.gclass21_0.chkShowCivilianOOB;
-            this.chkHostile.CheckState = this.gclass21_0.chkHostile;
-            this.chkFriendly.CheckState = this.gclass21_0.chkFriendly;
-            this.chkAllied.CheckState = this.gclass21_0.chkAllied;
-            this.chkNeutral.CheckState = this.gclass21_0.chkNeutral;
-            this.chkCivilian.CheckState = this.gclass21_0.chkCivilian;
-            this.chkContactsCurrentSystem.CheckState = this.gclass21_0.chkContactsCurrentSystem;
-            this.chkHideOrbitFleets.CheckState = this.gclass21_0.chkHideOrbitFleets;
+            this.chkStarOrbits.CheckState = this.Race.chkStarOrbits;
+            this.chkPlanetOrbits.CheckState = this.Race.chkPlanetOrbits;
+            this.chkDwarfOrbits.CheckState = this.Race.chkDwarfOrbits;
+            this.chkMoonOrbits.CheckState = this.Race.chkMoonOrbits;
+            this.chkAsteroidOrbits.CheckState = this.Race.chkAsteroidOrbits;
+            this.chkSelectedOrbit.CheckState = this.Race.chkSelectedOrbit;
+            this.chkPlanets.CheckState = this.Race.chkPlanets;
+            this.chkDwarf.CheckState = this.Race.chkDwarf;
+            this.chkMoons.CheckState = this.Race.chkMoons;
+            this.chkAst.CheckState = this.Race.chkAst;
+            this.chkWP.CheckState = this.Race.chkWP;
+            this.chkEvents.CheckState = this.Race.chkEvents;
+            this.chkEventsAllRaces.CheckState = this.Race.chkEventsAllRaces;
+            this.chkStarNames.CheckState = this.Race.chkStarNames;
+            this.chkPlanetNames.CheckState = this.Race.chkPlanetNames;
+            this.chkDwarfNames.CheckState = this.Race.chkDwarfNames;
+            this.chkMoonNames.CheckState = this.Race.chkMoonNames;
+            this.chkAstNames.CheckState = this.Race.chkAstNames;
+            this.chkFleets.CheckState = this.Race.chkFleets;
+            this.chkMoveTail.CheckState = this.Race.chkMoveTail;
+            this.chkColonies.CheckState = this.Race.chkColonies;
+            this.chkCentre.CheckState = this.Race.chkCentre;
+            this.chkSL.CheckState = this.Race.chkSL;
+            this.chkWaypoint.CheckState = this.Race.chkWaypoint;
+            this.chkOrder.CheckState = this.Race.chkOrder;
+            this.chkNoOverlap.CheckState = this.Race.chkNoOverlap;
+            this.chkActiveSensors.CheckState = this.Race.chkActiveSensors;
+            this.chkUseHullNumbers.CheckState = this.Race.chkUseHullNumbers;
+            this.chkPassive10.CheckState = this.Race.chkPassive10;
+            this.chkPassive100.CheckState = this.Race.chkPassive100;
+            this.chkPassive1000.CheckState = this.Race.chkPassive1000;
+            this.chkPassive10000.CheckState = this.Race.chkPassive10000;
+            this.chkTracking.CheckState = this.Race.chkTracking;
+            this.chkActiveOnly.CheckState = this.Race.chkActiveOnly;
+            this.chkShowDist.CheckState = this.Race.chkShowDist;
+            this.chkSBSurvey.CheckState = this.Race.chkSBSurvey;
+            this.chkMinerals.CheckState = this.Race.chkMinerals;
+            this.chkCometPath.CheckState = this.Race.chkCometPath;
+            this.chkAstColOnly.CheckState = this.Race.chkAstColOnly;
+            this.chkAstMinOnly.CheckState = this.Race.chkAstMinOnly;
+            this.chkTAD.CheckState = this.Race.chkTAD;
+            this.chkSalvoOrigin.CheckState = this.Race.chkSalvoOrigin;
+            this.chkFiringRanges.CheckState = this.Race.chkFiringRanges;
+            this.chkAllRace.CheckState = this.Race.chkAllRace;
+            this.chkDisplayAllForms.CheckState = this.Race.chkDisplayAllForms;
+            this.chkSalvoTarget.CheckState = this.Race.chkSalvoTarget;
+            this.chkEscorts.CheckState = this.Race.chkEscorts;
+            this.chkFireControlRange.CheckState = this.Race.chkFireControlRange;
+            this.chkHideIDs.CheckState = this.Race.chkHideIDs;
+            this.chkHideWreckIDs.CheckState = this.Race.chkHideWreckIDs;
+            this.chkHideSL.CheckState = this.Race.chkHideSL;
+            this.chkPackets.CheckState = this.Race.chkPackets;
+            this.chkMPC.CheckState = this.Race.chkMPC;
+            this.chkLifepods.CheckState = this.Race.chkLifepods;
+            this.chkWrecks.CheckState = this.Race.chkWrecks;
+            this.chkHostileSensors.CheckState = this.Race.chkHostileSensors;
+            this.chkBearing.CheckState = this.Race.chkBearing;
+            this.chkGeoPoints.CheckState = this.Race.chkGeoPoints;
+            this.chkCoordinates.CheckState = this.Race.chkCoordinates;
+            this.chkLostContacts.CheckState = this.Race.chkLostContacts;
+            this.chkLostContactsOneYear.CheckState = this.Race.chkLostContactsOneYear;
+            this.chkLostContacts.CheckState = this.Race.chkLostContacts;
+            this.chkSystemOnly.CheckState = this.Race.chkSystemOnly;
+            this.chkShowCivilianOOB.CheckState = this.Race.chkShowCivilianOOB;
+            this.chkHostile.CheckState = this.Race.chkHostile;
+            this.chkFriendly.CheckState = this.Race.chkFriendly;
+            this.chkAllied.CheckState = this.Race.chkAllied;
+            this.chkNeutral.CheckState = this.Race.chkNeutral;
+            this.chkCivilian.CheckState = this.Race.chkCivilian;
+            this.chkContactsCurrentSystem.CheckState = this.Race.chkContactsCurrentSystem;
+            this.chkHideOrbitFleets.CheckState = this.Race.chkHideOrbitFleets;
         }
         catch (Exception ex)
         {
@@ -1252,7 +1252,7 @@ public class TacticalMap : Form
         {
             if (this.lstvWaypoints.SelectedItems.Count == 0)
                 return;
-            if (this.gclass21_0 == null)
+            if (this.Race == null)
             {
                 int num = (int)MessageBox.Show("Please select a race");
             }
@@ -1279,7 +1279,7 @@ public class TacticalMap : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a waypoint to delete");
             }
-            else if (this.gclass21_0 == null)
+            else if (this.Race == null)
             {
                 int num2 = (int)MessageBox.Show("Please select a race");
             }
@@ -1366,7 +1366,7 @@ public class TacticalMap : Form
                                                     gclass1_0_1.BodyTypeId == AuroraSystemBodyType.Superjovian))
                         {
                             gclass1_1 = gclass1_0_1;
-                            string_10 = gclass1_0_1.method_78(this.gclass21_0);
+                            string_10 = gclass1_0_1.method_78(this.Race);
                             gclass221.double_0 = gclass1_1.XCoordinate;
                             gclass221.double_1 = gclass1_1.YCoordinate;
                         }
@@ -1385,14 +1385,14 @@ public class TacticalMap : Form
                             string_10 = this.gclass0_0.string_4;
                         }
 
-                        SystemBodyData gclass1_0_2 = this.gclass0_0.method_649(this.gclass21_0,
+                        SystemBodyData gclass1_0_2 = this.gclass0_0.method_649(this.Race,
                             this.gclass202_0.ActualSystemData, gclass197_0_1, gclass221.double_0, gclass221.double_1,
                             string_10, gclass1_1);
-                        GClass194 gclass194_1 = this.gclass21_0.method_164();
-                        this.gclass21_0.method_275(gclass1_0_2, gclass194_1);
-                        gclass1_0_2.method_37(this.gclass21_0);
+                        GClass194 gclass194_1 = this.Race.method_164();
+                        this.Race.method_275(gclass1_0_2, gclass194_1);
+                        gclass1_0_2.method_37(this.Race);
                         this.Cursor = Cursors.Default;
-                        this.gclass21_0.method_385(this.gclass202_0, this.tvSystemBodies);
+                        this.Race.method_385(this.gclass202_0, this.tvSystemBodies);
                         this.gclass0_0.method_703(this.gclass202_0);
                         this.Refresh();
                         return;
@@ -1416,14 +1416,14 @@ public class TacticalMap : Form
 
                 if (gclass1_0_1 != null)
                 {
-                    this.gclass21_0.method_188(this.gclass202_0.ActualSystemData, gclass1_0_1, null, this.wayPointType_0,
+                    this.Race.method_188(this.gclass202_0.ActualSystemData, gclass1_0_1, null, this.wayPointType_0,
                         gclass1_0_1.XCoordinate, gclass1_0_1.YCoordinate, string_10, this.int_4);
                 }
                 else
                 {
                     GClass221 gclass221 =
                         this.gclass0_0.method_716(this.gclass202_0, mouseEventArgs.X, mouseEventArgs.Y);
-                    this.gclass21_0.method_188(this.gclass202_0.ActualSystemData, null, null, this.wayPointType_0,
+                    this.Race.method_188(this.gclass202_0.ActualSystemData, null, null, this.wayPointType_0,
                         gclass221.double_0, gclass221.double_1, string_10, this.int_4);
                 }
             }
@@ -1464,20 +1464,21 @@ public class TacticalMap : Form
     {
         try
         {
-            MenuItem menuItem = (MenuItem)sender;
+            // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             if (menuItem.Tag is FleetData)
             {
                 FleetData tag = (FleetData)menuItem.Tag;
-                this.gclass21_0.genum42_0 = GEnum42.const_2;
-                this.gclass21_0.int_43 = tag.FleetID;
+                this.Race.genum42_0 = GEnum42.const_2;
+                this.Race.int_43 = tag.FleetID;
                 new FleetWindow(this.gclass0_0).Show();
             }
             else if (menuItem.Tag is PopulationData)
                 new Economics(this.gclass0_0, GEnum34.const_0, (PopulationData)menuItem.Tag).Show();
             else if (menuItem.Tag is RacialSystemSurvey)
                 this.method_9((RacialSystemSurvey)menuItem.Tag);
-
-            menuItem.Parent.MenuItems.Clear();
+            
+            menuItem.GetCurrentParent()?.Items.Clear();
         }
         catch (Exception ex)
         {
@@ -1589,11 +1590,11 @@ public class TacticalMap : Form
             if (this.gclass0_0.bool_9)
                 return;
             CheckBox checkBox = (CheckBox)sender;
-            this.gclass21_0.method_320(checkBox.Name, checkBox.CheckState);
+            this.Race.method_320(checkBox.Name, checkBox.CheckState);
             if (this.chkContactsCurrentSystem.CheckState == CheckState.Checked)
-                this.gclass21_0.method_317(this.tvContacts, null, this.gclass202_0, false);
+                this.Race.method_317(this.tvContacts, null, this.gclass202_0, false);
             else
-                this.gclass21_0.method_318(this.tvContacts);
+                this.Race.method_318(this.tvContacts);
             this.gclass0_0.method_703(this.gclass202_0);
             this.Refresh();
         }
@@ -1617,9 +1618,9 @@ public class TacticalMap : Form
             }
             else
             {
-                if (this.gclass21_0 == null)
+                if (this.Race == null)
                     return;
-                this.gclass21_0.method_174(e, this.gclass202_0);
+                this.Race.method_174(e, this.gclass202_0);
             }
         }
         catch (Exception ex)
@@ -1632,13 +1633,13 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.gclass21_0 == null || !(e.Node.Tag is FCTShipData40))
+            if (this.Race == null || !(e.Node.Tag is FCTShipData40))
                 return;
             var cgc40_0 = (FCTShipData40)e.Node.Tag;
             if (cgc40_0 == null)
                 return;
             GClass65 gclass65 = this.gclass0_0.dictionary_28.Values
-                .Where<GClass65>(gc65 => gc65.gclass40_0 == cgc40_0 && gc65.gclass21_0 == this.gclass21_0)
+                .Where<GClass65>(gc65 => gc65.gclass40_0 == cgc40_0 && gc65.gclass21_0 == this.Race)
                 .OrderByDescending<GClass65, Decimal>(gclass65_0 => gclass65_0.decimal_3).FirstOrDefault<GClass65>();
             if (gclass65 == null)
                 return;
@@ -1692,14 +1693,14 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.gclass21_0 == null)
+            if (this.Race == null)
             {
                 int num = (int)MessageBox.Show("Please select a race");
             }
             else
             {
                 foreach (FCTShipData40 gclass40 in this.gclass0_0.FCTShipDataDictionary.Values
-                             .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
+                             .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.Race)
                              .Where<FCTShipData40>(gclass40_0 => !gclass40_0.gclass22_0.bool_2).ToList<FCTShipData40>())
                     gclass40.method_31(GEnum61.const_2);
             }
@@ -1718,7 +1719,7 @@ public class TacticalMap : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a waypoint to move");
             }
-            else if (this.gclass21_0 == null)
+            else if (this.Race == null)
             {
                 int num2 = (int)MessageBox.Show("Please select a race");
             }
@@ -1763,7 +1764,7 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.gclass21_0 == null)
+            if (this.Race == null)
             {
                 int num = (int)MessageBox.Show("Please select a race");
             }
@@ -1878,7 +1879,7 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.gclass21_0 == null)
+            if (this.Race == null)
             {
                 int num1 = (int)MessageBox.Show("Please select a race");
             }
@@ -1911,7 +1912,7 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.gclass21_0 == null)
+            if (this.Race == null)
             {
                 int num1 = (int)MessageBox.Show("Please select a race");
             }
@@ -2021,7 +2022,8 @@ public class TacticalMap : Form
             {
                 if (e.Button != MouseButtons.Right)
                     return;
-                ContextMenu contextMenu = new ContextMenu();
+                // TODO ContextMenu は現在サポートされていません。代わりに ContextMenuStrip を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
                 List<GClass222> source = this.gclass0_0.method_710(e.X, e.Y, this.gclass202_0);
                 if (source.Count > 0)
                 {
@@ -2035,37 +2037,40 @@ public class TacticalMap : Form
 
                     foreach (PopulationData gclass146 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(
                                      gc146 => capturedList.Contains(gc146.SystemBodyData) &&
-                                              gc146.RaceData == this.gclass21_0)
+                                              gc146.RaceData == this.Race)
                                  .ToList<PopulationData>())
                     {
-                        MenuItem menuItem = new MenuItem(gclass146.PopName, this.method_18);
+                        // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                        ToolStripMenuItem menuItem = new ToolStripMenuItem(gclass146.PopName, null, this.method_18);
                         menuItem.Tag = gclass146;
-                        contextMenu.MenuItems.Add(menuItem);
+                        contextMenuStrip.Items.Add(menuItem);
                     }
 
                     foreach (FleetData gclass85 in list1)
                     {
-                        MenuItem menuItem = new MenuItem(gclass85.FleetName, this.method_18);
+                        // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                        ToolStripMenuItem menuItem = new ToolStripMenuItem(gclass85.FleetName, null, this.method_18);
                         menuItem.Tag = gclass85;
-                        contextMenu.MenuItems.Add(menuItem);
+                        contextMenuStrip.Items.Add(menuItem);
                     }
 
                     foreach (JumpPoint120 gclass120 in list2)
                     {
-                        if (gclass120.method_0(this.gclass21_0))
+                        if (gclass120.method_0(this.Race))
                         {
-                            RacialSystemSurvey gclass202 = this.gclass21_0.method_128(gclass120.LinkedJumpPoint.SystemData);
-                            MenuItem menuItem = new MenuItem(gclass202.Name, this.method_18);
+                            RacialSystemSurvey gclass202 = this.Race.method_128(gclass120.LinkedJumpPoint.SystemData);
+                            // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                            ToolStripMenuItem menuItem = new ToolStripMenuItem(gclass202.Name, null, this.method_18);
                             menuItem.Tag = gclass202;
-                            contextMenu.MenuItems.Add(menuItem);
+                            contextMenuStrip.Items.Add(menuItem);
                         }
                     }
 
-                    this.ContextMenu = contextMenu;
-                    contextMenu.Show(this, new Point(e.X, e.Y));
+                    this.ContextMenuStrip = contextMenuStrip;
+                    contextMenuStrip.Show(this, new Point(e.X, e.Y));
                 }
                 else
-                    this.ContextMenu = null;
+                    this.ContextMenuStrip = null;
             }
         }
         catch (Exception ex)
@@ -2097,13 +2102,13 @@ public class TacticalMap : Form
                 object gclass1_0 = gclass222.method_0();
                 switch (gclass1_0)
                 {
-                    case FleetData _ when this.gclass21_0.chkFleets == CheckState.Checked:
+                    case FleetData _ when this.Race.chkFleets == CheckState.Checked:
                         this.gclass202_0.gclass85_0 = (FleetData)gclass1_0;
                         this.gclass202_0.gclass1_0 = null;
                         this.gclass202_0.gclass132_0 = null;
                         break;
                     case SystemBodyData _:
-                        if (this.gclass21_0.method_83((SystemBodyData)gclass1_0))
+                        if (this.Race.method_83((SystemBodyData)gclass1_0))
                         {
                             this.gclass202_0.gclass1_0 = (SystemBodyData)gclass1_0;
                             this.gclass202_0.gclass85_0 = null;
@@ -2121,7 +2126,7 @@ public class TacticalMap : Form
 
                 if (gclass222.list_1.Count > 0)
                     gclass222.list_1.FirstOrDefault<SystemBodyData>()
-                        ?.method_67(this.lstvBodyInfo, this.lstvMinerals, this.gclass21_0);
+                        ?.method_67(this.lstvBodyInfo, this.lstvMinerals, this.Race);
                 this.Refresh();
             }
         }
@@ -2139,9 +2144,9 @@ public class TacticalMap : Form
             if (this.chkShowCivilianOOB.CheckState == CheckState.Checked)
                 bool_25 = true;
             if (this.chkSystemOnly.CheckState == CheckState.Checked)
-                this.gclass21_0.method_355(this.tvMilitary, this.gclass202_0, true, bool_25, null);
+                this.Race.method_355(this.tvMilitary, this.gclass202_0, true, bool_25, null);
             else
-                this.gclass21_0.method_355(this.tvMilitary, null, false, bool_25, null);
+                this.Race.method_355(this.tvMilitary, null, false, bool_25, null);
         }
         catch (Exception ex)
         {
@@ -2825,7 +2830,7 @@ public class TacticalMap : Form
         this.tblIncrement.Size = new Size(1152, 48 /*0x30*/);
         this.tblIncrement.TabIndex = 8;
         this.cmdIncrement.BackColor = Color.FromArgb(0, 0, 64 /*0x40*/);
-        this.cmdIncrement.ForeColor = Color.FromArgb(byte.MaxValue, byte.MaxValue, 192 /*0xC0*/);
+        this.cmdIncrement.ForeColor = Color.FromArgb(255, 255, 192 /*0xC0*/);
         this.cmdIncrement.Location = new Point(0, 0);
         this.cmdIncrement.Margin = new Padding(0);
         this.cmdIncrement.Name = "cmdIncrement";
@@ -2834,7 +2839,7 @@ public class TacticalMap : Form
         this.cmdIncrement.Text = "Select Increment Length";
         this.cmdIncrement.UseVisualStyleBackColor = false;
         this.cmdIncrement5S.BackColor = Color.FromArgb(0, 0, 64 /*0x40*/);
-        this.cmdIncrement5S.ForeColor = Color.FromArgb(byte.MaxValue, byte.MaxValue, 192 /*0xC0*/);
+        this.cmdIncrement5S.ForeColor = Color.FromArgb(255, 255, 192 /*0xC0*/);
         this.cmdIncrement5S.Location = new Point(96 /*0x60*/, 0);
         this.cmdIncrement5S.Margin = new Padding(0);
         this.cmdIncrement5S.Name = "cmdIncrement5S";

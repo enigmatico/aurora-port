@@ -63,9 +63,9 @@ public class RaceComparison : Form
             }
             else
             {
-                if (this.gclass0_0.tacticalMap_0.gclass21_0 == null)
+                if (this.gclass0_0.tacticalMap_0.Race == null)
                     return;
-                this.gclass0_0.tacticalMap_0.gclass21_0.method_174(e, this.gclass0_0.tacticalMap_0.gclass202_0);
+                this.gclass0_0.tacticalMap_0.Race.method_174(e, this.gclass0_0.tacticalMap_0.gclass202_0);
             }
         }
         catch (Exception ex)

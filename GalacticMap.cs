@@ -1600,11 +1600,13 @@ public class GalacticMap : Form
                 var local202 = this.gclass21_0.method_178(e.X, e.Y);
                 if (local202 == null)
                     return;
-                ContextMenu contextMenu = new ContextMenu();
-                MenuItem menuItem1 = new MenuItem("Open Tactical Map", this.method_16);
+                // TODO ContextMenu は現在サポートされていません。代わりに ContextMenuStrip を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                ContextMenuStrip contextMenu = new ContextMenuStrip();
+                // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                ToolStripMenuItem menuItem1 = new ToolStripMenuItem("Open Tactical Map", null, this.method_16);
 
                 menuItem1.Tag = local202;
-                contextMenu.MenuItems.Add(menuItem1);
+                contextMenu.Items.Add(menuItem1);
                 var localGClass1List = this.gclass0_0.SystemBodyRecordDic.Values
                     .Where<SystemBodyData>(gc1 => gc1.SystemData == local202.ActualSystemData)
                     .ToList<SystemBodyData>();
@@ -1616,27 +1618,30 @@ public class GalacticMap : Form
                              localGClass1List.Contains(v.SystemBodyData) && v.RaceData == this.gclass21_0
                          ).ToList<PopulationData>())
                 {
-                    MenuItem menuItem2 = new MenuItem(gclass146.PopName, this.method_16);
+                    // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                    ToolStripMenuItem menuItem2 = new ToolStripMenuItem(gclass146.PopName, null, this.method_16);
                     menuItem2.Tag = gclass146;
-                    contextMenu.MenuItems.Add(menuItem2);
+                    contextMenu.Items.Add(menuItem2);
                 }
 
                 foreach (FleetData gclass85 in list)
                 {
-                    MenuItem menuItem3 = new MenuItem(gclass85.FleetName, this.method_16);
+                    // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                    ToolStripMenuItem menuItem3 = new ToolStripMenuItem(gclass85.FleetName, null, this.method_16);
                     menuItem3.Tag = gclass85;
-                    contextMenu.MenuItems.Add(menuItem3);
+                    contextMenu.Items.Add(menuItem3);
                 }
 
                 foreach (FleetData gclass85_1 in list)
                 {
                     GClass69 gclass69 = new GClass69(local202, gclass85_1);
-                    MenuItem menuItem4 = new MenuItem(gclass85_1.FleetName + " - Tactical", this.method_16);
+                    // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+                    ToolStripMenuItem menuItem4 = new ToolStripMenuItem(gclass85_1.FleetName + " - Tactical", null, this.method_16);
                     menuItem4.Tag = gclass69;
-                    contextMenu.MenuItems.Add(menuItem4);
+                    contextMenu.Items.Add(menuItem4);
                 }
 
-                this.ContextMenu = contextMenu;
+                this.ContextMenuStrip = contextMenu;
                 contextMenu.Show(this, new Point(e.X, e.Y));
             }
         }
@@ -1650,7 +1655,8 @@ public class GalacticMap : Form
     {
         try
         {
-            MenuItem menuItem = (MenuItem)sender;
+            // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             if (menuItem.Tag is FleetData)
             {
                 FleetData tag = (FleetData)menuItem.Tag;
@@ -1672,7 +1678,7 @@ public class GalacticMap : Form
                 this.gclass0_0.object_0 = this.gclass0_0.tacticalMap_0;
             }
 
-            menuItem.Parent.MenuItems.Clear();
+            menuItem.GetCurrentParent()?.Items.Clear();
         }
         catch (Exception ex)
         {

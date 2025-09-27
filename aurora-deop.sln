@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora", "aurora-deop.csproj", "{81CEBC65-96FD-4141-BC9A-01454BE599DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurora", "aurora-deop.csproj", "{81CEBC65-96FD-4141-BC9A-01454BE599DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

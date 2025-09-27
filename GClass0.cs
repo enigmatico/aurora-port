@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.OleDb;
 using System.Data.SQLite;
 using System.Drawing;
@@ -21234,7 +21235,7 @@ public partial class GClass0
             foreach (PopulationData gclass146 in this.PopulationDataDictionary.Values)
                 gclass146.method_182();
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1695);
         }

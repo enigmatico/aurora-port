@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
@@ -694,7 +695,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3681);
         }
@@ -1640,7 +1641,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowDbExceptionPopupForDb(ex);
         }
@@ -1697,7 +1698,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowDbExceptionPopupForDb(ex);
         }
@@ -1860,7 +1861,7 @@ public partial class GClass0
                     subFleet.ParentSubFleet = this.SubFleetDictionary[subFleet.ParentSubFleetID];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1298);
         }
@@ -1890,7 +1891,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1298);
         }
@@ -1929,7 +1930,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1298);
         }
@@ -2137,7 +2138,7 @@ public partial class GClass0
                     population.ParasiteSource = this.FleetDictionary[population.ParasiteSourceID];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1174);
         }
@@ -2171,7 +2172,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1176);
         }
@@ -2260,7 +2261,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1177);
         }
@@ -2417,7 +2418,7 @@ public partial class GClass0
                     population.MassDriverDestPopulation = this.PopulationDataDictionary[population.MassDriverDestPopulationID];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1179);
         }
@@ -2448,7 +2449,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1181);
         }
@@ -2604,7 +2605,7 @@ public partial class GClass0
                     gclass21.SelectedClass = this.dictionary_3[gclass21.SelectedClassIcon];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1182);
         }
@@ -2631,7 +2632,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1184);
         }
@@ -2665,7 +2666,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1187);
         }
@@ -2702,7 +2703,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1189);
         }
@@ -2734,7 +2735,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1191);
         }
@@ -2765,7 +2766,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1193);
         }
@@ -2791,7 +2792,7 @@ public partial class GClass0
                     this.SystemDataDictionary[int32_2].SurveyLocationDictionary[int32_1].list_0.Add(int32_3);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1195);
         }
@@ -2828,7 +2829,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1197);
         }
@@ -2855,7 +2856,7 @@ public partial class GClass0
                 this.RuinRaceDictionary.Add(gclass171.RuinRaceID, gclass171);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1199);
         }
@@ -2984,7 +2985,7 @@ public partial class GClass0
                     gclass83.gclass40_0 = this.FCTShipDataDictionary[gclass83.int_4];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1201);
         }
@@ -3098,7 +3099,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1204);
         }
@@ -3131,7 +3132,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1206);
         }
@@ -3163,7 +3164,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1208);
         }
@@ -3225,7 +3226,7 @@ public partial class GClass0
             this.method_250();
             this.method_252();
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1210);
         }
@@ -3329,7 +3330,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1212);
         }
@@ -3435,7 +3436,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1214);
         }
@@ -3461,7 +3462,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3663);
         }
@@ -3563,7 +3564,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1216);
         }
@@ -3595,7 +3596,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1220);
         }
@@ -3625,7 +3626,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1222);
         }
@@ -3654,7 +3655,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1224);
         }
@@ -3683,7 +3684,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1226);
         }
@@ -3713,7 +3714,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1228);
         }
@@ -3747,7 +3748,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1230);
         }
@@ -3792,7 +3793,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1232);
         }
@@ -3820,7 +3821,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1234);
         }
@@ -3849,7 +3850,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3630);
         }
@@ -3876,7 +3877,7 @@ public partial class GClass0
                 this.ShipHullDictionary.Add(gclass76.ShipHullDescriptionID, gclass76);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1236);
         }
@@ -3905,7 +3906,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1238);
         }
@@ -3933,7 +3934,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1240);
         }
@@ -3965,7 +3966,7 @@ public partial class GClass0
                 gclass55.list_0.Add(gclass177);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1242);
         }
@@ -3997,7 +3998,7 @@ public partial class GClass0
                 gclass55.dictionary_2.Add(gclass54.auroraMeasurementType_0, gclass54);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1246);
         }
@@ -4026,7 +4027,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1248);
         }
@@ -4057,7 +4058,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1250);
         }
@@ -4094,7 +4095,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1252);
         }
@@ -4150,7 +4151,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3911);
         }
@@ -4217,7 +4218,7 @@ public partial class GClass0
                     gclass40.gclass193_0 = this.dictionary_31[gclass40.int_29];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1258);
         }
@@ -4289,7 +4290,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1260);
         }
@@ -4320,7 +4321,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1262);
         }
@@ -4354,7 +4355,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1264);
         }
@@ -4424,7 +4425,7 @@ public partial class GClass0
                         : this.SpeciesDictionary[gclass194.int_1];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1266);
         }
@@ -4455,7 +4456,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1268);
         }
@@ -4486,7 +4487,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1278);
         }
@@ -4520,7 +4521,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3939);
         }
@@ -4557,7 +4558,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1280 /*0x0500*/);
         }
@@ -4589,7 +4590,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1282);
         }
@@ -4621,7 +4622,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1284);
         }
@@ -4644,7 +4645,7 @@ public partial class GClass0
                     this.FCTRaceRecordDic[int32_2].KnownRuinIDs.Add(int32_1);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1288);
         }
@@ -4682,7 +4683,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1290);
         }
@@ -4738,7 +4739,7 @@ public partial class GClass0
                     gclass21.SelectedAdmin = this.NavalAdminCommands[gclass21.SelectedAdminIcon];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1296);
         }
@@ -4979,7 +4980,7 @@ public partial class GClass0
                     gclass55.list_1.Add(int32_13);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1300);
         }
@@ -5025,7 +5026,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1302);
         }
@@ -5061,7 +5062,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1308);
         }
@@ -5107,7 +5108,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1314);
         }
@@ -5145,7 +5146,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1314);
         }
@@ -5192,7 +5193,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1316);
         }
@@ -5236,7 +5237,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1318);
         }
@@ -5269,7 +5270,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1328);
         }
@@ -5321,7 +5322,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1332);
         }
@@ -5379,7 +5380,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1334);
         }
@@ -5411,7 +5412,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1336);
         }
@@ -5442,7 +5443,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1338);
         }
@@ -5490,7 +5491,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1340);
         }
@@ -5610,7 +5611,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1342);
         }
@@ -5682,7 +5683,7 @@ public partial class GClass0
                         this.FCTRaceRecordDic[gclass84.Race.RaceID].dictionary_12[gclass84.SpecificThreatID];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1344);
         }
@@ -5726,7 +5727,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1346);
         }
@@ -5755,7 +5756,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1348);
         }
@@ -5780,7 +5781,7 @@ public partial class GClass0
                     this.FCTRaceRecordDic[int32_1].list_18.Add(this.TechDataDictionary[int32_2]);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3961);
         }
@@ -5809,7 +5810,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3260);
         }
@@ -5840,7 +5841,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3404);
         }
@@ -5901,7 +5902,7 @@ public partial class GClass0
                     ? null
                     : this.TechDataDictionary[gclass194.int_9];
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1354);
         }
@@ -5940,7 +5941,7 @@ public partial class GClass0
                 this.dictionary_76.Add(gclass185.int_0, gclass185);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1356);
         }
@@ -6047,7 +6048,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1358);
         }
@@ -6085,7 +6086,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1360);
         }
@@ -6109,7 +6110,7 @@ public partial class GClass0
                 this.gclass92_0.dictionary_0.Add(gclass91.int_0, gclass91);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1364);
         }
@@ -6159,7 +6160,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1366);
         }
@@ -6195,7 +6196,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3871);
         }
@@ -6227,7 +6228,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1368);
         }
@@ -6254,7 +6255,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1370);
         }
@@ -6536,7 +6537,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1387);
         }
@@ -6575,7 +6576,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1389);
         }
@@ -6619,7 +6620,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1393);
         }
@@ -6656,7 +6657,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1395);
         }
@@ -6687,7 +6688,7 @@ public partial class GClass0
                     gclass21.DesignDoctrine.method_1();
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1395);
         }
@@ -6960,7 +6961,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1397);
         }

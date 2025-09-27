@@ -8,8 +8,7 @@ using Aurora;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.Entity.Design.PluralizationServices;
-using System.Data.OleDb;
+using System.Data.Common;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -18,6 +17,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using Pluralize.NET.Core;
 
 #nullable disable
 /// <summary>
@@ -496,8 +496,12 @@ public static class AuroraUtils
     {
         try
         {
-            PluralizationService service = PluralizationService.CreateService(CultureInfo.GetCultureInfo("en-gb"));
-            return string_2 == "Infrastructure" || service.IsPlural(string_2) ? string_2 : service.Pluralize(string_2);
+            Pluralizer pluralizer = new Pluralizer();
+            if (string_2 == "Infrastructure") return pluralizer.Pluralize(string_2);
+
+            var testSingular = pluralizer.Singularize(string_2);
+            if (testSingular != string_2 && pluralizer.Pluralize(testSingular) == string_2) return string_2;
+            return pluralizer.Pluralize(string_2);
         }
         catch (Exception ex)
         {
@@ -1078,7 +1082,7 @@ public static class AuroraUtils
                 Convert.ToInt32(string_2.Substring(8, 2)), Convert.ToInt32(string_2.Substring(11, 2)),
                 Convert.ToInt32(string_2.Substring(14, 2)), Convert.ToInt32(string_2.Substring(17, 2)));
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1731);
             return DateTime.MinValue;
@@ -1112,12 +1116,12 @@ public static class AuroraUtils
     {
     }
 
-    public static void ShowDbExceptionPopupForDb(OleDbException oleDbException_0)
+    public static void ShowDbExceptionPopupForDb(DbException oleDbException_0)
     {
         int num = (int)MessageBox.Show(oleDbException_0.Message);
     }
 
-    public static void ShowExceptionPopupForDb(OleDbException oleDbException_0, int functionNumber)
+    public static void ShowExceptionPopupForDb(DbException oleDbException_0, int functionNumber)
     {
         int num = (int)MessageBox.Show($"Function #{functionNumber.ToString()}: {oleDbException_0.Message}");
     }

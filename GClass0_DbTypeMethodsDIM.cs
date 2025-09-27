@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.OleDb;
 using System.Data.SQLite;
 using System.Drawing;
@@ -73,7 +74,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1373);
         }
@@ -101,7 +102,7 @@ public partial class GClass0
                 this.DIMEventTypeDictionary.Add(gclass88.EventTypeId, gclass88);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1362);
         }
@@ -276,7 +277,7 @@ public partial class GClass0
                 this.MoveActionDictionary.Add(gclass133.MoveActionType, gclass133);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1175);
         }
@@ -306,7 +307,7 @@ public partial class GClass0
                 this.AtmosphericGasDictionary.Add(gclass223.AtmosphericGas, gclass223);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1218);
         }
@@ -336,7 +337,7 @@ public partial class GClass0
                 this.StandingOrderDictionary.Add(gclass136.auroraStandingOrder_0, gclass136);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1254);
         }
@@ -361,7 +362,7 @@ public partial class GClass0
                 this.FleetConditionDictionary.Add(gclass137.FleetCondition, gclass137);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1256);
         }
@@ -387,7 +388,7 @@ public partial class GClass0
                 this.ThemeDictionary.Add(gclass140.ThemeID, gclass140);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1272);
         }
@@ -411,7 +412,7 @@ public partial class GClass0
                     this.ThemeDictionary[int32].NameList.Add(str);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1274);
         }
@@ -487,7 +488,7 @@ public partial class GClass0
                 this.PlanetaryInstallationDictionary.Add(gclass157.InstallationType, gclass157);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1286);
         }
@@ -513,7 +514,7 @@ public partial class GClass0
                 this.WealthUsageDictionary.Add(gclass150.WealthUsage, gclass150);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1292);
         }
@@ -539,7 +540,7 @@ public partial class GClass0
                 this.MineralUsageDataDictionary.Add(gclass154.MineralUsage, gclass154);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3943);
         }
@@ -574,7 +575,7 @@ public partial class GClass0
                 this.AdminCommandTypeDictionary.Add(gclass79.AdminCommandType, gclass79);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1294);
         }
@@ -614,7 +615,7 @@ public partial class GClass0
                 this.AssignmentTypeFilterDictionary.Add(gclass49.AssignmentTypeID, gclass49);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1304);
         }
@@ -646,7 +647,7 @@ public partial class GClass0
                 this.CommanderBonusDictionary.Add(gclass50.CommanderBonusType, gclass50);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1306);
         }
@@ -680,7 +681,7 @@ public partial class GClass0
                 this.AutoGroundTemplateDesignsDictionary.Add(gclass23.GroundTemplateDesignType, gclass23);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1310);
         }
@@ -717,7 +718,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1312);
         }
@@ -754,7 +755,7 @@ public partial class GClass0
                     gclass160.NextStatus = this.PopulationPoliticalStatusDictionary[gclass160.NextStatusType];
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1276);
         }
@@ -792,7 +793,7 @@ public partial class GClass0
                 this.RuinDefinitionDictionary.Add(gclass174.RuinID, gclass174);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1270);
         }
@@ -822,7 +823,7 @@ public partial class GClass0
                 this.NameThemeDictionary.Add(gclass58.NameThemeID, gclass58);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1320);
         }
@@ -862,7 +863,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1322);
         }
@@ -881,7 +882,7 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_ShipyardCompanies").Rows)
                 this.ShipyardCompanySuffixList.Add(row["Suffix"].ToString());
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1324);
         }
@@ -913,7 +914,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1326);
         }
@@ -991,7 +992,7 @@ public partial class GClass0
                 }
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1330);
         }
@@ -1025,7 +1026,7 @@ public partial class GClass0
                 this.ComponentTypeDictionary.Add(componentType.ComponentTypeID, componentType);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1356);
         }
@@ -1049,7 +1050,7 @@ public partial class GClass0
                 this.ClassSummaryTypeDictionary.Add(gclass232.genum83_0, gclass232);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 3895);
         }
@@ -1076,7 +1077,7 @@ public partial class GClass0
                 this.MedalConditionDictionary.Add(gclass43.MedalConditionID, gclass43);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1244);
         }
@@ -1141,7 +1142,7 @@ public partial class GClass0
                 this.SystemAgeDictionary.Add(gclass196.SystemAgeID, gclass196);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1375);
         }
@@ -1167,7 +1168,7 @@ public partial class GClass0
                 this.SystemAbundanceDictionary.Add(gclass199.AbundanceID, gclass199);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1377);
         }
@@ -1194,7 +1195,7 @@ public partial class GClass0
                     Description = row["Description"].ToString()
                 });
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1379);
         }
@@ -1219,7 +1220,7 @@ public partial class GClass0
                     Title = row["Title"].ToString()
                 });
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1381);
         }
@@ -1238,7 +1239,7 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_LineNames").Rows)
                 this.LineNameList.Add(row["LineNames"].ToString());
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1383);
         }
@@ -1456,7 +1457,7 @@ public partial class GClass0
                 this.ResearchFieldDictionary.Add(gclass162.ResearchFieldID, gclass162);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1350);
         }
@@ -1484,7 +1485,7 @@ public partial class GClass0
                 this.TechTypeDataDictionary.Add(gclass163.TechType, gclass163);
             }
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1352);
         }

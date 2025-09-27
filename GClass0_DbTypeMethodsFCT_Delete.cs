@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.OleDb;
+using System.Data.Common;
 using System.Data.SQLite;
 using System.Linq;
 using System.Windows.Forms;
@@ -117,7 +117,7 @@ public partial class GClass0
 
             Cursor.Current = Cursors.Default;
         }
-        catch (OleDbException ex)
+        catch (DbException ex)
         {
             AuroraUtils.ShowExceptionPopupForDb(ex, 1425);
         }

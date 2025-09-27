@@ -8,11 +8,12 @@ using System;
 using System.Windows.Forms;
 
 #nullable disable
-internal static class Class1211
+internal static class MainApplication
 {
     [STAThread]
     private static void Main()
     {
+        ApplicationConfiguration.Initialize();
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
         Application.Run(new TacticalMap());
