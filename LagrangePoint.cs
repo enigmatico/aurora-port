@@ -10,47 +10,47 @@ using System.Windows.Forms;
 
 #nullable disable
 // TODO : This one is almost certainly lagrange point
-public class GClass212
+public class LagrangePoint
 {
     private GClass0 gclass0_0;
-    public SystemData200 gclass200_0;
-    public Star197 gclass197_0;
-    public SystemBodyData gclass1_0;
-    public int int_0;
+    public StarSystem System;
+    public Star197 Star;
+    public SystemBodyData Planet;
+    public int LaGrangePointID;
     public int int_1;
-    public double double_0;
-    public double double_1;
-    public double double_2;
-    public double double_3;
+    public double XCor;
+    public double Ycor;
+    public double Distance;
+    public double Bearing;
     public double double_4;
     public double double_5;
 
-    public GClass212(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public LagrangePoint(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public void method_0()
     {
         try
         {
-            if (this.double_3 != 0.0 && this.double_3 != 180.0)
+            if (this.Bearing != 0.0 && this.Bearing != 180.0)
             {
-                if (this.double_3 != 90.0 && this.double_3 != 270.0)
+                if (this.Bearing != 90.0 && this.Bearing != 270.0)
                 {
-                    double num = 360.0 - this.double_3 + 90.0;
+                    double num = 360.0 - this.Bearing + 90.0;
                     if (num < 0.0)
                         num += 360.0;
                     if (num == 360.0)
                         num = 0.0;
                     if (num > 360.0)
                         num -= 360.0;
-                    this.double_4 = this.gclass1_0.OrbitalDistance * this.gclass1_0.double_26 / Math.Sqrt(
-                        Math.Pow(this.gclass1_0.double_26 * Math.Cos(num * Math.PI / 180.0), 2.0) +
-                        Math.Pow(this.gclass1_0.OrbitalDistance * Math.Sin(num * Math.PI / 180.0), 2.0));
+                    this.double_4 = this.Planet.OrbitalDistance * this.Planet.double_26 / Math.Sqrt(
+                        Math.Pow(this.Planet.double_26 * Math.Cos(num * Math.PI / 180.0), 2.0) +
+                        Math.Pow(this.Planet.OrbitalDistance * Math.Sin(num * Math.PI / 180.0), 2.0));
                 }
                 else
-                    this.double_4 = this.gclass1_0.OrbitalDistance;
+                    this.double_4 = this.Planet.OrbitalDistance;
             }
             else
-                this.double_4 = this.gclass1_0.double_26;
+                this.double_4 = this.Planet.double_26;
         }
         catch (Exception ex)
         {
@@ -66,42 +66,42 @@ public class GClass212
             double_6 -= 90.0;
             if (double_6 < 0.0)
                 double_6 += 360.0;
-            if (this.gclass1_0.BodyClass == PlanetBodyClass.Planet)
+            if (this.Planet.BodyClass == PlanetBodyClass.Planet)
             {
-                if (this.gclass1_0.Eccentricity == 0.0)
+                if (this.Planet.Eccentricity == 0.0)
                 {
                     double num = double_6 * (Math.PI / 180.0);
-                    this.double_0 = this.gclass197_0.XCoord +
-                                    this.gclass1_0.OrbitalDistance * AuroraUtils.double_14 * Math.Cos(num);
-                    this.double_1 = this.gclass197_0.YCoord +
-                                    this.gclass1_0.OrbitalDistance * AuroraUtils.double_14 * Math.Sin(num);
+                    this.XCor = this.Star.XCoord +
+                                    this.Planet.OrbitalDistance * AuroraUtils.double_14 * Math.Cos(num);
+                    this.Ycor = this.Star.YCoord +
+                                    this.Planet.OrbitalDistance * AuroraUtils.double_14 * Math.Sin(num);
                 }
-                else if (this.gclass1_0.EccentricityDirection == 0.0)
+                else if (this.Planet.EccentricityDirection == 0.0)
                 {
                     double num1 = double_6 * (Math.PI / 180.0);
-                    double num2 = this.gclass197_0.XCoord +
-                                  (this.gclass1_0.OrbitalDistance - this.gclass1_0.double_27) * AuroraUtils.double_14;
-                    double double1 = this.gclass197_0.YCoord;
-                    this.double_0 = num2 + this.double_4 * AuroraUtils.double_14 * Math.Cos(num1);
-                    this.double_1 = double1 + this.double_4 * AuroraUtils.double_14 * Math.Sin(num1);
+                    double num2 = this.Star.XCoord +
+                                  (this.Planet.OrbitalDistance - this.Planet.double_27) * AuroraUtils.double_14;
+                    double double1 = this.Star.YCoord;
+                    this.XCor = num2 + this.double_4 * AuroraUtils.double_14 * Math.Cos(num1);
+                    this.Ycor = double1 + this.double_4 * AuroraUtils.double_14 * Math.Sin(num1);
                 }
                 else
                 {
-                    double_6 += this.gclass1_0.EccentricityDirection;
+                    double_6 += this.Planet.EccentricityDirection;
                     if (double_6 >= 360.0)
                         double_6 -= 360.0;
                     double num = double_6 * (Math.PI / 180.0);
-                    this.double_0 = this.gclass1_0.double_29 + this.double_4 * AuroraUtils.double_14 * Math.Cos(num);
-                    this.double_1 = this.gclass1_0.double_30 + this.double_4 * AuroraUtils.double_14 * Math.Sin(num);
+                    this.XCor = this.Planet.double_29 + this.double_4 * AuroraUtils.double_14 * Math.Cos(num);
+                    this.Ycor = this.Planet.double_30 + this.double_4 * AuroraUtils.double_14 * Math.Sin(num);
                 }
             }
             else
             {
-                if (this.gclass1_0.BodyClass != PlanetBodyClass.Moon)
+                if (this.Planet.BodyClass != PlanetBodyClass.Moon)
                     return;
                 double num = double_6 * (Math.PI / 180.0);
-                this.double_0 = this.gclass1_0.ParentBodyData.XCoordinate + this.gclass1_0.OrbitalDistance * Math.Cos(num);
-                this.double_1 = this.gclass1_0.ParentBodyData.YCoordinate + this.gclass1_0.OrbitalDistance * Math.Sin(num);
+                this.XCor = this.Planet.ParentBodyData.XCoordinate + this.Planet.OrbitalDistance * Math.Cos(num);
+                this.Ycor = this.Planet.ParentBodyData.YCoordinate + this.Planet.OrbitalDistance * Math.Sin(num);
             }
         }
         catch (Exception ex)
@@ -141,7 +141,7 @@ public class GClass212
     {
         try
         {
-            return $"LP{this.int_1.ToString()}  ({this.gclass1_0.method_78(gclass21_0)})";
+            return $"LP{this.int_1.ToString()}  ({this.Planet.method_78(gclass21_0)})";
         }
         catch (Exception ex)
         {
@@ -154,11 +154,11 @@ public class GClass212
     {
         try
         {
-            foreach (GClass212 object_1 in this.gclass200_0.method_29())
+            foreach (LagrangePoint object_1 in this.System.method_29())
             {
                 if (object_1 != this)
                     this.gclass0_0.method_598(listView_0,
-                        $"LP{object_1.int_1.ToString()}  ({object_1.gclass1_0.method_78(gclass21_0)})", "", object_1);
+                        $"LP{object_1.int_1.ToString()}  ({object_1.Planet.method_78(gclass21_0)})", "", object_1);
             }
         }
         catch (Exception ex)

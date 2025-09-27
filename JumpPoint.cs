@@ -11,12 +11,12 @@ using System.Linq;
 using System.Windows.Forms;
 
 #nullable disable
-public class JumpPoint120
+public class JumpPoint
 {
     private sealed class Class1072
     {
         public GameRace gclass21_0;
-        public JumpPoint120 gclass120_0;
+        public JumpPoint gclass120_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
@@ -34,21 +34,21 @@ public class JumpPoint120
     {
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData &&
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem &&
                    gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass202_0.Race.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             return gclass120_0.RacialJumpPointSurveys[this.gclass202_0.Race.RaceID].Charted == 1;
         }
     }
 
     public Dictionary<int, RaceJumpPointSurvey> RacialJumpPointSurveys = new Dictionary<int, RaceJumpPointSurvey>();
-    public SystemData200 SystemData;
-    public JumpPoint120 LinkedJumpPoint;
+    public StarSystem SystemData;
+    public JumpPoint LinkedJumpPoint;
     public int WarpPointID;
     public int Bearing;
     public int JumpGateStrength;
@@ -62,7 +62,7 @@ public class JumpPoint120
     public bool bool_0;
     private GClass0 gclass0_0;
 
-    public JumpPoint120(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public JumpPoint(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public bool method_0(GameRace gclass21_0)
     {
@@ -138,7 +138,7 @@ public class JumpPoint120
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        JumpPoint120.Class1072 class1072 = new JumpPoint120.Class1072();
+        JumpPoint.Class1072 class1072 = new JumpPoint.Class1072();
         // ISSUE: reference to a compiler-generated field
         class1072.gclass21_0 = gclass21_0;
         // ISSUE: reference to a compiler-generated field
@@ -241,7 +241,7 @@ public class JumpPoint120
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        JumpPoint120.Class1073 class1073 = new JumpPoint120.Class1073();
+        JumpPoint.Class1073 class1073 = new JumpPoint.Class1073();
         // ISSUE: reference to a compiler-generated field
         class1073.gclass202_0 = gclass202_0;
         try
@@ -249,9 +249,9 @@ public class JumpPoint120
             int num = 1;
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            foreach (JumpPoint120 gclass120 in this.gclass0_0.JumpPointDictionary.Values
-                         .Where<JumpPoint120>(class1073.method_0).Where<JumpPoint120>(class1073.method_1)
-                         .OrderBy<JumpPoint120, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint120>())
+            foreach (JumpPoint gclass120 in this.gclass0_0.JumpPointDictionary.Values
+                         .Where<JumpPoint>(class1073.method_0).Where<JumpPoint>(class1073.method_1)
+                         .OrderBy<JumpPoint, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint>())
             {
                 if (gclass120 == this)
                     return num;

@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 #nullable disable
 // TODO: Probably species-related. maybe species itself
-public class GClass194
+public class Species
 {
     private GClass0 gclass0_0;
     public Dictionary<int, GClass195> dictionary_0;
     public SystemBodyData gclass1_0;
     public TechSystem gclass164_0;
-    public GClass194 gclass194_0;
+    public Species gclass194_0;
     public AtmosphericGasDefinition gclass223_0;
     public SpecialNPRIDs genum6_0;
     public int int_0;
@@ -54,7 +54,7 @@ public class GClass194
 
     public string SpeciesName { get; set; }
 
-    public GClass194(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public Species(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public void method_0(Label label_0, Label label_1, Label label_2, Label label_3, Label label_4)
     {

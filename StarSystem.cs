@@ -12,13 +12,13 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 #nullable disable
-public class SystemData200
+public class StarSystem
 {
     [CompilerGenerated]
     private sealed class Class1168
     {
         public RacialSystemSurvey gclass202_0;
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public double double_0;
         public double double_1;
 
@@ -35,22 +35,22 @@ public class SystemData200
 
         internal bool method_2(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_29.ContainsKey(gclass139_0.DestinationID);
+            return this.gclass200_0.gclass0_0.Wrecks.ContainsKey(gclass139_0.DestinationID);
         }
 
-        internal GClass233 method_3(MoveOrder gclass139_0)
+        internal Wreck method_3(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_29[gclass139_0.DestinationID];
+            return this.gclass200_0.gclass0_0.Wrecks[gclass139_0.DestinationID];
         }
 
-        internal bool method_4(GClass233 gclass233_0)
+        internal bool method_4(Wreck gclass233_0)
         {
-            return gclass233_0.gclass200_0 == this.gclass200_0;
+            return gclass233_0.System == this.gclass200_0;
         }
 
-        internal double method_5(GClass233 gclass233_0)
+        internal double method_5(Wreck gclass233_0)
         {
-            return this.gclass200_0.method_3(this.double_0, this.double_1, gclass233_0.double_0, gclass233_0.double_1);
+            return this.gclass200_0.method_3(this.double_0, this.double_1, gclass233_0.Xcor, gclass233_0.Ycor);
         }
     }
 
@@ -58,7 +58,7 @@ public class SystemData200
     private sealed class Class1169
     {
         public RacialSystemSurvey gclass202_0;
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public double double_0;
         public double double_1;
 
@@ -75,17 +75,17 @@ public class SystemData200
 
         internal bool method_2(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.PopulationDataDictionary.ContainsKey(gclass139_0.DestinationID);
+            return this.gclass200_0.gclass0_0.Populations.ContainsKey(gclass139_0.DestinationID);
         }
 
         internal PopulationData method_3(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.PopulationDataDictionary[gclass139_0.DestinationID];
+            return this.gclass200_0.gclass0_0.Populations[gclass139_0.DestinationID];
         }
 
         internal bool method_4(PopulationData gclass146_0)
         {
-            return gclass146_0.gclass202_0.ActualSystemData == this.gclass200_0 && gclass146_0.dictionary_0.Count > 0;
+            return gclass146_0.gclass202_0.ActualSystem == this.gclass200_0 && gclass146_0.dictionary_0.Count > 0;
         }
 
         internal double method_5(PopulationData gclass146_0)
@@ -99,7 +99,7 @@ public class SystemData200
     private sealed class Class1170
     {
         public RacialSystemSurvey gclass202_0;
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public AuroraContactStatus auroraContactStatus_0;
         public AuroraContactType auroraContactType_0;
         public bool bool_0;
@@ -119,25 +119,25 @@ public class SystemData200
 
         internal bool method_2(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_28.ContainsKey(gclass139_0.DestinationID);
+            return this.gclass200_0.gclass0_0.Contacts.ContainsKey(gclass139_0.DestinationID);
         }
 
-        internal GClass65 method_3(MoveOrder gclass139_0)
+        internal Contact method_3(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_28[gclass139_0.DestinationID];
+            return this.gclass200_0.gclass0_0.Contacts[gclass139_0.DestinationID];
         }
 
-        internal bool method_4(GClass65 gclass65_0)
+        internal bool method_4(Contact gclass65_0)
         {
-            if (gclass65_0.gclass200_0 != this.gclass200_0 || gclass65_0.method_5() > this.auroraContactStatus_0 ||
-                gclass65_0.auroraContactType_0 != this.auroraContactType_0)
+            if (gclass65_0.System != this.gclass200_0 || gclass65_0.method_5() > this.auroraContactStatus_0 ||
+                gclass65_0.ContactType != this.auroraContactType_0)
                 return false;
-            return !this.bool_0 || gclass65_0.genum10_0 == GEnum10.const_0;
+            return !this.bool_0 || gclass65_0.ContactMethod == ContactDetectMethod.const_0;
         }
 
-        internal double method_5(GClass65 gclass65_0)
+        internal double method_5(Contact gclass65_0)
         {
-            return this.gclass200_0.method_3(this.double_0, this.double_1, gclass65_0.double_0, gclass65_0.double_1);
+            return this.gclass200_0.method_3(this.double_0, this.double_1, gclass65_0.Xcor, gclass65_0.Ycor);
         }
     }
 
@@ -145,7 +145,7 @@ public class SystemData200
     private sealed class Class1171
     {
         public RacialSystemSurvey gclass202_0;
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public WayPointType wayPointType_0;
         public int int_0;
         public double double_0;
@@ -164,23 +164,23 @@ public class SystemData200
 
         internal bool method_2(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_13.ContainsKey(gclass139_0.DestinationID);
+            return this.gclass200_0.gclass0_0.Waypoints.ContainsKey(gclass139_0.DestinationID);
         }
 
-        internal GClass214 method_3(MoveOrder gclass139_0)
+        internal Waypoint method_3(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_13[gclass139_0.DestinationID];
+            return this.gclass200_0.gclass0_0.Waypoints[gclass139_0.DestinationID];
         }
 
-        internal bool method_4(GClass214 gclass214_0)
+        internal bool method_4(Waypoint gclass214_0)
         {
-            return gclass214_0.gclass200_0 == this.gclass200_0 && gclass214_0.wayPointType_0 == this.wayPointType_0 &&
-                   gclass214_0.gclass21_0 == this.gclass202_0.Race && gclass214_0.int_2 == this.int_0;
+            return gclass214_0.System == this.gclass200_0 && gclass214_0.WaypointType == this.wayPointType_0 &&
+                   gclass214_0.Race == this.gclass202_0.Race && gclass214_0.FleetID == this.int_0;
         }
 
-        internal double method_5(GClass214 gclass214_0)
+        internal double method_5(Waypoint gclass214_0)
         {
-            return this.gclass200_0.method_3(this.double_0, this.double_1, gclass214_0.double_0, gclass214_0.double_1);
+            return this.gclass200_0.method_3(this.double_0, this.double_1, gclass214_0.Xcor, gclass214_0.Ycor);
         }
     }
 
@@ -188,7 +188,7 @@ public class SystemData200
     private sealed class Class1172
     {
         public RacialSystemSurvey gclass202_0;
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public double double_0;
         public double double_1;
 
@@ -227,7 +227,7 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1173
     {
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public double double_0;
         public GameRace gclass21_0;
 
@@ -246,7 +246,7 @@ public class SystemData200
     private sealed class Class1174
     {
         public TechSystem gclass164_0;
-        public SystemData200.Class1173 class1173_0;
+        public StarSystem.Class1173 class1173_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -260,13 +260,13 @@ public class SystemData200
     private sealed class Class1175
     {
         public GameRace gclass21_0;
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public Decimal decimal_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData == this.gclass21_0 &&
-                   gclass146_0.gclass202_0.ActualSystemData == this.gclass200_0 && gclass146_0.decimal_30 >= this.decimal_0;
+            return gclass146_0.Race == this.gclass21_0 &&
+                   gclass146_0.gclass202_0.ActualSystem == this.gclass200_0 && gclass146_0.decimal_30 >= this.decimal_0;
         }
 
         internal bool method_1(SystemBodyData gclass1_0)
@@ -283,9 +283,9 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1176
     {
-        public JumpPoint120 gclass120_0;
+        public JumpPoint gclass120_0;
 
-        internal bool method_0(JumpPoint120 gclass120_1)
+        internal bool method_0(JumpPoint gclass120_1)
         {
             return gclass120_1.LinkedJumpPoint == this.gclass120_0;
         }
@@ -294,16 +294,16 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1177
     {
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public GameRace gclass21_0;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
             return gclass120_0.SystemData == this.gclass200_0 &&
                    gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass21_0.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             return gclass120_0.RacialJumpPointSurveys[this.gclass21_0.RaceID].Explored == 1 && gclass120_0.LinkedJumpPoint != null;
         }
@@ -314,12 +314,12 @@ public class SystemData200
     {
         public GameRace gclass21_0;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
             return gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass21_0.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             return gclass120_0.RacialJumpPointSurveys[this.gclass21_0.RaceID].Explored == 1 && gclass120_0.LinkedJumpPoint != null;
         }
@@ -328,12 +328,12 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1179
     {
-        public SystemData200 gclass200_0;
+        public StarSystem gclass200_0;
         public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.gclass202_0.ActualSystemData == this.gclass200_0 && gclass146_0.RaceData == this.gclass21_0;
+            return gclass146_0.gclass202_0.ActualSystem == this.gclass200_0 && gclass146_0.Race == this.gclass21_0;
         }
     }
 
@@ -350,9 +350,9 @@ public class SystemData200
     }
 
     private GClass0 gclass0_0;
-    public Dictionary<int, SurveyLocation213> SurveyLocationDictionary = new Dictionary<int, SurveyLocation213>();
-    public Dictionary<int, JumpPoint120> dictionary_1 = new Dictionary<int, JumpPoint120>();
-    public Dictionary<int, JumpPoint120> dictionary_2 = new Dictionary<int, JumpPoint120>();
+    public Dictionary<int, SurveyLocation> SurveyLocationDictionary = new Dictionary<int, SurveyLocation>();
+    public Dictionary<int, JumpPoint> dictionary_1 = new Dictionary<int, JumpPoint>();
+    public Dictionary<int, JumpPoint> dictionary_2 = new Dictionary<int, JumpPoint>();
     public List<Star197> list_0 = new List<Star197>();
     public DIMKnownSystemsData198 KnownSystemData;
     public int SystemID;
@@ -374,16 +374,16 @@ public class SystemData200
     public double double_5;
     public double double_6;
     public bool IsSolSystem;
-    public SystemData200 gclass200_0;
-    public SystemData200 gclass200_1;
-    public JumpPoint120 gclass120_0;
+    public StarSystem gclass200_0;
+    public StarSystem gclass200_1;
+    public JumpPoint gclass120_0;
     public int int_11;
     public double double_7;
     public int int_12;
     public bool bool_1;
     public int int_13;
 
-    public SystemData200(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public StarSystem(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public void method_0()
     {
@@ -442,21 +442,21 @@ public class SystemData200
         try
         {
             double num1 = this.gclass0_0.GetDistanceBetween(double_8, double_9, double_10, double_11);
-            List<GClass212> list = this.gclass0_0.dictionary_14.Values
-                .Where<GClass212>(gclass212_0 => gclass212_0.gclass200_0 == this).ToList<GClass212>();
+            List<LagrangePoint> list = this.gclass0_0.LagrangePoints.Values
+                .Where<LagrangePoint>(gclass212_0 => gclass212_0.System == this).ToList<LagrangePoint>();
             if (list.Count < 2)
                 return num1;
-            List<GClass212> gclass212List = new List<GClass212>(list);
-            foreach (GClass212 gclass212_1 in list)
+            List<LagrangePoint> gclass212List = new List<LagrangePoint>(list);
+            foreach (LagrangePoint gclass212_1 in list)
             {
-                double num2 = this.gclass0_0.GetDistanceBetween(double_8, double_9, gclass212_1.double_0, gclass212_1.double_1);
+                double num2 = this.gclass0_0.GetDistanceBetween(double_8, double_9, gclass212_1.XCor, gclass212_1.Ycor);
                 if (num2 < num1)
                 {
-                    foreach (GClass212 gclass212_2 in gclass212List)
+                    foreach (LagrangePoint gclass212_2 in gclass212List)
                     {
                         if (gclass212_2 != gclass212_1)
                         {
-                            double num3 = this.gclass0_0.GetDistanceBetween(gclass212_2.double_0, gclass212_2.double_1,
+                            double num3 = this.gclass0_0.GetDistanceBetween(gclass212_2.XCor, gclass212_2.Ycor,
                                 double_10, double_11);
                             if (num2 + num3 < num1)
                                 num1 = num2 + num3;
@@ -474,14 +474,14 @@ public class SystemData200
         }
     }
 
-    public JumpPoint120 method_4()
+    public JumpPoint method_4()
     {
         try
         {
             return this.dictionary_1
-                .OrderByDescending<KeyValuePair<int, JumpPoint120>, int>(keyValuePair_0 => keyValuePair_0.Key)
-                .Select<KeyValuePair<int, JumpPoint120>, JumpPoint120>(keyValuePair_0 => keyValuePair_0.Value)
-                .FirstOrDefault<JumpPoint120>();
+                .OrderByDescending<KeyValuePair<int, JumpPoint>, int>(keyValuePair_0 => keyValuePair_0.Key)
+                .Select<KeyValuePair<int, JumpPoint>, JumpPoint>(keyValuePair_0 => keyValuePair_0.Value)
+                .FirstOrDefault<JumpPoint>();
         }
         catch (Exception ex)
         {
@@ -490,11 +490,11 @@ public class SystemData200
         }
     }
 
-    public GClass233 method_5(double double_8, double double_9, RacialSystemSurvey gclass202_0)
+    public Wreck method_5(double double_8, double double_9, RacialSystemSurvey gclass202_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1168 class1168 = new SystemData200.Class1168();
+        StarSystem.Class1168 class1168 = new StarSystem.Class1168();
         // ISSUE: reference to a compiler-generated field
         class1168.gclass202_0 = gclass202_0;
         // ISSUE: reference to a compiler-generated field
@@ -509,14 +509,14 @@ public class SystemData200
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            List<GClass233> list = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class1168.method_0)
+            List<Wreck> list = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class1168.method_0)
                 .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                 .Where<MoveOrder>(class1168.method_1).Where<MoveOrder>(class1168.method_2)
-                .Select<MoveOrder, GClass233>(class1168.method_3).ToList<GClass233>();
+                .Select<MoveOrder, Wreck>(class1168.method_3).ToList<Wreck>();
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.dictionary_29.Values.Where<GClass233>(class1168.method_4).Except<GClass233>(list)
-                .OrderBy<GClass233, double>(class1168.method_5).FirstOrDefault<GClass233>();
+            return this.gclass0_0.Wrecks.Values.Where<Wreck>(class1168.method_4).Except<Wreck>(list)
+                .OrderBy<Wreck, double>(class1168.method_5).FirstOrDefault<Wreck>();
         }
         catch (Exception ex)
         {
@@ -529,7 +529,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1169 class1169 = new SystemData200.Class1169();
+        StarSystem.Class1169 class1169 = new StarSystem.Class1169();
         // ISSUE: reference to a compiler-generated field
         class1169.gclass202_0 = gclass202_0;
         // ISSUE: reference to a compiler-generated field
@@ -550,7 +550,7 @@ public class SystemData200
                 .Select<MoveOrder, PopulationData>(class1169.method_3).ToList<PopulationData>();
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1169.method_4).Except<PopulationData>(list)
+            return this.gclass0_0.Populations.Values.Where<PopulationData>(class1169.method_4).Except<PopulationData>(list)
                 .OrderBy<PopulationData, double>(class1169.method_5).FirstOrDefault<PopulationData>();
         }
         catch (Exception ex)
@@ -560,7 +560,7 @@ public class SystemData200
         }
     }
 
-    public GClass65 method_7(
+    public Contact method_7(
         double double_8,
         double double_9,
         RacialSystemSurvey gclass202_0,
@@ -571,7 +571,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1170 class1170 = new SystemData200.Class1170();
+        StarSystem.Class1170 class1170 = new StarSystem.Class1170();
         // ISSUE: reference to a compiler-generated field
         class1170.gclass202_0 = gclass202_0;
         // ISSUE: reference to a compiler-generated field
@@ -588,7 +588,7 @@ public class SystemData200
         class1170.double_1 = double_9;
         try
         {
-            List<GClass65> second = new List<GClass65>();
+            List<Contact> second = new List<Contact>();
             if (!bool_3)
             {
                 // ISSUE: reference to a compiler-generated method
@@ -598,13 +598,13 @@ public class SystemData200
                 second = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class1170.method_0)
                     .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                     .Where<MoveOrder>(class1170.method_1).Where<MoveOrder>(class1170.method_2)
-                    .Select<MoveOrder, GClass65>(class1170.method_3).ToList<GClass65>();
+                    .Select<MoveOrder, Contact>(class1170.method_3).ToList<Contact>();
             }
 
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.dictionary_28.Values.Where<GClass65>(class1170.method_4).Except<GClass65>(second)
-                .OrderBy<GClass65, double>(class1170.method_5).FirstOrDefault<GClass65>();
+            return this.gclass0_0.Contacts.Values.Where<Contact>(class1170.method_4).Except<Contact>(second)
+                .OrderBy<Contact, double>(class1170.method_5).FirstOrDefault<Contact>();
         }
         catch (Exception ex)
         {
@@ -613,7 +613,7 @@ public class SystemData200
         }
     }
 
-    public GClass214 method_8(
+    public Waypoint method_8(
         double double_8,
         double double_9,
         RacialSystemSurvey gclass202_0,
@@ -622,7 +622,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1171 class1171 = new SystemData200.Class1171();
+        StarSystem.Class1171 class1171 = new StarSystem.Class1171();
         // ISSUE: reference to a compiler-generated field
         class1171.gclass202_0 = gclass202_0;
         // ISSUE: reference to a compiler-generated field
@@ -637,7 +637,7 @@ public class SystemData200
         class1171.double_1 = double_9;
         try
         {
-            List<GClass214> second = new List<GClass214>();
+            List<Waypoint> second = new List<Waypoint>();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
@@ -651,13 +651,13 @@ public class SystemData200
                 second = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class1171.method_0)
                     .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                     .Where<MoveOrder>(class1171.method_1).Where<MoveOrder>(class1171.method_2)
-                    .Select<MoveOrder, GClass214>(class1171.method_3).ToList<GClass214>();
+                    .Select<MoveOrder, Waypoint>(class1171.method_3).ToList<Waypoint>();
             }
 
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.dictionary_13.Values.Where<GClass214>(class1171.method_4).Except<GClass214>(second)
-                .OrderBy<GClass214, double>(class1171.method_5).FirstOrDefault<GClass214>();
+            return this.gclass0_0.Waypoints.Values.Where<Waypoint>(class1171.method_4).Except<Waypoint>(second)
+                .OrderBy<Waypoint, double>(class1171.method_5).FirstOrDefault<Waypoint>();
         }
         catch (Exception ex)
         {
@@ -670,7 +670,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1172 class1172 = new SystemData200.Class1172();
+        StarSystem.Class1172 class1172 = new StarSystem.Class1172();
         // ISSUE: reference to a compiler-generated field
         class1172.gclass202_0 = gclass202_0;
         // ISSUE: reference to a compiler-generated field
@@ -706,7 +706,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1173 class1173 = new SystemData200.Class1173();
+        StarSystem.Class1173 class1173 = new StarSystem.Class1173();
         // ISSUE: reference to a compiler-generated field
         class1173.gclass200_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -717,7 +717,7 @@ public class SystemData200
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            SystemData200.Class1174 class1174 = new SystemData200.Class1174()
+            StarSystem.Class1174 class1174 = new StarSystem.Class1174()
             {
                 class1173_0 = class1173
             };
@@ -733,12 +733,12 @@ public class SystemData200
             List<SystemBodyData> list = this.gclass0_0.SystemBodyRecordDic.Values
                 .Where<SystemBodyData>(class1174.class1173_0.method_0)
                 .Where<SystemBodyData>(class1174.method_0)
-                .Where<SystemBodyData>(gclass1_0 => gclass1_0.dictionary_0.ContainsKey(AuroraElement.Duranium))
+                .Where<SystemBodyData>(gclass1_0 => gclass1_0.MineralDeposits.ContainsKey(AuroraElement.Duranium))
                 .Where<SystemBodyData>(class1174.class1173_0.method_1).ToList<SystemBodyData>();
             return list.Count == 0
                 ? null
                 : list.OrderByDescending<SystemBodyData, Decimal>(gclass1_0 =>
-                        gclass1_0.dictionary_0.Values.Sum<GClass124>(gclass124_0 => gclass124_0.decimal_1))
+                        gclass1_0.MineralDeposits.Values.Sum<MineralDeposit>(gclass124_0 => gclass124_0.Accessibility))
                     .FirstOrDefault<SystemBodyData>();
         }
         catch (Exception ex)
@@ -752,7 +752,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1175 class1175 = new SystemData200.Class1175();
+        StarSystem.Class1175 class1175 = new StarSystem.Class1175();
         // ISSUE: reference to a compiler-generated field
         class1175.gclass21_0 = gclass21_0;
         // ISSUE: reference to a compiler-generated field
@@ -763,7 +763,7 @@ public class SystemData200
         {
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            if (class1175.decimal_0 > 0M && this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1175.method_0)
+            if (class1175.decimal_0 > 0M && this.gclass0_0.Populations.Values.Where<PopulationData>(class1175.method_0)
                     .Sum<PopulationData>(gclass146_0 => gclass146_0.decimal_30) < 10M)
                 return null;
             // ISSUE: reference to a compiler-generated method
@@ -773,7 +773,7 @@ public class SystemData200
                 .Where<SystemBodyData>(gclass1_0 =>
                     gclass1_0.BodyTypeId == AuroraSystemBodyType.GasGiant ||
                     gclass1_0.BodyTypeId == AuroraSystemBodyType.Superjovian)
-                .Where<SystemBodyData>(gclass1_0 => gclass1_0.dictionary_0.ContainsKey(AuroraElement.Sorium))
+                .Where<SystemBodyData>(gclass1_0 => gclass1_0.MineralDeposits.ContainsKey(AuroraElement.Sorium))
                 .Where<SystemBodyData>(class1175.method_2).ToList<SystemBodyData>();
             if (list.Count == 0)
                 return null;
@@ -787,7 +787,7 @@ public class SystemData200
             }
 
             return list.OrderByDescending<SystemBodyData, Decimal>(gclass1_0 =>
-                gclass1_0.dictionary_0[AuroraElement.Sorium].decimal_1).FirstOrDefault<SystemBodyData>();
+                gclass1_0.MineralDeposits[AuroraElement.Sorium].Accessibility).FirstOrDefault<SystemBodyData>();
         }
         catch (Exception ex)
         {
@@ -815,7 +815,7 @@ public class SystemData200
         {
             foreach (SystemBodyData gclass1_1 in this.method_20())
             {
-                gclass1_1.dictionary_0.Clear();
+                gclass1_1.MineralDeposits.Clear();
                 if (gclass1_1.BodyTypeId != AuroraSystemBodyType.GasGiant &&
                     gclass1_1.BodyTypeId != AuroraSystemBodyType.Superjovian)
                 {
@@ -834,12 +834,12 @@ public class SystemData200
         }
     }
 
-    public JumpPoint120 method_14(bool bool_2)
+    public JumpPoint method_14(bool bool_2)
     {
         try
         {
-            JumpPoint120 gclass120_2 = new JumpPoint120(this.gclass0_0);
-            JumpPoint120 gclass120_0_1 = new JumpPoint120(this.gclass0_0);
+            JumpPoint gclass120_2 = new JumpPoint(this.gclass0_0);
+            JumpPoint gclass120_0_1 = new JumpPoint(this.gclass0_0);
             gclass120_0_1.WarpPointID = this.gclass0_0.method_26(GEnum0.const_8);
             gclass120_0_1.SystemData = this;
             double num1 = this.method_12();
@@ -855,17 +855,17 @@ public class SystemData200
                 gclass120_0_1.JumpGateStrength = 1000;
             this.gclass0_0.JumpPointDictionary.Add(gclass120_0_1.WarpPointID, gclass120_0_1);
             int num2 = 1;
-            foreach (JumpPoint120 gclass120_3 in this.gclass0_0.JumpPointDictionary.Values
-                         .Where<JumpPoint120>(gclass120_1 => gclass120_1.SystemData == this)
-                         .OrderBy<JumpPoint120, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint120>())
+            foreach (JumpPoint gclass120_3 in this.gclass0_0.JumpPointDictionary.Values
+                         .Where<JumpPoint>(gclass120_1 => gclass120_1.SystemData == this)
+                         .OrderBy<JumpPoint, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint>())
             {
                 gclass120_3.NumJumpPointsInSameSystem = num2;
                 ++num2;
             }
 
-            foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
+            foreach (GameRace gclass21 in this.gclass0_0.GameRaces.Values
                          .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
-                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.ActualSystemData == this)
+                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.ActualSystem == this)
                          .Select<RacialSystemSurvey, GameRace>(gclass202_0 => gclass202_0.Race)
                          .ToList<GameRace>())
                 gclass21.method_264(gclass120_0_1, 0, 0);
@@ -878,18 +878,18 @@ public class SystemData200
         }
     }
 
-    public void method_15(JumpPoint120 gclass120_1)
+    public void method_15(JumpPoint gclass120_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1176 class1176 = new SystemData200.Class1176();
+        StarSystem.Class1176 class1176 = new StarSystem.Class1176();
         // ISSUE: reference to a compiler-generated field
         class1176.gclass120_0 = gclass120_1;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            JumpPoint120 gclass120 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1176.method_0)
-                .FirstOrDefault<JumpPoint120>();
+            JumpPoint gclass120 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1176.method_0)
+                .FirstOrDefault<JumpPoint>();
             if (gclass120 != null)
             {
                 gclass120.LinkedJumpPoint = null;
@@ -907,11 +907,11 @@ public class SystemData200
         }
     }
 
-    public List<SystemData200> method_16(GameRace gclass21_0)
+    public List<StarSystem> method_16(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1177 class1177 = new SystemData200.Class1177();
+        StarSystem.Class1177 class1177 = new StarSystem.Class1177();
         // ISSUE: reference to a compiler-generated field
         class1177.gclass200_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -920,10 +920,10 @@ public class SystemData200
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1177.method_0)
-                .Where<JumpPoint120>(class1177.method_1)
-                .Select<JumpPoint120, SystemData200>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
-                .ToList<SystemData200>();
+            return this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1177.method_0)
+                .Where<JumpPoint>(class1177.method_1)
+                .Select<JumpPoint, StarSystem>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
+                .ToList<StarSystem>();
         }
         catch (Exception ex)
         {
@@ -932,15 +932,15 @@ public class SystemData200
         }
     }
 
-    public List<SystemData200> method_17()
+    public List<StarSystem> method_17()
     {
         try
         {
             return this.gclass0_0.JumpPointDictionary.Values
-                .Where<JumpPoint120>(gclass120_1 =>
+                .Where<JumpPoint>(gclass120_1 =>
                     gclass120_1.SystemData == this && gclass120_1.LinkedJumpPoint != null)
-                .Select<JumpPoint120, SystemData200>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
-                .ToList<SystemData200>();
+                .Select<JumpPoint, StarSystem>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
+                .ToList<StarSystem>();
         }
         catch (Exception ex)
         {
@@ -949,20 +949,20 @@ public class SystemData200
         }
     }
 
-    public List<JumpPoint120> method_18(GameRace gclass21_0)
+    public List<JumpPoint> method_18(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1178 class1178 = new SystemData200.Class1178();
+        StarSystem.Class1178 class1178 = new StarSystem.Class1178();
         // ISSUE: reference to a compiler-generated field
         class1178.gclass21_0 = gclass21_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1178.method_0)
-                .Where<JumpPoint120>(class1178.method_1)
-                .OrderBy<JumpPoint120, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint120>();
+            return this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1178.method_0)
+                .Where<JumpPoint>(class1178.method_1)
+                .OrderBy<JumpPoint, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint>();
         }
         catch (Exception ex)
         {
@@ -1024,7 +1024,7 @@ public class SystemData200
             double num2 = -1.0;
             SystemBodyData gclass1 = this.method_23(double_8, double_9);
             Star197 gclass197 = this.method_24(double_8, double_9);
-            JumpPoint120 gclass120 = this.method_25(double_8, double_9, gclass202_0.Race);
+            JumpPoint gclass120 = this.method_25(double_8, double_9, gclass202_0.Race);
             if (gclass1 != null)
                 num1 = Math.Sqrt(Math.Pow(gclass1.XCoordinate - double_8, 2.0) +
                                  Math.Pow(gclass1.YCoordinate - double_9, 2.0));
@@ -1120,13 +1120,13 @@ public class SystemData200
         }
     }
 
-    public JumpPoint120 method_25(double double_8, double double_9, GameRace gclass21_0)
+    public JumpPoint method_25(double double_8, double double_9, GameRace gclass21_0)
     {
         try
         {
-            JumpPoint120 gclass120_1 = null;
+            JumpPoint gclass120_1 = null;
             double num1 = -1.0;
-            foreach (JumpPoint120 gclass120_2 in this.method_27())
+            foreach (JumpPoint gclass120_2 in this.method_27())
             {
                 if (gclass120_2.RacialJumpPointSurveys.ContainsKey(gclass21_0.RaceID) &&
                     gclass120_2.RacialJumpPointSurveys[gclass21_0.RaceID].Charted == 1)
@@ -1164,18 +1164,18 @@ public class SystemData200
         }
     }
 
-    public List<JumpPoint120> method_27()
+    public List<JumpPoint> method_27()
     {
         try
         {
             return this.gclass0_0.JumpPointDictionary.Values
-                .Where<JumpPoint120>(gclass120_1 => gclass120_1.SystemData == this)
-                .OrderBy<JumpPoint120, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint120>();
+                .Where<JumpPoint>(gclass120_1 => gclass120_1.SystemData == this)
+                .OrderBy<JumpPoint, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint>();
         }
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 2981);
-            return new List<JumpPoint120>();
+            return new List<JumpPoint>();
         }
     }
 
@@ -1184,10 +1184,10 @@ public class SystemData200
         try
         {
             int num = 1;
-            foreach (GClass212 gclass212 in this.gclass0_0.dictionary_14.Values
-                         .Where<GClass212>(gclass212_0 => gclass212_0.gclass197_0.SystemData == this)
-                         .OrderBy<GClass212, int>(gclass212_0 => gclass212_0.gclass197_0.Component)
-                         .ThenBy<GClass212, double>(gclass212_0 => gclass212_0.double_2).ToList<GClass212>())
+            foreach (LagrangePoint gclass212 in this.gclass0_0.LagrangePoints.Values
+                         .Where<LagrangePoint>(gclass212_0 => gclass212_0.Star.SystemData == this)
+                         .OrderBy<LagrangePoint, int>(gclass212_0 => gclass212_0.Star.Component)
+                         .ThenBy<LagrangePoint, double>(gclass212_0 => gclass212_0.Distance).ToList<LagrangePoint>())
             {
                 gclass212.int_1 = num;
                 ++num;
@@ -1199,16 +1199,16 @@ public class SystemData200
         }
     }
 
-    public List<GClass212> method_29()
+    public List<LagrangePoint> method_29()
     {
         try
         {
             int num = 1;
-            List<GClass212> list = this.gclass0_0.dictionary_14.Values
-                .Where<GClass212>(gclass212_0 => gclass212_0.gclass197_0.SystemData == this)
-                .OrderBy<GClass212, int>(gclass212_0 => gclass212_0.gclass197_0.Component)
-                .ThenBy<GClass212, double>(gclass212_0 => gclass212_0.double_2).ToList<GClass212>();
-            foreach (GClass212 gclass212 in list)
+            List<LagrangePoint> list = this.gclass0_0.LagrangePoints.Values
+                .Where<LagrangePoint>(gclass212_0 => gclass212_0.Star.SystemData == this)
+                .OrderBy<LagrangePoint, int>(gclass212_0 => gclass212_0.Star.Component)
+                .ThenBy<LagrangePoint, double>(gclass212_0 => gclass212_0.Distance).ToList<LagrangePoint>();
+            foreach (LagrangePoint gclass212 in list)
             {
                 gclass212.int_1 = num;
                 ++num;
@@ -1228,7 +1228,7 @@ public class SystemData200
         try
         {
             return this.gclass0_0.FleetDictionary.Values
-                .Where<FleetData>(gclass85_0 => gclass85_0.System.ActualSystemData == this)
+                .Where<FleetData>(gclass85_0 => gclass85_0.System.ActualSystem == this)
                 .OrderBy<FleetData, string>(gclass85_0 => gclass85_0.FleetName).ToList<FleetData>();
         }
         catch (Exception ex)
@@ -1238,17 +1238,17 @@ public class SystemData200
         }
     }
 
-    public List<GClass132> method_31()
+    public List<MissileSalvo> method_31()
     {
         try
         {
-            return this.gclass0_0.dictionary_6.Values.Where<GClass132>(gclass132_0 => gclass132_0.gclass200_0 == this)
-                .OrderBy<GClass132, string>(gclass132_0 => gclass132_0.string_0).ToList<GClass132>();
+            return this.gclass0_0.MissileSalvoes.Values.Where<MissileSalvo>(gclass132_0 => gclass132_0.System == this)
+                .OrderBy<MissileSalvo, string>(gclass132_0 => gclass132_0.string_0).ToList<MissileSalvo>();
         }
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 2985);
-            return new List<GClass132>();
+            return new List<MissileSalvo>();
         }
     }
 
@@ -1256,8 +1256,8 @@ public class SystemData200
     {
         try
         {
-            return this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0.ActualSystemData == this)
+            return this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0.ActualSystem == this)
                 .OrderBy<PopulationData, string>(gclass146_0 => gclass146_0.PopName).ToList<PopulationData>();
         }
         catch (Exception ex)
@@ -1271,7 +1271,7 @@ public class SystemData200
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        SystemData200.Class1179 class1179 = new SystemData200.Class1179();
+        StarSystem.Class1179 class1179 = new StarSystem.Class1179();
         // ISSUE: reference to a compiler-generated field
         class1179.gclass200_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -1279,7 +1279,7 @@ public class SystemData200
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1179.method_0)
+            return this.gclass0_0.Populations.Values.Where<PopulationData>(class1179.method_0)
                 .OrderBy<PopulationData, string>(gclass146_0 => gclass146_0.PopName).ToList<PopulationData>();
         }
         catch (Exception ex)
@@ -1289,31 +1289,31 @@ public class SystemData200
         }
     }
 
-    public List<GClass65> method_34()
+    public List<Contact> method_34()
     {
         try
         {
-            return this.gclass0_0.dictionary_28.Values.Where<GClass65>(gclass65_0 => gclass65_0.gclass200_0 == this)
-                .OrderBy<GClass65, string>(gclass65_0 => gclass65_0.string_0).ToList<GClass65>();
+            return this.gclass0_0.Contacts.Values.Where<Contact>(gclass65_0 => gclass65_0.System == this)
+                .OrderBy<Contact, string>(gclass65_0 => gclass65_0.ContactName).ToList<Contact>();
         }
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 2988);
-            return new List<GClass65>();
+            return new List<Contact>();
         }
     }
 
-    public List<GClass233> method_35()
+    public List<Wreck> method_35()
     {
         try
         {
-            return this.gclass0_0.dictionary_29.Values.Where<GClass233>(gclass233_0 => gclass233_0.gclass200_0 == this)
-                .OrderBy<GClass233, string>(gclass233_0 => gclass233_0.ViewingName).ToList<GClass233>();
+            return this.gclass0_0.Wrecks.Values.Where<Wreck>(gclass233_0 => gclass233_0.System == this)
+                .OrderBy<Wreck, string>(gclass233_0 => gclass233_0.ViewingName).ToList<Wreck>();
         }
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 2989);
-            return new List<GClass233>();
+            return new List<Wreck>();
         }
     }
 
@@ -1335,7 +1335,7 @@ public class SystemData200
     {
         try
         {
-            return this.gclass0_0.JumpPointDictionary.Values.Count<JumpPoint120>(gclass120_1 =>
+            return this.gclass0_0.JumpPointDictionary.Values.Count<JumpPoint>(gclass120_1 =>
                 gclass120_1.SystemData == this);
         }
         catch (Exception ex)
@@ -1358,7 +1358,7 @@ public class SystemData200
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                SystemData200.Class1180 class1180 = new SystemData200.Class1180();
+                StarSystem.Class1180 class1180 = new StarSystem.Class1180();
                 // ISSUE: reference to a compiler-generated field
                 class1180.gclass197_0 = gclass197;
                 TreeNode node1 = new TreeNode();
@@ -1374,7 +1374,7 @@ public class SystemData200
                     node1 = treeNode;
 
                 // ISSUE: reference to a compiler-generated method
-                foreach (PopulationData gclass146 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1180.method_0)
+                foreach (PopulationData gclass146 in this.gclass0_0.Populations.Values.Where<PopulationData>(class1180.method_0)
                              .ToList<PopulationData>())
                     node1.Nodes.Add(new TreeNode()
                     {
@@ -1456,7 +1456,7 @@ public class SystemData200
                     num = gclass1.OrbitalDistance;
             }
 
-            foreach (JumpPoint120 gclass120 in this.method_27())
+            foreach (JumpPoint gclass120 in this.method_27())
             {
                 if (gclass120.Distance > num)
                     num = gclass120.Distance;

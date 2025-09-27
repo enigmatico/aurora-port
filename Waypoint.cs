@@ -11,32 +11,32 @@ using System.Drawing;
 using System.Windows.Forms;
 
 #nullable disable
-public class GClass214
+public class Waypoint
 {
     private GClass0 gclass0_0;
-    public SystemData200 gclass200_0;
-    public SystemBodyData gclass1_0;
-    public JumpPoint120 gclass120_0;
-    public GameRace gclass21_0;
-    public WayPointType wayPointType_0;
-    public int int_0;
-    public int int_1;
-    public int int_2;
-    public int int_3;
+    public StarSystem System;
+    public SystemBodyData OrbitBody;
+    public JumpPoint JumpPoint;
+    public GameRace Race;
+    public WayPointType WaypointType;
+    public int WaypointID;
+    public int OrbitBodyID;
+    public int FleetID;
+    public int Number;
     public bool bool_0;
-    public Decimal decimal_0;
-    public double double_0;
-    public double double_1;
+    public Decimal CreationTime;
+    public double Xcor;
+    public double Ycor;
 
     public string Name { get; set; }
 
-    public GClass214(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public Waypoint(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public int method_0()
     {
         try
         {
-            return this.gclass120_0 == null ? 0 : this.gclass120_0.WarpPointID;
+            return this.JumpPoint == null ? 0 : this.JumpPoint.WarpPointID;
         }
         catch (Exception ex)
         {
@@ -45,14 +45,14 @@ public class GClass214
         }
     }
 
-    public bool method_1(double double_2, List<GClass214> list_0)
+    public bool method_1(double double_2, List<Waypoint> list_0)
     {
         try
         {
-            foreach (GClass214 gclass214 in list_0)
+            foreach (Waypoint gclass214 in list_0)
             {
-                if (gclass214 != this && this.gclass0_0.GetDistanceToNearestGClass212(this.gclass200_0, gclass214.double_0,
-                        gclass214.double_1, this.double_0, this.double_1) < double_2)
+                if (gclass214 != this && this.gclass0_0.GetDistanceToNearestGClass212(this.System, gclass214.Xcor,
+                        gclass214.Ycor, this.Xcor, this.Ycor) < double_2)
                     return true;
             }
 
@@ -72,21 +72,21 @@ public class GClass214
             if (this.Name != "")
                 return this.Name;
             string str1 = "Waypoint #";
-            if (this.wayPointType_0 == WayPointType.POI)
+            if (this.WaypointType == WayPointType.POI)
                 str1 = "Point of Interest #";
-            else if (this.wayPointType_0 == WayPointType.UrgentPOI)
+            else if (this.WaypointType == WayPointType.UrgentPOI)
                 str1 = "Urgent POI #";
-            else if (this.wayPointType_0 == WayPointType.TransitPOI)
+            else if (this.WaypointType == WayPointType.TransitPOI)
                 str1 = "Transit POI #";
-            else if (this.wayPointType_0 == WayPointType.FleetTraining)
+            else if (this.WaypointType == WayPointType.FleetTraining)
                 str1 = "Training Waypoint #";
-            else if (this.wayPointType_0 == WayPointType.Rendezvous)
+            else if (this.WaypointType == WayPointType.Rendezvous)
                 str1 = "Rendezvous Waypoint #";
-            else if (this.wayPointType_0 == WayPointType.Temporary)
+            else if (this.WaypointType == WayPointType.Temporary)
                 str1 = "Temporary #";
-            string str2 = str1 + this.int_3.ToString();
-            if (bool_1 && this.gclass1_0 != null)
-                str2 = $"{str2}  ({this.gclass1_0.method_78(this.gclass21_0)})";
+            string str2 = str1 + this.Number.ToString();
+            if (bool_1 && this.OrbitBody != null)
+                str2 = $"{str2}  ({this.OrbitBody.method_78(this.Race)})";
             return str2;
         }
         catch (Exception ex)

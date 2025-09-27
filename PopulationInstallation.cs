@@ -7,13 +7,13 @@
 using System;
 
 #nullable disable
-public class GClass158
+public class PopulationInstallation
 {
-    public PlanetaryInstallationType gclass157_0;
-    public PopulationData gclass146_0;
-    public FCTShipData40 gclass40_0;
-    public Decimal decimal_0;
-    public PopulationData gclass146_1;
+    public PlanetaryInstallationType InstallationType;
+    public PopulationData Population;
+    public ShipData Ship;
+    public Decimal Amount;
+    public PopulationData PopOrigin;
     public Decimal decimal_1;
     public int int_0;
 
@@ -21,7 +21,7 @@ public class GClass158
     {
         try
         {
-            return this.gclass157_0.CargoPoints * this.decimal_0;
+            return this.InstallationType.CargoPoints * this.Amount;
         }
         catch (Exception ex)
         {

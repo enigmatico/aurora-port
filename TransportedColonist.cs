@@ -1,13 +1,15 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: GClass26
+// Type: GClass181
 // Assembly: Aurora, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: DAB8E3AD-3A24-426F-849E-98EC2E2DD9EB
 // Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
 
 #nullable disable
-public class GClass26
+public class TransportedColonist
 {
-    public FCTShipData40 gclass40_0;
-    public ShipComponent gclass230_0;
-    public int int_0;
+    public Species Species;
+    public PopulationData PopOrigin;
+    public int Amount;
+    public bool Neutral;
+    public bool bool_1;
 }

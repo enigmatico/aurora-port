@@ -10,73 +10,73 @@ using System.Drawing;
 using System.Windows.Forms;
 
 #nullable disable
-public class GClass65
+public class Contact
 {
-    public SystemData200 gclass200_0;
-    public GameRace gclass21_0;
-    public GameRace gclass21_1;
-    public GEnum10 genum10_0;
-    public AuroraContactType auroraContactType_0;
-    public FCTShipData40 gclass40_0;
-    public GClass132 gclass132_0;
-    public PopulationData gclass146_0;
+    public StarSystem System;
+    public GameRace ContactRace;
+    public GameRace DetectRace;
+    public ContactDetectMethod ContactMethod;
+    public AuroraContactType ContactType;
+    public ShipData TargetShip;
+    public MissileSalvo TargetSalvo;
+    public PopulationData TargetPopulation;
     private GClass0 gclass0_0;
-    public int int_0;
-    public int int_1;
-    public int int_2;
-    public int int_3;
-    public int int_4;
-    public int int_5;
-    public Decimal decimal_0;
-    public Decimal decimal_1;
-    public Decimal decimal_2;
-    public Decimal decimal_3;
-    public double double_0;
-    public double double_1;
-    public double double_2;
-    public double double_3;
-    public double double_4;
-    public double double_5;
-    public string string_0;
-    public bool bool_0;
+    public int UniqueID;
+    public int ContactID;
+    public int ContactNumber;
+    public int Resolution;
+    public int ContinualContactTime;
+    public int Speed;
+    public Decimal ContactStrength;
+    public Decimal CreationTime;
+    public Decimal Reestablished;
+    public Decimal LastUpdate;
+    public double Xcor;
+    public double Ycor;
+    public double LastXcor;
+    public double LastYcor;
+    public double IncrementStartX;
+    public double IncrementStartY;
+    public string ContactName;
+    public bool Msg;
     public AlienRaceInfo gclass110_0;
     public string string_1 = "";
 
-    public GClass65(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public Contact(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public string method_0()
     {
         try
         {
-            RacialSystemSurvey gclass202_0 = this.gclass21_1.method_128(this.gclass200_0);
-            foreach (PopulationData gclass146 in this.gclass200_0.method_33(this.gclass21_1))
+            RacialSystemSurvey gclass202_0 = this.DetectRace.method_128(this.System);
+            foreach (PopulationData gclass146 in this.System.method_33(this.DetectRace))
             {
-                if (this.gclass0_0.method_520(this.double_0, gclass146.method_87(), this.double_1,
+                if (this.gclass0_0.method_520(this.Xcor, gclass146.method_87(), this.Ycor,
                         gclass146.method_88()))
                     return "Orbiting " + gclass146.PopName;
             }
 
-            foreach (JumpPoint120 gclass120 in this.gclass200_0.method_27())
+            foreach (JumpPoint gclass120 in this.System.method_27())
             {
-                if (gclass120.RacialJumpPointSurveys.ContainsKey(this.gclass21_1.RaceID) &&
-                    gclass120.RacialJumpPointSurveys[this.gclass21_1.RaceID].Charted == 1 &&
-                    this.gclass0_0.method_520(this.double_0, gclass120.XCoord, this.double_1, gclass120.YCoord))
+                if (gclass120.RacialJumpPointSurveys.ContainsKey(this.DetectRace.RaceID) &&
+                    gclass120.RacialJumpPointSurveys[this.DetectRace.RaceID].Charted == 1 &&
+                    this.gclass0_0.method_520(this.Xcor, gclass120.XCoord, this.Ycor, gclass120.YCoord))
                     return "Stationed at " + gclass120.method_8(gclass202_0);
             }
 
-            foreach (SurveyLocation213 gclass213 in this.gclass200_0.SurveyLocationDictionary.Values)
+            foreach (SurveyLocation gclass213 in this.System.SurveyLocationDictionary.Values)
             {
-                if (this.gclass0_0.method_520(this.double_0, gclass213.XCoord, this.double_1, gclass213.YCoord))
+                if (this.gclass0_0.method_520(this.Xcor, gclass213.XCoord, this.Ycor, gclass213.YCoord))
                     return "Stationed at Survey Location #" + gclass213.LocationNumber.ToString();
             }
 
-            foreach (SystemBodyData gclass1 in this.gclass200_0.method_20())
+            foreach (SystemBodyData gclass1 in this.System.method_20())
             {
-                if (this.gclass0_0.method_520(this.double_0, gclass1.XCoordinate, this.double_1, gclass1.YCoordinate))
-                    return "Orbiting " + gclass1.method_78(this.gclass21_1);
+                if (this.gclass0_0.method_520(this.Xcor, gclass1.XCoordinate, this.Ycor, gclass1.YCoordinate))
+                    return "Orbiting " + gclass1.method_78(this.DetectRace);
             }
 
-            return this.gclass200_0.method_22(this.double_0, this.double_1, gclass202_0);
+            return this.System.method_22(this.Xcor, this.Ycor, gclass202_0);
         }
         catch (Exception ex)
         {
@@ -89,7 +89,7 @@ public class GClass65
     {
         try
         {
-            return this.decimal_2 == 0M ? this.decimal_1 : this.decimal_2;
+            return this.Reestablished == 0M ? this.CreationTime : this.Reestablished;
         }
         catch (Exception ex)
         {
@@ -102,16 +102,16 @@ public class GClass65
     {
         try
         {
-            return this.auroraContactType_0 == AuroraContactType.Population ||
-                   this.auroraContactType_0 == AuroraContactType.Salvo ||
-                   this.auroraContactType_0 == AuroraContactType.GroundUnit ||
-                   this.auroraContactType_0 == AuroraContactType.STOGroundUnit ||
-                   this.auroraContactType_0 == AuroraContactType.Shipyard ||
-                   this.auroraContactType_0 == AuroraContactType.Ship && (this.gclass40_0.gclass187_0 == null ||
-                                                                          !this.gclass21_1.PerceivedAliens.ContainsKey(
-                                                                              this.gclass21_0.RaceID) ||
-                                                                          !this.gclass21_1
-                                                                              .PerceivedAliens[this.gclass21_0.RaceID]
+            return this.ContactType == AuroraContactType.Population ||
+                   this.ContactType == AuroraContactType.Salvo ||
+                   this.ContactType == AuroraContactType.GroundUnit ||
+                   this.ContactType == AuroraContactType.STOGroundUnit ||
+                   this.ContactType == AuroraContactType.Shipyard ||
+                   this.ContactType == AuroraContactType.Ship && (this.TargetShip.gclass187_0 == null ||
+                                                                          !this.DetectRace.PerceivedAliens.ContainsKey(
+                                                                              this.ContactRace.RaceID) ||
+                                                                          !this.DetectRace
+                                                                              .PerceivedAliens[this.ContactRace.RaceID]
                                                                               .bTradeTreaty);
         }
         catch (Exception ex)
@@ -125,7 +125,7 @@ public class GClass65
     {
         try
         {
-            return this.gclass21_0 == null ? 0 : this.gclass21_0.RaceID;
+            return this.ContactRace == null ? 0 : this.ContactRace.RaceID;
         }
         catch (Exception ex)
         {
@@ -139,36 +139,36 @@ public class GClass65
         try
         {
             string str1 = "";
-            if (this.gclass21_0 != null)
-                str1 = $"[{this.gclass21_1.PerceivedAliens[this.gclass21_0.RaceID].Abbreviation}]  ";
+            if (this.ContactRace != null)
+                str1 = $"[{this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].Abbreviation}]  ";
             string str2;
-            if (this.auroraContactType_0 == AuroraContactType.Ship)
-                str2 = str1 + this.gclass40_0.method_226(this.gclass21_1, false, 0);
-            else if (this.auroraContactType_0 == AuroraContactType.Salvo)
-                str2 = this.gclass132_0.method_18(this.gclass21_1, true);
-            else if (this.auroraContactType_0 == AuroraContactType.Population)
-                str2 = str1 + this.gclass146_0.method_80(this.gclass21_1);
-            else if (this.auroraContactType_0 == AuroraContactType.GroundUnit)
+            if (this.ContactType == AuroraContactType.Ship)
+                str2 = str1 + this.TargetShip.method_226(this.DetectRace, false, 0);
+            else if (this.ContactType == AuroraContactType.Salvo)
+                str2 = this.TargetSalvo.method_18(this.DetectRace, true);
+            else if (this.ContactType == AuroraContactType.Population)
+                str2 = str1 + this.TargetPopulation.method_80(this.DetectRace);
+            else if (this.ContactType == AuroraContactType.GroundUnit)
             {
-                string str3 = this.gclass21_1.method_42(this.gclass146_0);
-                str2 = $"{str1}{str3} - Ground Forces Signature: {AuroraUtils.smethod_39(this.decimal_0 * 100M)} tons";
+                string str3 = this.DetectRace.method_42(this.TargetPopulation);
+                str2 = $"{str1}{str3} - Ground Forces Signature: {AuroraUtils.smethod_39(this.ContactStrength * 100M)} tons";
             }
-            else if (this.auroraContactType_0 == AuroraContactType.STOGroundUnit)
+            else if (this.ContactType == AuroraContactType.STOGroundUnit)
             {
-                string str4 = this.gclass21_1.method_42(this.gclass146_0);
+                string str4 = this.DetectRace.method_42(this.TargetPopulation);
                 str2 =
-                    $"{str1}{str4} - STO Ground Forces Signature {AuroraUtils.smethod_39(this.decimal_0 * 100M)} tons";
+                    $"{str1}{str4} - STO Ground Forces Signature {AuroraUtils.smethod_39(this.ContactStrength * 100M)} tons";
             }
-            else if (this.auroraContactType_0 == AuroraContactType.Shipyard)
+            else if (this.ContactType == AuroraContactType.Shipyard)
             {
-                string str5 = this.gclass21_1.method_42(this.gclass146_0);
-                str2 = $"{str1}{str5} - Shipyard Complex Signature {this.decimal_0.ToString()}";
+                string str5 = this.DetectRace.method_42(this.TargetPopulation);
+                str2 = $"{str1}{str5} - Shipyard Complex Signature {this.ContactStrength.ToString()}";
             }
             else
-                str2 = this.auroraContactType_0 == AuroraContactType.Explosion ||
-                       this.auroraContactType_0 == AuroraContactType.EWImpact
-                    ? $"{AuroraUtils.smethod_37(this.int_2)}x {this.string_0}"
-                    : this.string_0;
+                str2 = this.ContactType == AuroraContactType.Explosion ||
+                       this.ContactType == AuroraContactType.EWImpact
+                    ? $"{AuroraUtils.smethod_37(this.ContactNumber)}x {this.ContactName}"
+                    : this.ContactName;
 
             return str2;
         }
@@ -183,9 +183,9 @@ public class GClass65
     {
         try
         {
-            return this.gclass21_0 == null || !this.gclass21_1.PerceivedAliens.ContainsKey(this.gclass21_0.RaceID)
+            return this.ContactRace == null || !this.DetectRace.PerceivedAliens.ContainsKey(this.ContactRace.RaceID)
                 ? AuroraContactStatus.None
-                : this.gclass21_1.PerceivedAliens[this.gclass21_0.RaceID].ContactStatus;
+                : this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].ContactStatus;
         }
         catch (Exception ex)
         {
@@ -198,9 +198,9 @@ public class GClass65
     {
         try
         {
-            return this.gclass21_0 == null || !this.gclass21_1.PerceivedAliens.ContainsKey(this.gclass21_0.RaceID)
+            return this.ContactRace == null || !this.DetectRace.PerceivedAliens.ContainsKey(this.ContactRace.RaceID)
                 ? AuroraCommStatus.CommunicationImpossible
-                : this.gclass21_1.PerceivedAliens[this.gclass21_0.RaceID].CommStatus;
+                : this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].CommStatus;
         }
         catch (Exception ex)
         {
@@ -218,14 +218,14 @@ public class GClass65
     {
         try
         {
-            if (gclass202_0.Race.chkActiveOnly == CheckState.Checked && this.genum10_0 != GEnum10.const_0)
+            if (gclass202_0.Race.chkActiveOnly == CheckState.Checked && this.ContactMethod != ContactDetectMethod.const_0)
                 return false;
             AuroraContactStatus auroraContactStatus_0 = AuroraContactStatus.Hostile;
             string str1 = "";
-            if (this.gclass21_0 != null)
+            if (this.ContactRace != null)
             {
-                auroraContactStatus_0 = this.gclass21_1.PerceivedAliens[this.gclass21_0.RaceID].ContactStatus;
-                str1 = $"[{gclass202_0.Race.PerceivedAliens[this.gclass21_0.RaceID].Abbreviation}]  ";
+                auroraContactStatus_0 = this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].ContactStatus;
+                str1 = $"[{gclass202_0.Race.PerceivedAliens[this.ContactRace.RaceID].Abbreviation}]  ";
             }
 
             if (!gclass202_0.Race.method_319(auroraContactStatus_0))
@@ -236,17 +236,17 @@ public class GClass65
             pen.Color = solidBrush.Color;
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2;
-            if (this.decimal_3 == this.gclass0_0.GameTime && (this.double_4 != 0.0 || this.double_5 != 0.0))
+            if (this.LastUpdate == this.gclass0_0.GameTime && (this.IncrementStartX != 0.0 || this.IncrementStartY != 0.0))
             {
                 GClass221 gclass221_1 = new GClass221();
-                GClass221 gclass221_2 = gclass202_0.method_47(this.double_4, this.double_5);
+                GClass221 gclass221_2 = gclass202_0.method_47(this.IncrementStartX, this.IncrementStartY);
                 graphics_0.DrawLine(pen, (float)gclass222_0.double_2, (float)gclass222_0.double_3,
                     (float)gclass221_2.double_0, (float)gclass221_2.double_1);
             }
 
             if (int_6 == 0)
                 graphics_0.FillEllipse(solidBrush, (float)x, (float)y, AuroraUtils.int_61, AuroraUtils.int_61);
-            string str2 = this.string_0;
+            string str2 = this.ContactName;
             if (gclass202_0.Race.chkShowDist == CheckState.Checked && (gclass202_0.gclass221_0.double_0 != 0.0 ||
                                                                              gclass202_0.gclass221_0.double_1 != 0.0))
             {
@@ -289,7 +289,7 @@ public class GClass65
             GClass221 gclass221 = new GClass221();
             gclass221.double_0 = num1 + AuroraUtils.int_61 + 5.0;
             gclass221.double_1 = num2 - 3.0 - int_6 * 15;
-            graphics_0.DrawString($"{AuroraUtils.smethod_37(this.int_2)}x {this.string_0}", font_0, solidBrush,
+            graphics_0.DrawString($"{AuroraUtils.smethod_37(this.ContactNumber)}x {this.ContactName}", font_0, solidBrush,
                 (float)gclass221.double_0, (float)gclass221.double_1);
             return true;
         }

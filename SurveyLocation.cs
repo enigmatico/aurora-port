@@ -10,9 +10,12 @@ using System.Drawing;
 using System.Windows.Forms;
 
 #nullable disable
-public class SurveyLocation213
+public class SurveyLocation
 {
-    public List<int> list_0 = new List<int>();
+    /// <summary>
+    /// Contains Race IDs as raw but meaning is not sure
+    /// </summary>
+    public List<int> RaceIDs = new List<int>();
     public int SurveyLocationID;
     public int SystemID;
     public int LocationNumber;
@@ -23,9 +26,9 @@ public class SurveyLocation213
     {
         try
         {
-            if (this.list_0.Contains(gclass21_0.RaceID))
+            if (this.RaceIDs.Contains(gclass21_0.RaceID))
                 return;
-            this.list_0.Add(gclass21_0.RaceID);
+            this.RaceIDs.Add(gclass21_0.RaceID);
         }
         catch (Exception ex)
         {
@@ -42,7 +45,7 @@ public class SurveyLocation213
         try
         {
             if (gclass202_0.Race.chkHideSL == CheckState.Checked &&
-                this.list_0.Contains(gclass202_0.Race.RaceID))
+                this.RaceIDs.Contains(gclass202_0.Race.RaceID))
                 return;
             SolidBrush solidBrush = new SolidBrush(Color.Wheat);
             Pen pen = new Pen(solidBrush);
@@ -50,7 +53,7 @@ public class SurveyLocation213
             string str = "SL " + this.LocationNumber.ToString();
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2.0;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2.0;
-            if (this.list_0.Contains(gclass202_0.Race.RaceID))
+            if (this.RaceIDs.Contains(gclass202_0.Race.RaceID))
                 graphics_0.FillEllipse(solidBrush, (float)x, (float)y, AuroraUtils.int_61 * 0.8f,
                     AuroraUtils.int_61 * 0.8f);
             else

@@ -11,12 +11,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 #nullable disable
-public class GClass233
+public class Wreck
 {
     [CompilerGenerated]
     private bool method_3(GClass115 gclass115_0)
     {
-        return gclass115_0.gclass22_0.int_0 == this.gclass22_0.int_0;
+        return gclass115_0.gclass22_0.ShipClassID == this.ShipClass.ShipClassID;
     }
 
     [CompilerGenerated]
@@ -30,40 +30,40 @@ public class GClass233
         }
     }
 
-    public List<GClass234> list_0 = new List<GClass234>();
-    public List<GClass235> list_1 = new List<GClass235>();
+    public List<WreckTech> ContainingTechs = new List<WreckTech>();
+    public List<WreckComponents> ContainingComponents = new List<WreckComponents>();
     public GClass0 gclass0_0;
-    public GameRace gclass21_0;
-    public SystemData200 gclass200_0;
-    public SystemBodyData gclass1_0;
-    public GClass22 gclass22_0;
-    public AllMineralsValue gclass123_0;
-    public int int_0;
-    public int int_1;
-    public int int_2;
-    public int int_3;
-    public int int_4;
-    public Decimal decimal_0;
-    public double double_0;
-    public double double_1;
+    public GameRace Race;
+    public StarSystem System;
+    public SystemBodyData OrbitingBody;
+    public ShipClass ShipClass;
+    public AllMineralsValue ContainingMineral;
+    public int WreckID;
+    public int ShipID;
+    public int EffectiveSize;
+    public int StarSwarmHatching;
+    public int QueenStatus;
+    public Decimal Size;
+    public double Xcor;
+    public double Ycor;
 
     public string ViewingName { get; set; }
 
-    public GClass233(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public Wreck(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
     public void method_0()
     {
         try
         {
-            if (AuroraUtils.GetRandomInteger(200) > this.gclass22_0.decimal_14)
+            if (AuroraUtils.GetRandomInteger(200) > this.ShipClass.Size)
                 return;
             int num = 128 /*0x80*/;
             for (int index = 1; index < num; index = AuroraUtils.GetRandomInteger(128 /*0x80*/))
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                GClass233.Class1215 class1215 = new GClass233.Class1215();
-                ShipComponent gclass230 = this.gclass22_0.method_38();
+                Wreck.Class1215 class1215 = new Wreck.Class1215();
+                ShipComponent gclass230 = this.ShipClass.method_38();
                 if (gclass230 == null)
                     break;
                 // ISSUE: reference to a compiler-generated field
@@ -82,10 +82,10 @@ public class GClass233
                 if (class1215.gclass164_0 != null)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    this.list_0.Add(new GClass234()
+                    this.ContainingTechs.Add(new WreckTech()
                     {
-                        decimal_0 = AuroraUtils.GetRandomInteger(20),
-                        gclass164_0 = class1215.gclass164_0
+                        Percentage = AuroraUtils.GetRandomInteger(20),
+                        TechData = class1215.gclass164_0
                     });
                 }
 
@@ -104,26 +104,26 @@ public class GClass233
         {
             string str1 = "";
             string str2;
-            if (this.gclass21_0 == gclass21_1)
+            if (this.Race == gclass21_1)
             {
-                str2 = this.gclass22_0.ClassName;
+                str2 = this.ShipClass.ClassName;
             }
             else
             {
                 GClass115 gclass115 = gclass21_1.dictionary_11.Values.FirstOrDefault<GClass115>(gclass115_0 =>
-                    gclass115_0.gclass22_0.int_0 == this.gclass22_0.int_0);
+                    gclass115_0.gclass22_0.ShipClassID == this.ShipClass.ShipClassID);
                 if (gclass115 != null)
                 {
                     str2 = gclass115.ClassName;
-                    str1 = $"[{gclass21_1.PerceivedAliens[this.gclass21_0.RaceID].Abbreviation}]";
+                    str1 = $"[{gclass21_1.PerceivedAliens[this.Race.RaceID].Abbreviation}]";
                 }
                 else
                     str2 = "Unknown";
             }
 
             return bool_0
-                ? $"Wreck of {str2} class {str1} #{this.int_0.ToString()}: {AuroraUtils.smethod_39(this.decimal_0 * 50M)} tons)"
-                : $"Wreck of {str2} class {str1}: {AuroraUtils.smethod_39(this.decimal_0 * 50M)} tons)";
+                ? $"Wreck of {str2} class {str1} #{this.WreckID.ToString()}: {AuroraUtils.smethod_39(this.Size * 50M)} tons)"
+                : $"Wreck of {str2} class {str1}: {AuroraUtils.smethod_39(this.Size * 50M)} tons)";
         }
         catch (Exception ex)
         {

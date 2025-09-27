@@ -8,17 +8,17 @@ using Aurora;
 using System;
 
 #nullable disable
-public class GClass124
+public class MineralDeposit
 {
-    public AuroraElement auroraElement_0;
-    public int int_0;
-    public Decimal decimal_0;
-    public Decimal decimal_1;
-    public Decimal decimal_2;
-    public Decimal decimal_3;
+    public AuroraElement MaterialID;
+    public int SystemBodyID;
+    public Decimal Amount;
+    public Decimal Accessibility;
+    public Decimal HalfOriginalAmount;
+    public Decimal OriginalAcc;
 
     public string method_0()
     {
-        return $"{string.Format("{0:0,0}", this.decimal_0)}  Acc {this.decimal_1.ToString()}";
+        return $"{string.Format("{0:0,0}", this.Amount)}  Acc {this.Accessibility.ToString()}";
     }
 }

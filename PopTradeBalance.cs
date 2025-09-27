@@ -1,14 +1,17 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: GClass180
+// Type: GClass190
 // Assembly: Aurora, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: DAB8E3AD-3A24-426F-849E-98EC2E2DD9EB
 // Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
 
+using System;
+
 #nullable disable
-public class GClass180
+public class PopTradeBalance
 {
-    public GameRace gclass21_0;
-    public GClass194 gclass194_0;
-    public FCTShipData40 gclass40_0;
-    public int int_0;
+    public TradeGood TradeGood;
+    public PopulationData Population;
+    public Decimal ProductionRate;
+    public Decimal TradeBalance;
+    public Decimal LastTradeBalance;
 }
