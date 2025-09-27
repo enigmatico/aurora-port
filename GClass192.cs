@@ -10,7 +10,7 @@ using System;
 #nullable disable
 public class GClass192
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public GClass193 gclass193_0;
     public FCTShipData40 gclass40_0;

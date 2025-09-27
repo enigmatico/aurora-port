@@ -23,8 +23,8 @@ public class GClass118
     }
 
     public List<GClass221> list_0 = new List<GClass221>();
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public ShipComponent gclass230_0;
     public RaceMissile gclass129_0;
     public GroundUnitClass101 gclass101_0;
@@ -75,7 +75,7 @@ public class GClass118
         }
     }
 
-    public GClass118 method_2(FCTRaceRecordC21 gclass21_2)
+    public GClass118 method_2(GameRace gclass21_2)
     {
         try
         {

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 public class FCTMassDriverPacket126
 {
     public AllMineralsValue MineralsValue;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public SystemData200 System;
     public PopulationData gclass146_0;
     public int PacketID;

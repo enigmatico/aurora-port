@@ -67,7 +67,7 @@ public class CommandersWindow : Form
     }
 
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private GClass55 gclass55_0;
     private GClass55 gclass55_1;
     private RankThemeEntry gclass61_0;
@@ -189,7 +189,7 @@ public class CommandersWindow : Form
         }
     }
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
@@ -212,7 +212,7 @@ public class CommandersWindow : Form
             this.lstvAssign.Items.Clear();
             this.lblName.Text = "";
             this.lblAssignment.Text = "";
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.chkAutoAssign.CheckState =
                 this.gclass21_0.chkAutoAssign != 1 ? CheckState.Unchecked : CheckState.Checked;
             this.gclass21_0.method_234(this.tvCommanderList);

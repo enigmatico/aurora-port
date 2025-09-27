@@ -17,8 +17,8 @@ public class GClass117
     public GClass115 gclass115_0;
     public GClass116 gclass116_0;
     public FCTShipData40 gclass40_0;
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public SystemData200 gclass200_0;
     public int int_0;
     public int int_1;
@@ -87,7 +87,7 @@ public class GClass117
         }
     }
 
-    public GClass117 method_2(FCTRaceRecordC21 gclass21_2, List<AlienRaceInfo> list_0, List<GClass115> list_1)
+    public GClass117 method_2(GameRace gclass21_2, List<AlienRaceInfo> list_0, List<GClass115> list_1)
     {
         try
         {
@@ -300,7 +300,7 @@ public class GClass117
     {
         try
         {
-            this.decimal_0 = this.gclass0_0.decimal_0;
+            this.decimal_0 = this.gclass0_0.GameTime;
             this.gclass200_0 = gclass40_1.gclass85_0.System.ActualSystemData;
             this.double_0 = gclass40_1.gclass85_0.XCoord;
             this.double_1 = gclass40_1.gclass85_0.YCoord;

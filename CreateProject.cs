@@ -16,7 +16,7 @@ using System.Windows.Forms;
 public class CreateProject : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private ResearchCategoryData gclass169_0;
     private bool bool_0;
     private bool bool_1;
@@ -101,7 +101,7 @@ public class CreateProject : Form
         }
     }
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
@@ -118,7 +118,7 @@ public class CreateProject : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.method_2();
             if (!this.bool_0)
                 this.gclass0_0.method_511(this.gclass21_0, this);
@@ -276,35 +276,35 @@ public class CreateProject : Form
                 this.gclass0_0.method_447(this.gclass21_0, (GClass170)this.cboTech0.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.Lasers)
-                this.gclass0_0.method_473(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
-                    (TechData164)this.cboTech3.SelectedItem, (TechData164)this.cboTech4.SelectedItem, false,
+                this.gclass0_0.method_473(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
+                    (TechSystem)this.cboTech3.SelectedItem, (TechSystem)this.cboTech4.SelectedItem, false,
                     this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.Railgun)
-                this.gclass0_0.method_471(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
+                this.gclass0_0.method_471(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
                     (int)((GClass170)this.cboTech3.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName,
                     false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.PlasmaCarronade)
-                this.gclass0_0.method_470(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem, this.txtDetails,
+                this.gclass0_0.method_470(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.MesonCannon)
-                this.gclass0_0.method_468(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech3.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, this.txtDetails, this.txtProjectName, false);
+                this.gclass0_0.method_468(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech3.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.HighPowerMicrowave)
-                this.gclass0_0.method_462(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem, false,
+                this.gclass0_0.method_462(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem, false,
                     this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.ParticleBeam)
-                this.gclass0_0.method_467(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
-                    (TechData164)this.cboTech3.SelectedItem, (TechData164)this.cboTech4.SelectedItem, this.txtDetails,
+                this.gclass0_0.method_467(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
+                    (TechSystem)this.cboTech3.SelectedItem, (TechSystem)this.cboTech4.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.GaussCannon)
-                this.gclass0_0.method_466(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem, this.txtDetails,
+                this.gclass0_0.method_466(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.MiscellaneousComponents)
                 this.gclass0_0.method_446(this.gclass21_0, (GClass170)this.cboTech0.SelectedItem, this.txtDetails,
@@ -312,95 +312,95 @@ public class CreateProject : Form
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.CIWS)
             {
                 if (this.cboTech5.Visible)
-                    this.gclass0_0.method_460(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                        (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
-                        (TechData164)this.cboTech3.SelectedItem, (TechData164)this.cboTech4.SelectedItem,
-                        (TechData164)this.cboTech5.SelectedItem, this.txtDetails, this.txtProjectName, false);
+                    this.gclass0_0.method_460(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                        (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
+                        (TechSystem)this.cboTech3.SelectedItem, (TechSystem)this.cboTech4.SelectedItem,
+                        (TechSystem)this.cboTech5.SelectedItem, this.txtDetails, this.txtProjectName, false);
                 else
-                    this.gclass0_0.method_460(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                        (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
-                        (TechData164)this.cboTech3.SelectedItem, (TechData164)this.cboTech4.SelectedItem, null,
+                    this.gclass0_0.method_460(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                        (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
+                        (TechSystem)this.cboTech3.SelectedItem, (TechSystem)this.cboTech4.SelectedItem, null,
                         this.txtDetails, this.txtProjectName, false);
             }
 
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.ThermalSensors)
-                this.gclass0_0.method_465(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, ((GClass170)this.cboTech1.SelectedItem).decimal_0,
+                this.gclass0_0.method_465(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, ((GClass170)this.cboTech1.SelectedItem).decimal_0,
                     GEnum32.const_0, this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.EMDetectionSensors)
-                this.gclass0_0.method_465(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, ((GClass170)this.cboTech1.SelectedItem).decimal_0,
+                this.gclass0_0.method_465(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, ((GClass170)this.cboTech1.SelectedItem).decimal_0,
                     GEnum32.const_1, this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.ActiveSensors)
-                this.gclass0_0.method_464(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech4.SelectedItem,
-                    (TechData164)this.cboTech5.SelectedItem, GEnum33.const_0,
+                this.gclass0_0.method_464(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech4.SelectedItem,
+                    (TechSystem)this.cboTech5.SelectedItem, GEnum33.const_0,
                     ((GClass170)this.cboTech2.SelectedItem).decimal_0,
                     (int)((GClass170)this.cboTech3.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName,
                     false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.MissileFireControl)
-                this.gclass0_0.method_464(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech4.SelectedItem,
-                    (TechData164)this.cboTech5.SelectedItem, GEnum33.const_1,
+                this.gclass0_0.method_464(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech4.SelectedItem,
+                    (TechSystem)this.cboTech5.SelectedItem, GEnum33.const_1,
                     ((GClass170)this.cboTech2.SelectedItem).decimal_0,
                     (int)((GClass170)this.cboTech3.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName,
                     false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.BeamFireControl)
-                this.gclass0_0.method_463(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
-                    ((GClass170)this.cboTech3.SelectedItem).decimal_0, (TechData164)this.cboTech4.SelectedItem,
-                    (TechData164)this.cboTech6.SelectedItem, (TechData164)this.cboTech5.SelectedItem, this.txtDetails,
+                this.gclass0_0.method_463(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
+                    ((GClass170)this.cboTech3.SelectedItem).decimal_0, (TechSystem)this.cboTech4.SelectedItem,
+                    (TechSystem)this.cboTech6.SelectedItem, (TechSystem)this.cboTech5.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.PowerPlants)
-                this.gclass0_0.method_459(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
+                this.gclass0_0.method_459(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
                     this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.Magazine)
-                this.gclass0_0.method_458(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
+                this.gclass0_0.method_458(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
                     (int)((GClass170)this.cboTech3.SelectedItem).decimal_0,
                     (int)((GClass170)this.cboTech4.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName,
                     false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.Engines)
-                this.gclass0_0.method_457(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, (TechData164)this.cboTech3.SelectedItem,
+                this.gclass0_0.method_457(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, (TechSystem)this.cboTech3.SelectedItem,
                     ((GClass170)this.cboTech1.SelectedItem).decimal_0,
                     ((GClass170)this.cboTech4.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName, null,
                     false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.JumpEngines)
             {
                 Decimal decimal_13 = ((GClass170)this.cboTech3.SelectedItem).decimal_0 / AuroraUtils.decimal_17;
-                if (((TechData164)this.cboTech4.SelectedItem).decimal_0 == 1M)
+                if (((TechSystem)this.cboTech4.SelectedItem).decimal_0 == 1M)
                     decimal_13 /= AuroraUtils.int_36;
-                this.gclass0_0.method_456(this.gclass21_0, decimal_13, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, (TechData164)this.cboTech2.SelectedItem,
-                    (TechData164)this.cboTech4.SelectedItem, this.txtDetails, this.txtProjectName, false);
+                this.gclass0_0.method_456(this.gclass21_0, decimal_13, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, (TechSystem)this.cboTech2.SelectedItem,
+                    (TechSystem)this.cboTech4.SelectedItem, this.txtDetails, this.txtProjectName, false);
             }
 
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.ShieldGenerators)
-                this.gclass0_0.method_455(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
+                this.gclass0_0.method_455(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
                     this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.MissileEngines)
-                this.gclass0_0.method_454(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, ((GClass170)this.cboTech1.SelectedItem).decimal_0,
+                this.gclass0_0.method_454(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, ((GClass170)this.cboTech1.SelectedItem).decimal_0,
                     ((GClass170)this.cboTech3.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.MissileLaunchers)
-                this.gclass0_0.method_453(this.gclass21_0, (TechData164)this.cboTech1.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, ((GClass170)this.cboTech0.SelectedItem).decimal_0,
+                this.gclass0_0.method_453(this.gclass21_0, (TechSystem)this.cboTech1.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, ((GClass170)this.cboTech0.SelectedItem).decimal_0,
                     this.txtDetails, this.txtProjectName, AuroraComponentType.MissileLauncher, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.DecoyLauncher)
                 this.gclass0_0.method_453(this.gclass21_0, null, null,
                     ((GClass170)this.cboTech0.SelectedItem).decimal_0, this.txtDetails, this.txtProjectName,
                     AuroraComponentType.DecoyMissileLauncher, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.CloakingDevice)
-                this.gclass0_0.method_451(this.gclass21_0, (TechData164)this.cboTech0.SelectedItem,
-                    (TechData164)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
+                this.gclass0_0.method_451(this.gclass21_0, (TechSystem)this.cboTech0.SelectedItem,
+                    (TechSystem)this.cboTech1.SelectedItem, ((GClass170)this.cboTech2.SelectedItem).decimal_0,
                     this.txtDetails, this.txtProjectName, false);
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.NewSpecies)
-                this.gclass0_0.method_452(this.gclass21_0, (TechData164)this.cboTech1.SelectedItem,
-                    (TechData164)this.cboTech2.SelectedItem, (TechData164)this.cboTech3.SelectedItem,
-                    (TechData164)this.cboTech4.SelectedItem, (GClass194)this.cboTech0.SelectedItem, this.txtDetails,
+                this.gclass0_0.method_452(this.gclass21_0, (TechSystem)this.cboTech1.SelectedItem,
+                    (TechSystem)this.cboTech2.SelectedItem, (TechSystem)this.cboTech3.SelectedItem,
+                    (TechSystem)this.cboTech4.SelectedItem, (GClass194)this.cboTech0.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (!this.chkNoNameUpdate.Checked)
                 return;
@@ -419,7 +419,7 @@ public class CreateProject : Form
             this.gclass0_0.gclass164_0.Name = this.txtProjectName.Text;
             if (this.txtCompanyName.Text != "")
                 this.gclass0_0.gclass164_0.Name = $"{this.txtCompanyName.Text} {this.gclass0_0.gclass164_0.Name}";
-            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
+            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
             if (this.gclass0_0.gclass194_0 != null)
             {
                 this.gclass0_0.gclass194_0.SpeciesName = this.gclass0_0.gclass164_0.Name;
@@ -542,7 +542,7 @@ public class CreateProject : Form
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text != "")
                     ? this.txtProjectName.Text
                     : $"{this.txtCompanyName.Text} {this.txtProjectName.Text}";
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 if (this.gclass0_0.gclass194_0 != null)
                 {
                     this.gclass0_0.gclass194_0.SpeciesName = this.gclass0_0.gclass164_0.Name;
@@ -611,7 +611,7 @@ public class CreateProject : Form
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text != "")
                     ? this.txtProjectName.Text
                     : $"{this.txtCompanyName.Text} {this.txtProjectName.Text}";
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 if (this.gclass0_0.gclass194_0 != null)
                 {
                     this.gclass0_0.gclass194_0.SpeciesName = this.gclass0_0.gclass164_0.Name;

@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass105
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemBodyData gclass1_0;
     public FCTShipData40 gclass40_0;
     public GroundUnitClass101 gclass101_0;

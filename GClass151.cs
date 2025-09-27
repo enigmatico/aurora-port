@@ -10,7 +10,7 @@ using System;
 public class GClass151
 {
     public WealthUsageData gclass150_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public Decimal decimal_0;
     public Decimal decimal_1;
 }

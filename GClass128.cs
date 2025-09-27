@@ -9,7 +9,7 @@ using System.Collections.Generic;
 #nullable disable
 public class GClass128
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public string string_0;
     public int int_0;
     private Dictionary<int, RaceMissile> dictionary_0 = new Dictionary<int, RaceMissile>();

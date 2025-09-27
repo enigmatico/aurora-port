@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class ArmourTypeData
 {
-    public TechData164 gclass164_0;
+    public TechSystem gclass164_0;
     public GroundUnitBaseType genum112_0;
     public int int_0;
     public Decimal decimal_0;

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 public class TurretDesign : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private ShipComponent gclass230_0;
     private int int_0 = 1;
     private bool bool_0 = true;
@@ -83,7 +83,7 @@ public class TurretDesign : Form
             else
                 this.cmdInstant.Visible = true;
             this.gclass0_0.method_577(this.cboRaces);
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             if (this.gclass21_0 == null)
             {
                 this.gclass0_0.bool_9 = false;
@@ -110,7 +110,7 @@ public class TurretDesign : Form
         }
     }
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
@@ -129,7 +129,7 @@ public class TurretDesign : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             if (this.gclass21_0 == null)
                 return;
             this.gclass21_0.method_216(this.cboBeamType);
@@ -196,7 +196,7 @@ public class TurretDesign : Form
             {
                 int int_137 = (int)AuroraUtils.ParseDoubleOrDefault(this.txtTrackingSpeed.Text, 0.0);
                 int int_138 = (int)AuroraUtils.ParseDoubleOrDefault(this.txtArmourStrength.Text, 0.0);
-                TechData164 gclass164_1 =
+                TechSystem gclass164_1 =
                     this.gclass21_0.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.TurretRotationGear]);
                 this.gclass21_0.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.FireControlSpeedRating]);
                 this.gclass0_0.method_450(this.gclass21_0, gclass164_1, this.gclass230_0, this.int_0, int_137, int_138,
@@ -313,7 +313,7 @@ public class TurretDesign : Form
             }
             else
             {
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 this.gclass0_0.gclass230_1.Name = this.gclass0_0.gclass164_0.Name;
                 this.gclass0_0.ComponentDataDictionary.Add(this.gclass0_0.gclass230_1.int_0, this.gclass0_0.gclass230_1);
                 int num2 = (int)MessageBox.Show(
@@ -347,7 +347,7 @@ public class TurretDesign : Form
                 }
                 else
                 {
-                    this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
+                    this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                     this.gclass0_0.gclass230_1.Name = this.gclass0_0.gclass164_0.Name;
                     this.gclass0_0.ComponentDataDictionary.Add(this.gclass0_0.gclass230_1.int_0,
                         this.gclass0_0.gclass230_1);
@@ -380,7 +380,7 @@ public class TurretDesign : Form
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text == "")
                     ? $"{this.txtCompanyName.Text} {this.txtTurretName.Text}"
                     : this.txtTurretName.Text;
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 this.gclass0_0.gclass230_1.Name = this.gclass0_0.gclass164_0.Name;
                 this.gclass0_0.gclass230_1.genum86_0 = GEnum86.const_1;
                 this.gclass0_0.ComponentDataDictionary.Add(this.gclass0_0.gclass230_1.int_0, this.gclass0_0.gclass230_1);

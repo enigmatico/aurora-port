@@ -15,7 +15,7 @@ public class GClass194
     private GClass0 gclass0_0;
     public Dictionary<int, GClass195> dictionary_0;
     public SystemBodyData gclass1_0;
-    public TechData164 gclass164_0;
+    public TechSystem gclass164_0;
     public GClass194 gclass194_0;
     public AtmosphericGasDefinition gclass223_0;
     public SpecialNPRIDs genum6_0;

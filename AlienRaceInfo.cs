@@ -15,8 +15,8 @@ public class AlienRaceInfo
     public Dictionary<int, GClass194> dictionary_0 = new Dictionary<int, GClass194>();
     public Dictionary<int, SystemData200> dictionary_1 = new Dictionary<int, SystemData200>();
     public Dictionary<int, GClass118> dictionary_2 = new Dictionary<int, GClass118>();
-    public FCTRaceRecordC21 ActualAlienRace;
-    public FCTRaceRecordC21 ViewingRace;
+    public GameRace ActualAlienRace;
+    public GameRace ViewingRace;
     public AuroraContactStatus ContactStatus;
     public AuroraCommStatus CommStatus;
     public NamingTheme ClassTheme;
@@ -43,7 +43,7 @@ public class AlienRaceInfo
 
     public AlienRaceInfo(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public AlienRaceInfo method_0(FCTRaceRecordC21 gclass21_2)
+    public AlienRaceInfo method_0(GameRace gclass21_2)
     {
         try
         {

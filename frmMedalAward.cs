@@ -15,7 +15,7 @@ using System.Windows.Forms.Layout;
 public class frmMedalAward : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private IContainer icontainer_0;
     private Button cmdAwardMedal;
     private Button cmdCancel;
@@ -38,7 +38,7 @@ public class frmMedalAward : Form
     private ColumnHeader columnHeader_1;
     private ColumnHeader columnHeader_2;
 
-    public frmMedalAward(GClass0 gclass0_1, FCTRaceRecordC21 gclass21_1)
+    public frmMedalAward(GClass0 gclass0_1, GameRace gclass21_1)
     {
         this.gclass0_0 = gclass0_1;
         this.gclass21_0 = gclass21_1;

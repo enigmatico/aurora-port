@@ -16,7 +16,7 @@ public class GClass62
 {
     public Dictionary<int, RacialSystemSurvey> dictionary_0 = new Dictionary<int, RacialSystemSurvey>();
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public GClass55 gclass55_0;
     public Color color_0;

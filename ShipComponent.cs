@@ -12,9 +12,9 @@ using System.Collections.Generic;
 // TODO: high chance of technology (Sensor)
 public class ShipComponent
 {
-    public List<TechData164> list_0 = new List<TechData164>();
-    public List<TechData164> list_1 = new List<TechData164>();
-    public TechData164 gclass164_0;
+    public List<TechSystem> list_0 = new List<TechSystem>();
+    public List<TechSystem> list_1 = new List<TechSystem>();
+    public TechSystem gclass164_0;
     public ShipComponent gclass230_0;
     public ComponentTypeData gclass231_0;
     public AllMineralsValue gclass123_0;
@@ -194,7 +194,7 @@ public class ShipComponent
         }
     }
 
-    public TechData164 method_6()
+    public TechSystem method_6()
     {
         try
         {

@@ -170,7 +170,7 @@ public partial class GClass3
         internal bool method_1(GClass132 gclass132_0)
         {
             return gclass132_0.gclass40_1 == this.gclass117_0.gclass40_0 && gclass132_0.decimal_0 <
-                this.class441_0.class440_0.class423_0.gclass3_0.gclass0_0.decimal_0;
+                this.class441_0.class440_0.class423_0.gclass3_0.gclass0_0.GameTime;
         }
 
         internal Decimal method_2(FCTShipData40 gclass40_0)
@@ -602,7 +602,7 @@ public partial class GClass3
 
         internal bool method_4(FleetData gclass85_1)
         {
-            return gclass85_1.NPROperationGroup.genum105_0 == OperationalGroup.OrbitalDefences &&
+            return gclass85_1.NPROperationGroup.OperationalGroupId == OperationalGroupID.OrbitalDefences &&
                    gclass85_1.XCoord == this.gclass85_0.XCoord && gclass85_1.YCoord == this.gclass85_0.YCoord;
         }
 

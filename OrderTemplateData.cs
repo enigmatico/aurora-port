@@ -13,7 +13,7 @@ public class OrderTemplateData
 {
     public List<TMoveOrder> TMoveOrderList = new List<TMoveOrder>();
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 RaceData;
+    public GameRace RaceData;
     public RacialSystemSurvey RaceSystem;
     public int OrderTemplateID;
     public string TemplateName;

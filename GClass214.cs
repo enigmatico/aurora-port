@@ -17,7 +17,7 @@ public class GClass214
     public SystemData200 gclass200_0;
     public SystemBodyData gclass1_0;
     public JumpPoint120 gclass120_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public WayPointType wayPointType_0;
     public int int_0;
     public int int_1;

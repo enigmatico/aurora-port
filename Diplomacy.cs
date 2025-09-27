@@ -50,7 +50,7 @@ public class Diplomacy : Form
         new Dictionary<AuroraSystemProtectionStatus, string>();
 
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private AlienRaceInfo gclass110_0;
     private TreeNode treeNode_0;
     private bool bool_0;
@@ -317,7 +317,7 @@ public class Diplomacy : Form
         }
     }
 
-    public void method_5(FCTRaceRecordC21 gclass21_1)
+    public void method_5(GameRace gclass21_1)
     {
         try
         {
@@ -334,7 +334,7 @@ public class Diplomacy : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_330(this.cboAlienRaces);
             if (this.cboAlienRaces.Items.Count == 0)
                 this.cboAlienRaces.Text = "";
@@ -505,7 +505,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            this.gclass110_0.UseRealClassNames = AuroraUtils.smethod_29(this.chkReal.CheckState);
+            this.gclass110_0.UseRealClassNames = AuroraUtils.CheckStateToInt(this.chkReal.CheckState);
         }
         catch (Exception ex)
         {
@@ -1210,7 +1210,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            if (!this.gclass110_0.ActualAlienRace.IsNPR)
+            if (!this.gclass110_0.ActualAlienRace.NPR)
             {
                 int num1 = (int)MessageBox.Show("Players can only change images for AI races");
             }
@@ -1241,7 +1241,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            if (!this.gclass110_0.ActualAlienRace.IsNPR)
+            if (!this.gclass110_0.ActualAlienRace.NPR)
             {
                 int num1 = (int)MessageBox.Show("Players can only change images for AI races");
             }
@@ -1271,7 +1271,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            if (!this.gclass110_0.ActualAlienRace.IsNPR)
+            if (!this.gclass110_0.ActualAlienRace.NPR)
             {
                 int num1 = (int)MessageBox.Show("Players can only change images for AI races");
             }
@@ -1319,7 +1319,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            if (!this.gclass110_0.ActualAlienRace.IsNPR)
+            if (!this.gclass110_0.ActualAlienRace.NPR)
             {
                 int num1 = (int)MessageBox.Show("Players can only change names for AI races");
             }
@@ -1358,7 +1358,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            this.gclass110_0.RandomNameOrder = AuroraUtils.smethod_29(this.chkAlienNameRandom.CheckState);
+            this.gclass110_0.RandomNameOrder = AuroraUtils.CheckStateToInt(this.chkAlienNameRandom.CheckState);
         }
         catch (Exception ex)
         {

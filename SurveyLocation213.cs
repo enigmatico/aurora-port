@@ -19,7 +19,7 @@ public class SurveyLocation213
     public double XCoord;
     public double YCoord;
 
-    public void method_0(FCTRaceRecordC21 gclass21_0)
+    public void method_0(GameRace gclass21_0)
     {
         try
         {

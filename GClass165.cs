@@ -8,7 +8,7 @@
 // TODO: racial tech?
 public class GClass165
 {
-    public TechData164 gclass164_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public TechSystem gclass164_0;
+    public GameRace gclass21_0;
     public bool bool_0; // TODO: surely obsolete check.
 }

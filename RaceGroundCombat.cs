@@ -5,7 +5,7 @@
 // Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
 
 #nullable disable
-public class FCTRaceGroundCombatRecord46
+public class RaceGroundCombat
 {
     public SystemBodyData SystemBody;
     public int ConsecutiveCombatRounds = 1;

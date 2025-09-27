@@ -988,7 +988,7 @@ public partial class GClass6
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             int num2 = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class491.method_2)
-                .Where<FleetData>(gclass85_0 => gclass85_0.NPROperationGroup.genum105_0 == OperationalGroup.ReinforcementGroup)
+                .Where<FleetData>(gclass85_0 => gclass85_0.NPROperationGroup.OperationalGroupId == OperationalGroupID.ReinforcementGroup)
                 .SelectMany<FleetData, FCTShipData40>(gclass85_0 => gclass85_0.method_176())
                 .Where<FCTShipData40>(class491.method_3).Count<FCTShipData40>();
             return num2 >= 3 ? 0 : 3 - num2;

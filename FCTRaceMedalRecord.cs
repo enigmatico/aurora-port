@@ -14,7 +14,7 @@ using System.Windows.Forms;
 public class FCTRaceMedalRecord
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public Image MedalImageLoaded;
     public int MedalPoints;
     public int MedalID;

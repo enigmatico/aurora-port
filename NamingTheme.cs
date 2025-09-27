@@ -27,7 +27,7 @@ public class NamingTheme
 
     public string Description { get; set; }
 
-    public string method_0(FCTRaceRecordC21 gclass21_0, GEnum21 genum21_0)
+    public string method_0(GameRace gclass21_0, GEnum21 genum21_0)
     {
         try
         {
@@ -40,7 +40,7 @@ public class NamingTheme
         }
     }
 
-    public string method_1(FCTRaceRecordC21 gclass21_0, GEnum21 genum21_0, int int_1)
+    public string method_1(GameRace gclass21_0, GEnum21 genum21_0, int int_1)
     {
         try
         {
@@ -54,7 +54,7 @@ public class NamingTheme
     }
 
     public string method_2(
-        FCTRaceRecordC21 fctRace,
+        GameRace gameRace,
         GEnum21 genum21_0,
         int int_1,
         string string_1,
@@ -85,22 +85,22 @@ public class NamingTheme
                 switch (genum21_0)
                 {
                     case GEnum21.const_0:
-                        flag = fctRace.method_53(string_10);
+                        flag = gameRace.method_53(string_10);
                         break;
                     case GEnum21.const_1:
-                        flag = fctRace.method_54(string_10);
+                        flag = gameRace.method_54(string_10);
                         break;
                     case GEnum21.const_2:
-                        flag = fctRace.method_57(string_10);
+                        flag = gameRace.method_57(string_10);
                         break;
                     case GEnum21.const_3:
-                        flag = fctRace.method_58(string_10);
+                        flag = gameRace.method_58(string_10);
                         break;
                     case GEnum21.const_4:
-                        flag = fctRace.method_56(string_10);
+                        flag = gameRace.method_56(string_10);
                         break;
                     case GEnum21.const_5:
-                        flag = fctRace.method_55(string_10);
+                        flag = gameRace.method_55(string_10);
                         break;
                 }
 

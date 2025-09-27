@@ -11,8 +11,8 @@ using System;
 public class GClass37
 {
     public FCTShipData40 gclass40_0;
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public RaceMissile gclass129_0;
     public ShipComponent gclass230_0;
     public GroundUnitFormationElement gclass39_0;

@@ -137,7 +137,7 @@ public class GClass212
         }
     }
 
-    public string method_3(FCTRaceRecordC21 gclass21_0)
+    public string method_3(GameRace gclass21_0)
     {
         try
         {
@@ -150,7 +150,7 @@ public class GClass212
         }
     }
 
-    public void method_4(ListView listView_0, FCTRaceRecordC21 gclass21_0)
+    public void method_4(ListView listView_0, GameRace gclass21_0)
     {
         try
         {

@@ -23,7 +23,7 @@ public class TacticalMap : Form
     public GClass0 gclass0_0;
     public GClass0 gclass0_1;
     private List<GClass87> list_0 = new List<GClass87>();
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public RacialSystemSurvey gclass202_0;
     public WayPointType wayPointType_0;
     public string string_0 = "";
@@ -304,10 +304,10 @@ public class TacticalMap : Form
                 if (this.gclass0_0 == null)
                     return;
                 this.gclass0_0.InitializeGame();
-                foreach (FCTRaceRecordC21 gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
-                             .Where<FCTRaceRecordC21>(gclass21_0 =>
-                                 gclass21_0.IsNPR && gclass21_0.SpecialNPRID == SpecialNPRIDs.const_0)
-                             .ToList<FCTRaceRecordC21>())
+                foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
+                             .Where<GameRace>(gclass21_0 =>
+                                 gclass21_0.NPR && gclass21_0.SpecialNPRID == SpecialNPRIDs.const_0)
+                             .ToList<GameRace>())
                     gclass21.method_92();
                 this.method_11();
                 this.method_13();
@@ -374,87 +374,87 @@ public class TacticalMap : Form
                          .ExecuteQuery("select * from FCT_Game where GameID = " + int_5.ToString()).Rows)
             {
                 gclass0.GameID = Convert.ToInt32(row["GameID"]);
-                gclass0.int_67 = Convert.ToInt32(row["DifficultyModifier"]);
-                gclass0.int_106 = Convert.ToInt32(row["ResearchSpeed"]);
-                gclass0.int_107 = Convert.ToInt32(row["TerraformingSpeed"]);
-                gclass0.int_108 = Convert.ToInt32(row["SurveySpeed"]);
-                gclass0.int_68 = Convert.ToInt32(row["NumberOfSystems"]);
-                gclass0.int_69 = Convert.ToInt32(row["StartYear"]);
-                gclass0.int_70 = Convert.ToInt32(row["LocalSystemChance"]);
-                gclass0.int_71 = Convert.ToInt32(row["LocalSystemSpread"]);
-                gclass0.int_72 = Convert.ToInt32(row["MinConstructionPeriod"]);
-                gclass0.int_74 = Convert.ToInt32(row["RaceChance"]);
-                gclass0.int_75 = Convert.ToInt32(row["RaceChanceNPR"]);
-                gclass0.int_76 = Convert.ToInt32(row["NewRuinCreationChance"]);
-                gclass0.int_77 = Convert.ToInt32(row["CivilianShippingLinesActive"]);
-                gclass0.int_78 = Convert.ToInt32(row["AllowCivilianHarvesters"]);
-                gclass0.int_105 = Convert.ToInt32(row["TechFromConquest"]);
-                gclass0.int_79 = Convert.ToInt32(row["MinComets"]);
-                gclass0.int_80 = Convert.ToInt32(row["OrbitalMotion"]);
-                gclass0.int_81 = Convert.ToInt32(row["OrbitalMotionAst"]);
-                gclass0.int_82 = Convert.ToInt32(row["PoliticalAdmirals"]);
-                gclass0.int_87 = Convert.ToInt32(row["InexpFleets"]);
-                gclass0.int_88 = Convert.ToInt32(row["AutoJumpGates"]);
-                gclass0.int_89 = Convert.ToInt32(row["Precursors"]);
-                gclass0.int_90 = Convert.ToInt32(row["Rakhas"]);
-                gclass0.int_91 = Convert.ToInt32(row["Eldar"]);
-                gclass0.int_92 = Convert.ToInt32(row["StarSwarm"]);
-                gclass0.int_93 = Convert.ToInt32(row["Invaders"]);
-                gclass0.IsKnownSystem = Convert.ToInt32(row["UseKnownStars"]);
-                gclass0.int_94 = Convert.ToInt32(row["GenerateNPRs"]);
-                gclass0.int_95 = Convert.ToInt32(row["HumanNPRs"]);
-                gclass0.int_96 = Convert.ToInt32(row["GenerateNonTNOnly"]);
-                gclass0.int_97 = Convert.ToInt32(row["NoOverhauls"]);
-                gclass0.int_98 = Convert.ToInt32(row["RealisticPromotions"]);
-                gclass0.int_83 = Convert.ToInt32(row["DefaultRaceID"]);
-                gclass0.int_102 = Convert.ToInt32(row["NPRsGeneratePrecursors"]);
-                gclass0.int_101 = Convert.ToInt32(row["NPRsGenerateSwarm"]);
-                gclass0.int_103 = Convert.ToInt32(row["NPRsGenerateRifts"]);
-                gclass0.int_104 = Convert.ToInt32(row["NPRsEncounterRaiders"]);
-                gclass0.int_132 = Convert.ToInt32(row["SubPulseLength"]);
-                gclass0.int_73 = Convert.ToInt32(row["MinGroundCombatPeriod"]);
-                gclass0.int_100 = Convert.ToInt32(row["NonPlayerSystemDetection"]);
-                gclass0.genum30_0 = (GEnum30)Convert.ToInt32(row["SolDisaster"]);
-                gclass0.int_109 = Convert.ToInt32(row["MaxEventDays"]);
-                gclass0.int_110 = Convert.ToInt32(row["MaxEventCount"]);
-                gclass0.int_84 = Convert.ToInt32(row["ConstellationNames"]);
-                gclass0.int_65 = Convert.ToInt32(row["EldarOpGroupProgression"]);
-                gclass0.int_114 = Convert.ToInt32(row["LimitedLabs"]);
-                gclass0.int_115 = Convert.ToInt32(row["OneSecondSubPulse"]);
-                gclass0.int_117 = Convert.ToInt32(row["MinorRaceChance"]);
-                gclass0.int_118 = Convert.ToInt32(row["PreIndustrialChance"]);
-                gclass0.int_119 = Convert.ToInt32(row["ConventionalChance"]);
-                gclass0.int_120 = Convert.ToInt32(row["LimitPlanetaryDistance"]);
-                gclass0.int_121 = Convert.ToInt32(row["ParallelUniverse"]);
-                gclass0.int_122 = Convert.ToInt32(row["UseThemeInKnownStars"]);
-                gclass0.int_127 = Convert.ToInt32(row["NPRBaseTransits"]);
-                gclass0.int_128 = Convert.ToInt32(row["NPRRandomTransits"]);
-                gclass0.int_129 = Convert.ToInt32(row["NPRMaxSystems"]);
-                gclass0.int_113 = Convert.ToInt32(row["RaiderSystems"]);
-                gclass0.int_111 = Convert.ToInt32(row["SwarmSystems"]);
-                gclass0.int_112 = Convert.ToInt32(row["InvaderSystems"]);
-                gclass0.int_85 = Convert.ToInt32(row["StarEccentricity"]);
-                gclass0.int_86 = Convert.ToInt32(row["GasGiantEffects"]);
-                gclass0.int_116 = Convert.ToInt32(row["HostilityModifier"]);
-                gclass0.decimal_0 = Convert.ToDecimal(row["GameTime"]);
-                gclass0.decimal_1 = Convert.ToDecimal(row["LastGrowthTime"]);
-                gclass0.decimal_2 = Convert.ToDecimal(row["LastGroundCombatTime"]);
-                gclass0.decimal_5 = Convert.ToDecimal(row["PlayerExplorationTime"]);
-                gclass0.decimal_6 = Convert.ToDecimal(row["TruceCountdown"]);
-                gclass0.decimal_10 = Convert.ToDecimal(row["StartTimeEldar"]);
-                gclass0.decimal_11 = Convert.ToDecimal(row["StartTimeSwarm"]);
-                gclass0.decimal_12 = Convert.ToDecimal(row["StartTimeInvaders"]);
-                gclass0.int_123 = Convert.ToInt32(row["EnhancedInvaders"]);
-                gclass0.int_125 = Convert.ToInt32(row["EnhancedPrecursors"]);
-                gclass0.int_124 = Convert.ToInt32(row["EnhancedSwarm"]);
-                gclass0.int_126 = Convert.ToInt32(row["SwarmInvasion"]);
-                gclass0.int_130 = Convert.ToInt32(row["MinimumSwarmRP"]);
-                gclass0.bool_15 = Convert.ToBoolean(row["CurrentGroundCombat"]);
-                gclass0.bool_4 = Convert.ToBoolean(row["chkOrders"]);
-                gclass0.bool_5 = Convert.ToBoolean(row["chkOverhauls"]);
-                gclass0.bool_6 = Convert.ToBoolean(row["chkShowJD"]);
-                gclass0.string_0 = row["SMPassword"].ToString();
-                gclass0.string_1 = row["GameName"].ToString();
+                gclass0.DifficultyModifier = Convert.ToInt32(row["DifficultyModifier"]);
+                gclass0.ResearchSpeed = Convert.ToInt32(row["ResearchSpeed"]);
+                gclass0.TerraformingSpeed = Convert.ToInt32(row["TerraformingSpeed"]);
+                gclass0.SurveySpeed = Convert.ToInt32(row["SurveySpeed"]);
+                gclass0.NumberOfSystems = Convert.ToInt32(row["NumberOfSystems"]);
+                gclass0.StartYear = Convert.ToInt32(row["StartYear"]);
+                gclass0.LocalSystemChance = Convert.ToInt32(row["LocalSystemChance"]);
+                gclass0.LocalSystemSpread = Convert.ToInt32(row["LocalSystemSpread"]);
+                gclass0.MinConstructionPeriod = Convert.ToInt32(row["MinConstructionPeriod"]);
+                gclass0.RaceChance = Convert.ToInt32(row["RaceChance"]);
+                gclass0.RaceChanceNPR = Convert.ToInt32(row["RaceChanceNPR"]);
+                gclass0.NewRuinCreationChance = Convert.ToInt32(row["NewRuinCreationChance"]);
+                gclass0.CivilianShippingLinesActive = Convert.ToInt32(row["CivilianShippingLinesActive"]);
+                gclass0.AllowCivilianHarvesters = Convert.ToInt32(row["AllowCivilianHarvesters"]);
+                gclass0.TechFromConquest = Convert.ToInt32(row["TechFromConquest"]);
+                gclass0.MinComets = Convert.ToInt32(row["MinComets"]);
+                gclass0.OrbitalMotion = Convert.ToInt32(row["OrbitalMotion"]);
+                gclass0.OrbitalMotionAst = Convert.ToInt32(row["OrbitalMotionAst"]);
+                gclass0.PoliticalAdmirals = Convert.ToInt32(row["PoliticalAdmirals"]);
+                gclass0.InexpFleets = Convert.ToInt32(row["InexpFleets"]);
+                gclass0.AutoJumpGates = Convert.ToInt32(row["AutoJumpGates"]);
+                gclass0.Precursors = Convert.ToInt32(row["Precursors"]);
+                gclass0.Rakhas = Convert.ToInt32(row["Rakhas"]);
+                gclass0.Eldar = Convert.ToInt32(row["Eldar"]);
+                gclass0.StarSwarm = Convert.ToInt32(row["StarSwarm"]);
+                gclass0.Invaders = Convert.ToInt32(row["Invaders"]);
+                gclass0.UseKnownStars = Convert.ToInt32(row["UseKnownStars"]);
+                gclass0.GenerateNPRs = Convert.ToInt32(row["GenerateNPRs"]);
+                gclass0.HumanNPRs = Convert.ToInt32(row["HumanNPRs"]);
+                gclass0.GenerateNonTNOnly = Convert.ToInt32(row["GenerateNonTNOnly"]);
+                gclass0.NoOverhauls = Convert.ToInt32(row["NoOverhauls"]);
+                gclass0.RealisticPromotions = Convert.ToInt32(row["RealisticPromotions"]);
+                gclass0.DefaultRaceID = Convert.ToInt32(row["DefaultRaceID"]);
+                gclass0.NPRsGeneratePrecursors = Convert.ToInt32(row["NPRsGeneratePrecursors"]);
+                gclass0.NPRsGenerateSwarm = Convert.ToInt32(row["NPRsGenerateSwarm"]);
+                gclass0.NPRsGenerateRifts = Convert.ToInt32(row["NPRsGenerateRifts"]);
+                gclass0.NPRsEncounterRaiders = Convert.ToInt32(row["NPRsEncounterRaiders"]);
+                gclass0.SubPulseLength = Convert.ToInt32(row["SubPulseLength"]);
+                gclass0.MinGroundCombatPeriod = Convert.ToInt32(row["MinGroundCombatPeriod"]);
+                gclass0.NonPlayerSystemDetection = Convert.ToInt32(row["NonPlayerSystemDetection"]);
+                gclass0.SolDisaster = (GEnum30)Convert.ToInt32(row["SolDisaster"]);
+                gclass0.MaxEventDays = Convert.ToInt32(row["MaxEventDays"]);
+                gclass0.MaxEventCount = Convert.ToInt32(row["MaxEventCount"]);
+                gclass0.ConstellationNames = Convert.ToInt32(row["ConstellationNames"]);
+                gclass0.EldarOpGroupProgression = Convert.ToInt32(row["EldarOpGroupProgression"]);
+                gclass0.LimitedLabs = Convert.ToInt32(row["LimitedLabs"]);
+                gclass0.OneSecondSubPulse = Convert.ToInt32(row["OneSecondSubPulse"]);
+                gclass0.MinorRaceChance = Convert.ToInt32(row["MinorRaceChance"]);
+                gclass0.PreIndustrialChance = Convert.ToInt32(row["PreIndustrialChance"]);
+                gclass0.ConventionalChance = Convert.ToInt32(row["ConventionalChance"]);
+                gclass0.LimitPlanetaryDistance = Convert.ToInt32(row["LimitPlanetaryDistance"]);
+                gclass0.ParallelUniverse = Convert.ToInt32(row["ParallelUniverse"]);
+                gclass0.UseThemeInKnownStars = Convert.ToInt32(row["UseThemeInKnownStars"]);
+                gclass0.NPRBaseTransits = Convert.ToInt32(row["NPRBaseTransits"]);
+                gclass0.NPRRandomTransits = Convert.ToInt32(row["NPRRandomTransits"]);
+                gclass0.NPRMaxSystems = Convert.ToInt32(row["NPRMaxSystems"]);
+                gclass0.RaiderSystems = Convert.ToInt32(row["RaiderSystems"]);
+                gclass0.SwarmSystems = Convert.ToInt32(row["SwarmSystems"]);
+                gclass0.InvaderSystems = Convert.ToInt32(row["InvaderSystems"]);
+                gclass0.StarEccentricity = Convert.ToInt32(row["StarEccentricity"]);
+                gclass0.GasGiantEffects = Convert.ToInt32(row["GasGiantEffects"]);
+                gclass0.HostilityModifier = Convert.ToInt32(row["HostilityModifier"]);
+                gclass0.GameTime = Convert.ToDecimal(row["GameTime"]);
+                gclass0.LastGrowthTime = Convert.ToDecimal(row["LastGrowthTime"]);
+                gclass0.LastGroundCombatTime = Convert.ToDecimal(row["LastGroundCombatTime"]);
+                gclass0.PlayerExplorationTime = Convert.ToDecimal(row["PlayerExplorationTime"]);
+                gclass0.TruceCountdown = Convert.ToDecimal(row["TruceCountdown"]);
+                gclass0.StartTimeEldar = Convert.ToDecimal(row["StartTimeEldar"]);
+                gclass0.StartTimeSwarm = Convert.ToDecimal(row["StartTimeSwarm"]);
+                gclass0.StartTimeInvaders = Convert.ToDecimal(row["StartTimeInvaders"]);
+                gclass0.EnhancedInvaders = Convert.ToInt32(row["EnhancedInvaders"]);
+                gclass0.EnhancedPrecursors = Convert.ToInt32(row["EnhancedPrecursors"]);
+                gclass0.EnhancedSwarm = Convert.ToInt32(row["EnhancedSwarm"]);
+                gclass0.SwarmInvasion = Convert.ToInt32(row["SwarmInvasion"]);
+                gclass0.MinimumSwarmRP = Convert.ToInt32(row["MinimumSwarmRP"]);
+                gclass0.CurrentGroundCombat = Convert.ToBoolean(row["CurrentGroundCombat"]);
+                gclass0.chkOrders = Convert.ToBoolean(row["chkOrders"]);
+                gclass0.chkOverhauls = Convert.ToBoolean(row["chkOverhauls"]);
+                gclass0.chkShowJD = Convert.ToBoolean(row["chkShowJD"]);
+                gclass0.SMPassword = row["SMPassword"].ToString();
+                gclass0.GameName = row["GameName"].ToString();
             }
 
             return gclass0;
@@ -489,7 +489,7 @@ public class TacticalMap : Form
         }
     }
 
-    public void method_4(FCTRaceRecordC21 gclass21_1)
+    public void method_4(GameRace gclass21_1)
     {
         try
         {
@@ -507,7 +507,7 @@ public class TacticalMap : Form
         try
         {
             RacialSystemSurvey gclass202 = null;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass0_0.raceRecord_0 = this.gclass21_0;
             this.Text =
                 $"{this.gclass21_0.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.gclass21_0.WealthPoints)}";
@@ -654,7 +654,7 @@ public class TacticalMap : Form
             this.gclass202_0 = (RacialSystemSurvey)this.cboSystems.SelectedValue;
             if (this.gclass202_0 == null)
                 return;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_340(this.gclass202_0.ActualSystemData, this.tvMinerals, this.txtMinerals);
             this.gclass202_0.method_14(this.lstvWaypoints);
             this.method_20();

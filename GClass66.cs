@@ -10,7 +10,7 @@ using System;
 public class GClass66
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemData200 gclass200_0;
     public ShipComponent gclass230_0;
     public RaceMissile gclass129_0;

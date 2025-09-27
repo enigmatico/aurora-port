@@ -13,12 +13,12 @@ using System.Windows.Forms;
 public class MineralPopUp : Form
 {
     private SystemBodyData gclass1_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private GClass0 gclass0_0;
     private IContainer icontainer_0;
     private TextBox txtMinerals;
 
-    public MineralPopUp(SystemBodyData gclass1_1, FCTRaceRecordC21 gclass21_1, GClass0 gclass0_1)
+    public MineralPopUp(SystemBodyData gclass1_1, GameRace gclass21_1, GClass0 gclass0_1)
     {
         this.InitializeComponent();
         this.gclass1_0 = gclass1_1;

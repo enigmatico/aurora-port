@@ -18,7 +18,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class5
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
     }
 
     [CompilerGenerated]
@@ -270,7 +270,7 @@ public partial class GClass0
             return gclass65_0.gclass21_1 == this.class18_0.gclass202_0.Race &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship &&
                    gclass65_0.gclass200_0 == this.class18_0.gclass202_0.ActualSystemData &&
-                   gclass65_0.decimal_3 >= this.class18_0.gclass0_0.decimal_0 - this.int_0;
+                   gclass65_0.decimal_3 >= this.class18_0.gclass0_0.GameTime - this.int_0;
         }
     }
 
@@ -513,19 +513,19 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class35
     {
-        public GClass11 gclass11_0;
+        public RaceOperationalGroupElement gclass11_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
-            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.gclass14_0.AutomatedClassDesignTypeID;
+            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class36
     {
-        public FCTRaceRecordC21 gclass21_0;
-        public GClass9 gclass9_0;
+        public GameRace gclass21_0;
+        public OperationalGroup gclass9_0;
         public System.Func<GroundUnitFormationTemplateData, bool> func_0;
         public System.Func<GroundUnitFormationTemplateData, bool> func_1;
         public System.Func<GroundUnitFormationTemplateData, bool> func_2;
@@ -554,19 +554,19 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class37
     {
-        public GClass11 gclass11_0;
+        public RaceOperationalGroupElement gclass11_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
-            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.gclass14_0.AutomatedClassDesignTypeID;
+            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class38
     {
-        public FCTRaceRecordC21 gclass21_0;
-        public GClass9 gclass9_0;
+        public GameRace gclass21_0;
+        public OperationalGroup gclass9_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
@@ -577,18 +577,18 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class39
     {
-        public GClass11 gclass11_0;
+        public RaceOperationalGroupElement gclass11_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
-            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.gclass14_0.AutomatedClassDesignTypeID;
+            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class40
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(NavalAdminCommand gclass83_0)
         {
@@ -911,7 +911,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class62
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0.Class61 class61_0;
 
         internal bool method_0(GClass65 gclass65_0)
@@ -919,7 +919,7 @@ public partial class GClass0
             return gclass65_0.genum10_0 == GEnum10.const_0 &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Salvo &&
                    gclass65_0.method_5() < AuroraContactStatus.Neutral &&
-                   gclass65_0.decimal_3 == this.class61_0.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.class61_0.gclass0_0.GameTime &&
                    gclass65_0.gclass21_1 == this.gclass21_0;
         }
 
@@ -1009,7 +1009,7 @@ public partial class GClass0
         public double double_0;
         public double double_1;
 
-        internal bool method_0(FCTRaceRecordC21 gclass21_0)
+        internal bool method_0(GameRace gclass21_0)
         {
             return gclass21_0.list_13.Contains(this.gclass200_0);
         }
@@ -1018,7 +1018,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class70
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0.Class69 class69_0;
 
         internal bool method_0(GClass65 gclass65_0)
@@ -1162,7 +1162,7 @@ public partial class GClass0
             return gclass65_1.int_1 == this.gclass65_0.int_1 &&
                    gclass65_1.auroraContactType_0 == this.gclass65_0.auroraContactType_0 &&
                    gclass65_1.gclass21_1 == this.gclass65_0.gclass21_1 &&
-                   gclass65_1.decimal_1 != this.gclass0_0.decimal_0 && gclass65_1.decimal_2 != this.gclass0_0.decimal_0;
+                   gclass65_1.decimal_1 != this.gclass0_0.GameTime && gclass65_1.decimal_2 != this.gclass0_0.GameTime;
         }
     }
 
@@ -1176,7 +1176,7 @@ public partial class GClass0
             return gclass85_1.System.ActualSystemData == this.gclass85_0.System.ActualSystemData;
         }
 
-        internal bool method_1(FCTRaceRecordC21 gclass21_0)
+        internal bool method_1(GameRace gclass21_0)
         {
             return gclass21_0 != this.gclass85_0.Race;
         }
@@ -1186,7 +1186,7 @@ public partial class GClass0
             return gclass146_0.gclass202_0.ActualSystemData == this.gclass85_0.System.ActualSystemData;
         }
 
-        internal bool method_3(FCTRaceRecordC21 gclass21_0)
+        internal bool method_3(GameRace gclass21_0)
         {
             return gclass21_0 != this.gclass85_0.Race;
         }
@@ -1196,7 +1196,7 @@ public partial class GClass0
             return gclass132_0.gclass200_0 == this.gclass85_0.System.ActualSystemData;
         }
 
-        internal bool method_5(FCTRaceRecordC21 gclass21_0)
+        internal bool method_5(GameRace gclass21_0)
         {
             return gclass21_0 != this.gclass85_0.Race;
         }
@@ -1218,7 +1218,7 @@ public partial class GClass0
 
         internal bool method_1(GClass132 gclass132_0)
         {
-            return gclass132_0.decimal_0 == this.gclass0_0.decimal_0;
+            return gclass132_0.decimal_0 == this.gclass0_0.GameTime;
         }
 
         internal bool method_2(FCTShipData40 gclass40_0)
@@ -1232,7 +1232,7 @@ public partial class GClass0
     {
         public SystemData200 gclass200_0;
 
-        internal bool method_0(FCTRaceRecordC21 gclass21_0)
+        internal bool method_0(GameRace gclass21_0)
         {
             return gclass21_0.list_13.Contains(this.gclass200_0);
         }
@@ -1271,7 +1271,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class81
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0.Class80 class80_0;
 
         internal bool method_0(GClass66 gclass66_0)
@@ -1368,14 +1368,14 @@ public partial class GClass0
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData.IsNPR && this.list_0.Contains(gclass146_0.SystemBodyData);
+            return gclass146_0.RaceData.NPR && this.list_0.Contains(gclass146_0.SystemBodyData);
         }
     }
 
     [CompilerGenerated]
     private sealed class Class89
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -1501,7 +1501,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class97
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
@@ -1583,7 +1583,7 @@ public partial class GClass0
         {
             return gclass65_0.int_1 == this.gclass40_0.int_8 &&
                    gclass65_0.gclass21_1 == this.class100_0.gclass110_0.ViewingRace &&
-                   gclass65_0.decimal_3 == this.class100_0.gclass0_0.decimal_0;
+                   gclass65_0.decimal_3 == this.class100_0.gclass0_0.GameTime;
         }
     }
 
@@ -1597,7 +1597,7 @@ public partial class GClass0
         {
             if (gclass65_0.gclass21_0 != this.gclass110_0.ActualAlienRace ||
                 gclass65_0.gclass21_1 != this.gclass110_0.ViewingRace ||
-                !(gclass65_0.decimal_3 == this.gclass0_0.decimal_0))
+                !(gclass65_0.decimal_3 == this.gclass0_0.GameTime))
                 return false;
             return gclass65_0.auroraContactType_0 == AuroraContactType.Population ||
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship;
@@ -1607,7 +1607,7 @@ public partial class GClass0
         {
             if (gclass65_0.gclass21_0 != this.gclass110_0.ViewingRace ||
                 gclass65_0.gclass21_1 != this.gclass110_0.ActualAlienRace ||
-                !(gclass65_0.decimal_3 == this.gclass0_0.decimal_0))
+                !(gclass65_0.decimal_3 == this.gclass0_0.GameTime))
                 return false;
             return gclass65_0.auroraContactType_0 == AuroraContactType.Population ||
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship;
@@ -1637,7 +1637,7 @@ public partial class GClass0
         {
             if (gclass65_0.gclass21_0 != this.gclass110_0.ActualAlienRace ||
                 gclass65_0.gclass21_1 != this.gclass110_0.ViewingRace ||
-                !(gclass65_0.decimal_3 == this.gclass0_0.decimal_0))
+                !(gclass65_0.decimal_3 == this.gclass0_0.GameTime))
                 return false;
             return gclass65_0.auroraContactType_0 == AuroraContactType.Population ||
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship;
@@ -1647,7 +1647,7 @@ public partial class GClass0
         {
             if (gclass65_0.gclass21_0 != this.gclass110_0.ViewingRace ||
                 gclass65_0.gclass21_1 != this.gclass110_0.ActualAlienRace ||
-                !(gclass65_0.decimal_3 == this.gclass0_0.decimal_0))
+                !(gclass65_0.decimal_3 == this.gclass0_0.GameTime))
                 return false;
             return gclass65_0.auroraContactType_0 == AuroraContactType.Population ||
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship;
@@ -1700,7 +1700,7 @@ public partial class GClass0
         {
             return gclass65_0.int_1 == this.gclass117_0.gclass40_0.int_8 &&
                    gclass65_0.gclass21_1 == this.class106_0.gclass110_0.ActualAlienRace &&
-                   gclass65_0.decimal_3 == this.class106_0.gclass0_0.decimal_0;
+                   gclass65_0.decimal_3 == this.class106_0.gclass0_0.GameTime;
         }
     }
 
@@ -1740,7 +1740,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class111
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public System.Func<FleetData, bool> func_0;
         public System.Func<GroundUnitFormationData, bool> func_1;
 
@@ -1780,7 +1780,7 @@ public partial class GClass0
     private sealed class Class113
     {
         public SystemBodyData gclass1_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -1792,7 +1792,7 @@ public partial class GClass0
     private sealed class Class114
     {
         public SystemBodyData gclass1_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
@@ -1875,7 +1875,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class119
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
@@ -1886,7 +1886,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class120
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(FCTShipData40 gclass40_0)
         {
@@ -1897,7 +1897,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class121
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass193 gclass193_0)
         {
@@ -1914,7 +1914,7 @@ public partial class GClass0
     private sealed class Class122
     {
         public List<SystemData200> list_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -1996,7 +1996,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class127
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0.Class126 class126_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
@@ -2020,7 +2020,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class129
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0.Class128 class128_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
@@ -2070,7 +2070,7 @@ public partial class GClass0
         {
             return (gclass1_1.BodyClass == PlanetBodyClass.Planet || gclass1_1.BodyClass == PlanetBodyClass.Comet ||
                     gclass1_1.BodyClass == PlanetBodyClass.Asteroid && gclass1_1.TrojanOffset == 0.0 &&
-                    (this.gclass0_0.int_81 == 1 || this.bool_0)) && gclass1_1.SystemData == this.gclass200_0 &&
+                    (this.gclass0_0.OrbitalMotionAst == 1 || this.bool_0)) && gclass1_1.SystemData == this.gclass200_0 &&
                    !gclass1_1.IsFixedBody;
         }
 
@@ -2080,7 +2080,7 @@ public partial class GClass0
                 return true;
             if (gclass1_1.BodyClass != PlanetBodyClass.Asteroid || gclass1_1.TrojanOffset != 0.0)
                 return false;
-            return this.gclass0_0.int_81 == 1 || this.bool_0;
+            return this.gclass0_0.OrbitalMotionAst == 1 || this.bool_0;
         }
 
         internal bool method_5(SystemBodyData gclass1_1)
@@ -2477,7 +2477,7 @@ public partial class GClass0
             return gclass85_0.Race == this.gclass109_0.gclass21_0;
         }
 
-        internal bool method_11(FCTRaceGroundCombatRecord46 gclass46_0)
+        internal bool method_11(RaceGroundCombat gclass46_0)
         {
             return gclass46_0.SystemBody == this.gclass109_0.gclass1_0;
         }
@@ -2731,7 +2731,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class160
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass104 gclass104_0)
         {
@@ -2742,7 +2742,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class161
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass104 gclass104_0)
         {
@@ -2785,7 +2785,7 @@ public partial class GClass0
     private sealed class Class164
     {
         public GroundUnitClass101 gclass101_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
         internal bool method_0(GClass104 gclass104_0)
@@ -2799,7 +2799,7 @@ public partial class GClass0
     private sealed class Class165
     {
         public GroundUnitClass101 gclass101_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GroundUnitClass101 gclass101_1;
         public SystemBodyData gclass1_0;
 
@@ -2845,7 +2845,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class167
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass105 gclass105_0)
         {
@@ -2885,7 +2885,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class170
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -2920,7 +2920,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class172
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0.Class171 class171_0;
 
         internal bool method_0(PopulationData gclass146_0)
@@ -2950,7 +2950,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class174
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -3021,7 +3021,7 @@ public partial class GClass0
     {
         public PopulationData gclass146_0;
         public GClass194 gclass194_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public int int_0;
         public System.Func<FleetData, bool> func_0;
 
@@ -3208,7 +3208,7 @@ public partial class GClass0
     {
         public SystemBodyData gclass1_0;
         public GClass194 gclass194_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -3247,10 +3247,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class189
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3260,10 +3260,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class190
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3273,10 +3273,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class191
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3286,10 +3286,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class192
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3299,10 +3299,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class193
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3312,10 +3312,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class194
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3325,22 +3325,22 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class195
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public Decimal decimal_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
                    gclass164_0.decimal_0 >= this.decimal_0;
         }
 
-        internal bool method_1(TechData164 gclass164_0)
+        internal bool method_1(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
                    gclass164_0.decimal_0 >= this.decimal_0 / 2M;
         }
 
-        internal bool method_2(TechData164 gclass164_0)
+        internal bool method_2(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
                    gclass164_0.decimal_0 >= this.decimal_0 / 3M;
@@ -3350,10 +3350,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class196
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public TechTypeData gclass163_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass163_0 && !gclass164_1.bool_4 &&
                    gclass164_1.decimal_0 > this.gclass164_0.decimal_0;
@@ -3363,7 +3363,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class197
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0 gclass0_0;
 
         internal bool method_0(PopulationData gclass146_0)
@@ -3371,13 +3371,13 @@ public partial class GClass0
             return gclass146_0.decimal_30 > 0M && gclass146_0.RaceData == this.gclass21_0;
         }
 
-        internal bool method_1(TechData164 gclass164_0)
+        internal bool method_1(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0 == this.gclass0_0.TechTypeDataDictionary[TechType.MaximumEngineSize] &&
                    gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID);
         }
 
-        internal bool method_2(TechData164 gclass164_0)
+        internal bool method_2(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0 == this.gclass0_0.TechTypeDataDictionary[TechType.MaximumEngineSize];
         }
@@ -3389,13 +3389,13 @@ public partial class GClass0
         public TechTypeData gclass163_0;
         public GClass0.Class197 class197_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0 == this.gclass163_0 &&
                    gclass164_0.dictionary_0.ContainsKey(this.class197_0.gclass21_0.RaceID);
         }
 
-        internal bool method_1(TechData164 gclass164_0)
+        internal bool method_1(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0 == this.gclass163_0 && !gclass164_0.bool_4;
         }
@@ -3404,10 +3404,10 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class199
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public GClass0.Class198 class198_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.class198_0.gclass163_0 &&
                    gclass164_1.int_4 <= this.gclass164_0.int_4;
@@ -3448,7 +3448,7 @@ public partial class GClass0
         public Decimal decimal_0;
         public Decimal decimal_1;
         public Decimal decimal_2;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(ShipComponent gclass230_0)
         {
@@ -3470,7 +3470,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class203
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public ShipComponent gclass230_0;
 
         internal bool method_0(ShipComponent gclass230_1)
@@ -3491,7 +3491,7 @@ public partial class GClass0
         public TechType genum122_0;
         public int int_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0 == this.gclass0_0.TechTypeDataDictionary[this.genum122_0] &&
                    gclass164_0.int_4 <= this.int_0;
@@ -3534,7 +3534,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class208
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass65 gclass65_0)
         {
@@ -3573,14 +3573,14 @@ public partial class GClass0
         internal bool method_0(GClass65 gclass65_0)
         {
             return this.list_0.Contains(gclass65_0.gclass132_0) && gclass65_0.genum10_0 == GEnum10.const_0 &&
-                   gclass65_0.decimal_3 == this.gclass0_0.decimal_0;
+                   gclass65_0.decimal_3 == this.gclass0_0.GameTime;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class212
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
     }
 
     [CompilerGenerated]
@@ -3623,9 +3623,9 @@ public partial class GClass0
         public List<int> list_0;
         public List<int> list_1;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
-            return this.list_0.Contains(gclass164_0.int_0);
+            return this.list_0.Contains(gclass164_0.TechSystemID);
         }
 
         internal bool method_1(GClass185 gclass185_0)
@@ -3659,7 +3659,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class218
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
@@ -3685,7 +3685,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class219
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public PopulationData gclass146_0;
 
         internal bool method_0(GClass159 gclass159_0)
@@ -3708,7 +3708,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class221
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(NavalAdminCommand gclass83_0)
         {
@@ -3740,11 +3740,11 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class223
     {
-        public GClass11 gclass11_0;
+        public RaceOperationalGroupElement gclass11_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
-            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.gclass14_0.AutomatedClassDesignTypeID;
+            return gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
     }
 
@@ -3788,7 +3788,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class227
     {
-        public List<FCTRaceRecordC21> list_0;
+        public List<GameRace> list_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -3799,7 +3799,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class228
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public System.Func<FCTShipData40, bool> func_0;
 
         internal bool method_0(PopulationData gclass146_0)
@@ -4012,7 +4012,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class233
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass194 gclass194_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
@@ -4024,7 +4024,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class234
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -4091,9 +4091,9 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class239
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID);
         }
@@ -4282,7 +4282,7 @@ public partial class GClass0
     {
         public AuroraContactType auroraContactType_0;
         public int int_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0 gclass0_0;
         public int int_1;
         public GEnum10 genum10_0;
@@ -4291,7 +4291,7 @@ public partial class GClass0
         {
             return gclass65_0.auroraContactType_0 == this.auroraContactType_0 && gclass65_0.int_1 == this.int_0 &&
                    gclass65_0.gclass21_1 == this.gclass21_0 &&
-                   gclass65_0.decimal_3 >= this.gclass0_0.decimal_0 - this.int_1 &&
+                   gclass65_0.decimal_3 >= this.gclass0_0.GameTime - this.int_1 &&
                    gclass65_0.genum10_0 == this.genum10_0;
         }
     }
@@ -4301,7 +4301,7 @@ public partial class GClass0
     {
         public AuroraContactType auroraContactType_0;
         public int int_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0 gclass0_0;
         public int int_1;
         public GEnum10 genum10_0;
@@ -4310,7 +4310,7 @@ public partial class GClass0
         {
             return gclass65_0.auroraContactType_0 == this.auroraContactType_0 && gclass65_0.int_1 == this.int_0 &&
                    gclass65_0.gclass21_1 == this.gclass21_0 &&
-                   gclass65_0.decimal_3 >= this.gclass0_0.decimal_0 - this.int_1 &&
+                   gclass65_0.decimal_3 >= this.gclass0_0.GameTime - this.int_1 &&
                    gclass65_0.genum10_0 == this.genum10_0;
         }
     }
@@ -4318,14 +4318,14 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class249
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0 gclass0_0;
         public AuroraContactType auroraContactType_0;
         public int int_0;
 
         internal bool method_0(GClass65 gclass65_0)
         {
-            return gclass65_0.gclass21_1 == this.gclass21_0 && gclass65_0.decimal_3 == this.gclass0_0.decimal_0 &&
+            return gclass65_0.gclass21_1 == this.gclass21_0 && gclass65_0.decimal_3 == this.gclass0_0.GameTime &&
                    gclass65_0.auroraContactType_0 == this.auroraContactType_0 && gclass65_0.int_1 == this.int_0;
         }
     }
@@ -4333,14 +4333,14 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class250
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass0 gclass0_0;
         public AuroraContactType auroraContactType_0;
         public int int_0;
 
         internal bool method_0(GClass65 gclass65_0)
         {
-            return gclass65_0.gclass21_1 == this.gclass21_0 && gclass65_0.decimal_3 == this.gclass0_0.decimal_0 &&
+            return gclass65_0.gclass21_1 == this.gclass21_0 && gclass65_0.decimal_3 == this.gclass0_0.GameTime &&
                    gclass65_0.auroraContactType_0 == this.auroraContactType_0 && gclass65_0.int_1 == this.int_0 &&
                    gclass65_0.genum10_0 != GEnum10.const_4;
         }
@@ -4387,7 +4387,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class253
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public CheckState checkState_0;
         public GClass0 gclass0_0;
         public AuroraEventCategory auroraEventCategory_0;
@@ -4398,7 +4398,7 @@ public partial class GClass0
         internal bool method_0(GClass87 gclass87_0)
         {
             return (gclass87_0.gclass21_0 == this.gclass21_0 || this.checkState_0 == CheckState.Checked &&
-                       (!gclass87_0.gclass21_0.IsNPR || this.gclass0_0.bool_10)) &&
+                       (!gclass87_0.gclass21_0.NPR || this.gclass0_0.bool_10)) &&
                    !gclass87_0.gclass21_0.method_265(gclass87_0.gclass88_0.EventTypeId);
         }
 
@@ -4408,7 +4408,7 @@ public partial class GClass0
                 return true;
             if (this.checkState_0 != CheckState.Checked)
                 return false;
-            return !gclass87_0.gclass21_0.IsNPR || this.gclass0_0.bool_10;
+            return !gclass87_0.gclass21_0.NPR || this.gclass0_0.bool_10;
         }
 
         internal bool method_2(GClass87 gclass87_0)
@@ -4450,12 +4450,12 @@ public partial class GClass0
     private sealed class Class256
     {
         public GClass0 gclass0_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public CheckState checkState_0;
 
         internal bool method_0(GClass87 gclass87_0)
         {
-            if (gclass87_0.gclass21_0.IsNPR && !this.gclass0_0.bool_10)
+            if (gclass87_0.gclass21_0.NPR && !this.gclass0_0.bool_10)
                 return false;
             return gclass87_0.gclass21_0 == this.gclass21_0 || this.checkState_0 == CheckState.Checked;
         }
@@ -4479,7 +4479,7 @@ public partial class GClass0
         public GClass0 gclass0_0;
         public double double_0;
         public double double_1;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -4522,7 +4522,7 @@ public partial class GClass0
 
         internal bool method_0(GClass117 gclass117_0)
         {
-            return gclass117_0.decimal_8 == this.gclass0_0.decimal_0;
+            return gclass117_0.decimal_8 == this.gclass0_0.GameTime;
         }
     }
 
@@ -4547,7 +4547,7 @@ public partial class GClass0
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass40_0 == this.gclass38_0.gclass40_0 && gclass65_0.genum10_0 == GEnum10.const_0 &&
-                   gclass65_0.decimal_3 == this.class261_0.gclass0_0.decimal_0 - this.class261_0.int_0;
+                   gclass65_0.decimal_3 == this.class261_0.gclass0_0.GameTime - this.class261_0.int_0;
         }
     }
 
@@ -4578,7 +4578,7 @@ public partial class GClass0
     {
         public SpecialNPRIDs genum6_0;
 
-        internal bool method_0(FCTRaceRecordC21 gclass21_0)
+        internal bool method_0(GameRace gclass21_0)
         {
             return gclass21_0.SpecialNPRID == this.genum6_0;
         }
@@ -4598,7 +4598,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class268
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public CheckState checkState_0;
         public System.Func<JumpPoint120, bool> func_0;
 
@@ -4627,7 +4627,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class270
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public CheckState checkState_0;
         public System.Func<JumpPoint120, bool> func_0;
 
@@ -4866,7 +4866,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class283
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(NavalAdminCommand gclass83_0)
         {
@@ -4938,7 +4938,7 @@ public partial class GClass0
     [CompilerGenerated]
     private sealed class Class288
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
         {

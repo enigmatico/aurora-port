@@ -1,13 +1,12 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: GClass45
+// Type: GClass167
 // Assembly: Aurora, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: DAB8E3AD-3A24-426F-849E-98EC2E2DD9EB
 // Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
 
 #nullable disable
-public class RaceNameTheme45
+public class PausedResearch
 {
-    public CommanderNameThemeData CommanderNameThemeData;
-    public int Chance;
-    public int int_1;
+    public TechSystem gclass164_0;
+    public int PointsAccumulated;
 }

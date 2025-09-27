@@ -16,9 +16,9 @@ public class GClass115
     {
         public List<int> list_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
-            return this.list_0.Contains(gclass164_0.int_0);
+            return this.list_0.Contains(gclass164_0.TechSystemID);
         }
     }
 
@@ -47,11 +47,11 @@ public class GClass115
     private GClass0 gclass0_0;
     public List<GClass118> list_0 = new List<GClass118>();
     public List<GClass119> list_1 = new List<GClass119>();
-    public List<TechData164> list_2 = new List<TechData164>();
+    public List<TechSystem> list_2 = new List<TechSystem>();
     public AlienRaceInfo gclass110_0;
     public GClass22 gclass22_0;
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public ShipHull gclass76_0;
     public GEnum57 genum57_0;
     public EngineDesignType genum70_0;
@@ -187,7 +187,7 @@ public class GClass115
         }
     }
 
-    public GClass115 method_6(FCTRaceRecordC21 gclass21_2, List<AlienRaceInfo> list_3)
+    public GClass115 method_6(GameRace gclass21_2, List<AlienRaceInfo> list_3)
     {
         try
         {
@@ -197,10 +197,10 @@ public class GClass115
             gclass115_2.gclass21_1 = gclass21_2;
             gclass115_2.gclass110_0 =
                 list_3.FirstOrDefault<AlienRaceInfo>(gclass110_1 => gclass110_1.ActualAlienRace == this.gclass21_0);
-            gclass115_2.list_2 = new List<TechData164>();
+            gclass115_2.list_2 = new List<TechSystem>();
             gclass115_2.list_1 = new List<GClass119>();
             gclass115_2.list_0 = new List<GClass118>();
-            foreach (TechData164 gclass164 in this.list_2)
+            foreach (TechSystem gclass164 in this.list_2)
                 gclass115_2.list_2.Add(gclass164);
             foreach (GClass119 gclass119_1 in this.list_1)
             {
@@ -245,7 +245,7 @@ public class GClass115
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
             GClass115.Class1068 class1068 = new GClass115.Class1068();
-            if (!this.gclass21_1.IsNPR && this.gclass21_0.IsNPR)
+            if (!this.gclass21_1.NPR && this.gclass21_0.NPR)
                 this.gclass22_0.ClassName = this.ClassName;
             this.int_1 = this.gclass22_0.int_2;
             this.int_2 = this.gclass22_0.int_32;
@@ -316,7 +316,7 @@ public class GClass115
                     gclass230_0 = gclass228.gclass230_0,
                     double_0 = gclass228.gclass230_0.method_4(),
                     int_1 = (int)gclass228.decimal_0,
-                    decimal_0 = this.gclass0_0.decimal_0,
+                    decimal_0 = this.gclass0_0.GameTime,
                     int_0 = 0
                 });
             // ISSUE: reference to a compiler-generated field
@@ -351,10 +351,10 @@ public class GClass115
             // ISSUE: reference to a compiler-generated field
             class1068.list_0 = class1068.list_0.Distinct<int>().ToList<int>();
             // ISSUE: reference to a compiler-generated method
-            List<TechData164> list = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class1068.method_0)
-                .ToList<TechData164>();
+            List<TechSystem> list = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class1068.method_0)
+                .ToList<TechSystem>();
             this.list_2.Clear();
-            foreach (TechData164 gclass164 in list)
+            foreach (TechSystem gclass164 in list)
                 this.list_2.Add(gclass164);
             this.gclass22_0.method_85(0, 0, "");
             this.string_1 = this.gclass22_0.string_0;
@@ -418,7 +418,7 @@ public class GClass115
                     gclass230_0 = class1070.gclass230_0,
                     double_0 = double_0,
                     int_1 = int_8,
-                    decimal_0 = this.gclass0_0.decimal_0,
+                    decimal_0 = this.gclass0_0.GameTime,
                     int_0 = 0
                 });
                 flag = true;
@@ -459,10 +459,10 @@ public class GClass115
                     flag = true;
                 }
 
-                if ((this.gclass0_0.decimal_0 - gclass119.decimal_0 < gclass119.int_0 || gclass119.int_0 == 0) &&
-                    this.gclass0_0.decimal_0 != gclass119.decimal_0)
+                if ((this.gclass0_0.GameTime - gclass119.decimal_0 < gclass119.int_0 || gclass119.int_0 == 0) &&
+                    this.gclass0_0.GameTime != gclass119.decimal_0)
                 {
-                    gclass119.int_0 = (int)(this.gclass0_0.decimal_0 - gclass119.decimal_0);
+                    gclass119.int_0 = (int)(this.gclass0_0.GameTime - gclass119.decimal_0);
                     flag = true;
                 }
             }

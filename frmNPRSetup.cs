@@ -399,7 +399,7 @@ public class frmNPRSetup : Form
             this.txtTP.Text = AuroraUtils.smethod_45(this.gclass143_0.decimal_3, 2);
             this.txtSSM.Text = AuroraUtils.smethod_45(this.gclass143_0.decimal_5, 2);
             this.txtPopSizeMod.Text = AuroraUtils.smethod_45(this.gclass143_0.decimal_6, 2);
-            if (this.gclass0_0.IsKnownSystem == 1)
+            if (this.gclass0_0.UseKnownStars == 1)
                 this.cmdSelectSystem.Visible = true;
             else
                 this.cmdSelectSystem.Visible = false;

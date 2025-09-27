@@ -14,7 +14,7 @@ using System.Windows.Forms;
 public class SubFleet
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public FleetData ParentFleet;
     public SubFleet ParentSubFleet;
     public int SubFleetID;

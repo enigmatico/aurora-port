@@ -74,7 +74,7 @@ public class GClass193
     }
 
     public GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public FCTShipData40 gclass40_0;
     public FCTShipData40 gclass40_1;
@@ -157,7 +157,7 @@ public class GClass193
             gclass192.bool_0 = this.gclass22_0.bool_2;
             gclass192.string_0 = "";
             gclass192.bool_2 = false;
-            gclass192.bool_1 = this.gclass21_0.IsNPR;
+            gclass192.bool_1 = this.gclass21_0.NPR;
             this.gclass0_0.dictionary_32.Add(gclass192.int_0, gclass192);
         }
         catch (Exception ex)
@@ -194,7 +194,7 @@ public class GClass193
             gclass192.bool_0 = gclass22_4.bool_2;
             gclass192.string_0 = string_2;
             gclass192.bool_2 = false;
-            gclass192.bool_1 = this.gclass21_0.IsNPR;
+            gclass192.bool_1 = this.gclass21_0.NPR;
             gclass192.bool_3 = false;
             this.gclass0_0.dictionary_32.Add(gclass192.int_0, gclass192);
         }
@@ -331,7 +331,7 @@ public class GClass193
             gclass192_0.decimal_1 = 0M;
             gclass192_0.string_0 = this.string_1;
             gclass192_0.bool_2 = false;
-            gclass192_0.bool_1 = this.gclass21_0.IsNPR;
+            gclass192_0.bool_1 = this.gclass21_0.NPR;
             gclass192_0.bool_0 = this.gclass22_2.bool_2;
             if (gclass192_0.auroraSYTaskType_0 != AuroraSYTaskType.Construction && gclass192_0.gclass40_0 != null)
                 gclass192_0.gclass85_0 = gclass192_0.gclass40_0.gclass85_0;
@@ -471,7 +471,7 @@ public class GClass193
             label_0.Text = AuroraUtils.FormatNumberToDigits(this.decimal_5, 1);
             this.decimal_5 = Math.Abs(this.decimal_5);
             Decimal num = this.decimal_5 / this.decimal_4 * AuroraUtils.decimal_29;
-            label_1.Text = this.gclass0_0.method_583((double)(this.gclass0_0.decimal_0 + num));
+            label_1.Text = this.gclass0_0.method_583((double)(this.gclass0_0.GameTime + num));
         }
         catch (Exception ex)
         {

@@ -69,14 +69,14 @@ public class GClass29
 
     public List<GClass132> list_0 = new List<GClass132>();
     public GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemData200 gclass200_0;
     public GClass221 gclass221_0;
 
     public GClass29(
         GClass0 gclass0_1,
         GClass221 gclass221_1,
-        FCTRaceRecordC21 gclass21_1,
+        GameRace gclass21_1,
         SystemData200 gclass200_1,
         GClass132 gclass132_0)
     {

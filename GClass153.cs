@@ -11,7 +11,7 @@ using System;
 public class GClass153
 {
     public AuroraElement auroraElement_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public MineralUsage genum85_0;
     public Decimal decimal_0;

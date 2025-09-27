@@ -13,7 +13,7 @@ using System.Linq;
 // TODO : Probably this object is commander position
 public class RankThemeEntry
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public AuroraCommanderType CommanderType;
     public int int_0;
     public int RankNum;

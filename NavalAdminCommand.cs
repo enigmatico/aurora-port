@@ -15,7 +15,7 @@ public class NavalAdminCommand
 {
     private Dictionary<int, RacialSystemSurvey> dictionary_0 = new Dictionary<int, RacialSystemSurvey>();
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public NavalAdminCommand ParentAdminCommand;
     public GClass55 gclass55_0;
     public PopulationData gclass146_0;
@@ -57,7 +57,7 @@ public class NavalAdminCommand
                 if (gclass61 == null)
                     return;
                 list = gclass0_0.dictionary_42.Values.Where(v =>
-                    this.gclass0_0.decimal_0 - v.decimal_0 > AuroraUtils.decimal_29 && !v.bool_0 &&
+                    this.gclass0_0.GameTime - v.decimal_0 > AuroraUtils.decimal_29 && !v.bool_0 &&
                     v.gclass61_0 == gclass61).ToList();
                 if (list.Count == 0)
                     return;
@@ -76,7 +76,7 @@ public class NavalAdminCommand
                 gclass55_0.method_40(true);
             gclass55_1_1.gclass83_0 = this;
             gclass55_1_1.auroraCommandType_0 = AuroraCommandType.NavalAdminCommand;
-            gclass55_1_1.decimal_1 = gclass0_0.decimal_0;
+            gclass55_1_1.decimal_1 = gclass0_0.GameTime;
             gclass55_0 = gclass55_1_1;
             if (gclass146_0 != null)
             {

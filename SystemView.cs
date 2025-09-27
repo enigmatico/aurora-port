@@ -17,7 +17,7 @@ public class SystemView : Form
 {
     private GClass0 gclass0_0;
     private RacialSystemSurvey gclass202_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private Star197 gclass197_0;
     private SystemBodyData gclass1_0;
     private JumpPoint120 gclass120_0;
@@ -407,7 +407,7 @@ public class SystemView : Form
         }
     }
 
-    public void method_2(FCTRaceRecordC21 gclass21_1)
+    public void method_2(GameRace gclass21_1)
     {
         try
         {
@@ -426,7 +426,7 @@ public class SystemView : Form
         {
             if (this.gclass0_0.bool_9 || this.cboRaces.SelectedValue == null)
                 return;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_260(this.cboSpecies);
             if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
                 this.gclass202_0 = this.gclass21_0.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
@@ -941,7 +941,7 @@ public class SystemView : Form
                 return;
             this.gclass0_0.gclass198_0 = null;
             this.gclass0_0.bool_3 = false;
-            if (this.gclass0_0.IsKnownSystem == 1)
+            if (this.gclass0_0.UseKnownStars == 1)
             {
                 this.gclass0_0.bool_21 = false;
                 int num = (int)new SelectKnownSystem(this.gclass0_0, true).ShowDialog();
@@ -1079,7 +1079,7 @@ public class SystemView : Form
             if (this.gclass1_0 == null || !this.gclass1_0.method_23(false))
                 return;
             Dictionary<AuroraElement, GClass124> dictionary0 = this.gclass1_0.dictionary_0;
-            FCTRaceRecordC21 gclass21 = this.gclass0_0.method_536(this.gclass1_0, 0, GEnum82.const_0, true, false,
+            GameRace gclass21 = this.gclass0_0.method_536(this.gclass1_0, 0, GEnum82.const_0, true, false,
                 false, false, SpecialNPRIDs.const_0, 0, true, null, 0);
             if (gclass21 == null)
             {
@@ -1157,7 +1157,7 @@ public class SystemView : Form
             if (!(this.gclass0_0.string_4 != this.gclass202_0.Name) || this.gclass0_0.bool_21)
                 return;
             foreach (RacialSystemSurvey gclass202 in this.gclass0_0.FCTRaceRecordDic.Values
-                         .SelectMany<FCTRaceRecordC21, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
+                         .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
                          .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.ActualSystemData == this.gclass202_0.ActualSystemData)
                          .ToList<RacialSystemSurvey>())
                 gclass202.Name = this.gclass0_0.string_4;
@@ -1181,11 +1181,11 @@ public class SystemView : Form
             int num = (int)new MessageEntry(this.gclass0_0).ShowDialog();
             if (!(this.gclass0_0.string_4 != str) || this.gclass0_0.bool_21)
                 return;
-            foreach (FCTRaceRecordC21 gclass21_0 in this.gclass0_0.FCTRaceRecordDic.Values
-                         .SelectMany<FCTRaceRecordC21, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
+            foreach (GameRace gclass21_0 in this.gclass0_0.FCTRaceRecordDic.Values
+                         .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
                          .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.ActualSystemData == this.gclass202_0.ActualSystemData)
-                         .Select<RacialSystemSurvey, FCTRaceRecordC21>(gclass202_0 => gclass202_0.Race)
-                         .ToList<FCTRaceRecordC21>())
+                         .Select<RacialSystemSurvey, GameRace>(gclass202_0 => gclass202_0.Race)
+                         .ToList<GameRace>())
                 this.gclass1_0.method_80(gclass21_0, this.gclass0_0.string_4);
             this.lstvSB.SelectedItems[0].SubItems[0].Text = this.gclass0_0.string_4;
         }
@@ -2024,7 +2024,7 @@ public class SystemView : Form
                 return;
             this.gclass0_0.gclass198_0 = null;
             this.gclass0_0.bool_3 = true;
-            if (this.gclass0_0.IsKnownSystem == 1)
+            if (this.gclass0_0.UseKnownStars == 1)
             {
                 this.gclass0_0.bool_21 = false;
                 int num = (int)new SelectKnownSystem(this.gclass0_0, true).ShowDialog();

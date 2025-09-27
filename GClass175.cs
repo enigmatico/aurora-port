@@ -34,11 +34,11 @@ public class GClass175
                 gclass230_0 = this.gclass0_0.ComponentDataDictionary[(int)this.genum118_0];
             else if (this.genum122_0 != TechType.None)
             {
-                TechData164 gclass164 =
+                TechSystem gclass164 =
                     this.gclass0_0.method_493(this.genum122_0, gclass146_0.SystemBodyData.RuinRaceData.Level);
                 if (gclass164 == null)
                     return true;
-                gclass230_0 = this.gclass0_0.ComponentDataDictionary[gclass164.int_0];
+                gclass230_0 = this.gclass0_0.ComponentDataDictionary[gclass164.TechSystemID];
             }
             else if (this.auroraComponentType_0 != AuroraComponentType.NoType)
             {

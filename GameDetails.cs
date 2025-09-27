@@ -348,66 +348,66 @@ public class GameDetails : Form
     {
         try
         {
-            this.txtNumSystems.Text = this.tacticalMap_0.gclass0_1.int_68.ToString();
-            this.txtChance.Text = this.tacticalMap_0.gclass0_1.int_70.ToString();
-            this.txtSpread.Text = this.tacticalMap_0.gclass0_1.int_71.ToString();
-            this.txtProdTime.Text = this.tacticalMap_0.gclass0_1.int_72.ToString();
-            this.txtRaceChance.Text = this.tacticalMap_0.gclass0_1.int_74.ToString();
-            this.txtNewRuinCreationChance.Text = this.tacticalMap_0.gclass0_1.int_76.ToString();
-            this.txtRaceChanceNPR.Text = this.tacticalMap_0.gclass0_1.int_75.ToString();
-            this.txtMinorRaces.Text = this.tacticalMap_0.gclass0_1.int_117.ToString();
-            this.txtPreIndustrialRaces.Text = this.tacticalMap_0.gclass0_1.int_118.ToString();
-            this.txtConventionalRaces.Text = this.tacticalMap_0.gclass0_1.int_119.ToString();
-            this.txtDifficultyModifier.Text = this.tacticalMap_0.gclass0_1.int_67.ToString();
-            this.txtResearchSpeed.Text = this.tacticalMap_0.gclass0_1.int_106.ToString();
-            this.txtHostilityModifier.Text = this.tacticalMap_0.gclass0_1.int_116.ToString();
-            this.txtTerraformingSpeed.Text = this.tacticalMap_0.gclass0_1.int_107.ToString();
-            this.txtSurveySpeed.Text = this.tacticalMap_0.gclass0_1.int_108.ToString();
-            this.txtMinComets.Text = this.tacticalMap_0.gclass0_1.int_79.ToString();
-            this.txtPassword.Text = this.tacticalMap_0.gclass0_1.string_0;
-            this.txtConfirm.Text = this.tacticalMap_0.gclass0_1.string_0;
-            this.txtYear.Text = this.tacticalMap_0.gclass0_1.int_69.ToString();
+            this.txtNumSystems.Text = this.tacticalMap_0.gclass0_1.NumberOfSystems.ToString();
+            this.txtChance.Text = this.tacticalMap_0.gclass0_1.LocalSystemChance.ToString();
+            this.txtSpread.Text = this.tacticalMap_0.gclass0_1.LocalSystemSpread.ToString();
+            this.txtProdTime.Text = this.tacticalMap_0.gclass0_1.MinConstructionPeriod.ToString();
+            this.txtRaceChance.Text = this.tacticalMap_0.gclass0_1.RaceChance.ToString();
+            this.txtNewRuinCreationChance.Text = this.tacticalMap_0.gclass0_1.NewRuinCreationChance.ToString();
+            this.txtRaceChanceNPR.Text = this.tacticalMap_0.gclass0_1.RaceChanceNPR.ToString();
+            this.txtMinorRaces.Text = this.tacticalMap_0.gclass0_1.MinorRaceChance.ToString();
+            this.txtPreIndustrialRaces.Text = this.tacticalMap_0.gclass0_1.PreIndustrialChance.ToString();
+            this.txtConventionalRaces.Text = this.tacticalMap_0.gclass0_1.ConventionalChance.ToString();
+            this.txtDifficultyModifier.Text = this.tacticalMap_0.gclass0_1.DifficultyModifier.ToString();
+            this.txtResearchSpeed.Text = this.tacticalMap_0.gclass0_1.ResearchSpeed.ToString();
+            this.txtHostilityModifier.Text = this.tacticalMap_0.gclass0_1.HostilityModifier.ToString();
+            this.txtTerraformingSpeed.Text = this.tacticalMap_0.gclass0_1.TerraformingSpeed.ToString();
+            this.txtSurveySpeed.Text = this.tacticalMap_0.gclass0_1.SurveySpeed.ToString();
+            this.txtMinComets.Text = this.tacticalMap_0.gclass0_1.MinComets.ToString();
+            this.txtPassword.Text = this.tacticalMap_0.gclass0_1.SMPassword;
+            this.txtConfirm.Text = this.tacticalMap_0.gclass0_1.SMPassword;
+            this.txtYear.Text = this.tacticalMap_0.gclass0_1.StartYear.ToString();
             this.txtTruceCountdown.Text =
-                AuroraUtils.FormatNumberToDigits(this.tacticalMap_0.gclass0_1.decimal_6 / AuroraUtils.decimal_29, 2);
-            this.txtNPRBaseTransits.Text = this.tacticalMap_0.gclass0_1.int_127.ToString();
-            this.txtNPRRandomTransits.Text = this.tacticalMap_0.gclass0_1.int_128.ToString();
-            this.txtNPRMaxStartingSystems.Text = this.tacticalMap_0.gclass0_1.int_129.ToString();
-            this.chkConquerTech.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_105);
-            this.chkCivilianShippingLinesActive.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_77);
-            this.chkAllowCivilianHarvesters.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_78);
-            this.chkOrb.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_80);
-            this.chkOrbAst.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_81);
-            this.chkPoliticalAdmirals.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_82);
-            this.chkInexpFleets.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_87);
-            this.chkAutoJumpGates.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_88);
-            this.chkPrecursors.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_89);
-            this.chkRakhas.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_90);
-            this.chkStarSwarm.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_92);
-            this.chkInvaders.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_93);
-            this.chkEldar.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_91);
-            this.chkUseKnownStars.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.IsKnownSystem);
-            this.chkConstellationNames.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_84);
-            this.chkGenerateNPRs.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_94);
-            this.chkHumanNPRs.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_95);
-            this.chkGenerateNonTNOnly.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_96);
-            this.chkNoOverhauls.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_97);
-            this.chkRealisticPromotions.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_98);
-            this.chkNPRsGeneratePrecursors.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_102);
-            this.chkNPRsGenerateSwarm.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_101);
-            this.chkNPRsGenerateRifts.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_103);
-            this.chkNPRsEncounterRaiders.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_104);
-            this.chkStarEccentricity.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_85);
-            this.chkGasGiantEffects.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_86);
-            this.chkLimitedLabs.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_114);
-            this.chkOneSecondSubPulse.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_115);
-            this.chkLimitPlanetaryDistance.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_120);
-            this.chkParallelUniverse.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_121);
-            this.chkUseThemeInKnownStars.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_122);
-            this.chkEnhancedInvaders.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_123);
-            this.chkEnhancedPrecursors.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_125);
-            this.chkEnhancedSwarm.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.int_124);
-            this.cboDetection.SelectedIndex = this.tacticalMap_0.gclass0_1.int_100;
-            this.cboDisaster.SelectedIndex = (int)this.tacticalMap_0.gclass0_1.genum30_0;
+                AuroraUtils.FormatNumberToDigits(this.tacticalMap_0.gclass0_1.TruceCountdown / AuroraUtils.decimal_29, 2);
+            this.txtNPRBaseTransits.Text = this.tacticalMap_0.gclass0_1.NPRBaseTransits.ToString();
+            this.txtNPRRandomTransits.Text = this.tacticalMap_0.gclass0_1.NPRRandomTransits.ToString();
+            this.txtNPRMaxStartingSystems.Text = this.tacticalMap_0.gclass0_1.NPRMaxSystems.ToString();
+            this.chkConquerTech.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.TechFromConquest);
+            this.chkCivilianShippingLinesActive.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.CivilianShippingLinesActive);
+            this.chkAllowCivilianHarvesters.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.AllowCivilianHarvesters);
+            this.chkOrb.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.OrbitalMotion);
+            this.chkOrbAst.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.OrbitalMotionAst);
+            this.chkPoliticalAdmirals.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.PoliticalAdmirals);
+            this.chkInexpFleets.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.InexpFleets);
+            this.chkAutoJumpGates.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.AutoJumpGates);
+            this.chkPrecursors.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.Precursors);
+            this.chkRakhas.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.Rakhas);
+            this.chkStarSwarm.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.StarSwarm);
+            this.chkInvaders.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.Invaders);
+            this.chkEldar.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.Eldar);
+            this.chkUseKnownStars.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.UseKnownStars);
+            this.chkConstellationNames.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.ConstellationNames);
+            this.chkGenerateNPRs.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.GenerateNPRs);
+            this.chkHumanNPRs.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.HumanNPRs);
+            this.chkGenerateNonTNOnly.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.GenerateNonTNOnly);
+            this.chkNoOverhauls.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.NoOverhauls);
+            this.chkRealisticPromotions.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.RealisticPromotions);
+            this.chkNPRsGeneratePrecursors.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.NPRsGeneratePrecursors);
+            this.chkNPRsGenerateSwarm.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.NPRsGenerateSwarm);
+            this.chkNPRsGenerateRifts.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.NPRsGenerateRifts);
+            this.chkNPRsEncounterRaiders.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.NPRsEncounterRaiders);
+            this.chkStarEccentricity.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.StarEccentricity);
+            this.chkGasGiantEffects.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.GasGiantEffects);
+            this.chkLimitedLabs.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.LimitedLabs);
+            this.chkOneSecondSubPulse.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.OneSecondSubPulse);
+            this.chkLimitPlanetaryDistance.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.LimitPlanetaryDistance);
+            this.chkParallelUniverse.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.ParallelUniverse);
+            this.chkUseThemeInKnownStars.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.UseThemeInKnownStars);
+            this.chkEnhancedInvaders.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.EnhancedInvaders);
+            this.chkEnhancedPrecursors.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.EnhancedPrecursors);
+            this.chkEnhancedSwarm.Checked = AuroraUtils.smethod_68(this.tacticalMap_0.gclass0_1.EnhancedSwarm);
+            this.cboDetection.SelectedIndex = this.tacticalMap_0.gclass0_1.NonPlayerSystemDetection;
+            this.cboDisaster.SelectedIndex = (int)this.tacticalMap_0.gclass0_1.SolDisaster;
         }
         catch (Exception ex)
         {
@@ -465,53 +465,53 @@ public class GameDetails : Form
             {
                 GameID = this.tacticalMap_0.gclass0_0.method_26(GEnum0.const_0),
                 bool_2 = true,
-                int_68 = 1000,
-                int_70 = 50,
-                int_71 = 15,
-                int_72 = 430000,
-                int_74 = 30,
-                int_76 = 20,
-                int_75 = 10,
-                int_67 = 100,
-                int_106 = 100,
-                int_107 = 100,
-                int_108 = 100,
-                int_79 = 0,
-                string_0 = "",
-                int_69 = 2050,
-                decimal_6 = 10M,
-                int_116 = 0,
-                int_127 = 0,
-                int_128 = 0,
-                int_129 = 0,
-                int_105 = 1,
-                int_77 = 1,
-                int_78 = 1,
-                int_80 = 1,
-                int_81 = 1,
-                int_82 = 0,
-                int_87 = 1,
-                int_88 = 0,
-                int_89 = 1,
-                int_91 = 1,
-                int_90 = 1,
-                int_92 = 1,
-                int_93 = 0,
-                IsKnownSystem = 1,
-                int_94 = 1,
-                int_95 = 0,
-                int_96 = 0,
-                int_97 = 0,
-                int_98 = 1,
-                int_102 = 0,
-                int_101 = 0,
-                int_103 = 0,
-                int_104 = 0,
-                int_114 = 0,
-                int_115 = 1,
-                int_124 = 0,
-                int_125 = 0,
-                int_123 = 0
+                NumberOfSystems = 1000,
+                LocalSystemChance = 50,
+                LocalSystemSpread = 15,
+                MinConstructionPeriod = 430000,
+                RaceChance = 30,
+                NewRuinCreationChance = 20,
+                RaceChanceNPR = 10,
+                DifficultyModifier = 100,
+                ResearchSpeed = 100,
+                TerraformingSpeed = 100,
+                SurveySpeed = 100,
+                MinComets = 0,
+                SMPassword = "",
+                StartYear = 2050,
+                TruceCountdown = 10M,
+                HostilityModifier = 0,
+                NPRBaseTransits = 0,
+                NPRRandomTransits = 0,
+                NPRMaxSystems = 0,
+                TechFromConquest = 1,
+                CivilianShippingLinesActive = 1,
+                AllowCivilianHarvesters = 1,
+                OrbitalMotion = 1,
+                OrbitalMotionAst = 1,
+                PoliticalAdmirals = 0,
+                InexpFleets = 1,
+                AutoJumpGates = 0,
+                Precursors = 1,
+                Eldar = 1,
+                Rakhas = 1,
+                StarSwarm = 1,
+                Invaders = 0,
+                UseKnownStars = 1,
+                GenerateNPRs = 1,
+                HumanNPRs = 0,
+                GenerateNonTNOnly = 0,
+                NoOverhauls = 0,
+                RealisticPromotions = 1,
+                NPRsGeneratePrecursors = 0,
+                NPRsGenerateSwarm = 0,
+                NPRsGenerateRifts = 0,
+                NPRsEncounterRaiders = 0,
+                LimitedLabs = 0,
+                OneSecondSubPulse = 1,
+                EnhancedSwarm = 0,
+                EnhancedPrecursors = 0,
+                EnhancedInvaders = 0
             };
         }
         catch (Exception ex)
@@ -577,7 +577,7 @@ public class GameDetails : Form
             else
             {
                 if (bool_1)
-                    this.tacticalMap_0.gclass0_1.string_1 = this.txtNewGameName.Text;
+                    this.tacticalMap_0.gclass0_1.GameName = this.txtNewGameName.Text;
                 this.method_7(this.tacticalMap_0.gclass0_1);
                 if (this.tacticalMap_0.gclass0_0.GameID == this.tacticalMap_0.gclass0_1.GameID)
                     this.method_7(this.tacticalMap_0.gclass0_0);
@@ -586,7 +586,7 @@ public class GameDetails : Form
                     sqliteConnection_0.Open();
                     using (SQLiteTransaction sqLiteTransaction = sqliteConnection_0.BeginTransaction())
                     {
-                        this.tacticalMap_0.gclass0_1.method_65(sqliteConnection_0);
+                        this.tacticalMap_0.gclass0_1.UpsertGClass0(sqliteConnection_0);
                         sqLiteTransaction.Commit();
                     }
 
@@ -604,115 +604,115 @@ public class GameDetails : Form
     {
         try
         {
-            gclass0_0.int_68 = Convert.ToInt32(this.txtNumSystems.Text);
-            gclass0_0.int_70 = Convert.ToInt32(this.txtChance.Text);
-            gclass0_0.int_71 = Convert.ToInt32(this.txtSpread.Text);
-            gclass0_0.int_72 = Convert.ToInt32(this.txtProdTime.Text);
-            gclass0_0.int_74 = Convert.ToInt32(this.txtRaceChance.Text);
-            gclass0_0.int_76 = Convert.ToInt32(this.txtNewRuinCreationChance.Text);
-            gclass0_0.int_75 = Convert.ToInt32(this.txtRaceChanceNPR.Text);
-            gclass0_0.int_117 = Convert.ToInt32(this.txtMinorRaces.Text);
-            gclass0_0.int_118 = Convert.ToInt32(this.txtPreIndustrialRaces.Text);
-            gclass0_0.int_119 = Convert.ToInt32(this.txtConventionalRaces.Text);
-            gclass0_0.int_67 = Convert.ToInt32(this.txtDifficultyModifier.Text);
-            gclass0_0.int_106 = Convert.ToInt32(this.txtResearchSpeed.Text);
-            gclass0_0.int_116 = Convert.ToInt32(this.txtHostilityModifier.Text);
-            gclass0_0.int_107 = Convert.ToInt32(this.txtTerraformingSpeed.Text);
-            gclass0_0.int_108 = Convert.ToInt32(this.txtSurveySpeed.Text);
-            gclass0_0.int_79 = Convert.ToInt32(this.txtMinComets.Text);
-            gclass0_0.string_0 = this.txtPassword.Text;
-            gclass0_0.int_69 = Convert.ToInt32(this.txtYear.Text);
-            gclass0_0.int_127 = Convert.ToInt32(this.txtNPRBaseTransits.Text);
-            gclass0_0.int_128 = Convert.ToInt32(this.txtNPRRandomTransits.Text);
-            gclass0_0.int_129 = Convert.ToInt32(this.txtNPRMaxStartingSystems.Text);
-            if (gclass0_0.int_74 > 100)
-                gclass0_0.int_74 = 100;
-            if (gclass0_0.int_76 > 100)
-                gclass0_0.int_76 = 100;
-            if (gclass0_0.int_75 > 100)
-                gclass0_0.int_75 = 100;
-            if (gclass0_0.int_118 < 0)
-                gclass0_0.int_118 = 0;
-            if (gclass0_0.int_119 < 0)
-                gclass0_0.int_119 = 0;
-            if (gclass0_0.int_118 > 100)
-                gclass0_0.int_118 = 100;
-            if (gclass0_0.int_119 > 100 - gclass0_0.int_118)
-                gclass0_0.int_119 = 100 - gclass0_0.int_118;
-            if (gclass0_0.int_117 > 100 - gclass0_0.int_118 - gclass0_0.int_119)
-                gclass0_0.int_117 = 100 - gclass0_0.int_118 - gclass0_0.int_119;
-            if (gclass0_0.int_117 < 0)
-                gclass0_0.int_117 = 0;
-            if (gclass0_0.int_74 < 0)
-                gclass0_0.int_74 = 0;
-            if (gclass0_0.int_76 < 0)
-                gclass0_0.int_76 = 0;
-            if (gclass0_0.int_75 < 0)
-                gclass0_0.int_75 = 0;
-            if (gclass0_0.int_107 < 0)
-                gclass0_0.int_107 = 0;
-            if (gclass0_0.int_108 < 0)
-                gclass0_0.int_108 = 0;
-            if (gclass0_0.int_127 < 0)
-                gclass0_0.int_127 = 0;
-            if (gclass0_0.int_128 < 0)
-                gclass0_0.int_128 = 0;
-            if (gclass0_0.int_129 < 0)
-                gclass0_0.int_129 = 0;
+            gclass0_0.NumberOfSystems = Convert.ToInt32(this.txtNumSystems.Text);
+            gclass0_0.LocalSystemChance = Convert.ToInt32(this.txtChance.Text);
+            gclass0_0.LocalSystemSpread = Convert.ToInt32(this.txtSpread.Text);
+            gclass0_0.MinConstructionPeriod = Convert.ToInt32(this.txtProdTime.Text);
+            gclass0_0.RaceChance = Convert.ToInt32(this.txtRaceChance.Text);
+            gclass0_0.NewRuinCreationChance = Convert.ToInt32(this.txtNewRuinCreationChance.Text);
+            gclass0_0.RaceChanceNPR = Convert.ToInt32(this.txtRaceChanceNPR.Text);
+            gclass0_0.MinorRaceChance = Convert.ToInt32(this.txtMinorRaces.Text);
+            gclass0_0.PreIndustrialChance = Convert.ToInt32(this.txtPreIndustrialRaces.Text);
+            gclass0_0.ConventionalChance = Convert.ToInt32(this.txtConventionalRaces.Text);
+            gclass0_0.DifficultyModifier = Convert.ToInt32(this.txtDifficultyModifier.Text);
+            gclass0_0.ResearchSpeed = Convert.ToInt32(this.txtResearchSpeed.Text);
+            gclass0_0.HostilityModifier = Convert.ToInt32(this.txtHostilityModifier.Text);
+            gclass0_0.TerraformingSpeed = Convert.ToInt32(this.txtTerraformingSpeed.Text);
+            gclass0_0.SurveySpeed = Convert.ToInt32(this.txtSurveySpeed.Text);
+            gclass0_0.MinComets = Convert.ToInt32(this.txtMinComets.Text);
+            gclass0_0.SMPassword = this.txtPassword.Text;
+            gclass0_0.StartYear = Convert.ToInt32(this.txtYear.Text);
+            gclass0_0.NPRBaseTransits = Convert.ToInt32(this.txtNPRBaseTransits.Text);
+            gclass0_0.NPRRandomTransits = Convert.ToInt32(this.txtNPRRandomTransits.Text);
+            gclass0_0.NPRMaxSystems = Convert.ToInt32(this.txtNPRMaxStartingSystems.Text);
+            if (gclass0_0.RaceChance > 100)
+                gclass0_0.RaceChance = 100;
+            if (gclass0_0.NewRuinCreationChance > 100)
+                gclass0_0.NewRuinCreationChance = 100;
+            if (gclass0_0.RaceChanceNPR > 100)
+                gclass0_0.RaceChanceNPR = 100;
+            if (gclass0_0.PreIndustrialChance < 0)
+                gclass0_0.PreIndustrialChance = 0;
+            if (gclass0_0.ConventionalChance < 0)
+                gclass0_0.ConventionalChance = 0;
+            if (gclass0_0.PreIndustrialChance > 100)
+                gclass0_0.PreIndustrialChance = 100;
+            if (gclass0_0.ConventionalChance > 100 - gclass0_0.PreIndustrialChance)
+                gclass0_0.ConventionalChance = 100 - gclass0_0.PreIndustrialChance;
+            if (gclass0_0.MinorRaceChance > 100 - gclass0_0.PreIndustrialChance - gclass0_0.ConventionalChance)
+                gclass0_0.MinorRaceChance = 100 - gclass0_0.PreIndustrialChance - gclass0_0.ConventionalChance;
+            if (gclass0_0.MinorRaceChance < 0)
+                gclass0_0.MinorRaceChance = 0;
+            if (gclass0_0.RaceChance < 0)
+                gclass0_0.RaceChance = 0;
+            if (gclass0_0.NewRuinCreationChance < 0)
+                gclass0_0.NewRuinCreationChance = 0;
+            if (gclass0_0.RaceChanceNPR < 0)
+                gclass0_0.RaceChanceNPR = 0;
+            if (gclass0_0.TerraformingSpeed < 0)
+                gclass0_0.TerraformingSpeed = 0;
+            if (gclass0_0.SurveySpeed < 0)
+                gclass0_0.SurveySpeed = 0;
+            if (gclass0_0.NPRBaseTransits < 0)
+                gclass0_0.NPRBaseTransits = 0;
+            if (gclass0_0.NPRRandomTransits < 0)
+                gclass0_0.NPRRandomTransits = 0;
+            if (gclass0_0.NPRMaxSystems < 0)
+                gclass0_0.NPRMaxSystems = 0;
             ParsedDecimal gclass208 = AuroraUtils.ParseDecimalString(this.txtTruceCountdown.Text);
             if (gclass208.Succeed)
-                gclass0_0.decimal_6 = gclass208.Value;
-            gclass0_0.int_105 = AuroraUtils.smethod_69(this.chkConquerTech.Checked);
-            gclass0_0.int_77 = AuroraUtils.smethod_69(this.chkCivilianShippingLinesActive.Checked);
-            gclass0_0.int_78 = AuroraUtils.smethod_69(this.chkAllowCivilianHarvesters.Checked);
-            gclass0_0.int_80 = AuroraUtils.smethod_69(this.chkOrb.Checked);
-            gclass0_0.int_81 = AuroraUtils.smethod_69(this.chkOrbAst.Checked);
-            gclass0_0.int_82 = AuroraUtils.smethod_69(this.chkPoliticalAdmirals.Checked);
-            gclass0_0.int_87 = AuroraUtils.smethod_69(this.chkInexpFleets.Checked);
-            gclass0_0.int_88 = AuroraUtils.smethod_69(this.chkAutoJumpGates.Checked);
-            gclass0_0.int_89 = AuroraUtils.smethod_69(this.chkPrecursors.Checked);
-            gclass0_0.int_90 = AuroraUtils.smethod_69(this.chkRakhas.Checked);
-            gclass0_0.int_92 = AuroraUtils.smethod_69(this.chkStarSwarm.Checked);
-            gclass0_0.int_93 = AuroraUtils.smethod_69(this.chkInvaders.Checked);
-            gclass0_0.int_91 = AuroraUtils.smethod_69(this.chkEldar.Checked);
-            gclass0_0.IsKnownSystem = AuroraUtils.smethod_69(this.chkUseKnownStars.Checked);
-            gclass0_0.int_94 = AuroraUtils.smethod_69(this.chkGenerateNPRs.Checked);
-            gclass0_0.int_95 = AuroraUtils.smethod_69(this.chkHumanNPRs.Checked);
-            gclass0_0.int_96 = AuroraUtils.smethod_69(this.chkGenerateNonTNOnly.Checked);
-            gclass0_0.int_97 = AuroraUtils.smethod_69(this.chkNoOverhauls.Checked);
-            gclass0_0.int_98 = AuroraUtils.smethod_69(this.chkRealisticPromotions.Checked);
-            gclass0_0.int_102 = AuroraUtils.smethod_69(this.chkNPRsGeneratePrecursors.Checked);
-            gclass0_0.int_101 = AuroraUtils.smethod_69(this.chkNPRsGenerateSwarm.Checked);
-            gclass0_0.int_103 = AuroraUtils.smethod_69(this.chkNPRsGenerateRifts.Checked);
-            gclass0_0.int_104 = AuroraUtils.smethod_69(this.chkNPRsEncounterRaiders.Checked);
-            gclass0_0.int_84 = AuroraUtils.smethod_69(this.chkConstellationNames.Checked);
-            gclass0_0.int_85 = AuroraUtils.smethod_69(this.chkStarEccentricity.Checked);
-            gclass0_0.int_86 = AuroraUtils.smethod_69(this.chkGasGiantEffects.Checked);
-            gclass0_0.int_114 = AuroraUtils.smethod_69(this.chkLimitedLabs.Checked);
-            gclass0_0.int_115 = AuroraUtils.smethod_69(this.chkOneSecondSubPulse.Checked);
-            gclass0_0.int_120 = AuroraUtils.smethod_69(this.chkLimitPlanetaryDistance.Checked);
-            gclass0_0.int_121 = AuroraUtils.smethod_69(this.chkParallelUniverse.Checked);
-            gclass0_0.int_122 = AuroraUtils.smethod_69(this.chkUseThemeInKnownStars.Checked);
-            gclass0_0.int_123 = AuroraUtils.smethod_69(this.chkEnhancedInvaders.Checked);
-            gclass0_0.int_125 = AuroraUtils.smethod_69(this.chkEnhancedPrecursors.Checked);
-            gclass0_0.int_124 = AuroraUtils.smethod_69(this.chkEnhancedSwarm.Checked);
-            if (gclass0_0.int_121 == 1)
-                gclass0_0.IsKnownSystem = 0;
-            gclass0_0.int_100 = this.cboDetection.SelectedIndex;
-            gclass0_0.genum30_0 = (GEnum30)this.cboDisaster.SelectedIndex;
+                gclass0_0.TruceCountdown = gclass208.Value;
+            gclass0_0.TechFromConquest = AuroraUtils.smethod_69(this.chkConquerTech.Checked);
+            gclass0_0.CivilianShippingLinesActive = AuroraUtils.smethod_69(this.chkCivilianShippingLinesActive.Checked);
+            gclass0_0.AllowCivilianHarvesters = AuroraUtils.smethod_69(this.chkAllowCivilianHarvesters.Checked);
+            gclass0_0.OrbitalMotion = AuroraUtils.smethod_69(this.chkOrb.Checked);
+            gclass0_0.OrbitalMotionAst = AuroraUtils.smethod_69(this.chkOrbAst.Checked);
+            gclass0_0.PoliticalAdmirals = AuroraUtils.smethod_69(this.chkPoliticalAdmirals.Checked);
+            gclass0_0.InexpFleets = AuroraUtils.smethod_69(this.chkInexpFleets.Checked);
+            gclass0_0.AutoJumpGates = AuroraUtils.smethod_69(this.chkAutoJumpGates.Checked);
+            gclass0_0.Precursors = AuroraUtils.smethod_69(this.chkPrecursors.Checked);
+            gclass0_0.Rakhas = AuroraUtils.smethod_69(this.chkRakhas.Checked);
+            gclass0_0.StarSwarm = AuroraUtils.smethod_69(this.chkStarSwarm.Checked);
+            gclass0_0.Invaders = AuroraUtils.smethod_69(this.chkInvaders.Checked);
+            gclass0_0.Eldar = AuroraUtils.smethod_69(this.chkEldar.Checked);
+            gclass0_0.UseKnownStars = AuroraUtils.smethod_69(this.chkUseKnownStars.Checked);
+            gclass0_0.GenerateNPRs = AuroraUtils.smethod_69(this.chkGenerateNPRs.Checked);
+            gclass0_0.HumanNPRs = AuroraUtils.smethod_69(this.chkHumanNPRs.Checked);
+            gclass0_0.GenerateNonTNOnly = AuroraUtils.smethod_69(this.chkGenerateNonTNOnly.Checked);
+            gclass0_0.NoOverhauls = AuroraUtils.smethod_69(this.chkNoOverhauls.Checked);
+            gclass0_0.RealisticPromotions = AuroraUtils.smethod_69(this.chkRealisticPromotions.Checked);
+            gclass0_0.NPRsGeneratePrecursors = AuroraUtils.smethod_69(this.chkNPRsGeneratePrecursors.Checked);
+            gclass0_0.NPRsGenerateSwarm = AuroraUtils.smethod_69(this.chkNPRsGenerateSwarm.Checked);
+            gclass0_0.NPRsGenerateRifts = AuroraUtils.smethod_69(this.chkNPRsGenerateRifts.Checked);
+            gclass0_0.NPRsEncounterRaiders = AuroraUtils.smethod_69(this.chkNPRsEncounterRaiders.Checked);
+            gclass0_0.ConstellationNames = AuroraUtils.smethod_69(this.chkConstellationNames.Checked);
+            gclass0_0.StarEccentricity = AuroraUtils.smethod_69(this.chkStarEccentricity.Checked);
+            gclass0_0.GasGiantEffects = AuroraUtils.smethod_69(this.chkGasGiantEffects.Checked);
+            gclass0_0.LimitedLabs = AuroraUtils.smethod_69(this.chkLimitedLabs.Checked);
+            gclass0_0.OneSecondSubPulse = AuroraUtils.smethod_69(this.chkOneSecondSubPulse.Checked);
+            gclass0_0.LimitPlanetaryDistance = AuroraUtils.smethod_69(this.chkLimitPlanetaryDistance.Checked);
+            gclass0_0.ParallelUniverse = AuroraUtils.smethod_69(this.chkParallelUniverse.Checked);
+            gclass0_0.UseThemeInKnownStars = AuroraUtils.smethod_69(this.chkUseThemeInKnownStars.Checked);
+            gclass0_0.EnhancedInvaders = AuroraUtils.smethod_69(this.chkEnhancedInvaders.Checked);
+            gclass0_0.EnhancedPrecursors = AuroraUtils.smethod_69(this.chkEnhancedPrecursors.Checked);
+            gclass0_0.EnhancedSwarm = AuroraUtils.smethod_69(this.chkEnhancedSwarm.Checked);
+            if (gclass0_0.ParallelUniverse == 1)
+                gclass0_0.UseKnownStars = 0;
+            gclass0_0.NonPlayerSystemDetection = this.cboDetection.SelectedIndex;
+            gclass0_0.SolDisaster = (GEnum30)this.cboDisaster.SelectedIndex;
             Star197 gclass197 =
                 gclass0_0.StarDictionary.Values.FirstOrDefault<Star197>(gclass197_0 =>
                     gclass197_0.SystemData.IsSolSystem);
             if (gclass197 == null)
                 return;
-            if (gclass0_0.genum30_0 != GEnum30.const_4 && gclass0_0.genum30_0 != GEnum30.const_5 &&
-                gclass0_0.genum30_0 != GEnum30.const_6 && gclass0_0.genum30_0 != GEnum30.const_1 &&
-                gclass0_0.genum30_0 != GEnum30.const_2 && gclass0_0.genum30_0 != GEnum30.const_7 &&
-                gclass0_0.genum30_0 != GEnum30.const_8 && gclass0_0.genum30_0 != GEnum30.const_9 &&
-                gclass0_0.genum30_0 != GEnum30.const_3)
+            if (gclass0_0.SolDisaster != GEnum30.const_4 && gclass0_0.SolDisaster != GEnum30.const_5 &&
+                gclass0_0.SolDisaster != GEnum30.const_6 && gclass0_0.SolDisaster != GEnum30.const_1 &&
+                gclass0_0.SolDisaster != GEnum30.const_2 && gclass0_0.SolDisaster != GEnum30.const_7 &&
+                gclass0_0.SolDisaster != GEnum30.const_8 && gclass0_0.SolDisaster != GEnum30.const_9 &&
+                gclass0_0.SolDisaster != GEnum30.const_3)
                 gclass197.genum30_0 = GEnum30.const_0;
             else
-                gclass197.genum30_0 = gclass0_0.genum30_0;
+                gclass197.genum30_0 = gclass0_0.SolDisaster;
         }
         catch (Exception ex)
         {
@@ -1225,7 +1225,7 @@ public class GameDetails : Form
             {
                 int int66 = this.tacticalMap_0.gclass0_1.GameID;
                 if (MessageBox.Show(
-                        $" Are you sure you want to delete the game {this.tacticalMap_0.gclass0_1.string_1}?",
+                        $" Are you sure you want to delete the game {this.tacticalMap_0.gclass0_1.GameName}?",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                     MessageBox.Show(" Are you really, really sure?", "Confirmation Required",
                         MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -1314,12 +1314,12 @@ public class GameDetails : Form
             if (this.tacticalMap_0.gclass0_1 == null)
                 return;
             this.tacticalMap_0.gclass0_1.string_3 = "Enter New Game Name";
-            this.tacticalMap_0.gclass0_1.string_4 = this.tacticalMap_0.gclass0_1.string_1;
+            this.tacticalMap_0.gclass0_1.string_4 = this.tacticalMap_0.gclass0_1.GameName;
             int num = (int)new MessageEntry(this.tacticalMap_0.gclass0_1).ShowDialog();
-            if (!(this.tacticalMap_0.gclass0_1.string_4 != this.tacticalMap_0.gclass0_1.string_1) ||
+            if (!(this.tacticalMap_0.gclass0_1.string_4 != this.tacticalMap_0.gclass0_1.GameName) ||
                 this.tacticalMap_0.gclass0_1.bool_21)
                 return;
-            this.tacticalMap_0.gclass0_1.string_1 = this.tacticalMap_0.gclass0_1.string_4;
+            this.tacticalMap_0.gclass0_1.GameName = this.tacticalMap_0.gclass0_1.string_4;
             this.tacticalMap_0.gclass0_1.method_157(this.tacticalMap_0.gclass0_1.GameID,
                 this.tacticalMap_0.gclass0_1.string_4);
             this.bool_0 = true;

@@ -72,11 +72,11 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1092
     {
-        public OperationalGroup genum105_0;
+        public OperationalGroupID genum105_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
-            return gclass85_0.NPROperationGroup.genum105_0 == this.genum105_0;
+            return gclass85_0.NPROperationGroup.OperationalGroupId == this.genum105_0;
         }
     }
 
@@ -137,10 +137,10 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1097
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public PopulationData gclass146_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass164_0.gclass163_0 &&
                    !gclass164_1.dictionary_0.ContainsKey(this.gclass146_0.RaceData.RaceID) &&
@@ -218,13 +218,13 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1104
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public PopulationData gclass146_0;
 
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass21_1 == this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass146_0.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.gclass146_0.gclass0_0.GameTime &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Population &&
                    gclass65_0.int_1 == this.gclass146_0.PopulationID;
         }
@@ -233,20 +233,20 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1105
     {
-        public GClass166 gclass166_0;
+        public ResearchQueue gclass166_0;
 
-        internal bool method_0(GClass167 gclass167_0)
+        internal bool method_0(PausedResearch gclass167_0)
         {
-            return gclass167_0.gclass164_0 == this.gclass166_0.gclass164_0;
+            return gclass167_0.gclass164_0 == this.gclass166_0.TechSystem;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1106
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
 
-        internal bool method_0(GClass167 gclass167_0)
+        internal bool method_0(PausedResearch gclass167_0)
         {
             return gclass167_0.gclass164_0 == this.gclass164_0;
         }
@@ -255,27 +255,27 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1107
     {
-        public GClass161 gclass161_0;
+        public ResearchProject gclass161_0;
 
-        internal bool method_0(GClass166 gclass166_0)
+        internal bool method_0(ResearchQueue gclass166_0)
         {
-            return gclass166_0.gclass161_0 == this.gclass161_0;
+            return gclass166_0.CurrentProject == this.gclass161_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1108
     {
-        public GClass166 gclass166_0;
+        public ResearchQueue gclass166_0;
 
-        internal bool method_0(GClass166 gclass166_1)
+        internal bool method_0(ResearchQueue gclass166_1)
         {
-            return gclass166_1.gclass161_0 == this.gclass166_0.gclass161_0;
+            return gclass166_1.CurrentProject == this.gclass166_0.CurrentProject;
         }
 
-        internal bool method_1(GClass166 gclass166_1)
+        internal bool method_1(ResearchQueue gclass166_1)
         {
-            return gclass166_1.gclass161_0 == this.gclass166_0.gclass161_0;
+            return gclass166_1.CurrentProject == this.gclass166_0.CurrentProject;
         }
     }
 
@@ -310,7 +310,7 @@ public partial class PopulationData
         public PopulationData gclass146_0;
         public ResearchFieldData gclass162_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass146_0.RaceData.RaceID);
         }
@@ -324,12 +324,12 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1111
     {
-        public List<TechData164> list_0;
-        public List<TechData164> list_1;
-        public List<TechData164> list_2;
+        public List<TechSystem> list_0;
+        public List<TechSystem> list_1;
+        public List<TechSystem> list_2;
         public PopulationData.Class1110 class1110_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0.ResearchField == this.class1110_0.gclass162_0 && !gclass164_0.bool_1 &&
                    (gclass164_0.int_1 == 0 || gclass164_0.int_1 == this.class1110_0.gclass146_0.RaceData.RaceID ||
@@ -340,7 +340,7 @@ public partial class PopulationData
                    !this.list_2.Contains(gclass164_0);
         }
 
-        internal bool method_1(TechData164 gclass164_0)
+        internal bool method_1(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.class1110_0.gclass146_0.RaceData.RaceID) &&
                    !this.list_1.Contains(gclass164_0) && !this.list_2.Contains(gclass164_0) &&
@@ -351,9 +351,9 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1112
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
 
-        internal bool method_0(GClass167 gclass167_0)
+        internal bool method_0(PausedResearch gclass167_0)
         {
             return gclass167_0.gclass164_0 == this.gclass164_0;
         }
@@ -370,7 +370,7 @@ public partial class PopulationData
         public PopulationData gclass146_0;
         public ResearchFieldData gclass162_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass146_0.RaceData.RaceID) && !gclass164_0.bool_3 &&
                    gclass164_0.gclass163_0.ResearchField == this.gclass162_0;
@@ -386,13 +386,13 @@ public partial class PopulationData
         internal bool method_0(GClass151 gclass151_0)
         {
             return gclass151_0.gclass150_0.Income &&
-                   gclass151_0.decimal_1 > this.gclass146_0.gclass0_0.decimal_0 - this.decimal_0;
+                   gclass151_0.decimal_1 > this.gclass146_0.gclass0_0.GameTime - this.decimal_0;
         }
 
         internal bool method_1(GClass151 gclass151_0)
         {
             return !gclass151_0.gclass150_0.Income &&
-                   gclass151_0.decimal_1 > this.gclass146_0.gclass0_0.decimal_0 - this.decimal_0;
+                   gclass151_0.decimal_1 > this.gclass146_0.gclass0_0.GameTime - this.decimal_0;
         }
     }
 
@@ -405,33 +405,33 @@ public partial class PopulationData
         internal bool method_0(GClass151 gclass151_0)
         {
             return gclass151_0.gclass150_0 == this.gclass150_0 && gclass151_0.decimal_1 >
-                this.class1114_0.gclass146_0.gclass0_0.decimal_0 - this.class1114_0.decimal_0;
+                this.class1114_0.gclass146_0.gclass0_0.GameTime - this.class1114_0.decimal_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1116
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public PopulationData gclass146_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) && gclass164_0.gclass21_0 == null;
         }
 
-        internal bool method_1(TechData164 gclass164_0)
+        internal bool method_1(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass146_0.RaceData.RaceID) &&
                    gclass164_0.gclass21_0 == null;
         }
 
-        internal bool method_2(TechData164 gclass164_0)
+        internal bool method_2(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) && gclass164_0.gclass21_0 == null;
         }
 
-        internal bool method_3(TechData164 gclass164_0)
+        internal bool method_3(TechSystem gclass164_0)
         {
             return gclass164_0.dictionary_0.ContainsKey(this.gclass146_0.RaceData.RaceID) &&
                    gclass164_0.gclass21_0 == null;
@@ -442,9 +442,9 @@ public partial class PopulationData
             return gclass146_1.RaceData == this.gclass146_0.RaceData;
         }
 
-        internal bool method_5(GClass166 gclass166_0)
+        internal bool method_5(ResearchQueue gclass166_0)
         {
-            return gclass166_0.gclass146_0 == this.gclass146_0;
+            return gclass166_0.Population == this.gclass146_0;
         }
 
         internal bool method_6(GClass62 gclass62_0)
@@ -561,9 +561,9 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1118
     {
-        public List<TechData164> list_0;
+        public List<TechSystem> list_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return !this.list_0.Contains(gclass164_0) && !gclass164_0.bool_0;
         }
@@ -572,9 +572,9 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1119
     {
-        public List<TechData164> list_0;
+        public List<TechSystem> list_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return !this.list_0.Contains(gclass164_0) && !gclass164_0.bool_0;
         }
@@ -589,7 +589,7 @@ public partial class PopulationData
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass146_0 == this.class1117_0.class1116_0.gclass146_0 &&
-                   gclass65_0.decimal_3 == this.class1117_0.class1116_0.gclass146_0.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.class1117_0.class1116_0.gclass146_0.gclass0_0.GameTime &&
                    gclass65_0.gclass21_1 == this.gclass113_0.gclass21_0;
         }
     }
@@ -767,7 +767,7 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1134
     {
-        public List<TechData164> list_0;
+        public List<TechSystem> list_0;
 
         internal bool method_0(PlanetaryInstallationType gclass157_0)
         {
@@ -822,7 +822,7 @@ public partial class PopulationData
     private sealed class Class1137
     {
         public PopulationData gclass146_0;
-        public List<TechData164> list_0;
+        public List<TechSystem> list_0;
 
         internal bool method_0(RaceMissile gclass129_0)
         {
@@ -834,7 +834,7 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1138
     {
-        public List<TechData164> list_0;
+        public List<TechSystem> list_0;
 
         internal bool method_0(ShipComponent gclass230_0)
         {
@@ -860,7 +860,7 @@ public partial class PopulationData
     private sealed class Class1140
     {
         public PopulationData gclass146_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
         {
@@ -933,7 +933,7 @@ public partial class PopulationData
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass21_1 == this.gclass146_0.RaceData &&
-                   gclass65_0.decimal_3 == this.gclass146_0.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.gclass146_0.gclass0_0.GameTime &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship &&
                    gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.genum10_0 == GEnum10.const_0;
         }
@@ -948,7 +948,7 @@ public partial class PopulationData
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass21_1 == this.gclass146_1.RaceData &&
-                   gclass65_0.decimal_3 == this.gclass146_1.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.gclass146_1.gclass0_0.GameTime &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Population &&
                    gclass65_0.int_1 == this.gclass146_0.PopulationID && gclass65_0.genum10_0 == GEnum10.const_1;
         }
@@ -956,7 +956,7 @@ public partial class PopulationData
         internal bool method_1(GClass65 gclass65_0)
         {
             return gclass65_0.gclass21_1 == this.gclass146_1.RaceData &&
-                   gclass65_0.decimal_3 == this.gclass146_1.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.gclass146_1.gclass0_0.GameTime &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Population &&
                    gclass65_0.int_1 == this.gclass146_0.PopulationID && gclass65_0.genum10_0 == GEnum10.const_3;
         }
@@ -1036,18 +1036,18 @@ public partial class PopulationData
     [CompilerGenerated]
     private sealed class Class1149
     {
-        public GClass161 gclass161_0;
+        public ResearchProject gclass161_0;
         public PopulationData gclass146_0;
-        public Func<GClass166, bool> func_0;
+        public Func<ResearchQueue, bool> func_0;
 
-        internal bool method_0(GClass166 gclass166_0)
+        internal bool method_0(ResearchQueue gclass166_0)
         {
-            return gclass166_0.gclass146_0 == this.gclass146_0 && gclass166_0.gclass161_0 == this.gclass161_0;
+            return gclass166_0.Population == this.gclass146_0 && gclass166_0.CurrentProject == this.gclass161_0;
         }
 
-        internal bool method_1(GClass166 gclass166_0)
+        internal bool method_1(ResearchQueue gclass166_0)
         {
-            return gclass166_0.gclass146_0 == this.gclass146_0 && gclass166_0.gclass161_0 == this.gclass161_0;
+            return gclass166_0.Population == this.gclass146_0 && gclass166_0.CurrentProject == this.gclass161_0;
         }
     }
 }

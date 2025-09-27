@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class GroundUnitCapabilityDefinition
 {
-    public TechData164 TechData;
+    public TechSystem TechData;
     public GroundUnitCapability GroundUnitCapability;
     public bool bIsForInfantryOnly;
     public string CapabilityName;

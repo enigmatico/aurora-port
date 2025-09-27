@@ -102,7 +102,7 @@ public class Minerals : Form
     #endregion
 
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private RacialSystemSurvey gclass202_0;
     private TacticalMap tacticalMap_0;
     private bool bool_0;
@@ -353,7 +353,7 @@ public class Minerals : Form
         }
     }
 
-    public void method_2(FCTRaceRecordC21 gclass21_1)
+    public void method_2(GameRace gclass21_1)
     {
         try
         {
@@ -370,7 +370,7 @@ public class Minerals : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             GClass194 gclass194 = this.gclass21_0.method_164();
             this.gclass21_0.method_260(this.cboSpecies);
             this.cboSpecies.SelectedItem = gclass194;
@@ -760,7 +760,7 @@ public class Minerals : Form
                 if (this.chkHabColour.CheckState == CheckState.Checked)
                 {
                     Decimal num13 = 1M;
-                    TechData164 gclass164 =
+                    TechSystem gclass164 =
                         this.gclass21_0.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.ColonizationCostReduction]);
                     if (gclass164 != null)
                         num13 = Math.Round(gclass164.decimal_0, 2);

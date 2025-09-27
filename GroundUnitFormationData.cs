@@ -139,7 +139,7 @@ public class GroundUnitFormationData
     }
 
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 RaceData;
+    public GameRace RaceData;
     public RankThemeEntry RequiredRankData;
     public PopulationData PopulationData;
     public FCTShipData40 ShipData;
@@ -1443,7 +1443,7 @@ public class GroundUnitFormationData
         }
     }
 
-    public Decimal method_35(FCTRaceRecordC21 gclass21_1)
+    public Decimal method_35(GameRace gclass21_1)
     {
         try
         {

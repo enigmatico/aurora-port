@@ -13,8 +13,8 @@ using System.Windows.Forms;
 public class GClass65
 {
     public SystemData200 gclass200_0;
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public GEnum10 genum10_0;
     public AuroraContactType auroraContactType_0;
     public FCTShipData40 gclass40_0;
@@ -94,7 +94,7 @@ public class GClass65
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 457);
-            return this.gclass0_0.decimal_0;
+            return this.gclass0_0.GameTime;
         }
     }
 
@@ -236,7 +236,7 @@ public class GClass65
             pen.Color = solidBrush.Color;
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2;
-            if (this.decimal_3 == this.gclass0_0.decimal_0 && (this.double_4 != 0.0 || this.double_5 != 0.0))
+            if (this.decimal_3 == this.gclass0_0.GameTime && (this.double_4 != 0.0 || this.double_5 != 0.0))
             {
                 GClass221 gclass221_1 = new GClass221();
                 GClass221 gclass221_2 = gclass202_0.method_47(this.double_4, this.double_5);

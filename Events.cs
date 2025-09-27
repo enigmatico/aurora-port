@@ -17,7 +17,7 @@ using System.Windows.Forms;
 public class Events : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private GClass87 gclass87_0 = new GClass87();
     private GClass86 gclass86_0 = new GClass86();
     private bool bool_0;
@@ -74,8 +74,8 @@ public class Events : Form
             this.gclass0_0.bool_9 = true;
             this.method_2();
             this.bool_0 = true;
-            this.txtDays.Text = this.gclass0_0.int_109.ToString();
-            this.txtNumEvents.Text = this.gclass0_0.int_110.ToString();
+            this.txtDays.Text = this.gclass0_0.MaxEventDays.ToString();
+            this.txtNumEvents.Text = this.gclass0_0.MaxEventCount.ToString();
             this.gclass0_0.method_577(this.cboRaces);
             this.method_1();
             if (this.gclass0_0.bool_8)
@@ -139,7 +139,7 @@ public class Events : Form
         }
     }
 
-    public void method_3(FCTRaceRecordC21 gclass21_1)
+    public void method_3(GameRace gclass21_1)
     {
         try
         {
@@ -156,7 +156,7 @@ public class Events : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.method_0();
             if (!this.bool_0)
                 this.gclass0_0.method_511(this.gclass21_0, this);
@@ -359,7 +359,7 @@ public class Events : Form
                 else
                 {
                     EventColourSetting gclass90 = tag.gclass21_0.EventColourSettings[tag.gclass88_0.EventTypeId];
-                    foreach (FCTRaceRecordC21 gclass21 in this.gclass0_0.FCTRaceRecordDic.Values)
+                    foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values)
                     {
                         if (gclass21 != tag.gclass21_0)
                         {
@@ -393,8 +393,8 @@ public class Events : Form
     {
         try
         {
-            this.gclass0_0.int_109 = (int)Math.Ceiling(Convert.ToDecimal(this.txtDays.Text));
-            this.txtDays.Text = this.gclass0_0.int_109.ToString();
+            this.gclass0_0.MaxEventDays = (int)Math.Ceiling(Convert.ToDecimal(this.txtDays.Text));
+            this.txtDays.Text = this.gclass0_0.MaxEventDays.ToString();
             this.method_0();
         }
         catch (Exception ex)
@@ -407,8 +407,8 @@ public class Events : Form
     {
         try
         {
-            this.gclass0_0.int_110 = (int)Math.Ceiling(Convert.ToDecimal(this.txtNumEvents.Text));
-            this.txtNumEvents.Text = this.gclass0_0.int_110.ToString();
+            this.gclass0_0.MaxEventCount = (int)Math.Ceiling(Convert.ToDecimal(this.txtNumEvents.Text));
+            this.txtNumEvents.Text = this.gclass0_0.MaxEventCount.ToString();
             this.method_0();
         }
         catch (Exception ex)

@@ -55,7 +55,7 @@ public class StellarType
     {
         try
         {
-            if (this.gclass0_0.int_85 == 0)
+            if (this.gclass0_0.StarEccentricity == 0)
             {
                 this.double_4 = 0.0;
                 return double_5;

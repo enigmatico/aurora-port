@@ -16,7 +16,7 @@ public class PopulationText : Form
     private FleetData gclass85_0;
     private GClass22 gclass22_0;
     private GroundUnitFormationTemplateData gclass102_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private AlienRaceInfo gclass110_0;
     private TreeView treeView_0;
     private GEnum127 genum127_0;
@@ -68,7 +68,7 @@ public class PopulationText : Form
         this.gclass0_0 = gclass0_1;
     }
 
-    public PopulationText(FCTRaceRecordC21 gclass21_1, GEnum127 genum127_1, GClass0 gclass0_1)
+    public PopulationText(GameRace gclass21_1, GEnum127 genum127_1, GClass0 gclass0_1)
     {
         this.InitializeComponent();
         this.gclass21_0 = gclass21_1;

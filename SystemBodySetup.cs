@@ -18,7 +18,7 @@ public class SystemBodySetup : Form
     private GClass0 gclass0_0;
     private SystemBodyData gclass1_0;
     private GClass194 gclass194_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private IContainer icontainer_0;
     private FlowLayoutPanel flowLayoutPanel16;
     private Label label10;
@@ -62,7 +62,7 @@ public class SystemBodySetup : Form
         GClass0 gclass0_1,
         SystemBodyData gclass1_1,
         GClass194 gclass194_1,
-        FCTRaceRecordC21 gclass21_1)
+        GameRace gclass21_1)
     {
         this.InitializeComponent();
         this.gclass0_0 = gclass0_1;

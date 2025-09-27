@@ -11,7 +11,7 @@ using System.Drawing;
 public class MapLabelData122
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public Color Color;
     public Font Font;
     public string Caption;

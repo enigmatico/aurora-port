@@ -18,7 +18,7 @@ internal class Class788
 
     private sealed class Class789
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(ArmourTypeData gclass97_0)
         {
@@ -432,7 +432,7 @@ internal class Class788
 
     private sealed class Class790
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public AutomatedGroundTemplateElement gclass24_0;
 
         internal bool method_0(GroundUnitClass101 gclass101_0)
@@ -448,7 +448,7 @@ internal class Class788
     }
 
     public GroundUnitClass101 method_0(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GroundUnitClassType genum115_0,
         string string_0,
         int int_0,
@@ -1120,7 +1120,7 @@ internal class Class788
     }
 
     public GroundUnitClass101 method_1(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         AutomatedGroundTemplateElement gclass24_0,
         int int_0,
         GClass194 gclass194_0,
@@ -1154,7 +1154,7 @@ internal class Class788
     }
 
     public GroundUnitFormationTemplateData method_2(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         AutomatedGroundTemplateDesignType genum116_0,
         GClass194 gclass194_0,
         bool bool_0)
@@ -1169,16 +1169,16 @@ internal class Class788
             if (gclass21_0.SpecialNPRID == SpecialNPRIDs.Rakhas)
             {
                 this.method_3(gclass194_0);
-                TechData164 gclass164 = gclass21_0.method_387(TechType.GeneticEnhancements);
+                TechSystem gclass164 = gclass21_0.method_387(TechType.GeneticEnhancements);
                 if (gclass164 != null)
                 {
-                    if (gclass164.int_0 == 67771)
+                    if (gclass164.TechSystemID == 67771)
                         gclass194_0.dictionary_1.Add(GroundUnitCapability.const_10,
                             this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_10]);
-                    else if (gclass164.int_0 == 67772)
+                    else if (gclass164.TechSystemID == 67772)
                         gclass194_0.dictionary_1.Add(GroundUnitCapability.const_11,
                             this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_11]);
-                    else if (gclass164.int_0 == 67773)
+                    else if (gclass164.TechSystemID == 67773)
                         gclass194_0.dictionary_1.Add(GroundUnitCapability.const_12,
                             this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_12]);
                 }

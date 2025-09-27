@@ -69,17 +69,17 @@ public class UnknownNPRFleetRelatedClass
     [CompilerGenerated]
     private sealed class Class478
     {
-        public GClass11 gclass11_0;
+        public RaceOperationalGroupElement gclass11_0;
 
         internal bool method_0(FCTShipData40 gclass40_0)
         {
             return gclass40_0.gclass5_0.genum103_0 != GEnum103.const_4 && gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID ==
-                this.gclass11_0.gclass14_0.AutomatedClassDesignTypeID;
+                this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
 
         internal bool method_1(FCTShipData40 gclass40_0)
         {
-            return gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.gclass14_0.AutomatedClassDesignTypeID;
+            return gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
     }
 
@@ -113,30 +113,30 @@ public class UnknownNPRFleetRelatedClass
         {
             List<FCTShipData40> source = this.Fleet.method_176();
             if (this.Fleet.ShippingLine != null)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.Civilian];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.Civilian];
             else if (this.Fleet.method_125(AuroraComponentType.GravitationalSurveySensors) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.GravitationalSurvey];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.GravitationalSurvey];
             else if (this.Fleet.method_125(AuroraComponentType.GeologicalSurveySensors) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.GeologicalSurvey];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.GeologicalSurvey];
             else if (this.Fleet.method_125(AuroraComponentType.TerraformingModule) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.TerraFormerGroup];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.TerraFormerGroup];
             else if (this.Fleet.method_125(AuroraComponentType.SoriumHarvester) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.HarvesterGroup];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.HarvesterGroup];
             else if (this.Fleet.method_125(AuroraComponentType.SalvageModule) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.SalvageSquadron];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.SalvageSquadron];
             else if (this.Fleet.method_125(AuroraComponentType.JumpPointStabilisation) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.StabilisationSquadron];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.StabilisationSquadron];
             else if (this.Fleet.method_125(AuroraComponentType.OrbitalMiningModule) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.OrbitalMinerGroup];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.OrbitalMinerGroup];
             else if (this.Fleet.method_125(AuroraComponentType.DiplomacyModule) > 0M)
-                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.DiplomaticShip];
+                this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.DiplomaticShip];
             else if (!(this.Fleet.method_125(AuroraComponentType.MissileFireControl) > 0M) &&
                      !(this.Fleet.method_125(AuroraComponentType.BeamFireControl) > 0M))
             {
                 if (this.Fleet.method_125(AuroraComponentType.RefuellingSystem) > 0M)
-                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.Tanker];
+                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.Tanker];
                 else if (this.Fleet.method_125(AuroraComponentType.TroopTransport) > 0M)
-                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.TroopTransportGroup];
+                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.TroopTransportGroup];
                 else if (source.Count == 1)
                 {
                     if (source
@@ -147,16 +147,16 @@ public class UnknownNPRFleetRelatedClass
                                 AuroraComponentType.ActiveSearchSensors && gclass228_0.gclass230_0.decimal_1 >= 3M) <=
                         0)
                         return;
-                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.Scout];
+                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.Scout];
                 }
                 else
                 {
-                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.ReinforcementGroup];
+                    this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.ReinforcementGroup];
                     if (source.Count <= 1)
                         return;
                     foreach (FCTShipData40 gclass40_0 in source)
                     {
-                        this.Fleet.method_75(gclass40_0, OperationalGroup.ReinforcementGroup, false);
+                        this.Fleet.method_75(gclass40_0, OperationalGroupID.ReinforcementGroup, false);
                         if (source.Count == 1)
                             break;
                     }
@@ -172,26 +172,26 @@ public class UnknownNPRFleetRelatedClass
                 if (num1 > num4)
                 {
                     if (this.Fleet.method_125(AuroraComponentType.Engine) == 0M)
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.OribitalMissileBase];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.OribitalMissileBase];
                     else if (num3 < 30000M)
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.FACHunterSquadron];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.FACHunterSquadron];
                     else if (num3 < 60000M)
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.MissileBattleSquadron];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.MissileBattleSquadron];
                     else
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.MissileBattleFleet];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.MissileBattleFleet];
                 }
                 else
                 {
                     if (!(num2 > 0M))
                         return;
                     if (this.Fleet.method_125(AuroraComponentType.Engine) == 0M)
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.OrbitalDefencesBeamOnly];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.OrbitalDefencesBeamOnly];
                     else if (num3 < 30000M)
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.BeamOnlyDDSquadron];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.BeamOnlyDDSquadron];
                     else if (num3 < 60000M)
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.BeamOnlyBattleSquadron];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.BeamOnlyBattleSquadron];
                     else
-                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroup.BeamOnlyBattleFleet];
+                        this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.BeamOnlyBattleFleet];
                 }
             }
         }

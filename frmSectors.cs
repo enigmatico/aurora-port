@@ -14,7 +14,7 @@ using System.Windows.Forms;
 public class frmSectors : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private bool bool_0;
     private IContainer icontainer_0;
     private TreeView tvSectors;
@@ -78,7 +78,7 @@ public class frmSectors : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_380(this.tvSectors);
             if (!this.bool_0)
                 this.gclass0_0.method_511(this.gclass21_0, this);
@@ -90,7 +90,7 @@ public class frmSectors : Form
         }
     }
 
-    public void method_1(FCTRaceRecordC21 gclass21_1)
+    public void method_1(GameRace gclass21_1)
     {
         try
         {

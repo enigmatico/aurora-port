@@ -233,10 +233,10 @@ public partial class FleetData
     [CompilerGenerated]
     private sealed class Class933
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public FleetData gclass85_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
             return gclass164_1.gclass163_0 == this.gclass164_0.gclass163_0 &&
                    !gclass164_1.dictionary_0.ContainsKey(this.gclass85_0.Race.RaceID) &&
@@ -301,7 +301,7 @@ public partial class FleetData
             return gclass146_0.gclass202_0.ActualSystemData == this.gclass233_0.gclass200_0;
         }
 
-        internal bool method_4(FCTRaceRecordC21 gclass21_0)
+        internal bool method_4(GameRace gclass21_0)
         {
             return gclass21_0 != this.gclass40_0.gclass21_0;
         }
@@ -318,7 +318,7 @@ public partial class FleetData
         public GClass234 gclass234_0;
         public FleetData.Class935 class935_0;
 
-        internal bool method_0(TechData164 gclass164_0)
+        internal bool method_0(TechSystem gclass164_0)
         {
             return gclass164_0.gclass163_0 == this.gclass234_0.gclass164_0.gclass163_0 &&
                    !gclass164_0.dictionary_0.ContainsKey(this.class935_0.class934_0.gclass85_0.Race.RaceID) &&
@@ -1438,7 +1438,7 @@ public partial class FleetData
     private sealed class Class1002
     {
         public GClass221 gclass221_0;
-        public List<FCTRaceRecordC21> list_0;
+        public List<GameRace> list_0;
         public FleetData.Class1001 class1001_0;
 
         internal bool method_0(FCTShipData40 gclass40_0)

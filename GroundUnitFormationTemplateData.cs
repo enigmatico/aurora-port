@@ -14,7 +14,7 @@ using System.Windows.Forms;
 public class GroundUnitFormationTemplateData
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 RaceData;
+    public GameRace RaceData;
     public RankThemeEntry RequiredRankData;
     public List<GroundUnitFormationElement> FormationElementList = new List<GroundUnitFormationElement>();
     public AutomatedGroundTemplateDesignType AutomatedTemplateType;

@@ -13,7 +13,7 @@ public class ClassComponentTemplate186
     private sealed class Class1155
     {
         public ClassComponentTemplate186 gclass186_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass185 gclass185_0)
         {
@@ -22,7 +22,7 @@ public class ClassComponentTemplate186
 
         internal bool method_1(ShipComponent gclass230_0)
         {
-            return gclass230_0.gclass164_0.int_0 == this.gclass186_0.StandardComponentID;
+            return gclass230_0.gclass164_0.TechSystemID == this.gclass186_0.StandardComponentID;
         }
 
         internal bool method_2(ShipComponent gclass230_0)
@@ -46,7 +46,7 @@ public class ClassComponentTemplate186
 
     public ClassComponentTemplate186(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public void method_0(FCTRaceRecordC21 gclass21_0)
+    public void method_0(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -76,7 +76,7 @@ public class ClassComponentTemplate186
                     if (!gclass230_0.gclass164_0.dictionary_0.ContainsKey(class1155.gclass21_0.RaceID))
                     {
                         // ISSUE: reference to a compiler-generated field
-                        class1155.gclass21_0.method_74(gclass230_0.gclass164_0.int_0, true, false, gclass230_0);
+                        class1155.gclass21_0.method_74(gclass230_0.gclass164_0.TechSystemID, true, false, gclass230_0);
                         this.int_4 = gclass230_0.int_23;
                         this.int_5 = gclass230_0.gclass164_0.int_4;
                     }
@@ -100,7 +100,7 @@ public class ClassComponentTemplate186
                 if (this.gclass230_0.gclass164_0.dictionary_0.ContainsKey(class1155.gclass21_0.RaceID))
                     return;
                 // ISSUE: reference to a compiler-generated field
-                class1155.gclass21_0.method_74(this.gclass230_0.gclass164_0.int_0, true, false, this.gclass230_0);
+                class1155.gclass21_0.method_74(this.gclass230_0.gclass164_0.TechSystemID, true, false, this.gclass230_0);
                 this.int_4 = this.gclass230_0.int_23;
             }
         }

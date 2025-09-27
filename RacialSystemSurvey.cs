@@ -17,7 +17,7 @@ public partial class RacialSystemSurvey
     public Dictionary<AlienRaceInfo, AlienRaceSystemStatus> dictionary_0 = new Dictionary<AlienRaceInfo, AlienRaceSystemStatus>();
     public List<FCTShipData40> list_0 = new List<FCTShipData40>();
     public SystemData200 ActualSystemData;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public AlienRaceInfo gclass110_0;
     public GClass62 gclass62_0;
     public NamingTheme NamingTheme;
@@ -177,7 +177,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public RacialSystemSurvey method_3(FCTRaceRecordC21 gclass21_1, List<AlienRaceInfo> list_9)
+    public RacialSystemSurvey method_3(GameRace gclass21_1, List<AlienRaceInfo> list_9)
     {
         try
         {
@@ -190,7 +190,7 @@ public partial class RacialSystemSurvey
             if (this.gclass110_0 != null)
                 gclass202_1.gclass110_0 = list_9.FirstOrDefault<AlienRaceInfo>(gclass110_1 =>
                     gclass110_1.ActualAlienRace == this.gclass110_0.ActualAlienRace);
-            if (gclass21_1.IsNPR)
+            if (gclass21_1.NPR)
                 this.gclass3_0 = new GClass3(this.gclass0_0, gclass202_1);
             gclass202_1.list_1 = new List<FCTShipData40>();
             gclass202_1.list_2 = new List<PopulationData>();
@@ -237,7 +237,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public void method_5(FCTRaceRecordC21 gclass21_1)
+    public void method_5(GameRace gclass21_1)
     {
         try
         {
@@ -454,7 +454,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            if (!this.Race.IsNPR)
+            if (!this.Race.NPR)
                 return true;
             if (this.gclass3_0.genum95_0 == GEnum95.const_0 && !gclass85_1.NPRSomething.bool_3 &&
                 gclass85_1.NPROperationGroup.genum104_0 != GEnum104.const_25)
@@ -538,7 +538,7 @@ public partial class RacialSystemSurvey
             listView_0.Items.Clear();
             foreach (GClass214 object_1 in this.method_15())
             {
-                if (object_1.wayPointType_0 != WayPointType.TransitPOI || this.Race.IsNPR)
+                if (object_1.wayPointType_0 != WayPointType.TransitPOI || this.Race.NPR)
                 {
                     string string_12 = "";
                     if (object_1.Name != "")
@@ -935,8 +935,8 @@ public partial class RacialSystemSurvey
             RacialSystemSurvey.Class1189 class1189 = new RacialSystemSurvey.Class1189()
             {
                 list_0 = this.Race.PerceivedAliens.Values.Where<AlienRaceInfo>(gclass110_0 => gclass110_0.bTradeTreaty)
-                    .Select<AlienRaceInfo, FCTRaceRecordC21>(gclass110_0 => gclass110_0.ActualAlienRace)
-                    .ToList<FCTRaceRecordC21>()
+                    .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace)
+                    .ToList<GameRace>()
             };
             // ISSUE: reference to a compiler-generated field
             class1189.list_0.Add(this.Race);
@@ -990,7 +990,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            return this.Race.IsNPR
+            return this.Race.NPR
                 ? this.gclass3_0.genum95_0 == GEnum95.const_0
                 : this.gclass110_0 != null && this.gclass110_0.ActualAlienRace != null &&
                   this.gclass110_0.ActualAlienRace != this.Race &&
@@ -1117,7 +1117,7 @@ public partial class RacialSystemSurvey
 
             // ISSUE: reference to a compiler-generated field
             class1191.decimal_0 = 1M;
-            TechData164 gclass164 =
+            TechSystem gclass164 =
                 this.Race.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.ColonizationCostReduction]);
             if (gclass164 != null)
             {
@@ -1695,14 +1695,14 @@ public partial class RacialSystemSurvey
 
             if (!flag)
             {
-                if (this.Race.gclass22_0 != null && this.Race.chkClassIcon == CheckState.Checked)
+                if (this.Race.SelectedClass != null && this.Race.chkClassIcon == CheckState.Checked)
                 {
                     List<FCTShipData40> list = this.list_0
-                        .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0 == this.Race.gclass22_0)
+                        .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0 == this.Race.SelectedClass)
                         .ToList<FCTShipData40>();
-                    if (this.Race.gclass83_0 != null && this.Race.chkAdminIcon == CheckState.Checked)
+                    if (this.Race.SelectedAdmin != null && this.Race.chkAdminIcon == CheckState.Checked)
                     {
-                        List<FCTShipData40> second = this.Race.gclass83_0.method_1();
+                        List<FCTShipData40> second = this.Race.SelectedAdmin.method_1();
                         list = list.Intersect<FCTShipData40>(second).ToList<FCTShipData40>();
                     }
 
@@ -1714,9 +1714,9 @@ public partial class RacialSystemSurvey
                         graphics_0.DrawImage(this.Race.ShipIconLoadedImg, rect);
                     }
                 }
-                else if (this.Race.gclass83_0 != null && this.Race.chkAdminIcon == CheckState.Checked)
+                else if (this.Race.SelectedAdmin != null && this.Race.chkAdminIcon == CheckState.Checked)
                 {
-                    if (this.list_0.Intersect<FCTShipData40>(this.Race.gclass83_0.method_1())
+                    if (this.list_0.Intersect<FCTShipData40>(this.Race.SelectedAdmin.method_1())
                             .Count<FCTShipData40>() > 0)
                     {
                         RectangleF rect = new RectangleF((float)(this.double_9 + this.Race.double_1 / 1.8),
@@ -1737,7 +1737,7 @@ public partial class RacialSystemSurvey
             else if (this.gclass0_0.dictionary_28.Values.FirstOrDefault<GClass65>(gclass65_0 =>
                          gclass65_0.gclass21_1 == this.Race &&
                          gclass65_0.gclass21_0 == this.Race.gclass112_0.gclass110_0.ActualAlienRace &&
-                         gclass65_0.decimal_3 >= this.gclass0_0.decimal_0 - this.Race.int_47 &&
+                         gclass65_0.decimal_3 >= this.gclass0_0.GameTime - this.Race.int_47 &&
                          gclass65_0.gclass200_0 == this.ActualSystemData) != null)
             {
                 RectangleF rect = new RectangleF((float)(this.double_9 + this.Race.double_1 / 1.8),
@@ -1759,7 +1759,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public void method_34(Graphics graphics_0, FCTRaceRecordC21 gclass21_1)
+    public void method_34(Graphics graphics_0, GameRace gclass21_1)
     {
         try
         {
@@ -1982,7 +1982,7 @@ public partial class RacialSystemSurvey
 
     public void method_41(
         ListView listView_0,
-        FCTRaceRecordC21 gclass21_1,
+        GameRace gclass21_1,
         GClass194 gclass194_0,
         CheckState checkState_0)
     {
@@ -2155,7 +2155,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public bool method_45(int int_37, FCTRaceRecordC21 gclass21_1, FleetData gclass85_1)
+    public bool method_45(int int_37, GameRace gclass21_1, FleetData gclass85_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type

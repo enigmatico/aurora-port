@@ -10,7 +10,7 @@ using System;
 public class MoveOrder
 {
     public FleetData Fleet;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public RacialSystemSurvey StartSystem;
     public RacialSystemSurvey NewSystem;
     public JumpPoint120 NewJumpPoint;

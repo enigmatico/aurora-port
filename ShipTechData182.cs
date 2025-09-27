@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class ShipTechData182
 {
-    public TechData164 TechData;
+    public TechSystem TechData;
     public FCTShipData40 ShipData;
     public Decimal TechPoints;
 }

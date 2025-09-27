@@ -41,7 +41,7 @@ public class GClass176
                 if (num == 1)
                     this.int_1 *= 2;
                 gclass146_0.CurrentMinerals.method_33((AuroraElement)num, this.int_1);
-                if (!gclass146_0.RaceData.IsNPR)
+                if (!gclass146_0.RaceData.NPR)
                     gclass146_0.method_21(MineralUsage.const_10, (AuroraElement)num, this.int_1);
                 this.string_0 =
                     $"{AuroraUtils.smethod_37(this.int_1)} tons of {AuroraUtils.smethod_82((AuroraElement)num)}";
@@ -108,8 +108,8 @@ public class GClass176
                 {
                     if (this.genum122_0 == TechType.None)
                         this.genum122_0 = this.gclass0_0.method_494(this.gclass162_0);
-                    TechData164 gclass164_1 = gclass146_0.RaceData.method_387(this.genum122_0);
-                    TechData164 gclass164_2 =
+                    TechSystem gclass164_1 = gclass146_0.RaceData.method_387(this.genum122_0);
+                    TechSystem gclass164_2 =
                         this.gclass0_0.method_493(this.genum122_0, gclass146_0.SystemBodyData.RuinRaceData.Level);
                     if (gclass164_2 != null)
                     {
@@ -118,7 +118,7 @@ public class GClass176
                             num = gclass164_1.int_4;
                         if (gclass164_2.int_4 > num)
                         {
-                            TechData164 gclass164_0 = gclass146_0.RaceData.method_392(this.genum122_0);
+                            TechSystem gclass164_0 = gclass146_0.RaceData.method_392(this.genum122_0);
                             gclass146_0.RaceData.method_282(gclass164_0, null, null, null, true, false);
                             this.string_0 = $"{this.string_0} plus technical information on {gclass164_0.Name}";
                         }

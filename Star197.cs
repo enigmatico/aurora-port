@@ -64,7 +64,7 @@ public class Star197
     private sealed class Class1166
     {
         public Star197 gclass197_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -82,7 +82,7 @@ public class Star197
     private sealed class Class1167
     {
         public Star197 gclass197_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -282,7 +282,7 @@ public class Star197
         {
             if (gclass202_0.Race.chkStarOrbits == CheckState.Unchecked || this.OrbitingComponent == 0)
                 return;
-            if (this.gclass0_0.int_85 == 0)
+            if (this.gclass0_0.StarEccentricity == 0)
             {
                 GClass221 gclass221_1 = new GClass221();
                 double num = this.OrbitalDistance * AuroraUtils.double_14 / gclass202_0.KmPerPixel;
@@ -637,7 +637,7 @@ public class Star197
         }
     }
 
-    public List<SystemBodyData> method_16(FCTRaceRecordC21 gclass21_0)
+    public List<SystemBodyData> method_16(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -661,7 +661,7 @@ public class Star197
         }
     }
 
-    public List<SystemBodyData> method_17(FCTRaceRecordC21 gclass21_0)
+    public List<SystemBodyData> method_17(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -685,7 +685,7 @@ public class Star197
         }
     }
 
-    public string method_18(FCTRaceRecordC21 gclass21_0)
+    public string method_18(GameRace gclass21_0)
     {
         try
         {

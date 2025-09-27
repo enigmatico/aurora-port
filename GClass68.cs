@@ -10,7 +10,7 @@ using System;
 public class GClass68
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemData200 gclass200_0;
     public double double_0;
     public double double_1;

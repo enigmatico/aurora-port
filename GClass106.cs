@@ -11,7 +11,7 @@ using System;
 public class GClass106
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public GroundUnitFormationTemplateData gclass102_0;
     public AuroraGroundFormationFieldPosition auroraGroundFormationFieldPosition_0;

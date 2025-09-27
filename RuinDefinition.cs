@@ -30,7 +30,7 @@ public class RuinDefinition
 
     private sealed class Class1152
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
@@ -67,7 +67,7 @@ public class RuinDefinition
 
     private sealed class Class1154
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public RacialSystemSurvey gclass202_0;
         public PopulationData gclass146_0;
 
@@ -145,7 +145,7 @@ public class RuinDefinition
     {
         try
         {
-            if (this.gclass0_0.int_125 == 1)
+            if (this.gclass0_0.EnhancedPrecursors == 1)
                 int_14 = (int)(int_14 * 1.5);
             int num1 = (int)Math.Floor(int_14 / 100.0);
             int num2 = (int)(int_14 % 100.0);
@@ -161,9 +161,9 @@ public class RuinDefinition
     }
 
     public void method_1(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         SystemBodyData gclass1_0,
-        GClass9 gclass9_0,
+        OperationalGroup gclass9_0,
         GroundUnitFormationTemplateData gclass102_0,
         int int_14,
         List<GClass22> list_0)
@@ -221,12 +221,12 @@ public class RuinDefinition
                 return;
             this.decimal_1 = 0M;
             this.decimal_2 = 0M;
-            this.decimal_3 = this.gclass0_0.decimal_0 + 0.01M *
+            this.decimal_3 = this.gclass0_0.GameTime + 0.01M *
                 (AuroraUtils.GetRandomInteger(1000) + AuroraUtils.GetRandomInteger(1000)) * AuroraUtils.decimal_29 /
                 this.EmergenceModifier;
             // ISSUE: reference to a compiler-generated field
             class1152.gclass21_0 =
-                this.gclass0_0.FCTRaceRecordDic.Values.FirstOrDefault<FCTRaceRecordC21>(gclass21_0 =>
+                this.gclass0_0.FCTRaceRecordDic.Values.FirstOrDefault<GameRace>(gclass21_0 =>
                     gclass21_0.SpecialNPRID == SpecialNPRIDs.Precursor);
             // ISSUE: reference to a compiler-generated method
             List<GClass22> list = this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1152.method_0)
@@ -252,7 +252,7 @@ public class RuinDefinition
             class1152.gclass21_0.DesignDoctrine.NameList_3.OrderBy<GClass12, int>(gclass12_0 => gclass12_0.int_0)
                 .ToList<GClass12>();
             int int_14_1 = this.method_0(this.DefenceBases);
-            GClass9 gclass9_0_1 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.OrbitalDefences];
+            OperationalGroup gclass9_0_1 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.OrbitalDefences];
             if (gclass9_0_1 != null && int_14_1 > 0)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -261,7 +261,7 @@ public class RuinDefinition
             }
 
             int int_14_2 = this.method_0(this.OffenceBases);
-            GClass9 gclass9_0_2 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.OribitalMissileBase];
+            OperationalGroup gclass9_0_2 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.OribitalMissileBase];
             if (gclass9_0_2 != null && int_14_2 > 0)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -270,16 +270,16 @@ public class RuinDefinition
             }
 
             int int_14_3 = this.method_0(this.Fleet);
-            GClass9 gclass9_0_3 = AuroraUtils.GetRandomInteger(4) != 1
-                ? this.gclass0_0.OperationalGroupDictionary[OperationalGroup.MissileBattleFleet]
-                : this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamOnlyBattleFleet];
+            OperationalGroup gclass9_0_3 = AuroraUtils.GetRandomInteger(4) != 1
+                ? this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.MissileBattleFleet]
+                : this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamOnlyBattleFleet];
             if (gclass9_0_3 != null && int_14_3 > 0)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 this.method_1(class1152.gclass21_0, class1151.gclass1_0, gclass9_0_3, null, int_14_3, list);
                 int int_14_4 = this.method_0((int)Math.Floor(this.Fleet / 2.0));
-                GClass9 gclass9_0_4 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.JumpPointDefence];
+                OperationalGroup gclass9_0_4 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.JumpPointDefence];
                 if (gclass9_0_4 != null && int_14_4 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -289,16 +289,16 @@ public class RuinDefinition
             }
 
             int int_14_5 = this.method_0(this.Squadron);
-            GClass9 gclass9_0_5 = AuroraUtils.GetRandomInteger(4) != 1
-                ? this.gclass0_0.OperationalGroupDictionary[OperationalGroup.MissileBattleSquadron]
-                : this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamOnlyBattleSquadron];
+            OperationalGroup gclass9_0_5 = AuroraUtils.GetRandomInteger(4) != 1
+                ? this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.MissileBattleSquadron]
+                : this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamOnlyBattleSquadron];
             if (gclass9_0_5 != null && int_14_5 > 0)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 this.method_1(class1152.gclass21_0, class1151.gclass1_0, gclass9_0_5, null, int_14_5, list);
                 int int_14_6 = this.method_0((int)Math.Floor(this.Squadron / 2.0));
-                GClass9 gclass9_0_6 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.JumpPointDefenceSmall];
+                OperationalGroup gclass9_0_6 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.JumpPointDefenceSmall];
                 if (gclass9_0_6 != null && int_14_6 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -308,9 +308,9 @@ public class RuinDefinition
             }
 
             int int_14_7 = this.method_0(this.Patrol);
-            GClass9 gclass9_0_7 = AuroraUtils.GetRandomInteger(4) != 1
-                ? this.gclass0_0.OperationalGroupDictionary[OperationalGroup.FACHunterSquadron]
-                : this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamOnlyDDSquadron];
+            OperationalGroup gclass9_0_7 = AuroraUtils.GetRandomInteger(4) != 1
+                ? this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.FACHunterSquadron]
+                : this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamOnlyDDSquadron];
             if (gclass9_0_7 != null && int_14_7 > 0)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -319,7 +319,7 @@ public class RuinDefinition
             }
 
             int int_14_8 = this.method_0(this.Patrol);
-            GClass9 gclass9_0_8 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.FACFlotilla];
+            OperationalGroup gclass9_0_8 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.FACFlotilla];
             if (gclass9_0_8 != null && int_14_8 > 0)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -330,7 +330,7 @@ public class RuinDefinition
             if (this.decimal_1 > 100000M)
             {
                 int num = (int)Math.Floor(this.decimal_1 / 100000M);
-                GClass9 gclass9_0_9 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.Scout];
+                OperationalGroup gclass9_0_9 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.Scout];
                 if (gclass9_0_9 != null && int_14_8 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -352,7 +352,7 @@ public class RuinDefinition
                     .FirstOrDefault<SystemBodyData>() != null)
             {
                 int num = (int)Math.Floor(this.decimal_2 / 5000000M);
-                GClass9 gclass9_0_10 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.PrecursorHarvesterGroup];
+                OperationalGroup gclass9_0_10 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.PrecursorHarvesterGroup];
                 if (gclass9_0_10 != null && int_14_8 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -360,7 +360,7 @@ public class RuinDefinition
                     this.method_1(class1152.gclass21_0, class1151.gclass1_0, gclass9_0_10, null, int_14_8, list);
                 }
 
-                GClass9 gclass9_0_11 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.Tanker];
+                OperationalGroup gclass9_0_11 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.Tanker];
                 if (gclass9_0_11 != null && int_14_8 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -413,7 +413,7 @@ public class RuinDefinition
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
             RuinDefinition.Class1154 class1154 = new RuinDefinition.Class1154();
-            if (this.gclass0_0.int_125 == 1)
+            if (this.gclass0_0.EnhancedPrecursors == 1)
             {
                 // ISSUE: reference to a compiler-generated field
                 this.method_2(class1153.gclass1_0);
@@ -422,7 +422,7 @@ public class RuinDefinition
             {
                 // ISSUE: reference to a compiler-generated field
                 class1154.gclass21_0 =
-                    this.gclass0_0.FCTRaceRecordDic.Values.FirstOrDefault<FCTRaceRecordC21>(gclass21_0 =>
+                    this.gclass0_0.FCTRaceRecordDic.Values.FirstOrDefault<GameRace>(gclass21_0 =>
                         gclass21_0.SpecialNPRID == SpecialNPRIDs.Precursor);
                 // ISSUE: reference to a compiler-generated field
                 GClass194 gclass194_1 = class1154.gclass21_0.method_165(SpecialNPRIDs.Precursor);
@@ -459,7 +459,7 @@ public class RuinDefinition
                 class1154.gclass21_0.DesignDoctrine.NameList_3.OrderBy<GClass12, int>(gclass12_0 => gclass12_0.int_0)
                     .ToList<GClass12>();
                 int int_136_1 = this.method_0(this.DefenceBases);
-                GClass9 gclass9_0_1 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.OrbitalDefences];
+                OperationalGroup gclass9_0_1 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.OrbitalDefences];
                 if (gclass9_0_1 != null && int_136_1 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -470,7 +470,7 @@ public class RuinDefinition
                 }
 
                 int int_136_2 = this.method_0(this.OffenceBases);
-                GClass9 gclass9_0_2 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.OribitalMissileBase];
+                OperationalGroup gclass9_0_2 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.OribitalMissileBase];
                 if (gclass9_0_2 != null && int_136_2 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -481,9 +481,9 @@ public class RuinDefinition
                 }
 
                 int int_136_3 = this.method_0(this.Fleet);
-                GClass9 gclass9_0_3 = AuroraUtils.GetRandomInteger(4) != 1
-                    ? this.gclass0_0.OperationalGroupDictionary[OperationalGroup.MissileBattleFleet]
-                    : this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamOnlyBattleFleet];
+                OperationalGroup gclass9_0_3 = AuroraUtils.GetRandomInteger(4) != 1
+                    ? this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.MissileBattleFleet]
+                    : this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamOnlyBattleFleet];
                 if (gclass9_0_3 != null && int_136_3 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -492,7 +492,7 @@ public class RuinDefinition
                     this.gclass0_0.method_57(class1154.gclass21_0, gclass194_1, class1154.gclass202_0,
                         class1153.gclass1_0, gclass83_0, gclass9_0_3, list1, int_136_3, false);
                     int int_136_4 = this.method_0((int)Math.Floor(this.Fleet / 2.0));
-                    GClass9 gclass9_0_4 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.JumpPointDefence];
+                    OperationalGroup gclass9_0_4 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.JumpPointDefence];
                     if (gclass9_0_4 != null && int_136_4 > 0)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -504,9 +504,9 @@ public class RuinDefinition
                 }
 
                 int int_136_5 = this.method_0(this.Squadron);
-                GClass9 gclass9_0_5 = AuroraUtils.GetRandomInteger(4) != 1
-                    ? this.gclass0_0.OperationalGroupDictionary[OperationalGroup.MissileBattleSquadron]
-                    : this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamOnlyBattleSquadron];
+                OperationalGroup gclass9_0_5 = AuroraUtils.GetRandomInteger(4) != 1
+                    ? this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.MissileBattleSquadron]
+                    : this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamOnlyBattleSquadron];
                 if (gclass9_0_5 != null && int_136_5 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -515,7 +515,7 @@ public class RuinDefinition
                     this.gclass0_0.method_57(class1154.gclass21_0, gclass194_1, class1154.gclass202_0,
                         class1153.gclass1_0, gclass83_0, gclass9_0_5, list1, int_136_5, false);
                     int int_136_6 = this.method_0((int)Math.Floor(this.Squadron / 2.0));
-                    GClass9 gclass9_0_6 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.JumpPointDefenceSmall];
+                    OperationalGroup gclass9_0_6 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.JumpPointDefenceSmall];
                     if (gclass9_0_6 != null && int_136_6 > 0)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -527,9 +527,9 @@ public class RuinDefinition
                 }
 
                 int int_136_7 = this.method_0(this.Patrol);
-                GClass9 gclass9_0_7 = AuroraUtils.GetRandomInteger(4) != 1
-                    ? this.gclass0_0.OperationalGroupDictionary[OperationalGroup.FACHunterSquadron]
-                    : this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamOnlyDDSquadron];
+                OperationalGroup gclass9_0_7 = AuroraUtils.GetRandomInteger(4) != 1
+                    ? this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.FACHunterSquadron]
+                    : this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamOnlyDDSquadron];
                 if (gclass9_0_7 != null && int_136_7 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -540,7 +540,7 @@ public class RuinDefinition
                 }
 
                 int int_136_8 = this.method_0(this.Patrol);
-                GClass9 gclass9_0_8 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.FACFlotilla];
+                OperationalGroup gclass9_0_8 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.FACFlotilla];
                 if (gclass9_0_8 != null && int_136_8 > 0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -556,7 +556,7 @@ public class RuinDefinition
                 if (num1 > 100000M)
                 {
                     int int_136_9 = (int)Math.Floor(num1 / 100000M);
-                    GClass9 gclass9_0_9 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.Scout];
+                    OperationalGroup gclass9_0_9 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.Scout];
                     if (gclass9_0_9 != null && int_136_8 > 0)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -586,7 +586,7 @@ public class RuinDefinition
                     if (gclass1_1 != null)
                     {
                         int int_136_10 = (int)Math.Floor(num2 / 5000000.0);
-                        GClass9 gclass9_0_10 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.PrecursorHarvesterGroup];
+                        OperationalGroup gclass9_0_10 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.PrecursorHarvesterGroup];
                         if (gclass9_0_10 != null && int_136_8 > 0)
                         {
                             // ISSUE: reference to a compiler-generated field
@@ -595,7 +595,7 @@ public class RuinDefinition
                                 gclass1_1, gclass83_0, gclass9_0_10, list1, int_136_10, true);
                         }
 
-                        GClass9 gclass9_0_11 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.Tanker];
+                        OperationalGroup gclass9_0_11 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.Tanker];
                         if (gclass9_0_11 != null && int_136_8 > 0)
                         {
                             // ISSUE: reference to a compiler-generated field

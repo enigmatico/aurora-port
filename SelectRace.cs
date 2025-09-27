@@ -13,7 +13,7 @@ using System.Windows.Forms;
 public class SelectRace : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private PopulationData gclass146_0;
     private IContainer icontainer_0;
     private ComboBox cboTargetPopulation;
@@ -21,7 +21,7 @@ public class SelectRace : Form
     private Button cmdOK;
     private TextBox txtInput;
 
-    public SelectRace(FCTRaceRecordC21 gclass21_1, GClass0 gclass0_1, PopulationData gclass146_1)
+    public SelectRace(GameRace gclass21_1, GClass0 gclass0_1, PopulationData gclass146_1)
     {
         this.InitializeComponent();
         this.gclass0_0 = gclass0_1;

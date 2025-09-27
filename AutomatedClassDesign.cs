@@ -7,11 +7,11 @@
 using System;
 
 #nullable disable
-public class AutomatedClassDesignData
+public class AutomatedClassDesign
 {
     private GClass0 gclass0_0;
-    public TechData164 KeyTechDataA;
-    public TechData164 KeyTechDataB;
+    public TechSystem KeyTechDataA;
+    public TechSystem KeyTechDataB;
     public ShipHull ShipHull;
     public AutomatedClassDesignType AutomatedClassDesignTypeID;
     public JumpDriveDesignType JumpDriveDesignType;
@@ -78,5 +78,5 @@ public class AutomatedClassDesignData
     public string string_1;
     public string string_2;
 
-    public AutomatedClassDesignData(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public AutomatedClassDesign(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 }

@@ -22,7 +22,7 @@ public class GalacticMap : Form
         new Dictionary<AuroraSystemProtectionStatus, string>();
 
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public RacialSystemSurvey gclass202_0;
     public RacialSystemSurvey gclass202_1;
     public MapLabelData122 gclass122_0;
@@ -384,7 +384,7 @@ public class GalacticMap : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_183(this.chkAllied.CheckState, this.chkFriendly.CheckState,
                 this.chkNeutral.CheckState, this.chkHostile.CheckState, this.chkCivilian.CheckState,
                 (AlienRaceInfo)this.cboContactRaceFilter.SelectedItem);
@@ -507,7 +507,7 @@ public class GalacticMap : Form
         }
     }
 
-    public void method_5(FCTRaceRecordC21 gclass21_1)
+    public void method_5(GameRace gclass21_1)
     {
         try
         {
@@ -1310,7 +1310,7 @@ public class GalacticMap : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0.gclass22_0 = (GClass22)this.cboClassIcon.SelectedValue;
+            this.gclass21_0.SelectedClass = (GClass22)this.cboClassIcon.SelectedValue;
             this.Refresh();
         }
         catch (Exception ex)
@@ -1325,7 +1325,7 @@ public class GalacticMap : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0.gclass83_0 = (NavalAdminCommand)this.cboAdminIcon.SelectedValue;
+            this.gclass21_0.SelectedAdmin = (NavalAdminCommand)this.cboAdminIcon.SelectedValue;
             this.Refresh();
         }
         catch (Exception ex)

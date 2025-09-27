@@ -19,10 +19,10 @@ public partial class GClass22
     public List<GClass74> list_1 = new List<GClass74>();
     public List<GClass75> list_2 = new List<GClass75>();
     public AllMineralsValue gclass123_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public ShipHull gclass76_0;
     public RankThemeEntry gclass61_0;
-    public AutomatedClassDesignData gclass14_0;
+    public AutomatedClassDesign gclass14_0;
     public ShippingLineData gclass187_0;
     public NamingTheme gclass140_0;
     private GClass0 gclass0_0;
@@ -160,10 +160,10 @@ public partial class GClass22
         {
             if (int_69 == 0)
                 return null;
-            TechData164 gclass164 = this.gclass21_0.method_387(genum122_0);
-            return gclass164 == null || !this.gclass0_0.ComponentDataDictionary.ContainsKey(gclass164.int_0)
+            TechSystem gclass164 = this.gclass21_0.method_387(genum122_0);
+            return gclass164 == null || !this.gclass0_0.ComponentDataDictionary.ContainsKey(gclass164.TechSystemID)
                 ? null
-                : this.method_51(this.gclass0_0.ComponentDataDictionary[gclass164.int_0], int_69);
+                : this.method_51(this.gclass0_0.ComponentDataDictionary[gclass164.TechSystemID], int_69);
         }
         catch (Exception ex)
         {
@@ -255,7 +255,7 @@ public partial class GClass22
         }
     }
 
-    public void method_5(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0)
+    public void method_5(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0)
     {
         try
         {
@@ -299,7 +299,7 @@ public partial class GClass22
         }
     }
 
-    public ShipComponent method_6(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0)
+    public ShipComponent method_6(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -310,7 +310,7 @@ public partial class GClass22
         {
             if (gclass14_1.JumpDriveDesignType == JumpDriveDesignType.const_0)
                 return null;
-            TechData164 gclass164_1 = this.gclass21_0.method_387(TechType.JumpDriveEfficiency);
+            TechSystem gclass164_1 = this.gclass21_0.method_387(TechType.JumpDriveEfficiency);
             if (gclass164_1 == null)
                 return null;
             ShipComponent gclass230_0 = null;
@@ -365,10 +365,10 @@ public partial class GClass22
                     .OrderByDescending<GClass22, Decimal>(gclass22_0 => gclass22_0.decimal_14)
                     .Select<GClass22, Decimal>(gclass22_0 => gclass22_0.decimal_14).FirstOrDefault<Decimal>();
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_2 = class787.gclass20_0.Race.method_387(TechType.MaxJumpSquadronSize);
+                TechSystem gclass164_2 = class787.gclass20_0.Race.method_387(TechType.MaxJumpSquadronSize);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_3 = class787.gclass20_0.Race.method_387(TechType.MaxSquadronJumpRadius);
-                TechData164 gclass164_4 = this.gclass0_0.TechDataDictionary[33303];
+                TechSystem gclass164_3 = class787.gclass20_0.Race.method_387(TechType.MaxSquadronJumpRadius);
+                TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[33303];
                 Decimal int36 = AuroraUtils.int_36;
                 int decimal_13 = (int)Math.Ceiling(num / int36) + 1;
                 if (gclass164_1 != null && gclass164_2 != null)
@@ -393,10 +393,10 @@ public partial class GClass22
     {
         try
         {
-            TechData164 gclass164_1 = this.gclass21_0.method_387(TechType.JumpDriveEfficiency);
-            TechData164 gclass164_3 = this.gclass0_0.TechDataDictionary[827];
-            TechData164 gclass164_2 = this.gclass0_0.TechDataDictionary[819];
-            TechData164 gclass164_4 = this.gclass0_0.TechDataDictionary[33302];
+            TechSystem gclass164_1 = this.gclass21_0.method_387(TechType.JumpDriveEfficiency);
+            TechSystem gclass164_3 = this.gclass0_0.TechDataDictionary[827];
+            TechSystem gclass164_2 = this.gclass0_0.TechDataDictionary[819];
+            TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[33302];
             this.method_85(0, 0, "");
             Decimal decimal_13 = (int)Math.Ceiling(this.decimal_14);
             if (!bool_11)
@@ -435,7 +435,7 @@ public partial class GClass22
         }
     }
 
-    public void method_8(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0)
+    public void method_8(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0)
     {
         try
         {
@@ -460,7 +460,7 @@ public partial class GClass22
         }
     }
 
-    public void method_9(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0)
+    public void method_9(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0)
     {
         try
         {
@@ -480,7 +480,7 @@ public partial class GClass22
         }
     }
 
-    public void method_10(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0)
+    public void method_10(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0)
     {
         try
         {
@@ -495,7 +495,7 @@ public partial class GClass22
         }
     }
 
-    public void method_11(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0)
+    public void method_11(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0)
     {
         try
         {
@@ -512,7 +512,7 @@ public partial class GClass22
         }
     }
 
-    public void method_12(AutomatedClassDesignData gclass14_1, DesignDoctrine gclass20_0, Decimal decimal_24)
+    public void method_12(AutomatedClassDesign gclass14_1, DesignDoctrine gclass20_0, Decimal decimal_24)
     {
         try
         {
@@ -563,7 +563,7 @@ public partial class GClass22
     public void method_13(
         ShipComponent gclass230_0,
         int int_69,
-        AutomatedClassDesignData gclass14_1,
+        AutomatedClassDesign gclass14_1,
         Decimal decimal_24)
     {
         try
@@ -711,7 +711,7 @@ public partial class GClass22
         }
     }
 
-    public void method_20(Decimal decimal_24, int int_69, AutomatedClassDesignData gclass14_1)
+    public void method_20(Decimal decimal_24, int int_69, AutomatedClassDesign gclass14_1)
     {
         try
         {
@@ -840,7 +840,7 @@ public partial class GClass22
                 ClassComponentTemplate186 gclass186 = new ClassComponentTemplate186(this.gclass0_0);
                 gclass186.ShipClassTemplateID = gclass184.ShipClassTemplateID;
                 if (gclass228.gclass230_0.gclass164_0.gclass21_0 == null)
-                    gclass186.StandardComponentID = gclass228.gclass230_0.gclass164_0.int_0;
+                    gclass186.StandardComponentID = gclass228.gclass230_0.gclass164_0.TechSystemID;
                 else
                     gclass186.ShipComponentTemplateID = gclass228.gclass230_0.gclass185_0 == null
                         ? this.gclass21_0.method_71(gclass228.gclass230_0)
@@ -1517,7 +1517,7 @@ public partial class GClass22
         }
     }
 
-    public GClass22 method_50(FCTRaceRecordC21 gclass21_1, bool bool_11)
+    public GClass22 method_50(GameRace gclass21_1, bool bool_11)
     {
         try
         {
@@ -1731,7 +1731,7 @@ public partial class GClass22
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.bool_13 && !this.gclass21_0.IsNPR &&
+                if (class771.gclass230_0.bool_13 && !this.gclass21_0.NPR &&
                     this.dictionary_0.Values.Count<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_13) > 0)
                 {
                     int num = (int)MessageBox.Show("Only a single spinal weapon can be added to a class design");
@@ -2633,10 +2633,10 @@ public partial class GClass22
                 else
                     listViewItem.SubItems.Add("NA");
                 listViewItem.SubItems.Add(AuroraUtils
-                    .FormatNumberToDigits((this.gclass0_0.decimal_0 - gclass40.decimal_6) / AuroraUtils.decimal_29, 2)
+                    .FormatNumberToDigits((this.gclass0_0.GameTime - gclass40.decimal_6) / AuroraUtils.decimal_29, 2)
                     .ToString());
                 listViewItem.SubItems.Add(AuroraUtils
-                    .FormatNumberToDigits((this.gclass0_0.decimal_0 - gclass40.decimal_7) / AuroraUtils.decimal_29, 2)
+                    .FormatNumberToDigits((this.gclass0_0.GameTime - gclass40.decimal_7) / AuroraUtils.decimal_29, 2)
                     .ToString());
                 listViewItem.Tag = gclass40;
                 listView_0.Items.Add(listViewItem);
@@ -3612,7 +3612,7 @@ public partial class GClass22
             foreach (GClass75 gclass75 in list)
                 str15 = $"{str15}{gclass75.int_0.ToString()}x {gclass75.gclass102_0.Name}{Environment.NewLine}";
             string str20;
-            if (this.gclass21_0.IsBioShips)
+            if (this.gclass21_0.BioShips)
             {
                 this.int_11 = 0;
                 str20 = str16 + "Biological Organism - No Crew, Maintenance or Fuel Required    ";

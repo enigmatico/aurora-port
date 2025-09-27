@@ -17,7 +17,7 @@ public class DesignDoctrine
     public List<TechProgressionCategoryType> list_2 = new List<TechProgressionCategoryType>();
     public List<GClass12> NameList_3 = new List<GClass12>();
     public OperationGroupProgressionType OperationGroupProgressionType;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public ShipComponent ActiveAntiMissile;
     public ShipComponent ActiveAntiMissileSmall;
     public ShipComponent ActiveAntiFAC;
@@ -83,7 +83,7 @@ public class DesignDoctrine
     public ShipComponent ThermalSensorSize2;
     public ShipComponent ThermalSensorSize3;
     public ShipComponent ThermalSensorSize6;
-    public TechData164 gclass164_0;
+    public TechSystem gclass164_0;
     public RaceMissile MissileFAC;
     public RaceMissile MissileCaptorMine;
     public RaceMissile MissileMineSecondStage;
@@ -132,25 +132,25 @@ public class DesignDoctrine
 
     public DesignDoctrine(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
-            foreach (GClass9 gclass9 in this.NameList_3.Select<GClass12, GClass9>(gclass12_0 => gclass12_0.gclass9_0)
-                         .Distinct<GClass9>().ToList<GClass9>())
+            foreach (OperationalGroup gclass9 in this.NameList_3.Select<GClass12, OperationalGroup>(gclass12_0 => gclass12_0.gclass9_0)
+                         .Distinct<OperationalGroup>().ToList<OperationalGroup>())
             {
                 foreach (OperationalGroupElement gclass10 in gclass9.OperationalGroupElementList)
                 {
                     if (AuroraUtils.GetRandomInteger(100) <= gclass10.ChanceOfElement)
                     {
-                        GClass11 gclass11 = new GClass11();
-                        gclass11.gclass9_0 = gclass9;
-                        gclass11.gclass14_0 = gclass10.AutomatedClassDesign;
-                        gclass11.bool_0 = gclass10.KeyElement;
-                        gclass11.int_0 = gclass10.NumShips + AuroraUtils.GetRandomInteger(gclass10.RandomNumShips);
-                        if (gclass11.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.CarrierEnergy && this.bHybridCarriers)
-                            gclass11.gclass14_0 = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.CarrierBattle];
-                        gclass21_1.list_0.Add(gclass11);
+                        RaceOperationalGroupElement gclass11 = new RaceOperationalGroupElement();
+                        gclass11.Element = gclass9;
+                        gclass11.AutomatedClassDesign = gclass10.AutomatedClassDesign;
+                        gclass11.KeyElement = gclass10.KeyElement;
+                        gclass11.NumShips = gclass10.NumShips + AuroraUtils.GetRandomInteger(gclass10.RandomNumShips);
+                        if (gclass11.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.CarrierEnergy && this.bHybridCarriers)
+                            gclass11.AutomatedClassDesign = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.CarrierBattle];
+                        gclass21_1.OperationalGroupElements.Add(gclass11);
                     }
                 }
             }

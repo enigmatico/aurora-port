@@ -13,7 +13,7 @@ using System.Windows.Forms;
 public class GClass59
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public GClass194 gclass194_0;
     public SystemData200 gclass200_0;
     public GClass22 gclass22_0;
@@ -46,9 +46,9 @@ public class GClass59
             string s;
             if (this.gclass21_0 == gclass202_0.Race)
             {
-                string str1 = !(AuroraUtils.decimal_35 - (this.gclass0_0.decimal_0 - this.decimal_0) < 0M)
+                string str1 = !(AuroraUtils.decimal_35 - (this.gclass0_0.GameTime - this.decimal_0) < 0M)
                     ? "LS: " + this.gclass0_0.method_568(
-                        (int)(AuroraUtils.decimal_35 - (this.gclass0_0.decimal_0 - this.decimal_0)), false)
+                        (int)(AuroraUtils.decimal_35 - (this.gclass0_0.GameTime - this.decimal_0)), false)
                     : "Life Support Failure Imminent";
                 string str2 = $"{this.string_0} Life Pods:  {AuroraUtils.smethod_37(this.int_1)} crew";
                 foreach (GClass55 gclass55 in this.gclass0_0.dictionary_42.Values

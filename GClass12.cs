@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass12
 {
-    public GClass9 gclass9_0;
+    public OperationalGroup gclass9_0;
     public OperationGroupProgressionType genum90_0 = OperationGroupProgressionType.const_1;
     public int int_0;
     public int int_1;

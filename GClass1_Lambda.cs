@@ -108,7 +108,7 @@ public partial class SystemBodyData
 
     private sealed class Class313
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
         internal bool method_0(GClass215 gclass215_0)
@@ -120,7 +120,7 @@ public partial class SystemBodyData
 
     private sealed class Class314
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
         internal bool method_0(GClass215 gclass215_0)
@@ -154,7 +154,7 @@ public partial class SystemBodyData
 
     private sealed class Class317
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
         internal bool method_0(PopulationData gclass146_0)
@@ -178,7 +178,7 @@ public partial class SystemBodyData
 
     private sealed class Class319
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
         internal bool method_0(GClass215 gclass215_0)
@@ -189,7 +189,7 @@ public partial class SystemBodyData
 
     private sealed class Class320
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass218 gclass218_0)
         {
@@ -200,7 +200,7 @@ public partial class SystemBodyData
 
     private sealed class Class321
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(GClass218 gclass218_0)
         {

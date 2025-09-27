@@ -8,6 +8,6 @@
 public class GClass215
 {
     public SystemBodyData gclass1_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public Unknown_SystemBodyDataUpdateLevel genum5_0;
 }

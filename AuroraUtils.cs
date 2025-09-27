@@ -691,7 +691,7 @@ public static class AuroraUtils
         return bool_0 ? CheckState.Checked : CheckState.Unchecked;
     }
 
-    public static int smethod_29(CheckState checkState_0)
+    public static int CheckStateToInt(CheckState checkState_0)
     {
         return checkState_0 == CheckState.Checked ? 1 : 0;
     }

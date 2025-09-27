@@ -47,11 +47,11 @@ public class GClass132
 
     private GClass0 gclass0_0;
     public Dictionary<int, GClass131> dictionary_0 = new Dictionary<int, GClass131>();
-    public Dictionary<FCTRaceRecordC21, Decimal> dictionary_1 = new Dictionary<FCTRaceRecordC21, Decimal>();
+    public Dictionary<GameRace, Decimal> dictionary_1 = new Dictionary<GameRace, Decimal>();
     public Dictionary<int, int> dictionary_2 = new Dictionary<int, int>();
-    public List<FCTRaceRecordC21> list_0 = new List<FCTRaceRecordC21>();
+    public List<GameRace> list_0 = new List<GameRace>();
     public FCTShipData40 gclass40_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemData200 gclass200_0;
     public RaceMissile gclass129_0;
     public ShipComponent gclass230_0;
@@ -84,7 +84,7 @@ public class GClass132
     public bool bool_0;
     public bool bool_1;
     public bool bool_2;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_1;
     public GEnum40 genum40_0;
     public int int_4;
     public int int_5;
@@ -492,7 +492,7 @@ public class GClass132
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.gclass129_0 = this.gclass129_0.gclass129_0;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.decimal_0 = this.gclass0_0.decimal_0;
+            class1086.gclass132_0.decimal_0 = this.gclass0_0.GameTime;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.string_0 = class1086.gclass132_0.gclass129_0.Name;
@@ -809,7 +809,7 @@ public class GClass132
         }
     }
 
-    public string method_18(FCTRaceRecordC21 gclass21_2, bool bool_4)
+    public string method_18(GameRace gclass21_2, bool bool_4)
     {
         try
         {
@@ -1075,13 +1075,13 @@ public class GClass132
             .ToList<GClass65>();
     }
 
-    public bool method_23(FCTRaceRecordC21 gclass21_2)
+    public bool method_23(GameRace gclass21_2)
     {
         try
         {
             foreach (GClass65 gclass65 in this.method_22())
             {
-                if (gclass65.gclass21_1 == gclass21_2 && this.gclass0_0.decimal_0 == gclass65.decimal_3)
+                if (gclass65.gclass21_1 == gclass21_2 && this.gclass0_0.GameTime == gclass65.decimal_3)
                     return true;
             }
 
@@ -1094,13 +1094,13 @@ public class GClass132
         }
     }
 
-    public Decimal method_24(FCTRaceRecordC21 gclass21_2, GEnum10 genum10_0)
+    public Decimal method_24(GameRace gclass21_2, GEnum10 genum10_0)
     {
         try
         {
             foreach (GClass65 gclass65 in this.method_22())
             {
-                if (gclass65.gclass21_1 == gclass21_2 && this.gclass0_0.decimal_0 == gclass65.decimal_3 &&
+                if (gclass65.gclass21_1 == gclass21_2 && this.gclass0_0.GameTime == gclass65.decimal_3 &&
                     gclass65.genum10_0 == genum10_0)
                     return gclass65.decimal_0;
             }
@@ -1114,14 +1114,14 @@ public class GClass132
         }
     }
 
-    public GClass221 method_25(FCTRaceRecordC21 gclass21_2)
+    public GClass221 method_25(GameRace gclass21_2)
     {
         try
         {
             GClass221 gclass221 = new GClass221();
             foreach (GClass65 gclass65 in this.method_22())
             {
-                if (gclass65.gclass21_1 == gclass21_2 && this.gclass0_0.decimal_0 == gclass65.decimal_3)
+                if (gclass65.gclass21_1 == gclass21_2 && this.gclass0_0.GameTime == gclass65.decimal_3)
                 {
                     gclass221.double_0 = gclass65.double_4;
                     gclass221.double_1 = gclass65.double_5;

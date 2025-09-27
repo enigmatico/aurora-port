@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class GroundComponentTypeDefinition
 {
-    public TechData164 TechData;
+    public TechSystem TechData;
     public GroundUnitComponent GroundUnitComponentType;
     public BombardmentWeaponClass BombardmentWeaponClass;
     public AntiAirWeaponClass AAWeaponClass;

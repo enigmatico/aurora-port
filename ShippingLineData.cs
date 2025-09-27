@@ -40,7 +40,7 @@ public class ShippingLineData
     private sealed class Class1158
     {
         public ShippingLineData gclass187_0;
-        public AutomatedClassDesignData gclass14_0;
+        public AutomatedClassDesign gclass14_0;
 
         internal bool method_0(GClass22 gclass22_0)
         {
@@ -70,7 +70,7 @@ public class ShippingLineData
         {
             return gclass40_0.gclass187_0 == this.gclass187_0 &&
                    gclass40_0.gclass22_0.auroraClassMainFunction_0 == this.gclass22_0.auroraClassMainFunction_0 &&
-                   gclass40_0.decimal_1 < this.gclass187_0.gclass0_0.decimal_0 - AuroraUtils.decimal_29 * 10M;
+                   gclass40_0.decimal_1 < this.gclass187_0.gclass0_0.GameTime - AuroraUtils.decimal_29 * 10M;
         }
     }
 
@@ -87,7 +87,7 @@ public class ShippingLineData
 
     public List<ShippingWealthData> WealthDataList = new List<ShippingWealthData>();
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public ShipComponent gclass230_0;
     public int int_0;
     public int int_1;
@@ -182,7 +182,7 @@ public class ShippingLineData
                                    AuroraUtils.decimal_17;
             Decimal decimal_73_2 = this.WealthDataList
                 .Where<ShippingWealthData>(gclass188_0 =>
-                    gclass188_0.TradeTime > this.gclass0_0.decimal_0 - AuroraUtils.decimal_29)
+                    gclass188_0.TradeTime > this.gclass0_0.GameTime - AuroraUtils.decimal_29)
                 .Sum<ShippingWealthData>(gclass188_0 => gclass188_0.Amount);
             string string_11 = "No Dividend Paid";
             if (this.decimal_2 > 0M)
@@ -231,7 +231,7 @@ public class ShippingLineData
         }
     }
 
-    public GClass22 method_2(AutomatedClassDesignData gclass14_0)
+    public GClass22 method_2(AutomatedClassDesign gclass14_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -351,11 +351,11 @@ public class ShippingLineData
         try
         {
             Decimal num1 = this.method_6();
-            if (this.gclass0_0.decimal_0 - this.decimal_2 > AuroraUtils.decimal_29)
+            if (this.gclass0_0.GameTime - this.decimal_2 > AuroraUtils.decimal_29)
             {
                 this.decimal_0 -= num1;
                 this.decimal_1 = num1;
-                this.decimal_2 = this.gclass0_0.decimal_0;
+                this.decimal_2 = this.gclass0_0.GameTime;
             }
 
             if (this.decimal_0 < num1 + 500M)
@@ -421,7 +421,7 @@ public class ShippingLineData
                 do
                 {
                     num5 = AuroraUtils.GetRandomInteger(5);
-                    if (this.gclass21_0.IsNPR)
+                    if (this.gclass21_0.NPR)
                         goto label_29;
                     label_23:
                     if (num5 >= 3)
@@ -440,7 +440,7 @@ public class ShippingLineData
                     label_29:
                     num5 = AuroraUtils.GetRandomInteger(4);
                     goto label_23;
-                } while (num5 != 5 || gclass1 == null || this.gclass0_0.int_78 != 1 || !flag);
+                } while (num5 != 5 || gclass1 == null || this.gclass0_0.AllowCivilianHarvesters != 1 || !flag);
 
                 goto label_35;
                 label_32:
@@ -458,7 +458,7 @@ public class ShippingLineData
 
             label_36:
             GClass22 gclass22 = null;
-            AutomatedClassDesignData gclass14_0 = null;
+            AutomatedClassDesign gclass14_0 = null;
             Decimal num6 = this.decimal_0 - num1;
             for (int index = 1; index < 4; ++index)
             {
@@ -586,7 +586,7 @@ public class ShippingLineData
         {
             if (!this.gclass0_0.AutomatedClassDesignDictionary.ContainsKey(genum120_0))
                 return;
-            AutomatedClassDesignData gclass14_0 = this.gclass0_0.AutomatedClassDesignDictionary[genum120_0];
+            AutomatedClassDesign gclass14_0 = this.gclass0_0.AutomatedClassDesignDictionary[genum120_0];
             GClass22 gclass22_1 = this.method_2(gclass14_0) ?? this.gclass21_0.method_6(this, gclass14_0);
             if (gclass22_1 == null)
                 return;
@@ -678,7 +678,7 @@ public class ShippingLineData
                 TradeGood = gclass189_0,
                 OriginPop = gclass146_0,
                 DestinationPop = gclass146_1,
-                TradeTime = this.gclass0_0.decimal_0,
+                TradeTime = this.gclass0_0.GameTime,
                 Amount = decimal_3,
                 Contract = bool_1,
                 Fuel = bool_2,
@@ -692,7 +692,7 @@ public class ShippingLineData
         }
     }
 
-    public void method_13(TechData164 gclass164_0)
+    public void method_13(TechSystem gclass164_0)
     {
         try
         {

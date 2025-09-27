@@ -23,15 +23,15 @@ public class GClass92
         try
         {
             GClass91 gclass91_1 = new GClass91();
-            gclass91_1.decimal_0 = this.gclass0_0.decimal_0;
+            gclass91_1.decimal_0 = this.gclass0_0.GameTime;
             gclass91_1.int_1 = this.gclass0_0.int_131;
             gclass91_1.int_0 = this.gclass0_0.method_26(GEnum0.const_6);
             if (this.gclass0_0.int_133 == 0)
                 this.method_1(gclass91_1);
             else if (gclass91_1.int_1 / this.gclass0_0.int_133 > 500)
                 this.method_1(gclass91_1);
-            if (this.gclass0_0.int_132 > gclass91_1.int_1)
-                this.gclass0_0.int_132 = gclass91_1.int_1;
+            if (this.gclass0_0.SubPulseLength > gclass91_1.int_1)
+                this.gclass0_0.SubPulseLength = gclass91_1.int_1;
             this.dictionary_0.Add(gclass91_1.int_0, gclass91_1);
             this.gclass91_0 = gclass91_1;
             return gclass91_1;
@@ -45,7 +45,7 @@ public class GClass92
 
     public void method_1(GClass91 gclass91_1)
     {
-        this.gclass0_0.int_132 = gclass91_1.int_1 >= 61
+        this.gclass0_0.SubPulseLength = gclass91_1.int_1 >= 61
             ? (gclass91_1.int_1 >= 201
                 ? (gclass91_1.int_1 >= 401
                     ? (gclass91_1.int_1 >= 1201
@@ -60,13 +60,13 @@ public class GClass92
                     : 20)
                 : 10)
             : 5;
-        gclass91_1.int_1 = (int)Math.Floor(gclass91_1.int_1 / (double)this.gclass0_0.int_132) * this.gclass0_0.int_132;
+        gclass91_1.int_1 = (int)Math.Floor(gclass91_1.int_1 / (double)this.gclass0_0.SubPulseLength) * this.gclass0_0.SubPulseLength;
     }
 
     public void method_2(
         EventType genum126_0,
         string string_0,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         SystemData200 gclass200_0,
         double double_0,
         double double_1,
@@ -79,7 +79,7 @@ public class GClass92
     public void method_3(
         EventType genum126_0,
         string string_0,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         SystemData200 gclass200_0,
         PopulationData gclass146_0,
         double double_0,
@@ -93,7 +93,7 @@ public class GClass92
     public void method_4(
         EventType genum126_0,
         string string_0,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         SystemData200 gclass200_0,
         PopulationData gclass146_0,
         double double_0,
@@ -101,7 +101,7 @@ public class GClass92
         AuroraEventCategory auroraEventCategory_0,
         bool bool_0,
         bool bool_1,
-        FCTRaceRecordC21 gclass21_1)
+        GameRace gclass21_1)
     {
         try
         {
@@ -116,7 +116,7 @@ public class GClass92
             gclass87.gclass88_0 = this.gclass0_0.DIMEventTypeDictionary[genum126_0];
             gclass87.auroraEventCategory_0 = auroraEventCategory_0;
             gclass87.gclass21_0 = gclass21_0;
-            gclass87.decimal_0 = this.gclass0_0.decimal_0;
+            gclass87.decimal_0 = this.gclass0_0.GameTime;
             gclass87.double_0 = double_0;
             gclass87.double_1 = double_1;
             gclass87.bool_0 = bool_1;
@@ -125,7 +125,7 @@ public class GClass92
             if (gclass200_0 != null)
                 gclass87.gclass200_0 = gclass200_0;
             this.gclass91_0.list_0.Add(gclass87);
-            if (gclass21_0.IsNPR)
+            if (gclass21_0.NPR)
             {
                 if (gclass87.gclass88_0.AIInterrupt)
                 {
@@ -133,7 +133,7 @@ public class GClass92
                 }
                 else
                 {
-                    if (gclass21_1 == null || !gclass21_1.IsNPR)
+                    if (gclass21_1 == null || !gclass21_1.NPR)
                         return;
                     this.gclass0_0.bool_0 = true;
                 }

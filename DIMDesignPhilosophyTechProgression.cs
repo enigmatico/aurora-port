@@ -15,5 +15,5 @@ public class DIMDesignPhilosophyTechProgression
     public TechProgressionCategoryType TechProgressionCategoryID;
     public int ProgressionOrder;
     public bool bMandatory;
-    public List<FCTRaceRecordC21> list_0 = new List<FCTRaceRecordC21>();
+    public List<GameRace> list_0 = new List<GameRace>();
 }

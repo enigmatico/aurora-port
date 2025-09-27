@@ -7,8 +7,8 @@
 #nullable disable
 public class OperationalGroupElement
 {
-    public AutomatedClassDesignData AutomatedClassDesign;
-    public OperationalGroup OperationalGroup;
+    public AutomatedClassDesign AutomatedClassDesign;
+    public OperationalGroupID OperationalGroupId;
     public int NumShips = 1;
     public int RandomNumShips;
     public int ChanceOfElement = 100;

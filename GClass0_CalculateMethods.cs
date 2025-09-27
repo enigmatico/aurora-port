@@ -97,7 +97,7 @@ public partial class GClass0
                     ++int_13;
                     return int_13;
                 case GEnum0.const_16:
-                    var num = TechDataDictionary.Values.Max(gclass164_0 => gclass164_0.int_0) + 1;
+                    var num = TechDataDictionary.Values.Max(gclass164_0 => gclass164_0.TechSystemID) + 1;
                     return num <= int_56 ? int_56 + 1 : num;
                 case GEnum0.const_17:
                     ++int_15;
@@ -412,17 +412,17 @@ public partial class GClass0
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                num2 = int_70 <= 0 || int_71 <= 0
-                    ? AuroraUtils.GetRandomInteger(int_68 + 1) - 1
-                    : AuroraUtils.GetRandomInteger(100) > int_70
-                        ? AuroraUtils.GetRandomInteger(int_68 + 1) - 1
+                num2 = LocalSystemChance <= 0 || LocalSystemSpread <= 0
+                    ? AuroraUtils.GetRandomInteger(NumberOfSystems + 1) - 1
+                    : AuroraUtils.GetRandomInteger(100) > LocalSystemChance
+                        ? AuroraUtils.GetRandomInteger(NumberOfSystems + 1) - 1
                         : AuroraUtils.GetRandomInteger(2) != 1
-                            ? class276.gclass200_0.SystemNumber - AuroraUtils.GetRandomInteger(int_71)
-                            : class276.gclass200_0.SystemNumber + AuroraUtils.GetRandomInteger(int_71);
-                if (num2 > int_68)
-                    num2 -= int_68;
+                            ? class276.gclass200_0.SystemNumber - AuroraUtils.GetRandomInteger(LocalSystemSpread)
+                            : class276.gclass200_0.SystemNumber + AuroraUtils.GetRandomInteger(LocalSystemSpread);
+                if (num2 > NumberOfSystems)
+                    num2 -= NumberOfSystems;
                 else if (num2 < 0)
-                    num2 += int_68;
+                    num2 += NumberOfSystems;
                 if (!bool_25 || list.Contains(num2))
                     ++num1;
                 else
@@ -447,7 +447,7 @@ public partial class GClass0
             int num;
             do
             {
-                num = AuroraUtils.GetRandomInteger(int_68);
+                num = AuroraUtils.GetRandomInteger(NumberOfSystems);
             } while (list.Contains(num));
 
             return num;
@@ -459,7 +459,7 @@ public partial class GClass0
         }
     }
 
-    public int method_35(SystemData200 gclass200_0, SystemData200 gclass200_1, FCTRaceRecordC21 gclass21_2)
+    public int method_35(SystemData200 gclass200_0, SystemData200 gclass200_1, GameRace gclass21_2)
     {
         try
         {
@@ -507,7 +507,7 @@ public partial class GClass0
 
     public int method_36(
         SystemData200 gclass200_0,
-        FCTRaceRecordC21 gclass21_2,
+        GameRace gclass21_2,
         CheckState checkState_3,
         CheckState checkState_4)
     {
@@ -522,7 +522,7 @@ public partial class GClass0
         {
             if (checkState_4 == CheckState.Checked)
             {
-                if (IsKnownSystem == 1)
+                if (UseKnownStars == 1)
                     foreach (var gclass200 in SystemDataDictionary.Values)
                         if (gclass200.KnownSystemData != null)
                             gclass200.double_7 = method_29(gclass200_0.KnownSystemData.X,
@@ -624,7 +624,7 @@ public partial class GClass0
 
     public int method_37(
         SystemData200 gclass200_0,
-        FCTRaceRecordC21 gclass21_2,
+        GameRace gclass21_2,
         CheckState checkState_3,
         CheckState checkState_4)
     {
@@ -639,7 +639,7 @@ public partial class GClass0
         {
             if (checkState_4 == CheckState.Checked)
             {
-                if (IsKnownSystem == 1)
+                if (UseKnownStars == 1)
                     foreach (var gclass200 in SystemDataDictionary.Values)
                         if (gclass200.KnownSystemData != null)
                             gclass200.double_7 = method_29(gclass200_0.KnownSystemData.X,
@@ -847,7 +847,7 @@ public partial class GClass0
                                     if (class304.gclass132_0.double_9 > 0.0)
                                     {
                                         // ISSUE: reference to a compiler-generated field
-                                        class304.gclass132_0.decimal_1 -= int_132;
+                                        class304.gclass132_0.decimal_1 -= SubPulseLength;
                                         // ISSUE: reference to a compiler-generated field
                                         if (class304.gclass132_0.decimal_1 <= 0M)
                                             // ISSUE: reference to a compiler-generated field
@@ -1121,13 +1121,13 @@ public partial class GClass0
                         {
                             var num6 = num3;
                             // ISSUE: reference to a compiler-generated field
-                            var num7 = class304.gclass132_0.double_9 * int_132;
+                            var num7 = class304.gclass132_0.double_9 * SubPulseLength;
                             var flag = false;
                             // ISSUE: reference to a compiler-generated field
                             if (class304.gclass132_0.double_9 > 0.0)
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                if (class304.gclass132_0.decimal_1 < int_132)
+                                if (class304.gclass132_0.decimal_1 < SubPulseLength)
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
@@ -1137,7 +1137,7 @@ public partial class GClass0
                                 else
                                 {
                                     // ISSUE: reference to a compiler-generated field
-                                    class304.gclass132_0.decimal_1 -= int_132;
+                                    class304.gclass132_0.decimal_1 -= SubPulseLength;
                                 }
                             }
 
@@ -1511,7 +1511,7 @@ public partial class GClass0
                                             class307.gclass132_0.gclass40_1.gclass85_0.XCoord,
                                             class307.gclass132_0.gclass40_1.gclass85_0.YCoord, false);
                                         // ISSUE: reference to a compiler-generated field
-                                        class307.gclass132_0.gclass40_1.decimal_19 = decimal_0;
+                                        class307.gclass132_0.gclass40_1.decimal_19 = GameTime;
                                     }
                                 }
                                 else
@@ -1530,7 +1530,7 @@ public partial class GClass0
                                         GEnum62.const_0);
                                     if (num17 > 0)
                                         // ISSUE: reference to a compiler-generated field
-                                        class307.gclass132_0.gclass40_1.decimal_19 = decimal_0;
+                                        class307.gclass132_0.gclass40_1.decimal_19 = GameTime;
 
                                     if (num17 + int_139 > 0)
                                         // ISSUE: reference to a compiler-generated field
@@ -1573,7 +1573,7 @@ public partial class GClass0
                                                     class307.method_2);
 
                                         // ISSUE: reference to a compiler-generated field
-                                        if (class307.gclass132_0.decimal_1 < int_132)
+                                        if (class307.gclass132_0.decimal_1 < SubPulseLength)
                                             // ISSUE: reference to a compiler-generated field
                                             class307.gclass132_0.method_6();
                                     }
@@ -1713,11 +1713,11 @@ public partial class GClass0
         }
     }
 
-    public int method_159(TechData164 gclass164_1)
+    public int method_159(TechSystem gclass164_1)
     {
         try
         {
-            return gclass164_1 != null ? gclass164_1.int_0 : 0;
+            return gclass164_1 != null ? gclass164_1.TechSystemID : 0;
         }
         catch (Exception ex)
         {
@@ -1766,7 +1766,7 @@ public partial class GClass0
                         gclass139_0.DestinationType == DestinationType.const_0 || gclass139_0.DestinationType == DestinationType.const_3)
                 .Select<MoveOrder, FleetData>(gclass139_0 => gclass139_0.Fleet).Distinct()
                 .ToList();
-            var list2 = list1.Where(gclass85_0 => gclass85_0.Race.IsNPR)
+            var list2 = list1.Where(gclass85_0 => gclass85_0.Race.NPR)
                 .Where(gclass85_0 => gclass85_0.NPROperationGroup.genum104_0 == GEnum104.const_5).ToList();
             var list3 = list1.Except(list2).ToList();
             if (list3.Count == 0)
@@ -2001,7 +2001,7 @@ public partial class GClass0
                     GClass82 gclass82 = null;
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    if (class94.gclass40_0.gclass21_0.IsNPR &&
+                    if (class94.gclass40_0.gclass21_0.NPR &&
                         class94.gclass40_0.gclass22_0.gclass14_0.MissileDesignType == MissileDesignType.const_3)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -2144,7 +2144,7 @@ public partial class GClass0
     {
         try
         {
-            return (int)Math.Floor(decimal_0 / AuroraUtils.decimal_29) + int_69;
+            return (int)Math.Floor(GameTime / AuroraUtils.decimal_29) + StartYear;
         }
         catch (Exception ex)
         {
@@ -2158,7 +2158,7 @@ public partial class GClass0
     {
         try
         {
-            return (int)(Math.Sqrt((double)decimal_13 * 5000.0) * (int_106 / 100.0));
+            return (int)(Math.Sqrt((double)decimal_13 * 5000.0) * (ResearchSpeed / 100.0));
         }
         catch (Exception ex)
         {
@@ -2177,8 +2177,8 @@ public partial class GClass0
             var num1 = 180;
             // ISSUE: reference to a compiler-generated field
             class227.list_0 = FCTRaceRecordDic.Values
-                .Where(gclass21_2 => !gclass21_2.IsNPR || bool_10)
-                .OrderBy<FCTRaceRecordC21, string>(gclass21_0 => gclass21_0.RaceTitle).ToList();
+                .Where(gclass21_2 => !gclass21_2.NPR || bool_10)
+                .OrderBy<GameRace, string>(gclass21_0 => gclass21_0.RaceTitle).ToList();
             // ISSUE: reference to a compiler-generated field
             foreach (var gclass21 in class227.list_0)
             {
@@ -2226,7 +2226,7 @@ public partial class GClass0
             }
 
             // ISSUE: reference to a compiler-generated field
-            using (List<FCTRaceRecordC21>.Enumerator enumerator = class227.list_0.GetEnumerator())
+            using (List<GameRace>.Enumerator enumerator = class227.list_0.GetEnumerator())
             {
                 label_78:
                 while (enumerator.MoveNext())
@@ -3081,10 +3081,10 @@ public partial class GClass0
         try
         {
             var num1 = 30M;
-            var num2 = FCTRaceRecordDic.Values.Where(gclass21_0 => !gclass21_0.IsNPR)
+            var num2 = FCTRaceRecordDic.Values.Where(gclass21_0 => !gclass21_0.NPR)
                 .Count();
             return num2 > 0
-                ? PopulationDataDictionary.Values.Where(gclass146_0 => !gclass146_0.RaceData.IsNPR)
+                ? PopulationDataDictionary.Values.Where(gclass146_0 => !gclass146_0.RaceData.NPR)
                     .Sum(gclass146_0 => gclass146_0.method_75(AuroraInstallationType.ResearchLab)) / num2
                 : num1;
         }
@@ -3101,7 +3101,7 @@ public partial class GClass0
         {
             var num1 = 0M;
             foreach (var gclass21 in FCTRaceRecordDic.Values
-                         .Where(gclass21_0 => !gclass21_0.IsNPR).ToList())
+                         .Where(gclass21_0 => !gclass21_0.NPR).ToList())
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: reference to a compiler-generated method
@@ -3128,12 +3128,12 @@ public partial class GClass0
         try
         {
             var num1 = 0M;
-            var num2 = FCTRaceRecordDic.Values.Where(gclass21_0 => !gclass21_0.IsNPR)
+            var num2 = FCTRaceRecordDic.Values.Where(gclass21_0 => !gclass21_0.NPR)
                 .Count();
             if (num2 <= 0)
                 return 1000M;
             foreach (var gclass146 in PopulationDataDictionary.Values
-                         .Where(gclass146_0 => !gclass146_0.RaceData.IsNPR && gclass146_0.ProvideColonists == 0)
+                         .Where(gclass146_0 => !gclass146_0.RaceData.NPR && gclass146_0.ProvideColonists == 0)
                          .ToList())
                 num1 += gclass146.PopulationPoliticalStatus.WealthModifier * gclass146.decimal_30;
             return num1 / num2;
@@ -3155,7 +3155,7 @@ public partial class GClass0
                          .Where(gclass146_0 =>
                              gclass146_0.SystemBodyData.gclass220_0 != null && gclass146_0.decimal_30 >= 1M)
                          .Where(gclass146_0 =>
-                             gclass146_0.SystemBodyData.gclass220_0.bool_0 && !gclass146_0.RaceData.IsNPR)
+                             gclass146_0.SystemBodyData.gclass220_0.bool_0 && !gclass146_0.RaceData.NPR)
                          .Select<PopulationData, GClass220>(gclass146_0 => gclass146_0.SystemBodyData.gclass220_0)
                          .Distinct().ToList())
                 num += (gclass220.decimal_0 - 1M) / 10M;

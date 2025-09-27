@@ -15,7 +15,7 @@ public class GClass113
     private GClass0 gclass0_0;
     public AlienRaceInfo gclass110_0;
     public PopulationData gclass146_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public int int_0;
     public int int_1;
     public int int_2;
@@ -40,7 +40,7 @@ public class GClass113
 
     public GClass113(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public GClass113 method_0(FCTRaceRecordC21 gclass21_1, List<AlienRaceInfo> list_0)
+    public GClass113 method_0(GameRace gclass21_1, List<AlienRaceInfo> list_0)
     {
         try
         {

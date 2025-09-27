@@ -9,6 +9,6 @@ using System;
 #nullable disable
 public class GClass234
 {
-    public TechData164 gclass164_0;
+    public TechSystem gclass164_0;
     public Decimal decimal_0;
 }

@@ -14,7 +14,7 @@ public partial class UnknownNPRClass2
         internal bool method_0(FleetData gclass85_0)
         {
             return gclass85_0.System == this.gclass202_0 &&
-                   gclass85_0.LastMoveTime < this.gclass2_0.gclass0_0.decimal_0 - AuroraUtils.decimal_32 &&
+                   gclass85_0.LastMoveTime < this.gclass2_0.gclass0_0.GameTime - AuroraUtils.decimal_32 &&
                    gclass85_0.NPROperationGroup.bool_2;
         }
     }
@@ -22,19 +22,19 @@ public partial class UnknownNPRClass2
 
     private sealed class Class336
     {
-        public OperationalGroup genum105_0;
+        public OperationalGroupID genum105_0;
         public RacialSystemSurvey gclass202_0;
         public UnknownNPRClass2 gclass2_0;
         public List<SystemData200> list_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
-            return gclass85_0.NPROperationGroup.genum105_0 == this.genum105_0 && gclass85_0.System == this.gclass202_0;
+            return gclass85_0.NPROperationGroup.OperationalGroupId == this.genum105_0 && gclass85_0.System == this.gclass202_0;
         }
 
         internal bool method_1(FleetData gclass85_0)
         {
-            return gclass85_0.NPROperationGroup.genum105_0 == this.genum105_0 && gclass85_0.System != this.gclass202_0;
+            return gclass85_0.NPROperationGroup.OperationalGroupId == this.genum105_0 && gclass85_0.System != this.gclass202_0;
         }
 
         internal bool method_2(PopulationData gclass146_0)
@@ -78,8 +78,8 @@ public partial class UnknownNPRClass2
 
         internal bool method_1(FleetData gclass85_0)
         {
-            return gclass85_0.NPROperationGroup.genum105_0 == OperationalGroup.LoneRaider && gclass85_0.System == this.gclass202_0 &&
-                   gclass85_0.LastMoveTime < this.gclass2_0.gclass0_0.decimal_0 - AuroraUtils.decimal_32;
+            return gclass85_0.NPROperationGroup.OperationalGroupId == OperationalGroupID.LoneRaider && gclass85_0.System == this.gclass202_0 &&
+                   gclass85_0.LastMoveTime < this.gclass2_0.gclass0_0.GameTime - AuroraUtils.decimal_32;
         }
 
         internal bool method_2(RacialSystemSurvey gclass202_1)
@@ -151,7 +151,7 @@ public partial class UnknownNPRClass2
         {
             return gclass117_0.gclass110_0 == this.gclass110_0 && !gclass117_0.bool_0 && gclass117_0.int_1 > 1 &&
                    !gclass117_0.gclass115_0.gclass22_0.bool_2 &&
-                   this.gclass2_0.gclass0_0.decimal_0 - gclass117_0.decimal_0 < AuroraUtils.decimal_30;
+                   this.gclass2_0.gclass0_0.GameTime - gclass117_0.decimal_0 < AuroraUtils.decimal_30;
         }
 
         internal bool method_1(FCTShipData40 gclass40_0)
@@ -367,7 +367,7 @@ public partial class UnknownNPRClass2
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass200_0 == this.gclass202_0.ActualSystemData &&
-                   this.class351_0.gclass2_0.gclass0_0.decimal_0 - gclass65_0.decimal_3 < AuroraUtils.decimal_34 &&
+                   this.class351_0.gclass2_0.gclass0_0.GameTime - gclass65_0.decimal_3 < AuroraUtils.decimal_34 &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship;
         }
     }
@@ -487,7 +487,7 @@ public partial class UnknownNPRClass2
         {
             return gclass65_0.method_5() == AuroraContactStatus.Hostile &&
                    gclass65_0.gclass21_1 == this.gclass202_0.Race &&
-                   this.gclass2_0.gclass0_0.decimal_0 - gclass65_0.decimal_3 < AuroraUtils.decimal_34 &&
+                   this.gclass2_0.gclass0_0.GameTime - gclass65_0.decimal_3 < AuroraUtils.decimal_34 &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.Ship;
         }
 
@@ -578,11 +578,11 @@ public partial class UnknownNPRClass2
 
     private sealed class Class368
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
 
-        internal bool method_0(GClass168 gclass168_0)
+        internal bool method_0(SwarmResearch gclass168_0)
         {
-            return gclass168_0.gclass164_0 == this.gclass164_0;
+            return gclass168_0.TechSystem == this.gclass164_0;
         }
     }
 

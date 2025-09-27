@@ -16,7 +16,7 @@ using System.Windows.Forms;
 public class frmMedals : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private FCTRaceMedalRecord gclass42_0;
     private string string_0 = "";
     private bool bool_0;
@@ -89,7 +89,7 @@ public class frmMedals : Form
         }
     }
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
@@ -200,7 +200,7 @@ public class frmMedals : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_312(this.lstvMedals);
             this.gclass21_0.method_314(this.lstvConditions, this.cboConditions);
             if (!this.bool_0)

@@ -99,7 +99,7 @@ public class GroundUnitFormationElement
 
     public Dictionary<GroundUnitClass101, GClass104> dictionary_0 = new Dictionary<GroundUnitClass101, GClass104>();
     public List<int> list_0 = new List<int>();
-    public List<FCTRaceRecordC21> DetectingRaceList = new List<FCTRaceRecordC21>();
+    public List<GameRace> DetectingRaceList = new List<GameRace>();
     public GClass0 gclass0_0;
     public GroundUnitClass101 GroundUnitClass;
     public GroundUnitFormationData Formation;
@@ -307,7 +307,7 @@ public class GroundUnitFormationElement
                         gclass65_0.gclass21_1 == this.Formation.RaceData &&
                         gclass65_0.genum10_0 == GEnum10.const_0 &&
                         gclass65_0.auroraContactType_0 == AuroraContactType.Ship && gclass65_0.gclass40_0 != null &&
-                        gclass65_0.decimal_3 == this.gclass0_0.decimal_0)
+                        gclass65_0.decimal_3 == this.gclass0_0.GameTime)
                     .Where<GClass65>(gclass65_0 =>
                         gclass65_0.method_5() == AuroraContactStatus.Hostile &&
                         gclass65_0.gclass40_0.gclass40_0 == null).Where<GClass65>(gclass65_0 =>
@@ -322,7 +322,7 @@ public class GroundUnitFormationElement
                 this.bool_1 = true;
                 if (list2.Count > 1)
                 {
-                    if (!this.Formation.RaceData.IsNPR)
+                    if (!this.Formation.RaceData.NPR)
                     {
                         if (this.TargetSelectionType == AuroraTargetSelection.LargestShip)
                             list2 = list2
@@ -382,7 +382,7 @@ public class GroundUnitFormationElement
                 int num5 = this.FiringDistribution;
                 if (this.FiringDistribution == 0)
                     num5 = num1;
-                if (this.Formation.RaceData.IsNPR)
+                if (this.Formation.RaceData.NPR)
                 {
                     if (list2[0].gclass22_0.decimal_14 < 10M)
                         num5 = 1;
@@ -445,7 +445,7 @@ public class GroundUnitFormationElement
 
     public GroundUnitFormationElement(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public GroundUnitFormationElement method_3(FCTRaceRecordC21 gclass21_0, GroundUnitFormationData gclass103_1, GroundUnitFormationTemplateData gclass102_1)
+    public GroundUnitFormationElement method_3(GameRace gclass21_0, GroundUnitFormationData gclass103_1, GroundUnitFormationTemplateData gclass102_1)
     {
         try
         {

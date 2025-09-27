@@ -17,7 +17,7 @@ public class RaceCreation : Form
 {
     private GClass0 gclass0_0;
     private SystemBodyData gclass1_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private PopulationData gclass146_0;
     private bool bool_0;
     private bool bool_1;
@@ -195,7 +195,7 @@ public class RaceCreation : Form
     public RaceCreation(
         GClass0 gclass0_1,
         SystemBodyData gclass1_1,
-        FCTRaceRecordC21 gclass21_1,
+        GameRace gclass21_1,
         PopulationData gclass146_1,
         bool bool_2)
     {
@@ -312,27 +312,27 @@ public class RaceCreation : Form
                 this.gclass21_0.method_111(selectedValue, 100);
             }
 
-            this.gclass21_0.IsNPR = AuroraUtils.smethod_27(this.chkNPR.CheckState);
+            this.gclass21_0.NPR = AuroraUtils.smethod_27(this.chkNPR.CheckState);
             this.gclass21_0.bool_15 = AuroraUtils.smethod_27(this.chkSurveyGrav.CheckState);
             this.gclass21_0.bool_16 = AuroraUtils.smethod_27(this.chkSurveyGeo.CheckState);
             this.gclass21_0.bool_17 = AuroraUtils.smethod_27(this.chkAutoAssign.CheckState);
             this.gclass21_0.bool_18 = AuroraUtils.smethod_27(this.chkAutoCreate.CheckState);
             this.gclass21_0.bool_19 = AuroraUtils.smethod_27(this.chkAutoDesignGround.CheckState);
             this.gclass21_0.int_41 = Convert.ToInt32(this.txtSY.Text);
-            this.gclass21_0.IsNeutralRace = AuroraUtils.smethod_27(this.chkNeutral.CheckState);
+            this.gclass21_0.NeutralRace = AuroraUtils.smethod_27(this.chkNeutral.CheckState);
             if (this.gclass21_0.RaceStartingLevel == GEnum82.const_0)
             {
                 ParsedDecimal gclass208 = AuroraUtils.ParseDecimalString(this.txtTP.Text);
                 if (gclass208.Succeed)
                     this.gclass21_0.StartTechPoints = (int)gclass208.Value;
-                if (!this.gclass21_0.IsNPR && this.gclass21_0.StartTechPoints > this.gclass0_0.int_134)
+                if (!this.gclass21_0.NPR && this.gclass21_0.StartTechPoints > this.gclass0_0.int_134)
                     this.gclass0_0.int_134 = this.gclass21_0.StartTechPoints;
             }
 
             ParsedDecimal gclass208_1 = AuroraUtils.ParseDecimalString(this.txtSBP.Text);
             if (gclass208_1.Succeed)
                 this.gclass21_0.StartBuildPoints = (int)gclass208_1.Value;
-            if (this.gclass21_0.IsNPR)
+            if (this.gclass21_0.NPR)
             {
                 this.gclass21_0.UnknownNprClass = new UnknownNPRClass2(this.gclass0_0, this.gclass21_0);
                 this.gclass21_0.decimal_26 = this.gclass21_0.StartBuildPoints / 2M;
@@ -349,7 +349,7 @@ public class RaceCreation : Form
             ParsedDecimal gclass208_4 = AuroraUtils.ParseDecimalString(this.txtMSP.Text);
             if (gclass208_4.Succeed)
                 this.gclass146_0.MaintenanceStockpile = gclass208_4.Value;
-            this.gclass146_0.ProvideColonists = AuroraUtils.smethod_29(this.chkNeutral.CheckState);
+            this.gclass146_0.ProvideColonists = AuroraUtils.CheckStateToInt(this.chkNeutral.CheckState);
             ParsedDecimal gclass208_5 = AuroraUtils.ParseDecimalString(this.txtRL.Text);
             if (gclass208_5.Succeed)
                 this.gclass146_0.method_64(AuroraInstallationType.ResearchLab, gclass208_5.Value);

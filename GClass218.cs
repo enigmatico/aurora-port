@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass218
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public int int_0;
     public string string_0;
 }

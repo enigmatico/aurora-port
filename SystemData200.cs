@@ -229,7 +229,7 @@ public class SystemData200
     {
         public SystemData200 gclass200_0;
         public double double_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -245,7 +245,7 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1174
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
         public SystemData200.Class1173 class1173_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
@@ -259,7 +259,7 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1175
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public SystemData200 gclass200_0;
         public Decimal decimal_0;
 
@@ -295,7 +295,7 @@ public class SystemData200
     private sealed class Class1177
     {
         public SystemData200 gclass200_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(JumpPoint120 gclass120_0)
         {
@@ -312,7 +312,7 @@ public class SystemData200
     [CompilerGenerated]
     private sealed class Class1178
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(JumpPoint120 gclass120_0)
         {
@@ -329,7 +329,7 @@ public class SystemData200
     private sealed class Class1179
     {
         public SystemData200 gclass200_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -702,7 +702,7 @@ public class SystemData200
         }
     }
 
-    public SystemBodyData method_10(double double_8, FCTRaceRecordC21 gclass21_0)
+    public SystemBodyData method_10(double double_8, GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -748,7 +748,7 @@ public class SystemData200
         }
     }
 
-    public SystemBodyData method_11(FCTRaceRecordC21 gclass21_0, Decimal decimal_0, bool bool_2)
+    public SystemBodyData method_11(GameRace gclass21_0, Decimal decimal_0, bool bool_2)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -851,7 +851,7 @@ public class SystemData200
                 gclass120_0_1.Bearing);
             gclass120_0_1.XCoord = gclass221.double_0;
             gclass120_0_1.YCoord = gclass221.double_1;
-            if (this.gclass0_0.int_88 == 1)
+            if (this.gclass0_0.AutoJumpGates == 1)
                 gclass120_0_1.JumpGateStrength = 1000;
             this.gclass0_0.JumpPointDictionary.Add(gclass120_0_1.WarpPointID, gclass120_0_1);
             int num2 = 1;
@@ -863,11 +863,11 @@ public class SystemData200
                 ++num2;
             }
 
-            foreach (FCTRaceRecordC21 gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
-                         .SelectMany<FCTRaceRecordC21, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
+            foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
+                         .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
                          .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.ActualSystemData == this)
-                         .Select<RacialSystemSurvey, FCTRaceRecordC21>(gclass202_0 => gclass202_0.Race)
-                         .ToList<FCTRaceRecordC21>())
+                         .Select<RacialSystemSurvey, GameRace>(gclass202_0 => gclass202_0.Race)
+                         .ToList<GameRace>())
                 gclass21.method_264(gclass120_0_1, 0, 0);
             return gclass120_0_1;
         }
@@ -907,7 +907,7 @@ public class SystemData200
         }
     }
 
-    public List<SystemData200> method_16(FCTRaceRecordC21 gclass21_0)
+    public List<SystemData200> method_16(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -949,7 +949,7 @@ public class SystemData200
         }
     }
 
-    public List<JumpPoint120> method_18(FCTRaceRecordC21 gclass21_0)
+    public List<JumpPoint120> method_18(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1120,7 +1120,7 @@ public class SystemData200
         }
     }
 
-    public JumpPoint120 method_25(double double_8, double double_9, FCTRaceRecordC21 gclass21_0)
+    public JumpPoint120 method_25(double double_8, double double_9, GameRace gclass21_0)
     {
         try
         {
@@ -1267,7 +1267,7 @@ public class SystemData200
         }
     }
 
-    public List<PopulationData> method_33(FCTRaceRecordC21 gclass21_0)
+    public List<PopulationData> method_33(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type

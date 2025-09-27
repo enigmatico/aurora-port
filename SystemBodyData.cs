@@ -124,7 +124,7 @@ public partial class SystemBodyData
 
     public void method_0(
         ListView listView_0,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         int int_13)
     {
@@ -231,7 +231,7 @@ public partial class SystemBodyData
     }
 
     public List<double> method_1(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         double double_45,
         int int_13)
@@ -334,7 +334,7 @@ public partial class SystemBodyData
             this.double_27 = this.OrbitalDistance;
             this.double_28 = this.OrbitalDistance;
             this.double_26 = this.OrbitalDistance;
-            if (this.gclass0_0.int_85 == 0)
+            if (this.gclass0_0.StarEccentricity == 0)
             {
                 this.Eccentricity = 0.0;
                 this.EccentricityDirection = 0.0;
@@ -581,7 +581,7 @@ public partial class SystemBodyData
         class308.gclass223_0 = gclass223_0;
         try
         {
-            FCTRaceRecordC21 gclass21_0 = null;
+            GameRace gclass21_0 = null;
             // ISSUE: reference to a compiler-generated method
             GClass224 gclass224 = this.list_0.Where<GClass224>(class308.method_0).FirstOrDefault<GClass224>();
             if (double_45 == 0.0)
@@ -688,7 +688,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_12(GEnum59 genum59_0, GEnum59 genum59_1, FCTRaceRecordC21 gclass21_0)
+    public void method_12(GEnum59 genum59_0, GEnum59 genum59_1, GameRace gclass21_0)
     {
         try
         {
@@ -941,7 +941,7 @@ public partial class SystemBodyData
 
     public GClass194 method_22(
         bool bool_10,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         SpecialNPRIDs genum6_0,
         GClass143 gclass143_0)
     {
@@ -999,12 +999,12 @@ public partial class SystemBodyData
                 gclass194.int_4 = AuroraUtils.smethod_21(5) + AuroraUtils.GetRandomInteger(6) - 31 /*0x1F*/;
             }
 
-            if (gclass21_0.IsNPR && genum6_0 == SpecialNPRIDs.const_0)
+            if (gclass21_0.NPR && genum6_0 == SpecialNPRIDs.const_0)
             {
-                gclass194.int_2 += this.gclass0_0.int_116;
-                gclass194.int_5 += this.gclass0_0.int_116;
-                gclass194.int_8 -= this.gclass0_0.int_116;
-                gclass194.int_3 -= this.gclass0_0.int_116;
+                gclass194.int_2 += this.gclass0_0.HostilityModifier;
+                gclass194.int_5 += this.gclass0_0.HostilityModifier;
+                gclass194.int_8 -= this.gclass0_0.HostilityModifier;
+                gclass194.int_3 -= this.gclass0_0.HostilityModifier;
                 if (gclass194.int_2 > 100)
                     gclass194.int_2 = 100;
                 if (gclass194.int_5 > 100)
@@ -1641,10 +1641,10 @@ public partial class SystemBodyData
                                     gclass99_1.DominantTerrainType != this.DominantTerrain.BaseTerrainType).ToList<PlanetaryTerrainDefinition>();
                             int index = AuroraUtils.GetRandomInteger(list.Count) - 1;
                             this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[list[index].DominantTerrainType];
-                            foreach (FCTRaceRecordC21 gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                            foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
                                          .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                         .Select<PopulationData, FCTRaceRecordC21>(gclass146_0 => gclass146_0.RaceData)
-                                         .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>())
+                                         .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                         .Distinct<GameRace>().ToList<GameRace>())
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_152,
                                     $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
                                     gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
@@ -1659,10 +1659,10 @@ public partial class SystemBodyData
                                 return;
                             int index = AuroraUtils.GetRandomInteger(list.Count) - 1;
                             this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[list[index].DominantTerrainType];
-                            foreach (FCTRaceRecordC21 gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                            foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
                                          .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                         .Select<PopulationData, FCTRaceRecordC21>(gclass146_0 => gclass146_0.RaceData)
-                                         .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>())
+                                         .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                         .Distinct<GameRace>().ToList<GameRace>())
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_152,
                                     $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
                                     gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
@@ -1674,10 +1674,10 @@ public partial class SystemBodyData
                         if (this.DominantTerrain == this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType])
                             return;
                         this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType];
-                        foreach (FCTRaceRecordC21 gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                        foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
                                      .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                     .Select<PopulationData, FCTRaceRecordC21>(gclass146_0 => gclass146_0.RaceData)
-                                     .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>())
+                                     .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                     .Distinct<GameRace>().ToList<GameRace>())
                             this.gclass0_0.gclass92_0.method_2(EventType.const_152,
                                 $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
                                 gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
@@ -1689,10 +1689,10 @@ public partial class SystemBodyData
                     if (this.DominantTerrain == this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType])
                         return;
                     this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType];
-                    foreach (FCTRaceRecordC21 gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                    foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
                                  .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                 .Select<PopulationData, FCTRaceRecordC21>(gclass146_0 => gclass146_0.RaceData)
-                                 .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>())
+                                 .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                 .Distinct<GameRace>().ToList<GameRace>())
                         this.gclass0_0.gclass92_0.method_2(EventType.const_152,
                             $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
                             gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
@@ -1773,7 +1773,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_36(FCTRaceRecordC21 gclass21_0)
+    public void method_36(GameRace gclass21_0)
     {
         try
         {
@@ -1840,7 +1840,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_37(FCTRaceRecordC21 gclass21_0)
+    public void method_37(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1868,7 +1868,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_38(FCTRaceRecordC21 gclass21_0)
+    public void method_38(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -2184,7 +2184,7 @@ public partial class SystemBodyData
     }
 
     public double method_52(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         double double_45,
         GEnum81 genum81_0)
@@ -2321,7 +2321,7 @@ public partial class SystemBodyData
     }
 
     public double method_54(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         double double_45,
         double double_46)
@@ -2358,7 +2358,7 @@ public partial class SystemBodyData
         }
     }
 
-    public double method_55(FCTRaceRecordC21 gclass21_0, GClass194 gclass194_1, double double_45)
+    public double method_55(GameRace gclass21_0, GClass194 gclass194_1, double double_45)
     {
         try
         {
@@ -2422,7 +2422,7 @@ public partial class SystemBodyData
         }
     }
 
-    public double method_56(FCTRaceRecordC21 gclass21_0, GClass194 gclass194_1, double double_45)
+    public double method_56(GameRace gclass21_0, GClass194 gclass194_1, double double_45)
     {
         try
         {
@@ -2499,7 +2499,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_57(FCTRaceRecordC21 gclass21_0, GClass194 gclass194_1)
+    public void method_57(GameRace gclass21_0, GClass194 gclass194_1)
     {
         try
         {
@@ -2515,7 +2515,7 @@ public partial class SystemBodyData
         }
     }
 
-    public Decimal method_58(FCTRaceRecordC21 gclass21_0, GClass194 gclass194_1, bool bool_10)
+    public Decimal method_58(GameRace gclass21_0, GClass194 gclass194_1, bool bool_10)
     {
         try
         {
@@ -2691,7 +2691,7 @@ public partial class SystemBodyData
         CheckState checkState_2,
         CheckState checkState_3,
         CheckState checkState_4,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         bool bool_10)
     {
@@ -2762,7 +2762,7 @@ public partial class SystemBodyData
                 num1 = this.MaxColonyCost;
             Decimal num2 = 1M;
             // ISSUE: reference to a compiler-generated field
-            TechData164 gclass164 =
+            TechSystem gclass164 =
                 class317.gclass21_0.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.ColonizationCostReduction]);
             if (gclass164 != null)
                 num2 = Math.Round(gclass164.decimal_0, 2);
@@ -2976,7 +2976,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_67(ListView listView_0, ListView listView_1, FCTRaceRecordC21 gclass21_0)
+    public void method_67(ListView listView_0, ListView listView_1, GameRace gclass21_0)
     {
         try
         {
@@ -3084,7 +3084,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_68(ListView listView_0, FCTRaceRecordC21 gclass21_0)
+    public void method_68(ListView listView_0, GameRace gclass21_0)
     {
         try
         {
@@ -3111,7 +3111,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_69(TextBox textBox_0, FCTRaceRecordC21 gclass21_0)
+    public void method_69(TextBox textBox_0, GameRace gclass21_0)
     {
         try
         {
@@ -3298,7 +3298,7 @@ public partial class SystemBodyData
     }
 
     public void method_71(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         CheckState checkState_0,
         Label label_0,
@@ -3403,7 +3403,7 @@ public partial class SystemBodyData
     }
 
     public void method_72(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         GClass194 gclass194_1,
         ListView listView_0,
         int int_13)
@@ -3692,7 +3692,7 @@ public partial class SystemBodyData
                                                                     this.BodyTypeId !=
                                                                     AuroraSystemBodyType.DwarfPlanet))
                 return;
-            if (this.Eccentricity != 0.0 && this.BodyClass != PlanetBodyClass.Moon && this.gclass0_0.int_85 != 0)
+            if (this.Eccentricity != 0.0 && this.BodyClass != PlanetBodyClass.Moon && this.gclass0_0.StarEccentricity != 0)
             {
                 GClass221 gclass221 = this.StarData.method_20(gclass202_0);
                 if (gclass221.double_0 < 0.0 || gclass221.double_0 > this.gclass0_0.double_0 ||
@@ -3742,7 +3742,7 @@ public partial class SystemBodyData
         }
     }
 
-    public bool method_77(FCTRaceRecordC21 gclass21_0)
+    public bool method_77(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: reference to a compiler-generated method
@@ -3753,7 +3753,7 @@ public partial class SystemBodyData
         }.method_0).FirstOrDefault<GClass215>() != null;
     }
 
-    public string method_78(FCTRaceRecordC21 gclass21_0)
+    public string method_78(GameRace gclass21_0)
     {
         try
         {
@@ -3766,7 +3766,7 @@ public partial class SystemBodyData
         }
     }
 
-    public string method_79(FCTRaceRecordC21 gclass21_0, bool bool_10, bool bool_11)
+    public string method_79(GameRace gclass21_0, bool bool_10, bool bool_11)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -3788,7 +3788,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_80(FCTRaceRecordC21 gclass21_0, string string_3)
+    public void method_80(GameRace gclass21_0, string string_3)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -3822,7 +3822,7 @@ public partial class SystemBodyData
         }
     }
 
-    public string method_81(FCTRaceRecordC21 gclass21_0, bool bool_10, bool bool_11)
+    public string method_81(GameRace gclass21_0, bool bool_10, bool bool_11)
     {
         try
         {

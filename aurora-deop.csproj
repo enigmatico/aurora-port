@@ -33,6 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.1.66\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.ColumnMapper, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.ColumnMapper.1.3.0\lib\net461\Dapper.ColumnMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -41,6 +51,12 @@
       <HintPath>packages\System.Data.SQLite.2.0.2\lib\net471\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -48,6 +64,7 @@
   <ItemGroup>
     <Compile Include="AddMoons.cs" />
     <Compile Include="GClass0_CalculateMethods.cs" />
+    <Compile Include="GClass0_DbRepositoryDapper.cs" />
     <Compile Include="GClass0_DbTypeMethods.cs" />
     <Compile Include="GClass0_DbTypeMethodsDIM.cs" />
     <Compile Include="GClass0_DbTypeMethodsFCT_Delete.cs" />
@@ -85,19 +102,19 @@
     <Compile Include="GClass7.cs" />
     <Compile Include="GClass8.cs" />
     <Compile Include="GClass85_CompilerGen.cs" />
-    <Compile Include="GClass9.cs" />
+    <Compile Include="OperationalGroup.cs" />
     <Compile Include="OperationalGroupElement.cs" />
-    <Compile Include="GClass11.cs" />
+    <Compile Include="RaceOperationalGroupElement.cs" />
     <Compile Include="GClass12.cs" />
     <Compile Include="GClass13.cs" />
-    <Compile Include="AutomatedClassDesignData.cs" />
+    <Compile Include="AutomatedClassDesign.cs" />
     <Compile Include="GClass15.cs" />
     <Compile Include="GClass16.cs" />
     <Compile Include="GClass17.cs" />
     <Compile Include="GClass18.cs" />
     <Compile Include="DIMDesignPhilosophyTechProgression.cs" />
     <Compile Include="DesignDoctrine.cs" />
-    <Compile Include="FCTRaceRecordC21.cs" />
+    <Compile Include="GameRace.cs" />
     <Compile Include="GClass22.cs" />
     <Compile Include="AutomatedGroundTemplateDesign.cs" />
     <Compile Include="AutomatedGroundTemplateElement.cs" />
@@ -133,8 +150,8 @@
     <Compile Include="FCTRaceMedalRecord.cs" />
     <Compile Include="MedalCondition.cs" />
     <Compile Include="GClass44.cs" />
-    <Compile Include="RaceNameTheme45.cs" />
-    <Compile Include="FCTRaceGroundCombatRecord46.cs" />
+    <Compile Include="RaceNameTheme.cs" />
+    <Compile Include="RaceGroundCombat.cs" />
     <Compile Include="CompanyNameData.cs" />
     <Compile Include="TraitGroup.cs" />
     <Compile Include="AssignmentTypeFilter.cs" />
@@ -261,7 +278,7 @@
     <Compile Include="GEnum102.cs" />
     <Compile Include="GEnum103.cs" />
     <Compile Include="GEnum104.cs" />
-    <Compile Include="OperationalGroup.cs" />
+    <Compile Include="OperationalGroupID.cs" />
     <Compile Include="CivilanFunctionType.cs" />
     <Compile Include="TechGroupType.cs" />
     <Compile Include="NPRMissileStrategy.cs" />
@@ -390,14 +407,14 @@
     <Compile Include="RaceComparison.cs" />
     <Compile Include="RaceCreation.cs" />
     <Compile Include="RaceWindow.cs" />
-    <Compile Include="GClass161.cs" />
+    <Compile Include="ResearchProject.cs" />
     <Compile Include="ResearchFieldData.cs" />
     <Compile Include="TechTypeData.cs" />
-    <Compile Include="TechData164.cs" />
+    <Compile Include="TechSystem.cs" />
     <Compile Include="GClass165.cs" />
-    <Compile Include="GClass166.cs" />
-    <Compile Include="GClass167.cs" />
-    <Compile Include="GClass168.cs" />
+    <Compile Include="ResearchQueue.cs" />
+    <Compile Include="PausedResearch.cs" />
+    <Compile Include="SwarmResearch.cs" />
     <Compile Include="ResearchCategoryData.cs" />
     <Compile Include="GClass170.cs" />
     <Compile Include="RuinRaceData.cs" />
@@ -442,7 +459,7 @@
     <Compile Include="RaceJumpPointSurvey.cs" />
     <Compile Include="GClass204.cs" />
     <Compile Include="GClass205.cs" />
-    <Compile Include="FCTWealthHistoryData.cs" />
+    <Compile Include="WealthHistory.cs" />
     <Compile Include="WindowPosition207.cs" />
     <Compile Include="ParsedDecimal.cs" />
     <Compile Include="ParsedDouble.cs" />

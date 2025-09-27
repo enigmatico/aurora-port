@@ -14,8 +14,8 @@ public class GClass114
 {
     private GClass0 gclass0_0;
     public AlienRaceInfo gclass110_0;
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public GroundUnitClass101 gclass101_0;
     public int int_0;
     public int int_1;
@@ -26,7 +26,7 @@ public class GClass114
 
     public GClass114(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public GClass114 method_0(FCTRaceRecordC21 gclass21_2, List<AlienRaceInfo> list_0)
+    public GClass114 method_0(GameRace gclass21_2, List<AlienRaceInfo> list_0)
     {
         try
         {
@@ -92,7 +92,7 @@ public class GClass114
                 string str = num.ToString();
                 string string_0 =
                     $"The armour strength of the alien ground unit {string0} has been calculated as {str}";
-                FCTRaceRecordC21 gclass210 = this.gclass21_0;
+                GameRace gclass210 = this.gclass21_0;
                 gclass920.method_2(EventType.const_66, string_0, gclass210, null, 0.0, 0.0,
                     AuroraEventCategory.Intelligence);
             }
@@ -105,7 +105,7 @@ public class GClass114
                 string str = num.ToString();
                 string string_0 =
                     $"The 'hit point value' of the alien ground unit {string0} have been calculated as {str}";
-                FCTRaceRecordC21 gclass210 = this.gclass21_0;
+                GameRace gclass210 = this.gclass21_0;
                 gclass920.method_2(EventType.const_66, string_0, gclass210, null, 0.0, 0.0,
                     AuroraEventCategory.Intelligence);
             }

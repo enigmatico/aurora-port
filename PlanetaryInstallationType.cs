@@ -10,7 +10,7 @@ using System;
 #nullable disable
 public class PlanetaryInstallationType
 {
-    public TechData164 TechData;
+    public TechSystem TechData;
     public AllMineralsValue MineralCost;
     public AuroraInstallationType InstallationType;
     public AuroraInstallationType ConversionTo;

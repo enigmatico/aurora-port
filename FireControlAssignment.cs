@@ -27,7 +27,7 @@ public class FireControlAssignment
     [CompilerGenerated]
     private sealed class Class793
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass132 gclass132_0;
 
         internal bool method_0(GClass132 gclass132_1)
@@ -272,7 +272,7 @@ public class FireControlAssignment
         }
     }
 
-    public int method_7(FCTRaceRecordC21 gclass21_0, GClass132 gclass132_0_1)
+    public int method_7(GameRace gclass21_0, GClass132 gclass132_0_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type

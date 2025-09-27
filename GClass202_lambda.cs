@@ -87,7 +87,7 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private bool method_60(FCTShipData40 gclass40_0)
     {
-        return gclass40_0.gclass22_0 == this.Race.gclass22_0;
+        return gclass40_0.gclass22_0 == this.Race.SelectedClass;
     }
 
     [CompilerGenerated]
@@ -95,7 +95,7 @@ public partial class RacialSystemSurvey
     {
         return gclass65_0.gclass21_1 == this.Race &&
                gclass65_0.gclass21_0 == this.Race.gclass112_0.gclass110_0.ActualAlienRace &&
-               gclass65_0.decimal_3 >= this.gclass0_0.decimal_0 - this.Race.int_47 &&
+               gclass65_0.decimal_3 >= this.gclass0_0.GameTime - this.Race.int_47 &&
                gclass65_0.gclass200_0 == this.ActualSystemData;
     }
 
@@ -191,7 +191,7 @@ public partial class RacialSystemSurvey
             return gclass110_0.bTradeTreaty;
         }
 
-        internal FCTRaceRecordC21 method_9(AlienRaceInfo gclass110_0)
+        internal GameRace method_9(AlienRaceInfo gclass110_0)
         {
             return gclass110_0.ActualAlienRace;
         }
@@ -406,7 +406,7 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1189
     {
-        public List<FCTRaceRecordC21> list_0;
+        public List<GameRace> list_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
@@ -689,7 +689,7 @@ public partial class RacialSystemSurvey
     private sealed class Class1204
     {
         public RacialSystemSurvey gclass202_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public Func<AlienRaceInfo, bool> func_0;
 
         internal bool method_0(JumpPoint120 gclass120_0)

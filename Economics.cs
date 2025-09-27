@@ -22,7 +22,7 @@ public class Economics : Form
     [CompilerGenerated]
     private sealed class Class1074
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
@@ -76,25 +76,25 @@ public class Economics : Form
     [CompilerGenerated]
     private sealed class Class1078
     {
-        public GClass166 gclass166_0;
+        public ResearchQueue gclass166_0;
 
-        internal bool method_0(GClass166 gclass166_1)
+        internal bool method_0(ResearchQueue gclass166_1)
         {
-            return gclass166_1.gclass146_0 == this.gclass166_0.gclass146_0 &&
-                   gclass166_1.gclass161_0 == this.gclass166_0.gclass161_0;
+            return gclass166_1.Population == this.gclass166_0.Population &&
+                   gclass166_1.CurrentProject == this.gclass166_0.CurrentProject;
         }
 
-        internal bool method_1(GClass166 gclass166_1)
+        internal bool method_1(ResearchQueue gclass166_1)
         {
-            return gclass166_1.gclass146_0 == this.gclass166_0.gclass146_0 &&
-                   gclass166_1.gclass161_0 == this.gclass166_0.gclass161_0;
+            return gclass166_1.Population == this.gclass166_0.Population &&
+                   gclass166_1.CurrentProject == this.gclass166_0.CurrentProject;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1079
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
 
         internal bool method_0(GClass130 gclass130_0)
         {
@@ -145,7 +145,7 @@ public class Economics : Form
     #endregion
 
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private RacialSystemSurvey gclass202_0;
     private PopulationData gclass146_0;
     private GClass193 gclass193_0;
@@ -928,7 +928,7 @@ public class Economics : Form
         }
     }
 
-    public void method_8(FCTRaceRecordC21 gclass21_1)
+    public void method_8(GameRace gclass21_1)
     {
         try
         {
@@ -961,7 +961,7 @@ public class Economics : Form
         try
         {
             this.cboRetoolClass.DataSource = null;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             if (this.gclass146_0 == null)
                 this.gclass146_0 = this.gclass21_0.method_191();
             else if (this.gclass146_0.RaceData != this.gclass21_0)
@@ -970,7 +970,7 @@ public class Economics : Form
             this.chkShowStars.CheckState = AuroraUtils.smethod_28(this.gclass21_0.ShowPopStar);
             this.chkHideCMC.CheckState = AuroraUtils.smethod_28(this.gclass21_0.HideCMCPop);
             this.chkByFunction.CheckState = AuroraUtils.smethod_28(this.gclass21_0.PopByFunction);
-            this.chkRoman.CheckState = this.gclass21_0.checkState_0;
+            this.chkRoman.CheckState = this.gclass21_0.UseRoman;
             this.gclass21_0.method_298();
             this.gclass21_0.method_338();
             this.Text =
@@ -2590,11 +2590,11 @@ public class Economics : Form
             {
                 if (MessageBox.Show("Are you sure you wish to cancel the selected queued research project?",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
-                    !(this.lstvResearchProjects.SelectedItems[0].Tag is GClass166))
+                    !(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchQueue))
                     return;
-                GClass166 tag = (GClass166)this.lstvResearchProjects.SelectedItems[0].Tag;
-                this.gclass21_0.list_5.Remove(tag);
-                this.gclass146_0.method_105(tag.gclass161_0);
+                ResearchQueue tag = (ResearchQueue)this.lstvResearchProjects.SelectedItems[0].Tag;
+                this.gclass21_0.ResearchQueues.Remove(tag);
+                this.gclass146_0.method_105(tag.CurrentProject);
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
                 this.method_19();
@@ -2621,7 +2621,7 @@ public class Economics : Form
             {
                 if (this.lstvTechnology.SelectedItems.Count == 0 || this.lstvTechnology.SelectedItems[0].Tag == null)
                     return;
-                TechData164 tag = (TechData164)this.lstvTechnology.SelectedItems[0].Tag;
+                TechSystem tag = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
                 this.txtTechDescription.Text = tag.string_1;
                 if (tag.gclass21_0 == null)
                     this.cmdDeleteTech.Visible = false;
@@ -2661,9 +2661,9 @@ public class Economics : Form
                     this.cmdRemoveQueue.Visible = false;
                 }
 
-                if (this.lstvResearchProjects.SelectedItems[0].Tag is GClass161)
+                if (this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject)
                 {
-                    GClass161 tag = (GClass161)this.lstvResearchProjects.SelectedItems[0].Tag;
+                    ResearchProject tag = (ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag;
                     if (tag.gclass146_0 != this.gclass146_0)
                     {
                         this.cmdDeleteProject.Visible = false;
@@ -2698,13 +2698,13 @@ public class Economics : Form
                 }
                 else
                 {
-                    if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass166))
+                    if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchQueue))
                         return;
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
                     Economics.Class1078 class1078 = new Economics.Class1078();
                     // ISSUE: reference to a compiler-generated field
-                    class1078.gclass166_0 = (GClass166)this.lstvResearchProjects.SelectedItems[0].Tag;
+                    class1078.gclass166_0 = (ResearchQueue)this.lstvResearchProjects.SelectedItems[0].Tag;
                     this.cmdDeleteProject.Visible = false;
                     this.cmdPauseResearch.Visible = false;
                     this.cmdAssignNew.Visible = false;
@@ -2716,16 +2716,16 @@ public class Economics : Form
                     this.cmdUpResearchQueue.Enabled = true;
                     this.cmdDownResearchQueue.Enabled = true;
                     // ISSUE: reference to a compiler-generated method
-                    int num2 = this.gclass21_0.list_5.Where<GClass166>(class1078.method_0)
-                        .Max<GClass166>(gclass166_0 => gclass166_0.int_0);
+                    int num2 = this.gclass21_0.ResearchQueues.Where<ResearchQueue>(class1078.method_0)
+                        .Max<ResearchQueue>(gclass166_0 => gclass166_0.ResearchOrder);
                     // ISSUE: reference to a compiler-generated method
-                    int num3 = this.gclass21_0.list_5.Where<GClass166>(class1078.method_1)
-                        .Min<GClass166>(gclass166_0 => gclass166_0.int_0);
+                    int num3 = this.gclass21_0.ResearchQueues.Where<ResearchQueue>(class1078.method_1)
+                        .Min<ResearchQueue>(gclass166_0 => gclass166_0.ResearchOrder);
                     // ISSUE: reference to a compiler-generated field
-                    if (class1078.gclass166_0.int_0 == num3)
+                    if (class1078.gclass166_0.ResearchOrder == num3)
                         this.cmdUpResearchQueue.Enabled = false;
                     // ISSUE: reference to a compiler-generated field
-                    if (class1078.gclass166_0.int_0 != num2)
+                    if (class1078.gclass166_0.ResearchOrder != num2)
                         return;
                     this.cmdDownResearchQueue.Enabled = false;
                 }
@@ -2758,9 +2758,9 @@ public class Economics : Form
                     if (MessageBox.Show(
                             "Are you sure you wish to cancel the selected research project and any queued projects for this scientist?",
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
-                        !(this.lstvResearchProjects.SelectedItems[0].Tag is GClass161))
+                        !(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
                         return;
-                    ((GClass161)this.lstvResearchProjects.SelectedItems[0].Tag).gclass55_0.method_40(true);
+                    ((ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag).gclass55_0.method_40(true);
                     this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                         this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
                     ResearchFieldData selectedValue = (ResearchFieldData)this.cboResearchFields.SelectedValue;
@@ -2795,9 +2795,9 @@ public class Economics : Form
                 }
                 else
                 {
-                    if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass161))
+                    if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
                         return;
-                    GClass161 tag = (GClass161)this.lstvResearchProjects.SelectedItems[0].Tag;
+                    ResearchProject tag = (ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag;
                     tag.bool_0 = !tag.bool_0;
                     int index = this.lstvResearchProjects.SelectedItems[0].Index;
                     this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
@@ -2828,15 +2828,15 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass161))
+                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
                     return;
-                GClass161 tag = (GClass161)this.lstvResearchProjects.SelectedItems[0].Tag;
+                ResearchProject tag = (ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag;
                 ++tag.int_0;
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
                 foreach (ListViewItem listViewItem in this.lstvResearchProjects.Items)
                 {
-                    if (listViewItem.Tag is GClass161 && (GClass161)listViewItem.Tag == tag)
+                    if (listViewItem.Tag is ResearchProject && (ResearchProject)listViewItem.Tag == tag)
                     {
                         listViewItem.Selected = true;
                         break;
@@ -2866,15 +2866,15 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass161))
+                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
                     return;
-                GClass161 tag = (GClass161)this.lstvResearchProjects.SelectedItems[0].Tag;
+                ResearchProject tag = (ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag;
                 --tag.int_0;
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
                 foreach (ListViewItem listViewItem in this.lstvResearchProjects.Items)
                 {
-                    if (listViewItem.Tag is GClass161 && (GClass161)listViewItem.Tag == tag)
+                    if (listViewItem.Tag is ResearchProject && (ResearchProject)listViewItem.Tag == tag)
                     {
                         listViewItem.Selected = true;
                         break;
@@ -2904,9 +2904,9 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass166))
+                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchQueue))
                     return;
-                GClass166 tag = (GClass166)this.lstvResearchProjects.SelectedItems[0].Tag;
+                ResearchQueue tag = (ResearchQueue)this.lstvResearchProjects.SelectedItems[0].Tag;
                 this.gclass146_0.method_106(tag, true);
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
@@ -2935,9 +2935,9 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass166))
+                if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchQueue))
                     return;
-                GClass166 tag = (GClass166)this.lstvResearchProjects.SelectedItems[0].Tag;
+                ResearchQueue tag = (ResearchQueue)this.lstvResearchProjects.SelectedItems[0].Tag;
                 this.gclass146_0.method_106(tag, false);
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
@@ -2977,13 +2977,13 @@ public class Economics : Form
                 {
                     int num5 = (int)MessageBox.Show("At least one research facility must be selected");
                 }
-                else if (!(this.lstvTechnology.SelectedItems[0].Tag is TechData164))
+                else if (!(this.lstvTechnology.SelectedItems[0].Tag is TechSystem))
                 {
                     int num6 = (int)MessageBox.Show("Please select a technology to research");
                 }
                 else
                 {
-                    TechData164 tag1 = (TechData164)this.lstvTechnology.SelectedItems[0].Tag;
+                    TechSystem tag1 = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
                     GClass55 tag2 = (GClass55)this.lstvScientists.SelectedItems[0].Tag;
                     if (tag2 == null)
                     {
@@ -3032,19 +3032,19 @@ public class Economics : Form
                 int num3 = (int)MessageBox.Show(
                     "Please select the existing project which the queued project will eventually replace");
             }
-            else if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass161))
+            else if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
             {
                 int num4 = (int)MessageBox.Show(
                     "Please select the existing project which the queued project will eventually replace");
             }
-            else if (!(this.lstvTechnology.SelectedItems[0].Tag is TechData164))
+            else if (!(this.lstvTechnology.SelectedItems[0].Tag is TechSystem))
             {
                 int num5 = (int)MessageBox.Show("Please select a tech system for the queued project");
             }
             else
             {
-                TechData164 tag1 = (TechData164)this.lstvTechnology.SelectedItems[0].Tag;
-                GClass161 tag2 = (GClass161)this.lstvResearchProjects.SelectedItems[0].Tag;
+                TechSystem tag1 = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
+                ResearchProject tag2 = (ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag;
                 this.gclass146_0.method_103(tag2, tag1);
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
@@ -3064,13 +3064,13 @@ public class Economics : Form
         }
     }
 
-    public void method_20(GClass161 gclass161_0)
+    public void method_20(ResearchProject gclass161_0)
     {
         try
         {
             foreach (ListViewItem listViewItem in this.lstvResearchProjects.Items)
             {
-                if (listViewItem.Tag is GClass161 && (GClass161)listViewItem.Tag == gclass161_0)
+                if (listViewItem.Tag is ResearchProject && (ResearchProject)listViewItem.Tag == gclass161_0)
                 {
                     listViewItem.Selected = true;
                     break;
@@ -3083,13 +3083,13 @@ public class Economics : Form
         }
     }
 
-    public void method_21(GClass166 gclass166_0)
+    public void method_21(ResearchQueue gclass166_0)
     {
         try
         {
             foreach (ListViewItem listViewItem in this.lstvResearchProjects.Items)
             {
-                if (listViewItem.Tag is GClass166 && (GClass166)listViewItem.Tag == gclass166_0)
+                if (listViewItem.Tag is ResearchQueue && (ResearchQueue)listViewItem.Tag == gclass166_0)
                 {
                     listViewItem.Selected = true;
                     break;
@@ -3116,7 +3116,7 @@ public class Economics : Form
             }
             else
             {
-                TechData164 tag = (TechData164)this.lstvTechnology.SelectedItems[0].Tag;
+                TechSystem tag = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
                 this.gclass21_0.method_282(tag, null, this.gclass146_0, null, false, false);
                 if (this.gclass21_0.StartTechPoints > 0)
                     this.gclass21_0.StartTechPoints -= tag.int_4;
@@ -3244,7 +3244,7 @@ public class Economics : Form
             }
             else
             {
-                TechData164 tag = (TechData164)this.lstvTechnology.SelectedItems[0].Tag;
+                TechSystem tag = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
                 if (MessageBox.Show($"Are you sure you want to remove {tag.Name}, from the current race?",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
@@ -3276,7 +3276,7 @@ public class Economics : Form
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                class1079.gclass164_0 = (TechData164)this.lstvTechnology.SelectedItems[0].Tag;
+                class1079.gclass164_0 = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
                 // ISSUE: reference to a compiler-generated method
                 if (this.gclass0_0.FCTShipDataDictionary.Values
                         .SelectMany<FCTShipData40, GClass130>(gclass40_0 => gclass40_0.list_10)
@@ -3354,7 +3354,7 @@ public class Economics : Form
                                         // ISSUE: reference to a compiler-generated method
                                         foreach (GroundUnitClass101 gclass101 in this.gclass0_0.GroundUnitClassDictionary.Values
                                                      .Where<GroundUnitClass101>(class1079.method_8).ToList<GroundUnitClass101>())
-                                            this.gclass0_0.GroundUnitClassDictionary.Remove(gclass101.int_0);
+                                            this.gclass0_0.GroundUnitClassDictionary.Remove(gclass101.ClassID);
                                         // ISSUE: reference to a compiler-generated field
                                         this.gclass21_0.method_279(class1079.gclass164_0);
                                         this.method_19();
@@ -4651,7 +4651,7 @@ public class Economics : Form
                     $" Are you really sure you want to grant independence to {this.gclass146_0.PopName}?  This will transfer all population assets to the new race, including any installations, shipyards and ground units and will unset all movement orders for fleets heading for that population.",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            FCTRaceRecordC21 gclass21 = this.gclass21_0.method_94(this.gclass146_0);
+            GameRace gclass21 = this.gclass21_0.method_94(this.gclass146_0);
             this.gclass0_0.bool_9 = true;
             this.gclass0_0.method_577(this.cboRaces);
             this.gclass0_0.bool_9 = false;
@@ -4753,8 +4753,8 @@ public class Economics : Form
 
     private void cmdAddOG_Click(object sender, EventArgs e)
     {
-        foreach (FCTRaceRecordC21 gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
-                     .Where<FCTRaceRecordC21>(gclass21_0 => gclass21_0.IsNPR).ToList<FCTRaceRecordC21>())
+        foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
+                     .Where<GameRace>(gclass21_0 => gclass21_0.NPR).ToList<GameRace>())
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
@@ -5125,9 +5125,9 @@ public class Economics : Form
                 }
                 else
                 {
-                    if (!(this.lstvResearchProjects.SelectedItems[0].Tag is GClass161))
+                    if (!(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
                         return;
-                    GClass161 tag = (GClass161)this.lstvResearchProjects.SelectedItems[0].Tag;
+                    ResearchProject tag = (ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag;
                     tag.bool_1 = !tag.bool_1;
                     int index = this.lstvResearchProjects.SelectedItems[0].Index;
                     this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
@@ -5357,7 +5357,7 @@ public class Economics : Form
             else
             {
                 this.method_25();
-                this.gclass21_0.checkState_0 = this.chkRoman.CheckState;
+                this.gclass21_0.UseRoman = this.chkRoman.CheckState;
             }
         }
         catch (Exception ex)

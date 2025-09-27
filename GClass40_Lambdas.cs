@@ -54,7 +54,7 @@ public partial class FCTShipData40
     private sealed class Class803
     {
         public FCTShipData40 gclass40_0;
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public GClass37 gclass37_0;
         public Func<GClass117, bool> func_0;
         public Func<GClass117, bool> func_1;
@@ -63,13 +63,13 @@ public partial class FCTShipData40
         internal bool method_0(GClass65 gclass65_0)
         {
             return gclass65_0.gclass40_0 == this.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0;
+                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.GameTime;
         }
 
         internal bool method_1(GClass65 gclass65_0)
         {
             return gclass65_0.gclass40_0 == this.gclass37_0.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.GameTime &&
                    gclass65_0.genum10_0 == GEnum10.const_0;
         }
 
@@ -77,7 +77,7 @@ public partial class FCTShipData40
         {
             return gclass65_0.gclass146_0 == this.gclass37_0.gclass39_0.Formation.PopulationData &&
                    gclass65_0.gclass21_1 != this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.GameTime &&
                    gclass65_0.genum10_0 == GEnum10.const_0 &&
                    gclass65_0.auroraContactType_0 == AuroraContactType.STOGroundUnit;
         }
@@ -473,7 +473,7 @@ public partial class FCTShipData40
         internal bool method_0(GClass132 gclass132_0)
         {
             return gclass132_0.gclass40_0 == this.gclass40_0 &&
-                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.GameTime &&
                    gclass132_0.gclass129_0 == this.gclass30_0.Missile &&
                    gclass132_0.gclass230_0 == this.gclass36_0.FCComponent &&
                    gclass132_0.int_2 == this.gclass36_0.FCNum && gclass132_0.int_0 == this.int_0;
@@ -490,7 +490,7 @@ public partial class FCTShipData40
         internal bool method_0(GClass132 gclass132_0)
         {
             return gclass132_0.gclass40_0 == this.gclass40_0 &&
-                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.GameTime &&
                    gclass132_0.gclass129_0 == this.gclass30_0.Missile && gclass132_0.int_0 == this.int_0;
         }
     }
@@ -520,7 +520,7 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class833
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
 
         internal bool method_0(ShipTechData182 gclass182_0)
         {
@@ -1232,7 +1232,7 @@ public partial class FCTShipData40
             return gclass146_0.gclass202_0.ActualSystemData == this.gclass233_0.gclass200_0;
         }
 
-        internal bool method_3(FCTRaceRecordC21 gclass21_0)
+        internal bool method_3(GameRace gclass21_0)
         {
             return gclass21_0 != this.gclass233_0.gclass21_0;
         }

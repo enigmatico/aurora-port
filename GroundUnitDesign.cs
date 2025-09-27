@@ -18,7 +18,7 @@ public partial class GroundUnitDesign : Form
     private Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition> dictionary_0 = new Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition>();
     private Dictionary<AuroraTargetSelection, string> dictionary_1 = new Dictionary<AuroraTargetSelection, string>();
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private GroundUnitBaseTypeData gclass96_0;
     private ArmourTypeData gclass97_0;
     private GroundComponentTypeDefinition gclass100_0;
@@ -367,7 +367,7 @@ public partial class GroundUnitDesign : Form
             this.txtUnitClass.Text = "";
             this.txtElementClass.Text = "";
             this.txtSelectedClass.Text = "";
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_195(this.txtBaseArmour, this.txtBaseWeapon, this.txtBeamTracking, this.txtFCRange);
             this.gclass0_0.bool_9 = true;
             this.gclass21_0.method_196(this.lstvBaseType);
@@ -518,7 +518,7 @@ public partial class GroundUnitDesign : Form
         }
     }
 
-    public void method_6(FCTRaceRecordC21 gclass21_1)
+    public void method_6(GameRace gclass21_1)
     {
         try
         {
@@ -641,8 +641,8 @@ public partial class GroundUnitDesign : Form
                 this.gclass0_0.gclass101_0.ClassName = this.txtUnitName.Text;
             }
 
-            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.int_0, this.gclass0_0.gclass164_0);
-            this.gclass0_0.GroundUnitClassDictionary.Add(this.gclass0_0.gclass101_0.int_0, this.gclass0_0.gclass101_0);
+            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+            this.gclass0_0.GroundUnitClassDictionary.Add(this.gclass0_0.gclass101_0.ClassID, this.gclass0_0.gclass101_0);
             int num = (int)MessageBox.Show(
                 "Ground Unit Class Created. Research the new class on the Research tab of the economics window");
             this.method_8();
@@ -1652,7 +1652,7 @@ public partial class GroundUnitDesign : Form
                         // ISSUE: reference to a compiler-generated field
                         tag.method_4(class1057.gclass146_0, list1, bool_7);
                         // ISSUE: reference to a compiler-generated field
-                        if (class1057.gclass146_0.RaceData.IsNPR)
+                        if (class1057.gclass146_0.RaceData.NPR)
                         {
                             // ISSUE: reference to a compiler-generated method
                             List<GroundUnitFormationData> list2 = this.gclass0_0.FormationDictionary.Values

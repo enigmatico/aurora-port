@@ -22,18 +22,18 @@ public class GClass233
     [CompilerGenerated]
     private sealed class Class1215
     {
-        public TechData164 gclass164_0;
+        public TechSystem gclass164_0;
 
-        internal bool method_0(TechData164 gclass164_1)
+        internal bool method_0(TechSystem gclass164_1)
         {
-            return gclass164_1.int_0 == this.gclass164_0.int_2;
+            return gclass164_1.TechSystemID == this.gclass164_0.int_2;
         }
     }
 
     public List<GClass234> list_0 = new List<GClass234>();
     public List<GClass235> list_1 = new List<GClass235>();
     public GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemData200 gclass200_0;
     public SystemBodyData gclass1_0;
     public GClass22 gclass22_0;
@@ -75,7 +75,7 @@ public class GClass233
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated method
                     class1215.gclass164_0 =
-                        this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechData164>(class1215.method_0);
+                        this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechSystem>(class1215.method_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -98,7 +98,7 @@ public class GClass233
         }
     }
 
-    public string method_1(FCTRaceRecordC21 gclass21_1, bool bool_0)
+    public string method_1(GameRace gclass21_1, bool bool_0)
     {
         try
         {

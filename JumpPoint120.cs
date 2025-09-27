@@ -15,7 +15,7 @@ public class JumpPoint120
 {
     private sealed class Class1072
     {
-        public FCTRaceRecordC21 gclass21_0;
+        public GameRace gclass21_0;
         public JumpPoint120 gclass120_0;
 
         internal bool method_0(FleetData gclass85_0)
@@ -64,7 +64,7 @@ public class JumpPoint120
 
     public JumpPoint120(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public bool method_0(FCTRaceRecordC21 gclass21_0)
+    public bool method_0(GameRace gclass21_0)
     {
         try
         {
@@ -77,7 +77,7 @@ public class JumpPoint120
         }
     }
 
-    public bool method_1(FCTRaceRecordC21 gclass21_0)
+    public bool method_1(GameRace gclass21_0)
     {
         try
         {
@@ -90,7 +90,7 @@ public class JumpPoint120
         }
     }
 
-    public bool method_2(FCTRaceRecordC21 gclass21_0)
+    public bool method_2(GameRace gclass21_0)
     {
         try
         {
@@ -104,7 +104,7 @@ public class JumpPoint120
         }
     }
 
-    public bool method_3(FCTRaceRecordC21 gclass21_0)
+    public bool method_3(GameRace gclass21_0)
     {
         try
         {
@@ -119,7 +119,7 @@ public class JumpPoint120
         }
     }
 
-    public bool method_4(FCTRaceRecordC21 gclass21_0)
+    public bool method_4(GameRace gclass21_0)
     {
         try
         {
@@ -134,7 +134,7 @@ public class JumpPoint120
         }
     }
 
-    public bool method_5(FCTRaceRecordC21 gclass21_0)
+    public bool method_5(GameRace gclass21_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -267,7 +267,7 @@ public class JumpPoint120
         }
     }
 
-    public GClass221 method_10(FCTRaceRecordC21 gclass21_0)
+    public GClass221 method_10(GameRace gclass21_0)
     {
         try
         {

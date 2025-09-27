@@ -46,7 +46,7 @@ public partial class FCTShipData40
     public Dictionary<int, int> dictionary_5 = new Dictionary<int, int>();
     public Dictionary<int, GClass178> dictionary_6 = new Dictionary<int, GClass178>();
     public List<GClass183> list_19 = new List<GClass183>();
-    public List<FCTRaceRecordC21> list_20 = new List<FCTRaceRecordC21>();
+    public List<GameRace> list_20 = new List<GameRace>();
     public int int_0;
     public int int_1;
     public int int_2;
@@ -64,7 +64,7 @@ public partial class FCTShipData40
     public bool bool_5;
     public bool bool_6;
     public bool bool_7;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public GClass194 gclass194_0;
     public GClass22 gclass22_0;
     public FleetData gclass85_0;
@@ -372,7 +372,7 @@ public partial class FCTShipData40
                     TargetShip = this,
                     PointOfDamageTime = (int)num14,
                     RemainingDamage = num2,
-                    LastDamageTime = this.gclass0_0.decimal_0,
+                    LastDamageTime = this.gclass0_0.GameTime,
                     ArmourColumn = num13 <= 0 ? num10 : 0
                 });
             }
@@ -386,7 +386,7 @@ public partial class FCTShipData40
         }
     }
 
-    public void method_1(FCTRaceRecordC21 gclass21_1, GClass37 gclass37_0)
+    public void method_1(GameRace gclass21_1, GClass37 gclass37_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -399,19 +399,19 @@ public partial class FCTShipData40
         class803.gclass37_0 = gclass37_0;
         try
         {
-            List<FCTRaceRecordC21> gclass21List1 = new List<FCTRaceRecordC21>();
-            List<FCTRaceRecordC21> gclass21List2 = new List<FCTRaceRecordC21>();
+            List<GameRace> gclass21List1 = new List<GameRace>();
+            List<GameRace> gclass21List2 = new List<GameRace>();
             // ISSUE: reference to a compiler-generated method
-            List<FCTRaceRecordC21> list = this.gclass0_0.dictionary_28.Values.Where<GClass65>(class803.method_0)
-                .Select<GClass65, FCTRaceRecordC21>(gclass65_0 => gclass65_0.gclass21_1).Distinct<FCTRaceRecordC21>()
-                .ToList<FCTRaceRecordC21>();
+            List<GameRace> list = this.gclass0_0.dictionary_28.Values.Where<GClass65>(class803.method_0)
+                .Select<GClass65, GameRace>(gclass65_0 => gclass65_0.gclass21_1).Distinct<GameRace>()
+                .ToList<GameRace>();
             // ISSUE: reference to a compiler-generated field
             if (class803.gclass37_0.gclass40_0 != null)
             {
                 // ISSUE: reference to a compiler-generated method
                 gclass21List1 = this.gclass0_0.dictionary_28.Values.Where<GClass65>(class803.method_1)
-                    .Select<GClass65, FCTRaceRecordC21>(gclass65_0 => gclass65_0.gclass21_1)
-                    .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>();
+                    .Select<GClass65, GameRace>(gclass65_0 => gclass65_0.gclass21_1)
+                    .Distinct<GameRace>().ToList<GameRace>();
             }
 
             // ISSUE: reference to a compiler-generated field
@@ -419,11 +419,11 @@ public partial class FCTShipData40
             {
                 // ISSUE: reference to a compiler-generated method
                 gclass21List2 = this.gclass0_0.dictionary_28.Values.Where<GClass65>(class803.method_2)
-                    .Select<GClass65, FCTRaceRecordC21>(gclass65_0 => gclass65_0.gclass21_1)
-                    .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>();
+                    .Select<GClass65, GameRace>(gclass65_0 => gclass65_0.gclass21_1)
+                    .Distinct<GameRace>().ToList<GameRace>();
             }
 
-            foreach (FCTRaceRecordC21 gclass21 in list)
+            foreach (GameRace gclass21 in list)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -545,10 +545,10 @@ public partial class FCTShipData40
             label_10:
             if (bool_22)
             {
-                int num4 = (int)Math.Round((this.gclass0_0.decimal_0 - this.decimal_7) / AuroraUtils.decimal_31 /
+                int num4 = (int)Math.Round((this.gclass0_0.GameTime - this.decimal_7) / AuroraUtils.decimal_31 /
                     this.gclass22_0.decimal_9 * 100M);
                 string str1 =
-                    $" Maintenance Clock: {AuroraUtils.FormatNumberToDigits((this.gclass0_0.decimal_0 - this.decimal_6) / AuroraUtils.decimal_29, 2)} years. Average Class Maintenance Life: {AuroraUtils.FormatNumberToDigits(this.gclass22_0.method_89(), 2)} years. Current Deployment: {num4.ToString()}%";
+                    $" Maintenance Clock: {AuroraUtils.FormatNumberToDigits((this.gclass0_0.GameTime - this.decimal_6) / AuroraUtils.decimal_29, 2)} years. Average Class Maintenance Life: {AuroraUtils.FormatNumberToDigits(this.gclass22_0.method_89(), 2)} years. Current Deployment: {num4.ToString()}%";
                 if (this.decimal_4 >= gclass228_0_1.gclass230_0.decimal_2)
                 {
                     string str2 = "";
@@ -643,7 +643,7 @@ public partial class FCTShipData40
                 if (this.gclass85_0.method_180() > 1)
                     str3 = $" ({this.gclass85_0.FleetName})";
                 string str4 =
-                    $" Current Maintenance Clock: {AuroraUtils.FormatNumberToDigits((this.gclass0_0.decimal_0 - this.decimal_6) / AuroraUtils.decimal_29, 2)} years";
+                    $" Current Maintenance Clock: {AuroraUtils.FormatNumberToDigits((this.gclass0_0.GameTime - this.decimal_6) / AuroraUtils.decimal_29, 2)} years";
                 this.gclass0_0.gclass92_0.method_2(EventType.const_229,
                     $"A {gclass228_0_1.gclass230_0.Name} on {this.method_187()}{str3} has been damaged due to a maintenance failure. Insufficient maintenance supplies were available to effect an immediate repair. The ship has {AuroraUtils.smethod_38(this.decimal_4)} maintenance supplies remaining.{str4}",
                     this.gclass21_0, this.gclass85_0.System.ActualSystemData, this.gclass85_0.XCoord,
@@ -2129,7 +2129,7 @@ public partial class FCTShipData40
                     gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.genum10_0 == GEnum10.const_0 &&
                     gclass65_0.auroraContactType_0 == AuroraContactType.Ship &&
                     gclass65_0.gclass200_0 == this.gclass85_0.System.ActualSystemData &&
-                    gclass65_0.gclass21_1 == this.gclass21_0 && this.gclass0_0.decimal_0 == gclass65_0.decimal_3)
+                    gclass65_0.gclass21_1 == this.gclass21_0 && this.gclass0_0.GameTime == gclass65_0.decimal_3)
                 .ToList<GClass65>();
             if (list1.Count == 0)
                 return;
@@ -2902,7 +2902,7 @@ public partial class FCTShipData40
                 .ToList<FCTShipData40>();
             List<GClass65> list4 = this.gclass0_0.dictionary_28.Values.Where<GClass65>(gclass65_0 =>
             {
-                if (gclass65_0.gclass21_1 != this.gclass21_0 || !(gclass65_0.decimal_3 == this.gclass0_0.decimal_0) ||
+                if (gclass65_0.gclass21_1 != this.gclass21_0 || !(gclass65_0.decimal_3 == this.gclass0_0.GameTime) ||
                     gclass65_0.gclass200_0 != this.gclass85_0.System.ActualSystemData)
                     return false;
                 return gclass65_0.genum10_0 == GEnum10.const_0 ||
@@ -3318,7 +3318,7 @@ public partial class FCTShipData40
                         else
                         {
                             gclass27.RemainingRecharge -= int_40 / num3;
-                            if (this.gclass21_0.IsNPR &&
+                            if (this.gclass21_0.NPR &&
                                 gclass27.WeaponComponent.gclass231_0.ComponentTypeID ==
                                 AuroraComponentType.MissileLauncher &&
                                 this.gclass22_0.gclass14_0.MissileDesignType == MissileDesignType.const_3)
@@ -3414,17 +3414,17 @@ public partial class FCTShipData40
             // ISSUE: reference to a compiler-generated field
             this.gclass0_0.dictionary_29.Add(class884.gclass233_0.int_0, class884.gclass233_0);
             // ISSUE: reference to a compiler-generated method
-            List<FCTRaceRecordC21> list = this.gclass0_0.FCTShipDataDictionary.Values
+            List<GameRace> list = this.gclass0_0.FCTShipDataDictionary.Values
                 .Where<FCTShipData40>(class884.method_1)
-                .Select<FCTShipData40, FCTRaceRecordC21>(gclass40_0 => gclass40_0.gclass21_0)
-                .Distinct<FCTRaceRecordC21>().ToList<FCTRaceRecordC21>();
+                .Select<FCTShipData40, GameRace>(gclass40_0 => gclass40_0.gclass21_0)
+                .Distinct<GameRace>().ToList<GameRace>();
             // ISSUE: reference to a compiler-generated method
             list.AddRange(this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class884.method_2)
-                .Select<PopulationData, FCTRaceRecordC21>(gclass146_0 => gclass146_0.RaceData).Distinct<FCTRaceRecordC21>()
-                .ToList<FCTRaceRecordC21>());
+                .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData).Distinct<GameRace>()
+                .ToList<GameRace>());
             // ISSUE: reference to a compiler-generated method
-            foreach (FCTRaceRecordC21 gclass21 in list.Distinct<FCTRaceRecordC21>()
-                         .Where<FCTRaceRecordC21>(class884.method_3).ToList<FCTRaceRecordC21>())
+            foreach (GameRace gclass21 in list.Distinct<GameRace>()
+                         .Where<GameRace>(class884.method_3).ToList<GameRace>())
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -3461,7 +3461,7 @@ public partial class FCTShipData40
             gclass59.double_0 = this.gclass85_0.XCoord;
             gclass59.double_1 = this.gclass85_0.YCoord;
             gclass59.string_0 = this.ShipName;
-            gclass59.decimal_0 = this.gclass0_0.decimal_0;
+            gclass59.decimal_0 = this.gclass0_0.GameTime;
             gclass59.decimal_1 = this.decimal_15;
             gclass59.int_0 = this.gclass0_0.method_26(GEnum0.const_28);
             gclass59.int_1 = (int)Math.Floor(d);
@@ -3548,7 +3548,7 @@ public partial class FCTShipData40
     {
         try
         {
-            this.decimal_18 = this.gclass0_0.decimal_0;
+            this.decimal_18 = this.gclass0_0.GameTime;
             this.gclass85_0.LastFleetDamageTime = this.decimal_18;
         }
         catch (Exception ex)
@@ -3631,7 +3631,7 @@ public partial class FCTShipData40
                 {
                     string string_10 =
                         $"{AuroraUtils.smethod_80(gclass75.gclass102_0.FormationTrained + 1)} {gclass75.gclass102_0.Name}";
-                    if (this.gclass21_0.checkState_0 == CheckState.Checked)
+                    if (this.gclass21_0.UseRoman == CheckState.Checked)
                     {
                         string str = AuroraUtils.smethod_79(gclass75.gclass102_0.FormationTrained + 1);
                         string_10 = $"{gclass75.gclass102_0.Name} {str}";
@@ -3684,7 +3684,7 @@ public partial class FCTShipData40
                 num /= 100M;
             if (this.gclass22_0.decimal_14 < 21M)
                 num /= 2M;
-            if (this.gclass0_0.decimal_0 - this.decimal_12 < 300M && this.decimal_12 > this.decimal_13)
+            if (this.gclass0_0.GameTime - this.decimal_12 < 300M && this.decimal_12 > this.decimal_13)
                 num /= 5M;
             return num;
         }
@@ -3753,12 +3753,12 @@ public partial class FCTShipData40
         }
     }
 
-    public void method_55(FCTRaceRecordC21 gclass21_1)
+    public void method_55(GameRace gclass21_1)
     {
         try
         {
             this.double_3 = 1.0;
-            if (!gclass21_1.IsNPR)
+            if (!gclass21_1.NPR)
                 return;
             GClass117 gclass117 = gclass21_1.method_267(this);
             if (gclass117 == null)
@@ -4026,7 +4026,7 @@ public partial class FCTShipData40
                                 if (gclass31_0.WeaponComponent.decimal_5 > 0M && gclass31_0.WeaponComponent.decimal_5 < 1M)
                                     num5 *= gclass31_0.WeaponComponent.decimal_5;
                                 if (this.gclass21_0.SpecialNPRID != SpecialNPRIDs.const_0 ||
-                                    this.gclass0_0.int_97 != 0 || !this.method_92(gclass31_0))
+                                    this.gclass0_0.NoOverhauls != 0 || !this.method_92(gclass31_0))
                                 {
                                     Decimal decimal_6 =
                                         (Decimal)Math.Floor(20.0 * Math.Sqrt(gclass31_0.WeaponComponent.method_5(1)));
@@ -4115,7 +4115,7 @@ public partial class FCTShipData40
         }
     }
 
-    public void method_61(FCTRaceRecordC21 gclass21_1)
+    public void method_61(GameRace gclass21_1)
     {
         try
         {
@@ -4149,7 +4149,7 @@ public partial class FCTShipData40
             this.gclass21_0.method_271(this, null, gclass21_1, true);
             this.list_1.Add(gclass180);
             this.decimal_9 = 0.01M;
-            this.decimal_7 = this.gclass0_0.decimal_0 - this.gclass22_0.decimal_9 * 2M * AuroraUtils.decimal_31;
+            this.decimal_7 = this.gclass0_0.GameTime - this.gclass22_0.decimal_9 * 2M * AuroraUtils.decimal_31;
             this.int_11 = 1;
             this.int_1 = 0;
             if (this.gclass22_0.bool_2)
@@ -4430,7 +4430,7 @@ public partial class FCTShipData40
     {
         try
         {
-            return Math.Round((this.gclass0_0.decimal_0 - this.decimal_7) / AuroraUtils.decimal_31 /
+            return Math.Round((this.gclass0_0.GameTime - this.decimal_7) / AuroraUtils.decimal_31 /
                 this.gclass22_0.decimal_9 * 100M);
         }
         catch (Exception ex)
@@ -4654,7 +4654,7 @@ public partial class FCTShipData40
         }
     }
 
-    public void method_82(FCTRaceRecordC21 gclass21_1, double double_4)
+    public void method_82(GameRace gclass21_1, double double_4)
     {
         try
         {
@@ -4735,7 +4735,7 @@ public partial class FCTShipData40
                     .Where<GClass65>(gclass65_0 => gclass65_0.gclass200_0 == this.gclass85_0.System.ActualSystemData)
                     .Where<GClass65>(gclass65_0 =>
                         gclass65_0.method_5() == AuroraContactStatus.Hostile &&
-                        gclass65_0.gclass21_1 == this.gclass21_0 && gclass65_0.decimal_3 == this.gclass0_0.decimal_0)
+                        gclass65_0.gclass21_1 == this.gclass21_0 && gclass65_0.decimal_3 == this.gclass0_0.GameTime)
                     .Count<GClass65>() == 0)
                 return 0;
             Decimal num1 = 1M - this.method_85();
@@ -4878,7 +4878,7 @@ public partial class FCTShipData40
     {
         try
         {
-            if (this.gclass0_0.int_97 == 1 || AuroraUtils.GetRandomInteger(50) != 5)
+            if (this.gclass0_0.NoOverhauls == 1 || AuroraUtils.GetRandomInteger(50) != 5)
                 return false;
             string str = "";
             if (this.gclass85_0.method_180() > 1)
@@ -5663,7 +5663,7 @@ public partial class FCTShipData40
         }
     }
 
-    public void method_112(TechData164 gclass164_0, Decimal decimal_42)
+    public void method_112(TechSystem gclass164_0, Decimal decimal_42)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -5918,7 +5918,7 @@ public partial class FCTShipData40
         try
         {
             if (!this.gclass22_0.bool_7)
-                this.decimal_7 = this.gclass0_0.decimal_0;
+                this.decimal_7 = this.gclass0_0.GameTime;
             GClass81 gclass81 = null;
             if (this.gclass85_0.ParentNavalCommand.gclass79_0.AdminCommandType != AdminCommandType.const_5)
                 gclass81 = list_21.FirstOrDefault<GClass81>(gclass81_0 =>
@@ -5930,16 +5930,16 @@ public partial class FCTShipData40
                 if (!this.gclass22_0.bool_7)
                     return;
                 bool flag = false;
-                if (this.decimal_7 < this.gclass0_0.decimal_0 - decimal_42)
+                if (this.decimal_7 < this.gclass0_0.GameTime - decimal_42)
                     flag = true;
                 Decimal num = 10M;
                 if (this.int_11 < this.gclass22_0.int_11)
                     num = this.int_11 / (Decimal)this.gclass22_0.int_11;
                 this.decimal_7 += decimal_42 * num;
-                if (this.decimal_7 >= this.gclass0_0.decimal_0)
+                if (this.decimal_7 >= this.gclass0_0.GameTime)
                 {
-                    this.decimal_7 = this.gclass0_0.decimal_0;
-                    if (this.decimal_7 == this.gclass0_0.decimal_0 && flag)
+                    this.decimal_7 = this.gclass0_0.GameTime;
+                    if (this.decimal_7 == this.gclass0_0.GameTime && flag)
                         this.gclass0_0.gclass92_0.method_2(EventType.const_135,
                             $"The crew of {this.method_187()} has completed shore leave and is fully rested",
                             this.gclass21_0, this.gclass85_0.System.ActualSystemData, this.gclass85_0.XCoord,
@@ -5952,14 +5952,14 @@ public partial class FCTShipData40
             {
                 if (!this.gclass22_0.bool_7)
                     return;
-                Decimal num = (this.gclass0_0.decimal_0 - this.gclass40_0.decimal_7) / AuroraUtils.decimal_31 /
+                Decimal num = (this.gclass0_0.GameTime - this.gclass40_0.decimal_7) / AuroraUtils.decimal_31 /
                               this.gclass22_0.decimal_9;
                 if (num < 1M)
                     this.decimal_7 += decimal_42 + decimal_42 * 10M * (1M - num);
                 else
                     this.decimal_7 += decimal_42;
-                if (this.decimal_7 > this.gclass0_0.decimal_0)
-                    this.decimal_7 = this.gclass0_0.decimal_0;
+                if (this.decimal_7 > this.gclass0_0.GameTime)
+                    this.decimal_7 = this.gclass0_0.GameTime;
                 this.method_191();
             }
             else
@@ -6738,7 +6738,7 @@ public partial class FCTShipData40
                     {
                         this.gclass123_0.method_33(auroraElement_0_1, num6);
                         gclass146_0.CurrentMinerals.method_33(auroraElement_0_1, -num6);
-                        if (!gclass146_0.RaceData.IsNPR)
+                        if (!gclass146_0.RaceData.NPR)
                             gclass146_0.method_21(MineralUsage.const_8, auroraElement_0_1, num6);
                         num1 -= num6;
                         num2 += num6;
@@ -6774,7 +6774,7 @@ public partial class FCTShipData40
                                 num1 = num2;
                             this.gclass123_0.method_33(auroraElement_0, -num1);
                             gclass146_0.CurrentMinerals.method_33(auroraElement_0, num1);
-                            if (!gclass146_0.RaceData.IsNPR)
+                            if (!gclass146_0.RaceData.NPR)
                                 gclass146_0.method_21(MineralUsage.const_7, auroraElement_0, num1);
                         }
                         else
@@ -6805,7 +6805,7 @@ public partial class FCTShipData40
                         {
                             this.gclass123_0.method_33(auroraElement, num5);
                             gclass146_0.CurrentMinerals.method_33(auroraElement, -num5);
-                            if (!gclass146_0.RaceData.IsNPR)
+                            if (!gclass146_0.RaceData.NPR)
                                 gclass146_0.method_21(MineralUsage.const_8, auroraElement, num5);
                         }
                     }
@@ -7001,7 +7001,7 @@ public partial class FCTShipData40
                 Decimal num2 = gclass158_1.method_0() * AuroraUtils.decimal_3 * num1;
                 Decimal decimal_29 = num2 * this.gclass21_0.ShippingLineTax;
                 Decimal num3 = num2 - decimal_29;
-                if (this.gclass21_0.IsNPR)
+                if (this.gclass21_0.NPR)
                     num3 *= AuroraUtils.decimal_70;
                 this.gclass21_0.method_299(num3, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_23]);
                 this.gclass187_0.method_12(gclass158_1.gclass146_1, gclass146_0, this, num3, false, false, false, null);
@@ -7226,7 +7226,7 @@ public partial class FCTShipData40
                 Decimal num2 = gclass191.decimal_0 * AuroraUtils.decimal_0 * num1;
                 Decimal decimal_29 = num2 * this.gclass21_0.ShippingLineTax;
                 Decimal decimal_3 = num2 - decimal_29;
-                if (this.gclass21_0.IsNPR)
+                if (this.gclass21_0.NPR)
                     decimal_3 *= AuroraUtils.decimal_70;
                 if (decimal_29 > 0M)
                     this.gclass21_0.method_300(decimal_29, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_14]);
@@ -7265,7 +7265,7 @@ public partial class FCTShipData40
             if (auroraElement_0 == AuroraElement.None)
             {
                 gclass146_0.CurrentMinerals.AddMineralsFrom(this.gclass123_0);
-                if (!gclass146_0.RaceData.IsNPR)
+                if (!gclass146_0.RaceData.NPR)
                     this.gclass123_0.method_24(gclass146_0, MineralUsage.const_7);
                 this.gclass123_0.ResetToZero();
                 return 0M;
@@ -7275,7 +7275,7 @@ public partial class FCTShipData40
             if (decimal_42 < num && decimal_42 > 0M)
                 num = decimal_42;
             gclass146_0.CurrentMinerals.method_33(auroraElement_0, num);
-            if (!gclass146_0.RaceData.IsNPR)
+            if (!gclass146_0.RaceData.NPR)
                 gclass146_0.method_21(MineralUsage.const_7, auroraElement_0, num);
             this.gclass123_0.method_33(auroraElement_0, -num);
             return num;
@@ -7315,7 +7315,7 @@ public partial class FCTShipData40
                             Decimal num2 = gclass181.int_0 * AuroraUtils.decimal_2 * num1;
                             Decimal decimal_29 = num2 * this.gclass21_0.ShippingLineTax;
                             Decimal decimal_3 = num2 - decimal_29;
-                            if (this.gclass21_0.IsNPR)
+                            if (this.gclass21_0.NPR)
                                 decimal_3 *= AuroraUtils.decimal_70;
                             this.gclass21_0.method_300(decimal_29, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_22]);
                             this.gclass187_0.method_12(gclass181.gclass146_0, gclass146_0, this, decimal_3, false,
@@ -7326,7 +7326,7 @@ public partial class FCTShipData40
                             Decimal num3 = gclass181.int_0 * AuroraUtils.decimal_1 * num1;
                             Decimal decimal_29 = num3 * this.gclass21_0.ShippingLineTax;
                             Decimal decimal_3 = num3 - decimal_29;
-                            if (this.gclass21_0.IsNPR)
+                            if (this.gclass21_0.NPR)
                                 decimal_3 *= AuroraUtils.decimal_70;
                             this.gclass21_0.method_300(decimal_29, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_16]);
                             this.gclass187_0.method_12(gclass181.gclass146_0, gclass146_0, this, decimal_3, false,
@@ -7897,11 +7897,11 @@ public partial class FCTShipData40
             string string_11_6 = "-";
             if (!this.gclass22_0.bool_2)
                 string_11_6 =
-                    AuroraUtils.smethod_45((this.gclass0_0.decimal_0 - this.decimal_7) / AuroraUtils.decimal_31, 2);
+                    AuroraUtils.smethod_45((this.gclass0_0.GameTime - this.decimal_7) / AuroraUtils.decimal_31, 2);
             string string_11_7 = "-";
             if (!this.gclass22_0.bool_2)
                 string_11_7 =
-                    AuroraUtils.smethod_45((this.gclass0_0.decimal_0 - this.decimal_6) / AuroraUtils.decimal_29, 2);
+                    AuroraUtils.smethod_45((this.gclass0_0.GameTime - this.decimal_6) / AuroraUtils.decimal_29, 2);
             string string_11_8 = AuroraUtils.FormatNumberToDigits(this.method_166(), 2);
             num1 = Math.Round(this.method_171(false) / this.gclass22_0.int_32 * 100M);
             string string_11_9 = num1.ToString() + "%";
@@ -8174,7 +8174,7 @@ public partial class FCTShipData40
         try
         {
             if (this.gclass40_3 != null || this.genum29_0 == GEnum29.const_1 ||
-                !this.gclass21_0.IsNPR && this.decimal_14 == 0M)
+                !this.gclass21_0.NPR && this.decimal_14 == 0M)
                 return 1M;
             Decimal num1 = this.method_157(AuroraComponentType.Engine, false) * this.decimal_9;
             if (num1 <= 0M)
@@ -8218,7 +8218,7 @@ public partial class FCTShipData40
     {
         try
         {
-            Decimal num1 = (this.gclass0_0.decimal_0 - this.decimal_6) / AuroraUtils.decimal_29;
+            Decimal num1 = (this.gclass0_0.GameTime - this.decimal_6) / AuroraUtils.decimal_29;
             Decimal num2 = this.method_157(AuroraComponentType.Engineering, false);
             return !(num2 == 0M)
                 ? this.gclass22_0.decimal_14 / 2M * (this.gclass22_0.decimal_14 * AuroraUtils.decimal_21 / num2) * num1
@@ -8371,7 +8371,7 @@ public partial class FCTShipData40
                     }
                 }
             }
-            else if (this.gclass21_0.IsNPR)
+            else if (this.gclass21_0.NPR)
             {
                 foreach (GClass228 gclass228_0 in this.gclass22_0.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
                                  gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
@@ -8690,7 +8690,7 @@ public partial class FCTShipData40
         {
             if (this.gclass21_0.SpecialNPRID == SpecialNPRIDs.const_0 && !(this.gclass22_0.decimal_9 == 0M))
             {
-                this.decimal_37 = (this.gclass0_0.decimal_0 - this.decimal_7) / AuroraUtils.decimal_31;
+                this.decimal_37 = (this.gclass0_0.GameTime - this.decimal_7) / AuroraUtils.decimal_31;
                 if (this.decimal_37 > this.gclass22_0.decimal_9 && this.decimal_37 > 0.1M)
                 {
                     this.decimal_36 = this.decimal_37 / this.gclass22_0.decimal_9;
@@ -8881,7 +8881,7 @@ public partial class FCTShipData40
             }
 
             foreach (GClass117 gclass117 in this.gclass0_0.FCTRaceRecordDic.Values
-                         .SelectMany<FCTRaceRecordC21, GClass117>(gclass21_0 => gclass21_0.dictionary_12.Values)
+                         .SelectMany<GameRace, GClass117>(gclass21_0 => gclass21_0.dictionary_12.Values)
                          .Where<GClass117>(gclass117_0 => gclass117_0.gclass40_0 == this).ToList<GClass117>())
                 gclass117.gclass21_1.dictionary_12.Remove(gclass117.gclass40_0.int_8);
             this.gclass85_0.Speed = this.gclass85_0.method_195();
@@ -9012,7 +9012,7 @@ public partial class FCTShipData40
         {
             this.list_11.Add(new GClass177()
             {
-                decimal_0 = this.gclass0_0.decimal_0,
+                decimal_0 = this.gclass0_0.GameTime,
                 Description = string_9
             });
         }
@@ -9514,13 +9514,13 @@ public partial class FCTShipData40
         }
     }
 
-    public Decimal method_222(FCTRaceRecordC21 gclass21_1, GEnum10 genum10_0)
+    public Decimal method_222(GameRace gclass21_1, GEnum10 genum10_0)
     {
         try
         {
             foreach (GClass65 gclass65 in this.method_197())
             {
-                if (gclass65.gclass21_1 == gclass21_1 && this.gclass0_0.decimal_0 == gclass65.decimal_3 &&
+                if (gclass65.gclass21_1 == gclass21_1 && this.gclass0_0.GameTime == gclass65.decimal_3 &&
                     gclass65.genum10_0 == genum10_0)
                     return gclass65.decimal_0;
             }
@@ -9534,14 +9534,14 @@ public partial class FCTShipData40
         }
     }
 
-    public GClass221 method_223(FCTRaceRecordC21 gclass21_1)
+    public GClass221 method_223(GameRace gclass21_1)
     {
         try
         {
             GClass221 gclass221 = new GClass221();
             foreach (GClass65 gclass65 in this.method_197())
             {
-                if (gclass65.gclass21_1 == gclass21_1 && this.gclass0_0.decimal_0 == gclass65.decimal_3)
+                if (gclass65.gclass21_1 == gclass21_1 && this.gclass0_0.GameTime == gclass65.decimal_3)
                 {
                     gclass221.double_0 = gclass65.double_4;
                     gclass221.double_1 = gclass65.double_5;
@@ -9777,7 +9777,7 @@ public partial class FCTShipData40
         }
     }
 
-    public string method_226(FCTRaceRecordC21 gclass21_1, bool bool_22, int int_40)
+    public string method_226(GameRace gclass21_1, bool bool_22, int int_40)
     {
         try
         {
@@ -9795,11 +9795,11 @@ public partial class FCTShipData40
             if (gclass65_1 != null && gclass65_1.decimal_0 > 0M)
             {
                 string str2 = "";
-                if (gclass65_1.gclass21_0 != null && gclass65_1.gclass21_0.IsBioShips)
+                if (gclass65_1.gclass21_0 != null && gclass65_1.gclass21_0.BioShips)
                     str2 = " BIO ";
                 str1 = $"{str1}  {str2}{AuroraUtils.smethod_38(gclass65_1.decimal_0 * AuroraUtils.decimal_17)} tons";
                 this.int_25 = gclass65_1.int_0;
-                if (gclass65_1.decimal_3 == this.gclass0_0.decimal_0)
+                if (gclass65_1.decimal_3 == this.gclass0_0.GameTime)
                     ++num1;
                 else
                     ++num2;
@@ -9814,7 +9814,7 @@ public partial class FCTShipData40
                     str1 = $"{str1}   Thermal {str3}{AuroraUtils.smethod_38(gclass65_2.decimal_0)}";
                 if (this.int_25 == 0)
                     this.int_25 = gclass65_2.int_0;
-                if (gclass65_2.decimal_3 == this.gclass0_0.decimal_0)
+                if (gclass65_2.decimal_3 == this.gclass0_0.GameTime)
                     ++num1;
                 else
                     ++num2;
@@ -9828,7 +9828,7 @@ public partial class FCTShipData40
                     str1 = $"{str1}   Shields {AuroraUtils.smethod_38(gclass65_3.decimal_0 / AuroraUtils.decimal_27)}";
                 if (this.int_25 == 0)
                     this.int_25 = gclass65_3.int_0;
-                if (gclass65_3.decimal_3 == this.gclass0_0.decimal_0)
+                if (gclass65_3.decimal_3 == this.gclass0_0.GameTime)
                     ++num1;
                 else
                     ++num2;
@@ -9847,7 +9847,7 @@ public partial class FCTShipData40
                             str1 = $"{str1}   {gclass118.method_3()}";
                         if (this.int_25 == 0)
                             this.int_25 = gclass65_4.int_0;
-                        if (gclass65_4.decimal_3 == this.gclass0_0.decimal_0)
+                        if (gclass65_4.decimal_3 == this.gclass0_0.GameTime)
                             ++num1;
                         else
                             ++num2;
@@ -9863,7 +9863,7 @@ public partial class FCTShipData40
                     str1 += "   (TP) ";
                 if (this.int_25 == 0)
                     this.int_25 = gclass65_5.int_0;
-                if (gclass65_5.decimal_3 == this.gclass0_0.decimal_0)
+                if (gclass65_5.decimal_3 == this.gclass0_0.GameTime)
                     ++num1;
                 else
                     ++num2;

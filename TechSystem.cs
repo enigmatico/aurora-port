@@ -8,15 +8,15 @@ using System;
 using System.Collections.Generic;
 
 #nullable disable
-public class TechData164
+public class TechSystem
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public TechTypeData gclass163_0;
-    public TechData164 gclass164_0;
-    public TechData164 gclass164_1;
+    public TechSystem gclass164_0;
+    public TechSystem gclass164_1;
     public ResearchCategoryType genum119_0;
     public Dictionary<int, GClass165> dictionary_0 = new Dictionary<int, GClass165>();
-    public int int_0;
+    public int TechSystemID;
     public int int_1;
     public int int_2;
     public int int_3;
@@ -37,7 +37,7 @@ public class TechData164
 
     public string Name { get; set; }
 
-    public bool method_0(FCTRaceRecordC21 gclass21_1)
+    public bool method_0(GameRace gclass21_1)
     {
         try
         {
@@ -56,7 +56,7 @@ public class TechData164
         }
     }
 
-    public bool method_1(FCTRaceRecordC21 gclass21_1)
+    public bool method_1(GameRace gclass21_1)
     {
         try
         {

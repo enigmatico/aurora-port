@@ -13,7 +13,7 @@ using System.Linq;
 public class GClass121
 {
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public RacialSystemSurvey gclass202_0;
     public int int_0;
     public Decimal decimal_0;

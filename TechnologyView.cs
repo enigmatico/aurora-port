@@ -16,7 +16,7 @@ using System.Windows.Forms;
 public class TechnologyView : Form
 {
     private GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private ResearchCategoryData gclass169_0;
     private ShipComponent gclass230_0;
     private RaceMissile gclass129_0;
@@ -61,7 +61,7 @@ public class TechnologyView : Form
         }
     }
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
@@ -78,7 +78,7 @@ public class TechnologyView : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.method_3();
             if (!this.bool_0)
                 this.gclass0_0.method_511(this.gclass21_0, this);

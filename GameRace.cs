@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 #nullable disable
 // TODO : Seems to be a racial data
-public partial class FCTRaceRecordC21
+public partial class GameRace
 {
     public GEnum82 RaceStartingLevel;
     public int RaceGridSize;
@@ -45,13 +45,13 @@ public partial class FCTRaceRecordC21
     public int CurrentXenophobia;
     public int ResearchTargetCost;
     public int ColonyDensity;
-    public bool IsNPR;
-    public bool IsNeutralRace;
+    public bool NPR;
+    public bool NeutralRace;
     public bool ShowPopStar;
     public bool ShowPopSystemBody;
     public bool HideCMCPop;
     public bool PopByFunction;
-    public bool IsBioShips;
+    public bool BioShips;
     public string RaceName;
     public string FlagPic;
     public string string_2;
@@ -64,7 +64,7 @@ public partial class FCTRaceRecordC21
     public Decimal AnnualWealth;
     public Decimal CurrentResearchTotal;
     public Decimal ShippingLineTax;
-    public CheckState checkState_0;
+    public CheckState UseRoman;
     public Decimal decimal_6;
     public Decimal decimal_7;
     public bool bool_7 = true;
@@ -122,24 +122,24 @@ public partial class FCTRaceRecordC21
     public bool bool_20 = true;
     public GEnum46 genum46_0 = GEnum46.const_1;
     public Dictionary<int, RacialSystemSurvey> RacialSystemDictionary = new Dictionary<int, RacialSystemSurvey>();
-    public List<GClass11> list_0 = new List<GClass11>();
+    public List<RaceOperationalGroupElement> OperationalGroupElements = new List<RaceOperationalGroupElement>();
     public Dictionary<int, RankThemeEntry> RacialRankDictionary = new Dictionary<int, RankThemeEntry>();
     public Dictionary<int, GClass62> dictionary_2 = new Dictionary<int, GClass62>();
     public Dictionary<EventType, EventColourSetting> EventColourSettings = new Dictionary<EventType, EventColourSetting>();
     public Dictionary<AuroraContactStatus, Color> ContactStatusColorDic = new Dictionary<AuroraContactStatus, Color>();
     public Dictionary<AuroraResearchField, Decimal> dictionary_5 = new Dictionary<AuroraResearchField, Decimal>();
     public Dictionary<int, OrganizationNodeC93> OrganizationNodeDictionary = new Dictionary<int, OrganizationNodeC93>();
-    public List<RaceNameTheme45> RaceNameThemeList = new List<RaceNameTheme45>();
+    public List<RaceNameTheme> RaceNameThemeList = new List<RaceNameTheme>();
 
-    public Dictionary<SystemBodyData, FCTRaceGroundCombatRecord46> raceGroundCombatRecord =
-        new Dictionary<SystemBodyData, FCTRaceGroundCombatRecord46>();
+    public Dictionary<SystemBodyData, RaceGroundCombat> raceGroundCombatRecord =
+        new Dictionary<SystemBodyData, RaceGroundCombat>();
 
-    public List<int> list_2 = new List<int>();
+    public List<int> KnownRuinIDs = new List<int>();
     public List<GClass151> list_3 = new List<GClass151>();
     public List<GClass153> list_4 = new List<GClass153>();
-    public List<GClass166> list_5 = new List<GClass166>();
-    public List<GClass167> list_6 = new List<GClass167>();
-    public List<GClass168> list_7 = new List<GClass168>();
+    public List<ResearchQueue> ResearchQueues = new List<ResearchQueue>();
+    public List<PausedResearch> PausedResearches = new List<PausedResearch>();
+    public List<SwarmResearch> list_7 = new List<SwarmResearch>();
     public List<MapLabelData122> MapLabelList = new List<MapLabelData122>();
     public List<SystemBodyData> BannedSystemBodies = new List<SystemBodyData>();
     public List<SystemBodyData> list_10 = new List<SystemBodyData>();
@@ -148,7 +148,7 @@ public partial class FCTRaceRecordC21
     /// 유닛 시리즈의 각 항목(설계 클래스) - 관계오브젝트임
     /// </summary>
     public List<GroundUnitSeriesClassData> GroundUnitSeriesClassList = new List<GroundUnitSeriesClassData>();
-    public List<FCTWealthHistoryData> list_12 = new List<FCTWealthHistoryData>();
+    public List<WealthHistory> list_12 = new List<WealthHistory>();
     public Dictionary<int, GClass135> dictionary_9 = new Dictionary<int, GClass135>();
     public List<SystemData200> list_13 = new List<SystemData200>();
     public List<GClass66> list_14 = new List<GClass66>();
@@ -160,9 +160,9 @@ public partial class FCTRaceRecordC21
     public Dictionary<int, GClass117> dictionary_12 = new Dictionary<int, GClass117>();
     public Dictionary<int, GClass113> dictionary_13 = new Dictionary<int, GClass113>();
     public Dictionary<int, GClass114> dictionary_14 = new Dictionary<int, GClass114>();
-    public Dictionary<ShipHull, int> dictionary_15 = new Dictionary<ShipHull, int>();
+    public Dictionary<ShipHull, int> ShipHullCountDictionary = new Dictionary<ShipHull, int>();
     public Dictionary<int, GClass205> dictionary_16 = new Dictionary<int, GClass205>();
-    public List<TechData164> list_18 = new List<TechData164>();
+    public List<TechSystem> list_18 = new List<TechSystem>();
     public DesignDoctrine DesignDoctrine;
     public NamingTheme ClassTheme;
     public NamingTheme SystemTheme;
@@ -178,7 +178,7 @@ public partial class FCTRaceRecordC21
     public Image ShipIconLoadedImg;
     public Image SpaceStationPicLoadedImg;
     public UnknownNPRClass2 UnknownNprClass;
-    private GClass0 gclass0_0;
+    public GClass0 gclass0_0 { get; private set; }
     public TreeNode treeNode_0;
     public GEnum42 genum42_0;
     public int int_43;
@@ -187,8 +187,43 @@ public partial class FCTRaceRecordC21
     public List<FCTShipData40> list_20 = new List<FCTShipData40>();
     public RacialSystemSurvey gclass202_1;
     public GClass112 gclass112_0 = new GClass112(null, "Default View", 1);
-    public GClass22 gclass22_0;
-    public NavalAdminCommand gclass83_0;
+    private GClass22 _selectedClass;
+
+    public GClass22 SelectedClass
+    {
+        get => _selectedClass;
+        set
+        {
+            if (value != null)
+            {
+                SelectedClassIcon = value.int_0;
+            }
+            else
+            {
+                SelectedClassIcon = 0;
+            }
+            _selectedClass = value;
+        }
+    }
+
+    private NavalAdminCommand _selectedAdmin;
+    public NavalAdminCommand SelectedAdmin
+    {
+        get => _selectedAdmin;
+        set
+        {
+            if (value != null)
+            {
+                SelectedAdminIcon = value.int_0;
+            }
+            else
+            {
+                SelectedAdminIcon = 0;
+            }
+            _selectedAdmin = value;
+        }
+    }
+
     public int SelectedAdminIcon;
     public int SelectedClassIcon;
     public int int_47;
@@ -207,7 +242,7 @@ public partial class FCTRaceRecordC21
     public bool bool_21 = true;
     public RankThemeEntry gclass61_0;
     public RankThemeEntry gclass61_1;
-    public List<FCTRaceRecordC21> list_21 = new List<FCTRaceRecordC21>();
+    public List<GameRace> list_21 = new List<GameRace>();
     public bool bool_22 = true;
     public TreeNode treeNode_1;
     public bool bool_23;
@@ -216,6 +251,10 @@ public partial class FCTRaceRecordC21
     public GClass55 gclass55_0;
     public double TonnageSent;
     public int LastProgressionOrder;
+    public int ClassThemeID => this.ClassTheme.ThemeID;
+    public int SystemThemeID => this.SystemTheme.ThemeID;
+    public int GroundThemeID => this.GroundTheme.ThemeID;
+    public int MissileThemeID => this.MissileTheme.ThemeID;
 
     public void method_0(bool bool_24)
     {
@@ -223,29 +262,29 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class496 class496 = new FCTRaceRecordC21.Class496();
+            GameRace.Class496 class496 = new GameRace.Class496();
             List<GClass22> source = new List<GClass22>();
-            List<AutomatedClassDesignData> gclass14List = new List<AutomatedClassDesignData>();
-            List<AutomatedClassDesignData> list;
+            List<AutomatedClassDesign> gclass14List = new List<AutomatedClassDesign>();
+            List<AutomatedClassDesign> list;
             if (bool_24)
             {
                 source = this.gclass0_0.dictionary_3.Values
                     .Where<GClass22>(gclass22_1 => gclass22_1.gclass21_0 == this && gclass22_1.gclass187_0 == null)
                     .OrderBy<GClass22, Decimal>(gclass22_0 => gclass22_0.decimal_14).ToList<GClass22>();
-                list = source.Select<GClass22, AutomatedClassDesignData>(gclass22_0 => gclass22_0.gclass14_0).Distinct<AutomatedClassDesignData>()
-                    .OrderBy<AutomatedClassDesignData, Decimal>(gclass14_0 => gclass14_0.DeploymentDuration).ToList<AutomatedClassDesignData>();
+                list = source.Select<GClass22, AutomatedClassDesign>(gclass22_0 => gclass22_0.gclass14_0).Distinct<AutomatedClassDesign>()
+                    .OrderBy<AutomatedClassDesign, Decimal>(gclass14_0 => gclass14_0.DeploymentDuration).ToList<AutomatedClassDesign>();
             }
             else
-                list = this.DesignDoctrine.NameList_3.Select<GClass12, GClass9>(gclass12_0 => gclass12_0.gclass9_0)
-                    .SelectMany<GClass9, GClass11>(gclass9_0 => gclass9_0.method_0(this))
-                    .Select<GClass11, AutomatedClassDesignData>(gclass11_0 => gclass11_0.gclass14_0).Distinct<AutomatedClassDesignData>()
-                    .ToList<AutomatedClassDesignData>();
+                list = this.DesignDoctrine.NameList_3.Select<GClass12, OperationalGroup>(gclass12_0 => gclass12_0.gclass9_0)
+                    .SelectMany<OperationalGroup, RaceOperationalGroupElement>(gclass9_0 => gclass9_0.method_0(this))
+                    .Select<RaceOperationalGroupElement, AutomatedClassDesign>(gclass11_0 => gclass11_0.AutomatedClassDesign).Distinct<AutomatedClassDesign>()
+                    .ToList<AutomatedClassDesign>();
 
-            foreach (AutomatedClassDesignData gclass14 in list)
+            foreach (AutomatedClassDesign gclass14 in list)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class497 class497 = new FCTRaceRecordC21.Class497();
+                GameRace.Class497 class497 = new GameRace.Class497();
                 // ISSUE: reference to a compiler-generated field
                 class497.gclass14_0 = gclass14;
                 // ISSUE: reference to a compiler-generated field
@@ -253,13 +292,13 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if ((this.IsNPR ||
+                if ((this.NPR ||
                      (class497.gclass14_0.KeyTechDataA == null || class497.gclass14_0.KeyTechDataA.method_1(this)) &&
                      (class497.gclass14_0.KeyTechDataB == null || class497.gclass14_0.KeyTechDataB.method_1(this))) &&
                     class497.gclass14_0.JumpDriveDesignType != JumpDriveDesignType.const_5)
                 {
                     string string_10_1 = "";
-                    if (bool_24 && this.IsNPR)
+                    if (bool_24 && this.NPR)
                     {
                         // ISSUE: reference to a compiler-generated method
                         int num = source.Where<GClass22>(class497.method_0).Count<GClass22>();
@@ -278,8 +317,8 @@ public partial class FCTRaceRecordC21
                                 gclass22_1.gclass21_0 == this && gclass22_1.int_38 == 0 &&
                                 gclass22_1.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.MissileFighter) == null)
                         {
-                            AutomatedClassDesignData gclass14_0_1 =
-                                this.gclass0_0.AutomatedClassDesignDictionary.Values.FirstOrDefault<AutomatedClassDesignData>(gclass14_0 =>
+                            AutomatedClassDesign gclass14_0_1 =
+                                this.gclass0_0.AutomatedClassDesignDictionary.Values.FirstOrDefault<AutomatedClassDesign>(gclass14_0 =>
                                     gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.MissileFighter);
                             if (gclass14_0_1 != null)
                             {
@@ -307,8 +346,8 @@ public partial class FCTRaceRecordC21
                                 gclass22_1.gclass21_0 == this && gclass22_1.int_38 == 0 &&
                                 gclass22_1.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.EnergyFighter) == null)
                         {
-                            AutomatedClassDesignData gclass14_0_2 =
-                                this.gclass0_0.AutomatedClassDesignDictionary.Values.FirstOrDefault<AutomatedClassDesignData>(gclass14_0 =>
+                            AutomatedClassDesign gclass14_0_2 =
+                                this.gclass0_0.AutomatedClassDesignDictionary.Values.FirstOrDefault<AutomatedClassDesign>(gclass14_0 =>
                                     gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.EnergyFighter);
                             if (gclass14_0_2 != null)
                             {
@@ -333,12 +372,12 @@ public partial class FCTRaceRecordC21
             }
 
             // ISSUE: reference to a compiler-generated field
-            class496.gclass14_0 = list.FirstOrDefault<AutomatedClassDesignData>(gclass14_0 => gclass14_0.JumpDriveDesignType == JumpDriveDesignType.const_5);
+            class496.gclass14_0 = list.FirstOrDefault<AutomatedClassDesign>(gclass14_0 => gclass14_0.JumpDriveDesignType == JumpDriveDesignType.const_5);
             // ISSUE: reference to a compiler-generated field
             if (class496.gclass14_0 == null)
                 return;
             string string_10 = "";
-            if (bool_24 && this.IsNPR)
+            if (bool_24 && this.NPR)
             {
                 // ISSUE: reference to a compiler-generated method
                 int num = source.Where<GClass22>(class496.method_0).Count<GClass22>();
@@ -365,7 +404,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class555 class555 = new FCTRaceRecordC21.Class555();
+            GameRace.Class555 class555 = new GameRace.Class555();
             List<GClass22> source = this.method_288();
             foreach (GClass22 gclass22 in source)
                 gclass22.int_38 = 1;
@@ -467,7 +506,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class561 class561 = new FCTRaceRecordC21.Class561()
+                GameRace.Class561 class561 = new GameRace.Class561()
                 {
                     gclass101_0 = gclass101_1
                 };
@@ -477,7 +516,7 @@ public partial class FCTRaceRecordC21
                 int num = list.Where<GroundUnitClass101>(class561.method_0).Count<GroundUnitClass101>();
                 // ISSUE: reference to a compiler-generated method
                 string string_0 =
-                    $"{list.Where<GroundUnitClass101>(class561.method_1).OrderBy<GroundUnitClass101, int>(gclass101_0 => gclass101_0.int_0).FirstOrDefault<GroundUnitClass101>().ClassName} {AuroraUtils.smethod_79(num + 1)}";
+                    $"{list.Where<GroundUnitClass101>(class561.method_1).OrderBy<GroundUnitClass101, int>(gclass101_0 => gclass101_0.ClassID).FirstOrDefault<GroundUnitClass101>().ClassName} {AuroraUtils.smethod_79(num + 1)}";
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 GroundUnitClass101 gclass101_2 = class788.method_0(this, class561.gclass101_0.genum115_0, string_0,
@@ -496,25 +535,25 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public OperationalGroup method_3(GClass22 gclass22_1)
+    public OperationalGroupID method_3(GClass22 gclass22_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class570 class570 = new FCTRaceRecordC21.Class570();
+        GameRace.Class570 class570 = new GameRace.Class570();
         // ISSUE: reference to a compiler-generated field
         class570.gclass22_0 = gclass22_1;
         try
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.DesignDoctrine.NameList_3.Select<GClass12, GClass9>(gclass12_0 => gclass12_0.gclass9_0)
-                .SelectMany<GClass9, GClass11>(class570.method_0).Where<GClass11>(class570.method_1)
-                .Select<GClass11, OperationalGroup>(gclass11_0 => gclass11_0.gclass9_0.genum105_0).FirstOrDefault<OperationalGroup>();
+            return this.DesignDoctrine.NameList_3.Select<GClass12, OperationalGroup>(gclass12_0 => gclass12_0.gclass9_0)
+                .SelectMany<OperationalGroup, RaceOperationalGroupElement>(class570.method_0).Where<RaceOperationalGroupElement>(class570.method_1)
+                .Select<RaceOperationalGroupElement, OperationalGroupID>(gclass11_0 => gclass11_0.Element.OperationalGroupId).FirstOrDefault<OperationalGroupID>();
         }
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 197);
-            return OperationalGroup.None;
+            return OperationalGroupID.None;
         }
     }
 
@@ -522,7 +561,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class575 class575 = new FCTRaceRecordC21.Class575();
+        GameRace.Class575 class575 = new GameRace.Class575();
         // ISSUE: reference to a compiler-generated field
         class575.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -535,12 +574,12 @@ public partial class FCTRaceRecordC21
             List<GClass22> list1 = this.gclass0_0.dictionary_3.Values.Where<GClass22>(class575.method_1)
                 .ToList<GClass22>();
             // ISSUE: reference to a compiler-generated method
-            List<GClass9> list2 = this.DesignDoctrine.NameList_3.Where<GClass12>(class575.method_2)
-                .Select<GClass12, GClass9>(gclass12_0 => gclass12_0.gclass9_0).ToList<GClass9>();
-            GClass9 gclass9 = list2.OrderByDescending<GClass9, int>(gclass9_0 => gclass9_0.int_0)
-                .FirstOrDefault<GClass9>();
+            List<OperationalGroup> list2 = this.DesignDoctrine.NameList_3.Where<GClass12>(class575.method_2)
+                .Select<GClass12, OperationalGroup>(gclass12_0 => gclass12_0.gclass9_0).ToList<OperationalGroup>();
+            OperationalGroup gclass9 = list2.OrderByDescending<OperationalGroup, int>(gclass9_0 => gclass9_0.int_0)
+                .FirstOrDefault<OperationalGroup>();
             if (!bool_24)
-                gclass9 = list2.OrderBy<GClass9, int>(gclass9_0 => gclass9_0.int_0).FirstOrDefault<GClass9>();
+                gclass9 = list2.OrderBy<OperationalGroup, int>(gclass9_0 => gclass9_0.int_0).FirstOrDefault<OperationalGroup>();
             if (gclass9 == null)
                 return;
             for (int index1 = 1; index1 <= int_56; ++index1)
@@ -555,13 +594,13 @@ public partial class FCTRaceRecordC21
                     .Where<FleetData>(class575.func_0 ?? (class575.func_0 = class575.method_3))
                     .Count<FleetData>(class575.func_1 ?? (class575.func_1 = class575.method_4));
                 FleetData gclass85_0 = this.method_307($"{gclass9.string_0} {AuroraUtils.smethod_33(num + 1)}",
-                    gclass83_1, gclass146_1.SystemBodyData, gclass9.genum105_0);
+                    gclass83_1, gclass146_1.SystemBodyData, gclass9.OperationalGroupId);
                 gclass85_0.AssignedPopulation = gclass146_1;
-                foreach (GClass11 gclass11 in gclass9.method_0(this))
+                foreach (RaceOperationalGroupElement gclass11 in gclass9.method_0(this))
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class576 class576 = new FCTRaceRecordC21.Class576();
+                    GameRace.Class576 class576 = new GameRace.Class576();
                     // ISSUE: reference to a compiler-generated field
                     class576.gclass11_0 = gclass11;
                     // ISSUE: reference to a compiler-generated method
@@ -569,7 +608,7 @@ public partial class FCTRaceRecordC21
                     if (gclass22_1 != null)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        for (int index2 = 1; index2 <= class576.gclass11_0.int_0; ++index2)
+                        for (int index2 = 1; index2 <= class576.gclass11_0.NumShips; ++index2)
                         {
                             this.method_304(gclass146_1, null, null, gclass22_1, gclass85_0, null,
                                 gclass146_1.SpeciesData, null, null, "", 100M, true, true, GEnum20.const_2);
@@ -596,7 +635,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class595 class595 = new FCTRaceRecordC21.Class595();
+        GameRace.Class595 class595 = new GameRace.Class595();
         // ISSUE: reference to a compiler-generated field
         class595.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -624,12 +663,12 @@ public partial class FCTRaceRecordC21
                         // ISSUE: reference to a compiler-generated field
                         FleetData gclass85_0 =
                             this.method_307($"{gclass12.gclass9_0.string_0} {AuroraUtils.smethod_33(gclass12.int_2)}",
-                                gclass83_1, class595.gclass146_0.SystemBodyData, gclass12.gclass9_0.genum105_0);
-                        foreach (GClass11 gclass11 in gclass12.gclass9_0.method_0(this))
+                                gclass83_1, class595.gclass146_0.SystemBodyData, gclass12.gclass9_0.OperationalGroupId);
+                        foreach (RaceOperationalGroupElement gclass11 in gclass12.gclass9_0.method_0(this))
                         {
                             // ISSUE: object of a compiler-generated type is created
                             // ISSUE: variable of a compiler-generated type
-                            FCTRaceRecordC21.Class596 class596 = new FCTRaceRecordC21.Class596();
+                            GameRace.Class596 class596 = new GameRace.Class596();
                             // ISSUE: reference to a compiler-generated field
                             class596.gclass11_0 = gclass11;
                             // ISSUE: reference to a compiler-generated method
@@ -637,7 +676,7 @@ public partial class FCTRaceRecordC21
                             if (gclass22_1 != null)
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                for (int index2 = 1; index2 <= class596.gclass11_0.int_0; ++index2)
+                                for (int index2 = 1; index2 <= class596.gclass11_0.NumShips; ++index2)
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
@@ -731,17 +770,17 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public GClass22 method_6(ShippingLineData gclass187_0, AutomatedClassDesignData gclass14_0)
+    public GClass22 method_6(ShippingLineData gclass187_0, AutomatedClassDesign gclass14_0)
     {
         try
         {
             if (gclass187_0.int_2 == 0 || gclass187_0.gclass230_0 == null)
             {
-                TechData164 gclass164_1 = this.method_387(TechType.MaximumEngineSize);
-                TechData164 gclass164_1_1 = this.method_387(TechType.EngineTechnology);
-                TechData164 gclass164_2 = this.method_387(TechType.FuelConsumption);
-                TechData164 gclass164_3 = this.method_387(TechType.MinEngineThrustModifier);
-                TechData164 gclass164_3_1 = this.gclass0_0.TechDataDictionary[26091];
+                TechSystem gclass164_1 = this.method_387(TechType.MaximumEngineSize);
+                TechSystem gclass164_1_1 = this.method_387(TechType.EngineTechnology);
+                TechSystem gclass164_2 = this.method_387(TechType.FuelConsumption);
+                TechSystem gclass164_3 = this.method_387(TechType.MinEngineThrustModifier);
+                TechSystem gclass164_3_1 = this.gclass0_0.TechDataDictionary[26091];
                 int decimal_14 = !(gclass164_1.decimal_0 > 100M) ? (int)gclass164_1.decimal_0 : 100;
                 gclass187_0.int_2 = (int)Math.Ceiling((3 + AuroraUtils.GetRandomInteger(5)) / (decimal_14 / 25M));
                 gclass187_0.gclass230_0 = this.gclass0_0.method_457(this, gclass164_1_1, gclass164_2, gclass164_3_1,
@@ -827,7 +866,7 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            TechData164 gclass164_4_1 = this.method_387(TechType.Armour);
+            TechSystem gclass164_4_1 = this.method_387(TechType.Armour);
             int decimal1 = (int)gclass164_4_1.decimal_1;
             if (!bool_24)
             {
@@ -973,7 +1012,7 @@ public partial class FCTRaceRecordC21
                     ? (int)Math.Round(this.DesignDoctrine.WarshipHullSize * (32 /*0x20*/ + AuroraUtils.GetRandomInteger(6)) / 100M)
                     : (int)Math.Round(this.DesignDoctrine.WarshipHullSize * (34 + AuroraUtils.GetRandomInteger(8)) / 100M);
                 this.DesignDoctrine.EngineSizeMilitary = (int)(this.DesignDoctrine.WarshipEngineProportion / (Decimal)this.DesignDoctrine.NumWarshipEngines);
-                TechData164 gclass164 = this.method_387(TechType.EngineTechnology);
+                TechSystem gclass164 = this.method_387(TechType.EngineTechnology);
                 if (gclass164.decimal_2 > 3M)
                 {
                     int num4 = (int)gclass164.decimal_2 - 3;
@@ -1026,7 +1065,7 @@ public partial class FCTRaceRecordC21
                 this.DesignDoctrine.MiningModules += (int)Math.Round(AuroraUtils.smethod_21(1) / 2.0);
             }
 
-            TechData164 gclass164_1 = this.method_387(TechType.MaximumEngineSize);
+            TechSystem gclass164_1 = this.method_387(TechType.MaximumEngineSize);
             this.DesignDoctrine.EngineSizeCommercial = !(gclass164_1.decimal_0 > 100M) ? (int)gclass164_1.decimal_0 : 100;
             this.DesignDoctrine.NumCommercialEngines =
                 (int)Math.Ceiling((4 + AuroraUtils.GetRandomInteger(4)) / (this.DesignDoctrine.EngineSizeCommercial / 25M));
@@ -1035,20 +1074,20 @@ public partial class FCTRaceRecordC21
             this.DesignDoctrine.WarshipArmour = decimal1 + AuroraUtils.GetRandomInteger(int_72);
             if (bool_24 && this.DesignDoctrine.WarshipArmour < int7)
                 this.DesignDoctrine.WarshipArmour = int7;
-            TechData164 gclass164_2 = this.method_387(TechType.ActiveSensorStrength);
-            TechData164 gclass164_3 = this.method_387(TechType.EMSensorSensitivity);
-            TechData164 gclass164_1_1 = this.method_387(TechType.ThermalSensorSensitivity);
-            TechData164 gclass164_4 = this.method_387(TechType.BeamFireControlDistanceRating);
-            TechData164 gclass164_5 = this.method_387(TechType.FireControlSpeedRating);
-            TechData164 gclass164_6 = this.method_387(TechType.ECCM);
-            TechData164 gclass164_7 = this.gclass0_0.TechDataDictionary[26827];
-            TechData164 gclass164_8 = this.gclass0_0.TechDataDictionary[26828];
-            TechData164 gclass164_9 = this.gclass0_0.TechDataDictionary[26546];
-            TechData164 gclass164_10 = this.gclass0_0.TechDataDictionary[24372];
-            TechData164 gclass164_11 = this.gclass0_0.TechDataDictionary[24370];
-            TechData164 gclass164_12 = this.gclass0_0.TechDataDictionary[24379];
-            TechData164 gclass164_13 = this.gclass0_0.TechDataDictionary[24375];
-            TechData164 gclass164_14 = this.gclass0_0.TechDataDictionary[24380];
+            TechSystem gclass164_2 = this.method_387(TechType.ActiveSensorStrength);
+            TechSystem gclass164_3 = this.method_387(TechType.EMSensorSensitivity);
+            TechSystem gclass164_1_1 = this.method_387(TechType.ThermalSensorSensitivity);
+            TechSystem gclass164_4 = this.method_387(TechType.BeamFireControlDistanceRating);
+            TechSystem gclass164_5 = this.method_387(TechType.FireControlSpeedRating);
+            TechSystem gclass164_6 = this.method_387(TechType.ECCM);
+            TechSystem gclass164_7 = this.gclass0_0.TechDataDictionary[26827];
+            TechSystem gclass164_8 = this.gclass0_0.TechDataDictionary[26828];
+            TechSystem gclass164_9 = this.gclass0_0.TechDataDictionary[26546];
+            TechSystem gclass164_10 = this.gclass0_0.TechDataDictionary[24372];
+            TechSystem gclass164_11 = this.gclass0_0.TechDataDictionary[24370];
+            TechSystem gclass164_12 = this.gclass0_0.TechDataDictionary[24379];
+            TechSystem gclass164_13 = this.gclass0_0.TechDataDictionary[24375];
+            TechSystem gclass164_14 = this.gclass0_0.TechDataDictionary[24380];
             if (bool_24)
             {
                 this.method_7(this.DesignDoctrine.ActiveNavigation);
@@ -1168,10 +1207,10 @@ public partial class FCTRaceRecordC21
                 GEnum32.const_0, null, null, true);
             this.DesignDoctrine.ThermalSensorSize6 = this.gclass0_0.method_465(this, gclass164_1_1, gclass164_9, 6M,
                 GEnum32.const_0, null, null, true);
-            TechData164 gclass164_1_2 = this.method_387(TechType.JumpDriveEfficiency);
-            TechData164 gclass164_2_1 = this.method_387(TechType.MaxJumpSquadronSize);
-            TechData164 gclass164_3_1 = this.method_387(TechType.MaxSquadronJumpRadius);
-            TechData164 gclass164_4_2 = this.gclass0_0.TechDataDictionary[33302];
+            TechSystem gclass164_1_2 = this.method_387(TechType.JumpDriveEfficiency);
+            TechSystem gclass164_2_1 = this.method_387(TechType.MaxJumpSquadronSize);
+            TechSystem gclass164_3_1 = this.method_387(TechType.MaxSquadronJumpRadius);
+            TechSystem gclass164_4_2 = this.gclass0_0.TechDataDictionary[33302];
             if (gclass164_1_2 != null && gclass164_2_1 != null)
             {
                 this.DesignDoctrine.JumpDriveDestroyer = this.gclass0_0.method_456(this, this.DesignDoctrine.WarshipHullSize, gclass164_1_2,
@@ -1195,9 +1234,9 @@ public partial class FCTRaceRecordC21
                 }
             }
 
-            TechData164 gclass164_1_3 = this.method_387(TechType.MissileLauncherReloadRate);
-            TechData164 gclass164_2_2 = this.gclass0_0.TechDataDictionary[26602];
-            TechData164 gclass164_2_3 = this.gclass0_0.TechDataDictionary[26234];
+            TechSystem gclass164_1_3 = this.method_387(TechType.MissileLauncherReloadRate);
+            TechSystem gclass164_2_2 = this.gclass0_0.TechDataDictionary[26602];
+            TechSystem gclass164_2_3 = this.gclass0_0.TechDataDictionary[26234];
             if (this.DesignDoctrine.LauncherSize > 0)
             {
                 this.DesignDoctrine.LauncherStandard = this.gclass0_0.method_453(this, gclass164_1_3,
@@ -1212,12 +1251,12 @@ public partial class FCTRaceRecordC21
             if (this.DesignDoctrine.LauncherDecoy == null)
                 this.DesignDoctrine.LauncherDecoy = this.gclass0_0.method_453(this, null, null, this.DesignDoctrine.LauncherDecoySize, null,
                     null, AuroraComponentType.DecoyMissileLauncher, true);
-            TechData164 gclass164_1_4 = this.method_387(TechType.EngineTechnology);
-            TechData164 gclass164_2_4 = this.method_387(TechType.FuelConsumption);
-            TechData164 gclass164_15 = this.method_387(TechType.MinEngineThrustModifier);
-            TechData164 gclass164_16 = this.method_387(TechType.MaxEngineThrustModifier);
-            TechData164 gclass164_3_2 = this.method_387(TechType.ThermalReduction);
-            TechData164 gclass164_3_3 = this.gclass0_0.TechDataDictionary[26091];
+            TechSystem gclass164_1_4 = this.method_387(TechType.EngineTechnology);
+            TechSystem gclass164_2_4 = this.method_387(TechType.FuelConsumption);
+            TechSystem gclass164_15 = this.method_387(TechType.MinEngineThrustModifier);
+            TechSystem gclass164_16 = this.method_387(TechType.MaxEngineThrustModifier);
+            TechSystem gclass164_3_2 = this.method_387(TechType.ThermalReduction);
+            TechSystem gclass164_3_3 = this.gclass0_0.TechDataDictionary[26091];
             if (!bool_24)
             {
                 this.DesignDoctrine.SurveyEngineBoost = 0.45M + AuroraUtils.GetRandomInteger(9) * 0.05M;
@@ -1246,7 +1285,7 @@ public partial class FCTRaceRecordC21
                           1000M) / gclass164_5.decimal_0, 2);
             if (decimal_14_1 > 4M)
                 decimal_14_1 = 4M;
-            TechData164 gclass164_5_1 = this.gclass0_0.TechDataDictionary[82477];
+            TechSystem gclass164_5_1 = this.gclass0_0.TechDataDictionary[82477];
             this.DesignDoctrine.BeamFCSRange = this.gclass0_0.method_463(this, gclass164_4, gclass164_5, 4M, decimal_14_1,
                 gclass164_9, gclass164_6, gclass164_5_1, null, null, true);
             this.DesignDoctrine.BeamFCSRange = this.gclass0_0.method_463(this, gclass164_4, gclass164_5, 4M, decimal_14_1,
@@ -1255,7 +1294,7 @@ public partial class FCTRaceRecordC21
                 gclass164_9, gclass164_6, gclass164_5_1, null, null, true);
             this.DesignDoctrine.BeamFCSShortRange = this.gclass0_0.method_463(this, gclass164_4, gclass164_5, 2M, decimal_14_1,
                 gclass164_9, gclass164_6, gclass164_5_1, null, null, true);
-            TechData164 gclass164_5_2 = this.gclass0_0.TechDataDictionary[82478];
+            TechSystem gclass164_5_2 = this.gclass0_0.TechDataDictionary[82478];
             Decimal decimal_14_2 =
                 this.gclass0_0.method_497(this.DesignDoctrine.EngineFighter.decimal_3, this.DesignDoctrine.FighterEngineSize / 0.4M) /
                 gclass164_5.decimal_0;
@@ -1263,31 +1302,31 @@ public partial class FCTRaceRecordC21
                 decimal_14_2 = 4M;
             this.DesignDoctrine.BeamFCSFighter = this.gclass0_0.method_463(this, gclass164_4, gclass164_5, 0.75M,
                 decimal_14_2, gclass164_9, gclass164_6, gclass164_5_2, null, null, true);
-            TechData164 gclass164_1_5 = this.method_387(TechType.LaserFocalSize);
-            TechData164 gclass164_2_5 = this.method_387(TechType.LaserWavelength);
-            TechData164 gclass164_17 = this.method_387(TechType.CapacitorRechargeRate);
-            TechData164 gclass164_1_6 = this.method_387(TechType.RailgunType);
-            TechData164 gclass164_18 = this.method_387(TechType.RailgunVelocity);
-            TechData164 gclass164_1_7 = this.method_387(TechType.MesonFocalSize);
-            TechData164 gclass164_2_6 = this.method_387(TechType.MesonFocusing);
-            TechData164 gclass164_1_8 = this.method_387(TechType.ParticleBeamStrength);
-            TechData164 gclass164_2_7 = this.method_387(TechType.MaximumParticleBeamRange);
-            TechData164 gclass164_4_3 = this.method_387(TechType.ParticleLance);
-            TechData164 gclass164_1_9 = this.method_387(TechType.CarronadeCalibre);
-            TechData164 gclass164_1_10 = this.method_387(TechType.GaussCannonRateofFire);
-            TechData164 gclass164_2_8 = this.method_387(TechType.GaussCannonVelocity);
-            TechData164 gclass164_5_3 = this.method_387(TechType.EnergyWeaponMount);
-            TechData164 gclass164_19 = this.method_387(TechType.TurretRotationGear);
-            TechData164 gclass164_4_4 = this.method_387(TechType.MesonArmourRetardation);
-            TechData164 gclass164_1_11 = this.method_387(TechType.MicrowaveFocalSize);
-            TechData164 gclass164_2_9 = this.method_387(TechType.MicrowaveFocusing);
-            TechData164 gclass164_4_5 = this.gclass0_0.TechDataDictionary[26596];
-            TechData164 gclass164_20 = this.gclass0_0.TechDataDictionary[55406];
-            TechData164 gclass164_3_4 = this.gclass0_0.TechDataDictionary[26645];
-            TechData164 gclass164_1_12 = this.gclass0_0.TechDataDictionary[762];
-            TechData164 gclass164_1_13 = this.gclass0_0.TechDataDictionary[25579];
-            TechData164 gclass164_21 = this.gclass0_0.TechDataDictionary[25630];
-            TechData164 gclass164_1_14 = this.gclass0_0.TechDataDictionary[26515];
+            TechSystem gclass164_1_5 = this.method_387(TechType.LaserFocalSize);
+            TechSystem gclass164_2_5 = this.method_387(TechType.LaserWavelength);
+            TechSystem gclass164_17 = this.method_387(TechType.CapacitorRechargeRate);
+            TechSystem gclass164_1_6 = this.method_387(TechType.RailgunType);
+            TechSystem gclass164_18 = this.method_387(TechType.RailgunVelocity);
+            TechSystem gclass164_1_7 = this.method_387(TechType.MesonFocalSize);
+            TechSystem gclass164_2_6 = this.method_387(TechType.MesonFocusing);
+            TechSystem gclass164_1_8 = this.method_387(TechType.ParticleBeamStrength);
+            TechSystem gclass164_2_7 = this.method_387(TechType.MaximumParticleBeamRange);
+            TechSystem gclass164_4_3 = this.method_387(TechType.ParticleLance);
+            TechSystem gclass164_1_9 = this.method_387(TechType.CarronadeCalibre);
+            TechSystem gclass164_1_10 = this.method_387(TechType.GaussCannonRateofFire);
+            TechSystem gclass164_2_8 = this.method_387(TechType.GaussCannonVelocity);
+            TechSystem gclass164_5_3 = this.method_387(TechType.EnergyWeaponMount);
+            TechSystem gclass164_19 = this.method_387(TechType.TurretRotationGear);
+            TechSystem gclass164_4_4 = this.method_387(TechType.MesonArmourRetardation);
+            TechSystem gclass164_1_11 = this.method_387(TechType.MicrowaveFocalSize);
+            TechSystem gclass164_2_9 = this.method_387(TechType.MicrowaveFocusing);
+            TechSystem gclass164_4_5 = this.gclass0_0.TechDataDictionary[26596];
+            TechSystem gclass164_20 = this.gclass0_0.TechDataDictionary[55406];
+            TechSystem gclass164_3_4 = this.gclass0_0.TechDataDictionary[26645];
+            TechSystem gclass164_1_12 = this.gclass0_0.TechDataDictionary[762];
+            TechSystem gclass164_1_13 = this.gclass0_0.TechDataDictionary[25579];
+            TechSystem gclass164_21 = this.gclass0_0.TechDataDictionary[25630];
+            TechSystem gclass164_1_14 = this.gclass0_0.TechDataDictionary[26515];
             bool bool_25 = false;
             if (this.SpecialNPRID == SpecialNPRIDs.StarSwarm)
                 bool_25 = true;
@@ -1369,8 +1408,8 @@ public partial class FCTRaceRecordC21
 
             this.DesignDoctrine.CIWS = this.gclass0_0.method_460(this, gclass164_1_10, gclass164_4, gclass164_5,
                 gclass164_2, gclass164_19, gclass164_6, null, null, true);
-            TechData164 gclass164_1_15 = this.method_387(TechType.CloakingEfficiency);
-            TechData164 gclass164_2_10 = this.method_387(TechType.CloakingSensorReduction);
+            TechSystem gclass164_1_15 = this.method_387(TechType.CloakingEfficiency);
+            TechSystem gclass164_2_10 = this.method_387(TechType.CloakingSensorReduction);
             if (gclass164_1_15 != null && gclass164_2_10 != null)
             {
                 this.DesignDoctrine.CloakDD = this.gclass0_0.method_451(this, gclass164_1_15, gclass164_2_10,
@@ -1381,7 +1420,7 @@ public partial class FCTRaceRecordC21
                     Math.Ceiling(this.DesignDoctrine.WarshipHullSize * 3 / gclass164_1_15.decimal_0), null, null, true);
             }
 
-            TechData164 gclass164_1_16 = this.method_387(TechType.MissileWarheadStrength);
+            TechSystem gclass164_1_16 = this.method_387(TechType.MissileWarheadStrength);
             Decimal decimal_13_4 = gclass164_16.decimal_0 * 2M;
             Decimal decimal_13_5 = decimal_13_4 * (0.75M + AuroraUtils.GetRandomInteger(8) * 0.025M);
             if (decimal_13_5 > 4M)
@@ -1463,17 +1502,17 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public GClass22 method_11(AutomatedClassDesignData gclass14_0, ShippingLineData gclass187_0, string string_10)
+    public GClass22 method_11(AutomatedClassDesign gclass14_0, ShippingLineData gclass187_0, string string_10)
     {
         try
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class549 class549 = new FCTRaceRecordC21.Class549();
+            GameRace.Class549 class549 = new GameRace.Class549();
             DesignDoctrine gclass200 = this.DesignDoctrine;
             GClass22 gclass22_0_1 = null;
             Decimal decimal_24 = 0M;
-            if (this.IsNPR)
+            if (this.NPR)
             {
                 if (gclass14_0.KeyTechDataA != null && !gclass14_0.KeyTechDataA.method_1(this))
                     this.method_282(gclass14_0.KeyTechDataA, null, null, null, true, true);
@@ -1536,7 +1575,7 @@ public partial class FCTRaceRecordC21
                 gclass22_1_1.method_0(gclass14_0.CryogenicModules, GEnum118.const_7);
                 gclass22_1_1.method_0(gclass14_0.LuxuryAccomodation, GEnum118.const_49);
                 gclass22_1_1.method_0(gclass14_0.CargoHandling, GEnum118.const_3);
-                if (this.IsNPR)
+                if (this.NPR)
                 {
                     gclass22_1_1.method_0(gclass14_0.AuxiliaryControl, GEnum118.const_58);
                     gclass22_1_1.method_0(gclass14_0.ScienceDepartment, GEnum118.const_61);
@@ -1674,7 +1713,7 @@ public partial class FCTRaceRecordC21
                     {
                         Dictionary<int, GClass228>.ValueCollection values = gclass22_1_1.dictionary_0.Values;
                         // ISSUE: reference to a compiler-generated field
-                        Func<GClass228, bool> func = FCTRaceRecordC21.swappedSymbol.swappedSymbol2__11_0;
+                        Func<GClass228, bool> func = GameRace.swappedSymbol.swappedSymbol2__11_0;
                         if (func == null)
                             goto label_82;
                         goto label_227;
@@ -1700,7 +1739,7 @@ public partial class FCTRaceRecordC21
                         goto label_80;
                         label_82:
                         // ISSUE: reference to a compiler-generated field
-                        FCTRaceRecordC21.swappedSymbol.swappedSymbol2__11_0 = predicate = gclass228_0 =>
+                        GameRace.swappedSymbol.swappedSymbol2__11_0 = predicate = gclass228_0 =>
                             gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
                             AuroraComponentType.TroopTransport;
                         goto label_80;
@@ -1748,7 +1787,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class550 class550 = new FCTRaceRecordC21.Class550();
+                    GameRace.Class550 class550 = new GameRace.Class550();
                     gclass22_1_1.method_51(gclass200.LauncherDecoy, gclass14_0.DecoyLaunchers);
                     gclass22_1_1.method_85(0, 0, "");
                     Decimal decimal_13_1 = (decimal_24 - gclass22_1_1.decimal_14) * (Decimal)gclass200.ShieldProportion;
@@ -2253,7 +2292,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public ShipComponent method_12(AutomatedClassDesignData gclass14_0, DesignDoctrine gclass20_1)
+    public ShipComponent method_12(AutomatedClassDesign gclass14_0, DesignDoctrine gclass20_1)
     {
         try
         {
@@ -2319,7 +2358,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public ShipComponent method_13(AutomatedClassDesignData gclass14_0, DesignDoctrine gclass20_1)
+    public ShipComponent method_13(AutomatedClassDesign gclass14_0, DesignDoctrine gclass20_1)
     {
         try
         {
@@ -2339,7 +2378,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public RaceMissile method_14(AutomatedClassDesignData gclass14_0, DesignDoctrine gclass20_1)
+    public RaceMissile method_14(AutomatedClassDesign gclass14_0, DesignDoctrine gclass20_1)
     {
         try
         {
@@ -2363,7 +2402,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_15(GClass22 gclass22_1, AutomatedClassDesignData gclass14_0, ShippingLineData gclass187_0)
+    public void method_15(GClass22 gclass22_1, AutomatedClassDesign gclass14_0, ShippingLineData gclass187_0)
     {
         try
         {
@@ -2397,7 +2436,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class551 class551 = new FCTRaceRecordC21.Class551();
+        GameRace.Class551 class551 = new GameRace.Class551();
         // ISSUE: reference to a compiler-generated field
         class551.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -2430,9 +2469,9 @@ public partial class FCTRaceRecordC21
                     gclass65_0_1.double_5 = class551.gclass40_0.gclass85_0.YCoord;
                 }
 
-                if (gclass65_0_1.decimal_3 == this.gclass0_0.decimal_0 - this.gclass0_0.int_132)
+                if (gclass65_0_1.decimal_3 == this.gclass0_0.GameTime - this.gclass0_0.SubPulseLength)
                 {
-                    gclass65_0_1.int_4 += this.gclass0_0.int_132;
+                    gclass65_0_1.int_4 += this.gclass0_0.SubPulseLength;
                     if (gclass65_0_1.gclass200_0 == gclass200_0)
                     {
                         gclass65_0_1.double_2 = gclass65_0_1.double_0;
@@ -2442,7 +2481,7 @@ public partial class FCTRaceRecordC21
                 else
                 {
                     gclass65_0_1.int_4 = 0;
-                    gclass65_0_1.decimal_2 = this.gclass0_0.decimal_0;
+                    gclass65_0_1.decimal_2 = this.gclass0_0.GameTime;
                     // ISSUE: reference to a compiler-generated field
                     gclass65_0_1.double_4 = class551.gclass40_0.gclass85_0.XCoord;
                     // ISSUE: reference to a compiler-generated field
@@ -2455,7 +2494,7 @@ public partial class FCTRaceRecordC21
                 gclass65_0_1.double_0 = class551.gclass40_0.gclass85_0.XCoord;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_1.double_1 = class551.gclass40_0.gclass85_0.YCoord;
-                gclass65_0_1.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_0_1.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_0_1.gclass200_0 = gclass200_0;
                 if (decimal_29 != gclass65_0_1.decimal_0)
                 {
@@ -2497,8 +2536,8 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_2.genum10_0 = class551.genum10_0;
                 gclass65_0_2.auroraContactType_0 = AuroraContactType.Ship;
-                gclass65_0_2.decimal_1 = this.gclass0_0.decimal_0;
-                gclass65_0_2.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_0_2.decimal_1 = this.gclass0_0.GameTime;
+                gclass65_0_2.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_0_2.gclass200_0 = gclass200_0;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_2.double_0 = class551.gclass40_0.gclass85_0.XCoord;
@@ -2549,7 +2588,7 @@ public partial class FCTRaceRecordC21
                 }
 
                 this.gclass0_0.dictionary_28.Add(gclass65_0_2.int_0, gclass65_0_2);
-                if (!this.IsNPR)
+                if (!this.NPR)
                     return;
                 // ISSUE: reference to a compiler-generated field
                 if (class551.gclass40_0.gclass22_0.bool_2)
@@ -2589,7 +2628,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class552 class552 = new FCTRaceRecordC21.Class552();
+        GameRace.Class552 class552 = new GameRace.Class552();
         // ISSUE: reference to a compiler-generated field
         class552.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -2608,9 +2647,9 @@ public partial class FCTRaceRecordC21
                 gclass65_1.double_3 = class552.gclass132_0.double_1;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_1.int_5 = (int)class552.gclass132_0.double_9;
-                if (gclass65_1.decimal_3 == this.gclass0_0.decimal_0 - this.gclass0_0.int_132)
+                if (gclass65_1.decimal_3 == this.gclass0_0.GameTime - this.gclass0_0.SubPulseLength)
                 {
-                    gclass65_1.int_4 += this.gclass0_0.int_132;
+                    gclass65_1.int_4 += this.gclass0_0.SubPulseLength;
                     if (gclass65_1.gclass200_0 == gclass200_0)
                     {
                         gclass65_1.double_2 = gclass65_1.double_0;
@@ -2620,14 +2659,14 @@ public partial class FCTRaceRecordC21
                 else
                 {
                     gclass65_1.int_4 = 0;
-                    gclass65_1.decimal_2 = this.gclass0_0.decimal_0;
+                    gclass65_1.decimal_2 = this.gclass0_0.GameTime;
                 }
 
                 // ISSUE: reference to a compiler-generated field
                 gclass65_1.double_0 = class552.gclass132_0.double_0;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_1.double_1 = class552.gclass132_0.double_1;
-                gclass65_1.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_1.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_1.gclass200_0 = gclass200_0;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_1.int_2 = class552.gclass132_0.dictionary_2.Count;
@@ -2645,8 +2684,8 @@ public partial class FCTRaceRecordC21
                 gclass65_2.genum10_0 = class552.genum10_0;
                 gclass65_2.auroraContactType_0 = AuroraContactType.Salvo;
                 gclass65_2.decimal_0 = decimal_29;
-                gclass65_2.decimal_1 = this.gclass0_0.decimal_0;
-                gclass65_2.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_2.decimal_1 = this.gclass0_0.GameTime;
+                gclass65_2.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_2.gclass200_0 = gclass200_0;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_2.double_0 = class552.gclass132_0.double_0;
@@ -2687,7 +2726,7 @@ public partial class FCTRaceRecordC21
                     : this.PerceivedAliens[class552.gclass132_0.gclass21_0.RaceID];
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if (!this.IsNPR || class552.gclass132_0.double_9 != 0.0 || class552.gclass132_0.gclass21_0 == null ||
+                if (!this.NPR || class552.gclass132_0.double_9 != 0.0 || class552.gclass132_0.gclass21_0 == null ||
                     gclass110.ContactStatus != AuroraContactStatus.Hostile)
                     return;
                 this.method_188(gclass65_2.gclass200_0, null, null, WayPointType.POI, gclass65_2.double_0,
@@ -2709,7 +2748,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class553 class553 = new FCTRaceRecordC21.Class553();
+        GameRace.Class553 class553 = new GameRace.Class553();
         // ISSUE: reference to a compiler-generated field
         class553.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -2730,21 +2769,21 @@ public partial class FCTRaceRecordC21
                 gclass65_0_1.double_3 = class553.gclass146_0.method_88();
                 gclass65_0_1.decimal_0 = int_56;
                 gclass65_0_1.int_5 = 0;
-                if (gclass65_0_1.decimal_3 == this.gclass0_0.decimal_0 - this.gclass0_0.int_132)
+                if (gclass65_0_1.decimal_3 == this.gclass0_0.GameTime - this.gclass0_0.SubPulseLength)
                 {
-                    gclass65_0_1.int_4 += this.gclass0_0.int_132;
+                    gclass65_0_1.int_4 += this.gclass0_0.SubPulseLength;
                 }
                 else
                 {
                     gclass65_0_1.int_4 = 0;
-                    gclass65_0_1.decimal_2 = this.gclass0_0.decimal_0;
+                    gclass65_0_1.decimal_2 = this.gclass0_0.GameTime;
                 }
 
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_1.double_0 = class553.gclass146_0.method_87();
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_1.double_1 = class553.gclass146_0.method_88();
-                gclass65_0_1.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_0_1.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_0_1.gclass200_0 = gclass200_0;
                 // ISSUE: reference to a compiler-generated field
                 if (class553.auroraContactType_0 == AuroraContactType.GroundUnit)
@@ -2799,8 +2838,8 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_2.auroraContactType_0 = class553.auroraContactType_0;
                 gclass65_0_2.decimal_0 = int_56;
-                gclass65_0_2.decimal_1 = this.gclass0_0.decimal_0;
-                gclass65_0_2.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_0_2.decimal_1 = this.gclass0_0.GameTime;
+                gclass65_0_2.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_0_2.gclass200_0 = gclass200_0;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_0_2.double_0 = class553.gclass146_0.method_87();
@@ -2856,7 +2895,7 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 GClass113 gclass113 = this.method_43(class553.gclass146_0, gclass65_0_2);
                 this.gclass0_0.dictionary_28.Add(gclass65_0_2.int_0, gclass65_0_2);
-                if (!this.IsNPR ||
+                if (!this.NPR ||
                     this.method_91(gclass65_0_2.double_0, gclass65_0_2.double_1, gclass65_0_2.gclass200_0,
                         AuroraUtils.double_11) &&
                     gclass113.gclass110_0.ContactStatus != AuroraContactStatus.Hostile)
@@ -2875,7 +2914,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class554 class554 = new FCTRaceRecordC21.Class554();
+        GameRace.Class554 class554 = new GameRace.Class554();
         // ISSUE: reference to a compiler-generated field
         class554.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -2892,21 +2931,21 @@ public partial class FCTRaceRecordC21
                 gclass65_1.double_3 = class554.gclass193_0.gclass40_0.gclass85_0.YCoord;
                 gclass65_1.decimal_0 = int_56;
                 gclass65_1.int_5 = 0;
-                if (gclass65_1.decimal_3 == this.gclass0_0.decimal_0 - this.gclass0_0.int_132)
+                if (gclass65_1.decimal_3 == this.gclass0_0.GameTime - this.gclass0_0.SubPulseLength)
                 {
-                    gclass65_1.int_4 += this.gclass0_0.int_132;
+                    gclass65_1.int_4 += this.gclass0_0.SubPulseLength;
                 }
                 else
                 {
                     gclass65_1.int_4 = 0;
-                    gclass65_1.decimal_2 = this.gclass0_0.decimal_0;
+                    gclass65_1.decimal_2 = this.gclass0_0.GameTime;
                 }
 
                 // ISSUE: reference to a compiler-generated field
                 gclass65_1.double_0 = class554.gclass193_0.gclass40_0.gclass85_0.XCoord;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_1.double_1 = class554.gclass193_0.gclass40_0.gclass85_0.YCoord;
-                gclass65_1.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_1.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_1.gclass200_0 = gclass200_0;
                 gclass65_1.string_0 = "Shipyard Complex Signature: " + int_56.ToString();
             }
@@ -2922,8 +2961,8 @@ public partial class FCTRaceRecordC21
                 gclass65_2.genum10_0 = GEnum10.const_0;
                 gclass65_2.auroraContactType_0 = AuroraContactType.Shipyard;
                 gclass65_2.decimal_0 = int_56;
-                gclass65_2.decimal_1 = this.gclass0_0.decimal_0;
-                gclass65_2.decimal_3 = this.gclass0_0.decimal_0;
+                gclass65_2.decimal_1 = this.gclass0_0.GameTime;
+                gclass65_2.decimal_3 = this.gclass0_0.GameTime;
                 gclass65_2.gclass200_0 = gclass200_0;
                 // ISSUE: reference to a compiler-generated field
                 gclass65_2.double_0 = class554.gclass193_0.gclass40_0.gclass85_0.XCoord;
@@ -2941,7 +2980,7 @@ public partial class FCTRaceRecordC21
                 gclass65_2.string_0 = "Shipyard Complex Signature: " + int_56.ToString();
                 // ISSUE: reference to a compiler-generated field
                 AlienRaceInfo gclass110 = this.method_45(class554.gclass193_0);
-                if (this.IsNPR &&
+                if (this.NPR &&
                     (!this.method_91(gclass65_2.double_0, gclass65_2.double_1, gclass65_2.gclass200_0,
                         AuroraUtils.double_11) || gclass110.ContactStatus == AuroraContactStatus.Hostile))
                     this.method_188(gclass65_2.gclass200_0, null, null, WayPointType.POI, gclass65_2.double_0,
@@ -2959,7 +2998,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class556 class556 = new FCTRaceRecordC21.Class556();
+        GameRace.Class556 class556 = new GameRace.Class556();
         // ISSUE: reference to a compiler-generated field
         class556.gclass118_0 = gclass118_0;
         try
@@ -2980,7 +3019,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class557 class557 = new FCTRaceRecordC21.Class557();
+        GameRace.Class557 class557 = new GameRace.Class557();
         // ISSUE: reference to a compiler-generated field
         class557.gclass110_0 = gclass110_1;
         try
@@ -2996,7 +3035,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class558 class558 = new FCTRaceRecordC21.Class558();
+                GameRace.Class558 class558 = new GameRace.Class558();
                 // ISSUE: reference to a compiler-generated field
                 class558.gclass115_0 = gclass115;
                 // ISSUE: reference to a compiler-generated method
@@ -3078,7 +3117,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_22(FCTRaceRecordC21 gclass21_0, Decimal decimal_29, bool bool_24)
+    public void method_22(GameRace gclass21_0, Decimal decimal_29, bool bool_24)
     {
         try
         {
@@ -3108,7 +3147,7 @@ public partial class FCTRaceRecordC21
             if (!this.PerceivedAliens.ContainsKey(gclass37_0.gclass21_1.RaceID))
                 return;
             int num1 = 1;
-            if (gclass40_1.gclass21_0.IsNPR &&
+            if (gclass40_1.gclass21_0.NPR &&
                 gclass40_1.gclass22_0.auroraClassMainFunction_0 == AuroraClassMainFunction.Diplomacy)
                 num1 *= 3;
             AlienRaceInfo gclass110_0 = this.PerceivedAliens[gclass37_0.gclass21_1.RaceID];
@@ -3159,7 +3198,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class559 class559 = new FCTRaceRecordC21.Class559();
+        GameRace.Class559 class559 = new GameRace.Class559();
         // ISSUE: reference to a compiler-generated field
         class559.gclass40_0 = gclass40_1;
         try
@@ -3169,11 +3208,11 @@ public partial class FCTRaceRecordC21
             if (gclass115_0 == null)
                 return;
             GClass118 gclass118 = this.method_40(gclass66_0, gclass115_0);
-            if (gclass118.decimal_0 == this.gclass0_0.decimal_0)
+            if (gclass118.decimal_0 == this.gclass0_0.GameTime)
                 return;
             double double1 = gclass118.double_1;
-            gclass118.double_1 += this.gclass0_0.int_132 / 86400.0 * (double)decimal_29;
-            gclass118.decimal_0 = this.gclass0_0.decimal_0;
+            gclass118.double_1 += this.gclass0_0.SubPulseLength / 86400.0 * (double)decimal_29;
+            gclass118.decimal_0 = this.gclass0_0.GameTime;
             if (gclass118.double_1 < 100.0 || double1 >= 100.0)
                 return;
             gclass118.int_1 = (int)gclass118.gclass230_0.decimal_6;
@@ -3197,9 +3236,9 @@ public partial class FCTRaceRecordC21
         try
         {
             GClass113 gclass113 = this.method_43(gclass146_1, null);
-            if (gclass113.decimal_0 == this.gclass0_0.decimal_0)
+            if (gclass113.decimal_0 == this.gclass0_0.GameTime)
                 return;
-            double num = this.gclass0_0.int_132 / 86400.0 * (double)decimal_29 *
+            double num = this.gclass0_0.SubPulseLength / 86400.0 * (double)decimal_29 *
                          ((100 - gclass146_1.SpeciesData.int_2) / 100.0);
             double double_6 = num;
             if (gclass146_1.decimal_30 < 100M)
@@ -3220,7 +3259,7 @@ public partial class FCTRaceRecordC21
                 gclass113.gclass110_0.bPortraitShown = true;
             }
 
-            gclass113.decimal_0 = this.gclass0_0.decimal_0;
+            gclass113.decimal_0 = this.gclass0_0.GameTime;
         }
         catch (Exception ex)
         {
@@ -3385,7 +3424,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class560 class560 = new FCTRaceRecordC21.Class560();
+        GameRace.Class560 class560 = new GameRace.Class560();
         // ISSUE: reference to a compiler-generated field
         class560.gclass115_0 = gclass115_0;
         try
@@ -3407,7 +3446,7 @@ public partial class FCTRaceRecordC21
                     if (object_1.bool_1)
                         string_12 += " (S)";
                 }
-                else if (object_1.decimal_0 != this.gclass0_0.decimal_0)
+                else if (object_1.decimal_0 != this.gclass0_0.GameTime)
                     string_12 = this.gclass0_0.method_584(object_1.decimal_0);
 
                 string string_11 = "Unknown";
@@ -3554,7 +3593,7 @@ public partial class FCTRaceRecordC21
             }
 
             // ISSUE: reference to a compiler-generated field
-            foreach (TechData164 gclass164 in class560.gclass115_0.list_2)
+            foreach (TechSystem gclass164 in class560.gclass115_0.list_2)
                 this.gclass0_0.method_594(listView_4, gclass164.Name);
             // ISSUE: reference to a compiler-generated field
             if (class560.gclass115_0.string_1 == "")
@@ -3643,7 +3682,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class562 class562 = new FCTRaceRecordC21.Class562();
+        GameRace.Class562 class562 = new GameRace.Class562();
         // ISSUE: reference to a compiler-generated field
         class562.gclass110_0 = gclass110_1;
         try
@@ -3784,7 +3823,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class563 class563 = new FCTRaceRecordC21.Class563();
+        GameRace.Class563 class563 = new GameRace.Class563();
         // ISSUE: reference to a compiler-generated field
         class563.gclass40_0 = gclass40_1;
         try
@@ -3804,7 +3843,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class564 class564 = new FCTRaceRecordC21.Class564();
+        GameRace.Class564 class564 = new GameRace.Class564();
         // ISSUE: reference to a compiler-generated field
         class564.gclass40_0 = gclass40_1;
         try
@@ -3847,7 +3886,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class565 class565 = new FCTRaceRecordC21.Class565();
+        GameRace.Class565 class565 = new GameRace.Class565();
         // ISSUE: reference to a compiler-generated field
         class565.gclass40_0 = gclass40_1;
         try
@@ -3905,7 +3944,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class566 class566 = new FCTRaceRecordC21.Class566();
+        GameRace.Class566 class566 = new GameRace.Class566();
         // ISSUE: reference to a compiler-generated field
         class566.gclass22_0 = gclass22_1;
         try
@@ -3924,7 +3963,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class567 class567 = new FCTRaceRecordC21.Class567();
+        GameRace.Class567 class567 = new GameRace.Class567();
         // ISSUE: reference to a compiler-generated field
         class567.gclass39_0 = gclass39_0;
         try
@@ -4031,7 +4070,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class568 class568 = new FCTRaceRecordC21.Class568();
+        GameRace.Class568 class568 = new GameRace.Class568();
         // ISSUE: reference to a compiler-generated field
         class568.gclass40_0 = gclass40_1;
         try
@@ -4082,7 +4121,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class569 class569 = new FCTRaceRecordC21.Class569();
+        GameRace.Class569 class569 = new GameRace.Class569();
         // ISSUE: reference to a compiler-generated field
         class569.decimal_0 = decimal_29;
         // ISSUE: reference to a compiler-generated field
@@ -4106,7 +4145,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class571 class571 = new FCTRaceRecordC21.Class571();
+        GameRace.Class571 class571 = new GameRace.Class571();
         // ISSUE: reference to a compiler-generated field
         class571.gclass66_0 = gclass66_0;
         try
@@ -4150,7 +4189,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class572 class572 = new FCTRaceRecordC21.Class572();
+        GameRace.Class572 class572 = new GameRace.Class572();
         // ISSUE: reference to a compiler-generated field
         class572.gclass230_0 = gclass230_0;
         try
@@ -4209,7 +4248,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class573 class573 = new FCTRaceRecordC21.Class573();
+        GameRace.Class573 class573 = new GameRace.Class573();
         // ISSUE: reference to a compiler-generated field
         class573.gclass146_0 = gclass146_1;
         try
@@ -4274,7 +4313,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class574 class574 = new FCTRaceRecordC21.Class574();
+        GameRace.Class574 class574 = new GameRace.Class574();
         // ISSUE: reference to a compiler-generated field
         class574.gclass146_0 = gclass146_1;
         try
@@ -4330,7 +4369,7 @@ public partial class FCTRaceRecordC21
             gclass117.gclass21_1 = this;
             gclass117.gclass21_0 = gclass40_1.gclass21_0;
             gclass117.gclass40_0 = gclass40_1;
-            gclass117.decimal_1 = this.gclass0_0.decimal_0;
+            gclass117.decimal_1 = this.gclass0_0.GameTime;
             gclass117.string_0 = gclass110_1.UseRealClassNames != 1
                 ? $"{gclass115_0.ClassName} {AuroraUtils.smethod_33(gclass115_0.int_4)}"
                 : gclass40_1.ShipName;
@@ -4409,7 +4448,7 @@ public partial class FCTRaceRecordC21
             gclass115.gclass21_1 = this;
             gclass115.gclass21_0 = gclass40_1.gclass21_0;
             gclass115.gclass110_0 = gclass110_1;
-            gclass115.decimal_2 = this.gclass0_0.decimal_0;
+            gclass115.decimal_2 = this.gclass0_0.GameTime;
             gclass115.gclass22_0 = gclass40_1.gclass22_0;
             gclass115.gclass76_0 = this.gclass0_0.ShipHullDictionary[211];
             gclass115.int_4 = 0;
@@ -4449,7 +4488,7 @@ public partial class FCTRaceRecordC21
             gclass115.gclass21_1 = this;
             gclass115.gclass21_0 = gclass22_1.gclass21_0;
             gclass115.gclass110_0 = gclass110_1;
-            gclass115.decimal_2 = this.gclass0_0.decimal_0;
+            gclass115.decimal_2 = this.gclass0_0.GameTime;
             gclass115.gclass22_0 = gclass22_1;
             gclass115.gclass76_0 = this.gclass0_0.ShipHullDictionary[211];
             gclass115.int_4 = 0;
@@ -4476,7 +4515,7 @@ public partial class FCTRaceRecordC21
     }
 
     public AlienRaceInfo method_51(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         RacialSystemSurvey gclass202_2,
         double double_6,
         double double_7)
@@ -4493,7 +4532,7 @@ public partial class FCTRaceRecordC21
     }
 
     public AlienRaceInfo method_52(
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         RacialSystemSurvey gclass202_2,
         double double_6,
         double double_7,
@@ -4501,7 +4540,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class577 class577 = new FCTRaceRecordC21.Class577();
+        GameRace.Class577 class577 = new GameRace.Class577();
         // ISSUE: reference to a compiler-generated field
         class577.gclass21_0 = gclass21_0;
         try
@@ -4512,7 +4551,7 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated field
             gclass110_1.ActualAlienRace = class577.gclass21_0;
             gclass110_1.ViewingRace = this;
-            gclass110_1.FirstDetected = this.gclass0_0.decimal_0;
+            gclass110_1.FirstDetected = this.gclass0_0.GameTime;
             GClass194 gclass194_1 = this.method_164();
             if (bool_24)
             {
@@ -4538,7 +4577,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class578 class578 = new FCTRaceRecordC21.Class578();
+                    GameRace.Class578 class578 = new GameRace.Class578();
                     // ISSUE: reference to a compiler-generated field
                     class578.gclass115_0 = this.method_50(gclass22_1, gclass110_1);
                     // ISSUE: reference to a compiler-generated field
@@ -4587,7 +4626,7 @@ public partial class FCTRaceRecordC21
                     gclass110_1.DiplomaticPoints = 40M;
                     gclass110_1.UseRealClassNames = 1;
                     gclass110_1.bPortraitShown = true;
-                    if (this.gclass0_0.decimal_6 > 0M)
+                    if (this.gclass0_0.TruceCountdown > 0M)
                         gclass110_1.FixedRelationShip = 1;
                 }
                 else
@@ -4597,7 +4636,7 @@ public partial class FCTRaceRecordC21
                     gclass110_1.CommStatus = AuroraCommStatus.AttemptingCommunication;
                     gclass110_1.DiplomaticPoints = 0M;
                     gclass110_1.UseRealClassNames = 0;
-                    if (this.IsNPR)
+                    if (this.NPR)
                     {
                         GClass194 gclass194_3 = this.method_164();
                         if (gclass194_3.int_2 > 50 && gclass194_3.int_5 > 50)
@@ -4626,7 +4665,7 @@ public partial class FCTRaceRecordC21
                     }
 
                     if (gclass1_1 != null && gclass1_2 != null && gclass1_1.SystemData == gclass1_2.SystemData &&
-                        this.gclass0_0.decimal_6 > 0M)
+                        this.gclass0_0.TruceCountdown > 0M)
                         gclass110_1.FixedRelationShip = 1;
                 }
             }
@@ -4667,7 +4706,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class579 class579 = new FCTRaceRecordC21.Class579();
+        GameRace.Class579 class579 = new GameRace.Class579();
         // ISSUE: reference to a compiler-generated field
         class579.string_0 = string_10;
         // ISSUE: reference to a compiler-generated field
@@ -4691,7 +4730,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class580 class580 = new FCTRaceRecordC21.Class580();
+        GameRace.Class580 class580 = new GameRace.Class580();
         // ISSUE: reference to a compiler-generated field
         class580.string_0 = string_10;
         // ISSUE: reference to a compiler-generated field
@@ -4712,7 +4751,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class581 class581 = new FCTRaceRecordC21.Class581();
+        GameRace.Class581 class581 = new GameRace.Class581();
         // ISSUE: reference to a compiler-generated field
         class581.string_0 = string_10;
         try
@@ -4731,7 +4770,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class582 class582 = new FCTRaceRecordC21.Class582();
+        GameRace.Class582 class582 = new GameRace.Class582();
         // ISSUE: reference to a compiler-generated field
         class582.string_0 = string_10;
         try
@@ -4751,7 +4790,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class583 class583 = new FCTRaceRecordC21.Class583();
+        GameRace.Class583 class583 = new GameRace.Class583();
         // ISSUE: reference to a compiler-generated field
         class583.string_0 = string_10;
         try
@@ -4770,7 +4809,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class584 class584 = new FCTRaceRecordC21.Class584();
+        GameRace.Class584 class584 = new GameRace.Class584();
         // ISSUE: reference to a compiler-generated field
         class584.string_0 = string_10;
         try
@@ -4888,7 +4927,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class585 class585 = new FCTRaceRecordC21.Class585();
+                    GameRace.Class585 class585 = new GameRace.Class585();
                     // ISSUE: reference to a compiler-generated field
                     class585.gclass202_0 = gclass202;
                     TreeNode treeNode2 = new TreeNode();
@@ -4912,7 +4951,7 @@ public partial class FCTRaceRecordC21
                         {
                             // ISSUE: object of a compiler-generated type is created
                             // ISSUE: variable of a compiler-generated type
-                            FCTRaceRecordC21.Class586 class586 = new FCTRaceRecordC21.Class586();
+                            GameRace.Class586 class586 = new GameRace.Class586();
                             // ISSUE: reference to a compiler-generated field
                             class586.gclass197_0 = gclass197;
                             TreeNode treeNode3 = new TreeNode();
@@ -5005,7 +5044,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class587 class587 = new FCTRaceRecordC21.Class587();
+                    GameRace.Class587 class587 = new GameRace.Class587();
                     // ISSUE: reference to a compiler-generated field
                     class587.gclass202_0 = gclass202;
                     TreeNode node8 = new TreeNode();
@@ -5056,7 +5095,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class588 class588 = new FCTRaceRecordC21.Class588();
+                    GameRace.Class588 class588 = new GameRace.Class588();
                     // ISSUE: reference to a compiler-generated field
                     class588.gclass202_0 = gclass202;
                     TreeNode node10 = new TreeNode();
@@ -5108,7 +5147,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class589 class589 = new FCTRaceRecordC21.Class589();
+                    GameRace.Class589 class589 = new GameRace.Class589();
                     // ISSUE: reference to a compiler-generated field
                     class589.gclass202_0 = gclass202;
                     TreeNode node12 = new TreeNode();
@@ -5160,7 +5199,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class590 class590 = new FCTRaceRecordC21.Class590();
+                    GameRace.Class590 class590 = new GameRace.Class590();
                     // ISSUE: reference to a compiler-generated field
                     class590.gclass202_0 = gclass202;
                     TreeNode node14 = new TreeNode();
@@ -5198,7 +5237,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class591 class591 = new FCTRaceRecordC21.Class591()
+                    GameRace.Class591 class591 = new GameRace.Class591()
                     {
                         gclass21_0 = this,
                         gclass202_0 = gclass202
@@ -5216,7 +5255,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class592 class592 = new FCTRaceRecordC21.Class592();
+                    GameRace.Class592 class592 = new GameRace.Class592();
                     // ISSUE: reference to a compiler-generated field
                     class592.gclass21_0 = this;
                     // ISSUE: reference to a compiler-generated field
@@ -5265,7 +5304,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class593 class593 = new FCTRaceRecordC21.Class593();
+                    GameRace.Class593 class593 = new GameRace.Class593();
                     // ISSUE: reference to a compiler-generated field
                     class593.gclass202_0 = gclass202;
                     TreeNode node16 = new TreeNode();
@@ -5299,7 +5338,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class594 class594 = new FCTRaceRecordC21.Class594();
+                    GameRace.Class594 class594 = new GameRace.Class594();
                     // ISSUE: reference to a compiler-generated field
                     class594.gclass202_0 = gclass202;
                     TreeNode node17 = new TreeNode();
@@ -5394,7 +5433,7 @@ public partial class FCTRaceRecordC21
                 switch (AuroraUtils.GetRandomInteger(7))
                 {
                     case 1:
-                        TechData164 gclass164 = this.method_68(gclass110_1_1.ActualAlienRace);
+                        TechSystem gclass164 = this.method_68(gclass110_1_1.ActualAlienRace);
                         if (gclass164 != null)
                         {
                             this.gclass0_0.gclass92_0.method_2(EventType.const_94,
@@ -5520,7 +5559,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public RacialSystemSurvey method_62(FCTRaceRecordC21 gclass21_0)
+    public RacialSystemSurvey method_62(GameRace gclass21_0)
     {
         try
         {
@@ -5548,7 +5587,7 @@ public partial class FCTRaceRecordC21
             if (this.RacialSystemDictionary.ContainsKey(gclass202_2.ActualSystemData.SystemID))
                 return this.RacialSystemDictionary[gclass202_2.ActualSystemData.SystemID];
             RacialSystemSurvey gclass202 = this.method_263(gclass202_2.ActualSystemData, null, gclass202_2.Name,
-                gclass202_2.Race.IsNPR);
+                gclass202_2.Race.NPR);
             foreach (JumpPoint120 gclass120_0 in gclass202_2.ActualSystemData.method_27())
             {
                 if (gclass120_0.RacialJumpPointSurveys.ContainsKey(gclass202_2.Race.RaceID))
@@ -5571,7 +5610,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class597 class597 = new FCTRaceRecordC21.Class597();
+        GameRace.Class597 class597 = new GameRace.Class597();
         // ISSUE: reference to a compiler-generated field
         class597.gclass110_0 = gclass110_1;
         try
@@ -5595,7 +5634,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class598 class598 = new FCTRaceRecordC21.Class598();
+        GameRace.Class598 class598 = new GameRace.Class598();
         // ISSUE: reference to a compiler-generated field
         class598.gclass110_0 = gclass110_1;
         try
@@ -5612,7 +5651,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public RacialSystemSurvey method_66(FCTRaceRecordC21 gclass21_0)
+    public RacialSystemSurvey method_66(GameRace gclass21_0)
     {
         try
         {
@@ -5642,7 +5681,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public RacialSystemSurvey method_67(FCTRaceRecordC21 gclass21_0)
+    public RacialSystemSurvey method_67(GameRace gclass21_0)
     {
         try
         {
@@ -5667,16 +5706,16 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_68(FCTRaceRecordC21 gclass21_0)
+    public TechSystem method_68(GameRace gclass21_0)
     {
         try
         {
-            List<TechData164> second = this.method_295(true);
-            List<TechData164> list = gclass21_0.method_295(true).Except<TechData164>(second).ToList<TechData164>();
+            List<TechSystem> second = this.method_295(true);
+            List<TechSystem> list = gclass21_0.method_295(true).Except<TechSystem>(second).ToList<TechSystem>();
             if (list.Count == 0)
                 return null;
-            List<TechData164> source = new List<TechData164>();
-            foreach (TechData164 gclass164 in list)
+            List<TechSystem> source = new List<TechSystem>();
+            foreach (TechSystem gclass164 in list)
             {
                 if ((gclass164.gclass164_0 == null || second.Contains(gclass164.gclass164_0)) &&
                     (gclass164.gclass164_1 == null || second.Contains(gclass164.gclass164_1)))
@@ -5685,7 +5724,7 @@ public partial class FCTRaceRecordC21
 
             if (source.Count == 0)
                 return null;
-            TechData164 gclass164_0 = source.ElementAt<TechData164>(AuroraUtils.GetRandomInteger(source.Count) - 1);
+            TechSystem gclass164_0 = source.ElementAt<TechSystem>(AuroraUtils.GetRandomInteger(source.Count) - 1);
             this.method_282(gclass164_0, null, null, null, true, false);
             return gclass164_0;
         }
@@ -5930,7 +5969,15 @@ public partial class FCTRaceRecordC21
 
     public AlienRaceInfo ContactFilterRace { get; set; }
 
-    public FCTRaceRecordC21(GClass0 gclass0_1)
+    public int GameID
+    {
+        get
+        {
+            return this.gclass0_0.GameID;
+        }
+    }
+
+    public GameRace(GClass0 gclass0_1)
     {
         this.gclass0_0 = gclass0_1;
         this.chkAsteroidOrbits = CheckState.Unchecked;
@@ -6043,7 +6090,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class599 class599 = new FCTRaceRecordC21.Class599();
+        GameRace.Class599 class599 = new GameRace.Class599();
         // ISSUE: reference to a compiler-generated field
         class599.gclass230_0 = gclass230_0;
         try
@@ -6154,7 +6201,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class600 class600 = new FCTRaceRecordC21.Class600();
+                GameRace.Class600 class600 = new GameRace.Class600();
                 // ISSUE: reference to a compiler-generated field
                 class600.gclass186_0 = gclass186;
                 ShipComponent gclass230_0_1;
@@ -6165,7 +6212,7 @@ public partial class FCTRaceRecordC21
                     gclass230_0_1 =
                         this.gclass0_0.ComponentDataDictionary.Values.FirstOrDefault<ShipComponent>(class600.method_0);
                     if (gclass230_0_1 != null)
-                        this.method_74(gclass230_0_1.gclass164_0.int_0, true, true, gclass230_0_1);
+                        this.method_74(gclass230_0_1.gclass164_0.TechSystemID, true, true, gclass230_0_1);
                     else
                         continue;
                 }
@@ -6173,7 +6220,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class601 class601 = new FCTRaceRecordC21.Class601();
+                    GameRace.Class601 class601 = new GameRace.Class601();
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated method
                     class601.gclass185_0 =
@@ -6211,16 +6258,16 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class602 class602 = new FCTRaceRecordC21.Class602();
+        GameRace.Class602 class602 = new GameRace.Class602();
         // ISSUE: reference to a compiler-generated field
         class602.gclass185_0 = gclass185_0;
         try
         {
-            List<TechData164> gclass164List = new List<TechData164>();
+            List<TechSystem> gclass164List = new List<TechSystem>();
             ShipComponent gclass230_0 = new ShipComponent();
             ShipComponent gclass230_1 = new ShipComponent();
             gclass230_0.int_23 = 0;
-            List<TechData164> list1;
+            List<TechSystem> list1;
             int num1;
             // ISSUE: reference to a compiler-generated field
             if (class602.gclass185_0.int_1 > 0)
@@ -6240,7 +6287,7 @@ public partial class FCTRaceRecordC21
                 int int23 = gclass230_2.int_23;
                 list1 = gclass230_2.list_1;
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_1 = this.method_74(class602.gclass185_0.int_5, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_1 = this.method_74(class602.gclass185_0.int_5, bool_24, bool_25, gclass230_0);
                 num1 = int23 + gclass230_0.int_23;
                 list1.AddRange(gclass230_0.list_1);
                 // ISSUE: reference to a compiler-generated field
@@ -6254,19 +6301,19 @@ public partial class FCTRaceRecordC21
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_1 = this.method_74(class602.gclass185_0.int_2, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_1 = this.method_74(class602.gclass185_0.int_2, bool_24, bool_25, gclass230_0);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_2 = this.method_74(class602.gclass185_0.int_3, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_2 = this.method_74(class602.gclass185_0.int_3, bool_24, bool_25, gclass230_0);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_3 = this.method_74(class602.gclass185_0.int_4, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_3 = this.method_74(class602.gclass185_0.int_4, bool_24, bool_25, gclass230_0);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_4 = this.method_74(class602.gclass185_0.int_5, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_4 = this.method_74(class602.gclass185_0.int_5, bool_24, bool_25, gclass230_0);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_5 = this.method_74(class602.gclass185_0.int_6, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_5 = this.method_74(class602.gclass185_0.int_6, bool_24, bool_25, gclass230_0);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_6 = this.method_74(class602.gclass185_0.int_7, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_6 = this.method_74(class602.gclass185_0.int_7, bool_24, bool_25, gclass230_0);
                 // ISSUE: reference to a compiler-generated field
-                TechData164 gclass164_5_1 = this.method_74(class602.gclass185_0.int_8, bool_24, bool_25, gclass230_0);
+                TechSystem gclass164_5_1 = this.method_74(class602.gclass185_0.int_8, bool_24, bool_25, gclass230_0);
                 num1 = gclass230_0.int_23;
                 list1 = gclass230_0.list_1;
                 // ISSUE: reference to a compiler-generated field
@@ -6675,11 +6722,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_74(int int_56, bool bool_24, bool bool_25, ShipComponent gclass230_0)
+    public TechSystem method_74(int int_56, bool bool_24, bool bool_25, ShipComponent gclass230_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class603 class603 = new FCTRaceRecordC21.Class603();
+        GameRace.Class603 class603 = new GameRace.Class603();
         // ISSUE: reference to a compiler-generated field
         class603.int_0 = int_56;
         try
@@ -6688,8 +6735,8 @@ public partial class FCTRaceRecordC21
             if (class603.int_0 == 0)
                 return null;
             // ISSUE: reference to a compiler-generated method
-            TechData164 gclass164_0_1 =
-                this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechData164>(class603.method_0);
+            TechSystem gclass164_0_1 =
+                this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechSystem>(class603.method_0);
             if (gclass164_0_1 == null)
                 return null;
             if (!gclass164_0_1.dictionary_0.ContainsKey(this.RaceID))
@@ -6700,9 +6747,9 @@ public partial class FCTRaceRecordC21
                 }
                 else
                 {
-                    List<TechData164> source = this.method_75(gclass164_0_1);
-                    gclass164_0_1.int_6 = source.Sum<TechData164>(gclass164_0 => gclass164_0.int_4);
-                    foreach (TechData164 gclass164_0_2 in source)
+                    List<TechSystem> source = this.method_75(gclass164_0_1);
+                    gclass164_0_1.int_6 = source.Sum<TechSystem>(gclass164_0 => gclass164_0.int_4);
+                    foreach (TechSystem gclass164_0_2 in source)
                     {
                         if (bool_25)
                         {
@@ -6725,18 +6772,18 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public List<TechData164> method_75(TechData164 gclass164_0_1)
+    public List<TechSystem> method_75(TechSystem gclass164_0_1)
     {
         try
         {
-            List<TechData164> source = new List<TechData164>();
+            List<TechSystem> source = new List<TechSystem>();
             source.Add(gclass164_0_1);
             if (gclass164_0_1.gclass164_0 != null && !gclass164_0_1.gclass164_0.dictionary_0.ContainsKey(this.RaceID))
                 source.AddRange(this.method_75(gclass164_0_1.gclass164_0));
             if (gclass164_0_1.gclass164_1 != null && !gclass164_0_1.gclass164_1.dictionary_0.ContainsKey(this.RaceID))
                 source.AddRange(this.method_75(gclass164_0_1.gclass164_1));
-            return source.Distinct<TechData164>().OrderBy<TechData164, int>(gclass164_0_2 => gclass164_0_2.int_4)
-                .ToList<TechData164>();
+            return source.Distinct<TechSystem>().OrderBy<TechSystem, int>(gclass164_0_2 => gclass164_0_2.int_4)
+                .ToList<TechSystem>();
         }
         catch (Exception ex)
         {
@@ -6745,11 +6792,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_76(TechData164 gclass164_0_1, int int_56, PopulationData gclass146_1)
+    public void method_76(TechSystem gclass164_0_1, int int_56, PopulationData gclass146_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class604 class604 = new FCTRaceRecordC21.Class604();
+        GameRace.Class604 class604 = new GameRace.Class604();
         // ISSUE: reference to a compiler-generated field
         class604.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -6758,10 +6805,10 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            GClass161 gclass161 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class604.method_0)
-                .SelectMany<PopulationData, GClass161>(gclass146_0 =>gclass146_0.dictionary_1.Values)
-                .Where<GClass161>(class604.method_1)
-                .OrderBy<GClass161, int>(gclass161_0 => gclass161_0.gclass164_0.int_4).FirstOrDefault<GClass161>();
+            ResearchProject gclass161 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class604.method_0)
+                .SelectMany<PopulationData, ResearchProject>(gclass146_0 =>gclass146_0.dictionary_1.Values)
+                .Where<ResearchProject>(class604.method_1)
+                .OrderBy<ResearchProject, int>(gclass161_0 => gclass161_0.gclass164_0.int_4).FirstOrDefault<ResearchProject>();
             if (gclass161 != null)
             {
                 if (int_56 < gclass161.decimal_0)
@@ -6777,21 +6824,21 @@ public partial class FCTRaceRecordC21
             }
             else
             {
-                GClass167 gclass167_1 = new GClass167();
+                PausedResearch gclass167_1 = new PausedResearch();
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
-                GClass167 gclass167_2 = class604.gclass164_0.gclass163_0.TechType != TechType.CommandandControl
-                    ? this.list_6.Where<GClass167>(class604.method_3)
-                        .OrderBy<GClass167, int>(gclass167_0 => gclass167_0.gclass164_0.int_4)
-                        .FirstOrDefault<GClass167>()
-                    : this.list_6.FirstOrDefault<GClass167>(class604.method_2);
+                PausedResearch gclass167_2 = class604.gclass164_0.gclass163_0.TechType != TechType.CommandandControl
+                    ? this.PausedResearches.Where<PausedResearch>(class604.method_3)
+                        .OrderBy<PausedResearch, int>(gclass167_0 => gclass167_0.gclass164_0.int_4)
+                        .FirstOrDefault<PausedResearch>()
+                    : this.PausedResearches.FirstOrDefault<PausedResearch>(class604.method_2);
                 if (gclass167_2 != null)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (int_56 < class604.gclass164_0.int_4 - gclass167_2.int_0)
+                    if (int_56 < class604.gclass164_0.int_4 - gclass167_2.PointsAccumulated)
                     {
-                        gclass167_2.int_0 += int_56;
+                        gclass167_2.PointsAccumulated += int_56;
                     }
                     else
                     {
@@ -6804,16 +6851,16 @@ public partial class FCTRaceRecordC21
                 else
                 {
                     // ISSUE: reference to a compiler-generated method
-                    this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class604.method_4)
-                        .OrderBy<TechData164, int>(gclass164_0_2 => gclass164_0_2.int_4).FirstOrDefault<TechData164>();
+                    this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class604.method_4)
+                        .OrderBy<TechSystem, int>(gclass164_0_2 => gclass164_0_2.int_4).FirstOrDefault<TechSystem>();
                     // ISSUE: reference to a compiler-generated field
                     if (class604.gclass164_0.gclass163_0.TechType != TechType.CommandandControl)
                         ;
                     // ISSUE: reference to a compiler-generated field
-                    this.list_6.Add(new GClass167()
+                    this.PausedResearches.Add(new PausedResearch()
                     {
                         gclass164_0 = class604.gclass164_0,
-                        int_0 = int_56
+                        PointsAccumulated = int_56
                     });
                 }
             }
@@ -6828,14 +6875,14 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            if (!this.dictionary_15.ContainsKey(gclass76_0))
+            if (!this.ShipHullCountDictionary.ContainsKey(gclass76_0))
             {
-                this.dictionary_15.Add(gclass76_0, 1);
+                this.ShipHullCountDictionary.Add(gclass76_0, 1);
                 return 1;
             }
 
-            this.dictionary_15[gclass76_0]++;
-            return this.dictionary_15[gclass76_0];
+            this.ShipHullCountDictionary[gclass76_0]++;
+            return this.ShipHullCountDictionary[gclass76_0];
         }
         catch (Exception ex)
         {
@@ -6859,7 +6906,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class605 class605 = new FCTRaceRecordC21.Class605();
+                GameRace.Class605 class605 = new GameRace.Class605();
                 // ISSUE: reference to a compiler-generated field
                 class605.gclass22_0 = gclass22;
                 // ISSUE: reference to a compiler-generated method
@@ -6900,7 +6947,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class606 class606 = new FCTRaceRecordC21.Class606();
+            GameRace.Class606 class606 = new GameRace.Class606();
             List<GroundUnitFormationData> list1 = this.gclass0_0.FormationDictionary.Values
                 .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.bUseForReplacements && gclass103_0.PopulationData != null)
                 .ToList<GroundUnitFormationData>();
@@ -6923,7 +6970,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class607 class607 = new FCTRaceRecordC21.Class607();
+                GameRace.Class607 class607 = new GameRace.Class607();
                 // ISSUE: reference to a compiler-generated field
                 class607.gclass103_0 = gclass103;
                 // ISSUE: reference to a compiler-generated field
@@ -6931,7 +6978,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class608 class608 = new FCTRaceRecordC21.Class608();
+                    GameRace.Class608 class608 = new GameRace.Class608();
                     // ISSUE: reference to a compiler-generated field
                     class608.gclass39_0 = gclass39;
                     // ISSUE: reference to a compiler-generated field
@@ -6981,7 +7028,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class609 class609 = new FCTRaceRecordC21.Class609();
+        GameRace.Class609 class609 = new GameRace.Class609();
         // ISSUE: reference to a compiler-generated field
         class609.int_0 = int_56;
         try
@@ -7010,7 +7057,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class610 class610 = new FCTRaceRecordC21.Class610();
+            GameRace.Class610 class610 = new GameRace.Class610();
             // ISSUE: reference to a compiler-generated field
             class610.gclass205_0 =
                 this.dictionary_16.Values.FirstOrDefault<GClass205>(gclass205_0 => gclass205_0.bool_0);
@@ -7119,7 +7166,7 @@ public partial class FCTRaceRecordC21
                 case FCTShipData40 _:
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class611 class611 = new FCTRaceRecordC21.Class611();
+                    GameRace.Class611 class611 = new GameRace.Class611();
                     // ISSUE: reference to a compiler-generated field
                     class611.gclass21_0 = this;
                     // ISSUE: reference to a compiler-generated field
@@ -7139,7 +7186,7 @@ public partial class FCTRaceRecordC21
                 case PopulationData _:
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class612 class612 = new FCTRaceRecordC21.Class612();
+                    GameRace.Class612 class612 = new GameRace.Class612();
                     // ISSUE: reference to a compiler-generated field
                     class612.gclass21_0 = this;
                     // ISSUE: reference to a compiler-generated field
@@ -7283,7 +7330,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class613 class613 = new FCTRaceRecordC21.Class613();
+        GameRace.Class613 class613 = new GameRace.Class613();
         // ISSUE: reference to a compiler-generated field
         class613.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -7294,7 +7341,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class614 class614 = new FCTRaceRecordC21.Class614();
+            GameRace.Class614 class614 = new GameRace.Class614();
             listView_0.Items.Clear();
             this.gclass0_0.method_623(listView_0, "", "Duranium", "Neutronium", "Corbomite", "Tritanium", "Boronide",
                 "Mercassium", "Vendarite", "Sorium", "Uridium", "Corundium", "Gallicite", null);
@@ -7335,7 +7382,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class615 class615 = new FCTRaceRecordC21.Class615();
+                    GameRace.Class615 class615 = new GameRace.Class615();
                     // ISSUE: reference to a compiler-generated field
                     class615.gclass154_0 = gclass154;
                     gclass123_0.ResetToZero();
@@ -7343,7 +7390,7 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class616 class616 = new FCTRaceRecordC21.Class616();
+                        GameRace.Class616 class616 = new GameRace.Class616();
                         // ISSUE: reference to a compiler-generated field
                         class616.class615_0 = class615;
                         // ISSUE: reference to a compiler-generated field
@@ -7389,7 +7436,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class617 class617 = new FCTRaceRecordC21.Class617();
+                    GameRace.Class617 class617 = new GameRace.Class617();
                     // ISSUE: reference to a compiler-generated field
                     class617.gclass154_0 = gclass154;
                     gclass123_0.ResetToZero();
@@ -7397,7 +7444,7 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class618 class618 = new FCTRaceRecordC21.Class618();
+                        GameRace.Class618 class618 = new GameRace.Class618();
                         // ISSUE: reference to a compiler-generated field
                         class618.class617_0 = class617;
                         // ISSUE: reference to a compiler-generated field
@@ -7557,7 +7604,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public AuroraContactStatus method_90(FCTRaceRecordC21 gclass21_0)
+    public AuroraContactStatus method_90(GameRace gclass21_0)
     {
         try
         {
@@ -7576,7 +7623,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class619 class619 = new FCTRaceRecordC21.Class619();
+        GameRace.Class619 class619 = new GameRace.Class619();
         // ISSUE: reference to a compiler-generated field
         class619.gclass200_0 = gclass200_0;
         try
@@ -7604,7 +7651,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class620 class620 = new FCTRaceRecordC21.Class620();
+            GameRace.Class620 class620 = new GameRace.Class620();
             List<SystemBodyData> list1 = this.gclass0_0.PopulationDataDictionary.Values
                 .Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this)
                 .Select<PopulationData, SystemBodyData>(gclass146_0 => gclass146_0.SystemBodyData)
@@ -7612,7 +7659,7 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated field
             class620.list_0 = this.PerceivedAliens.Values
                 .Where<AlienRaceInfo>(gclass110_0 => gclass110_0.ContactStatus == AuroraContactStatus.Hostile)
-                .Select<AlienRaceInfo, FCTRaceRecordC21>(gclass110_0 => gclass110_0.ActualAlienRace).ToList<FCTRaceRecordC21>();
+                .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace).ToList<GameRace>();
             // ISSUE: reference to a compiler-generated method
             List<SystemBodyData> list2 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class620.method_0)
                 .Select<PopulationData, SystemBodyData>(gclass146_0 => gclass146_0.SystemBodyData)
@@ -7678,11 +7725,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public FCTRaceRecordC21 method_94(PopulationData gclass146_1)
+    public GameRace method_94(PopulationData gclass146_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class621 class621 = new FCTRaceRecordC21.Class621();
+        GameRace.Class621 class621 = new GameRace.Class621();
         // ISSUE: reference to a compiler-generated field
         class621.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -7691,19 +7738,19 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class622 class622 = new FCTRaceRecordC21.Class622();
+            GameRace.Class622 class622 = new GameRace.Class622();
             // ISSUE: reference to a compiler-generated method
             Decimal num1 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class621.method_0)
                 .Sum<PopulationData>(gclass146_0 => gclass146_0.Population);
             // ISSUE: reference to a compiler-generated field
             Decimal num2 = class621.gclass146_0.Population / num1;
             Decimal decimal_29 = this.WealthPoints * num2;
-            FCTRaceRecordC21 gclass21_1 = new FCTRaceRecordC21(this.gclass0_0);
-            FCTRaceRecordC21 gclass21_2 = (FCTRaceRecordC21)this.MemberwiseClone();
+            GameRace gclass21_1 = new GameRace(this.gclass0_0);
+            GameRace gclass21_2 = (GameRace)this.MemberwiseClone();
             gclass21_2.RaceID = this.gclass0_0.method_26(GEnum0.const_13);
             gclass21_2.Contacts = 0;
-            gclass21_2.IsNPR = this.IsNPR;
-            if (this.IsNPR)
+            gclass21_2.NPR = this.NPR;
+            if (this.NPR)
                 gclass21_2.UnknownNprClass = new UnknownNPRClass2(this.gclass0_0, gclass21_2);
             // ISSUE: reference to a compiler-generated field
             gclass21_2.RaceName = class621.gclass146_0.PopName;
@@ -7728,7 +7775,7 @@ public partial class FCTRaceRecordC21
             gclass21_2.ClassTheme = this.gclass0_0.ThemeDictionary
                 .ElementAt<KeyValuePair<int, NamingTheme>>(
                     AuroraUtils.GetRandomInteger(this.gclass0_0.ThemeDictionary.Count) - 1).Value;
-            FCTRaceRecordC21 gclass21_3 = gclass21_2;
+            GameRace gclass21_3 = gclass21_2;
             KeyValuePair<int, NamingTheme> keyValuePair1 =
                 this.gclass0_0.ThemeDictionary.ElementAt<KeyValuePair<int, NamingTheme>>(
                     AuroraUtils.GetRandomInteger(this.gclass0_0.ThemeDictionary.Count) - 1);
@@ -7741,7 +7788,7 @@ public partial class FCTRaceRecordC21
             }
             else
             {
-                FCTRaceRecordC21 gclass21_4 = gclass21_2;
+                GameRace gclass21_4 = gclass21_2;
                 keyValuePair1 =
                     this.gclass0_0.ThemeDictionary.ElementAt<KeyValuePair<int, NamingTheme>>(
                         AuroraUtils.GetRandomInteger(this.gclass0_0.ThemeDictionary.Count) - 1);
@@ -7755,13 +7802,13 @@ public partial class FCTRaceRecordC21
             gclass21_2.dictionary_2 = new Dictionary<int, GClass62>();
             gclass21_2.EventColourSettings = new Dictionary<EventType, EventColourSetting>();
             gclass21_2.ContactStatusColorDic = new Dictionary<AuroraContactStatus, Color>();
-            gclass21_2.RaceNameThemeList = new List<RaceNameTheme45>();
-            gclass21_2.raceGroundCombatRecord = new Dictionary<SystemBodyData, FCTRaceGroundCombatRecord46>();
-            gclass21_2.list_2 = new List<int>();
+            gclass21_2.RaceNameThemeList = new List<RaceNameTheme>();
+            gclass21_2.raceGroundCombatRecord = new Dictionary<SystemBodyData, RaceGroundCombat>();
+            gclass21_2.KnownRuinIDs = new List<int>();
             gclass21_2.list_3 = new List<GClass151>();
-            gclass21_2.list_5 = new List<GClass166>();
-            gclass21_2.list_6 = new List<GClass167>();
-            gclass21_2.list_7 = new List<GClass168>();
+            gclass21_2.ResearchQueues = new List<ResearchQueue>();
+            gclass21_2.PausedResearches = new List<PausedResearch>();
+            gclass21_2.list_7 = new List<SwarmResearch>();
             gclass21_2.PerceivedAliens = new Dictionary<int, AlienRaceInfo>();
             gclass21_2.dictionary_11 = new Dictionary<int, GClass115>();
             gclass21_2.dictionary_12 = new Dictionary<int, GClass117>();
@@ -7833,10 +7880,10 @@ public partial class FCTRaceRecordC21
                          .ToList<SurveyLocation213>())
                 gclass213.list_0.Add(gclass21_2.RaceID);
             // ISSUE: reference to a compiler-generated method
-            foreach (TechData164 gclass164 in this.gclass0_0.TechDataDictionary.Values
-                         .SelectMany<TechData164, GClass165>(gclass164_0 => gclass164_0.dictionary_0.Values)
+            foreach (TechSystem gclass164 in this.gclass0_0.TechDataDictionary.Values
+                         .SelectMany<TechSystem, GClass165>(gclass164_0 => gclass164_0.dictionary_0.Values)
                          .Where<GClass165>(class621.method_3)
-                         .Select<GClass165, TechData164>(gclass165_0 => gclass165_0.gclass164_0).ToList<TechData164>())
+                         .Select<GClass165, TechSystem>(gclass165_0 => gclass165_0.gclass164_0).ToList<TechSystem>())
                 gclass164.dictionary_0.Add(gclass21_2.RaceID, new GClass165()
                 {
                     gclass164_0 = gclass164,
@@ -7856,7 +7903,7 @@ public partial class FCTRaceRecordC21
             }
 
             List<RankThemeEntry> list3 = gclass21_2.RacialRankDictionary.Values.ToList<RankThemeEntry>();
-            if (!this.IsNPR)
+            if (!this.NPR)
             {
                 // ISSUE: reference to a compiler-generated method
                 foreach (GClass22 gclass22_1 in this.gclass0_0.dictionary_3.Values.Where<GClass22>(class621.method_4)
@@ -7880,10 +7927,10 @@ public partial class FCTRaceRecordC21
 
             foreach (KeyValuePair<AuroraContactStatus, Color> keyValuePair2 in this.ContactStatusColorDic)
                 gclass21_2.ContactStatusColorDic.Add(keyValuePair2.Key, keyValuePair2.Value);
-            foreach (RaceNameTheme45 gclass45 in this.RaceNameThemeList)
+            foreach (RaceNameTheme gclass45 in this.RaceNameThemeList)
                 gclass21_2.RaceNameThemeList.Add(gclass45);
-            foreach (int num3 in this.list_2)
-                gclass21_2.list_2.Add(num3);
+            foreach (int num3 in this.KnownRuinIDs)
+                gclass21_2.KnownRuinIDs.Add(num3);
             foreach (MapLabelData122 gclass122 in this.MapLabelList)
                 gclass21_2.MapLabelList.Add(new MapLabelData122(this.gclass0_0)
                 {
@@ -7904,7 +7951,7 @@ public partial class FCTRaceRecordC21
             class621.gclass146_0.bIsCapital = true;
             // ISSUE: reference to a compiler-generated field
             gclass21_2.method_248(null, class621.gclass146_0, null, gclass21_2.RaceTitle + " Navy", AdminCommandType.const_0);
-            if (gclass21_2.IsNPR)
+            if (gclass21_2.NPR)
             {
                 gclass21_2.DesignDoctrine = null;
                 gclass21_2.method_9(false, null);
@@ -7917,7 +7964,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class623 class623 = new FCTRaceRecordC21.Class623();
+                GameRace.Class623 class623 = new GameRace.Class623();
                 // ISSUE: reference to a compiler-generated field
                 class623.gclass102_0 = gclass102;
                 // ISSUE: reference to a compiler-generated field
@@ -7960,9 +8007,9 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated field
             class621.gclass146_0.decimal_30 = class621.gclass146_0.Population;
             // ISSUE: reference to a compiler-generated field
-            if (!gclass21_2.IsNPR && class621.gclass146_0.Population > 10M)
+            if (!gclass21_2.NPR && class621.gclass146_0.Population > 10M)
                 gclass21_2.method_247();
-            else if (gclass21_2.IsNPR && gclass21_2.SpecialNPRID == SpecialNPRIDs.const_0 &&
+            else if (gclass21_2.NPR && gclass21_2.SpecialNPRID == SpecialNPRIDs.const_0 &&
                      gclass21_2.RaceStartingLevel != GEnum82.const_3)
             {
                 ShippingLineData gclass187 = gclass21_2.method_247();
@@ -8007,7 +8054,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class624 class624 = new FCTRaceRecordC21.Class624();
+                GameRace.Class624 class624 = new GameRace.Class624();
                 // ISSUE: reference to a compiler-generated field
                 class624.gclass62_0 = gclass62;
                 // ISSUE: reference to a compiler-generated field
@@ -8054,7 +8101,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class625 class625 = new FCTRaceRecordC21.Class625();
+        GameRace.Class625 class625 = new GameRace.Class625();
         // ISSUE: reference to a compiler-generated field
         class625.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -8089,7 +8136,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class626 class626 = new FCTRaceRecordC21.Class626();
+        GameRace.Class626 class626 = new GameRace.Class626();
         // ISSUE: reference to a compiler-generated field
         class626.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -8124,7 +8171,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class627 class627 = new FCTRaceRecordC21.Class627();
+        GameRace.Class627 class627 = new GameRace.Class627();
         // ISSUE: reference to a compiler-generated field
         class627.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -8173,7 +8220,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class628 class628 = new FCTRaceRecordC21.Class628();
+                GameRace.Class628 class628 = new GameRace.Class628();
                 // ISSUE: reference to a compiler-generated field
                 class628.gclass146_0 = gclass146;
                 // ISSUE: reference to a compiler-generated field
@@ -8209,7 +8256,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class629 class629 = new FCTRaceRecordC21.Class629();
+        GameRace.Class629 class629 = new GameRace.Class629();
         // ISSUE: reference to a compiler-generated field
         class629.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -8258,7 +8305,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class630 class630 = new FCTRaceRecordC21.Class630();
+        GameRace.Class630 class630 = new GameRace.Class630();
         // ISSUE: reference to a compiler-generated field
         class630.gclass84_0 = gclass84_0;
         // ISSUE: reference to a compiler-generated field
@@ -8292,7 +8339,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class631 class631 = new FCTRaceRecordC21.Class631();
+        GameRace.Class631 class631 = new GameRace.Class631();
         // ISSUE: reference to a compiler-generated field
         class631.gclass40_0 = gclass40_1;
         try
@@ -8314,11 +8361,11 @@ public partial class FCTRaceRecordC21
         {
             if (gclass230_0.gclass164_0.gclass163_0.TechType == TechType.CommandandControl)
                 return !gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.RaceID);
-            foreach (TechData164 gclass164 in gclass230_0.list_0)
+            foreach (TechSystem gclass164 in gclass230_0.list_0)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class632 class632 = new FCTRaceRecordC21.Class632();
+                GameRace.Class632 class632 = new GameRace.Class632();
                 // ISSUE: reference to a compiler-generated field
                 class632.gclass21_0 = this;
                 // ISSUE: reference to a compiler-generated field
@@ -8326,8 +8373,8 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
                 if (!class632.gclass164_0.bool_0 && this.gclass0_0.TechDataDictionary.Values
-                        .Where<TechData164>(class632.method_0)
-                        .OrderBy<TechData164, int>(gclass164_0 => gclass164_0.int_4).FirstOrDefault<TechData164>() !=
+                        .Where<TechSystem>(class632.method_0)
+                        .OrderBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4).FirstOrDefault<TechSystem>() !=
                     null)
                     return true;
             }
@@ -8375,7 +8422,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class633 class633 = new FCTRaceRecordC21.Class633();
+        GameRace.Class633 class633 = new GameRace.Class633();
         // ISSUE: reference to a compiler-generated field
         class633.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -8426,7 +8473,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class634 class634 = new FCTRaceRecordC21.Class634();
+                    GameRace.Class634 class634 = new GameRace.Class634();
                     // ISSUE: reference to a compiler-generated field
                     class634.gclass129_0 = gclass129;
                     // ISSUE: reference to a compiler-generated field
@@ -8458,7 +8505,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class635 class635 = new FCTRaceRecordC21.Class635();
+                    GameRace.Class635 class635 = new GameRace.Class635();
                     // ISSUE: reference to a compiler-generated field
                     class635.gclass194_0 = gclass194;
                     // ISSUE: reference to a compiler-generated field
@@ -8497,20 +8544,20 @@ public partial class FCTRaceRecordC21
             }
 
             // ISSUE: reference to a compiler-generated field
-            List<FCTRaceRecordC21> list4 = class633.list_0
+            List<GameRace> list4 = class633.list_0
                 .SelectMany<FCTShipData40, GClass180>(gclass40_0 =>gclass40_0.list_1)
-                .Select<GClass180, FCTRaceRecordC21>(gclass180_0 => gclass180_0.gclass21_0).Distinct<FCTRaceRecordC21>()
-                .OrderBy<FCTRaceRecordC21, string>(gclass21_0 => gclass21_0.RaceTitle).ToList<FCTRaceRecordC21>();
+                .Select<GClass180, GameRace>(gclass180_0 => gclass180_0.gclass21_0).Distinct<GameRace>()
+                .OrderBy<GameRace, string>(gclass21_0 => gclass21_0.RaceTitle).ToList<GameRace>();
             if (list4.Count > 0)
             {
                 TreeNode node = new TreeNode();
                 node.Text = "Enlisted Prisoners";
                 treeView_0.Nodes.Add(node);
-                foreach (FCTRaceRecordC21 gclass21 in list4)
+                foreach (GameRace gclass21 in list4)
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class636 class636 = new FCTRaceRecordC21.Class636();
+                    GameRace.Class636 class636 = new GameRace.Class636();
                     // ISSUE: reference to a compiler-generated field
                     class636.gclass21_0 = gclass21;
                     // ISSUE: reference to a compiler-generated field
@@ -8542,7 +8589,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class637 class637 = new FCTRaceRecordC21.Class637();
+                    GameRace.Class637 class637 = new GameRace.Class637();
                     // ISSUE: reference to a compiler-generated field
                     class637.gclass157_0 = gclass157;
                     // ISSUE: reference to a compiler-generated field
@@ -8574,7 +8621,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class638 class638 = new FCTRaceRecordC21.Class638();
+                    GameRace.Class638 class638 = new GameRace.Class638();
                     // ISSUE: reference to a compiler-generated field
                     class638.gclass230_0 = gclass230;
                     // ISSUE: reference to a compiler-generated field
@@ -8622,7 +8669,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class639 class639 = new FCTRaceRecordC21.Class639();
+                    GameRace.Class639 class639 = new GameRace.Class639();
                     // ISSUE: reference to a compiler-generated field
                     class639.auroraElement_0 = auroraElement;
                     // ISSUE: reference to a compiler-generated field
@@ -8671,20 +8718,20 @@ public partial class FCTRaceRecordC21
             }
 
             // ISSUE: reference to a compiler-generated field
-            List<TechData164> list10 = class633.list_0
+            List<TechSystem> list10 = class633.list_0
                 .SelectMany<FCTShipData40, ShipTechData182>(gclass40_0 =>gclass40_0.ShipTechDataList)
-                .Select<ShipTechData182, TechData164>(gclass182_0 => gclass182_0.TechData).Distinct<TechData164>()
-                .OrderBy<TechData164, string>(gclass164_0 => gclass164_0.Name).ToList<TechData164>();
+                .Select<ShipTechData182, TechSystem>(gclass182_0 => gclass182_0.TechData).Distinct<TechSystem>()
+                .OrderBy<TechSystem, string>(gclass164_0 => gclass164_0.Name).ToList<TechSystem>();
             if (list10.Count > 0)
             {
                 TreeNode node = new TreeNode();
                 node.Text = "Techsystem Data";
                 treeView_0.Nodes.Add(node);
-                foreach (TechData164 gclass164 in list10)
+                foreach (TechSystem gclass164 in list10)
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class640 class640 = new FCTRaceRecordC21.Class640();
+                    GameRace.Class640 class640 = new GameRace.Class640();
                     // ISSUE: reference to a compiler-generated field
                     class640.gclass164_0 = gclass164;
                     // ISSUE: reference to a compiler-generated field
@@ -8715,14 +8762,14 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class641 class641 = new FCTRaceRecordC21.Class641();
+        GameRace.Class641 class641 = new GameRace.Class641();
         // ISSUE: reference to a compiler-generated field
         class641.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
         class641.gclass132_0 = gclass132_0;
         try
         {
-            TechData164 gclass164 = this.method_387(TechType.MaxTrackingTimeBonus);
+            TechSystem gclass164 = this.method_387(TechType.MaxTrackingTimeBonus);
             if (gclass164 == null || gclass164.decimal_0 == 0M)
                 return 1M;
             // ISSUE: reference to a compiler-generated method
@@ -8747,7 +8794,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: reference to a compiler-generated method
-            List<CommanderNameDefinition> list = this.gclass0_0.CommanderNameList.Where<CommanderNameDefinition>(new FCTRaceRecordC21.Class642()
+            List<CommanderNameDefinition> list = this.gclass0_0.CommanderNameList.Where<CommanderNameDefinition>(new GameRace.Class642()
             {
                 gclass58_0 = this.method_116()
             }.method_0).ToList<CommanderNameDefinition>();
@@ -8816,7 +8863,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class643 class643 = new FCTRaceRecordC21.Class643();
+        GameRace.Class643 class643 = new GameRace.Class643();
         // ISSUE: reference to a compiler-generated field
         class643.gclass197_0 = gclass197_0;
         // ISSUE: reference to a compiler-generated field
@@ -8859,7 +8906,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class644 class644 = new FCTRaceRecordC21.Class644();
+                GameRace.Class644 class644 = new GameRace.Class644();
                 listView_0.Columns[2].Text = " System Name";
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
@@ -9046,16 +9093,16 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class645 class645 = new FCTRaceRecordC21.Class645();
+        GameRace.Class645 class645 = new GameRace.Class645();
         // ISSUE: reference to a compiler-generated field
         class645.gclass58_0 = gclass58_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            if (this.RaceNameThemeList.FirstOrDefault<RaceNameTheme45>(class645.method_0) != null)
+            if (this.RaceNameThemeList.FirstOrDefault<RaceNameTheme>(class645.method_0) != null)
                 return;
             // ISSUE: reference to a compiler-generated field
-            this.RaceNameThemeList.Add(new RaceNameTheme45()
+            this.RaceNameThemeList.Add(new RaceNameTheme()
             {
                 CommanderNameThemeData = class645.gclass58_0,
                 Chance = int_56
@@ -9067,7 +9114,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_112(RaceNameTheme45 gclass45_0)
+    public void method_112(RaceNameTheme gclass45_0)
     {
         try
         {
@@ -9085,13 +9132,13 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class646 class646 = new FCTRaceRecordC21.Class646();
+        GameRace.Class646 class646 = new GameRace.Class646();
         // ISSUE: reference to a compiler-generated field
         class646.gclass58_0 = gclass58_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            RaceNameTheme45 gclass45 = this.RaceNameThemeList.FirstOrDefault<RaceNameTheme45>(class646.method_0);
+            RaceNameTheme gclass45 = this.RaceNameThemeList.FirstOrDefault<RaceNameTheme>(class646.method_0);
             if (gclass45 == null)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -9124,8 +9171,8 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            return this.RaceNameThemeList.OrderByDescending<RaceNameTheme45, int>(gclass45_0 => gclass45_0.Chance)
-                .FirstOrDefault<RaceNameTheme45>().CommanderNameThemeData;
+            return this.RaceNameThemeList.OrderByDescending<RaceNameTheme, int>(gclass45_0 => gclass45_0.Chance)
+                .FirstOrDefault<RaceNameTheme>().CommanderNameThemeData;
         }
         catch (Exception ex)
         {
@@ -9140,13 +9187,13 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class647 class647 = new FCTRaceRecordC21.Class647();
+            GameRace.Class647 class647 = new GameRace.Class647();
             if (this.RaceNameThemeList.Count == 0)
                 return null;
             if (this.RaceNameThemeList.Count == 1)
                 return this.RaceNameThemeList[0].CommanderNameThemeData;
             int int_72 = 0;
-            foreach (RaceNameTheme45 gclass45 in this.RaceNameThemeList)
+            foreach (RaceNameTheme gclass45 in this.RaceNameThemeList)
             {
                 int_72 += gclass45.Chance;
                 gclass45.int_1 = int_72;
@@ -9155,8 +9202,8 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated field
             class647.int_0 = AuroraUtils.GetRandomInteger(int_72);
             // ISSUE: reference to a compiler-generated method
-            return this.RaceNameThemeList.Where<RaceNameTheme45>(class647.method_0)
-                .OrderBy<RaceNameTheme45, int>(gclass45_0 => gclass45_0.int_1).FirstOrDefault<RaceNameTheme45>()
+            return this.RaceNameThemeList.Where<RaceNameTheme>(class647.method_0)
+                .OrderBy<RaceNameTheme, int>(gclass45_0 => gclass45_0.int_1).FirstOrDefault<RaceNameTheme>()
                 .CommanderNameThemeData;
         }
         catch (Exception ex)
@@ -9170,7 +9217,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class648 class648 = new FCTRaceRecordC21.Class648();
+        GameRace.Class648 class648 = new GameRace.Class648();
         // ISSUE: reference to a compiler-generated field
         class648.gclass202_0 = gclass202_2;
         try
@@ -9191,7 +9238,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class649 class649 = new FCTRaceRecordC21.Class649();
+        GameRace.Class649 class649 = new GameRace.Class649();
         // ISSUE: reference to a compiler-generated field
         class649.gclass22_0 = gclass22_1;
         try
@@ -9218,16 +9265,16 @@ public partial class FCTRaceRecordC21
             else
             {
                 this.RaceNameThemeList = this.RaceNameThemeList
-                    .OrderByDescending<RaceNameTheme45, int>(gclass45_0 => gclass45_0.Chance)
-                    .ThenByDescending<RaceNameTheme45, string>(gclass45_0 => gclass45_0.CommanderNameThemeData.Description)
-                    .ToList<RaceNameTheme45>();
+                    .OrderByDescending<RaceNameTheme, int>(gclass45_0 => gclass45_0.Chance)
+                    .ThenByDescending<RaceNameTheme, string>(gclass45_0 => gclass45_0.CommanderNameThemeData.Description)
+                    .ToList<RaceNameTheme>();
                 if (this.RaceNameThemeList.Count > 1)
                     textBox_0.Text =
                         $"{this.RaceNameThemeList[0].CommanderNameThemeData.Description} +{(this.RaceNameThemeList.Count - 1).ToString()}";
                 else
                     textBox_0.Text = this.RaceNameThemeList[0].CommanderNameThemeData.Description;
-                int num = this.RaceNameThemeList.Sum<RaceNameTheme45>(gclass45_0 => gclass45_0.Chance);
-                foreach (RaceNameTheme45 object_1 in this.RaceNameThemeList)
+                int num = this.RaceNameThemeList.Sum<RaceNameTheme>(gclass45_0 => gclass45_0.Chance);
+                foreach (RaceNameTheme object_1 in this.RaceNameThemeList)
                     this.gclass0_0.method_602(listView_0, object_1.CommanderNameThemeData.Description,
                         AuroraUtils.smethod_37(object_1.Chance),
                         AuroraUtils.smethod_44(object_1.Chance / (double)num * 100.0, 2) + "%", object_1);
@@ -9411,27 +9458,27 @@ public partial class FCTRaceRecordC21
         try
         {
             listView_0.Items.Clear();
-            IOrderedEnumerable<IGrouping<TechTypeData, TechData164>> orderedEnumerable = this.gclass0_0.TechDataDictionary
-                .Values.Where<TechData164>(gclass164_0 =>
+            IOrderedEnumerable<IGrouping<TechTypeData, TechSystem>> orderedEnumerable = this.gclass0_0.TechDataDictionary
+                .Values.Where<TechSystem>(gclass164_0 =>
                     gclass164_0.gclass21_0 == null && gclass164_0.dictionary_0.ContainsKey(this.RaceID) &&
-                    !gclass164_0.bool_2).GroupBy<TechData164, TechTypeData>(gclass164_0 => gclass164_0.gclass163_0)
-                .OrderBy<IGrouping<TechTypeData, TechData164>, string>(igrouping_0 => igrouping_0.Key.Description);
+                    !gclass164_0.bool_2).GroupBy<TechSystem, TechTypeData>(gclass164_0 => gclass164_0.gclass163_0)
+                .OrderBy<IGrouping<TechTypeData, TechSystem>, string>(igrouping_0 => igrouping_0.Key.Description);
             if (this.RaceStartingLevel == GEnum82.const_1 || this.RaceStartingLevel == GEnum82.const_2)
                 orderedEnumerable = this.gclass0_0.TechDataDictionary.Values
-                    .Where<TechData164>(gclass164_0 =>
+                    .Where<TechSystem>(gclass164_0 =>
                         gclass164_0.gclass21_0 == null && gclass164_0.dictionary_0.ContainsKey(this.RaceID) &&
-                        !gclass164_0.bool_3).GroupBy<TechData164, TechTypeData>(gclass164_0 => gclass164_0.gclass163_0)
-                    .OrderBy<IGrouping<TechTypeData, TechData164>, string>(igrouping_0 => igrouping_0.Key.Description);
-            List<TechData164> source1 = new List<TechData164>();
-            foreach (IEnumerable<TechData164> source2 in orderedEnumerable)
+                        !gclass164_0.bool_3).GroupBy<TechSystem, TechTypeData>(gclass164_0 => gclass164_0.gclass163_0)
+                    .OrderBy<IGrouping<TechTypeData, TechSystem>, string>(igrouping_0 => igrouping_0.Key.Description);
+            List<TechSystem> source1 = new List<TechSystem>();
+            foreach (IEnumerable<TechSystem> source2 in orderedEnumerable)
             {
-                TechData164 gclass164 = source2.OrderByDescending<TechData164, int>(gclass164_0 => gclass164_0.int_4)
-                    .FirstOrDefault<TechData164>();
+                TechSystem gclass164 = source2.OrderByDescending<TechSystem, int>(gclass164_0 => gclass164_0.int_4)
+                    .FirstOrDefault<TechSystem>();
                 source1.Add(gclass164);
             }
 
-            foreach (TechData164 gclass164 in source1.OrderBy<TechData164, string>(gclass164_0 => gclass164_0.Name)
-                         .ToList<TechData164>())
+            foreach (TechSystem gclass164 in source1.OrderBy<TechSystem, string>(gclass164_0 => gclass164_0.Name)
+                         .ToList<TechSystem>())
                 this.gclass0_0.method_594(listView_0, gclass164.Name);
         }
         catch (Exception ex)
@@ -9491,7 +9538,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class650 class650 = new FCTRaceRecordC21.Class650();
+        GameRace.Class650 class650 = new GameRace.Class650();
         // ISSUE: reference to a compiler-generated field
         class650.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -9551,7 +9598,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class651 class651 = new FCTRaceRecordC21.Class651();
+        GameRace.Class651 class651 = new GameRace.Class651();
         // ISSUE: reference to a compiler-generated field
         class651.gclass200_0 = gclass200_0;
         try
@@ -9585,7 +9632,7 @@ public partial class FCTRaceRecordC21
             gclass132.gclass200_0 = gclass40_1.gclass85_0.System.ActualSystemData;
             gclass132.string_0 = gclass129_0.Name;
             gclass132.gclass129_0 = gclass129_0;
-            gclass132.decimal_0 = this.gclass0_0.decimal_0;
+            gclass132.decimal_0 = this.gclass0_0.GameTime;
             gclass132.double_9 = (int)gclass129_0.decimal_5;
             gclass132.decimal_1 = gclass129_0.decimal_21;
             gclass132.double_0 = gclass40_1.gclass85_0.XCoord;
@@ -9644,7 +9691,7 @@ public partial class FCTRaceRecordC21
 
             if (gclass132.gclass129_0.decimal_25 > 0M)
             {
-                if (gclass132.gclass129_0.decimal_27 == this.gclass0_0.decimal_0)
+                if (gclass132.gclass129_0.decimal_27 == this.gclass0_0.GameTime)
                 {
                     gclass132.decimal_2 = gclass132.gclass129_0.decimal_28;
                 }
@@ -9654,7 +9701,7 @@ public partial class FCTRaceRecordC21
                     gclass132.decimal_2 = !(num <= 0M)
                         ? gclass132.gclass129_0.decimal_24 + (Decimal)AuroraUtils.smethod_17() * num
                         : gclass132.gclass129_0.decimal_25;
-                    gclass132.gclass129_0.decimal_27 = this.gclass0_0.decimal_0;
+                    gclass132.gclass129_0.decimal_27 = this.gclass0_0.GameTime;
                     gclass132.gclass129_0.decimal_28 = gclass132.decimal_2;
                 }
             }
@@ -9712,21 +9759,21 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class652 class652 = new FCTRaceRecordC21.Class652();
+        GameRace.Class652 class652 = new GameRace.Class652();
         // ISSUE: reference to a compiler-generated field
         class652.gclass146_0 = gclass146_1;
         try
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class653 class653 = new FCTRaceRecordC21.Class653();
+            GameRace.Class653 class653 = new GameRace.Class653();
             // ISSUE: reference to a compiler-generated field
             class653.class652_0 = class652;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            foreach (GClass166 gclass166 in this.list_5.Where<GClass166>(class653.class652_0.method_0)
-                         .ToList<GClass166>())
-                this.list_5.Remove(gclass166);
+            foreach (ResearchQueue gclass166 in this.ResearchQueues.Where<ResearchQueue>(class653.class652_0.method_0)
+                         .ToList<ResearchQueue>())
+                this.ResearchQueues.Remove(gclass166);
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             foreach (GClass62 gclass62_0 in this.dictionary_2.Values.Where<GClass62>(class653.class652_0.method_1)
@@ -9810,7 +9857,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class654 class654 = new FCTRaceRecordC21.Class654();
+        GameRace.Class654 class654 = new GameRace.Class654();
         // ISSUE: reference to a compiler-generated field
         class654.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -9844,7 +9891,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class655 class655 = new FCTRaceRecordC21.Class655();
+        GameRace.Class655 class655 = new GameRace.Class655();
         // ISSUE: reference to a compiler-generated field
         class655.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -9857,7 +9904,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class656 class656 = new FCTRaceRecordC21.Class656();
+            GameRace.Class656 class656 = new GameRace.Class656();
             long num = AuroraUtils.long_2;
             if (gclass85_0_1 != null)
                 num = gclass85_0_1.method_31();
@@ -9867,7 +9914,7 @@ public partial class FCTRaceRecordC21
                 .ToList<SystemBodyData>();
             // ISSUE: reference to a compiler-generated field
             class656.list_0 = this.PerceivedAliens.Values.Where<AlienRaceInfo>(gclass110_0 => gclass110_0.bGeoTreaty)
-                .Select<AlienRaceInfo, FCTRaceRecordC21>(gclass110_0 => gclass110_0.ActualAlienRace).ToList<FCTRaceRecordC21>();
+                .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace).ToList<GameRace>();
             // ISSUE: reference to a compiler-generated field
             class656.list_0.Add(this);
             // ISSUE: reference to a compiler-generated method
@@ -9949,7 +9996,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class657 class657 = new FCTRaceRecordC21.Class657();
+        GameRace.Class657 class657 = new GameRace.Class657();
         // ISSUE: reference to a compiler-generated field
         class657.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -9962,7 +10009,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class658 class658 = new FCTRaceRecordC21.Class658();
+            GameRace.Class658 class658 = new GameRace.Class658();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             List<SurveyLocation213> list1 = class657.gclass202_0.ActualSystemData.SurveyLocationDictionary.Values
@@ -9971,7 +10018,7 @@ public partial class FCTRaceRecordC21
                 return null;
             // ISSUE: reference to a compiler-generated field
             class658.list_0 = this.PerceivedAliens.Values.Where<AlienRaceInfo>(gclass110_0 => gclass110_0.bGravTreaty)
-                .Select<AlienRaceInfo, FCTRaceRecordC21>(gclass110_0 => gclass110_0.ActualAlienRace).ToList<FCTRaceRecordC21>();
+                .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace).ToList<GameRace>();
             // ISSUE: reference to a compiler-generated field
             class658.list_0.Add(this);
             // ISSUE: reference to a compiler-generated method
@@ -10002,7 +10049,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class659 class659 = new FCTRaceRecordC21.Class659();
+        GameRace.Class659 class659 = new GameRace.Class659();
         // ISSUE: reference to a compiler-generated field
         class659.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10039,7 +10086,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class660 class660 = new FCTRaceRecordC21.Class660();
+        GameRace.Class660 class660 = new GameRace.Class660();
         // ISSUE: reference to a compiler-generated field
         class660.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10076,7 +10123,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class661 class661 = new FCTRaceRecordC21.Class661();
+        GameRace.Class661 class661 = new GameRace.Class661();
         // ISSUE: reference to a compiler-generated field
         class661.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10104,7 +10151,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class662 class662 = new FCTRaceRecordC21.Class662();
+        GameRace.Class662 class662 = new GameRace.Class662();
         // ISSUE: reference to a compiler-generated field
         class662.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10132,7 +10179,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class663 class663 = new FCTRaceRecordC21.Class663();
+        GameRace.Class663 class663 = new GameRace.Class663();
         // ISSUE: reference to a compiler-generated field
         class663.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10167,7 +10214,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class664 class664 = new FCTRaceRecordC21.Class664();
+        GameRace.Class664 class664 = new GameRace.Class664();
         // ISSUE: reference to a compiler-generated field
         class664.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10206,7 +10253,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class665 class665 = new FCTRaceRecordC21.Class665();
+        GameRace.Class665 class665 = new GameRace.Class665();
         // ISSUE: reference to a compiler-generated field
         class665.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10237,7 +10284,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class666 class666 = new FCTRaceRecordC21.Class666();
+        GameRace.Class666 class666 = new GameRace.Class666();
         // ISSUE: reference to a compiler-generated field
         class666.gclass202_0 = gclass202_2;
         try
@@ -10247,7 +10294,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class667 class667 = new FCTRaceRecordC21.Class667();
+                GameRace.Class667 class667 = new GameRace.Class667();
                 // ISSUE: reference to a compiler-generated field
                 class667.class666_0 = class666;
                 // ISSUE: reference to a compiler-generated field
@@ -10277,7 +10324,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class668 class668 = new FCTRaceRecordC21.Class668();
+        GameRace.Class668 class668 = new GameRace.Class668();
         // ISSUE: reference to a compiler-generated field
         class668.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10310,7 +10357,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class669 class669 = new FCTRaceRecordC21.Class669();
+        GameRace.Class669 class669 = new GameRace.Class669();
         // ISSUE: reference to a compiler-generated field
         class669.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10341,7 +10388,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class670 class670 = new FCTRaceRecordC21.Class670();
+        GameRace.Class670 class670 = new GameRace.Class670();
         // ISSUE: reference to a compiler-generated field
         class670.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10370,7 +10417,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class671 class671 = new FCTRaceRecordC21.Class671();
+        GameRace.Class671 class671 = new GameRace.Class671();
         // ISSUE: reference to a compiler-generated field
         class671.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10403,7 +10450,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class672 class672 = new FCTRaceRecordC21.Class672();
+        GameRace.Class672 class672 = new GameRace.Class672();
         // ISSUE: reference to a compiler-generated field
         class672.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10421,12 +10468,12 @@ public partial class FCTRaceRecordC21
                 return null;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            if (!class672.gclass85_0.Race.IsNPR && class672.gclass85_0.ShippingLine != null)
+            if (!class672.gclass85_0.Race.NPR && class672.gclass85_0.ShippingLine != null)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: reference to a compiler-generated method
-                list = list.Where<PopulationData>(new FCTRaceRecordC21.Class673()
+                list = list.Where<PopulationData>(new GameRace.Class673()
                 {
                     decimal_0 = class672.gclass85_0.method_148()
                 }.method_0).ToList<PopulationData>();
@@ -10452,7 +10499,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class674 class674 = new FCTRaceRecordC21.Class674();
+        GameRace.Class674 class674 = new GameRace.Class674();
         // ISSUE: reference to a compiler-generated field
         class674.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -10488,7 +10535,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class675 class675 = new FCTRaceRecordC21.Class675();
+        GameRace.Class675 class675 = new GameRace.Class675();
         // ISSUE: reference to a compiler-generated field
         class675.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -10526,7 +10573,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class676 class676 = new FCTRaceRecordC21.Class676();
+        GameRace.Class676 class676 = new GameRace.Class676();
         // ISSUE: reference to a compiler-generated field
         class676.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10541,7 +10588,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class677 class677 = new FCTRaceRecordC21.Class677()
+            GameRace.Class677 class677 = new GameRace.Class677()
             {
                 class676_0 = class676
             };
@@ -10607,7 +10654,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class678 class678 = new FCTRaceRecordC21.Class678();
+        GameRace.Class678 class678 = new GameRace.Class678();
         // ISSUE: reference to a compiler-generated field
         class678.gclass202_0 = gclass202_2;
         // ISSUE: reference to a compiler-generated field
@@ -10637,7 +10684,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class679 class679 = new FCTRaceRecordC21.Class679();
+        GameRace.Class679 class679 = new GameRace.Class679();
         // ISSUE: reference to a compiler-generated field
         class679.gclass202_0 = gclass202_2;
         try
@@ -10657,7 +10704,7 @@ public partial class FCTRaceRecordC21
         try
         {
             listView_0.Items.Clear();
-            foreach (StandingOrderDefinition object_1 in !this.IsNPR
+            foreach (StandingOrderDefinition object_1 in !this.NPR
                          ? this.gclass0_0.StandingOrderDictionary.Values
                              .Where<StandingOrderDefinition>(gclass136_0 => !gclass136_0.ForNPROnly && gclass136_0.Standing)
                              .OrderBy<StandingOrderDefinition, int>(gclass136_0 => gclass136_0.DisplayOrder).ToList<StandingOrderDefinition>()
@@ -10676,13 +10723,13 @@ public partial class FCTRaceRecordC21
         try
         {
             List<StandingOrderDefinition> list = this.gclass0_0.StandingOrderDictionary.Values
-                .Where<StandingOrderDefinition>(gclass136_0 => !gclass136_0.ForNPROnly || this.IsNPR).ToList<StandingOrderDefinition>();
+                .Where<StandingOrderDefinition>(gclass136_0 => !gclass136_0.ForNPROnly || this.NPR).ToList<StandingOrderDefinition>();
             treeView_0.Nodes.Clear();
             foreach (AuroraStandingOrderGroup standingOrderGroup in Enum.GetValues(typeof(AuroraStandingOrderGroup)))
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class680 class680 = new FCTRaceRecordC21.Class680();
+                GameRace.Class680 class680 = new GameRace.Class680();
                 // ISSUE: reference to a compiler-generated field
                 class680.auroraStandingOrderGroup_0 = standingOrderGroup;
                 // ISSUE: reference to a compiler-generated field
@@ -10758,7 +10805,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class681 class681 = new FCTRaceRecordC21.Class681();
+        GameRace.Class681 class681 = new GameRace.Class681();
         // ISSUE: reference to a compiler-generated field
         class681.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -10958,9 +11005,9 @@ public partial class FCTRaceRecordC21
                     gclass21_0 = this,
                     genum25_0 = genum25_0
                 });
-                TechData164 gclass164 = new TechData164();
+                TechSystem gclass164 = new TechSystem();
                 gclass164.int_5 = this.gclass0_0.GameID;
-                gclass164.int_0 = this.gclass0_0.method_26(GEnum0.const_16);
+                gclass164.TechSystemID = this.gclass0_0.method_26(GEnum0.const_16);
                 gclass164.Name = "Alien Autopsy - " + gclass194_1.SpeciesName;
                 gclass164.genum119_0 = ResearchCategoryType.GeneralScience;
                 gclass164.int_1 = this.RaceID;
@@ -10969,7 +11016,7 @@ public partial class FCTRaceRecordC21
                 gclass164.decimal_0 = gclass194_1.int_0;
                 gclass164.string_1 =
                     $"Alien Autopsy of the {gclass194_1.SpeciesName}. This will determine the environmental tolerances of the species";
-                this.gclass0_0.TechDataDictionary.Add(gclass164.int_0, gclass164);
+                this.gclass0_0.TechDataDictionary.Add(gclass164.TechSystemID, gclass164);
             }
 
             if (gclass110_1.dictionary_0.ContainsKey(gclass194_1.int_0))
@@ -11003,7 +11050,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class682 class682 = new FCTRaceRecordC21.Class682();
+        GameRace.Class682 class682 = new GameRace.Class682();
         // ISSUE: reference to a compiler-generated field
         class682.genum6_0 = genum6_1;
         try
@@ -11300,7 +11347,7 @@ public partial class FCTRaceRecordC21
                         {
                             if (!this.gclass0_0.bool_8)
                             {
-                                if (this.gclass0_0.string_0 == "")
+                                if (this.gclass0_0.SMPassword == "")
                                 {
                                     this.gclass0_0.bool_8 = true;
                                 }
@@ -11309,7 +11356,7 @@ public partial class FCTRaceRecordC21
                                     this.gclass0_0.string_3 = "Enter Spacemaster Password";
                                     this.gclass0_0.string_4 = "";
                                     int num1 = (int)new MessageEntry(this.gclass0_0).ShowDialog();
-                                    if (this.gclass0_0.string_4 == this.gclass0_0.string_0)
+                                    if (this.gclass0_0.string_4 == this.gclass0_0.SMPassword)
                                     {
                                         this.gclass0_0.bool_8 = true;
                                     }
@@ -11885,7 +11932,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class683 class683 = new FCTRaceRecordC21.Class683();
+            GameRace.Class683 class683 = new GameRace.Class683();
             if (this.bool_21)
             {
                 this.double_2 = this.gclass0_0.double_6;
@@ -11927,7 +11974,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: reference to a compiler-generated method
-                RacialSystemSurvey gclass202 = this.RacialSystemDictionary.Values.FirstOrDefault<RacialSystemSurvey>(new FCTRaceRecordC21.Class684()
+                RacialSystemSurvey gclass202 = this.RacialSystemDictionary.Values.FirstOrDefault<RacialSystemSurvey>(new GameRace.Class684()
                 {
                     gclass211_0 = gclass211
                 }.method_0);
@@ -12010,7 +12057,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class685 class685 = new FCTRaceRecordC21.Class685();
+        GameRace.Class685 class685 = new GameRace.Class685();
         // ISSUE: reference to a compiler-generated field
         class685.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -12208,7 +12255,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class686 class686 = new FCTRaceRecordC21.Class686();
+        GameRace.Class686 class686 = new GameRace.Class686();
         // ISSUE: reference to a compiler-generated field
         class686.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -12227,13 +12274,13 @@ public partial class FCTRaceRecordC21
             GClass214 gclass214_1 = this.gclass0_0.dictionary_13.Values.FirstOrDefault<GClass214>(class686.method_0);
             if (gclass214_1 != null)
             {
-                gclass214_1.decimal_0 = this.gclass0_0.decimal_0;
+                gclass214_1.decimal_0 = this.gclass0_0.GameTime;
                 return gclass214_1;
             }
 
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            if (this.IsNPR && (class686.wayPointType_0 == WayPointType.POI ||
+            if (this.NPR && (class686.wayPointType_0 == WayPointType.POI ||
                                class686.wayPointType_0 == WayPointType.UrgentPOI))
             {
                 // ISSUE: reference to a compiler-generated method
@@ -12242,7 +12289,7 @@ public partial class FCTRaceRecordC21
 
             if (gclass214_1 != null)
             {
-                gclass214_1.decimal_0 = this.gclass0_0.decimal_0;
+                gclass214_1.decimal_0 = this.gclass0_0.GameTime;
                 return gclass214_1;
             }
 
@@ -12257,7 +12304,7 @@ public partial class FCTRaceRecordC21
             }
 
             GClass214 gclass214_3 = new GClass214(this.gclass0_0);
-            gclass214_3.decimal_0 = this.gclass0_0.decimal_0;
+            gclass214_3.decimal_0 = this.gclass0_0.GameTime;
             gclass214_3.int_0 = this.gclass0_0.method_26(GEnum0.const_15);
             gclass214_3.gclass21_0 = this;
             // ISSUE: reference to a compiler-generated field
@@ -12437,7 +12484,7 @@ public partial class FCTRaceRecordC21
             this.method_219(listView_0, "Missile ECM Level", this.gclass0_0.TechTypeDataDictionary[TechType.MissileECM], 1M, "");
             this.method_219(listView_0, "Enhanced Radiation Modifier", this.gclass0_0.TechTypeDataDictionary[TechType.EnhancedRadiationWarhead],
                 1M, "x");
-            TechData164 object_1_1 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.ActiveTerminalGuidance]);
+            TechSystem object_1_1 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.ActiveTerminalGuidance]);
             if (object_1_1 != null)
                 this.gclass0_0.method_598(listView_0, "Active Terminal Guidance",
                     AuroraUtils.smethod_39((object_1_1.decimal_0 - 1M) * 100M) + "%", object_1_1);
@@ -12445,7 +12492,7 @@ public partial class FCTRaceRecordC21
                 missileDesign_0.method_1(true);
             else
                 missileDesign_0.method_1(false);
-            TechData164 object_1_2 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.MultipleWarheads]);
+            TechSystem object_1_2 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.MultipleWarheads]);
             if (object_1_2 != null)
             {
                 if (object_1_2.decimal_0 == 1M)
@@ -12492,8 +12539,8 @@ public partial class FCTRaceRecordC21
             if (gclass230 != null)
                 num1 = (int)gclass230.decimal_3;
             int num2 = this.method_220();
-            TechData164 gclass164_1 = this.method_387(TechType.FireControlSpeedRating);
-            TechData164 gclass164_2 = this.method_387(TechType.BeamFireControlDistanceRating);
+            TechSystem gclass164_1 = this.method_387(TechType.FireControlSpeedRating);
+            TechSystem gclass164_2 = this.method_387(TechType.BeamFireControlDistanceRating);
             textBox_0.Text = num1.ToString();
             textBox_1.Text = num2.ToString();
             textBox_2.Text = AuroraUtils.smethod_38(gclass164_1.decimal_0) + " km/s";
@@ -12556,7 +12603,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class687 class687 = new FCTRaceRecordC21.Class687();
+        GameRace.Class687 class687 = new GameRace.Class687();
         // ISSUE: reference to a compiler-generated field
         class687.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -12625,7 +12672,7 @@ public partial class FCTRaceRecordC21
                 case GroundUnitBaseType.const_5:
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class688 class688 = new FCTRaceRecordC21.Class688();
+                    GameRace.Class688 class688 = new GameRace.Class688();
                     // ISSUE: reference to a compiler-generated field
                     class688.gclass21_0 = this;
                     // ISSUE: reference to a compiler-generated field
@@ -12794,18 +12841,18 @@ public partial class FCTRaceRecordC21
                 .OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>();
             if (list.Count == 0)
                 return;
-            TechData164 gclass164_1 = this.method_387(TechType.BeamFireControlDistanceRating);
-            TechData164 gclass164_2 = this.method_387(TechType.FireControlSpeedRating);
-            TechData164 gclass164_3 = this.gclass0_0.TechDataDictionary[26546];
-            TechData164 gclass164_4 = this.gclass0_0.TechDataDictionary[24372];
-            TechData164 gclass164_5 = this.gclass0_0.TechDataDictionary[24380];
-            TechData164 gclass164_4_1 = this.gclass0_0.TechDataDictionary[83];
+            TechSystem gclass164_1 = this.method_387(TechType.BeamFireControlDistanceRating);
+            TechSystem gclass164_2 = this.method_387(TechType.FireControlSpeedRating);
+            TechSystem gclass164_3 = this.gclass0_0.TechDataDictionary[26546];
+            TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[24372];
+            TechSystem gclass164_5 = this.gclass0_0.TechDataDictionary[24380];
+            TechSystem gclass164_4_1 = this.gclass0_0.TechDataDictionary[83];
             if (gclass164_1 == null)
                 return;
             foreach (ShipComponent gclass230_2 in list)
             {
                 ShipComponent gclass230_1 = this.gclass0_0.method_484(this, gclass230_2);
-                TechData164 gclass164_5_1 = this.gclass0_0.TechDataDictionary[82478];
+                TechSystem gclass164_5_1 = this.gclass0_0.TechDataDictionary[82478];
                 ShipComponent gclass230_3 = this.gclass0_0.method_463(this, gclass164_1, gclass164_2, 4M, 1M, gclass164_3,
                     gclass164_4_1, gclass164_5_1, null, null, false);
                 Decimal num1 = gclass230_2.method_4();
@@ -12850,12 +12897,12 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            TechData164 gclass164_4 = this.method_387(TechType.ActiveSensorStrength);
-            TechData164 gclass164_2 = this.method_387(TechType.BeamFireControlDistanceRating);
-            TechData164 gclass164_3 = this.method_387(TechType.FireControlSpeedRating);
-            TechData164 gclass164_1 = this.method_387(TechType.GaussCannonRateofFire);
-            TechData164 gclass164_5 = this.method_387(TechType.TurretRotationGear);
-            TechData164 gclass164_6 = this.method_387(TechType.ECCM);
+            TechSystem gclass164_4 = this.method_387(TechType.ActiveSensorStrength);
+            TechSystem gclass164_2 = this.method_387(TechType.BeamFireControlDistanceRating);
+            TechSystem gclass164_3 = this.method_387(TechType.FireControlSpeedRating);
+            TechSystem gclass164_1 = this.method_387(TechType.GaussCannonRateofFire);
+            TechSystem gclass164_5 = this.method_387(TechType.TurretRotationGear);
+            TechSystem gclass164_6 = this.method_387(TechType.ECCM);
             ShipComponent gclass230 = this.gclass0_0.method_460(this, gclass164_1, gclass164_2, gclass164_3, gclass164_4,
                 gclass164_5, gclass164_6, null, null, true);
             textBox_0.Text =
@@ -12947,7 +12994,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class689 class689 = new FCTRaceRecordC21.Class689();
+        GameRace.Class689 class689 = new GameRace.Class689();
         // ISSUE: reference to a compiler-generated field
         class689.gclass93_0 = gclass93_0;
         try
@@ -12969,7 +13016,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class690 class690 = new FCTRaceRecordC21.Class690();
+        GameRace.Class690 class690 = new GameRace.Class690();
         // ISSUE: reference to a compiler-generated field
         class690.gclass93_0 = gclass93_0;
         try
@@ -13073,7 +13120,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class691 class691 = new FCTRaceRecordC21.Class691();
+        GameRace.Class691 class691 = new GameRace.Class691();
         // ISSUE: reference to a compiler-generated field
         class691.gclass93_0 = gclass93_0;
         try
@@ -13104,7 +13151,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class692 class692 = new FCTRaceRecordC21.Class692();
+        GameRace.Class692 class692 = new GameRace.Class692();
         // ISSUE: reference to a compiler-generated field
         class692.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -13120,10 +13167,10 @@ public partial class FCTRaceRecordC21
             foreach (GroundUnitClass101 gclass101 in list)
             {
                 // ISSUE: reference to a compiler-generated field
-                if (gclass101.GroundUnitComponentList.OrderBy<GroundComponentTypeDefinition, int>(gclass100_0 => gclass100_0.TechData.int_0)
+                if (gclass101.GroundUnitComponentList.OrderBy<GroundComponentTypeDefinition, int>(gclass100_0 => gclass100_0.TechData.TechSystemID)
                     .SequenceEqual<GroundComponentTypeDefinition>(
                         class692.gclass101_0.GroundUnitComponentList.OrderBy<GroundComponentTypeDefinition, int>(
-                            gclass100_0 => gclass100_0.TechData.int_0)))
+                            gclass100_0 => gclass100_0.TechData.TechSystemID)))
                     return gclass101;
             }
 
@@ -13140,7 +13187,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class693 class693 = new FCTRaceRecordC21.Class693();
+        GameRace.Class693 class693 = new GameRace.Class693();
         // ISSUE: reference to a compiler-generated field
         class693.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -13186,7 +13233,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class694 class694 = new FCTRaceRecordC21.Class694();
+        GameRace.Class694 class694 = new GameRace.Class694();
         // ISSUE: reference to a compiler-generated field
         class694.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -13228,7 +13275,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class695 class695 = new FCTRaceRecordC21.Class695();
+                    GameRace.Class695 class695 = new GameRace.Class695();
                     // ISSUE: reference to a compiler-generated field
                     class695.string_0 = str2;
                     // ISSUE: reference to a compiler-generated method
@@ -13296,7 +13343,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class696 class696 = new FCTRaceRecordC21.Class696();
+        GameRace.Class696 class696 = new GameRace.Class696();
         // ISSUE: reference to a compiler-generated field
         class696.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -13328,8 +13375,8 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            TechData164 gclass164_1 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.TurretRotationGear]);
-            TechData164 gclass164_2 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.FireControlSpeedRating]);
+            TechSystem gclass164_1 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.TurretRotationGear]);
+            TechSystem gclass164_2 = this.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.FireControlSpeedRating]);
             textBox_0.Text = gclass164_1.Name;
             textBox_1.Text = gclass164_2.Name;
         }
@@ -13409,7 +13456,7 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            TechData164 object_1 = this.method_388(gclass163_0);
+            TechSystem object_1 = this.method_388(gclass163_0);
             if (object_1 != null)
                 this.gclass0_0.method_598(listView_0, string_10,
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_0 / decimal_29, 3) + string_11, object_1);
@@ -13515,7 +13562,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class697 class697 = new FCTRaceRecordC21.Class697();
+        GameRace.Class697 class697 = new GameRace.Class697();
         // ISSUE: reference to a compiler-generated field
         class697.auroraCommanderType_0 = auroraCommanderType_0;
         // ISSUE: reference to a compiler-generated field
@@ -13528,7 +13575,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class698 class698 = new FCTRaceRecordC21.Class698()
+                GameRace.Class698 class698 = new GameRace.Class698()
                 {
                     gclass61_0 = gclass61
                 };
@@ -13610,7 +13657,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class699 class699 = new FCTRaceRecordC21.Class699();
+        GameRace.Class699 class699 = new GameRace.Class699();
         // ISSUE: reference to a compiler-generated field
         class699.auroraCommanderType_0 = auroraCommanderType_0;
         try
@@ -13622,7 +13669,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class700 class700 = new FCTRaceRecordC21.Class700()
+                GameRace.Class700 class700 = new GameRace.Class700()
                 {
                     gclass61_0 = gclass61
                 };
@@ -13636,7 +13683,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class701 class701 = new FCTRaceRecordC21.Class701();
+                GameRace.Class701 class701 = new GameRace.Class701();
                 // ISSUE: reference to a compiler-generated field
                 class701.gclass61_0 = gclass61_1;
                 // ISSUE: reference to a compiler-generated field
@@ -13661,7 +13708,7 @@ public partial class FCTRaceRecordC21
                     // ISSUE: reference to a compiler-generated field
                     foreach (GClass55 gclass55_1 in class701.gclass61_0.list_0)
                     {
-                        if (bool_24 || this.gclass0_0.decimal_0 - gclass55_1.decimal_0 > AuroraUtils.decimal_29 &&
+                        if (bool_24 || this.gclass0_0.GameTime - gclass55_1.decimal_0 > AuroraUtils.decimal_29 &&
                             gclass55_1.gclass21_1 == null)
                         {
                             if (bool_24)
@@ -13698,7 +13745,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class702 class702 = new FCTRaceRecordC21.Class702();
+        GameRace.Class702 class702 = new GameRace.Class702();
         // ISSUE: reference to a compiler-generated field
         class702.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -13721,7 +13768,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class703 class703 = new FCTRaceRecordC21.Class703();
+                GameRace.Class703 class703 = new GameRace.Class703();
                 // ISSUE: reference to a compiler-generated field
                 class703.class702_0 = class702;
                 // ISSUE: reference to a compiler-generated field
@@ -13756,7 +13803,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class704 class704 = new FCTRaceRecordC21.Class704();
+        GameRace.Class704 class704 = new GameRace.Class704();
         // ISSUE: reference to a compiler-generated field
         class704.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -13800,7 +13847,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class705 class705 = new FCTRaceRecordC21.Class705();
+                    GameRace.Class705 class705 = new GameRace.Class705();
                     // ISSUE: reference to a compiler-generated field
                     class705.gclass40_0 = gclass40;
                     // ISSUE: reference to a compiler-generated method
@@ -13817,7 +13864,7 @@ public partial class FCTRaceRecordC21
                     else
                     {
                         // ISSUE: reference to a compiler-generated field
-                        if (this.IsNPR && class705.gclass40_0.gclass22_0.auroraClassMainFunction_0 ==
+                        if (this.NPR && class705.gclass40_0.gclass22_0.auroraClassMainFunction_0 ==
                             AuroraClassMainFunction.Diplomacy)
                         {
                             // ISSUE: reference to a compiler-generated method
@@ -13905,7 +13952,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class706 class706 = new FCTRaceRecordC21.Class706();
+                    GameRace.Class706 class706 = new GameRace.Class706();
                     // ISSUE: reference to a compiler-generated field
                     class706.gclass61_0 = gclass103_1.method_32();
                     if (index == 2)
@@ -14056,7 +14103,7 @@ public partial class FCTRaceRecordC21
                 }
             }
 
-            if (this.IsNPR)
+            if (this.NPR)
             {
                 // ISSUE: reference to a compiler-generated method
                 List<PopulationData> list7 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class704.method_8)
@@ -14069,14 +14116,14 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class707 class707 = new FCTRaceRecordC21.Class707();
+                    GameRace.Class707 class707 = new GameRace.Class707();
                     // ISSUE: reference to a compiler-generated field
                     class707.class704_0 = class704;
                     // ISSUE: reference to a compiler-generated field
                     class707.gclass146_0 = gclass146;
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class708 class708 = new FCTRaceRecordC21.Class708();
+                    GameRace.Class708 class708 = new GameRace.Class708();
                     // ISSUE: reference to a compiler-generated field
                     class707.gclass146_0.method_152();
                     // ISSUE: reference to a compiler-generated method
@@ -14147,7 +14194,7 @@ public partial class FCTRaceRecordC21
                             gclass55.auroraCommandType_0 = AuroraCommandType.Colony;
                             // ISSUE: reference to a compiler-generated field
                             gclass55.gclass146_0 = class707.gclass146_0;
-                            gclass55.decimal_1 = this.gclass0_0.decimal_0;
+                            gclass55.decimal_1 = this.gclass0_0.GameTime;
                             // ISSUE: reference to a compiler-generated field
                             class707.gclass146_0.gclass55_0 = gclass55;
                             // ISSUE: reference to a compiler-generated field
@@ -14244,7 +14291,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class709 class709 = new FCTRaceRecordC21.Class709();
+        GameRace.Class709 class709 = new GameRace.Class709();
         // ISSUE: reference to a compiler-generated field
         class709.auroraCommandType_0 = auroraCommandType_0;
         // ISSUE: reference to a compiler-generated field
@@ -14269,7 +14316,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class710 class710 = new FCTRaceRecordC21.Class710();
+                GameRace.Class710 class710 = new GameRace.Class710();
                 // ISSUE: reference to a compiler-generated field
                 class710.class709_0 = class709;
                 // ISSUE: reference to a compiler-generated field
@@ -14310,7 +14357,7 @@ public partial class FCTRaceRecordC21
                         {
                             // ISSUE: object of a compiler-generated type is created
                             // ISSUE: variable of a compiler-generated type
-                            FCTRaceRecordC21.Class711 class711 = new FCTRaceRecordC21.Class711()
+                            GameRace.Class711 class711 = new GameRace.Class711()
                             {
                                 class710_0 = class710
                             };
@@ -14490,7 +14537,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class712 class712 = new FCTRaceRecordC21.Class712();
+        GameRace.Class712 class712 = new GameRace.Class712();
         // ISSUE: reference to a compiler-generated field
         class712.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -14600,7 +14647,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class713 class713 = new FCTRaceRecordC21.Class713();
+        GameRace.Class713 class713 = new GameRace.Class713();
         // ISSUE: reference to a compiler-generated field
         class713.auroraCommanderType_0 = auroraCommanderType_0;
         try
@@ -14674,7 +14721,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class714 class714 = new FCTRaceRecordC21.Class714();
+                GameRace.Class714 class714 = new GameRace.Class714();
                 // ISSUE: reference to a compiler-generated field
                 class714.gclass61_0 = gclass61;
                 TreeNode node2 = new TreeNode();
@@ -14713,7 +14760,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class715 class715 = new FCTRaceRecordC21.Class715();
+                GameRace.Class715 class715 = new GameRace.Class715();
                 // ISSUE: reference to a compiler-generated field
                 class715.gclass61_0 = gclass61;
                 TreeNode node4 = new TreeNode();
@@ -14753,7 +14800,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class716 class716 = new FCTRaceRecordC21.Class716();
+                GameRace.Class716 class716 = new GameRace.Class716();
                 // ISSUE: reference to a compiler-generated field
                 class716.gclass162_0 = gclass162;
                 TreeNode node6 = new TreeNode();
@@ -14793,7 +14840,7 @@ public partial class FCTRaceRecordC21
                 int num = (int)list6.Max<GClass55>(gclass55_0 => gclass55_0.method_5(CommanderBonusType.ColonyAdmnistration));
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class717 class717 = new FCTRaceRecordC21.Class717();
+                GameRace.Class717 class717 = new GameRace.Class717();
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -14833,21 +14880,21 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            List<TechData164> gclass164List = new List<TechData164>();
+            List<TechSystem> gclass164List = new List<TechSystem>();
             if (this.RaceStartingLevel != GEnum82.const_0 && this.RaceStartingLevel != GEnum82.const_4)
             {
                 if (this.RaceStartingLevel == GEnum82.const_1 || this.RaceStartingLevel == GEnum82.const_2)
                     gclass164List = this.gclass0_0.TechDataDictionary.Values
-                        .Where<TechData164>(gclass164_0 => gclass164_0.bool_3 && !gclass164_0.bool_1)
-                        .ToList<TechData164>();
+                        .Where<TechSystem>(gclass164_0 => gclass164_0.bool_3 && !gclass164_0.bool_1)
+                        .ToList<TechSystem>();
             }
             else
                 gclass164List = this.gclass0_0.TechDataDictionary.Values
-                    .Where<TechData164>(gclass164_0 => gclass164_0.bool_2 && !gclass164_0.bool_1).ToList<TechData164>();
+                    .Where<TechSystem>(gclass164_0 => gclass164_0.bool_2 && !gclass164_0.bool_1).ToList<TechSystem>();
 
-            foreach (TechData164 gclass164_0 in gclass164List)
+            foreach (TechSystem gclass164_0 in gclass164List)
                 this.method_282(gclass164_0, null, null, null, true, true);
-            if (!this.IsNPR)
+            if (!this.NPR)
                 return;
             if (this.RaceStartingLevel == GEnum82.const_2)
             {
@@ -14903,19 +14950,19 @@ public partial class FCTRaceRecordC21
                 : BeamWeaponPreference.const_1;
             this.DesignDoctrine.PointDefencePreference = BeamWeaponPreference.const_3;
             this.DesignDoctrine.ActiveResolution = 20;
-            TechData164 gclass164_1_1 = this.method_387(TechType.LaserFocalSize);
-            TechData164 gclass164_2_1 = this.method_387(TechType.LaserWavelength);
-            TechData164 gclass164_1 = this.method_387(TechType.CapacitorRechargeRate);
-            TechData164 gclass164_1_2 = this.method_387(TechType.RailgunType);
-            TechData164 gclass164_2_2 = this.method_387(TechType.RailgunVelocity);
-            TechData164 gclass164_1_3 = this.method_387(TechType.ParticleBeamStrength);
-            TechData164 gclass164_2_3 = this.method_387(TechType.MaximumParticleBeamRange);
-            TechData164 gclass164_4_1 = this.method_387(TechType.ParticleLance);
-            TechData164 gclass164_1_4 = this.method_387(TechType.CarronadeCalibre);
-            TechData164 gclass164_4_2 = this.gclass0_0.TechDataDictionary[26596];
-            TechData164 gclass164_2 = this.gclass0_0.TechDataDictionary[55406];
-            TechData164 gclass164_1_5 = this.gclass0_0.TechDataDictionary[762];
-            TechData164 gclass164_1_6 = this.gclass0_0.TechDataDictionary[25630];
+            TechSystem gclass164_1_1 = this.method_387(TechType.LaserFocalSize);
+            TechSystem gclass164_2_1 = this.method_387(TechType.LaserWavelength);
+            TechSystem gclass164_1 = this.method_387(TechType.CapacitorRechargeRate);
+            TechSystem gclass164_1_2 = this.method_387(TechType.RailgunType);
+            TechSystem gclass164_2_2 = this.method_387(TechType.RailgunVelocity);
+            TechSystem gclass164_1_3 = this.method_387(TechType.ParticleBeamStrength);
+            TechSystem gclass164_2_3 = this.method_387(TechType.MaximumParticleBeamRange);
+            TechSystem gclass164_4_1 = this.method_387(TechType.ParticleLance);
+            TechSystem gclass164_1_4 = this.method_387(TechType.CarronadeCalibre);
+            TechSystem gclass164_4_2 = this.gclass0_0.TechDataDictionary[26596];
+            TechSystem gclass164_2 = this.gclass0_0.TechDataDictionary[55406];
+            TechSystem gclass164_1_5 = this.gclass0_0.TechDataDictionary[762];
+            TechSystem gclass164_1_6 = this.gclass0_0.TechDataDictionary[25630];
             this.DesignDoctrine.LaserLarge = this.gclass0_0.method_473(this, gclass164_1_1, gclass164_2_1, gclass164_1,
                 gclass164_4_2, gclass164_2, false, null, null, true);
             this.DesignDoctrine.LaserPointDefence = this.gclass0_0.method_473(this, gclass164_1_5, gclass164_2_1, gclass164_1,
@@ -14939,7 +14986,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class718 class718 = new FCTRaceRecordC21.Class718();
+        GameRace.Class718 class718 = new GameRace.Class718();
         // ISSUE: reference to a compiler-generated field
         class718.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -15285,9 +15332,9 @@ public partial class FCTRaceRecordC21
             if (this.RaceStartingLevel == GEnum82.const_4)
             {
                 this.DesignDoctrine.NameList_3 = this.DesignDoctrine.NameList_3.Where<GClass12>(gclass12_0 =>
-                    gclass12_0.gclass9_0.genum105_0 != OperationalGroup.GravitationalSurvey &&
-                    gclass12_0.gclass9_0.genum105_0 != OperationalGroup.StablizationSquadronBeamEscort &&
-                    gclass12_0.gclass9_0.genum105_0 != OperationalGroup.StabilisationSquadron).ToList<GClass12>();
+                    gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.GravitationalSurvey &&
+                    gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.StablizationSquadronBeamEscort &&
+                    gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.StabilisationSquadron).ToList<GClass12>();
                 this.StartTechPoints += 5000;
                 bool flag2 = false;
                 bool flag3 = false;
@@ -15302,8 +15349,8 @@ public partial class FCTRaceRecordC21
                 if (!flag2)
                 {
                     this.DesignDoctrine.NameList_3 = this.DesignDoctrine.NameList_3.Where<GClass12>(gclass12_0 =>
-                        gclass12_0.gclass9_0.genum105_0 != OperationalGroup.HarvesterGroup &&
-                        gclass12_0.gclass9_0.genum105_0 != OperationalGroup.HarvesterGroupBeamEscort).ToList<GClass12>();
+                        gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.HarvesterGroup &&
+                        gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.HarvesterGroupBeamEscort).ToList<GClass12>();
                     this.StartTechPoints += 5000;
                 }
 
@@ -15317,8 +15364,8 @@ public partial class FCTRaceRecordC21
                 if (!flag3)
                 {
                     this.DesignDoctrine.NameList_3 = this.DesignDoctrine.NameList_3.Where<GClass12>(gclass12_0 =>
-                        gclass12_0.gclass9_0.genum105_0 != OperationalGroup.OrbitalMinerGroup &&
-                        gclass12_0.gclass9_0.genum105_0 != OperationalGroup.OrbitalMinerGroupBeamEscort).ToList<GClass12>();
+                        gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.OrbitalMinerGroup &&
+                        gclass12_0.gclass9_0.OperationalGroupId != OperationalGroupID.OrbitalMinerGroupBeamEscort).ToList<GClass12>();
                     this.StartTechPoints += 5000;
                 }
             }
@@ -15326,38 +15373,38 @@ public partial class FCTRaceRecordC21
             if (AuroraUtils.GetRandomInteger(3) == 2)
             {
                 foreach (GClass12 gclass12 in this.DesignDoctrine.NameList_3
-                             .Where<GClass12>(gclass12_0 => gclass12_0.gclass9_0.genum105_0 == OperationalGroup.Scout)
+                             .Where<GClass12>(gclass12_0 => gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.Scout)
                              .ToList<GClass12>())
-                    gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.BeamArmedScout];
+                    gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.BeamArmedScout];
             }
 
             if (this.DesignDoctrine.bFighterFactories)
             {
                 bool flag4 = true;
                 foreach (GClass12 gclass12 in this.DesignDoctrine.NameList_3
-                             .Where<GClass12>(gclass12_0 => gclass12_0.gclass9_0.genum105_0 == OperationalGroup.MissileBattleSquadron)
+                             .Where<GClass12>(gclass12_0 => gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.MissileBattleSquadron)
                              .ToList<GClass12>())
-                    gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.CarrierGroupMissile];
+                    gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.CarrierGroupMissile];
                 foreach (GClass12 gclass12 in this.DesignDoctrine.NameList_3
-                             .Where<GClass12>(gclass12_0 => gclass12_0.gclass9_0.genum105_0 == OperationalGroup.BeamOnlyBattleSquadron)
+                             .Where<GClass12>(gclass12_0 => gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.BeamOnlyBattleSquadron)
                              .ToList<GClass12>())
-                    gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.CarrierGroupEnergy];
+                    gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.CarrierGroupEnergy];
                 foreach (GClass12 gclass12 in this.DesignDoctrine.NameList_3.Where<GClass12>(gclass12_0 =>
-                             gclass12_0.gclass9_0.genum105_0 == OperationalGroup.MissileBattleFleet ||
-                             gclass12_0.gclass9_0.genum105_0 == OperationalGroup.MissileBattleFleetJump).ToList<GClass12>())
+                             gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.MissileBattleFleet ||
+                             gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.MissileBattleFleetJump).ToList<GClass12>())
                 {
                     if (flag4)
-                        gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.CarrierBattleGroupMissile];
+                        gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.CarrierBattleGroupMissile];
                     if (auroraNprSetupOption3 == AuroraNPRSetupOption.Yes)
                         flag4 = AuroraUtils.smethod_23();
                 }
 
                 foreach (GClass12 gclass12 in this.DesignDoctrine.NameList_3.Where<GClass12>(gclass12_0 =>
-                             gclass12_0.gclass9_0.genum105_0 == OperationalGroup.BeamOnlyBattleFleet ||
-                             gclass12_0.gclass9_0.genum105_0 == OperationalGroup.BeamOnlyBattleFleetJump).ToList<GClass12>())
+                             gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.BeamOnlyBattleFleet ||
+                             gclass12_0.gclass9_0.OperationalGroupId == OperationalGroupID.BeamOnlyBattleFleetJump).ToList<GClass12>())
                 {
                     if (flag4)
-                        gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroup.CarrierBattleGroupEnergy];
+                        gclass12.gclass9_0 = this.gclass0_0.OperationalGroupDictionary[OperationalGroupID.CarrierBattleGroupEnergy];
                     if (auroraNprSetupOption3 == AuroraNPRSetupOption.Yes)
                         flag4 = AuroraUtils.smethod_23();
                 }
@@ -15367,8 +15414,8 @@ public partial class FCTRaceRecordC21
             if (this.StartTechPoints <= 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<TechData164> list = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class718.method_5)
-                .ToList<TechData164>();
+            List<TechSystem> list = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class718.method_5)
+                .ToList<TechSystem>();
             foreach (DIMDesignPhilosophyTechProgression gclass19 in this.DesignDoctrine.list_1)
             {
                 if (gclass19.gclass163_0 != null)
@@ -15376,13 +15423,13 @@ public partial class FCTRaceRecordC21
                 else
                     this.method_243(gclass19.TechGroupID, list, false);
                 gclass19.list_0.Add(this);
-                if (this.StartTechPoints <= 0 && (!this.IsNPR || !gclass19.bMandatory))
+                if (this.StartTechPoints <= 0 && (!this.NPR || !gclass19.bMandatory))
                     break;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
                 list = this.gclass0_0.TechDataDictionary.Values
-                    .Where<TechData164>(class718.func_0 ?? (class718.func_0 = class718.method_6)).ToList<TechData164>();
+                    .Where<TechSystem>(class718.func_0 ?? (class718.func_0 = class718.method_6)).ToList<TechSystem>();
             }
         }
         catch (Exception ex)
@@ -15395,9 +15442,9 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            List<TechData164> list = this.gclass0_0.TechDataDictionary.Values
-                .Where<TechData164>(gclass164_0 => gclass164_0.dictionary_0.ContainsKey(this.RaceID))
-                .ToList<TechData164>();
+            List<TechSystem> list = this.gclass0_0.TechDataDictionary.Values
+                .Where<TechSystem>(gclass164_0 => gclass164_0.dictionary_0.ContainsKey(this.RaceID))
+                .ToList<TechSystem>();
             DIMDesignPhilosophyTechProgression gclass19 = this.method_242();
             if (gclass19.gclass163_0 != null)
                 this.method_245(gclass19.gclass163_0, list);
@@ -15422,7 +15469,7 @@ public partial class FCTRaceRecordC21
                 return 0;
             if (gclass19.gclass163_0 != null)
             {
-                TechData164 gclass164 = this.method_392(gclass19.gclass163_0.TechType);
+                TechSystem gclass164 = this.method_392(gclass19.gclass163_0.TechType);
                 return gclass164 == null ? 0 : gclass164.int_4;
             }
 
@@ -15451,7 +15498,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public int method_243(TechGroupType genum107_0, List<TechData164> list_22, bool bool_24)
+    public int method_243(TechGroupType genum107_0, List<TechSystem> list_22, bool bool_24)
     {
         try
         {
@@ -15578,7 +15625,7 @@ public partial class FCTRaceRecordC21
                             this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.LaserFocalSize], list_22);
                         if (this.DesignDoctrine.PointDefencePreference == BeamWeaponPreference.const_1)
                             this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.TurretRotationGear], list_22);
-                        TechData164 gclass164 =
+                        TechSystem gclass164 =
                             this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.LaserWavelength], list_22);
                         this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.EnergyWeaponMount], list_22,
                             (int)(gclass164.int_4 * 1.25));
@@ -15646,7 +15693,7 @@ public partial class FCTRaceRecordC21
                     if (!bool_24)
                     {
                         this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.MaximumParticleBeamRange], list_22);
-                        TechData164 gclass164 =
+                        TechSystem gclass164 =
                             this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.ParticleBeamStrength], list_22);
                         this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.ParticleLance], list_22, gclass164.int_4);
                     }
@@ -15678,7 +15725,7 @@ public partial class FCTRaceRecordC21
             {
                 if (!bool_24)
                 {
-                    TechData164 gclass164 = this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.ActiveSensorStrength], list_22);
+                    TechSystem gclass164 = this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.ActiveSensorStrength], list_22);
                     this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.EMSensorSensitivity], list_22);
                     this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.ThermalSensorSensitivity], list_22);
                     this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.ImprovedPlanetarySensorStrength], list_22, gclass164.int_4);
@@ -15704,7 +15751,7 @@ public partial class FCTRaceRecordC21
             {
                 if (!bool_24)
                 {
-                    TechData164 gclass164 = this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.MissileWarheadStrength], list_22);
+                    TechSystem gclass164 = this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.MissileWarheadStrength], list_22);
                     this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.MissileLauncherReloadRate], list_22);
                     this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.MagazineFeedSystemEfficiency], list_22);
                     this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.MagazineNeutralizationSystem], list_22);
@@ -15744,7 +15791,7 @@ public partial class FCTRaceRecordC21
                 if (!bool_24)
                 {
                     this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.GaussCannonRateofFire], list_22);
-                    TechData164 gclass164 = this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.GaussCannonVelocity], list_22);
+                    TechSystem gclass164 = this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.GaussCannonVelocity], list_22);
                     this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.TurretRotationGear], list_22, gclass164.int_4);
                 }
                 else
@@ -15861,7 +15908,7 @@ public partial class FCTRaceRecordC21
                                    this.method_393(TechType.UnderwayReplenishment) + this.method_393(TechType.CargoShuttleType) +
                                    this.method_393(TechType.FuelStorage) + this.method_393(TechType.MaximumEngineSize) +
                                    this.method_393(TechType.MinEngineThrustModifier) + this.method_393(TechType.MaintenanceCapacityPerFacility);
-                        TechData164 gclass164_1 =
+                        TechSystem gclass164_1 =
                             this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.RefuellingSystem], list_22);
                         this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.OrdnanceTransferSystem], list_22);
                         this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.UnderwayReplenishment], list_22, gclass164_1.int_4);
@@ -15877,7 +15924,7 @@ public partial class FCTRaceRecordC21
                                    this.method_393(TechType.CargoShuttleType) + this.method_393(TechType.FuelStorage) +
                                    this.method_393(TechType.MaximumEngineSize) + this.method_393(TechType.MinEngineThrustModifier) +
                                    this.method_393(TechType.MaintenanceCapacityPerFacility);
-                        TechData164 gclass164_2 =
+                        TechSystem gclass164_2 =
                             this.method_245(this.gclass0_0.TechTypeDataDictionary[TechType.RefuellingSystem], list_22);
                         this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.UnderwayReplenishment], list_22, gclass164_2.int_4);
                         this.method_246(this.gclass0_0.TechTypeDataDictionary[TechType.CargoShuttleType], list_22, gclass164_2.int_4);
@@ -15964,18 +16011,18 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_244(GEnum118 genum118_0, List<TechData164> list_22)
+    public TechSystem method_244(GEnum118 genum118_0, List<TechSystem> list_22)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class719 class719 = new FCTRaceRecordC21.Class719();
+        GameRace.Class719 class719 = new GameRace.Class719();
         // ISSUE: reference to a compiler-generated field
         class719.genum118_0 = genum118_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            TechData164 gclass164_0 = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class719.method_0)
-                .Except<TechData164>(list_22).FirstOrDefault<TechData164>();
+            TechSystem gclass164_0 = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class719.method_0)
+                .Except<TechSystem>(list_22).FirstOrDefault<TechSystem>();
             if (gclass164_0 == null)
                 return null;
             this.method_282(gclass164_0, null, null, null, true, true);
@@ -15989,19 +16036,19 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_245(TechTypeData gclass163_0, List<TechData164> list_22)
+    public TechSystem method_245(TechTypeData gclass163_0, List<TechSystem> list_22)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class720 class720 = new FCTRaceRecordC21.Class720();
+        GameRace.Class720 class720 = new GameRace.Class720();
         // ISSUE: reference to a compiler-generated field
         class720.gclass163_0 = gclass163_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            TechData164 gclass164_0_1 = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class720.method_0)
-                .Except<TechData164>(list_22).OrderBy<TechData164, int>(gclass164_0 => gclass164_0.int_4)
-                .FirstOrDefault<TechData164>();
+            TechSystem gclass164_0_1 = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class720.method_0)
+                .Except<TechSystem>(list_22).OrderBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4)
+                .FirstOrDefault<TechSystem>();
             if (gclass164_0_1 == null)
                 return null;
             this.method_282(gclass164_0_1, null, null, null, true, true);
@@ -16015,19 +16062,19 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_246(TechTypeData gclass163_0, List<TechData164> list_22, int int_56)
+    public void method_246(TechTypeData gclass163_0, List<TechSystem> list_22, int int_56)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class721 class721 = new FCTRaceRecordC21.Class721();
+        GameRace.Class721 class721 = new GameRace.Class721();
         // ISSUE: reference to a compiler-generated field
         class721.gclass163_0 = gclass163_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            TechData164 gclass164_0_1 = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class721.method_0)
-                .Except<TechData164>(list_22).OrderBy<TechData164, int>(gclass164_0 => gclass164_0.int_4)
-                .FirstOrDefault<TechData164>();
+            TechSystem gclass164_0_1 = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class721.method_0)
+                .Except<TechSystem>(list_22).OrderBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4)
+                .FirstOrDefault<TechSystem>();
             if (gclass164_0_1 == null || gclass164_0_1.int_4 > int_56)
                 return;
             this.method_282(gclass164_0_1, null, null, null, true, true);
@@ -16049,12 +16096,12 @@ public partial class FCTRaceRecordC21
                 gclass21_0 = this,
                 int_1 = 0
             };
-            gclass187.bool_0 = gclass187.gclass21_0.IsNPR;
+            gclass187.bool_0 = gclass187.gclass21_0.NPR;
             gclass187.decimal_0 = 2000M;
-            if (this.IsNPR)
+            if (this.NPR)
                 gclass187.decimal_0 = 4000M;
             gclass187.decimal_1 = 0M;
-            gclass187.decimal_2 = this.gclass0_0.decimal_0;
+            gclass187.decimal_2 = this.gclass0_0.GameTime;
             gclass187.method_11();
             this.gclass0_0.ShippingLineDictionary.Add(gclass187.int_0, gclass187);
             return gclass187;
@@ -16103,7 +16150,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class722 class722 = new FCTRaceRecordC21.Class722();
+        GameRace.Class722 class722 = new GameRace.Class722();
         // ISSUE: reference to a compiler-generated field
         class722.gclass61_0 = gclass61_2;
         try
@@ -16139,7 +16186,7 @@ public partial class FCTRaceRecordC21
             this.method_249(gclass61_2);
             gclass55_1.int_4 = gclass61_2.int_2 + 1;
             gclass55_1.gclass61_0 = gclass61_2;
-            gclass55_1.decimal_0 = this.gclass0_0.decimal_0;
+            gclass55_1.decimal_0 = this.gclass0_0.GameTime;
             this.method_249(gclass610);
             gclass55_1.method_46("Promoted to " + gclass55_1.gclass61_0.RankName, GEnum28.const_0);
             if (!bool_24)
@@ -16176,7 +16223,7 @@ public partial class FCTRaceRecordC21
             this.method_249(gclass61_2);
             gclass55_1.int_4 = gclass61_2.int_2 + 1;
             gclass55_1.gclass61_0 = gclass61_2;
-            gclass55_1.decimal_0 = this.gclass0_0.decimal_0;
+            gclass55_1.decimal_0 = this.gclass0_0.GameTime;
             this.method_249(gclass610);
             gclass55_1.method_46("Demoted to " + gclass55_1.gclass61_0.RankName, GEnum28.const_0);
             if (!bool_24)
@@ -16206,7 +16253,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class723 class723 = new FCTRaceRecordC21.Class723();
+        GameRace.Class723 class723 = new GameRace.Class723();
         // ISSUE: reference to a compiler-generated field
         class723.auroraCommanderType_0 = auroraCommanderType_0;
         try
@@ -16226,7 +16273,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class724 class724 = new FCTRaceRecordC21.Class724();
+        GameRace.Class724 class724 = new GameRace.Class724();
         // ISSUE: reference to a compiler-generated field
         class724.auroraCommanderType_0 = auroraCommanderType_0;
         try
@@ -16256,7 +16303,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class725 class725 = new FCTRaceRecordC21.Class725();
+        GameRace.Class725 class725 = new GameRace.Class725();
         // ISSUE: reference to a compiler-generated field
         class725.auroraCommanderType_0 = auroraCommanderType_0;
         try
@@ -16291,7 +16338,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class726 class726 = new FCTRaceRecordC21.Class726();
+                GameRace.Class726 class726 = new GameRace.Class726();
                 // ISSUE: reference to a compiler-generated field
                 class726.gclass83_0 = gclass83;
                 // ISSUE: reference to a compiler-generated field
@@ -16357,7 +16404,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class727 class727 = new FCTRaceRecordC21.Class727()
+            GameRace.Class727 class727 = new GameRace.Class727()
             {
                 gclass55_0 = new GClass55(this.gclass0_0)
             };
@@ -16368,7 +16415,7 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated field
             class727.gclass55_0.auroraCommanderType_0 = AuroraCommanderType.All;
             int num1 = 0;
-            if (this.gclass0_0.int_114 == 1)
+            if (this.gclass0_0.LimitedLabs == 1)
                 num1 = 1;
             if (gclass55_1 != null)
             {
@@ -16427,7 +16474,7 @@ public partial class FCTRaceRecordC21
             class727.gclass55_0.string_0 = this.method_114();
             // ISSUE: reference to a compiler-generated field
             class727.gclass55_0.decimal_2 =
-                this.gclass0_0.decimal_0 - AuroraUtils.GetRandomInteger(5) * AuroraUtils.decimal_29;
+                this.gclass0_0.GameTime - AuroraUtils.GetRandomInteger(5) * AuroraUtils.decimal_29;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             class727.gclass55_0.decimal_1 = class727.gclass55_0.decimal_2;
@@ -16466,7 +16513,7 @@ public partial class FCTRaceRecordC21
 
             // ISSUE: reference to a compiler-generated field
             class727.gclass55_0.method_33();
-            if (this.gclass0_0.int_82 == 1)
+            if (this.gclass0_0.PoliticalAdmirals == 1)
             {
                 // ISSUE: reference to a compiler-generated field
                 class727.gclass55_0.method_32(AuroraCommanderType.All, CommanderBonusType.PoliticalReliability, 80 /*0x50*/, 90, 95, 97, 98,
@@ -16839,7 +16886,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class728 class728 = new FCTRaceRecordC21.Class728();
+        GameRace.Class728 class728 = new GameRace.Class728();
         // ISSUE: reference to a compiler-generated field
         class728.gclass200_0 = gclass200_0;
         try
@@ -16851,7 +16898,7 @@ public partial class FCTRaceRecordC21
             gclass202_1.gclass62_0 = null;
             gclass202_1.SectorID = 0;
             gclass202_1.Discovered = this.gclass0_0.method_585();
-            gclass202_1.DiscoveredTime = this.gclass0_0.decimal_0;
+            gclass202_1.DiscoveredTime = this.gclass0_0.GameTime;
             gclass202_1.bSysTPStatus = true;
             gclass202_1.NamingTheme = gclass140_4;
             // ISSUE: reference to a compiler-generated field
@@ -16868,9 +16915,9 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 if (class728.gclass200_0.IsSolSystem)
                     gclass202_1.Name = "Sol";
-                else if (this.gclass0_0.IsKnownSystem == 1 && gclass202_1.ActualSystemData.KnownSystemData != null &&
-                         !bool_24 && this.gclass0_0.int_122 == 0)
-                    gclass202_1.Name = gclass202_1.ActualSystemData.KnownSystemData.method_0(this.gclass0_0.int_84);
+                else if (this.gclass0_0.UseKnownStars == 1 && gclass202_1.ActualSystemData.KnownSystemData != null &&
+                         !bool_24 && this.gclass0_0.UseThemeInKnownStars == 0)
+                    gclass202_1.Name = gclass202_1.ActualSystemData.KnownSystemData.method_0(this.gclass0_0.ConstellationNames);
                 else if (gclass202_1.NamingTheme != null)
                     gclass202_1.Name = gclass202_1.NamingTheme.method_0(this, GEnum21.const_2);
                 else if (this.SystemTheme != null && this.SystemTheme.ThemeID > 1)
@@ -16888,7 +16935,7 @@ public partial class FCTRaceRecordC21
                     .Count<SystemBodyData>() == 0)
                 gclass202_1.bGeoSurveyDefaultDone = true;
             this.RacialSystemDictionary.Add(gclass202_1.ActualSystemData.SystemID, gclass202_1);
-            if (gclass202_1.Race.IsNPR)
+            if (gclass202_1.Race.NPR)
                 gclass202_1.gclass3_0 = new GClass3(this.gclass0_0, gclass202_1);
             return gclass202_1;
         }
@@ -16933,7 +16980,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class729 class729 = new FCTRaceRecordC21.Class729();
+        GameRace.Class729 class729 = new GameRace.Class729();
         // ISSUE: reference to a compiler-generated field
         class729.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -16954,7 +17001,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class730 class730 = new FCTRaceRecordC21.Class730();
+        GameRace.Class730 class730 = new GameRace.Class730();
         // ISSUE: reference to a compiler-generated field
         class730.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -16987,7 +17034,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class731 class731 = new FCTRaceRecordC21.Class731();
+        GameRace.Class731 class731 = new GameRace.Class731();
         // ISSUE: reference to a compiler-generated field
         class731.gclass40_0 = gclass40_1;
         try
@@ -17006,7 +17053,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class732 class732 = new FCTRaceRecordC21.Class732();
+        GameRace.Class732 class732 = new GameRace.Class732();
         // ISSUE: reference to a compiler-generated field
         class732.int_0 = int_56;
         try
@@ -17022,13 +17069,13 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public List<GClass161> method_269()
+    public List<ResearchProject> method_269()
     {
         try
         {
             return this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this)
-                .SelectMany<PopulationData, GClass161>(gclass146_0 =>gclass146_0.dictionary_1.Values)
-                .ToList<GClass161>();
+                .SelectMany<PopulationData, ResearchProject>(gclass146_0 =>gclass146_0.dictionary_1.Values)
+                .ToList<ResearchProject>();
         }
         catch (Exception ex)
         {
@@ -17060,12 +17107,12 @@ public partial class FCTRaceRecordC21
     public void method_271(
         FCTShipData40 gclass40_1,
         FleetData gclass85_0,
-        FCTRaceRecordC21 gclass21_0_1,
+        GameRace gclass21_0_1,
         bool bool_24)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class733 class733 = new FCTRaceRecordC21.Class733();
+        GameRace.Class733 class733 = new GameRace.Class733();
         // ISSUE: reference to a compiler-generated field
         class733.gclass40_0 = gclass40_1;
         // ISSUE: reference to a compiler-generated field
@@ -17074,7 +17121,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class734 class734 = new FCTRaceRecordC21.Class734();
+            GameRace.Class734 class734 = new GameRace.Class734();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             class734.gclass21_0 = class733.gclass40_0.gclass21_0;
@@ -17086,7 +17133,7 @@ public partial class FCTRaceRecordC21
             GClass194 gclass194 = class733.gclass21_0.method_164();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            if (!class733.gclass21_0.IsNPR && class734.gclass21_0.IsNPR)
+            if (!class733.gclass21_0.NPR && class734.gclass21_0.NPR)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -17178,11 +17225,11 @@ public partial class FCTRaceRecordC21
                 this.gclass0_0.dictionary_28.Remove(gclass65.int_0);
             // ISSUE: reference to a compiler-generated method
             foreach (GClass117 gclass117 in this.gclass0_0.FCTRaceRecordDic.Values
-                         .SelectMany<FCTRaceRecordC21, GClass117>(gclass21_0_2 => gclass21_0_2.dictionary_12.Values)
+                         .SelectMany<GameRace, GClass117>(gclass21_0_2 => gclass21_0_2.dictionary_12.Values)
                          .Where<GClass117>(class733.method_3).ToList<GClass117>())
                 gclass117.gclass21_1.dictionary_12.Remove(gclass117.gclass40_0.int_8);
             // ISSUE: reference to a compiler-generated field
-            if (class733.gclass21_0.IsNPR)
+            if (class733.gclass21_0.NPR)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -17216,19 +17263,19 @@ public partial class FCTRaceRecordC21
 
             if (gclass85_0 == null)
             {
-                OperationalGroup genum105_0 = OperationalGroup.None;
+                OperationalGroupID genum105_0 = OperationalGroupID.None;
                 // ISSUE: reference to a compiler-generated field
                 if (class733.gclass21_0.SpecialNPRID == SpecialNPRIDs.StarSwarm)
                 {
-                    genum105_0 = OperationalGroup.StarSwarmScoutSquadron;
+                    genum105_0 = OperationalGroupID.StarSwarmScoutSquadron;
                 }
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (class733.gclass21_0.IsNPR)
+                    if (class733.gclass21_0.NPR)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        genum105_0 = class733.gclass40_0.gclass187_0 == null ? OperationalGroup.ReinforcementGroup : OperationalGroup.Civilian;
+                        genum105_0 = class733.gclass40_0.gclass187_0 == null ? OperationalGroupID.ReinforcementGroup : OperationalGroupID.Civilian;
                     }
                 }
 
@@ -17265,7 +17312,7 @@ public partial class FCTRaceRecordC21
             }
 
             // ISSUE: reference to a compiler-generated field
-            if (class733.gclass21_0.IsNPR)
+            if (class733.gclass21_0.NPR)
                 return;
             // ISSUE: reference to a compiler-generated field
             class733.gclass40_0.gclass5_0 = null;
@@ -17281,10 +17328,10 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            foreach (FCTRaceRecordC21 gclass21_0 in this.PerceivedAliens.Values
+            foreach (GameRace gclass21_0 in this.PerceivedAliens.Values
                          .Where<AlienRaceInfo>(gclass110_0 => gclass110_0.bGeoTreaty)
-                         .Select<AlienRaceInfo, FCTRaceRecordC21>(gclass110_0 => gclass110_0.ActualAlienRace)
-                         .ToList<FCTRaceRecordC21>())
+                         .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace)
+                         .ToList<GameRace>())
             {
                 if (gclass21_0.RacialSystemDictionary.ContainsKey(gclass1_0.SystemData.SystemID) &&
                     !gclass1_0.method_77(gclass21_0))
@@ -17325,10 +17372,10 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            foreach (FCTRaceRecordC21 gclass21 in this.PerceivedAliens.Values
+            foreach (GameRace gclass21 in this.PerceivedAliens.Values
                          .Where<AlienRaceInfo>(gclass110_0 => gclass110_0.bGravTreaty)
-                         .Select<AlienRaceInfo, FCTRaceRecordC21>(gclass110_0 => gclass110_0.ActualAlienRace)
-                         .ToList<FCTRaceRecordC21>())
+                         .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace)
+                         .ToList<GameRace>())
             {
                 if (gclass21.RacialSystemDictionary.ContainsKey(gclass200_0.SystemID) &&
                     !gclass213_0.list_0.Contains(gclass21.RaceID))
@@ -17349,7 +17396,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class735 class735 = new FCTRaceRecordC21.Class735();
+        GameRace.Class735 class735 = new GameRace.Class735();
         // ISSUE: reference to a compiler-generated field
         class735.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -17445,7 +17492,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class736 class736 = new FCTRaceRecordC21.Class736();
+        GameRace.Class736 class736 = new GameRace.Class736();
         // ISSUE: reference to a compiler-generated field
         class736.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -17501,7 +17548,7 @@ public partial class FCTRaceRecordC21
             gclass146_1.ReserveMinerals = new AllMineralsValue(this.gclass0_0);
             gclass146_1.gclass123_4 = new AllMineralsValue(this.gclass0_0);
             gclass146_1.dictionary_0 = new Dictionary<AuroraInstallationType, GClass158>();
-            gclass146_1.dictionary_1 = new Dictionary<int, GClass161>();
+            gclass146_1.dictionary_1 = new Dictionary<int, ResearchProject>();
             gclass146_1.dictionary_2 = new Dictionary<int, GClass156>();
             gclass146_1.dictionary_3 = new Dictionary<int, GClass106>();
             gclass146_1.dictionary_4 = new Dictionary<int, GClass190>();
@@ -17527,7 +17574,7 @@ public partial class FCTRaceRecordC21
             }
 
             this.gclass0_0.PopulationDataDictionary.Add(gclass146_1.PopulationID, gclass146_1);
-            if (this.IsNPR)
+            if (this.NPR)
                 gclass146_1.gclass6_0 = new GClass6(this.gclass0_0, gclass146_1);
             return gclass146_1;
         }
@@ -17551,7 +17598,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_278(TechData164 gclass164_0)
+    public void method_278(TechSystem gclass164_0)
     {
         try
         {
@@ -17563,11 +17610,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_279(TechData164 gclass164_0)
+    public void method_279(TechSystem gclass164_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class737 class737 = new FCTRaceRecordC21.Class737();
+        GameRace.Class737 class737 = new GameRace.Class737();
         // ISSUE: reference to a compiler-generated field
         class737.gclass164_0 = gclass164_0;
         try
@@ -17581,10 +17628,10 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: reference to a compiler-generated method
                 if (this.gclass0_0.dictionary_3.Values
-                        .SelectMany<GClass22, TechData164>(gclass22_0 =>
-                            gclass22_0.dictionary_0.Values.Select<GClass228, TechData164>(gclass228_0 =>
-                                gclass228_0.gclass230_0.gclass164_0)).Where<TechData164>(class737.method_0)
-                        .ToList<TechData164>().Count > 0)
+                        .SelectMany<GClass22, TechSystem>(gclass22_0 =>
+                            gclass22_0.dictionary_0.Values.Select<GClass228, TechSystem>(gclass228_0 =>
+                                gclass228_0.gclass230_0.gclass164_0)).Where<TechSystem>(class737.method_0)
+                        .ToList<TechSystem>().Count > 0)
                 {
                     int num2 = (int)MessageBox.Show(
                         "Unable to delete this tech as it is being used in one or more class designs");
@@ -17593,10 +17640,10 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: reference to a compiler-generated method
                     if (this.gclass0_0.FCTShipDataDictionary.Values
-                            .SelectMany<FCTShipData40, TechData164>(gclass40_0 =>
-                                gclass40_0.list_10.Select<GClass130, TechData164>(gclass130_0 =>
-                                    gclass130_0.gclass129_0.gclass164_0)).Where<TechData164>(class737.method_1)
-                            .ToList<TechData164>().Count > 0)
+                            .SelectMany<FCTShipData40, TechSystem>(gclass40_0 =>
+                                gclass40_0.list_10.Select<GClass130, TechSystem>(gclass130_0 =>
+                                    gclass130_0.gclass129_0.gclass164_0)).Where<TechSystem>(class737.method_1)
+                            .ToList<TechSystem>().Count > 0)
                     {
                         int num3 = (int)MessageBox.Show(
                             "Unable to delete this missile type as it is still contained within ship magazines");
@@ -17605,10 +17652,10 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: reference to a compiler-generated method
                         if (this.gclass0_0.PopulationDataDictionary.Values
-                                .SelectMany<PopulationData, TechData164>(gclass146_0 =>
-                                    gclass146_0.list_1.Select<GClass130, TechData164>(gclass130_0 =>
-                                        gclass130_0.gclass129_0.gclass164_0)).Where<TechData164>(class737.method_2)
-                                .ToList<TechData164>().Count > 0)
+                                .SelectMany<PopulationData, TechSystem>(gclass146_0 =>
+                                    gclass146_0.list_1.Select<GClass130, TechSystem>(gclass130_0 =>
+                                        gclass130_0.gclass129_0.gclass164_0)).Where<TechSystem>(class737.method_2)
+                                .ToList<TechSystem>().Count > 0)
                         {
                             int num4 = (int)MessageBox.Show(
                                 "Unable to delete this missile type as it is still in population stockpiles");
@@ -17624,7 +17671,7 @@ public partial class FCTRaceRecordC21
                                          .Where<RaceMissile>(class737.method_4).ToList<RaceMissile>())
                                 this.gclass0_0.RaceMissileDictionary.Remove(gclass129.int_0);
                             // ISSUE: reference to a compiler-generated field
-                            this.gclass0_0.TechDataDictionary.Remove(class737.gclass164_0.int_0);
+                            this.gclass0_0.TechDataDictionary.Remove(class737.gclass164_0.TechSystemID);
                         }
                     }
                 }
@@ -17640,10 +17687,10 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            foreach (TechData164 gclass164_0 in this.gclass0_0.TechDataDictionary.Values
-                         .Where<TechData164>(gclass164_0 =>
+            foreach (TechSystem gclass164_0 in this.gclass0_0.TechDataDictionary.Values
+                         .Where<TechSystem>(gclass164_0 =>
                              !gclass164_0.dictionary_0.ContainsKey(this.RaceID) && gclass164_0.int_1 == this.RaceID)
-                         .ToList<TechData164>())
+                         .ToList<TechSystem>())
                 this.method_282(gclass164_0, null, null, null, false, false);
         }
         catch (Exception ex)
@@ -17652,11 +17699,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public void method_281(TechData164 gclass164_0, bool bool_24)
+    public void method_281(TechSystem gclass164_0, bool bool_24)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class738 class738 = new FCTRaceRecordC21.Class738();
+        GameRace.Class738 class738 = new GameRace.Class738();
         // ISSUE: reference to a compiler-generated field
         class738.gclass164_0 = gclass164_0;
         // ISSUE: reference to a compiler-generated field
@@ -17664,27 +17711,27 @@ public partial class FCTRaceRecordC21
         try
         {
             // ISSUE: reference to a compiler-generated method
-            foreach (GClass167 gclass167 in this.list_6.Where<GClass167>(class738.method_0).ToList<GClass167>())
-                this.list_6.Remove(gclass167);
+            foreach (PausedResearch gclass167 in this.PausedResearches.Where<PausedResearch>(class738.method_0).ToList<PausedResearch>())
+                this.PausedResearches.Remove(gclass167);
             // ISSUE: reference to a compiler-generated method
-            foreach (GClass166 gclass166 in this.list_5.Where<GClass166>(class738.method_1).ToList<GClass166>())
-                this.list_5.Remove(gclass166);
+            foreach (ResearchQueue gclass166 in this.ResearchQueues.Where<ResearchQueue>(class738.method_1).ToList<ResearchQueue>())
+                this.ResearchQueues.Remove(gclass166);
             if (!bool_24)
                 return;
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            foreach (GClass161 gclass161 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class738.method_2)
-                         .SelectMany<PopulationData, GClass161>(gclass146_0 =>gclass146_0.dictionary_1.Values)
-                         .Where<GClass161>(class738.method_3).ToList<GClass161>())
+            foreach (ResearchProject gclass161 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class738.method_2)
+                         .SelectMany<PopulationData, ResearchProject>(gclass146_0 =>gclass146_0.dictionary_1.Values)
+                         .Where<ResearchProject>(class738.method_3).ToList<ResearchProject>())
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class739 class739 = new FCTRaceRecordC21.Class739();
+                GameRace.Class739 class739 = new GameRace.Class739();
                 // ISSUE: reference to a compiler-generated field
                 class739.gclass161_0 = gclass161;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                class739.gclass161_0.gclass146_0.dictionary_1.Remove(class739.gclass161_0.int_1);
+                class739.gclass161_0.gclass146_0.dictionary_1.Remove(class739.gclass161_0.ResearchProjectID);
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 if (class739.gclass161_0.gclass55_0.gclass161_0 == class739.gclass161_0)
@@ -17696,14 +17743,14 @@ public partial class FCTRaceRecordC21
                 }
 
                 // ISSUE: reference to a compiler-generated method
-                GClass166 gclass166 = this.list_5.Where<GClass166>(class739.method_0)
-                    .OrderBy<GClass166, int>(gclass166_0 => gclass166_0.int_0).FirstOrDefault<GClass166>();
+                ResearchQueue gclass166 = this.ResearchQueues.Where<ResearchQueue>(class739.method_0)
+                    .OrderBy<ResearchQueue, int>(gclass166_0 => gclass166_0.ResearchOrder).FirstOrDefault<ResearchQueue>();
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                class739.gclass161_0.gclass146_0.method_104(gclass166.gclass164_0, class739.gclass161_0.gclass55_0,
+                class739.gclass161_0.gclass146_0.method_104(gclass166.TechSystem, class739.gclass161_0.gclass55_0,
                     class739.gclass161_0.int_0, 0M);
-                this.list_5.Remove(gclass166);
+                this.ResearchQueues.Remove(gclass166);
             }
         }
         catch (Exception ex)
@@ -17713,16 +17760,16 @@ public partial class FCTRaceRecordC21
     }
 
     public void method_282(
-        TechData164 gclass164_0_1,
+        TechSystem gclass164_0_1,
         GClass55 gclass55_1,
         PopulationData gclass146_1,
-        FCTRaceRecordC21 gclass21_0,
+        GameRace gclass21_0,
         bool bool_24,
         bool bool_25)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class740 class740 = new FCTRaceRecordC21.Class740();
+        GameRace.Class740 class740 = new GameRace.Class740();
         // ISSUE: reference to a compiler-generated field
         class740.gclass164_0 = gclass164_0_1;
         // ISSUE: reference to a compiler-generated field
@@ -17768,9 +17815,9 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
-                foreach (GClass161 gclass161 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class740.method_2)
-                             .SelectMany<PopulationData, GClass161>(gclass146_0 =>gclass146_0.dictionary_1.Values)
-                             .Where<GClass161>(class740.method_3).ToList<GClass161>())
+                foreach (ResearchProject gclass161 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class740.method_2)
+                             .SelectMany<PopulationData, ResearchProject>(gclass146_0 =>gclass146_0.dictionary_1.Values)
+                             .Where<ResearchProject>(class740.method_3).ToList<ResearchProject>())
                 {
                     if (gclass161.gclass55_0 != null)
                     {
@@ -17778,15 +17825,15 @@ public partial class FCTRaceRecordC21
                         gclass161.gclass55_0.auroraCommandType_0 = AuroraCommandType.None;
                     }
 
-                    gclass161.gclass146_0.dictionary_1.Remove(gclass161.int_1);
+                    gclass161.gclass146_0.dictionary_1.Remove(gclass161.ResearchProjectID);
                 }
 
                 // ISSUE: reference to a compiler-generated method
-                foreach (GClass166 gclass166 in this.list_5.Where<GClass166>(class740.method_4).ToList<GClass166>())
-                    this.list_5.Remove(gclass166);
+                foreach (ResearchQueue gclass166 in this.ResearchQueues.Where<ResearchQueue>(class740.method_4).ToList<ResearchQueue>())
+                    this.ResearchQueues.Remove(gclass166);
                 // ISSUE: reference to a compiler-generated method
-                foreach (GClass167 gclass167 in this.list_6.Where<GClass167>(class740.method_5).ToList<GClass167>())
-                    this.list_6.Remove(gclass167);
+                foreach (PausedResearch gclass167 in this.PausedResearches.Where<PausedResearch>(class740.method_5).ToList<PausedResearch>())
+                    this.PausedResearches.Remove(gclass167);
                 if (!bool_24)
                 {
                     if (gclass21_0 != null)
@@ -17984,16 +18031,16 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class741 class741 = new FCTRaceRecordC21.Class741();
+                        GameRace.Class741 class741 = new GameRace.Class741();
                         // ISSUE: reference to a compiler-generated field
                         class741.class740_0 = class740;
                         // ISSUE: reference to a compiler-generated field
                         class741.gclass110_0 = gclass110;
                         // ISSUE: reference to a compiler-generated method
-                        TechData164 gclass164_0 = this.gclass0_0.TechDataDictionary.Values
-                            .Where<TechData164>(class741.method_0)
-                            .OrderBy<TechData164, int>(gclass164_0_2 => gclass164_0_2.int_4)
-                            .FirstOrDefault<TechData164>();
+                        TechSystem gclass164_0 = this.gclass0_0.TechDataDictionary.Values
+                            .Where<TechSystem>(class741.method_0)
+                            .OrderBy<TechSystem, int>(gclass164_0_2 => gclass164_0_2.int_4)
+                            .FirstOrDefault<TechSystem>();
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         if (gclass164_0 != null && gclass164_0.int_4 < class741.class740_0.gclass164_0.int_4)
@@ -18009,16 +18056,16 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class742 class742 = new FCTRaceRecordC21.Class742();
+                        GameRace.Class742 class742 = new GameRace.Class742();
                         // ISSUE: reference to a compiler-generated field
                         class742.class740_0 = class740;
                         // ISSUE: reference to a compiler-generated field
                         class742.gclass110_0 = gclass110;
                         // ISSUE: reference to a compiler-generated method
-                        TechData164 gclass164_0 = this.gclass0_0.TechDataDictionary.Values
-                            .Where<TechData164>(class742.method_0)
-                            .OrderBy<TechData164, int>(gclass164_0_3 => gclass164_0_3.int_4)
-                            .FirstOrDefault<TechData164>();
+                        TechSystem gclass164_0 = this.gclass0_0.TechDataDictionary.Values
+                            .Where<TechSystem>(class742.method_0)
+                            .OrderBy<TechSystem, int>(gclass164_0_3 => gclass164_0_3.int_4)
+                            .FirstOrDefault<TechSystem>();
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         if (gclass164_0 != null && gclass164_0.int_4 < class742.class740_0.gclass164_0.int_4 / 3)
@@ -18041,7 +18088,7 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class743 class743 = new FCTRaceRecordC21.Class743();
+                        GameRace.Class743 class743 = new GameRace.Class743();
                         // ISSUE: reference to a compiler-generated field
                         class743.class740_0 = class740;
                         // ISSUE: reference to a compiler-generated field
@@ -18052,10 +18099,10 @@ public partial class FCTRaceRecordC21
                                 .FirstOrDefault<SystemBodyData>() == gclass1)
                         {
                             // ISSUE: reference to a compiler-generated method
-                            TechData164 gclass164_0 = this.gclass0_0.TechDataDictionary.Values
-                                .Where<TechData164>(class743.method_1)
-                                .OrderBy<TechData164, int>(gclass164_0_4 => gclass164_0_4.int_4)
-                                .FirstOrDefault<TechData164>();
+                            TechSystem gclass164_0 = this.gclass0_0.TechDataDictionary.Values
+                                .Where<TechSystem>(class743.method_1)
+                                .OrderBy<TechSystem, int>(gclass164_0_4 => gclass164_0_4.int_4)
+                                .FirstOrDefault<TechSystem>();
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             if (gclass164_0 != null && gclass164_0.int_4 < class743.class740_0.gclass164_0.int_4 / 3)
@@ -18069,8 +18116,8 @@ public partial class FCTRaceRecordC21
             }
 
             // ISSUE: reference to a compiler-generated method
-            foreach (TechData164 gclass164_0 in this.gclass0_0.TechDataDictionary.Values
-                         .Where<TechData164>(class740.method_8).ToList<TechData164>())
+            foreach (TechSystem gclass164_0 in this.gclass0_0.TechDataDictionary.Values
+                         .Where<TechSystem>(class740.method_8).ToList<TechSystem>())
                 this.method_282(gclass164_0, null, null, null, false, false);
         }
         catch (Exception ex)
@@ -18092,7 +18139,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class744 class744 = new FCTRaceRecordC21.Class744();
+        GameRace.Class744 class744 = new GameRace.Class744();
         // ISSUE: reference to a compiler-generated field
         class744.gclass21_0 = this;
         try
@@ -18174,7 +18221,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class745 class745 = new FCTRaceRecordC21.Class745();
+        GameRace.Class745 class745 = new GameRace.Class745();
         // ISSUE: reference to a compiler-generated field
         class745.string_0 = string_10;
         List<FleetData> source = this.method_286();
@@ -18279,13 +18326,13 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public List<TechData164> method_294()
+    public List<TechSystem> method_294()
     {
         try
         {
             return this.gclass0_0.TechDataDictionary.Values
-                .Where<TechData164>(gclass164_0 => gclass164_0.dictionary_0.ContainsKey(this.RaceID))
-                .Where<TechData164>(gclass164_0 => !gclass164_0.dictionary_0[this.RaceID].bool_0).ToList<TechData164>();
+                .Where<TechSystem>(gclass164_0 => gclass164_0.dictionary_0.ContainsKey(this.RaceID))
+                .Where<TechSystem>(gclass164_0 => !gclass164_0.dictionary_0[this.RaceID].bool_0).ToList<TechSystem>();
         }
         catch (Exception ex)
         {
@@ -18294,19 +18341,19 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public List<TechData164> method_295(bool bool_24)
+    public List<TechSystem> method_295(bool bool_24)
     {
         try
         {
             return bool_24
-                ? this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(gclass164_0 =>
+                ? this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(gclass164_0 =>
                         gclass164_0.dictionary_0.ContainsKey(this.RaceID) && gclass164_0.gclass21_0 == null)
-                    .ToList<TechData164>()
+                    .ToList<TechSystem>()
                 : this.gclass0_0.TechDataDictionary.Values
-                    .Where<TechData164>(gclass164_0 =>
+                    .Where<TechSystem>(gclass164_0 =>
                         gclass164_0.dictionary_0.ContainsKey(this.RaceID) && gclass164_0.gclass21_0 == null)
-                    .Where<TechData164>(gclass164_0 => !gclass164_0.dictionary_0[this.RaceID].bool_0)
-                    .ToList<TechData164>();
+                    .Where<TechSystem>(gclass164_0 => !gclass164_0.dictionary_0[this.RaceID].bool_0)
+                    .ToList<TechSystem>();
         }
         catch (Exception ex)
         {
@@ -18387,7 +18434,7 @@ public partial class FCTRaceRecordC21
                 decimal_0 = decimal_29,
                 gclass150_0 = gclass150_0,
                 gclass21_0 = this,
-                decimal_1 = this.gclass0_0.decimal_0
+                decimal_1 = this.gclass0_0.GameTime
             });
         }
         catch (Exception ex)
@@ -18406,7 +18453,7 @@ public partial class FCTRaceRecordC21
                 decimal_0 = decimal_29,
                 gclass150_0 = gclass150_0,
                 gclass21_0 = this,
-                decimal_1 = this.gclass0_0.decimal_0
+                decimal_1 = this.gclass0_0.GameTime
             });
         }
         catch (Exception ex)
@@ -18419,7 +18466,7 @@ public partial class FCTRaceRecordC21
     {
         try
         {
-            return this.list_2.Contains(int_56);
+            return this.KnownRuinIDs.Contains(int_56);
         }
         catch (Exception ex)
         {
@@ -18432,7 +18479,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class746 class746 = new FCTRaceRecordC21.Class746();
+        GameRace.Class746 class746 = new GameRace.Class746();
         // ISSUE: reference to a compiler-generated field
         class746.gclass85_0 = gclass85_0_1;
         try
@@ -18492,11 +18539,11 @@ public partial class FCTRaceRecordC21
                         {
                             // ISSUE: object of a compiler-generated type is created
                             // ISSUE: variable of a compiler-generated type
-                            FCTRaceRecordC21.Class747 class747 = new FCTRaceRecordC21.Class747();
+                            GameRace.Class747 class747 = new GameRace.Class747();
                             // ISSUE: reference to a compiler-generated field
                             class747.gclass139_0 = gclass139_1;
                             // ISSUE: reference to a compiler-generated field
-                            if (class747.gclass139_0.Fleet.Race.IsNPR)
+                            if (class747.gclass139_0.Fleet.Race.NPR)
                             {
                                 // ISSUE: reference to a compiler-generated field
                                 class747.gclass139_0.Fleet.method_263();
@@ -18542,14 +18589,14 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class748 class748 = new FCTRaceRecordC21.Class748();
+        GameRace.Class748 class748 = new GameRace.Class748();
         // ISSUE: reference to a compiler-generated field
         class748.gclass40_0 = gclass40_1;
         try
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class749 class749 = new FCTRaceRecordC21.Class749();
+            GameRace.Class749 class749 = new GameRace.Class749();
             // ISSUE: reference to a compiler-generated field
             class749.class748_0 = class748;
             // ISSUE: reference to a compiler-generated field
@@ -18582,11 +18629,11 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class750 class750 = new FCTRaceRecordC21.Class750();
+                GameRace.Class750 class750 = new GameRace.Class750();
                 // ISSUE: reference to a compiler-generated field
                 class750.gclass139_0 = gclass139_1;
                 // ISSUE: reference to a compiler-generated field
-                if (class750.gclass139_0.Fleet.Race.IsNPR)
+                if (class750.gclass139_0.Fleet.Race.NPR)
                 {
                     // ISSUE: reference to a compiler-generated field
                     class750.gclass139_0.Fleet.method_263();
@@ -18769,7 +18816,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class751 class751 = new FCTRaceRecordC21.Class751();
+        GameRace.Class751 class751 = new GameRace.Class751();
         // ISSUE: reference to a compiler-generated field
         class751.gclass146_0 = gclass146_1;
         try
@@ -18809,7 +18856,7 @@ public partial class FCTRaceRecordC21
                 // ISSUE: reference to a compiler-generated field
                 gclass85_0 = this.method_308($"{gclass22_1.gclass76_0.Abbreviation} {string_10}", gclass83_1,
                     class751.gclass146_0.gclass202_0, class751.gclass146_0.method_87(),
-                    class751.gclass146_0.method_88(), gclass1_0, OperationalGroup.ReinforcementGroup);
+                    class751.gclass146_0.method_88(), gclass1_0, OperationalGroupID.ReinforcementGroup);
             }
 
             if (gclass85_0 != null && !this.gclass0_0.FleetDictionary.ContainsKey(gclass85_0.FleetID))
@@ -18826,13 +18873,13 @@ public partial class FCTRaceRecordC21
                     ? (gclass187_0 == null
                         ? this.method_308($"{gclass22_1.gclass76_0.Abbreviation} {string_10}", this.method_289(),
                             class751.gclass146_0.gclass202_0, class751.gclass146_0.method_87(),
-                            class751.gclass146_0.method_88(), gclass1_0, OperationalGroup.ReinforcementGroup)
+                            class751.gclass146_0.method_88(), gclass1_0, OperationalGroupID.ReinforcementGroup)
                         : this.method_308($"{gclass22_1.gclass76_0.Abbreviation} {string_10}", this.method_289(),
                             class751.gclass146_0.gclass202_0, class751.gclass146_0.method_87(),
-                            class751.gclass146_0.method_88(), gclass1_0, OperationalGroup.Civilian))
+                            class751.gclass146_0.method_88(), gclass1_0, OperationalGroupID.Civilian))
                     : this.method_308($"{gclass22_1.gclass76_0.Abbreviation} {string_10}", this.method_289(),
                         gclass40_1.gclass85_0.System, gclass40_1.gclass85_0.XCoord,
-                        gclass40_1.gclass85_0.YCoord, null, OperationalGroup.ReinforcementGroup);
+                        gclass40_1.gclass85_0.YCoord, null, OperationalGroupID.ReinforcementGroup);
             }
 
             if (gclass194_1 == null)
@@ -18848,9 +18895,9 @@ public partial class FCTRaceRecordC21
             gclass40_3.gclass40_1 = gclass40_2;
             gclass40_3.decimal_2 = 1M;
             gclass40_3.bool_14 = true;
-            gclass40_3.decimal_1 = this.gclass0_0.decimal_0;
-            gclass40_3.decimal_6 = this.gclass0_0.decimal_0;
-            gclass40_3.decimal_7 = this.gclass0_0.decimal_0;
+            gclass40_3.decimal_1 = this.gclass0_0.GameTime;
+            gclass40_3.decimal_6 = this.gclass0_0.GameTime;
+            gclass40_3.decimal_7 = this.gclass0_0.GameTime;
             gclass40_3.decimal_5 = 0M;
             gclass40_3.string_0 = "None";
             gclass40_3.int_20 = 0;
@@ -18859,7 +18906,7 @@ public partial class FCTRaceRecordC21
             if (gclass83_1 != null)
                 gclass40_3.gclass85_0.FleetName = gclass40_3.method_187();
             gclass40_3.decimal_15 = gclass22_1.int_10 != 1 ? decimal_29 : 0M;
-            if (!bool_24 && !this.IsNPR)
+            if (!bool_24 && !this.NPR)
             {
                 // ISSUE: reference to a compiler-generated field
                 if (class751.gclass146_0 != null)
@@ -18874,7 +18921,7 @@ public partial class FCTRaceRecordC21
             else
                 gclass40_3.decimal_14 = gclass22_1.int_63;
 
-            if (!bool_25 && !this.IsNPR)
+            if (!bool_25 && !this.NPR)
             {
                 // ISSUE: reference to a compiler-generated field
                 if (class751.gclass146_0 != null)
@@ -18901,12 +18948,12 @@ public partial class FCTRaceRecordC21
             gclass40_3.gclass123_0 = new AllMineralsValue(this.gclass0_0);
             gclass40_3.list_11.Add(new GClass177()
             {
-                decimal_0 = this.gclass0_0.decimal_0,
+                decimal_0 = this.gclass0_0.GameTime,
                 Description = gclass193_0 == null ? "Constructed" : "Constructed at " + gclass193_0.string_0
             });
             if (gclass22_1.list_0.Count > 0)
             {
-                if (genum20_0 == GEnum20.const_1 && !this.IsNPR)
+                if (genum20_0 == GEnum20.const_1 && !this.NPR)
                 {
                     // ISSUE: reference to a compiler-generated field
                     class751.gclass146_0.method_148(gclass40_3);
@@ -18935,7 +18982,7 @@ public partial class FCTRaceRecordC21
                 this.gclass0_0.dictionary_31.Add(gclass193.int_0, gclass193);
             }
 
-            if (this.IsNPR)
+            if (this.NPR)
             {
                 gclass40_3.gclass5_0 = new GClass5(this.gclass0_0, gclass40_3);
                 gclass40_3.decimal_16 = 500M;
@@ -18951,7 +18998,7 @@ public partial class FCTRaceRecordC21
                 gclass85_0.FleetName == "")
                 gclass85_0.FleetName = gclass40_3.ShipName;
             gclass85_0.Speed = gclass85_0.method_195();
-            if (this.IsNPR)
+            if (this.NPR)
             {
                 if (gclass22_1.list_1.Count > 0)
                 {
@@ -18994,7 +19041,7 @@ public partial class FCTRaceRecordC21
                             {
                                 // ISSUE: object of a compiler-generated type is created
                                 // ISSUE: variable of a compiler-generated type
-                                FCTRaceRecordC21.Class752 class752 = new FCTRaceRecordC21.Class752();
+                                GameRace.Class752 class752 = new GameRace.Class752();
                                 // ISSUE: reference to a compiler-generated field
                                 class752.gclass74_0 = gclass74;
                                 // ISSUE: reference to a compiler-generated method
@@ -19022,7 +19069,7 @@ public partial class FCTRaceRecordC21
                         {
                             // ISSUE: object of a compiler-generated type is created
                             // ISSUE: variable of a compiler-generated type
-                            FCTRaceRecordC21.Class753 class753 = new FCTRaceRecordC21.Class753();
+                            GameRace.Class753 class753 = new GameRace.Class753();
                             // ISSUE: reference to a compiler-generated field
                             class753.class751_0 = class751;
                             // ISSUE: reference to a compiler-generated field
@@ -19128,7 +19175,7 @@ public partial class FCTRaceRecordC21
         string string_10,
         NavalAdminCommand gclass83_1,
         SystemBodyData gclass1_0,
-        OperationalGroup genum105_0)
+        OperationalGroupID genum105_0)
     {
         try
         {
@@ -19171,7 +19218,7 @@ public partial class FCTRaceRecordC21
         double double_6,
         double double_7,
         SystemBodyData gclass1_0,
-        OperationalGroup genum105_0)
+        OperationalGroupID genum105_0)
     {
         try
         {
@@ -19187,10 +19234,10 @@ public partial class FCTRaceRecordC21
             gclass85_1.IncrementStartY = double_7;
             gclass85_1.NPROperationGroup = null;
             gclass85_1.OrbitingBody = gclass1_0;
-            if (this.IsNPR)
+            if (this.NPR)
             {
-                if (genum105_0 == OperationalGroup.None)
-                    genum105_0 = OperationalGroup.ReinforcementGroup;
+                if (genum105_0 == OperationalGroupID.None)
+                    genum105_0 = OperationalGroupID.ReinforcementGroup;
                 gclass85_1.NPROperationGroup = this.gclass0_0.OperationalGroupDictionary[genum105_0];
                 gclass85_1.StandingOrdersDictionary.Clear();
                 gclass85_1.method_1(1, gclass85_1.NPROperationGroup.gclass136_0);
@@ -19218,7 +19265,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class754 class754 = new FCTRaceRecordC21.Class754();
+        GameRace.Class754 class754 = new GameRace.Class754();
         // ISSUE: reference to a compiler-generated field
         class754.gclass22_0 = gclass22_1;
         // ISSUE: reference to a compiler-generated field
@@ -19253,7 +19300,7 @@ public partial class FCTRaceRecordC21
         return true;
     }
 
-    public GClass22 method_310(GClass22 gclass22_1, FCTRaceRecordC21 gclass21_0, bool bool_24)
+    public GClass22 method_310(GClass22 gclass22_1, GameRace gclass21_0, bool bool_24)
     {
         try
         {
@@ -19338,7 +19385,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class755 class755 = new FCTRaceRecordC21.Class755();
+                GameRace.Class755 class755 = new GameRace.Class755();
                 // ISSUE: reference to a compiler-generated field
                 class755.gclass42_0 = gclass42;
                 string text1 = "Yes";
@@ -19435,7 +19482,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class756 class756 = new FCTRaceRecordC21.Class756();
+                GameRace.Class756 class756 = new GameRace.Class756();
                 // ISSUE: reference to a compiler-generated field
                 class756.gclass43_0 = gclass43;
                 // ISSUE: reference to a compiler-generated field
@@ -19478,7 +19525,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class757 class757 = new FCTRaceRecordC21.Class757();
+        GameRace.Class757 class757 = new GameRace.Class757();
         // ISSUE: reference to a compiler-generated field
         class757.gclass21_0 = this;
         try
@@ -19650,7 +19697,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class758 class758 = new FCTRaceRecordC21.Class758();
+        GameRace.Class758 class758 = new GameRace.Class758();
         // ISSUE: reference to a compiler-generated field
         class758.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -19681,7 +19728,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class759 class759 = new FCTRaceRecordC21.Class759();
+                GameRace.Class759 class759 = new GameRace.Class759();
                 // ISSUE: reference to a compiler-generated field
                 class759.class758_0 = class758;
                 // ISSUE: reference to a compiler-generated field
@@ -19709,7 +19756,7 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class760 class760 = new FCTRaceRecordC21.Class760();
+                        GameRace.Class760 class760 = new GameRace.Class760();
                         // ISSUE: reference to a compiler-generated field
                         class760.gclass40_0 = gclass40;
                         // ISSUE: reference to a compiler-generated field
@@ -19793,7 +19840,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class761 class761 = new FCTRaceRecordC21.Class761();
+        GameRace.Class761 class761 = new GameRace.Class761();
         // ISSUE: reference to a compiler-generated field
         class761.gclass21_0 = this;
         try
@@ -19825,7 +19872,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class762 class762 = new FCTRaceRecordC21.Class762();
+                GameRace.Class762 class762 = new GameRace.Class762();
                 // ISSUE: reference to a compiler-generated field
                 class762.class761_0 = class761;
                 // ISSUE: reference to a compiler-generated field
@@ -19842,7 +19889,7 @@ public partial class FCTRaceRecordC21
                     {
                         // ISSUE: object of a compiler-generated type is created
                         // ISSUE: variable of a compiler-generated type
-                        FCTRaceRecordC21.Class763 class763 = new FCTRaceRecordC21.Class763();
+                        GameRace.Class763 class763 = new GameRace.Class763();
                         // ISSUE: reference to a compiler-generated field
                         class763.class762_0 = class762;
                         // ISSUE: reference to a compiler-generated field
@@ -19978,7 +20025,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class764 class764 = new FCTRaceRecordC21.Class764();
+        GameRace.Class764 class764 = new GameRace.Class764();
         // ISSUE: reference to a compiler-generated field
         class764.gclass101_0 = gclass101_0;
         try
@@ -19999,7 +20046,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class765 class765 = new FCTRaceRecordC21.Class765();
+        GameRace.Class765 class765 = new GameRace.Class765();
         // ISSUE: reference to a compiler-generated field
         class765.int_0 = int_56;
         try
@@ -20054,9 +20101,9 @@ public partial class FCTRaceRecordC21
                 .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>();
             comboBox_0.DisplayMember = "ClassName";
             comboBox_0.DataSource = list;
-            if (this.gclass22_0 == null)
+            if (this.SelectedClass == null)
                 return;
-            comboBox_0.SelectedItem = this.gclass22_0;
+            comboBox_0.SelectedItem = this.SelectedClass;
         }
         catch (Exception ex)
         {
@@ -20073,9 +20120,9 @@ public partial class FCTRaceRecordC21
                 .OrderBy<NavalAdminCommand, string>(gclass83_0 => gclass83_0.AdminCommandName).ToList<NavalAdminCommand>();
             comboBox_0.DisplayMember = "AdminCommandName";
             comboBox_0.DataSource = list;
-            if (this.gclass83_0 == null)
+            if (this.SelectedAdmin == null)
                 return;
-            comboBox_0.SelectedItem = this.gclass83_0;
+            comboBox_0.SelectedItem = this.SelectedAdmin;
         }
         catch (Exception ex)
         {
@@ -20138,7 +20185,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class766 class766 = new FCTRaceRecordC21.Class766();
+        GameRace.Class766 class766 = new GameRace.Class766();
         // ISSUE: reference to a compiler-generated field
         class766.gclass146_0 = gclass146_1;
         try
@@ -20293,7 +20340,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class498 class498 = new FCTRaceRecordC21.Class498();
+                GameRace.Class498 class498 = new GameRace.Class498();
                 // ISSUE: reference to a compiler-generated field
                 class498.gclass21_0 = this;
                 // ISSUE: reference to a compiler-generated field
@@ -20496,7 +20543,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class499 class499 = new FCTRaceRecordC21.Class499();
+        GameRace.Class499 class499 = new GameRace.Class499();
         // ISSUE: reference to a compiler-generated field
         class499.gclass83_0 = gclass83_1;
         try
@@ -20531,7 +20578,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class500 class500 = new FCTRaceRecordC21.Class500();
+        GameRace.Class500 class500 = new GameRace.Class500();
         // ISSUE: reference to a compiler-generated field
         class500.gclass84_0 = gclass84_0_1;
         try
@@ -20563,7 +20610,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class501 class501 = new FCTRaceRecordC21.Class501();
+        GameRace.Class501 class501 = new GameRace.Class501();
         // ISSUE: reference to a compiler-generated field
         class501.gclass85_0 = gclass85_0;
         // ISSUE: reference to a compiler-generated field
@@ -20645,7 +20692,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class502 class502 = new FCTRaceRecordC21.Class502();
+        GameRace.Class502 class502 = new GameRace.Class502();
         // ISSUE: reference to a compiler-generated field
         class502.gclass70_0 = gclass70_0;
         try
@@ -20684,7 +20731,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class503 class503 = new FCTRaceRecordC21.Class503();
+        GameRace.Class503 class503 = new GameRace.Class503();
         // ISSUE: reference to a compiler-generated field
         class503.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -20697,7 +20744,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class504 class504 = new FCTRaceRecordC21.Class504();
+                GameRace.Class504 class504 = new GameRace.Class504();
                 // ISSUE: reference to a compiler-generated field
                 class504.class503_0 = class503;
                 // ISSUE: reference to a compiler-generated field
@@ -20740,7 +20787,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class505 class505 = new FCTRaceRecordC21.Class505();
+        GameRace.Class505 class505 = new GameRace.Class505();
         // ISSUE: reference to a compiler-generated field
         class505.gclass83_0 = gclass83_1;
         // ISSUE: reference to a compiler-generated field
@@ -20758,7 +20805,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class506 class506 = new FCTRaceRecordC21.Class506()
+                GameRace.Class506 class506 = new GameRace.Class506()
                 {
                     gclass85_0 = gclass85
                 };
@@ -20795,7 +20842,7 @@ public partial class FCTRaceRecordC21
                         treeNode2.Expand();
                 }
 
-                if (this.gclass0_0.bool_6)
+                if (this.gclass0_0.chkShowJD)
                 {
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
@@ -20820,10 +20867,10 @@ public partial class FCTRaceRecordC21
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (this.gclass0_0.bool_4 && class506.gclass85_0.MoveOrderDictionary.Count > 0)
+                if (this.gclass0_0.chkOrders && class506.gclass85_0.MoveOrderDictionary.Count > 0)
                     treeNode1.Text += "  [M]";
                 // ISSUE: reference to a compiler-generated field
-                if (this.gclass0_0.bool_5 &&
+                if (this.gclass0_0.chkOverhauls &&
                     class506.gclass85_0.list_3.FirstOrDefault<FCTShipData40>(gclass40_0 =>
                         gclass40_0.genum29_0 == GEnum29.const_1) != null)
                     treeNode1.Text += "  [O]";
@@ -21047,7 +21094,7 @@ public partial class FCTRaceRecordC21
                     }
 
                     Decimal decimal_73_1 = gclass40.method_206();
-                    AuroraUtils.smethod_45((this.gclass0_0.decimal_0 - gclass40.decimal_6) / AuroraUtils.decimal_29, 2);
+                    AuroraUtils.smethod_45((this.gclass0_0.GameTime - gclass40.decimal_6) / AuroraUtils.decimal_29, 2);
                     listViewItem.SubItems.Add(AuroraUtils.smethod_39(decimal_73_1));
                     num1 = index5 + 1;
                     listViewItem.Tag = gclass40;
@@ -21265,7 +21312,7 @@ public partial class FCTRaceRecordC21
                     {
                         string text2 =
                             AuroraUtils.smethod_45(
-                                (this.gclass0_0.decimal_0 - gclass40.decimal_6) / AuroraUtils.decimal_29, 2);
+                                (this.gclass0_0.GameTime - gclass40.decimal_6) / AuroraUtils.decimal_29, 2);
                         listViewItem.SubItems.Add(text2);
                     }
 
@@ -21413,7 +21460,7 @@ public partial class FCTRaceRecordC21
             });
             foreach (FCTShipData40 gclass40 in list)
             {
-                Decimal decimal_73 = (this.gclass0_0.decimal_0 - gclass40.decimal_1) / AuroraUtils.decimal_29;
+                Decimal decimal_73 = (this.gclass0_0.GameTime - gclass40.decimal_1) / AuroraUtils.decimal_29;
                 string str = !(decimal_73 > 5M)
                     ? AuroraUtils.FormatNumberToDigits(decimal_73, 1)
                     : AuroraUtils.smethod_39(decimal_73);
@@ -21556,7 +21603,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class507 class507 = new FCTRaceRecordC21.Class507();
+                GameRace.Class507 class507 = new GameRace.Class507();
                 // ISSUE: reference to a compiler-generated field
                 class507.gclass202_0 = gclass202;
                 // ISSUE: reference to a compiler-generated field
@@ -21575,7 +21622,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class508 class508 = new FCTRaceRecordC21.Class508();
+                    GameRace.Class508 class508 = new GameRace.Class508();
                     // ISSUE: reference to a compiler-generated field
                     class508.class507_0 = class507;
                     // ISSUE: reference to a compiler-generated field
@@ -21673,7 +21720,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class509 class509 = new FCTRaceRecordC21.Class509();
+                GameRace.Class509 class509 = new GameRace.Class509();
                 // ISSUE: reference to a compiler-generated field
                 class509.gclass94_0 = gclass94;
                 TreeNode node = new TreeNode();
@@ -21709,7 +21756,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class510 class510 = new FCTRaceRecordC21.Class510();
+                GameRace.Class510 class510 = new GameRace.Class510();
                 // ISSUE: reference to a compiler-generated field
                 class510.gclass96_0 = gclass96;
                 TreeNode node = new TreeNode();
@@ -21792,7 +21839,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class511 class511 = new FCTRaceRecordC21.Class511();
+        GameRace.Class511 class511 = new GameRace.Class511();
         // ISSUE: reference to a compiler-generated field
         class511.gclass93_0 = gclass93_0_1;
         try
@@ -21825,7 +21872,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class512 class512 = new FCTRaceRecordC21.Class512();
+        GameRace.Class512 class512 = new GameRace.Class512();
         // ISSUE: reference to a compiler-generated field
         class512.gclass93_0 = gclass93_0;
         try
@@ -21852,7 +21899,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class513 class513 = new FCTRaceRecordC21.Class513();
+        GameRace.Class513 class513 = new GameRace.Class513();
         // ISSUE: reference to a compiler-generated field
         class513.gclass93_0 = gclass93_0;
         try
@@ -21905,7 +21952,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class514 class514 = new FCTRaceRecordC21.Class514();
+        GameRace.Class514 class514 = new GameRace.Class514();
         // ISSUE: reference to a compiler-generated field
         class514.gclass93_0 = gclass93_0;
         try
@@ -21976,7 +22023,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class515 class515 = new FCTRaceRecordC21.Class515();
+        GameRace.Class515 class515 = new GameRace.Class515();
         // ISSUE: reference to a compiler-generated field
         class515.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -22083,7 +22130,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class516 class516 = new FCTRaceRecordC21.Class516();
+        GameRace.Class516 class516 = new GameRace.Class516();
         // ISSUE: reference to a compiler-generated field
         class516.list_0 = list_22;
         try
@@ -22110,7 +22157,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class517 class517 = new FCTRaceRecordC21.Class517();
+        GameRace.Class517 class517 = new GameRace.Class517();
         // ISSUE: reference to a compiler-generated field
         class517.gclass103_0 = gclass103_0;
         try
@@ -22140,7 +22187,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class518 class518 = new FCTRaceRecordC21.Class518();
+        GameRace.Class518 class518 = new GameRace.Class518();
         // ISSUE: reference to a compiler-generated field
         class518.gclass103_0 = gclass103_0_1;
         try
@@ -22188,7 +22235,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class519 class519 = new FCTRaceRecordC21.Class519();
+        GameRace.Class519 class519 = new GameRace.Class519();
         // ISSUE: reference to a compiler-generated field
         class519.gclass103_0 = gclass103_0;
         try
@@ -22222,7 +22269,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class520 class520 = new FCTRaceRecordC21.Class520();
+        GameRace.Class520 class520 = new GameRace.Class520();
         // ISSUE: reference to a compiler-generated field
         class520.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -22231,7 +22278,7 @@ public partial class FCTRaceRecordC21
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
-            FCTRaceRecordC21.Class521 class521 = new FCTRaceRecordC21.Class521();
+            GameRace.Class521 class521 = new GameRace.Class521();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             class521.list_0 = this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(class520.method_0)
@@ -22259,7 +22306,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class522 class522 = new FCTRaceRecordC21.Class522();
+                GameRace.Class522 class522 = new GameRace.Class522();
                 // ISSUE: reference to a compiler-generated field
                 class522.gclass202_0 = gclass202;
                 TreeNode node = new TreeNode();
@@ -22344,7 +22391,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class523 class523 = new FCTRaceRecordC21.Class523();
+        GameRace.Class523 class523 = new GameRace.Class523();
         // ISSUE: reference to a compiler-generated field
         class523.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -22390,7 +22437,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class524 class524 = new FCTRaceRecordC21.Class524();
+        GameRace.Class524 class524 = new GameRace.Class524();
         // ISSUE: reference to a compiler-generated field
         class524.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -22439,7 +22486,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class525 class525 = new FCTRaceRecordC21.Class525();
+        GameRace.Class525 class525 = new GameRace.Class525();
         // ISSUE: reference to a compiler-generated field
         class525.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -22498,7 +22545,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class526 class526 = new FCTRaceRecordC21.Class526();
+        GameRace.Class526 class526 = new GameRace.Class526();
         // ISSUE: reference to a compiler-generated field
         class526.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -22545,7 +22592,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class527 class527 = new FCTRaceRecordC21.Class527();
+        GameRace.Class527 class527 = new GameRace.Class527();
         // ISSUE: reference to a compiler-generated field
         class527.gclass103_0 = gclass103_0_1;
         // ISSUE: reference to a compiler-generated field
@@ -22602,7 +22649,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class528 class528 = new FCTRaceRecordC21.Class528();
+        GameRace.Class528 class528 = new GameRace.Class528();
         // ISSUE: reference to a compiler-generated field
         class528.gclass103_0 = gclass103_0_1;
         // ISSUE: reference to a compiler-generated field
@@ -22753,7 +22800,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class529 class529 = new FCTRaceRecordC21.Class529();
+                GameRace.Class529 class529 = new GameRace.Class529();
                 // ISSUE: reference to a compiler-generated field
                 class529.gclass76_0 = gclass76;
                 TreeNode node1 = new TreeNode();
@@ -22774,8 +22821,8 @@ public partial class FCTRaceRecordC21
                     if (checkState_114 == CheckState.Checked)
                     {
                         if (gclass22.dictionary_0.Values
-                                .Select<GClass228, TechData164>(gclass228_0 => gclass228_0.gclass230_0.gclass164_0)
-                                .ToList<TechData164>().Count<TechData164>(gclass164_0 =>
+                                .Select<GClass228, TechSystem>(gclass228_0 => gclass228_0.gclass230_0.gclass164_0)
+                                .ToList<TechSystem>().Count<TechSystem>(gclass164_0 =>
                                     !gclass164_0.dictionary_0.ContainsKey(this.RaceID)) > 0)
                             node2.ForeColor = Color.Red;
                         else if (gclass22.dictionary_0.Values.Count<GClass228>(gclass228_0 =>
@@ -22805,7 +22852,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class530 class530 = new FCTRaceRecordC21.Class530();
+                GameRace.Class530 class530 = new GameRace.Class530();
                 // ISSUE: reference to a compiler-generated field
                 class530.gclass62_0 = gclass62;
                 TreeNode node = new TreeNode();
@@ -22863,7 +22910,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class531 class531 = new FCTRaceRecordC21.Class531();
+        GameRace.Class531 class531 = new GameRace.Class531();
         // ISSUE: reference to a compiler-generated field
         class531.gclass110_0 = gclass110_1;
         try
@@ -22890,7 +22937,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class532 class532 = new FCTRaceRecordC21.Class532();
+                GameRace.Class532 class532 = new GameRace.Class532();
                 // ISSUE: reference to a compiler-generated field
                 class532.class531_0 = class531;
                 // ISSUE: reference to a compiler-generated field
@@ -22933,7 +22980,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class533 class533 = new FCTRaceRecordC21.Class533();
+                GameRace.Class533 class533 = new GameRace.Class533();
                 // ISSUE: reference to a compiler-generated field
                 class533.gclass115_0 = gclass115;
                 // ISSUE: reference to a compiler-generated method
@@ -22978,9 +23025,9 @@ public partial class FCTRaceRecordC21
             TreeNode node7 = new TreeNode();
             node7.Text = "Known Technology";
             // ISSUE: reference to a compiler-generated method
-            foreach (TechData164 gclass164 in this.dictionary_11.Values.Where<GClass115>(class531.method_3)
-                         .SelectMany<GClass115, TechData164>(gclass115_0 => gclass115_0.list_2).Distinct<TechData164>()
-                         .OrderBy<TechData164, string>(gclass164_0 => gclass164_0.Name).ToList<TechData164>())
+            foreach (TechSystem gclass164 in this.dictionary_11.Values.Where<GClass115>(class531.method_3)
+                         .SelectMany<GClass115, TechSystem>(gclass115_0 => gclass115_0.list_2).Distinct<TechSystem>()
+                         .OrderBy<TechSystem, string>(gclass164_0 => gclass164_0.Name).ToList<TechSystem>())
                 node7.Nodes.Add(new TreeNode()
                 {
                     Text = gclass164.Name,
@@ -23003,7 +23050,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class534 class534 = new FCTRaceRecordC21.Class534();
+        GameRace.Class534 class534 = new GameRace.Class534();
         // ISSUE: reference to a compiler-generated field
         class534.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -23015,7 +23062,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class535 class535 = new FCTRaceRecordC21.Class535();
+                GameRace.Class535 class535 = new GameRace.Class535();
                 // ISSUE: reference to a compiler-generated field
                 class535.class534_0 = class534;
                 // ISSUE: reference to a compiler-generated field
@@ -23032,7 +23079,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class536 class536 = new FCTRaceRecordC21.Class536();
+                    GameRace.Class536 class536 = new GameRace.Class536();
                     // ISSUE: reference to a compiler-generated field
                     class536.gclass115_0 = gclass115;
                     TreeNode node2 = new TreeNode();
@@ -23110,7 +23157,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class537 class537 = new FCTRaceRecordC21.Class537();
+        GameRace.Class537 class537 = new GameRace.Class537();
         // ISSUE: reference to a compiler-generated field
         class537.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -23160,7 +23207,7 @@ public partial class FCTRaceRecordC21
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
-                FCTRaceRecordC21.Class538 class538 = new FCTRaceRecordC21.Class538();
+                GameRace.Class538 class538 = new GameRace.Class538();
                 // ISSUE: reference to a compiler-generated field
                 class538.class537_0 = class537;
                 // ISSUE: reference to a compiler-generated field
@@ -23177,7 +23224,7 @@ public partial class FCTRaceRecordC21
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
-                    FCTRaceRecordC21.Class539 class539 = new FCTRaceRecordC21.Class539();
+                    GameRace.Class539 class539 = new GameRace.Class539();
                     // ISSUE: reference to a compiler-generated field
                     class539.class538_0 = class538;
                     // ISSUE: reference to a compiler-generated field
@@ -23348,7 +23395,7 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_387(TechType genum122_0)
+    public TechSystem method_387(TechType genum122_0)
     {
         try
         {
@@ -23363,11 +23410,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_388(TechTypeData gclass163_0)
+    public TechSystem method_388(TechTypeData gclass163_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class540 class540 = new FCTRaceRecordC21.Class540();
+        GameRace.Class540 class540 = new GameRace.Class540();
         // ISSUE: reference to a compiler-generated field
         class540.gclass163_0 = gclass163_0;
         // ISSUE: reference to a compiler-generated field
@@ -23375,10 +23422,10 @@ public partial class FCTRaceRecordC21
         try
         {
             // ISSUE: reference to a compiler-generated method
-            List<TechData164> list = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class540.method_0)
-                .ToList<TechData164>();
+            List<TechSystem> list = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class540.method_0)
+                .ToList<TechSystem>();
             return list.Count > 0
-                ? list.OrderByDescending<TechData164, int>(gclass164_0 => gclass164_0.int_4).ToList<TechData164>()[0]
+                ? list.OrderByDescending<TechSystem, int>(gclass164_0 => gclass164_0.int_4).ToList<TechSystem>()[0]
                 : null;
         }
         catch (Exception ex)
@@ -23388,11 +23435,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_389(TechData164 gclass164_0_1)
+    public TechSystem method_389(TechSystem gclass164_0_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class541 class541 = new FCTRaceRecordC21.Class541();
+        GameRace.Class541 class541 = new GameRace.Class541();
         // ISSUE: reference to a compiler-generated field
         class541.gclass164_0 = gclass164_0_1;
         // ISSUE: reference to a compiler-generated field
@@ -23403,8 +23450,8 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated method
             return class541.gclass164_0 == null
                 ? null
-                : this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class541.method_0)
-                    .OrderBy<TechData164, int>(gclass164_0_2 => gclass164_0_2.int_4).FirstOrDefault<TechData164>();
+                : this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class541.method_0)
+                    .OrderBy<TechSystem, int>(gclass164_0_2 => gclass164_0_2.int_4).FirstOrDefault<TechSystem>();
         }
         catch (Exception ex)
         {
@@ -23413,11 +23460,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_390(TechData164 gclass164_0_1, Decimal decimal_29)
+    public TechSystem method_390(TechSystem gclass164_0_1, Decimal decimal_29)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class542 class542 = new FCTRaceRecordC21.Class542();
+        GameRace.Class542 class542 = new GameRace.Class542();
         // ISSUE: reference to a compiler-generated field
         class542.gclass21_0 = this;
         try
@@ -23425,8 +23472,8 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated field
             class542.decimal_0 = decimal_29 / gclass164_0_1.decimal_0;
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class542.method_0)
-                .OrderBy<TechData164, Decimal>(gclass164_0_2 => gclass164_0_2.decimal_0).FirstOrDefault<TechData164>();
+            return this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class542.method_0)
+                .OrderBy<TechSystem, Decimal>(gclass164_0_2 => gclass164_0_2.decimal_0).FirstOrDefault<TechSystem>();
         }
         catch (Exception ex)
         {
@@ -23439,7 +23486,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class543 class543 = new FCTRaceRecordC21.Class543();
+        GameRace.Class543 class543 = new GameRace.Class543();
         // ISSUE: reference to a compiler-generated field
         class543.genum122_0 = genum122_0;
         // ISSUE: reference to a compiler-generated field
@@ -23447,7 +23494,7 @@ public partial class FCTRaceRecordC21
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class543.method_0).ToList<TechData164>()
+            return this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class543.method_0).ToList<TechSystem>()
                 .Count;
         }
         catch (Exception ex)
@@ -23457,11 +23504,11 @@ public partial class FCTRaceRecordC21
         }
     }
 
-    public TechData164 method_392(TechType genum122_0)
+    public TechSystem method_392(TechType genum122_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class544 class544 = new FCTRaceRecordC21.Class544();
+        GameRace.Class544 class544 = new GameRace.Class544();
         // ISSUE: reference to a compiler-generated field
         class544.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -23472,8 +23519,8 @@ public partial class FCTRaceRecordC21
             // ISSUE: reference to a compiler-generated method
             return !this.gclass0_0.TechTypeDataDictionary.ContainsKey(class544.genum122_0)
                 ? null
-                : this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class544.method_0)
-                    .OrderBy<TechData164, int>(gclass164_0 => gclass164_0.int_4).FirstOrDefault<TechData164>();
+                : this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class544.method_0)
+                    .OrderBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4).FirstOrDefault<TechSystem>();
         }
         catch (Exception ex)
         {
@@ -23486,7 +23533,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class545 class545 = new FCTRaceRecordC21.Class545();
+        GameRace.Class545 class545 = new GameRace.Class545();
         // ISSUE: reference to a compiler-generated field
         class545.gclass21_0 = this;
         // ISSUE: reference to a compiler-generated field
@@ -23497,8 +23544,8 @@ public partial class FCTRaceRecordC21
             if (!this.gclass0_0.TechTypeDataDictionary.ContainsKey(class545.genum122_0))
                 return 0;
             // ISSUE: reference to a compiler-generated method
-            TechData164 gclass164 = this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class545.method_0)
-                .OrderBy<TechData164, int>(gclass164_0 => gclass164_0.int_4).FirstOrDefault<TechData164>();
+            TechSystem gclass164 = this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class545.method_0)
+                .OrderBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4).FirstOrDefault<TechSystem>();
             return gclass164 == null ? 0 : gclass164.int_4;
         }
         catch (Exception ex)
@@ -23512,7 +23559,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class546 class546 = new FCTRaceRecordC21.Class546();
+        GameRace.Class546 class546 = new GameRace.Class546();
         // ISSUE: reference to a compiler-generated field
         class546.genum118_0 = genum118_0;
         // ISSUE: reference to a compiler-generated field
@@ -23520,7 +23567,7 @@ public partial class FCTRaceRecordC21
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class546.method_0).ToList<TechData164>()
+            return this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class546.method_0).ToList<TechSystem>()
                 .Count > 0;
         }
         catch (Exception ex)
@@ -23534,14 +23581,14 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class547 class547 = new FCTRaceRecordC21.Class547();
+        GameRace.Class547 class547 = new GameRace.Class547();
         // ISSUE: reference to a compiler-generated field
         class547.genum118_0 = genum118_0;
         try
         {
             // ISSUE: reference to a compiler-generated method
-            TechData164 gclass164 =
-                this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechData164>(class547.method_0);
+            TechSystem gclass164 =
+                this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechSystem>(class547.method_0);
             return gclass164 == null ? 0 : gclass164.int_4;
         }
         catch (Exception ex)
@@ -23555,7 +23602,7 @@ public partial class FCTRaceRecordC21
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
-        FCTRaceRecordC21.Class548 class548 = new FCTRaceRecordC21.Class548();
+        GameRace.Class548 class548 = new GameRace.Class548();
         // ISSUE: reference to a compiler-generated field
         class548.int_0 = int_56;
         // ISSUE: reference to a compiler-generated field
@@ -23563,7 +23610,7 @@ public partial class FCTRaceRecordC21
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.TechDataDictionary.Values.Where<TechData164>(class548.method_0).ToList<TechData164>()
+            return this.gclass0_0.TechDataDictionary.Values.Where<TechSystem>(class548.method_0).ToList<TechSystem>()
                 .Count > 0;
         }
         catch (Exception ex)

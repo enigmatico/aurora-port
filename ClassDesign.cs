@@ -55,7 +55,7 @@ public class ClassDesign : Form
     }
 
     public GClass0 gclass0_0;
-    private FCTRaceRecordC21 gclass21_0;
+    private GameRace gclass21_0;
     private GClass22 gclass22_0;
     private GClass22 gclass22_1;
     private ShipClassTemplate184 gclass184_0;
@@ -397,7 +397,7 @@ public class ClassDesign : Form
         }
     }
 
-    public void method_0(FCTRaceRecordC21 gclass21_1)
+    public void method_0(GameRace gclass21_1)
     {
         try
         {
@@ -414,7 +414,7 @@ public class ClassDesign : Form
     {
         try
         {
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_378(this.tvClassList, this.chkShowCivilian.CheckState,
                 this.chkShowObsoleteClasses.CheckState, this.chkObsoleteComp.CheckState,
                 this.chkHullCategory.CheckState);
@@ -962,7 +962,7 @@ public class ClassDesign : Form
                     case 9:
                         if (name == "chkTanker")
                         {
-                            this.gclass22_0.int_23 = AuroraUtils.smethod_29(checkBox.CheckState);
+                            this.gclass22_0.int_23 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                             if (this.gclass22_0.int_46 == 0 && this.gclass22_0.int_23 == 1)
                             {
                                 this.gclass22_0.int_46 = (int)Math.Ceiling(this.gclass22_0.int_63 * 0.1);
@@ -979,7 +979,7 @@ public class ClassDesign : Form
                     case 10:
                         if (name == "chkCollier")
                         {
-                            this.gclass22_0.int_5 = AuroraUtils.smethod_29(checkBox.CheckState);
+                            this.gclass22_0.int_5 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                             break;
                         }
 
@@ -996,7 +996,7 @@ public class ClassDesign : Form
                                         return;
                                     }
 
-                                    this.gclass22_0.int_37 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_37 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     if (this.gclass22_0.int_37 == 1)
                                     {
                                         this.gclass22_0.method_83();
@@ -1010,7 +1010,7 @@ public class ClassDesign : Form
                             case 'O':
                                 if (name == "chkObsolete")
                                 {
-                                    this.gclass22_0.int_38 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_38 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1018,7 +1018,7 @@ public class ClassDesign : Form
                             case 'S':
                                 if (name == "chkSeniorCO")
                                 {
-                                    this.gclass22_0.int_6 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_6 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1032,7 +1032,7 @@ public class ClassDesign : Form
                             case 'C':
                                 if (name == "chkConscript")
                                 {
-                                    this.gclass22_0.int_10 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_10 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1040,7 +1040,7 @@ public class ClassDesign : Form
                             case 'S':
                                 if (name == "chkShowBands")
                                 {
-                                    this.gclass22_0.int_49 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_49 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1054,7 +1054,7 @@ public class ClassDesign : Form
                             case 'N':
                                 if (name == "chkNoOfficers")
                                 {
-                                    this.gclass22_0.int_15 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_15 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1062,7 +1062,7 @@ public class ClassDesign : Form
                             case 'R':
                                 if (name == "chkRandomName")
                                 {
-                                    this.gclass22_0.int_35 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_35 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1070,7 +1070,7 @@ public class ClassDesign : Form
                             case 'S':
                                 if (name == "chkSupplyShip")
                                 {
-                                    this.gclass22_0.int_52 = AuroraUtils.smethod_29(checkBox.CheckState);
+                                    this.gclass22_0.int_52 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1081,7 +1081,7 @@ public class ClassDesign : Form
                     case 14:
                         if (name == "chkHullNumbers")
                         {
-                            this.gclass22_0.int_65 = AuroraUtils.smethod_29(checkBox.CheckState);
+                            this.gclass22_0.int_65 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                             this.method_1();
                             break;
                         }
@@ -2158,10 +2158,10 @@ public class ClassDesign : Form
                 gclass40.int_20 = num2;
             }
 
-            if (!this.gclass21_0.dictionary_15.ContainsKey(this.gclass22_0.gclass76_0))
-                this.gclass21_0.dictionary_15.Add(this.gclass22_0.gclass76_0, num1);
+            if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(this.gclass22_0.gclass76_0))
+                this.gclass21_0.ShipHullCountDictionary.Add(this.gclass22_0.gclass76_0, num1);
             else
-                this.gclass21_0.dictionary_15[this.gclass22_0.gclass76_0] = num1;
+                this.gclass21_0.ShipHullCountDictionary[this.gclass22_0.gclass76_0] = num1;
             this.method_1();
         }
         catch (Exception ex)
@@ -2390,7 +2390,7 @@ public class ClassDesign : Form
                     gclass230_0 =
                         this.gclass0_0.ComponentDataDictionary.Values.FirstOrDefault<ShipComponent>(class905.method_0);
                     if (gclass230_0 != null)
-                        this.gclass21_0.method_74(gclass230_0.gclass164_0.int_0, true, false, gclass230_0);
+                        this.gclass21_0.method_74(gclass230_0.gclass164_0.TechSystemID, true, false, gclass230_0);
                 }
                 else
                 {
@@ -2405,9 +2405,9 @@ public class ClassDesign : Form
             this.gclass0_0.method_601(this.lstvComponentTechRequired, "Component Research Required", "RP", null);
             this.gclass0_0.method_597(this.lstvComponentTechRequired, "", null);
             gclass230_0.list_1 = gclass230_0.list_1
-                .OrderBy<TechData164, string>(gclass164_0 => gclass164_0.gclass163_0.Description)
-                .ThenBy<TechData164, int>(gclass164_0 => gclass164_0.int_4).ToList<TechData164>();
-            foreach (TechData164 gclass164 in gclass230_0.list_1)
+                .OrderBy<TechSystem, string>(gclass164_0 => gclass164_0.gclass163_0.Description)
+                .ThenBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4).ToList<TechSystem>();
+            foreach (TechSystem gclass164 in gclass230_0.list_1)
                 this.gclass0_0.method_601(this.lstvComponentTechRequired, gclass164.Name,
                     AuroraUtils.smethod_37(gclass164.int_4), null);
         }
@@ -2481,7 +2481,7 @@ public class ClassDesign : Form
                     ShipComponent gclass230_0 =
                         this.gclass0_0.ComponentDataDictionary.Values.FirstOrDefault<ShipComponent>(class906.method_0);
                     if (gclass230_0 != null)
-                        this.gclass21_0.method_74(gclass230_0.gclass164_0.int_0, true, true, gclass230_0);
+                        this.gclass21_0.method_74(gclass230_0.gclass164_0.TechSystemID, true, true, gclass230_0);
                 }
                 else
                 {
@@ -2555,19 +2555,19 @@ public class ClassDesign : Form
             if (this.gclass21_0 == null || this.lstvTemplateTech.SelectedItems.Count == 0)
                 return;
             this.lstvComponentTechRequired.Items.Clear();
-            TechData164 tag = (TechData164)this.lstvTemplateTech.SelectedItems[0].Tag;
+            TechSystem tag = (TechSystem)this.lstvTemplateTech.SelectedItems[0].Tag;
             if (tag == null)
                 return;
             this.gclass0_0.method_601(this.lstvComponentTechRequired, "Component Research Required", "RP", null);
             this.gclass0_0.method_597(this.lstvComponentTechRequired, "", null);
             if (tag.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                 return;
-            List<TechData164> source = this.gclass21_0.method_75(tag);
+            List<TechSystem> source = this.gclass21_0.method_75(tag);
             if (source.Count <= 0)
                 return;
-            foreach (TechData164 gclass164 in source
-                         .OrderBy<TechData164, string>(gclass164_0 => gclass164_0.gclass163_0.Description)
-                         .ThenBy<TechData164, int>(gclass164_0 => gclass164_0.int_4).ToList<TechData164>())
+            foreach (TechSystem gclass164 in source
+                         .OrderBy<TechSystem, string>(gclass164_0 => gclass164_0.gclass163_0.Description)
+                         .ThenBy<TechSystem, int>(gclass164_0 => gclass164_0.int_4).ToList<TechSystem>())
                 this.gclass0_0.method_601(this.lstvComponentTechRequired, gclass164.Name,
                     AuroraUtils.smethod_37(gclass164.int_4), null);
         }

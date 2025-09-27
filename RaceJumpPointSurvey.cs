@@ -7,7 +7,7 @@
 #nullable disable
 public class RaceJumpPointSurvey
 {
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public JumpPoint120 JumpPoint;
     public int JumpPointID;
     public int Explored;

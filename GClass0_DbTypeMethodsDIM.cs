@@ -1256,7 +1256,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery("select * from DIM_AutomatedClassDesign").Rows)
             {
-                AutomatedClassDesignData gclass14 = new AutomatedClassDesignData(this);
+                AutomatedClassDesign gclass14 = new AutomatedClassDesign(this);
                 int int32_1 = Convert.ToInt32(row["KeyTechA"]);
                 if (int32_1 > 0 && this.TechDataDictionary.ContainsKey(int32_1))
                     gclass14.KeyTechDataA = this.TechDataDictionary[int32_1];
@@ -1726,7 +1726,7 @@ public partial class GClass0
                 // ISSUE: reference to a compiler-generated field
                 class285.gclass1_0.method_5();
                 // ISSUE: reference to a compiler-generated field
-                if (this.int_120 == 1 && class285.gclass1_0.double_28 > 80.0)
+                if (this.LimitPlanetaryDistance == 1 && class285.gclass1_0.double_28 > 80.0)
                 {
                     while (true)
                     {
@@ -2045,8 +2045,8 @@ public partial class GClass0
                          .ExecuteQuery("select * from DIM_OperationalGroupElement").Rows)
             {
                 OperationalGroupElement opGroupElement = new OperationalGroupElement();
-                opGroupElement.OperationalGroup = (OperationalGroup)Convert.ToInt32(row["OperationalGroupID"]);
-                if (this.OperationalGroupDictionary.ContainsKey(opGroupElement.OperationalGroup))
+                opGroupElement.OperationalGroupId = (OperationalGroupID)Convert.ToInt32(row["OperationalGroupID"]);
+                if (this.OperationalGroupDictionary.ContainsKey(opGroupElement.OperationalGroupId))
                 {
                     AutomatedClassDesignType int32 = (AutomatedClassDesignType)Convert.ToInt32(row["AutomatedDesignID"]);
                     if (this.AutomatedClassDesignDictionary.ContainsKey(int32))
@@ -2056,7 +2056,7 @@ public partial class GClass0
                         opGroupElement.RandomNumShips = Convert.ToInt32(row["RandomNumShips"]);
                         opGroupElement.ChanceOfElement = Convert.ToInt32(row["ChanceOfElement"]);
                         opGroupElement.KeyElement = Convert.ToBoolean(row["KeyElement"]);
-                        this.OperationalGroupDictionary[opGroupElement.OperationalGroup].OperationalGroupElementList.Add(opGroupElement);
+                        this.OperationalGroupDictionary[opGroupElement.OperationalGroupId].OperationalGroupElementList.Add(opGroupElement);
                     }
                 }
             }
@@ -2075,7 +2075,7 @@ public partial class GClass0
                          .ExecuteQuery("select * from DIM_OperationalGroupProgression").Rows)
             {
                 GClass12 gclass12 = new GClass12();
-                OperationalGroup int32 = (OperationalGroup)Convert.ToInt32(row["OperationalGroupID"]);
+                OperationalGroupID int32 = (OperationalGroupID)Convert.ToInt32(row["OperationalGroupID"]);
                 if (this.OperationalGroupDictionary.ContainsKey(int32))
                 {
                     gclass12.gclass9_0 = this.OperationalGroupDictionary[int32];
@@ -2101,8 +2101,8 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery("select * from DIM_OperationalGroup").Rows)
             {
-                GClass9 gclass9 = new GClass9();
-                gclass9.genum105_0 = (OperationalGroup)Convert.ToInt32(row["OperationalGroupID"]);
+                OperationalGroup gclass9 = new OperationalGroup();
+                gclass9.OperationalGroupId = (OperationalGroupID)Convert.ToInt32(row["OperationalGroupID"]);
                 gclass9.genum104_0 = (GEnum104)Convert.ToInt32(row["MainFunction"]);
                 gclass9.int_0 = Convert.ToInt32(row["MainFunctionPriority"]);
                 gclass9.int_1 = Convert.ToInt32(row["MobileMilitary"]);
@@ -2122,7 +2122,7 @@ public partial class GClass0
                 int int32_3 = Convert.ToInt32(row["TechRequirementA"]);
                 if (this.TechDataDictionary.ContainsKey(int32_3))
                     gclass9.gclass164_0 = this.TechDataDictionary[int32_3];
-                this.OperationalGroupDictionary.Add(gclass9.genum105_0, gclass9);
+                this.OperationalGroupDictionary.Add(gclass9.OperationalGroupId, gclass9);
             }
         }
         catch (Exception ex)

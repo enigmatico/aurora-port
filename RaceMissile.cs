@@ -11,7 +11,7 @@ using System;
 public class RaceMissile
 {
     private GClass0 gclass0_0;
-    public TechData164 gclass164_0;
+    public TechSystem gclass164_0;
     public ShipComponent gclass230_0;
     public RaceMissile gclass129_0;
     public AllMineralsValue gclass123_0;

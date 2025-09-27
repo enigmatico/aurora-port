@@ -203,8 +203,8 @@ public class GClass55
     #endregion
 
     private GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
-    public FCTRaceRecordC21 gclass21_1;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
     public GClass194 gclass194_0;
     public RankThemeEntry gclass61_0;
     public PopulationData gclass146_0;
@@ -220,7 +220,7 @@ public class GClass55
     public FCTShipData40 gclass40_5;
     public FCTShipData40 gclass40_6;
     public GClass62 gclass62_0;
-    public GClass161 gclass161_0;
+    public ResearchProject gclass161_0;
     public GroundUnitFormationData gclass103_0;
     public ResearchFieldData gclass162_0;
     public NavalAdminCommand gclass83_0;
@@ -304,7 +304,7 @@ public class GClass55
             GClass55.Class909 class909 = new GClass55.Class909();
             // ISSUE: reference to a compiler-generated field
             class909.class908_0 = class908;
-            if (this.gclass21_0.IsNPR)
+            if (this.gclass21_0.NPR)
                 return;
             // ISSUE: reference to a compiler-generated field
             class909.decimal_0 = 0M;
@@ -763,13 +763,13 @@ public class GClass55
 
     public int method_13()
     {
-        return (int)Math.Floor((this.gclass0_0.decimal_0 - this.decimal_2) / AuroraUtils.decimal_29) +
+        return (int)Math.Floor((this.gclass0_0.GameTime - this.decimal_2) / AuroraUtils.decimal_29) +
                this.gclass194_0.int_11;
     }
 
     public int method_14()
     {
-        return (int)Math.Floor((this.gclass0_0.decimal_0 - this.decimal_2) / AuroraUtils.decimal_29);
+        return (int)Math.Floor((this.gclass0_0.GameTime - this.decimal_2) / AuroraUtils.decimal_29);
     }
 
     public string method_15()
@@ -1223,7 +1223,7 @@ public class GClass55
             }
 
             this.gclass40_0 = gclass40_7;
-            this.decimal_1 = this.gclass0_0.decimal_0;
+            this.decimal_1 = this.gclass0_0.GameTime;
             this.method_46($"Assigned as {str} of {gclass40_7.method_187()}", GEnum28.const_1);
             gclass40_7.method_204($"{this.method_36()} assigned as {str}");
             this.gclass0_0.gclass92_0.method_2(EventType.const_78,
@@ -1255,7 +1255,7 @@ public class GClass55
             this.gclass40_0 = gclass103_1.ShipData;
             this.gclass146_0 = gclass103_1.PopulationData;
             gclass103_1.gclass55_0 = this;
-            this.decimal_1 = this.gclass0_0.decimal_0;
+            this.decimal_1 = this.gclass0_0.GameTime;
         }
         catch (Exception ex)
         {
@@ -1291,7 +1291,7 @@ public class GClass55
                     this.gclass62_0 = tag;
                     this.auroraCommandType_0 = AuroraCommandType.Sector;
                     this.gclass146_0 = tag.gclass146_0;
-                    this.decimal_1 = this.gclass0_0.decimal_0;
+                    this.decimal_1 = this.gclass0_0.GameTime;
                     tag.gclass55_0 = this;
                     this.method_46("Assigned to " + tag.SectorName, GEnum28.const_1);
                 }
@@ -1321,7 +1321,7 @@ public class GClass55
                     this.gclass146_1 = tag;
                     this.auroraCommandType_0 = AuroraCommandType.Colony;
                     this.gclass146_0 = tag;
-                    this.decimal_1 = this.gclass0_0.decimal_0;
+                    this.decimal_1 = this.gclass0_0.GameTime;
                     tag.gclass55_0 = this;
                     this.method_46("Assigned to " + tag.PopName, GEnum28.const_1);
                 }
@@ -1344,7 +1344,7 @@ public class GClass55
                     this.gclass146_3 = tag;
                     this.auroraCommandType_0 = AuroraCommandType.AcademyCommandant;
                     this.gclass146_0 = tag;
-                    this.decimal_1 = this.gclass0_0.decimal_0;
+                    this.decimal_1 = this.gclass0_0.GameTime;
                     this.method_46("Assigned as Academy Commandant on " + tag.PopName, GEnum28.const_1);
                 }
             }
@@ -1421,7 +1421,7 @@ public class GClass55
                 this.auroraCommandType_0 = AuroraCommandType.NavalAdminCommand;
                 this.gclass146_0 = tag1.gclass146_0;
                 this.gclass40_0 = tag1.gclass40_0;
-                this.decimal_1 = this.gclass0_0.decimal_0;
+                this.decimal_1 = this.gclass0_0.GameTime;
                 tag1.gclass55_0 = this;
                 this.method_46("Assigned to " + tag1.AdminCommandName, GEnum28.const_1);
             }
@@ -1531,7 +1531,7 @@ public class GClass55
                     else if (this.auroraCommanderType_0 == AuroraCommanderType.Scientist)
                     {
                         Decimal num = 5M;
-                        if (this.gclass0_0.int_114 == 1)
+                        if (this.gclass0_0.LimitedLabs == 1)
                             num = 1M;
                         if (this.method_5(CommanderBonusType.ResearchAdmin) / num >= genum15_0)
                         {
@@ -1749,7 +1749,7 @@ public class GClass55
                                Math.Pow((double)(this.method_5(CommanderBonusType.GroundCombatManoeuvre) - 1M) * 100.0, 2.0) +
                                Math.Pow((double)(this.method_5(CommanderBonusType.GroundCombatLogistics) - 1M) * 100.0, 1.75) +
                                Math.Pow((double)(this.method_5(CommanderBonusType.GroundCombatTraining) - 1M) * 100.0, 2.0));
-            Decimal num = 25M * ((this.gclass0_0.decimal_0 - this.decimal_0) / AuroraUtils.decimal_29);
+            Decimal num = 25M * ((this.gclass0_0.GameTime - this.decimal_0) / AuroraUtils.decimal_29);
             if (num > 100M)
                 num = 100M;
             this.int_1 += (int)num;
@@ -1939,7 +1939,7 @@ public class GClass55
             int num1 = AuroraUtils.GetRandomInteger(100);
             Decimal num2 = 1M;
             Decimal num3 = 0M;
-            if (this.gclass0_0.int_114 == 1)
+            if (this.gclass0_0.LimitedLabs == 1)
             {
                 num2 = 5M;
                 num3 = 1M;
@@ -2233,13 +2233,13 @@ public class GClass55
             {
                 foreach (GClass177 gclass177 in this.list_0.Where<GClass177>(gclass177_0 =>
                              gclass177_0.genum28_0 == GEnum28.const_2 &&
-                             gclass177_0.decimal_0 == this.gclass0_0.decimal_0).ToList<GClass177>())
+                             gclass177_0.decimal_0 == this.gclass0_0.GameTime).ToList<GClass177>())
                     this.list_0.Remove(gclass177);
             }
 
             this.list_0.Add(new GClass177()
             {
-                decimal_0 = this.gclass0_0.decimal_0,
+                decimal_0 = this.gclass0_0.GameTime,
                 Description = string_4,
                 genum28_0 = genum28_0
             });

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 public class AutomatedGroundTemplateDesign
 {
     public AutomatedGroundTemplateDesignType GroundTemplateDesignType;
-    public TechData164 RequiredTechData;
+    public TechSystem RequiredTechData;
     public SpecialNPRIDs SpecialNPR;
     public AuroraGroundFormationFieldPosition GroundFormationFieldPosition;
     public GUAutoTemplatePrimaryFunction PrimaryFunction;

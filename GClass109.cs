@@ -7,10 +7,10 @@
 #nullable disable
 public class GClass109
 {
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     public SystemBodyData gclass1_0;
 
-    public GClass109(FCTRaceRecordC21 gclass21_1, SystemBodyData gclass1_1)
+    public GClass109(GameRace gclass21_1, SystemBodyData gclass1_1)
     {
         this.gclass21_0 = gclass21_1;
         this.gclass1_0 = gclass1_1;

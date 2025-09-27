@@ -45,7 +45,7 @@ public class GroundUnitClass101
     }
 
     private GClass0 gclass0_0;
-    public TechData164 TechData;
+    public TechSystem TechData;
     public GroundUnitBaseTypeData GroundUnitBaseTypeData;
     public ArmourTypeData ArmourType;
     public ShipComponent gclass230_0;
@@ -53,7 +53,7 @@ public class GroundUnitClass101
     public List<GroundComponentTypeDefinition> GroundUnitComponentList = new List<GroundComponentTypeDefinition>();
     public Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition> dictionary_0 = new Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition>();
     public GroundUnitClassType genum115_0;
-    public int int_0;
+    public int ClassID;
     public int int_1;
     public int int_2;
     public int int_3;
@@ -77,7 +77,7 @@ public class GroundUnitClass101
 
     public GroundUnitClass101(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public GroundUnitClass101 method_0(FCTRaceRecordC21 gclass21_0)
+    public GroundUnitClass101 method_0(GameRace gclass21_0)
     {
         try
         {

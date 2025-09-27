@@ -12,7 +12,7 @@ public class OrganizationNodeC93
 {
     public OrganizationNodeC93 ParentOrganizationNode;
     public GroundUnitFormationTemplateData FormationTemplate;
-    public FCTRaceRecordC21 Race;
+    public GameRace Race;
     public AuroraGroundFormationFieldPosition FieldPosition;
     public int OrganizationID;
     public int ParentOrganizationID;

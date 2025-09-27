@@ -15,7 +15,7 @@ using System.Windows.Forms;
 public class RaceWindow : Form
 {
     public GClass0 gclass0_0;
-    public FCTRaceRecordC21 gclass21_0;
+    public GameRace gclass21_0;
     private bool bool_0;
     private IContainer icontainer_0;
     private PictureBox pbShipImage;
@@ -191,7 +191,7 @@ public class RaceWindow : Form
                 this.cmdSaveSpecies.Visible = true;
             else
                 this.cmdSaveSpecies.Visible = false;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.method_0();
         }
         catch (Exception ex)
@@ -245,7 +245,7 @@ public class RaceWindow : Form
         }
     }
 
-    public void method_1(FCTRaceRecordC21 gclass21_1)
+    public void method_1(GameRace gclass21_1)
     {
         try
         {
@@ -264,7 +264,7 @@ public class RaceWindow : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             if (this.gclass21_0 == null)
                 return;
             this.method_0();
@@ -557,7 +557,7 @@ public class RaceWindow : Form
             }
             else
             {
-                this.gclass21_0.method_112((RaceNameTheme45)this.lstvNameThemes.SelectedItems[0].Tag);
+                this.gclass21_0.method_112((RaceNameTheme)this.lstvNameThemes.SelectedItems[0].Tag);
                 this.gclass21_0.method_119(this.lstvNameThemes, this.txtPrimaryNameTheme);
             }
         }
@@ -579,7 +579,7 @@ public class RaceWindow : Form
             }
             else
             {
-                RaceNameTheme45 tag = (RaceNameTheme45)this.lstvNameThemes.SelectedItems[0].Tag;
+                RaceNameTheme tag = (RaceNameTheme)this.lstvNameThemes.SelectedItems[0].Tag;
                 this.gclass0_0.string_3 = "Enter Theme Weight";
                 this.gclass0_0.string_4 = tag.Chance.ToString();
                 int num2 = (int)new MessageEntry(this.gclass0_0).ShowDialog();
@@ -619,7 +619,7 @@ public class RaceWindow : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0 = (FCTRaceRecordC21)this.cboRaces.SelectedValue;
+            this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             if (this.gclass21_0 == null)
                 return;
             Decimal num = this.gclass21_0.AcademyCrewmen * this.gclass21_0.TrainingLevel;
