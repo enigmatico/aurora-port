@@ -9,13 +9,13 @@ using System;
 #nullable disable
 public class GClass68
 {
-  private GClass0 gclass0_0;
-  public GClass21 gclass21_0;
-  public GClass200 gclass200_0;
-  public double double_0;
-  public double double_1;
-  public Decimal decimal_0 = 1M;
-  public double double_2;
+    private GClass0 gclass0_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public SystemData200 gclass200_0;
+    public double double_0;
+    public double double_1;
+    public Decimal decimal_0 = 1M;
+    public double double_2;
 
-  public GClass68(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public GClass68(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 }

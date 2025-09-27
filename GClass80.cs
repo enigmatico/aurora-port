@@ -11,22 +11,22 @@ using System.Linq;
 #nullable disable
 public class GClass80
 {
-  public List<GClass235> list_0 = new List<GClass235>();
-  public GClass123 gclass123_0;
+    public List<GClass235> list_0 = new List<GClass235>();
+    public AllMineralsValue gclass123_0;
 
-  public void method_0(GClass230 gclass230_0, int int_0)
-  {
-    GClass235 gclass235 = this.list_0.FirstOrDefault(v=>v.gclass230_0 == gclass230_0);
-    if (gclass235 == null)
+    public void method_0(ShipComponent gclass230_0, int int_0)
     {
-      // ISSUE: reference to a compiler-generated field
-      this.list_0.Add(new GClass235()
-      {
-        gclass230_0 = gclass230_0,
-        int_0 = int_0
-      });
+        GClass235 gclass235 = this.list_0.FirstOrDefault(v => v.gclass230_0 == gclass230_0);
+        if (gclass235 == null)
+        {
+            // ISSUE: reference to a compiler-generated field
+            this.list_0.Add(new GClass235()
+            {
+                gclass230_0 = gclass230_0,
+                int_0 = int_0
+            });
+        }
+        else
+            gclass235.int_0 += int_0;
     }
-    else
-      gclass235.int_0 += int_0;
-  }
 }

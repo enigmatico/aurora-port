@@ -11,15 +11,15 @@ namespace Aurora;
 
 public enum WayPointType
 {
-  Normal,
-  [Description("Point of Interest")] POI,
-  [Description("Urgent POI")] UrgentPOI,
-  [Description("Transit POI")] TransitPOI,
-  MarkedForDeletion,
-  [Description("Fleet Training")] FleetTraining,
-  Rendezvous,
-  Named,
-  Temporary,
-  [Description("Deep Space Location")] DeepSpaceLocation,
-  [Description("Fleet Waypoint")] FleetWaypoint,
+    Normal,
+    [Description("Point of Interest")] POI,
+    [Description("Urgent POI")] UrgentPOI,
+    [Description("Transit POI")] TransitPOI,
+    MarkedForDeletion,
+    [Description("Fleet Training")] FleetTraining,
+    Rendezvous,
+    Named,
+    Temporary,
+    [Description("Deep Space Location")] DeepSpaceLocation,
+    [Description("Fleet Waypoint")] FleetWaypoint,
 }

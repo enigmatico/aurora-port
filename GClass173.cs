@@ -9,6 +9,6 @@ using System;
 #nullable disable
 public class GClass173
 {
-  public Decimal decimal_0;
-  public Decimal decimal_1;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
 }

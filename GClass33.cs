@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass33
 {
-  public GClass132 gclass132_0;
-  public double double_0;
+    public GClass132 gclass132_0;
+    public double double_0;
 
-  public GClass33(GClass132 gclass132_1, double double_1)
-  {
-    this.gclass132_0 = gclass132_1;
-    this.double_0 = double_1;
-  }
+    public GClass33(GClass132 gclass132_1, double double_1)
+    {
+        this.gclass132_0 = gclass132_1;
+        this.double_0 = double_1;
+    }
 }

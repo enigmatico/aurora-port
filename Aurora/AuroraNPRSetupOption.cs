@@ -9,7 +9,7 @@ namespace Aurora;
 
 public enum AuroraNPRSetupOption
 {
-  Random,
-  Yes,
-  No,
+    Random,
+    Yes,
+    No,
 }

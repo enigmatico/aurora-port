@@ -10,25 +10,25 @@ using System;
 #nullable disable
 public class GClass185
 {
-  public int int_0;
-  public int int_1;
-  public AuroraComponentType auroraComponentType_0;
-  public int int_2;
-  public int int_3;
-  public int int_4;
-  public int int_5;
-  public int int_6;
-  public int int_7;
-  public int int_8;
-  public int int_9 = 100;
-  public int int_10 = 1;
-  public int int_11;
-  public int int_12;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
-  public Decimal decimal_2;
-  public Decimal decimal_3 = 1M;
-  public Decimal decimal_4 = 1M;
-  public string string_0 = "";
-  public GEnum87 genum87_0;
+    public int int_0;
+    public int int_1;
+    public AuroraComponentType auroraComponentType_0;
+    public int int_2;
+    public int int_3;
+    public int int_4;
+    public int int_5;
+    public int int_6;
+    public int int_7;
+    public int int_8;
+    public int int_9 = 100;
+    public int int_10 = 1;
+    public int int_11;
+    public int int_12;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
+    public Decimal decimal_2;
+    public Decimal decimal_3 = 1M;
+    public Decimal decimal_4 = 1M;
+    public string string_0 = "";
+    public GEnum87 genum87_0;
 }

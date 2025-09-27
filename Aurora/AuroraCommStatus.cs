@@ -11,8 +11,14 @@ namespace Aurora;
 
 public enum AuroraCommStatus
 {
-  [Description("No Communication")] None,
-  [Description("Attempting Communication")] AttemptingCommunication,
-  [Description("Communication Established")] CommunicationEstablished,
-  [Description("Communication Impossible")] CommunicationImpossible,
+    [Description("No Communication")] None,
+
+    [Description("Attempting Communication")]
+    AttemptingCommunication,
+
+    [Description("Communication Established")]
+    CommunicationEstablished,
+
+    [Description("Communication Impossible")]
+    CommunicationImpossible,
 }

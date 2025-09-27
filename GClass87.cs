@@ -10,17 +10,17 @@ using System;
 #nullable disable
 public class GClass87
 {
-  public GClass21 gclass21_0;
-  public GClass88 gclass88_0;
-  public GClass200 gclass200_0;
-  public GClass146 gclass146_0;
-  public GClass91 gclass91_0;
-  public AuroraEventCategory auroraEventCategory_0;
-  public Decimal decimal_0;
-  public double double_0;
-  public double double_1;
-  public double double_2;
-  public double double_3;
-  public bool bool_0;
-  public string string_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public DIMEventTypeData88 gclass88_0;
+    public SystemData200 gclass200_0;
+    public PopulationData gclass146_0;
+    public GClass91 gclass91_0;
+    public AuroraEventCategory auroraEventCategory_0;
+    public Decimal decimal_0;
+    public double double_0;
+    public double double_1;
+    public double double_2;
+    public double double_3;
+    public bool bool_0;
+    public string string_0;
 }

@@ -7,6 +7,6 @@
 #nullable disable
 public enum GEnum91
 {
-  const_0 = 1,
-  const_1 = 2,
+    const_0 = 1,
+    const_1 = 2,
 }

@@ -11,10 +11,14 @@ namespace Aurora;
 
 public enum AuroraSystemProtectionStatus
 {
-  [Description("No Protection")] NoProtection,
-  [Description("Suggest Leave")] SuggestLeave,
-  [Description("Request Leave")] RequestLeave,
-  [Description("Request Leave Urgently")] RequestLeaveUrgently,
-  [Description("Demand Leave")] DemandLeave,
-  [Description("Demand Leave With Threat")] DemandLeaveWithThreat,
+    [Description("No Protection")] NoProtection,
+    [Description("Suggest Leave")] SuggestLeave,
+    [Description("Request Leave")] RequestLeave,
+
+    [Description("Request Leave Urgently")]
+    RequestLeaveUrgently,
+    [Description("Demand Leave")] DemandLeave,
+
+    [Description("Demand Leave With Threat")]
+    DemandLeaveWithThreat,
 }

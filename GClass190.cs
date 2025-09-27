@@ -9,9 +9,9 @@ using System;
 #nullable disable
 public class GClass190
 {
-  public GClass189 gclass189_0;
-  public GClass146 gclass146_0;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
-  public Decimal decimal_2;
+    public TradeGoodsDefinition gclass189_0;
+    public PopulationData gclass146_0;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
+    public Decimal decimal_2;
 }

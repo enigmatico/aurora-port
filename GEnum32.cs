@@ -7,6 +7,6 @@
 #nullable disable
 public enum GEnum32
 {
-  const_0,
-  const_1,
+    const_0,
+    const_1,
 }

@@ -9,13 +9,14 @@ using System;
 #nullable disable
 public class GClass75
 {
-  public int int_0;
-  public GClass102 gclass102_0;
+    public int int_0;
+    public GroundUnitFormationTemplateData gclass102_0;
 
-  public string Combined { get; set; }
+    public string Combined { get; set; }
 
-  public string method_0()
-  {
-    return $"{this.int_0.ToString()}x {this.gclass102_0.Name}   Size: {this.gclass102_0.method_9().ToString()}{Environment.NewLine}";
-  }
+    public string method_0()
+    {
+        return
+            $"{this.int_0.ToString()}x {this.gclass102_0.Name}   Size: {this.gclass102_0.method_9().ToString()}{Environment.NewLine}";
+    }
 }

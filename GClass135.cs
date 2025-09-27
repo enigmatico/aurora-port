@@ -9,8 +9,8 @@ using System.Collections.Generic;
 #nullable disable
 public class GClass135
 {
-  public int int_0;
-  public string string_0;
-  public Dictionary<int, GClass136> dictionary_0 = new Dictionary<int, GClass136>();
-  public Dictionary<int, GClass138> dictionary_1 = new Dictionary<int, GClass138>();
+    public int int_0;
+    public string string_0;
+    public Dictionary<int, StandingOrderDefinition> dictionary_0 = new Dictionary<int, StandingOrderDefinition>();
+    public Dictionary<int, FleetConditionalOrder> dictionary_1 = new Dictionary<int, FleetConditionalOrder>();
 }

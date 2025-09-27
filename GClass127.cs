@@ -9,56 +9,56 @@ using System;
 #nullable disable
 public class GClass127
 {
-  private GClass0 gclass0_0;
-  public GClass123 gclass123_0;
-  public GClass123 gclass123_1;
-  public GClass123 gclass123_2;
-  public GClass123 gclass123_3;
-  public GClass123 gclass123_4;
-  public GClass123 gclass123_5;
-  public GClass123 gclass123_6;
-  public GClass123 gclass123_7;
-  public GClass123 gclass123_8;
+    private GClass0 gclass0_0;
+    public AllMineralsValue gclass123_0;
+    public AllMineralsValue gclass123_1;
+    public AllMineralsValue gclass123_2;
+    public AllMineralsValue gclass123_3;
+    public AllMineralsValue gclass123_4;
+    public AllMineralsValue gclass123_5;
+    public AllMineralsValue gclass123_6;
+    public AllMineralsValue gclass123_7;
+    public AllMineralsValue gclass123_8;
 
-  public GClass127(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public GClass127(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-  public void method_0()
-  {
-    try
+    public void method_0()
     {
-      this.gclass123_0.method_6();
-      this.gclass123_1.method_6();
-      this.gclass123_2.method_6();
-      this.gclass123_3.method_6();
-      this.gclass123_4.method_6();
-      this.gclass123_5.method_6();
-      this.gclass123_6.method_6();
-      this.gclass123_7.method_6();
-      this.gclass123_8.method_6();
+        try
+        {
+            this.gclass123_0.ResetToZero();
+            this.gclass123_1.ResetToZero();
+            this.gclass123_2.ResetToZero();
+            this.gclass123_3.ResetToZero();
+            this.gclass123_4.ResetToZero();
+            this.gclass123_5.ResetToZero();
+            this.gclass123_6.ResetToZero();
+            this.gclass123_7.ResetToZero();
+            this.gclass123_8.ResetToZero();
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 2012);
+        }
     }
-    catch (Exception ex)
-    {
-      GClass226.smethod_74(ex, 2012);
-    }
-  }
 
-  public void method_1()
-  {
-    try
+    public void method_1()
     {
-      this.gclass123_8.method_6();
-      this.gclass123_8.method_10(this.gclass123_0);
-      this.gclass123_8.method_10(this.gclass123_1);
-      this.gclass123_8.method_10(this.gclass123_2);
-      this.gclass123_8.method_10(this.gclass123_3);
-      this.gclass123_8.method_10(this.gclass123_4);
-      this.gclass123_8.method_10(this.gclass123_5);
-      this.gclass123_8.method_10(this.gclass123_6);
-      this.gclass123_8.method_10(this.gclass123_7);
+        try
+        {
+            this.gclass123_8.ResetToZero();
+            this.gclass123_8.AddMineralsFrom(this.gclass123_0);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_1);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_2);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_3);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_4);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_5);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_6);
+            this.gclass123_8.AddMineralsFrom(this.gclass123_7);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 2014);
+        }
     }
-    catch (Exception ex)
-    {
-      GClass226.smethod_74(ex, 2014);
-    }
-  }
 }

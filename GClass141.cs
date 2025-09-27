@@ -7,8 +7,8 @@
 #nullable disable
 public class GClass141
 {
-  public string string_0;
-  public int int_0;
-  public int int_1;
-  public int int_2;
+    public string Title;
+    public int MaxChance;
+    public int IsPrefix;
+    public int IsSuffix;
 }

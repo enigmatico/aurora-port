@@ -9,8 +9,8 @@ namespace Aurora;
 
 public enum AuroraNPRPDBeam
 {
-  Random = 0,
-  Laser = 1,
-  Railgun = 3,
-  Gauss = 6,
+    Random = 0,
+    Laser = 1,
+    Railgun = 3,
+    Gauss = 6,
 }

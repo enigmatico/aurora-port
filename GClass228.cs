@@ -9,36 +9,36 @@ using System;
 #nullable disable
 public class GClass228
 {
-  public GClass230 gclass230_0;
-  public int int_0;
-  public int int_1;
-  public int int_2;
-  public int int_3;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
-  public int int_4;
-  public Decimal decimal_2;
-  public Decimal decimal_3;
-  public Decimal decimal_4;
-  public Decimal decimal_5;
-  public Decimal decimal_6;
-  public Decimal decimal_7;
+    public ShipComponent gclass230_0;
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public int int_3;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
+    public int int_4;
+    public Decimal decimal_2;
+    public Decimal decimal_3;
+    public Decimal decimal_4;
+    public Decimal decimal_5;
+    public Decimal decimal_6;
+    public Decimal decimal_7;
 
-  public string Description { get; set; }
+    public string Description { get; set; }
 
-  public Decimal method_0() => this.gclass230_0.decimal_3 * this.decimal_0;
+    public Decimal method_0() => this.gclass230_0.decimal_3 * this.decimal_0;
 
-  public GClass228 method_1()
-  {
-    try
+    public GClass228 method_1()
     {
-      GClass228 gclass228 = new GClass228();
-      return (GClass228) this.MemberwiseClone();
+        try
+        {
+            GClass228 gclass228 = new GClass228();
+            return (GClass228)this.MemberwiseClone();
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 2679);
+            return null;
+        }
     }
-    catch (Exception ex)
-    {
-      GClass226.smethod_74(ex, 2679);
-      return (GClass228) null;
-    }
-  }
 }

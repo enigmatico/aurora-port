@@ -7,6 +7,6 @@
 #nullable disable
 public class GClass167
 {
-  public GClass164 gclass164_0;
-  public int int_0;
+    public TechData164 gclass164_0;
+    public int int_0;
 }

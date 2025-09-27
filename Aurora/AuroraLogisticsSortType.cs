@@ -11,9 +11,16 @@ namespace Aurora;
 
 public enum AuroraLogisticsSortType
 {
-  [Description("Fuel Available / Capacity")] Fuel,
-  [Description("Maintenance Supply Points / Max")] MSP,
-  [Description("Deployment Time / Planned")] Deployment,
-  [Description("Ordnance / Magazine Capacity")] Ordnance,
-  [Description("Time Since Overhaul")] Overhaul,
+    [Description("Fuel Available / Capacity")]
+    Fuel,
+
+    [Description("Maintenance Supply Points / Max")]
+    MSP,
+
+    [Description("Deployment Time / Planned")]
+    Deployment,
+
+    [Description("Ordnance / Magazine Capacity")]
+    Ordnance,
+    [Description("Time Since Overhaul")] Overhaul,
 }

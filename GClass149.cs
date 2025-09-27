@@ -10,9 +10,9 @@ using System;
 #nullable disable
 public class GClass149
 {
-  public GClass146 gclass146_0;
-  public GClass157 gclass157_0;
-  public AuroraInstallationType auroraInstallationType_0;
-  public Decimal decimal_0;
-  public bool bool_0;
+    public PopulationData gclass146_0;
+    public PlanetaryInstallationType gclass157_0;
+    public AuroraInstallationType auroraInstallationType_0;
+    public Decimal decimal_0;
+    public bool bool_0;
 }

@@ -11,10 +11,10 @@ namespace Aurora;
 
 public enum AuroraTectonics
 {
-  Dead = 1,
-  [Description("Hot Spot")] HotSpot = 2,
-  Plastic = 3,
-  [Description("Plate Tectonics")] PlateTectonic = 4,
-  [Description("Platelet Tectonics")] PlateletTectonic = 5,
-  Extreme = 6,
+    Dead = 1,
+    [Description("Hot Spot")] HotSpot = 2,
+    Plastic = 3,
+    [Description("Plate Tectonics")] PlateTectonic = 4,
+    [Description("Platelet Tectonics")] PlateletTectonic = 5,
+    Extreme = 6,
 }

@@ -7,18 +7,18 @@
 #nullable disable
 public class GClass221
 {
-  public double double_0;
-  public double double_1;
+    public double double_0;
+    public double double_1;
 
-  public GClass221()
-  {
-    this.double_0 = 0.0;
-    this.double_1 = 0.0;
-  }
+    public GClass221()
+    {
+        this.double_0 = 0.0;
+        this.double_1 = 0.0;
+    }
 
-  public GClass221(double double_2, double double_3)
-  {
-    this.double_0 = double_2;
-    this.double_1 = double_3;
-  }
+    public GClass221(double double_2, double double_3)
+    {
+        this.double_0 = double_2;
+        this.double_1 = double_3;
+    }
 }

@@ -11,9 +11,13 @@ namespace Aurora;
 
 public enum AuroraCommanderType
 {
-  [Description("Naval Officer")] Naval,
-  [Description("Ground Force Commander")] GroundForce,
-  [Description("Civilian Administrator")] Administrator,
-  Scientist,
-  All,
+    [Description("Naval Officer")] Naval,
+
+    [Description("Ground Force Commander")]
+    GroundForce,
+
+    [Description("Civilian Administrator")]
+    Administrator,
+    Scientist,
+    All,
 }

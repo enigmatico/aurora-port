@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass229
 {
-  public GClass230 gclass230_0;
-  public int int_0;
+    public ShipComponent gclass230_0;
+    public int int_0;
 
-  public GClass229(GClass230 gclass230_1, int int_1)
-  {
-    this.gclass230_0 = gclass230_1;
-    this.int_0 = int_1;
-  }
+    public GClass229(ShipComponent gclass230_1, int int_1)
+    {
+        this.gclass230_0 = gclass230_1;
+        this.int_0 = int_1;
+    }
 }

@@ -9,9 +9,9 @@ namespace Aurora;
 
 public enum AuroraNPRPrimaryBeam
 {
-  Random = 0,
-  Laser = 1,
-  Particle = 2,
-  Railgun = 3,
-  Carronade = 5,
+    Random = 0,
+    Laser = 1,
+    Particle = 2,
+    Railgun = 3,
+    Carronade = 5,
 }

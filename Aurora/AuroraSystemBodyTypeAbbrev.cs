@@ -11,16 +11,16 @@ namespace Aurora;
 
 public enum AuroraSystemBodyTypeAbbrev
 {
-  [Description("None")] None = 0,
-  [Description("A")] Asteroid = 1,
-  [Description("T")] Terrestrial = 2,
-  [Description("D")] DwarfPlanet = 3,
-  [Description("GG")] GasGiant = 4,
-  [Description("SJ")] Superjovian = 5,
-  [Description("MS")] SmallMoon = 7,
-  [Description("M")] Moon = 8,
-  [Description("ML")] LargeMoon = 9,
-  [Description("MST")] SmallTerrestrial = 10, // 0x0000000A
-  [Description("MT")] TerrestrialMoon = 11, // 0x0000000B
-  [Description("C")] Comet = 14, // 0x0000000E
+    [Description("None")] None = 0,
+    [Description("A")] Asteroid = 1,
+    [Description("T")] Terrestrial = 2,
+    [Description("D")] DwarfPlanet = 3,
+    [Description("GG")] GasGiant = 4,
+    [Description("SJ")] Superjovian = 5,
+    [Description("MS")] SmallMoon = 7,
+    [Description("M")] Moon = 8,
+    [Description("ML")] LargeMoon = 9,
+    [Description("MST")] SmallTerrestrial = 10, // 0x0000000A
+    [Description("MT")] TerrestrialMoon = 11, // 0x0000000B
+    [Description("C")] Comet = 14, // 0x0000000E
 }

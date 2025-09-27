@@ -11,13 +11,17 @@ namespace Aurora;
 
 public enum AuroraResearchField
 {
-  [Description("Power and Propulsion")] PowerAndPropulsion = 1,
-  [Description("Sensors and Control Systems")] SensorsAndControlSystems = 2,
-  [Description("Energy Weapons")] EnergyWeapons = 3,
-  [Description("Missiles and Kinetic")] MissilesKinetic = 4,
-  [Description("Construction and Production")] ConstructionProduction = 5,
-  Logistics = 6,
-  [Description("Defensive Systems")] DefensiveSystems = 7,
-  [Description("Biology and Genetics")] BiologyGenetics = 8,
-  [Description("Ground Combat")] GroundCombat = 9,
+    [Description("Power and Propulsion")] PowerAndPropulsion = 1,
+
+    [Description("Sensors and Control Systems")]
+    SensorsAndControlSystems = 2,
+    [Description("Energy Weapons")] EnergyWeapons = 3,
+    [Description("Missiles and Kinetic")] MissilesKinetic = 4,
+
+    [Description("Construction and Production")]
+    ConstructionProduction = 5,
+    Logistics = 6,
+    [Description("Defensive Systems")] DefensiveSystems = 7,
+    [Description("Biology and Genetics")] BiologyGenetics = 8,
+    [Description("Ground Combat")] GroundCombat = 9,
 }

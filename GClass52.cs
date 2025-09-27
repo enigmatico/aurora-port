@@ -9,6 +9,6 @@ using System;
 #nullable disable
 public class GClass52
 {
-  public GClass50 gclass50_0;
-  public Decimal decimal_0;
+    public CommanderBonus gclass50_0;
+    public Decimal decimal_0;
 }

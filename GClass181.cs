@@ -7,9 +7,9 @@
 #nullable disable
 public class GClass181
 {
-  public GClass194 gclass194_0;
-  public GClass146 gclass146_0;
-  public int int_0;
-  public bool bool_0;
-  public bool bool_1;
+    public GClass194 gclass194_0;
+    public PopulationData gclass146_0;
+    public int int_0;
+    public bool bool_0;
+    public bool bool_1;
 }

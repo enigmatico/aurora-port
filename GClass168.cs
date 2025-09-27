@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass168
 {
-  public GClass21 gclass21_0;
-  public GClass164 gclass164_0;
-  public int int_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public TechData164 gclass164_0;
+    public int int_0;
 }

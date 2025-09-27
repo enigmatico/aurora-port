@@ -9,8 +9,8 @@ namespace Aurora;
 
 public enum AuroraJammerType
 {
-  None,
-  Sensor,
-  FireControl,
-  Missile,
+    None,
+    Sensor,
+    FireControl,
+    Missile,
 }

@@ -10,10 +10,10 @@ using System;
 #nullable disable
 public class GClass153
 {
-  public AuroraElement auroraElement_0;
-  public GClass21 gclass21_0;
-  public GClass146 gclass146_0;
-  public GEnum85 genum85_0;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
+    public AuroraElement auroraElement_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public PopulationData gclass146_0;
+    public MineralUsage genum85_0;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
 }

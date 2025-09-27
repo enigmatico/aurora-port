@@ -11,9 +11,9 @@ namespace Aurora;
 
 public enum AuroraProductionType
 {
-  Construction,
-  Ordnance,
-  Fighter,
-  Components,
-  [Description("Space Station")] SpaceStation,
+    Construction,
+    Ordnance,
+    Fighter,
+    Components,
+    [Description("Space Station")] SpaceStation,
 }

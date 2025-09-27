@@ -7,9 +7,9 @@
 #nullable disable
 public class GClass18
 {
-  public GEnum116 genum116_0;
-  public int int_0;
-  public int int_1;
-  public int int_2;
-  public int int_3;
+    public AutomatedGroundTemplateDesignType genum116_0;
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public int int_3;
 }

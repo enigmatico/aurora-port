@@ -9,23 +9,23 @@ using System;
 #nullable disable
 public class GClass119
 {
-  public GClass230 gclass230_0;
-  public int int_0;
-  public int int_1;
-  public double double_0;
-  public Decimal decimal_0;
+    public ShipComponent gclass230_0;
+    public int int_0;
+    public int int_1;
+    public double double_0;
+    public Decimal decimal_0;
 
-  public GClass119 method_0()
-  {
-    try
+    public GClass119 method_0()
     {
-      GClass119 gclass119 = new GClass119();
-      return (GClass119) this.MemberwiseClone();
+        try
+        {
+            GClass119 gclass119 = new GClass119();
+            return (GClass119)this.MemberwiseClone();
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1925);
+            return null;
+        }
     }
-    catch (Exception ex)
-    {
-      GClass226.smethod_74(ex, 1925);
-      return (GClass119) null;
-    }
-  }
 }

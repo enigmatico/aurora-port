@@ -9,8 +9,8 @@ using System;
 #nullable disable
 public class GClass7
 {
-  public GClass129 gclass129_0;
-  public int int_0;
-  public int int_1;
-  public Decimal decimal_0;
+    public RaceMissile gclass129_0;
+    public int int_0;
+    public int int_1;
+    public Decimal decimal_0;
 }

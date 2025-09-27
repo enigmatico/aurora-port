@@ -13,58 +13,61 @@ using System.Runtime.CompilerServices;
 [CompilerGenerated]
 internal sealed class Class332<T, U>
 {
-  [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-  private readonly T gparam_0;
-  [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-  private readonly U gparam_1;
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private readonly T gparam_0;
 
-  public T Field => this.gparam_0;
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private readonly U gparam_1;
 
-  public U Att => this.gparam_1;
+    public T Field => this.gparam_0;
 
-  [DebuggerHidden]
-  public Class332(T gparam_2, U gparam_3)
-  {
-    // ISSUE: reference to a compiler-generated field
-    this.gparam_0 = gparam_2;
-    // ISSUE: reference to a compiler-generated field
-    this.gparam_1 = gparam_3;
-  }
+    public U Att => this.gparam_1;
 
-  [DebuggerHidden]
-  public override bool Equals(object value)
-  {
-    // ISSUE: variable of a compiler-generated type
-    Class332<T, U> class332 = value as Class332<T, U>;
-    if (this == class332)
-      return true;
-    // ISSUE: reference to a compiler-generated field
-    // ISSUE: reference to a compiler-generated field
-    // ISSUE: reference to a compiler-generated field
-    // ISSUE: reference to a compiler-generated field
-    return class332 != null && EqualityComparer<T>.Default.Equals(this.gparam_0, class332.gparam_0) && EqualityComparer<U>.Default.Equals(this.gparam_1, class332.gparam_1);
-  }
+    [DebuggerHidden]
+    public Class332(T gparam_2, U gparam_3)
+    {
+        // ISSUE: reference to a compiler-generated field
+        this.gparam_0 = gparam_2;
+        // ISSUE: reference to a compiler-generated field
+        this.gparam_1 = gparam_3;
+    }
 
-  [DebuggerHidden]
-  public override int GetHashCode()
-  {
-    // ISSUE: reference to a compiler-generated field
-    // ISSUE: reference to a compiler-generated field
-    return (EqualityComparer<T>.Default.GetHashCode(this.gparam_0) - 1446686539) * -1521134295 + EqualityComparer<U>.Default.GetHashCode(this.gparam_1);
-  }
+    [DebuggerHidden]
+    public override bool Equals(object value)
+    {
+        // ISSUE: variable of a compiler-generated type
+        Class332<T, U> class332 = value as Class332<T, U>;
+        if (this == class332)
+            return true;
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: reference to a compiler-generated field
+        return class332 != null && EqualityComparer<T>.Default.Equals(this.gparam_0, class332.gparam_0) &&
+               EqualityComparer<U>.Default.Equals(this.gparam_1, class332.gparam_1);
+    }
 
-  [DebuggerHidden]
-  public override string ToString()
-  {
-    object[] objArray = new object[2];
-    // ISSUE: reference to a compiler-generated field
-    T gparam0 = this.gparam_0;
-    ref T local1 = ref gparam0;
-    objArray[0] = (object) ((object) local1 != null ? local1.ToString() : (string) null);
-    // ISSUE: reference to a compiler-generated field
-    U gparam1 = this.gparam_1;
-    ref U local2 = ref gparam1;
-    objArray[1] = (object) ((object) local2 != null ? local2.ToString() : (string) null);
-    return string.Format((IFormatProvider) null, "{{ Field = {0}, Att = {1} }}", objArray);
-  }
+    [DebuggerHidden]
+    public override int GetHashCode()
+    {
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: reference to a compiler-generated field
+        return (EqualityComparer<T>.Default.GetHashCode(this.gparam_0) - 1446686539) * -1521134295 +
+               EqualityComparer<U>.Default.GetHashCode(this.gparam_1);
+    }
+
+    [DebuggerHidden]
+    public override string ToString()
+    {
+        object[] objArray = new object[2];
+        // ISSUE: reference to a compiler-generated field
+        T gparam0 = this.gparam_0;
+        ref T local1 = ref gparam0;
+        objArray[0] = local1 != null ? local1.ToString() : null;
+        // ISSUE: reference to a compiler-generated field
+        U gparam1 = this.gparam_1;
+        ref U local2 = ref gparam1;
+        objArray[1] = local2 != null ? local2.ToString() : null;
+        return string.Format(null, "{{ Field = {0}, Att = {1} }}", objArray);
+    }
 }

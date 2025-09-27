@@ -7,6 +7,6 @@
 #nullable disable
 public class GClass195
 {
-  public GClass21 gclass21_0;
-  public GEnum25 genum25_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public GEnum25 genum25_0;
 }

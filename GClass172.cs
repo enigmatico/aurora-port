@@ -9,10 +9,10 @@ using System;
 #nullable disable
 public class GClass172
 {
-  public GClass9 gclass9_0;
-  public GClass102 gclass102_0;
-  public GClass1 gclass1_0;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
-  public int int_0 = 1;
+    public GClass9 gclass9_0;
+    public GroundUnitFormationTemplateData gclass102_0;
+    public SystemBodyData gclass1_0;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
+    public int int_0 = 1;
 }

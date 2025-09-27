@@ -9,10 +9,10 @@ namespace Aurora;
 
 public enum AuroraGroundMineralSurvey
 {
-  Completed,
-  Minimal,
-  Low,
-  Good,
-  High,
-  Excellent,
+    Completed,
+    Minimal,
+    Low,
+    Good,
+    High,
+    Excellent,
 }

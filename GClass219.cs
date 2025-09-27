@@ -7,8 +7,8 @@
 #nullable disable
 public class GClass219
 {
-  public int int_0;
-  public GClass1 gclass1_0;
+    public int int_0;
+    public SystemBodyData gclass1_0;
 
-  public string RuinName { get; set; }
+    public string RuinName { get; set; }
 }

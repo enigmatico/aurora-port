@@ -9,8 +9,8 @@ using System;
 #nullable disable
 public class GClass8
 {
-  public GClass22 gclass22_0;
-  public int int_0;
-  public int int_1;
-  public Decimal decimal_0;
+    public GClass22 gclass22_0;
+    public int int_0;
+    public int int_1;
+    public Decimal decimal_0;
 }

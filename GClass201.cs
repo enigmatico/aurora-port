@@ -7,13 +7,13 @@
 #nullable disable
 public class GClass201
 {
-  public bool bool_0;
-  public GClass202 gclass202_0;
-  public GClass146 gclass146_0;
-  public GClass85 gclass85_0;
-  public GClass120 gclass120_0;
-  public GClass233 gclass233_0;
-  public GClass214 gclass214_0;
-  public GClass190 gclass190_0;
-  public GClass148 gclass148_0;
+    public bool bool_0;
+    public RacialSystemSurvey gclass202_0;
+    public PopulationData gclass146_0;
+    public FleetData gclass85_0;
+    public JumpPoint120 gclass120_0;
+    public GClass233 gclass233_0;
+    public GClass214 gclass214_0;
+    public GClass190 gclass190_0;
+    public GClass148 gclass148_0;
 }

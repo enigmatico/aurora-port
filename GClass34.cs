@@ -7,13 +7,13 @@
 #nullable disable
 public class GClass34
 {
-  public GClass39 gclass39_0;
-  public GClass230 gclass230_0;
-  public bool bool_0;
-  public int int_0;
-  public int int_1;
-  public double double_0;
-  public double double_1;
-  public double double_2;
-  public double double_3;
+    public GroundUnitFormationElement gclass39_0;
+    public ShipComponent gclass230_0;
+    public bool bool_0;
+    public int int_0;
+    public int int_1;
+    public double double_0;
+    public double double_1;
+    public double double_2;
+    public double double_3;
 }

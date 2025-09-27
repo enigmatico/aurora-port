@@ -7,8 +7,8 @@
 #nullable disable
 public class GClass11
 {
-  public GClass9 gclass9_0;
-  public GClass14 gclass14_0;
-  public int int_0 = 1;
-  public bool bool_0;
+    public GClass9 gclass9_0;
+    public AutomatedClassDesignData gclass14_0;
+    public int int_0 = 1;
+    public bool bool_0;
 }

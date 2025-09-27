@@ -7,9 +7,9 @@
 #nullable disable
 public class GClass105
 {
-  public GClass21 gclass21_0;
-  public GClass1 gclass1_0;
-  public GClass40 gclass40_0;
-  public GClass101 gclass101_0;
-  public int int_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public SystemBodyData gclass1_0;
+    public FCTShipData40 gclass40_0;
+    public GroundUnitClass101 gclass101_0;
+    public int int_0;
 }

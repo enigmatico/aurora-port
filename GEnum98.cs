@@ -7,7 +7,7 @@
 #nullable disable
 public enum GEnum98
 {
-  const_0,
-  const_1,
-  const_2,
+    const_0,
+    const_1,
+    const_2,
 }

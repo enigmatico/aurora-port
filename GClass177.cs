@@ -9,9 +9,9 @@ using System;
 #nullable disable
 public class GClass177
 {
-  public GEnum28 genum28_0;
-  public bool bool_0;
-  public Decimal decimal_0;
+    public GEnum28 genum28_0;
+    public bool bool_0;
+    public Decimal decimal_0;
 
-  public string Description { get; set; }
+    public string Description { get; set; }
 }

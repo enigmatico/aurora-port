@@ -10,7 +10,7 @@ using System;
 #nullable disable
 public class GClass54
 {
-  public AuroraMeasurementType auroraMeasurementType_0;
-  public Decimal decimal_0;
-  public bool bool_0;
+    public AuroraMeasurementType auroraMeasurementType_0;
+    public Decimal decimal_0;
+    public bool bool_0;
 }

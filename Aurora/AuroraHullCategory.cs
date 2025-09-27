@@ -9,8 +9,8 @@ namespace Aurora;
 
 public enum AuroraHullCategory
 {
-  Military,
-  Commercial,
-  Fighter,
-  FAC,
+    Military,
+    Commercial,
+    Fighter,
+    FAC,
 }

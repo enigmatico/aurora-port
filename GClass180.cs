@@ -7,8 +7,8 @@
 #nullable disable
 public class GClass180
 {
-  public GClass21 gclass21_0;
-  public GClass194 gclass194_0;
-  public GClass40 gclass40_0;
-  public int int_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public GClass194 gclass194_0;
+    public FCTShipData40 gclass40_0;
+    public int int_0;
 }

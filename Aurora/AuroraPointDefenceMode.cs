@@ -11,14 +11,28 @@ namespace Aurora;
 
 public enum AuroraPointDefenceMode
 {
-  [Description("None")] None,
-  [Description("Area Defence")] AreaDefence,
-  [Description("Ranged Defensive Fire")] RangedDefensiveFire,
-  [Description("Point Blank Defensive Fire")] PointBlankDefensiveFire,
-  [Description("Point Blank Defensive Fire (Self Only)")] PointBlankDefensiveFireSelf,
-  [Description("Missiles Per Target: 1")] OneMissilePerTarget,
-  [Description("Missiles Per Target: 2")] TwoMissilesPerTarget,
-  [Description("Missiles Per Target: 3")] ThreeMissilesPerTarget,
-  [Description("Missiles Per Target: 4")] FourMissilesPerTarget,
-  [Description("Missiles Per Target: 5")] FiveMissilesPerTarget,
+    [Description("None")] None,
+    [Description("Area Defence")] AreaDefence,
+    [Description("Ranged Defensive Fire")] RangedDefensiveFire,
+
+    [Description("Point Blank Defensive Fire")]
+    PointBlankDefensiveFire,
+
+    [Description("Point Blank Defensive Fire (Self Only)")]
+    PointBlankDefensiveFireSelf,
+
+    [Description("Missiles Per Target: 1")]
+    OneMissilePerTarget,
+
+    [Description("Missiles Per Target: 2")]
+    TwoMissilesPerTarget,
+
+    [Description("Missiles Per Target: 3")]
+    ThreeMissilesPerTarget,
+
+    [Description("Missiles Per Target: 4")]
+    FourMissilesPerTarget,
+
+    [Description("Missiles Per Target: 5")]
+    FiveMissilesPerTarget,
 }

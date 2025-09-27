@@ -11,14 +11,20 @@ namespace Aurora;
 
 public enum AuroraShipyardUpgradeType
 {
-  [Description("No Activity")] None,
-  [Description("Add Slipway")] AddSlipway,
-  [Description("Add 500 ton Capacity")] Add500,
-  [Description("Add 1000 ton Capacity")] Add1000,
-  [Description("Add 2000 ton Capacity")] Add2000,
-  [Description("Add 5000 ton Capacity")] Add5000,
-  [Description("Add 10,000 ton Capacity")] Add10000,
-  Retool,
-  [Description("Continual Capacity Upgrade")] Continual,
-  [Description("Spacemaster Modification")] SMModify,
+    [Description("No Activity")] None,
+    [Description("Add Slipway")] AddSlipway,
+    [Description("Add 500 ton Capacity")] Add500,
+    [Description("Add 1000 ton Capacity")] Add1000,
+    [Description("Add 2000 ton Capacity")] Add2000,
+    [Description("Add 5000 ton Capacity")] Add5000,
+
+    [Description("Add 10,000 ton Capacity")]
+    Add10000,
+    Retool,
+
+    [Description("Continual Capacity Upgrade")]
+    Continual,
+
+    [Description("Spacemaster Modification")]
+    SMModify,
 }

@@ -11,19 +11,37 @@ namespace Aurora;
 
 public enum AuroraRetirementStatus
 {
-  Active,
-  [Description("Killed in Naval Combat")] KilledNaval,
-  [Description("Retired due to Old Age")] RetiredOldAge,
-  [Description("Retired due to a Medical Condition")] RetiredMedical,
-  [Description("Retired when Ship Decomissioned")] ScrappedWithShip,
-  [Description("Retired by Order of High Command")] RetiredByOrder,
-  Captured,
-  [Description("Honourable Discharge")] RetiredCareer,
-  [Description("Killed in an Accident")] KilledByAccident,
-  [Description("Died of Natural Causes")] DiedNaturalCauses,
-  [Description("Died due to Life Support Failure")] DiedLifeSupportFailure,
-  [Description("Killed in Ground Combat")] KilledGround,
-  [Description("Died in a Life Pod")] DiedInLifePod,
-  [Description("Killed during Boarding Combat")] KilledBoarding,
-  Executed,
+    Active,
+
+    [Description("Killed in Naval Combat")]
+    KilledNaval,
+
+    [Description("Retired due to Old Age")]
+    RetiredOldAge,
+
+    [Description("Retired due to a Medical Condition")]
+    RetiredMedical,
+
+    [Description("Retired when Ship Decomissioned")]
+    ScrappedWithShip,
+
+    [Description("Retired by Order of High Command")]
+    RetiredByOrder,
+    Captured,
+    [Description("Honourable Discharge")] RetiredCareer,
+    [Description("Killed in an Accident")] KilledByAccident,
+
+    [Description("Died of Natural Causes")]
+    DiedNaturalCauses,
+
+    [Description("Died due to Life Support Failure")]
+    DiedLifeSupportFailure,
+
+    [Description("Killed in Ground Combat")]
+    KilledGround,
+    [Description("Died in a Life Pod")] DiedInLifePod,
+
+    [Description("Killed during Boarding Combat")]
+    KilledBoarding,
+    Executed,
 }

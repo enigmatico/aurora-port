@@ -11,7 +11,7 @@ namespace Aurora;
 
 public enum AuroraResupplyStatus
 {
-  None,
-  [Description("Resupply Fleet")] Fleet,
-  [Description("Resupply Subfleet")] Subfleet,
+    None,
+    [Description("Resupply Fleet")] Fleet,
+    [Description("Resupply Subfleet")] Subfleet,
 }

@@ -20,373 +20,415 @@ namespace Aurora.Properties;
 [DebuggerNonUserCode]
 internal class Resources
 {
-  private static ResourceManager resourceManager_0;
-  private static CultureInfo cultureInfo_0;
+    private static ResourceManager resourceManager_0;
+    private static CultureInfo cultureInfo_0;
 
-  internal Resources()
-  {
-  }
-
-  [EditorBrowsable(EditorBrowsableState.Advanced)]
-  internal static ResourceManager ResourceManager
-  {
-    get
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    internal static ResourceManager ResourceManager
     {
-      if (Aurora.Properties.Resources.resourceManager_0 == null)
-        Aurora.Properties.Resources.resourceManager_0 = new ResourceManager("Aurora.Properties.Resources", typeof (Aurora.Properties.Resources).Assembly);
-      return Aurora.Properties.Resources.resourceManager_0;
+        get
+        {
+            if (Aurora.Properties.Resources.resourceManager_0 == null)
+                Aurora.Properties.Resources.resourceManager_0 = new ResourceManager("Aurora.Properties.Resources",
+                    typeof(Aurora.Properties.Resources).Assembly);
+            return Aurora.Properties.Resources.resourceManager_0;
+        }
     }
-  }
 
-  [EditorBrowsable(EditorBrowsableState.Advanced)]
-  internal static CultureInfo Culture
-  {
-    get => Aurora.Properties.Resources.cultureInfo_0;
-    set => Aurora.Properties.Resources.cultureInfo_0 = value;
-  }
-
-  internal static Bitmap AirborneBattalion
-  {
-    get
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    internal static CultureInfo Culture
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AirborneBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get => Aurora.Properties.Resources.cultureInfo_0;
+        set => Aurora.Properties.Resources.cultureInfo_0 = value;
     }
-  }
 
-  internal static Bitmap AirborneBrigade
-  {
-    get
+    internal static Bitmap AirborneBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AirborneBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AirborneBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap AirborneDivision
-  {
-    get
+    internal static Bitmap AirborneBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AirborneDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AirborneBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ArmourBattalion
-  {
-    get
+    internal static Bitmap AirborneDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ArmourBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AirborneDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ArmourBrigade
-  {
-    get
+    internal static Bitmap ArmourBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ArmourBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ArmourBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ArmourDivision
-  {
-    get
+    internal static Bitmap ArmourBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ArmourDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ArmourBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ArtilleryBattalion
-  {
-    get
+    internal static Bitmap ArmourDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ArtilleryBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ArmourDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap AssaultBattalion
-  {
-    get
+    internal static Bitmap ArtilleryBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AssaultBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ArtilleryBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap AssaultBrigade
-  {
-    get
+    internal static Bitmap AssaultBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AssaultBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AssaultBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap AutoOff
-  {
-    get => (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AutoOff), Aurora.Properties.Resources.cultureInfo_0);
-  }
-
-  internal static Bitmap AutoOn
-  {
-    get => (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AutoOn), Aurora.Properties.Resources.cultureInfo_0);
-  }
-
-  internal static Bitmap AviationBrigade
-  {
-    get
+    internal static Bitmap AssaultBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AviationBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AssaultBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap AviationDivision
-  {
-    get
+    internal static Bitmap AutoOff
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (AviationDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get => (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AutoOff),
+            Aurora.Properties.Resources.cultureInfo_0);
     }
-  }
 
-  internal static Bitmap CombatEngineerBattalion
-  {
-    get
+    internal static Bitmap AutoOn
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (CombatEngineerBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get => (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AutoOn),
+            Aurora.Properties.Resources.cultureInfo_0);
     }
-  }
 
-  internal static Bitmap ConstructionBrigade
-  {
-    get
+    internal static Bitmap AviationBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ConstructionBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AviationBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap DesignerOff
-  {
-    get
+    internal static Bitmap AviationDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (DesignerOff), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(AviationDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap DesignerOn
-  {
-    get
+    internal static Bitmap CombatEngineerBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (DesignerOn), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(CombatEngineerBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap EngineerBattalion
-  {
-    get
+    internal static Bitmap ConstructionBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (EngineerBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ConstructionBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap GarrisonBattalion
-  {
-    get
+    internal static Bitmap DesignerOff
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (GarrisonBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(DesignerOff),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap GarrisonBrigade
-  {
-    get
+    internal static Bitmap DesignerOn
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (GarrisonBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(DesignerOn),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap GarrisonDivision
-  {
-    get
+    internal static Bitmap EngineerBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (GarrisonDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(EngineerBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap Icon_UK
-  {
-    get => (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (Icon_UK), Aurora.Properties.Resources.cultureInfo_0);
-  }
-
-  internal static Bitmap Icon_US
-  {
-    get => (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (Icon_US), Aurora.Properties.Resources.cultureInfo_0);
-  }
-
-  internal static Bitmap InfantryBattalion
-  {
-    get
+    internal static Bitmap GarrisonBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (InfantryBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(GarrisonBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap InfantryBrigade
-  {
-    get
+    internal static Bitmap GarrisonBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (InfantryBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(GarrisonBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap InfantryCompany
-  {
-    get
+    internal static Bitmap GarrisonDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (InfantryCompany), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(GarrisonDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap InfantryDivision
-  {
-    get
+    internal static Bitmap Icon_UK
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (InfantryDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get => (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(Icon_UK),
+            Aurora.Properties.Resources.cultureInfo_0);
     }
-  }
 
-  internal static Bitmap MarineBattalion
-  {
-    get
+    internal static Bitmap Icon_US
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MarineBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get => (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(Icon_US),
+            Aurora.Properties.Resources.cultureInfo_0);
     }
-  }
 
-  internal static Bitmap MarineCompany
-  {
-    get
+    internal static Bitmap InfantryBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MarineCompany), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(InfantryBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap MechBattalion
-  {
-    get
+    internal static Bitmap InfantryBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MechBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(InfantryBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap MechBrigade
-  {
-    get
+    internal static Bitmap InfantryCompany
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MechBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(InfantryCompany),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap MechDivision
-  {
-    get
+    internal static Bitmap InfantryDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MechDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(InfantryDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap MountainBattalion
-  {
-    get
+    internal static Bitmap MarineBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MountainBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MarineBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap MountainBrigade
-  {
-    get
+    internal static Bitmap MarineCompany
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (MountainBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MarineCompany),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ReaverTitan
-  {
-    get
+    internal static Bitmap MechBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ReaverTitan), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MechBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ReconBattalion
-  {
-    get
+    internal static Bitmap MechBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ReconBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MechBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ReconBrigade
-  {
-    get
+    internal static Bitmap MechDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ReconBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MechDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap ReconDivision
-  {
-    get
+    internal static Bitmap MountainBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (ReconDivision), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MountainBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap SecurityBattalion
-  {
-    get
+    internal static Bitmap MountainBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (SecurityBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(MountainBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap SecurityBrigade
-  {
-    get
+    internal static Bitmap ReaverTitan
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (SecurityBrigade), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ReaverTitan),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap SMActive
-  {
-    get => (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (SMActive), Aurora.Properties.Resources.cultureInfo_0);
-  }
-
-  internal static Bitmap SMInactive
-  {
-    get
+    internal static Bitmap ReconBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (SMInactive), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ReconBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap SPArtilleryBattalion
-  {
-    get
+    internal static Bitmap ReconBrigade
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (SPArtilleryBattalion), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ReconBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap WarhoundTitan
-  {
-    get
+    internal static Bitmap ReconDivision
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (WarhoundTitan), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(ReconDivision),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
 
-  internal static Bitmap WarlordTitan
-  {
-    get
+    internal static Bitmap SecurityBattalion
     {
-      return (Bitmap) Aurora.Properties.Resources.ResourceManager.GetObject(nameof (WarlordTitan), Aurora.Properties.Resources.cultureInfo_0);
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(SecurityBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
     }
-  }
+
+    internal static Bitmap SecurityBrigade
+    {
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(SecurityBrigade),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
+    }
+
+    internal static Bitmap SMActive
+    {
+        get => (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(SMActive),
+            Aurora.Properties.Resources.cultureInfo_0);
+    }
+
+    internal static Bitmap SMInactive
+    {
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(SMInactive),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
+    }
+
+    internal static Bitmap SPArtilleryBattalion
+    {
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(SPArtilleryBattalion),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
+    }
+
+    internal static Bitmap WarhoundTitan
+    {
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(WarhoundTitan),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
+    }
+
+    internal static Bitmap WarlordTitan
+    {
+        get
+        {
+            return (Bitmap)Aurora.Properties.Resources.ResourceManager.GetObject(nameof(WarlordTitan),
+                Aurora.Properties.Resources.cultureInfo_0);
+        }
+    }
 }

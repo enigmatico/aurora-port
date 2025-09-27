@@ -7,18 +7,18 @@
 #nullable disable
 public class GClass205
 {
-  public GClass202 gclass202_0;
-  public int int_0;
-  public double double_0;
-  public double double_1;
-  public bool bool_0;
+    public RacialSystemSurvey gclass202_0;
+    public int int_0;
+    public double double_0;
+    public double double_1;
+    public bool bool_0;
 
-  public GClass205(GClass202 gclass202_1, double double_2, double double_3, int int_1)
-  {
-    this.gclass202_0 = gclass202_1;
-    this.double_0 = double_2;
-    this.double_1 = double_3;
-    this.int_0 = int_1;
-    this.bool_0 = true;
-  }
+    public GClass205(RacialSystemSurvey gclass202_1, double double_2, double double_3, int int_1)
+    {
+        this.gclass202_0 = gclass202_1;
+        this.double_0 = double_2;
+        this.double_1 = double_3;
+        this.int_0 = int_1;
+        this.bool_0 = true;
+    }
 }

@@ -11,8 +11,8 @@ namespace Aurora;
 
 public enum AuroraGroundFormationFieldPosition
 {
-  [Description("Front Line Defence")] FrontlineDefence,
-  [Description("Front Line Attack")] FrontlineAttack,
-  [Description("Support")] Support,
-  [Description("Rear Echelon")] RearEchelon,
+    [Description("Front Line Defence")] FrontlineDefence,
+    [Description("Front Line Attack")] FrontlineAttack,
+    [Description("Support")] Support,
+    [Description("Rear Echelon")] RearEchelon,
 }

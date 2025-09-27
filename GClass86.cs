@@ -9,7 +9,7 @@ using Aurora;
 #nullable disable
 public class GClass86
 {
-  public AuroraEventCategory auroraEventCategory_0;
+    public AuroraEventCategory auroraEventCategory_0;
 
-  public string Description { get; set; }
+    public string Description { get; set; }
 }

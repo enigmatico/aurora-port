@@ -9,16 +9,16 @@ namespace Aurora;
 
 public enum AuroraElement
 {
-  None,
-  Duranium,
-  Neutronium,
-  Corbomite,
-  Tritanium,
-  Boronide,
-  Mercassium,
-  Vendarite,
-  Sorium,
-  Uridium,
-  Corundium,
-  Gallicite,
+    None,
+    Duranium,
+    Neutronium,
+    Corbomite,
+    Tritanium,
+    Boronide,
+    Mercassium,
+    Vendarite,
+    Sorium,
+    Uridium,
+    Corundium,
+    Gallicite,
 }

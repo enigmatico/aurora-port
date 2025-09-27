@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass215
 {
-  public GClass1 gclass1_0;
-  public GClass21 gclass21_0;
-  public GEnum5 genum5_0;
+    public SystemBodyData gclass1_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public Unknown_SystemBodyDataUpdateLevel genum5_0;
 }

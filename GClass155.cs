@@ -10,7 +10,7 @@ using System;
 #nullable disable
 public class GClass155
 {
-  public AuroraElement auroraElement_0;
-  public GEnum85 genum85_0;
-  public Decimal decimal_0;
+    public AuroraElement auroraElement_0;
+    public MineralUsage genum85_0;
+    public Decimal decimal_0;
 }

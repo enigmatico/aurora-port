@@ -10,18 +10,18 @@ using System;
 #nullable disable
 public class GClass106
 {
-  private GClass0 gclass0_0;
-  public GClass21 gclass21_0;
-  public GClass146 gclass146_0;
-  public GClass102 gclass102_0;
-  public AuroraGroundFormationFieldPosition auroraGroundFormationFieldPosition_0;
-  public int int_0;
-  public int int_1;
-  public int int_2;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
-  public Decimal decimal_2 = 100M;
-  public string string_0;
+    private GClass0 gclass0_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public PopulationData gclass146_0;
+    public GroundUnitFormationTemplateData gclass102_0;
+    public AuroraGroundFormationFieldPosition auroraGroundFormationFieldPosition_0;
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
+    public Decimal decimal_2 = 100M;
+    public string string_0;
 
-  public GClass106(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public GClass106(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 }

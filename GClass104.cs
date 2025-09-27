@@ -7,14 +7,14 @@
 #nullable disable
 public class GClass104
 {
-  public GClass21 gclass21_0;
-  public GClass1 gclass1_0;
-  public GClass40 gclass40_0;
-  public GClass101 gclass101_0;
-  public GClass101 gclass101_1;
-  public string string_0 = "";
-  public int int_0;
-  public int int_1;
-  public int int_2;
-  public int int_3;
+    public FCTRaceRecordC21 gclass21_0;
+    public SystemBodyData gclass1_0;
+    public FCTShipData40 gclass40_0;
+    public GroundUnitClass101 gclass101_0;
+    public GroundUnitClass101 gclass101_1;
+    public string string_0 = "";
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public int int_3;
 }

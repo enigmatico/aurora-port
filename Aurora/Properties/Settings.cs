@@ -15,7 +15,7 @@ namespace Aurora.Properties;
 [CompilerGenerated]
 internal sealed class Settings : ApplicationSettingsBase
 {
-  private static Settings settings_0 = (Settings) SettingsBase.Synchronized((SettingsBase) new Settings());
+    private static Settings settings_0 = (Settings)SettingsBase.Synchronized(new Settings());
 
-  public static Settings Default => Settings.settings_0;
+    public static Settings Default => Settings.settings_0;
 }

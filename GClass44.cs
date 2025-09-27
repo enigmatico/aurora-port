@@ -8,6 +8,6 @@
 // TODO : Medal Awarad Condition
 public class GClass44
 {
-  public GClass42 gclass42_0;
-  public GClass43 gclass43_0;
+    public FCTRaceMedalRecord gclass42_0;
+    public MedalCondition gclass43_0;
 }

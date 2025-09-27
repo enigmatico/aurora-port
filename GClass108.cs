@@ -7,8 +7,8 @@
 #nullable disable
 public class GClass108
 {
-  public GClass40 gclass40_0;
-  public GClass146 gclass146_0;
+    public FCTShipData40 gclass40_0;
+    public PopulationData gclass146_0;
 
-  public string Description { get; set; }
+    public string Description { get; set; }
 }

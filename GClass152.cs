@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class GClass152
 {
-  public string string_0;
-  public string string_1;
-  public Decimal decimal_0;
+    public string string_0;
+    public string string_1;
+    public Decimal decimal_0;
 }

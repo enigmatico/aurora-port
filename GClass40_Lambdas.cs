@@ -3,1735 +3,1344 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-public partial class GClass40
+#nullable disable
+public partial class FCTShipData40
 {
-  private sealed class staticCompGen
-  {
-    public static Func<GClass228, int> staticCompMem__2_1;
-    public static Func<KeyValuePair<int, int>, int> staticCompMem__41_1;
-  }
-  
-  [CompilerGenerated]
-  private sealed class Class801
-  {
-    public GClass230 gclass230_0;
-
-    public Class801()
-    {
-      
-    }
-
-    internal bool method_0(GClass178 gclass178_0)
-    {
-      return gclass178_0.gclass230_0 == this.gclass230_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class802
-  {
-    public GClass40 gclass40_0;
-    public int int_0;
-
-    public Class802()
-    {
-      
-    }
-
-    internal bool method_0(GClass193 gclass193_0)
-    {
-      return gclass193_0.gclass146_0 == this.gclass40_0.gclass0_0.dictionary_22[this.int_0];
-    }
-
-    internal bool method_1(GClass103 gclass103_0)
-    {
-      return gclass103_0.gclass146_0 == this.gclass40_0.gclass0_0.dictionary_22[this.int_0];
-    }
-
-    internal bool method_2(GClass103 gclass103_0)
-    {
-      return gclass103_0.gclass146_0 == this.gclass40_0.gclass0_0.dictionary_22[this.int_0];
-    }
-
-    internal bool method_3(GClass103 gclass103_0)
-    {
-      return gclass103_0.gclass146_0 == this.gclass40_0.gclass0_0.dictionary_22[this.int_0];
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class803
-  {
-    public GClass40 gclass40_0;
-    public GClass21 gclass21_0;
-    public GClass37 gclass37_0;
-    public Func<GClass117, bool> func_0;
-    public Func<GClass117, bool> func_1;
-    public Func<GClass113, bool> func_2;
-
-    public Class803()
-    {
-      
-    }
-
-    internal bool method_0(GClass65 gclass65_0)
-    {
-      return gclass65_0.gclass40_0 == this.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 && gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0;
-    }
-
-    internal bool method_1(GClass65 gclass65_0)
-    {
-      return gclass65_0.gclass40_0 == this.gclass37_0.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 && gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0 && gclass65_0.genum10_0 == GEnum10.const_0;
-    }
-
-    internal bool method_2(GClass65 gclass65_0)
-    {
-      return gclass65_0.gclass146_0 == this.gclass37_0.gclass39_0.gclass103_0.gclass146_0 && gclass65_0.gclass21_1 != this.gclass21_0 && gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0 && gclass65_0.genum10_0 == GEnum10.const_0 && gclass65_0.auroraContactType_0 == AuroraContactType.STOGroundUnit;
-    }
-
-    internal bool method_3(GClass117 gclass117_0)
-    {
-      return gclass117_0.gclass40_0 == this.gclass40_0;
-    }
-
-    internal bool method_4(GClass117 gclass117_0)
-    {
-      return gclass117_0.gclass40_0 == this.gclass37_0.gclass40_0;
-    }
-
-    internal bool method_5(GClass113 gclass113_0)
-    {
-      return gclass113_0.gclass146_0 == this.gclass37_0.gclass39_0.gclass103_0.gclass146_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class804
-  {
-    public GClass27 gclass27_0;
-
-    public Class804()
-    {
-      
-    }
-
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_0 == this.gclass27_0.gclass230_0 && gclass31_0.int_0 == this.gclass27_0.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class805
-  {
-    public GClass27 gclass27_0;
-
-    public Class805()
-    {
-      
-    }
-
-    internal bool method_0(GClass32 gclass32_0)
-    {
-      return gclass32_0.gclass230_0 == this.gclass27_0.gclass230_0 && gclass32_0.int_0 == this.gclass27_0.int_0;
+    private sealed class staticCompGen
+    {
+        public static Func<GClass228, int> staticCompMem__2_1;
+        public static Func<KeyValuePair<int, int>, int> staticCompMem__41_1;
     }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class806
-  {
-    public GClass230 gclass230_0;
 
-    public Class806()
+    [CompilerGenerated]
+    private sealed class Class801
     {
-      
-    }
+        public ShipComponent gclass230_0;
 
-    internal bool method_0(GClass73 gclass73_0)
-    {
-      return gclass73_0.gclass230_0 == this.gclass230_0;
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass230_0;
+        }
     }
 
-    internal bool method_1(GClass73 gclass73_0)
+    [CompilerGenerated]
+    private sealed class Class802
     {
-      return gclass73_0.gclass230_0 != this.gclass230_0;
-    }
-  }
+        public FCTShipData40 gclass40_0;
+        public int int_0;
 
-  [CompilerGenerated]
-  private sealed class Class807
-  {
-    public GClass228 gclass228_0;
+        internal bool method_0(GClass193 gclass193_0)
+        {
+            return gclass193_0.gclass146_0 == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+        }
 
-    public Class807()
-    {
-      
-    }
-
-    internal bool method_0(GClass178 gclass178_0)
-    {
-      return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
-    }
-  }
+        internal bool method_1(GroundUnitFormationData gclass103_0)
+        {
+            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+        }
 
-  [CompilerGenerated]
-  private sealed class Class808
-  {
-    public GClass70 gclass70_0;
+        internal bool method_2(GroundUnitFormationData gclass103_0)
+        {
+            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+        }
 
-    public Class808()
-    {
-      
+        internal bool method_3(GroundUnitFormationData gclass103_0)
+        {
+            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+        }
     }
 
-    internal bool method_0(GClass40 gclass40_0)
+    [CompilerGenerated]
+    private sealed class Class803
     {
-      return gclass40_0.gclass70_0 == this.gclass70_0;
-    }
-  }
+        public FCTShipData40 gclass40_0;
+        public FCTRaceRecordC21 gclass21_0;
+        public GClass37 gclass37_0;
+        public Func<GClass117, bool> func_0;
+        public Func<GClass117, bool> func_1;
+        public Func<GClass113, bool> func_2;
 
-  [CompilerGenerated]
-  private sealed class Class809
-  {
-    public AuroraMeasurementType auroraMeasurementType_0;
+        internal bool method_0(GClass65 gclass65_0)
+        {
+            return gclass65_0.gclass40_0 == this.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 &&
+                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0;
+        }
 
-    public Class809()
-    {
-      
-    }
+        internal bool method_1(GClass65 gclass65_0)
+        {
+            return gclass65_0.gclass40_0 == this.gclass37_0.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 &&
+                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass65_0.genum10_0 == GEnum10.const_0;
+        }
 
-    internal bool method_0(GClass54 gclass54_0)
-    {
-      return gclass54_0.auroraMeasurementType_0 == this.auroraMeasurementType_0 && !gclass54_0.bool_0;
-    }
+        internal bool method_2(GClass65 gclass65_0)
+        {
+            return gclass65_0.gclass146_0 == this.gclass37_0.gclass39_0.Formation.PopulationData &&
+                   gclass65_0.gclass21_1 != this.gclass21_0 &&
+                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass65_0.genum10_0 == GEnum10.const_0 &&
+                   gclass65_0.auroraContactType_0 == AuroraContactType.STOGroundUnit;
+        }
 
-    internal bool method_1(GClass54 gclass54_0)
-    {
-      return gclass54_0.auroraMeasurementType_0 == this.auroraMeasurementType_0 && gclass54_0.bool_0;
-    }
-  }
+        internal bool method_3(GClass117 gclass117_0)
+        {
+            return gclass117_0.gclass40_0 == this.gclass40_0;
+        }
 
-  [CompilerGenerated]
-  private sealed class Class810
-  {
-    public AuroraComponentType auroraComponentType_0;
+        internal bool method_4(GClass117 gclass117_0)
+        {
+            return gclass117_0.gclass40_0 == this.gclass37_0.gclass40_0;
+        }
 
-    public Class810()
-    {
-      
+        internal bool method_5(GClass113 gclass113_0)
+        {
+            return gclass113_0.gclass146_0 == this.gclass37_0.gclass39_0.Formation.PopulationData;
+        }
     }
 
-    internal bool method_0(GClass36 gclass36_0)
+    [CompilerGenerated]
+    private sealed class Class804
     {
-      return gclass36_0.gclass230_0.gclass231_0.auroraComponentType_0 == this.auroraComponentType_0;
-    }
-  }
+        public WeaponComponentRechargeStatus gclass27_0;
 
-  [CompilerGenerated]
-  private sealed class Class811
-  {
-    public GClass36 gclass36_0;
-
-    public Class811()
-    {
-      
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.WeaponComponent == this.gclass27_0.WeaponComponent && gclass31_0.WeaponNum == this.gclass27_0.WeaponNumber;
+        }
     }
 
-    internal bool method_0(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class805
     {
-      return gclass31_0.gclass230_1 == this.gclass36_0.gclass230_0 && gclass31_0.int_1 == this.gclass36_0.int_0;
-    }
-  }
+        public WeaponComponentRechargeStatus gclass27_0;
 
-  [CompilerGenerated]
-  private sealed class Class812
-  {
-    public int int_0;
-
-    public Class812()
-    {
-      
+        internal bool method_0(FCTDecoyAssignmentData32 gclass32_0)
+        {
+            return gclass32_0.LauncherData == this.gclass27_0.WeaponComponent &&
+                   gclass32_0.LauncherNum == this.gclass27_0.WeaponNumber;
+        }
     }
 
-    internal bool method_0(GClass39 gclass39_0)
+    [CompilerGenerated]
+    private sealed class Class806
     {
-      return (long) this.int_0 >= gclass39_0.long_0 && (long) this.int_0 <= gclass39_0.long_1;
-    }
-  }
+        public ShipComponent gclass230_0;
 
-  [CompilerGenerated]
-  private sealed class Class813
-  {
-    public int int_0;
-
-    public Class813()
-    {
-      
-    }
+        internal bool method_0(GClass73 gclass73_0)
+        {
+            return gclass73_0.gclass230_0 == this.gclass230_0;
+        }
 
-    internal bool method_0(GClass39 gclass39_0)
-    {
-      return (long) this.int_0 >= gclass39_0.long_0 && (long) this.int_0 <= gclass39_0.long_1;
+        internal bool method_1(GClass73 gclass73_0)
+        {
+            return gclass73_0.gclass230_0 != this.gclass230_0;
+        }
     }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class814
-  {
-    public GClass129 gclass129_0;
 
-    public Class814()
+    [CompilerGenerated]
+    private sealed class Class807
     {
-      
-    }
+        public GClass228 gclass228_0;
 
-    internal bool method_0(GClass130 gclass130_0)
-    {
-      return gclass130_0.gclass129_0 == this.gclass129_0;
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+        }
     }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class815
-  {
-    public GClass130 gclass130_0;
 
-    public Class815()
+    [CompilerGenerated]
+    private sealed class Class808
     {
-      
-    }
+        public FCTSquadronData70 gclass70_0;
 
-    internal bool method_0(GClass130 gclass130_1)
-    {
-      return gclass130_1 == this.gclass130_0;
+        internal bool method_0(FCTShipData40 gclass40_0)
+        {
+            return gclass40_0.SquadronData == this.gclass70_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class816
-  {
-    public GClass31 gclass31_0;
-
-    public Class816()
+    [CompilerGenerated]
+    private sealed class Class809
     {
-      
-    }
+        public AuroraMeasurementType auroraMeasurementType_0;
 
-    internal bool method_0(GClass31 gclass31_1)
-    {
-      return gclass31_1.gclass230_0 == this.gclass31_0.gclass230_0 && gclass31_1.gclass230_1 == this.gclass31_0.gclass230_1 && gclass31_1.int_1 == this.gclass31_0.int_1;
-    }
+        internal bool method_0(GClass54 gclass54_0)
+        {
+            return gclass54_0.auroraMeasurementType_0 == this.auroraMeasurementType_0 && !gclass54_0.bool_0;
+        }
 
-    internal bool method_1(GClass31 gclass31_1)
-    {
-      return gclass31_1.gclass230_0 == this.gclass31_0.gclass230_0 && gclass31_1.gclass230_1 == this.gclass31_0.gclass230_1 && gclass31_1.int_1 == this.gclass31_0.int_1 && gclass31_1.int_0 >= this.gclass31_0.int_0;
+        internal bool method_1(GClass54 gclass54_0)
+        {
+            return gclass54_0.auroraMeasurementType_0 == this.auroraMeasurementType_0 && gclass54_0.bool_0;
+        }
     }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class817
-  {
-    public GClass40 gclass40_0;
-    public GClass40 gclass40_1;
 
-    public Class817()
+    [CompilerGenerated]
+    private sealed class Class810
     {
-      
-    }
+        public AuroraComponentType auroraComponentType_0;
 
-    internal bool method_0(GClass36 gclass36_0)
-    {
-      return gclass36_0.auroraContactType_0 == AuroraContactType.Ship && gclass36_0.int_1 == this.gclass40_0.int_8 && gclass36_0.gclass230_0.gclass231_0.auroraComponentType_0 == AuroraComponentType.BeamFireControl;
+        internal bool method_0(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.FCComponent.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+        }
     }
 
-    internal IEnumerable<GClass31> method_1(GClass36 gclass36_0)
+    [CompilerGenerated]
+    private sealed class Class811
     {
-      return (IEnumerable<GClass31>) this.gclass40_1.method_79(gclass36_0);
-    }
-  }
+        public FireControlAssignment gclass36_0;
 
-  [CompilerGenerated]
-  private sealed class Class818
-  {
-    public GClass40 gclass40_0;
-    public GClass40 gclass40_1;
-
-    public Class818()
-    {
-      
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass36_0.FCComponent && gclass31_0.FireControlNum == this.gclass36_0.FCNum;
+        }
     }
 
-    internal bool method_0(GClass36 gclass36_0)
+    [CompilerGenerated]
+    private sealed class Class812
     {
-      return gclass36_0.auroraContactType_0 == AuroraContactType.Ship && gclass36_0.int_1 == this.gclass40_0.int_8 && gclass36_0.gclass230_0.gclass231_0.auroraComponentType_0 == AuroraComponentType.MissileFireControl;
-    }
+        public int int_0;
 
-    internal IEnumerable<GClass31> method_1(GClass36 gclass36_0)
-    {
-      return (IEnumerable<GClass31>) this.gclass40_1.method_79(gclass36_0);
+        internal bool method_0(GroundUnitFormationElement gclass39_0)
+        {
+            return this.int_0 >= gclass39_0.long_0 && this.int_0 <= gclass39_0.long_1;
+        }
     }
 
-    internal GClass30 method_2(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class813
     {
-      return this.gclass40_1.method_80(gclass31_0);
-    }
-  }
+        public int int_0;
 
-  [CompilerGenerated]
-  private sealed class Class819
-  {
-    public GClass146 gclass146_0;
-    public GClass40 gclass40_0;
-
-    public Class819()
-    {
-      
+        internal bool method_0(GroundUnitFormationElement gclass39_0)
+        {
+            return this.int_0 >= gclass39_0.long_0 && this.int_0 <= gclass39_0.long_1;
+        }
     }
 
-    internal bool method_0(GClass36 gclass36_0)
+    [CompilerGenerated]
+    private sealed class Class814
     {
-      return (gclass36_0.auroraContactType_0 == AuroraContactType.Population || gclass36_0.auroraContactType_0 == AuroraContactType.STOGroundUnit || gclass36_0.auroraContactType_0 == AuroraContactType.GroundUnit || gclass36_0.auroraContactType_0 == AuroraContactType.Shipyard) && gclass36_0.int_1 == this.gclass146_0.int_6 && gclass36_0.gclass230_0.gclass231_0.auroraComponentType_0 == AuroraComponentType.MissileFireControl;
-    }
+        public RaceMissile gclass129_0;
 
-    internal IEnumerable<GClass31> method_1(GClass36 gclass36_0)
-    {
-      return (IEnumerable<GClass31>) this.gclass40_0.method_79(gclass36_0);
+        internal bool method_0(GClass130 gclass130_0)
+        {
+            return gclass130_0.gclass129_0 == this.gclass129_0;
+        }
     }
 
-    internal GClass30 method_2(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class815
     {
-      return this.gclass40_0.method_80(gclass31_0);
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class820
-  {
-    public GClass36 gclass36_0;
+        public GClass130 gclass130_0;
 
-    public Class820()
-    {
-      
+        internal bool method_0(GClass130 gclass130_1)
+        {
+            return gclass130_1 == this.gclass130_0;
+        }
     }
 
-    internal bool method_0(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class816
     {
-      return gclass31_0.gclass230_1 == this.gclass36_0.gclass230_0 && gclass31_0.int_1 == this.gclass36_0.int_0;
-    }
-  }
+        public WeaponFireControlAssignment gclass31_0;
 
-  [CompilerGenerated]
-  private sealed class Class821
-  {
-    public GClass31 gclass31_0;
+        internal bool method_0(WeaponFireControlAssignment gclass31_1)
+        {
+            return gclass31_1.WeaponComponent == this.gclass31_0.WeaponComponent &&
+                   gclass31_1.FireControlComponent == this.gclass31_0.FireControlComponent && gclass31_1.FireControlNum == this.gclass31_0.FireControlNum;
+        }
 
-    public Class821()
-    {
-      
+        internal bool method_1(WeaponFireControlAssignment gclass31_1)
+        {
+            return gclass31_1.WeaponComponent == this.gclass31_0.WeaponComponent &&
+                   gclass31_1.FireControlComponent == this.gclass31_0.FireControlComponent && gclass31_1.FireControlNum == this.gclass31_0.FireControlNum &&
+                   gclass31_1.WeaponNum >= this.gclass31_0.WeaponNum;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class817
     {
-      return gclass30_0.gclass230_0 == this.gclass31_0.gclass230_0 && gclass30_0.int_0 == this.gclass31_0.int_0;
-    }
-  }
+        public FCTShipData40 gclass40_0;
+        public FCTShipData40 gclass40_1;
 
-  [CompilerGenerated]
-  private sealed class Class822
-  {
-    public GClass230 gclass230_0;
+        internal bool method_0(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.TargetContactType == AuroraContactType.Ship &&
+                   gclass36_0.TargetID == this.gclass40_0.int_8 &&
+                   gclass36_0.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl;
+        }
 
-    public Class822()
-    {
-      
+        internal IEnumerable<WeaponFireControlAssignment> method_1(FireControlAssignment gclass36_0)
+        {
+            return this.gclass40_1.method_79(gclass36_0);
+        }
     }
 
-    internal bool method_0(GClass178 gclass178_0)
+    [CompilerGenerated]
+    private sealed class Class818
     {
-      return gclass178_0.gclass230_0 == this.gclass230_0;
-    }
-  }
+        public FCTShipData40 gclass40_0;
+        public FCTShipData40 gclass40_1;
 
-  [CompilerGenerated]
-  private sealed class Class823
-  {
-    public int int_0;
+        internal bool method_0(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.TargetContactType == AuroraContactType.Ship &&
+                   gclass36_0.TargetID == this.gclass40_0.int_8 &&
+                   gclass36_0.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl;
+        }
 
-    public Class823()
-    {
-      
-    }
+        internal IEnumerable<WeaponFireControlAssignment> method_1(FireControlAssignment gclass36_0)
+        {
+            return this.gclass40_1.method_79(gclass36_0);
+        }
 
-    internal bool method_0(GClass228 gclass228_0)
-    {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == AuroraComponentType.BeamFireControl && gclass228_0.gclass230_0.int_3 >= this.int_0 * 3;
+        internal MissileAssignment method_2(WeaponFireControlAssignment gclass31_0)
+        {
+            return this.gclass40_1.method_80(gclass31_0);
+        }
     }
 
-    internal bool method_1(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class819
     {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == AuroraComponentType.BeamFireControl && gclass228_0.gclass230_0.int_3 < this.int_0 * 3;
-    }
-  }
+        public PopulationData gclass146_0;
+        public FCTShipData40 gclass40_0;
 
-  [CompilerGenerated]
-  private sealed class Class824
-  {
-    public GClass228 gclass228_0;
-    public int int_0;
-    public Func<GClass31, bool> func_0;
-    public Func<GClass31, bool> func_1;
-    public Func<GClass36, bool> func_2;
+        internal bool method_0(FireControlAssignment gclass36_0)
+        {
+            return (gclass36_0.TargetContactType == AuroraContactType.Population ||
+                    gclass36_0.TargetContactType == AuroraContactType.STOGroundUnit ||
+                    gclass36_0.TargetContactType == AuroraContactType.GroundUnit ||
+                    gclass36_0.TargetContactType == AuroraContactType.Shipyard) &&
+                   gclass36_0.TargetID == this.gclass146_0.PopulationID &&
+                   gclass36_0.FCComponent.gclass231_0.ComponentTypeID ==
+                   AuroraComponentType.MissileFireControl;
+        }
 
-    public Class824()
-    {
-      
-    }
+        internal IEnumerable<WeaponFireControlAssignment> method_1(FireControlAssignment gclass36_0)
+        {
+            return this.gclass40_0.method_79(gclass36_0);
+        }
 
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_1 == this.gclass228_0.gclass230_0 && gclass31_0.int_1 == this.int_0;
+        internal MissileAssignment method_2(WeaponFireControlAssignment gclass31_0)
+        {
+            return this.gclass40_0.method_80(gclass31_0);
+        }
     }
 
-    internal bool method_1(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class820
     {
-      return gclass31_0.gclass230_1 == this.gclass228_0.gclass230_0 && gclass31_0.int_1 == this.int_0;
-    }
+        public FireControlAssignment gclass36_0;
 
-    internal bool method_2(GClass36 gclass36_0)
-    {
-      return gclass36_0.gclass230_0 == this.gclass228_0.gclass230_0 && gclass36_0.int_0 == this.int_0;
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass36_0.FCComponent && gclass31_0.FireControlNum == this.gclass36_0.FCNum;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class825
-  {
-    public GClass228 gclass228_0;
-    public Func<GClass130, bool> func_0;
-
-    public Class825()
+    [CompilerGenerated]
+    private sealed class Class821
     {
-      
-    }
+        public WeaponFireControlAssignment gclass31_0;
 
-    internal bool method_0(GClass130 gclass130_0)
-    {
-      return gclass130_0.gclass129_0.decimal_4 <= this.gclass228_0.gclass230_0.decimal_3 && gclass130_0.gclass129_0.int_14 == 1;
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass31_0.WeaponComponent && gclass30_0.WeaponNum == this.gclass31_0.WeaponNum;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class826
-  {
-    public GClass228 gclass228_0;
-    public Func<GClass130, bool> func_0;
-
-    public Class826()
+    [CompilerGenerated]
+    private sealed class Class822
     {
-      
-    }
+        public ShipComponent gclass230_0;
 
-    internal bool method_0(GClass130 gclass130_0)
-    {
-      return gclass130_0.gclass129_0.decimal_4 <= this.gclass228_0.gclass230_0.decimal_3;
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass230_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class827
-  {
-    public GClass228 gclass228_0;
-    public int int_0;
-    public Func<GClass31, bool> func_0;
-    public Func<GClass36, bool> func_1;
-
-    public Class827()
+    [CompilerGenerated]
+    private sealed class Class823
     {
-      
-    }
+        public int int_0;
 
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_1 == this.gclass228_0.gclass230_0 && gclass31_0.int_1 == this.int_0;
-    }
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl &&
+                   gclass228_0.gclass230_0.int_3 >= this.int_0 * 3;
+        }
 
-    internal bool method_1(GClass36 gclass36_0)
-    {
-      return gclass36_0.gclass230_0 == this.gclass228_0.gclass230_0 && gclass36_0.int_0 == this.int_0;
+        internal bool method_1(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl &&
+                   gclass228_0.gclass230_0.int_3 < this.int_0 * 3;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class828
-  {
-    public GClass230 gclass230_0;
-
-    public Class828()
+    [CompilerGenerated]
+    private sealed class Class824
     {
-      
-    }
+        public GClass228 gclass228_0;
+        public int int_0;
+        public Func<WeaponFireControlAssignment, bool> func_0;
+        public Func<WeaponFireControlAssignment, bool> func_1;
+        public Func<FireControlAssignment, bool> func_2;
 
-    internal bool method_0(GClass28 gclass28_0)
-    {
-      return gclass28_0.gclass230_0 == this.gclass230_0;
-    }
-  }
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+        }
 
-  [CompilerGenerated]
-  private sealed class Class829
-  {
-    public GClass40 gclass40_0;
-    public GClass30 gclass30_0;
-    public GClass36 gclass36_0;
-    public int int_0;
+        internal bool method_1(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+        }
 
-    public Class829()
-    {
-      
+        internal bool method_2(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0 && gclass36_0.FCNum == this.int_0;
+        }
     }
 
-    internal bool method_0(GClass132 gclass132_0)
+    [CompilerGenerated]
+    private sealed class Class825
     {
-      return gclass132_0.gclass40_0 == this.gclass40_0 && gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.decimal_0 && gclass132_0.gclass129_0 == this.gclass30_0.gclass129_0 && gclass132_0.gclass230_0 == this.gclass36_0.gclass230_0 && gclass132_0.int_2 == this.gclass36_0.int_0 && gclass132_0.int_0 == this.int_0;
-    }
-  }
+        public GClass228 gclass228_0;
+        public Func<GClass130, bool> func_0;
 
-  [CompilerGenerated]
-  private sealed class Class830
-  {
-    public GClass40 gclass40_0;
-    public GClass30 gclass30_0;
-    public int int_0;
-
-    public Class830()
-    {
-      
+        internal bool method_0(GClass130 gclass130_0)
+        {
+            return gclass130_0.gclass129_0.decimal_4 <= this.gclass228_0.gclass230_0.decimal_3 &&
+                   gclass130_0.gclass129_0.int_14 == 1;
+        }
     }
 
-    internal bool method_0(GClass132 gclass132_0)
+    [CompilerGenerated]
+    private sealed class Class826
     {
-      return gclass132_0.gclass40_0 == this.gclass40_0 && gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.decimal_0 && gclass132_0.gclass129_0 == this.gclass30_0.gclass129_0 && gclass132_0.int_0 == this.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class831
-  {
-    public GClass129 gclass129_0;
+        public GClass228 gclass228_0;
+        public Func<GClass130, bool> func_0;
 
-    public Class831()
-    {
-      
+        internal bool method_0(GClass130 gclass130_0)
+        {
+            return gclass130_0.gclass129_0.decimal_4 <= this.gclass228_0.gclass230_0.decimal_3;
+        }
     }
 
-    internal bool method_0(GClass130 gclass130_0)
+    [CompilerGenerated]
+    private sealed class Class827
     {
-      return gclass130_0.gclass129_0 == this.gclass129_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class832
-  {
-    public GClass36 gclass36_0;
+        public GClass228 gclass228_0;
+        public int int_0;
+        public Func<WeaponFireControlAssignment, bool> func_0;
+        public Func<FireControlAssignment, bool> func_1;
 
-    public Class832()
-    {
-      
-    }
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+        }
 
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_1 == this.gclass36_0.gclass230_0 && gclass31_0.int_1 == this.gclass36_0.int_0;
+        internal bool method_1(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0 && gclass36_0.FCNum == this.int_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class833
-  {
-    public GClass164 gclass164_0;
-
-    public Class833()
+    [CompilerGenerated]
+    private sealed class Class828
     {
-      
-    }
+        public ShipComponent gclass230_0;
 
-    internal bool method_0(GClass182 gclass182_0)
-    {
-      return gclass182_0.gclass164_0 == this.gclass164_0;
+        internal bool method_0(GClass28 gclass28_0)
+        {
+            return gclass28_0.gclass230_0 == this.gclass230_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class834
-  {
-    public GClass146 gclass146_0;
-
-    public Class834()
+    [CompilerGenerated]
+    private sealed class Class829
     {
-      
-    }
+        public FCTShipData40 gclass40_0;
+        public MissileAssignment gclass30_0;
+        public FireControlAssignment gclass36_0;
+        public int int_0;
 
-    internal bool method_0(GClass85 gclass85_0)
-    {
-      return gclass85_0.gclass146_0 == this.gclass146_0;
+        internal bool method_0(GClass132 gclass132_0)
+        {
+            return gclass132_0.gclass40_0 == this.gclass40_0 &&
+                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass132_0.gclass129_0 == this.gclass30_0.Missile &&
+                   gclass132_0.gclass230_0 == this.gclass36_0.FCComponent &&
+                   gclass132_0.int_2 == this.gclass36_0.FCNum && gclass132_0.int_0 == this.int_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class835
-  {
-    public GClass129 gclass129_0;
-
-    public Class835()
+    [CompilerGenerated]
+    private sealed class Class830
     {
-      
-    }
+        public FCTShipData40 gclass40_0;
+        public MissileAssignment gclass30_0;
+        public int int_0;
 
-    internal bool method_0(GClass130 gclass130_0)
-    {
-      return gclass130_0.gclass129_0 == this.gclass129_0;
+        internal bool method_0(GClass132 gclass132_0)
+        {
+            return gclass132_0.gclass40_0 == this.gclass40_0 &&
+                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.decimal_0 &&
+                   gclass132_0.gclass129_0 == this.gclass30_0.Missile && gclass132_0.int_0 == this.int_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class836
-  {
-    public GClass31 gclass31_0;
-
-    public Class836()
+    [CompilerGenerated]
+    private sealed class Class831
     {
-      
-    }
+        public RaceMissile gclass129_0;
 
-    internal bool method_0(GClass31 gclass31_1)
-    {
-      return gclass31_1.gclass230_0 == this.gclass31_0.gclass230_0 && gclass31_1.gclass230_1 == this.gclass31_0.gclass230_1 && gclass31_1.int_1 == this.gclass31_0.int_1;
+        internal bool method_0(GClass130 gclass130_0)
+        {
+            return gclass130_0.gclass129_0 == this.gclass129_0;
+        }
     }
 
-    internal bool method_1(GClass31 gclass31_1)
+    [CompilerGenerated]
+    private sealed class Class832
     {
-      return gclass31_1.gclass230_0 == this.gclass31_0.gclass230_0 && gclass31_1.gclass230_1 == this.gclass31_0.gclass230_1 && gclass31_1.int_1 == this.gclass31_0.int_1 && gclass31_1.int_0 >= this.gclass31_0.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class837
-  {
-    public int int_0;
+        public FireControlAssignment gclass36_0;
 
-    public Class837()
-    {
-      
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass36_0.FCComponent && gclass31_0.FireControlNum == this.gclass36_0.FCNum;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class833
     {
-      return gclass228_0.int_2 >= this.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class838
-  {
-    public int int_0;
+        public TechData164 gclass164_0;
 
-    public Class838()
-    {
-      
+        internal bool method_0(ShipTechData182 gclass182_0)
+        {
+            return gclass182_0.TechData == this.gclass164_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class834
     {
-      return gclass228_0.int_3 >= this.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class839
-  {
-    public GClass180 gclass180_0;
+        public PopulationData gclass146_0;
 
-    public Class839()
-    {
-      
+        internal bool method_0(FleetData gclass85_0)
+        {
+            return gclass85_0.AssignedPopulation == this.gclass146_0;
+        }
     }
 
-    internal bool method_0(GClass147 gclass147_0)
+    [CompilerGenerated]
+    private sealed class Class835
     {
-      return gclass147_0.gclass21_0 == this.gclass180_0.gclass21_0 && gclass147_0.gclass194_0 == this.gclass180_0.gclass194_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class840
-  {
-    public GClass180 gclass180_0;
+        public RaceMissile gclass129_0;
 
-    public Class840()
-    {
-      
+        internal bool method_0(GClass130 gclass130_0)
+        {
+            return gclass130_0.gclass129_0 == this.gclass129_0;
+        }
     }
 
-    internal bool method_0(GClass180 gclass180_1)
+    [CompilerGenerated]
+    private sealed class Class836
     {
-      return gclass180_1.gclass21_0 == this.gclass180_0.gclass21_0 && gclass180_1.gclass194_0 == this.gclass180_0.gclass194_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class841
-  {
-    public GClass32 gclass32_0;
+        public WeaponFireControlAssignment gclass31_0;
 
-    public Class841()
-    {
-      
-    }
+        internal bool method_0(WeaponFireControlAssignment gclass31_1)
+        {
+            return gclass31_1.WeaponComponent == this.gclass31_0.WeaponComponent &&
+                   gclass31_1.FireControlComponent == this.gclass31_0.FireControlComponent && gclass31_1.FireControlNum == this.gclass31_0.FireControlNum;
+        }
 
-    internal bool method_0(GClass32 gclass32_1)
-    {
-      return gclass32_1.gclass230_0 == this.gclass32_0.gclass230_0;
+        internal bool method_1(WeaponFireControlAssignment gclass31_1)
+        {
+            return gclass31_1.WeaponComponent == this.gclass31_0.WeaponComponent &&
+                   gclass31_1.FireControlComponent == this.gclass31_0.FireControlComponent && gclass31_1.FireControlNum == this.gclass31_0.FireControlNum &&
+                   gclass31_1.WeaponNum >= this.gclass31_0.WeaponNum;
+        }
     }
 
-    internal bool method_1(GClass32 gclass32_1)
+    [CompilerGenerated]
+    private sealed class Class837
     {
-      return gclass32_1.gclass230_0 == this.gclass32_0.gclass230_0 && gclass32_1.int_0 >= this.gclass32_0.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class842
-  {
-    public GClass235 gclass235_0;
+        public int int_0;
 
-    public Class842()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.int_2 >= this.int_0;
+        }
     }
 
-    internal bool method_0(GClass73 gclass73_0)
+    [CompilerGenerated]
+    private sealed class Class838
     {
-      return gclass73_0.int_0 == this.gclass235_0.gclass230_0.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class843
-  {
-    public GClass230 gclass230_0;
+        public int int_0;
 
-    public Class843()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.int_3 >= this.int_0;
+        }
     }
 
-    internal bool method_0(GClass73 gclass73_0)
+    [CompilerGenerated]
+    private sealed class Class839
     {
-      return gclass73_0.int_0 == this.gclass230_0.int_0;
-    }
+        public GClass180 gclass180_0;
 
-    internal bool method_1(GClass73 gclass73_0)
-    {
-      return gclass73_0.int_0 == this.gclass230_0.int_0;
+        internal bool method_0(GClass147 gclass147_0)
+        {
+            return gclass147_0.gclass21_0 == this.gclass180_0.gclass21_0 &&
+                   gclass147_0.gclass194_0 == this.gclass180_0.gclass194_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class844
-  {
-    public GEnum61 genum61_0;
-
-    public Class844()
+    [CompilerGenerated]
+    private sealed class Class840
     {
-      
-    }
-  }
+        public GClass180 gclass180_0;
 
-  [CompilerGenerated]
-  private sealed class Class845
-  {
-    public GClass228 gclass228_0;
-    public int int_0;
-    public GClass40.Class844 class844_0;
-    public Func<GClass36, bool> func_0;
-
-    public Class845()
-    {
-      
+        internal bool method_0(GClass180 gclass180_1)
+        {
+            return gclass180_1.gclass21_0 == this.gclass180_0.gclass21_0 &&
+                   gclass180_1.gclass194_0 == this.gclass180_0.gclass194_0;
+        }
     }
 
-    internal bool method_0(GClass36 gclass36_0)
+    [CompilerGenerated]
+    private sealed class Class841
     {
-      if (gclass36_0.gclass230_0 != this.gclass228_0.gclass230_0 || gclass36_0.int_0 != this.int_0)
-        return false;
-      return gclass36_0.int_1 != 0 || this.class844_0.genum61_0 == GEnum61.const_2;
-    }
-  }
+        public FCTDecoyAssignmentData32 gclass32_0;
 
-  [CompilerGenerated]
-  private sealed class Class846
-  {
-    public AuroraInstallationType auroraInstallationType_0;
+        internal bool method_0(FCTDecoyAssignmentData32 gclass32_1)
+        {
+            return gclass32_1.LauncherData == this.gclass32_0.LauncherData;
+        }
 
-    public Class846()
-    {
-      
+        internal bool method_1(FCTDecoyAssignmentData32 gclass32_1)
+        {
+            return gclass32_1.LauncherData == this.gclass32_0.LauncherData &&
+                   gclass32_1.LauncherNum >= this.gclass32_0.LauncherNum;
+        }
     }
 
-    internal bool method_0(GClass158 gclass158_0)
+    [CompilerGenerated]
+    private sealed class Class842
     {
-      return gclass158_0.gclass157_0.auroraInstallationType_0 == this.auroraInstallationType_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class847
-  {
-    public AuroraInstallationType auroraInstallationType_0;
+        public GClass235 gclass235_0;
 
-    public Class847()
-    {
-      
+        internal bool method_0(GClass73 gclass73_0)
+        {
+            return gclass73_0.int_0 == this.gclass235_0.gclass230_0.int_0;
+        }
     }
 
-    internal bool method_0(GClass158 gclass158_0)
+    [CompilerGenerated]
+    private sealed class Class843
     {
-      return gclass158_0.gclass157_0.auroraInstallationType_0 == this.auroraInstallationType_0;
-    }
-  }
+        public ShipComponent gclass230_0;
 
-  [CompilerGenerated]
-  private sealed class Class848
-  {
-    public GClass230 gclass230_0;
+        internal bool method_0(GClass73 gclass73_0)
+        {
+            return gclass73_0.int_0 == this.gclass230_0.int_0;
+        }
 
-    public Class848()
-    {
-      
+        internal bool method_1(GClass73 gclass73_0)
+        {
+            return gclass73_0.int_0 == this.gclass230_0.int_0;
+        }
     }
 
-    internal bool method_0(GClass73 gclass73_0)
+    [CompilerGenerated]
+    private sealed class Class844
     {
-      return gclass73_0.gclass230_0 == this.gclass230_0;
+        public GEnum61 genum61_0;
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class849
-  {
-    public List<GClass40> list_0;
-    public GClass40 gclass40_0;
-
-    public Class849()
+    [CompilerGenerated]
+    private sealed class Class845
     {
-      
-    }
+        public GClass228 gclass228_0;
+        public int int_0;
+        public FCTShipData40.Class844 class844_0;
+        public Func<FireControlAssignment, bool> func_0;
 
-    internal bool method_0(GClass103 gclass103_0)
-    {
-      return gclass103_0.gclass21_0 == this.gclass40_0.gclass21_0 && this.list_0.Contains(gclass103_0.gclass40_0);
+        internal bool method_0(FireControlAssignment gclass36_0)
+        {
+            if (gclass36_0.FCComponent != this.gclass228_0.gclass230_0 || gclass36_0.FCNum != this.int_0)
+                return false;
+            return gclass36_0.TargetID != 0 || this.class844_0.genum61_0 == GEnum61.const_2;
+        }
     }
 
-    internal bool method_1(GClass117 gclass117_0)
+    [CompilerGenerated]
+    private sealed class Class846
     {
-      return this.list_0.Contains(gclass117_0.gclass40_0);
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class850
-  {
-    public int int_0;
-    public GClass40.Class849 class849_0;
+        public AuroraInstallationType auroraInstallationType_0;
 
-    public Class850()
-    {
-      
+        internal bool method_0(GClass158 gclass158_0)
+        {
+            return gclass158_0.gclass157_0.InstallationType == this.auroraInstallationType_0;
+        }
     }
 
-    internal bool method_0(GClass40 gclass40_0)
+    [CompilerGenerated]
+    private sealed class Class847
     {
-      return gclass40_0.int_38 >= this.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class851
-  {
-    public GClass71 gclass71_0;
-    public GClass40.Class850 class850_0;
+        public AuroraInstallationType auroraInstallationType_0;
 
-    public Class851()
-    {
-      
+        internal bool method_0(GClass158 gclass158_0)
+        {
+            return gclass158_0.gclass157_0.InstallationType == this.auroraInstallationType_0;
+        }
     }
 
-    internal bool method_0(GClass40 gclass40_0)
+    [CompilerGenerated]
+    private sealed class Class848
     {
-      return this.class850_0.class849_0.gclass40_0.gclass0_0.method_28(this.class850_0.class849_0.gclass40_0.gclass85_0.double_2, this.class850_0.class849_0.gclass40_0.gclass85_0.double_3, gclass40_0.gclass85_0.double_2, gclass40_0.gclass85_0.double_3) < this.gclass71_0.double_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class852
-  {
-    public double double_0;
-    public GClass40.Class850 class850_0;
+        public ShipComponent gclass230_0;
 
-    public Class852()
-    {
-      
+        internal bool method_0(GClass73 gclass73_0)
+        {
+            return gclass73_0.gclass230_0 == this.gclass230_0;
+        }
     }
 
-    internal bool method_0(GClass40 gclass40_0)
+    [CompilerGenerated]
+    private sealed class Class849
     {
-      return this.class850_0.class849_0.gclass40_0.gclass0_0.method_28(this.class850_0.class849_0.gclass40_0.gclass85_0.double_2, this.class850_0.class849_0.gclass40_0.gclass85_0.double_3, gclass40_0.gclass85_0.double_2, gclass40_0.gclass85_0.double_3) <= this.double_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class853
-  {
-    public GClass35 gclass35_0;
+        public List<FCTShipData40> list_0;
+        public FCTShipData40 gclass40_0;
 
-    public Class853()
-    {
-      
-    }
+        internal bool method_0(GroundUnitFormationData gclass103_0)
+        {
+            return gclass103_0.RaceData == this.gclass40_0.gclass21_0 && this.list_0.Contains(gclass103_0.ShipData);
+        }
 
-    internal bool method_0(GClass35 gclass35_1)
-    {
-      return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0;
+        internal bool method_1(GClass117 gclass117_0)
+        {
+            return this.list_0.Contains(gclass117_0.gclass40_0);
+        }
     }
 
-    internal bool method_1(GClass35 gclass35_1)
+    [CompilerGenerated]
+    private sealed class Class850
     {
-      return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0 && gclass35_1.int_0 >= this.gclass35_0.int_0;
-    }
-  }
+        public int int_0;
+        public FCTShipData40.Class849 class849_0;
 
-  [CompilerGenerated]
-  private sealed class Class854
-  {
-    public AuroraComponentType auroraComponentType_0;
-
-    public Class854()
-    {
-      
+        internal bool method_0(FCTShipData40 gclass40_0)
+        {
+            return gclass40_0.int_38 >= this.int_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class851
     {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == this.auroraComponentType_0;
-    }
-  }
+        public GClass71 gclass71_0;
+        public FCTShipData40.Class850 class850_0;
 
-  [CompilerGenerated]
-  private sealed class Class855
-  {
-    public GClass228 gclass228_0;
-
-    public Class855()
-    {
-      
+        internal bool method_0(FCTShipData40 gclass40_0)
+        {
+            return this.class850_0.class849_0.gclass40_0.gclass0_0.GetDistanceBetween(
+                this.class850_0.class849_0.gclass40_0.gclass85_0.XCoord,
+                this.class850_0.class849_0.gclass40_0.gclass85_0.YCoord, gclass40_0.gclass85_0.XCoord,
+                gclass40_0.gclass85_0.YCoord) < this.gclass71_0.double_0;
+        }
     }
 
-    internal bool method_0(GClass178 gclass178_0)
+    [CompilerGenerated]
+    private sealed class Class852
     {
-      return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class856
-  {
-    public GClass230 gclass230_0;
+        public double double_0;
+        public FCTShipData40.Class850 class850_0;
 
-    public Class856()
-    {
-      
+        internal bool method_0(FCTShipData40 gclass40_0)
+        {
+            return this.class850_0.class849_0.gclass40_0.gclass0_0.GetDistanceBetween(
+                this.class850_0.class849_0.gclass40_0.gclass85_0.XCoord,
+                this.class850_0.class849_0.gclass40_0.gclass85_0.YCoord, gclass40_0.gclass85_0.XCoord,
+                gclass40_0.gclass85_0.YCoord) <= this.double_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class853
     {
-      return gclass228_0.gclass230_0 == this.gclass230_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class857
-  {
-    public GClass35 gclass35_0;
+        public GClass35 gclass35_0;
 
-    public Class857()
-    {
-      
-    }
+        internal bool method_0(GClass35 gclass35_1)
+        {
+            return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0;
+        }
 
-    internal bool method_0(GClass35 gclass35_1)
-    {
-      return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0;
+        internal bool method_1(GClass35 gclass35_1)
+        {
+            return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0 && gclass35_1.int_0 >= this.gclass35_0.int_0;
+        }
     }
 
-    internal bool method_1(GClass35 gclass35_1)
+    [CompilerGenerated]
+    private sealed class Class854
     {
-      return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0 && gclass35_1.int_0 >= this.gclass35_0.int_0;
-    }
-  }
+        public AuroraComponentType auroraComponentType_0;
 
-  [CompilerGenerated]
-  private sealed class Class858
-  {
-    public AuroraComponentType auroraComponentType_0;
-
-    public Class858()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class855
     {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == this.auroraComponentType_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class859
-  {
-    public AuroraComponentType auroraComponentType_0;
+        public GClass228 gclass228_0;
 
-    public Class859()
-    {
-      
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class856
     {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == this.auroraComponentType_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class860
-  {
-    public AuroraComponentType auroraComponentType_0;
+        public ShipComponent gclass230_0;
 
-    public Class860()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0 == this.gclass230_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class857
     {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == this.auroraComponentType_0;
-    }
-  }
+        public GClass35 gclass35_0;
 
-  [CompilerGenerated]
-  private sealed class Class861
-  {
-    public GClass31 gclass31_0;
+        internal bool method_0(GClass35 gclass35_1)
+        {
+            return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0;
+        }
 
-    public Class861()
-    {
-      
+        internal bool method_1(GClass35 gclass35_1)
+        {
+            return gclass35_1.gclass230_0 == this.gclass35_0.gclass230_0 && gclass35_1.int_0 >= this.gclass35_0.int_0;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class858
     {
-      return gclass30_0.gclass230_0 == this.gclass31_0.gclass230_0 && gclass30_0.int_0 == this.gclass31_0.int_0;
-    }
+        public AuroraComponentType auroraComponentType_0;
 
-    internal bool method_1(GClass31 gclass31_1)
-    {
-      return gclass31_1.gclass230_0 == this.gclass31_0.gclass230_0 && gclass31_1.gclass230_1 == this.gclass31_0.gclass230_1 && gclass31_1.int_1 == this.gclass31_0.int_1;
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+        }
     }
 
-    internal bool method_2(GClass31 gclass31_1)
+    [CompilerGenerated]
+    private sealed class Class859
     {
-      return gclass31_1.gclass230_0 == this.gclass31_0.gclass230_0 && gclass31_1.gclass230_1 == this.gclass31_0.gclass230_1 && gclass31_1.int_1 == this.gclass31_0.int_1 && gclass31_1.int_0 >= this.gclass31_0.int_0;
-    }
-  }
+        public AuroraComponentType auroraComponentType_0;
 
-  [CompilerGenerated]
-  private sealed class Class862
-  {
-    public GClass31 gclass31_0;
-
-    public Class862()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class860
     {
-      return gclass30_0.gclass230_0 == this.gclass31_0.gclass230_0 && gclass30_0.int_0 == this.gclass31_0.int_0;
-    }
-  }
+        public AuroraComponentType auroraComponentType_0;
 
-  [CompilerGenerated]
-  private sealed class Class863
-  {
-    public GClass31 gclass31_0;
-
-    public Class863()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class861
     {
-      return gclass30_0.gclass230_0 == this.gclass31_0.gclass230_0 && gclass30_0.int_0 == this.gclass31_0.int_0;
-    }
-  }
+        public WeaponFireControlAssignment gclass31_0;
 
-  [CompilerGenerated]
-  private sealed class Class864
-  {
-    public GClass32 gclass32_0;
-
-    public Class864()
-    {
-      
-    }
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass31_0.WeaponComponent && gclass30_0.WeaponNum == this.gclass31_0.WeaponNum;
+        }
 
-    internal bool method_0(GClass30 gclass30_0)
-    {
-      return gclass30_0.gclass230_0 == this.gclass32_0.gclass230_0 && gclass30_0.int_0 == this.gclass32_0.int_0;
-    }
+        internal bool method_1(WeaponFireControlAssignment gclass31_1)
+        {
+            return gclass31_1.WeaponComponent == this.gclass31_0.WeaponComponent &&
+                   gclass31_1.FireControlComponent == this.gclass31_0.FireControlComponent && gclass31_1.FireControlNum == this.gclass31_0.FireControlNum;
+        }
 
-    internal bool method_1(GClass32 gclass32_1)
-    {
-      return gclass32_1.gclass230_0 == this.gclass32_0.gclass230_0;
+        internal bool method_2(WeaponFireControlAssignment gclass31_1)
+        {
+            return gclass31_1.WeaponComponent == this.gclass31_0.WeaponComponent &&
+                   gclass31_1.FireControlComponent == this.gclass31_0.FireControlComponent && gclass31_1.FireControlNum == this.gclass31_0.FireControlNum &&
+                   gclass31_1.WeaponNum >= this.gclass31_0.WeaponNum;
+        }
     }
 
-    internal bool method_2(GClass32 gclass32_1)
+    [CompilerGenerated]
+    private sealed class Class862
     {
-      return gclass32_1.gclass230_0 == this.gclass32_0.gclass230_0 && gclass32_1.int_0 >= this.gclass32_0.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class865
-  {
-    public GClass32 gclass32_0;
+        public WeaponFireControlAssignment gclass31_0;
 
-    public Class865()
-    {
-      
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass31_0.WeaponComponent && gclass30_0.WeaponNum == this.gclass31_0.WeaponNum;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class863
     {
-      return gclass30_0.gclass230_0 == this.gclass32_0.gclass230_0 && gclass30_0.int_0 == this.gclass32_0.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class866
-  {
-    public GClass32 gclass32_0;
+        public WeaponFireControlAssignment gclass31_0;
 
-    public Class866()
-    {
-      
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass31_0.WeaponComponent && gclass30_0.WeaponNum == this.gclass31_0.WeaponNum;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class864
     {
-      return gclass30_0.gclass230_0 == this.gclass32_0.gclass230_0 && gclass30_0.int_0 == this.gclass32_0.int_0;
-    }
-  }
+        public FCTDecoyAssignmentData32 gclass32_0;
 
-  [CompilerGenerated]
-  private sealed class Class867
-  {
-    public GClass228 gclass228_0;
-    public int int_0;
-    public Func<GClass36, bool> func_0;
-    public Func<GClass31, bool> func_1;
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass32_0.LauncherData &&
+                   gclass30_0.WeaponNum == this.gclass32_0.LauncherNum;
+        }
 
-    public Class867()
-    {
-      
-    }
+        internal bool method_1(FCTDecoyAssignmentData32 gclass32_1)
+        {
+            return gclass32_1.LauncherData == this.gclass32_0.LauncherData;
+        }
 
-    internal bool method_0(GClass36 gclass36_0)
-    {
-      return gclass36_0.gclass230_0 == this.gclass228_0.gclass230_0 && gclass36_0.int_0 == this.int_0;
+        internal bool method_2(FCTDecoyAssignmentData32 gclass32_1)
+        {
+            return gclass32_1.LauncherData == this.gclass32_0.LauncherData &&
+                   gclass32_1.LauncherNum >= this.gclass32_0.LauncherNum;
+        }
     }
 
-    internal bool method_1(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class865
     {
-      return gclass31_0.gclass230_1 == this.gclass228_0.gclass230_0 && gclass31_0.int_1 == this.int_0;
-    }
-  }
+        public FCTDecoyAssignmentData32 gclass32_0;
 
-  [CompilerGenerated]
-  private sealed class Class868
-  {
-    public GClass31 gclass31_0;
-
-    public Class868()
-    {
-      
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass32_0.LauncherData &&
+                   gclass30_0.WeaponNum == this.gclass32_0.LauncherNum;
+        }
     }
 
-    internal bool method_0(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class866
     {
-      return gclass30_0.gclass230_0 == this.gclass31_0.gclass230_0 && gclass30_0.int_0 == this.gclass31_0.int_0;
-    }
+        public FCTDecoyAssignmentData32 gclass32_0;
 
-    internal bool method_1(GClass27 gclass27_0)
-    {
-      return gclass27_0.gclass230_0 == this.gclass31_0.gclass230_0 && gclass27_0.int_0 == this.gclass31_0.int_0;
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass32_0.LauncherData &&
+                   gclass30_0.WeaponNum == this.gclass32_0.LauncherNum;
+        }
     }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class869
-  {
-    public GClass32 gclass32_0;
 
-    public Class869()
+    [CompilerGenerated]
+    private sealed class Class867
     {
-      
-    }
+        public GClass228 gclass228_0;
+        public int int_0;
+        public Func<FireControlAssignment, bool> func_0;
+        public Func<WeaponFireControlAssignment, bool> func_1;
 
-    internal bool method_0(GClass30 gclass30_0)
-    {
-      return gclass30_0.gclass230_0 == this.gclass32_0.gclass230_0 && gclass30_0.int_0 == this.gclass32_0.int_0;
-    }
+        internal bool method_0(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0 && gclass36_0.FCNum == this.int_0;
+        }
 
-    internal bool method_1(GClass27 gclass27_0)
-    {
-      return gclass27_0.gclass230_0 == this.gclass32_0.gclass230_0 && gclass27_0.int_0 == this.gclass32_0.int_0;
+        internal bool method_1(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class870
-  {
-    public GClass228 gclass228_0;
-    public int int_0;
-    public Func<GClass31, bool> func_0;
-    public Func<GClass32, bool> func_1;
-    public Func<GClass30, bool> func_2;
-
-    public Class870()
+    [CompilerGenerated]
+    private sealed class Class868
     {
-      
-    }
+        public WeaponFireControlAssignment gclass31_0;
 
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_0 == this.gclass228_0.gclass230_0 && gclass31_0.int_0 == this.int_0;
-    }
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass31_0.WeaponComponent && gclass30_0.WeaponNum == this.gclass31_0.WeaponNum;
+        }
 
-    internal bool method_1(GClass32 gclass32_0)
-    {
-      return gclass32_0.gclass230_0 == this.gclass228_0.gclass230_0 && gclass32_0.int_0 == this.int_0;
+        internal bool method_1(WeaponComponentRechargeStatus gclass27_0)
+        {
+            return gclass27_0.WeaponComponent == this.gclass31_0.WeaponComponent && gclass27_0.WeaponNumber == this.gclass31_0.WeaponNum;
+        }
     }
 
-    internal bool method_2(GClass30 gclass30_0)
+    [CompilerGenerated]
+    private sealed class Class869
     {
-      return gclass30_0.gclass230_0 == this.gclass228_0.gclass230_0 && gclass30_0.int_0 == this.int_0;
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class871
-  {
-    public GClass65 gclass65_0;
+        public FCTDecoyAssignmentData32 gclass32_0;
 
-    public Class871()
-    {
-      
-    }
+        internal bool method_0(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass32_0.LauncherData &&
+                   gclass30_0.WeaponNum == this.gclass32_0.LauncherNum;
+        }
 
-    internal bool method_0(GClass65 gclass65_1)
-    {
-      return gclass65_1.auroraContactType_0 == AuroraContactType.Population && gclass65_1.int_1 == this.gclass65_0.int_1;
+        internal bool method_1(WeaponComponentRechargeStatus gclass27_0)
+        {
+            return gclass27_0.WeaponComponent == this.gclass32_0.LauncherData &&
+                   gclass27_0.WeaponNumber == this.gclass32_0.LauncherNum;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class872
-  {
-    public GClass110 gclass110_0;
-
-    public Class872()
+    [CompilerGenerated]
+    private sealed class Class870
     {
-      
-    }
+        public GClass228 gclass228_0;
+        public int int_0;
+        public Func<WeaponFireControlAssignment, bool> func_0;
+        public Func<FCTDecoyAssignmentData32, bool> func_1;
+        public Func<MissileAssignment, bool> func_2;
 
-    internal bool method_0(GClass65 gclass65_0)
-    {
-      return gclass65_0.gclass110_0 == this.gclass110_0;
-    }
-  }
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.WeaponComponent == this.gclass228_0.gclass230_0 && gclass31_0.WeaponNum == this.int_0;
+        }
 
-  [CompilerGenerated]
-  private sealed class Class873
-  {
-    public GClass228 gclass228_0;
+        internal bool method_1(FCTDecoyAssignmentData32 gclass32_0)
+        {
+            return gclass32_0.LauncherData == this.gclass228_0.gclass230_0 && gclass32_0.LauncherNum == this.int_0;
+        }
 
-    public Class873()
-    {
-      
+        internal bool method_2(MissileAssignment gclass30_0)
+        {
+            return gclass30_0.FiringWeaponComponent == this.gclass228_0.gclass230_0 && gclass30_0.WeaponNum == this.int_0;
+        }
     }
 
-    internal bool method_0(GClass178 gclass178_0)
+    [CompilerGenerated]
+    private sealed class Class871
     {
-      return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
-    }
-  }
+        public GClass65 gclass65_0;
 
-  [CompilerGenerated]
-  private sealed class Class874
-  {
-    public GClass36 gclass36_0;
-
-    public Class874()
-    {
-      
+        internal bool method_0(GClass65 gclass65_1)
+        {
+            return gclass65_1.auroraContactType_0 == AuroraContactType.Population &&
+                   gclass65_1.int_1 == this.gclass65_0.int_1;
+        }
     }
 
-    internal bool method_0(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class872
     {
-      return gclass31_0.gclass230_1 == this.gclass36_0.gclass230_0 && gclass31_0.int_1 == this.gclass36_0.int_0;
-    }
-  }
+        public AlienRaceInfo gclass110_0;
 
-  [CompilerGenerated]
-  private sealed class Class875
-  {
-    public List<GClass230> list_0;
-
-    public Class875()
-    {
-      
+        internal bool method_0(GClass65 gclass65_0)
+        {
+            return gclass65_0.gclass110_0 == this.gclass110_0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class873
     {
-      return this.list_0.Contains(gclass228_0.gclass230_0);
-    }
-  }
+        public GClass228 gclass228_0;
 
-  [CompilerGenerated]
-  private sealed class Class876
-  {
-    public GClass230 gclass230_0;
-    public int int_0;
-
-    public Class876()
-    {
-      
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+        }
     }
 
-    internal bool method_0(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class874
     {
-      return gclass31_0.gclass230_0 == this.gclass230_0 && gclass31_0.int_0 == this.int_0;
-    }
-  }
+        public FireControlAssignment gclass36_0;
 
-  [CompilerGenerated]
-  private sealed class Class877
-  {
-    public GClass230 gclass230_0;
-
-    public Class877()
-    {
-      
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass36_0.FCComponent && gclass31_0.FireControlNum == this.gclass36_0.FCNum;
+        }
     }
 
-    internal bool method_0(GClass178 gclass178_0)
+    [CompilerGenerated]
+    private sealed class Class875
     {
-      return gclass178_0.gclass230_0 == this.gclass230_0;
-    }
-  }
+        public List<ShipComponent> list_0;
 
-  [CompilerGenerated]
-  private sealed class Class878
-  {
-    public int int_0;
-    public GClass40.Class877 class877_0;
-
-    public Class878()
-    {
-      
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return this.list_0.Contains(gclass228_0.gclass230_0);
+        }
     }
 
-    internal bool method_0(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class876
     {
-      return gclass31_0.gclass230_0 == this.class877_0.gclass230_0 && gclass31_0.int_0 > this.int_0;
-    }
+        public ShipComponent gclass230_0;
+        public int int_0;
 
-    internal bool method_1(GClass27 gclass27_0)
-    {
-      return gclass27_0.gclass230_0 == this.class877_0.gclass230_0 && gclass27_0.int_0 > this.int_0;
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.WeaponComponent == this.gclass230_0 && gclass31_0.WeaponNum == this.int_0;
+        }
     }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class879
-  {
-    public Decimal decimal_0;
-    public GClass40 gclass40_0;
 
-    public Class879()
+    [CompilerGenerated]
+    private sealed class Class877
     {
-      
-    }
+        public ShipComponent gclass230_0;
 
-    internal bool method_0(GClass228 gclass228_0)
-    {
-      return gclass228_0.gclass230_0.gclass231_0.auroraComponentType_0 == AuroraComponentType.ActiveSearchSensors && gclass228_0.gclass230_0.decimal_6 == this.decimal_0;
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass230_0;
+        }
     }
 
-    internal bool method_1(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class878
     {
-      return this.gclass40_0.method_158(gclass228_0) > 0;
-    }
-  }
+        public int int_0;
+        public FCTShipData40.Class877 class877_0;
 
-  [CompilerGenerated]
-  private sealed class Class880
-  {
-    public GClass36 gclass36_0;
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.WeaponComponent == this.class877_0.gclass230_0 && gclass31_0.WeaponNum > this.int_0;
+        }
 
-    public Class880()
-    {
-      
-    }
-
-    internal bool method_0(GClass228 gclass228_0)
-    {
-      return gclass228_0.gclass230_0 == this.gclass36_0.gclass230_0;
+        internal bool method_1(WeaponComponentRechargeStatus gclass27_0)
+        {
+            return gclass27_0.WeaponComponent == this.class877_0.gclass230_0 && gclass27_0.WeaponNumber > this.int_0;
+        }
     }
 
-    internal bool method_1(GClass31 gclass31_0)
+    [CompilerGenerated]
+    private sealed class Class879
     {
-      return gclass31_0.gclass230_1 == this.gclass36_0.gclass230_0 && gclass31_0.int_1 == this.gclass36_0.int_0;
-    }
-  }
+        public Decimal decimal_0;
+        public FCTShipData40 gclass40_0;
 
-  [CompilerGenerated]
-  private sealed class Class881
-  {
-    public List<GClass230> list_0;
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
+                AuroraComponentType.ActiveSearchSensors && gclass228_0.gclass230_0.decimal_6 == this.decimal_0;
+        }
 
-    public Class881()
-    {
-      
+        internal bool method_1(GClass228 gclass228_0)
+        {
+            return this.gclass40_0.method_158(gclass228_0) > 0;
+        }
     }
 
-    internal bool method_0(GClass228 gclass228_0)
+    [CompilerGenerated]
+    private sealed class Class880
     {
-      return this.list_0.Contains(gclass228_0.gclass230_0);
-    }
-  }
-
-  [CompilerGenerated]
-  private sealed class Class882
-  {
-    public GClass40 gclass40_0;
-    public GClass202 gclass202_0;
+        public FireControlAssignment gclass36_0;
 
-    public Class882()
-    {
-      
-    }
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return gclass228_0.gclass230_0 == this.gclass36_0.FCComponent;
+        }
 
-    internal bool method_0(GClass65 gclass65_0)
-    {
-      return gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.gclass21_1 == this.gclass202_0.gclass21_0 && gclass65_0.gclass200_0 == this.gclass202_0.gclass200_0;
+        internal bool method_1(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.gclass36_0.FCComponent && gclass31_0.FireControlNum == this.gclass36_0.FCNum;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class883
-  {
-    public GClass40 gclass40_0;
-    public GClass202 gclass202_0;
-
-    public Class883()
+    [CompilerGenerated]
+    private sealed class Class881
     {
-      
-    }
+        public List<ShipComponent> list_0;
 
-    internal bool method_0(GClass65 gclass65_0)
-    {
-      return gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.gclass21_1 == this.gclass202_0.gclass21_0 && gclass65_0.gclass200_0 == this.gclass202_0.gclass200_0;
+        internal bool method_0(GClass228 gclass228_0)
+        {
+            return this.list_0.Contains(gclass228_0.gclass230_0);
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class884
-  {
-    public GClass40 gclass40_0;
-    public GClass233 gclass233_0;
-
-    public Class884()
+    [CompilerGenerated]
+    private sealed class Class882
     {
-      
-    }
+        public FCTShipData40 gclass40_0;
+        public RacialSystemSurvey gclass202_0;
 
-    internal bool method_0(GClass1 gclass1_0)
-    {
-      return this.gclass40_0.gclass0_0.method_520(gclass1_0.double_0, this.gclass233_0.double_0, gclass1_0.double_1, this.gclass233_0.double_1) && gclass1_0.gclass200_0 == this.gclass233_0.gclass200_0;
+        internal bool method_0(GClass65 gclass65_0)
+        {
+            return gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.gclass21_1 == this.gclass202_0.Race &&
+                   gclass65_0.gclass200_0 == this.gclass202_0.ActualSystemData;
+        }
     }
 
-    internal bool method_1(GClass40 gclass40_1)
+    [CompilerGenerated]
+    private sealed class Class883
     {
-      return gclass40_1.gclass85_0.gclass202_0.gclass200_0 == this.gclass233_0.gclass200_0;
-    }
+        public FCTShipData40 gclass40_0;
+        public RacialSystemSurvey gclass202_0;
 
-    internal bool method_2(GClass146 gclass146_0)
-    {
-      return gclass146_0.gclass202_0.gclass200_0 == this.gclass233_0.gclass200_0;
+        internal bool method_0(GClass65 gclass65_0)
+        {
+            return gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.gclass21_1 == this.gclass202_0.Race &&
+                   gclass65_0.gclass200_0 == this.gclass202_0.ActualSystemData;
+        }
     }
 
-    internal bool method_3(GClass21 gclass21_0)
+    [CompilerGenerated]
+    private sealed class Class884
     {
-      return gclass21_0 != this.gclass233_0.gclass21_0;
-    }
-  }
+        public FCTShipData40 gclass40_0;
+        public GClass233 gclass233_0;
 
-  [CompilerGenerated]
-  private sealed class Class885
-  {
-    public GClass228 gclass228_0;
-
-    public Class885()
-    {
-      
-    }
+        internal bool method_0(SystemBodyData gclass1_0)
+        {
+            return this.gclass40_0.gclass0_0.method_520(gclass1_0.XCoordinate, this.gclass233_0.double_0,
+                       gclass1_0.YCoordinate, this.gclass233_0.double_1) &&
+                   gclass1_0.SystemData == this.gclass233_0.gclass200_0;
+        }
 
-    internal bool method_0(GClass178 gclass178_0)
-    {
-      return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
-    }
-  }
+        internal bool method_1(FCTShipData40 gclass40_1)
+        {
+            return gclass40_1.gclass85_0.System.ActualSystemData == this.gclass233_0.gclass200_0;
+        }
 
-  [CompilerGenerated]
-  private sealed class Class886
-  {
-    public GClass228 gclass228_0;
-    public GClass40 gclass40_0;
+        internal bool method_2(PopulationData gclass146_0)
+        {
+            return gclass146_0.gclass202_0.ActualSystemData == this.gclass233_0.gclass200_0;
+        }
 
-    public Class886()
-    {
-      
+        internal bool method_3(FCTRaceRecordC21 gclass21_0)
+        {
+            return gclass21_0 != this.gclass233_0.gclass21_0;
+        }
     }
 
-    internal bool method_0(GClass178 gclass178_0)
+    [CompilerGenerated]
+    private sealed class Class885
     {
-      return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
-    }
+        public GClass228 gclass228_0;
 
-    internal bool method_1(GClass36 gclass36_0)
-    {
-      return gclass36_0.gclass230_0 == this.gclass228_0.gclass230_0;
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+        }
     }
-  }
 
-  [CompilerGenerated]
-  private sealed class Class887
-  {
-    public int int_0;
-    public GClass40.Class886 class886_0;
-
-    public Class887()
+    [CompilerGenerated]
+    private sealed class Class886
     {
-      
-    }
+        public GClass228 gclass228_0;
+        public FCTShipData40 gclass40_0;
 
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_0 == this.class886_0.gclass228_0.gclass230_0 && gclass31_0.int_0 > this.int_0;
-    }
+        internal bool method_0(GClass178 gclass178_0)
+        {
+            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+        }
 
-    internal bool method_1(GClass32 gclass32_0)
-    {
-      return gclass32_0.gclass230_0 == this.class886_0.gclass228_0.gclass230_0 && gclass32_0.int_0 > this.int_0;
+        internal bool method_1(FireControlAssignment gclass36_0)
+        {
+            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0;
+        }
     }
 
-    internal bool method_2(GClass27 gclass27_0)
+    [CompilerGenerated]
+    private sealed class Class887
     {
-      return gclass27_0.gclass230_0 == this.class886_0.gclass228_0.gclass230_0 && gclass27_0.int_0 > this.int_0;
-    }
-  }
+        public int int_0;
+        public FCTShipData40.Class886 class886_0;
 
-  [CompilerGenerated]
-  private sealed class Class888
-  {
-    public GClass36 gclass36_0;
-    public GClass40.Class887 class887_0;
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.WeaponComponent == this.class886_0.gclass228_0.gclass230_0 && gclass31_0.WeaponNum > this.int_0;
+        }
 
-    public Class888()
-    {
-      
-    }
+        internal bool method_1(FCTDecoyAssignmentData32 gclass32_0)
+        {
+            return gclass32_0.LauncherData == this.class886_0.gclass228_0.gclass230_0 &&
+                   gclass32_0.LauncherNum > this.int_0;
+        }
 
-    internal bool method_0(GClass31 gclass31_0)
-    {
-      return gclass31_0.gclass230_1 == this.class887_0.class886_0.gclass228_0.gclass230_0 && gclass31_0.int_1 == this.gclass36_0.int_0;
+        internal bool method_2(WeaponComponentRechargeStatus gclass27_0)
+        {
+            return gclass27_0.WeaponComponent == this.class886_0.gclass228_0.gclass230_0 && gclass27_0.WeaponNumber > this.int_0;
+        }
     }
 
-    internal bool method_1(GClass132 gclass132_0)
+    [CompilerGenerated]
+    private sealed class Class888
     {
-      return gclass132_0.gclass40_0 == this.class887_0.class886_0.gclass40_0 && gclass132_0.gclass230_0 == this.class887_0.class886_0.gclass228_0.gclass230_0 && gclass132_0.int_2 == this.gclass36_0.int_0;
-    }
-  }
+        public FireControlAssignment gclass36_0;
+        public FCTShipData40.Class887 class887_0;
 
-  [CompilerGenerated]
-  private sealed class Class889
-  {
-    public GClass158 gclass158_0;
+        internal bool method_0(WeaponFireControlAssignment gclass31_0)
+        {
+            return gclass31_0.FireControlComponent == this.class887_0.class886_0.gclass228_0.gclass230_0 &&
+                   gclass31_0.FireControlNum == this.gclass36_0.FCNum;
+        }
 
-    public Class889()
-    {
-      
+        internal bool method_1(GClass132 gclass132_0)
+        {
+            return gclass132_0.gclass40_0 == this.class887_0.class886_0.gclass40_0 &&
+                   gclass132_0.gclass230_0 == this.class887_0.class886_0.gclass228_0.gclass230_0 &&
+                   gclass132_0.int_2 == this.gclass36_0.FCNum;
+        }
     }
 
-    internal bool method_0(GClass148 gclass148_0)
+    [CompilerGenerated]
+    private sealed class Class889
     {
-      return gclass148_0.gclass157_0 == this.gclass158_0.gclass157_0 && !gclass148_0.bool_0;
-    }
-  }
+        public GClass158 gclass158_0;
 
-  [CompilerGenerated]
-  private sealed class Class890
-  {
-    public GClass139 gclass139_0;
-
-    public Class890()
-    {
-      
+        internal bool method_0(GClass148 gclass148_0)
+        {
+            return gclass148_0.gclass157_0 == this.gclass158_0.gclass157_0 && !gclass148_0.bool_0;
+        }
     }
 
-    internal bool method_0(GClass148 gclass148_0)
+    [CompilerGenerated]
+    private sealed class Class890
     {
-      return gclass148_0.gclass157_0.auroraInstallationType_0 == (AuroraInstallationType) this.gclass139_0.int_7 && gclass148_0.bool_0;
-    }
-  }
+        public MoveOrder gclass139_0;
 
-  [CompilerGenerated]
-  private sealed class Class891
-  {
-    public GClass139 gclass139_0;
-
-    public Class891()
-    {
-      
+        internal bool method_0(GClass148 gclass148_0)
+        {
+            return gclass148_0.gclass157_0.InstallationType == (AuroraInstallationType)this.gclass139_0.DestinationItemID &&
+                   gclass148_0.bool_0;
+        }
     }
 
-    internal bool method_0(GClass148 gclass148_0)
+    [CompilerGenerated]
+    private sealed class Class891
     {
-      return gclass148_0.gclass157_0.auroraInstallationType_0 == (AuroraInstallationType) this.gclass139_0.int_7 && !gclass148_0.bool_0;
+        public MoveOrder gclass139_0;
+
+        internal bool method_0(GClass148 gclass148_0)
+        {
+            return gclass148_0.gclass157_0.InstallationType == (AuroraInstallationType)this.gclass139_0.DestinationItemID &&
+                   !gclass148_0.bool_0;
+        }
     }
-  }
 }

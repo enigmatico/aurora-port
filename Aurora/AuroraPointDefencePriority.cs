@@ -11,9 +11,9 @@ namespace Aurora;
 
 public enum AuroraPointDefencePriority
 {
-  [Description("Priority 1")] PriorityOne = 1,
-  [Description("Priority 2")] PriorityTwo = 2,
-  [Description("Priority 3")] PriorityThree = 3,
-  [Description("Priority 4")] PriorityFour = 4,
-  [Description("Priority 5")] PriorityFive = 5,
+    [Description("Priority 1")] PriorityOne = 1,
+    [Description("Priority 2")] PriorityTwo = 2,
+    [Description("Priority 3")] PriorityThree = 3,
+    [Description("Priority 4")] PriorityFour = 4,
+    [Description("Priority 5")] PriorityFive = 5,
 }

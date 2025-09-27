@@ -10,11 +10,11 @@ using System.Windows.Forms;
 #nullable disable
 internal static class Class1211
 {
-  [STAThread]
-  private static void Main()
-  {
-    Application.EnableVisualStyles();
-    Application.SetCompatibleTextRenderingDefault(false);
-    Application.Run((Form) new TacticalMap());
-  }
+    [STAThread]
+    private static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new TacticalMap());
+    }
 }

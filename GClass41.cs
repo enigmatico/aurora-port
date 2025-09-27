@@ -11,29 +11,30 @@ using System.Linq;
 #nullable disable
 public static class GClass41
 {
-  public static double smethod_0<T>(this IEnumerable<T> ienumerable_0, Func<T, double> func_0)
-  {
-    try
+    public static double smethod_0<T>(this IEnumerable<T> ienumerable_0, Func<T, double> func_0)
     {
-      double num1 = 0.0;
-      double num2 = 0.0;
-      double num3 = 0.0;
-      int num4 = 0;
-      foreach (double num5 in ienumerable_0.Select<T, double>(func_0))
-      {
-        ++num4;
-        double num6 = num5 - num1;
-        num1 += num6 / (double) num4;
-        num2 += num6 * (num5 - num1);
-      }
-      if (1 < num4)
-        num3 = Math.Sqrt(num2 / (double) num4);
-      return num3;
+        try
+        {
+            double num1 = 0.0;
+            double num2 = 0.0;
+            double num3 = 0.0;
+            int num4 = 0;
+            foreach (double num5 in ienumerable_0.Select<T, double>(func_0))
+            {
+                ++num4;
+                double num6 = num5 - num1;
+                num1 += num6 / num4;
+                num2 += num6 * (num5 - num1);
+            }
+
+            if (1 < num4)
+                num3 = Math.Sqrt(num2 / num4);
+            return num3;
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 660);
+            return 0.0;
+        }
     }
-    catch (Exception ex)
-    {
-      GClass226.smethod_74(ex, 660);
-      return 0.0;
-    }
-  }
 }

@@ -9,8 +9,8 @@ using System;
 #nullable disable
 public class GClass82
 {
-  public GClass202 gclass202_0;
-  public double double_0;
-  public double double_1;
-  public Decimal decimal_0;
+    public RacialSystemSurvey gclass202_0;
+    public double double_0;
+    public double double_1;
+    public Decimal decimal_0;
 }

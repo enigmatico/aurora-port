@@ -11,9 +11,9 @@ namespace Aurora;
 
 public enum AuroraSYTaskType
 {
-  Construction,
-  Repair,
-  Refit,
-  Scrap,
-  [Description("Auto Refit")] AutoRefit,
+    Construction,
+    Repair,
+    Refit,
+    Scrap,
+    [Description("Auto Refit")] AutoRefit,
 }

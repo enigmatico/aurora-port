@@ -10,12 +10,12 @@ using System;
 #nullable disable
 public class GClass38
 {
-  public GClass40 gclass40_0;
-  public GClass230 gclass230_0;
-  public GClass129 gclass129_0;
-  public AuroraContactType auroraContactType_0;
-  public int int_0;
-  public int int_1;
-  public Decimal decimal_0;
-  public double double_0;
+    public FCTShipData40 gclass40_0;
+    public ShipComponent gclass230_0;
+    public RaceMissile gclass129_0;
+    public AuroraContactType auroraContactType_0;
+    public int int_0;
+    public int int_1;
+    public Decimal decimal_0;
+    public double double_0;
 }

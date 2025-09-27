@@ -7,8 +7,8 @@
 #nullable disable
 public class GClass166
 {
-  public GClass146 gclass146_0;
-  public GClass164 gclass164_0;
-  public GClass161 gclass161_0;
-  public int int_0;
+    public PopulationData gclass146_0;
+    public TechData164 gclass164_0;
+    public GClass161 gclass161_0;
+    public int int_0;
 }

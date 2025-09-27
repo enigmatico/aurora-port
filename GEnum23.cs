@@ -7,7 +7,7 @@
 #nullable disable
 public enum GEnum23
 {
-  const_0,
-  const_1,
-  const_2,
+    const_0,
+    const_1,
+    const_2,
 }

@@ -7,11 +7,11 @@
 #nullable disable
 public class GClass147
 {
-  public GClass21 gclass21_0;
-  public GClass146 gclass146_0;
-  public GClass194 gclass194_0;
-  public int int_0;
-  public int int_1;
-  public GClass110 gclass110_0;
-  public int int_2;
+    public FCTRaceRecordC21 gclass21_0;
+    public PopulationData gclass146_0;
+    public GClass194 gclass194_0;
+    public int int_0;
+    public int int_1;
+    public AlienRaceInfo gclass110_0;
+    public int int_2;
 }

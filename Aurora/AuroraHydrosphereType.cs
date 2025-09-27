@@ -11,8 +11,8 @@ namespace Aurora;
 
 public enum AuroraHydrosphereType
 {
-  None = 1,
-  Vapour = 2,
-  Liquid = 3,
-  [Description("Ice Sheet")] IceSheet = 4,
+    None = 1,
+    Vapour = 2,
+    Liquid = 3,
+    [Description("Ice Sheet")] IceSheet = 4,
 }

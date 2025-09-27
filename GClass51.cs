@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass51
 {
-  public GEnum121 genum121_0;
-  public int int_0;
+    public CommanderBonusType genum121_0;
+    public int int_0;
 
-  public GClass51(GEnum121 genum121_1, int int_1)
-  {
-    this.genum121_0 = genum121_1;
-    this.int_0 = int_1;
-  }
+    public GClass51(CommanderBonusType genum121_1, int int_1)
+    {
+        this.genum121_0 = genum121_1;
+        this.int_0 = int_1;
+    }
 }

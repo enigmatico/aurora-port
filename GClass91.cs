@@ -10,8 +10,8 @@ using System.Collections.Generic;
 #nullable disable
 public class GClass91
 {
-  public List<GClass87> list_0 = new List<GClass87>();
-  public int int_0;
-  public int int_1 = 5;
-  public Decimal decimal_0;
+    public List<GClass87> list_0 = new List<GClass87>();
+    public int int_0;
+    public int int_1 = 5;
+    public Decimal decimal_0;
 }

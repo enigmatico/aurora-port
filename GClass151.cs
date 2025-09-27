@@ -9,8 +9,8 @@ using System;
 #nullable disable
 public class GClass151
 {
-  public GClass150 gclass150_0;
-  public GClass21 gclass21_0;
-  public Decimal decimal_0;
-  public Decimal decimal_1;
+    public WealthUsageData gclass150_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
 }

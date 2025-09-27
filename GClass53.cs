@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass53
 {
-  public GClass42 gclass42_0;
-  public int int_0;
-  public string string_0;
+    public FCTRaceMedalRecord gclass42_0;
+    public int int_0;
+    public string string_0;
 }

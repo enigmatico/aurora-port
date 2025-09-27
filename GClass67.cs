@@ -7,13 +7,13 @@
 #nullable disable
 public class GClass67
 {
-  private GClass0 gclass0_0;
-  public GClass21 gclass21_0;
-  public GClass200 gclass200_0;
-  public double double_0;
-  public double double_1;
-  public double double_2;
-  public double double_3;
+    private GClass0 gclass0_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public SystemData200 gclass200_0;
+    public double double_0;
+    public double double_1;
+    public double double_2;
+    public double double_3;
 
-  public GClass67(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public GClass67(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 }

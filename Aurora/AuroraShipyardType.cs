@@ -11,7 +11,7 @@ namespace Aurora;
 
 public enum AuroraShipyardType
 {
-  [Description("Naval Shipyard")] Naval = 1,
-  [Description("Commercial Shipyard")] Commercial = 2,
-  [Description("Repair Yard")] RepairYard = 3,
+    [Description("Naval Shipyard")] Naval = 1,
+    [Description("Commercial Shipyard")] Commercial = 2,
+    [Description("Repair Yard")] RepairYard = 3,
 }

@@ -7,5 +7,5 @@
 #nullable disable
 public enum GEnum8
 {
-  const_0,
+    const_0,
 }

@@ -7,6 +7,6 @@
 #nullable disable
 public class GClass178
 {
-  public GClass230 gclass230_0;
-  public int int_0;
+    public ShipComponent gclass230_0;
+    public int int_0;
 }

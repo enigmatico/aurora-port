@@ -7,41 +7,42 @@
 using System;
 
 #nullable disable
+// something atmospheric gas on specific system body
 public class GClass224
 {
-  public GClass223 gclass223_0;
-  public int int_0;
-  public double double_0;
-  public double double_1;
-  public bool bool_0;
+    public AtmosphericGasDefinition gclass223_0;
+    public int int_0;
+    public double double_0;
+    public double double_1;
+    public bool bool_0;
 
-  public GClass224()
-  {
-  }
-
-  public GClass224(GClass1 gclass1_0, GClass223 gclass223_1, double double_2, double double_3)
-  {
-    this.gclass223_0 = gclass223_1;
-    this.double_1 = double_2;
-    this.double_0 = double_3;
-    this.int_0 = gclass1_0.int_0;
-  }
-
-  public string method_0(GClass194 gclass194_0)
-  {
-    try
+    public GClass224()
     {
-      string str = this.gclass223_0.Name;
-      if (this.bool_0)
-        str += " (F)";
-      if (this.gclass223_0 == gclass194_0.gclass223_0)
-        str = $"{str} ({GClass226.smethod_50(this.double_1)})";
-      return $"{str} {GClass226.smethod_50(this.double_0)}%";
     }
-    catch (Exception ex)
+
+    public GClass224(SystemBodyData gclass1_0, AtmosphericGasDefinition gclass223_1, double double_2, double double_3)
     {
-      GClass226.smethod_74(ex, 3064);
-      return "error";
+        this.gclass223_0 = gclass223_1;
+        this.double_1 = double_2;
+        this.double_0 = double_3;
+        this.int_0 = gclass1_0.SystemBodyID;
     }
-  }
+
+    public string method_0(GClass194 gclass194_0)
+    {
+        try
+        {
+            string str = this.gclass223_0.Name;
+            if (this.bool_0)
+                str += " (F)";
+            if (this.gclass223_0 == gclass194_0.gclass223_0)
+                str = $"{str} ({AuroraUtils.smethod_50(this.double_1)})";
+            return $"{str} {AuroraUtils.smethod_50(this.double_0)}%";
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 3064);
+            return "error";
+        }
+    }
 }

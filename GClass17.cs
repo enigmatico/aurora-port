@@ -7,13 +7,13 @@
 #nullable disable
 public class GClass17
 {
-  public GClass146 gclass146_0;
-  public GEnum116 genum116_0;
-  public int int_0;
-  public int int_1;
-  public int int_2;
-  public int int_3;
-  public int int_4;
-  public int int_5;
-  public int int_6;
+    public PopulationData gclass146_0;
+    public AutomatedGroundTemplateDesignType genum116_0;
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public int int_3;
+    public int int_4;
+    public int int_5;
+    public int int_6;
 }

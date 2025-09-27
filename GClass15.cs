@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass15
 {
-  private GClass0 gclass0_0;
-  public GEnum6 genum6_0;
-  public int int_0;
-  public int int_1;
-  public string string_0;
-  public int int_2;
+    private GClass0 gclass0_0;
+    public SpecialNPRIDs genum6_0;
+    public int int_0;
+    public int int_1;
+    public string string_0;
+    public int int_2;
 
-  public GClass15(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+    public GClass15(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 }

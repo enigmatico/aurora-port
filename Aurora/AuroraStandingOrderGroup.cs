@@ -11,10 +11,10 @@ namespace Aurora;
 
 public enum AuroraStandingOrderGroup
 {
-  Other,
-  Survey,
-  Logistics,
-  MoveTo,
-  [Description("Load and Unload")] LoadAndUnload,
-  [Description("Instant Actions")] InstantOrder,
+    Other,
+    Survey,
+    Logistics,
+    MoveTo,
+    [Description("Load and Unload")] LoadAndUnload,
+    [Description("Instant Actions")] InstantOrder,
 }

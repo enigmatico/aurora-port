@@ -9,11 +9,11 @@ namespace Aurora;
 
 public enum AuroraContactStatus
 {
-  Hostile,
-  Neutral,
-  Friendly,
-  Allied,
-  Civilian,
-  None,
-  Combat,
+    Hostile,
+    Neutral,
+    Friendly,
+    Allied,
+    Civilian,
+    None,
+    Combat,
 }

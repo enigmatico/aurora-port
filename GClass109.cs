@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass109
 {
-  public GClass21 gclass21_0;
-  public GClass1 gclass1_0;
+    public FCTRaceRecordC21 gclass21_0;
+    public SystemBodyData gclass1_0;
 
-  public GClass109(GClass21 gclass21_1, GClass1 gclass1_1)
-  {
-    this.gclass21_0 = gclass21_1;
-    this.gclass1_0 = gclass1_1;
-  }
+    public GClass109(FCTRaceRecordC21 gclass21_1, SystemBodyData gclass1_1)
+    {
+        this.gclass21_0 = gclass21_1;
+        this.gclass1_0 = gclass1_1;
+    }
 }

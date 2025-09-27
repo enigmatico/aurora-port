@@ -9,17 +9,17 @@ using System.Collections.Generic;
 #nullable disable
 public class GClass116
 {
-  public List<GClass117> list_0 = new List<GClass117>();
-  public double double_0;
-  public double double_1;
-  public int int_0;
-  public int int_1;
-  public int int_2;
-  public double double_2;
-  public double double_3;
-  public bool bool_0;
-  public bool bool_1;
-  public bool bool_2;
-  public bool bool_3;
-  public List<GClass132> list_1 = new List<GClass132>();
+    public List<GClass117> list_0 = new List<GClass117>();
+    public double double_0;
+    public double double_1;
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public double double_2;
+    public double double_3;
+    public bool bool_0;
+    public bool bool_1;
+    public bool bool_2;
+    public bool bool_3;
+    public List<GClass132> list_1 = new List<GClass132>();
 }

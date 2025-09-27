@@ -7,15 +7,15 @@
 #nullable disable
 public class GClass134
 {
-  public GClass202 gclass202_0;
-  public GClass202 gclass202_1;
-  public GClass146 gclass146_0;
-  public GClass120 gclass120_0;
-  public GEnum13 genum13_0;
-  public int int_0;
-  public bool bool_0;
-  public bool bool_1;
-  public bool bool_2;
+    public RacialSystemSurvey gclass202_0;
+    public RacialSystemSurvey gclass202_1;
+    public PopulationData gclass146_0;
+    public JumpPoint120 gclass120_0;
+    public DestinationType genum13_0;
+    public int int_0;
+    public bool bool_0;
+    public bool bool_1;
+    public bool bool_2;
 
-  public string DestinationName { get; set; }
+    public string DestinationName { get; set; }
 }

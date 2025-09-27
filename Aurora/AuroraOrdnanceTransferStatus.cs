@@ -11,11 +11,19 @@ namespace Aurora;
 
 public enum AuroraOrdnanceTransferStatus
 {
-  None,
-  [Description("Load Fleet Ordnance")] LoadFleet,
-  [Description("Replace Fleet Ordnance")] ReplaceFleet,
-  [Description("Remove Fleet Ordnance")] RemoveFleet,
-  [Description("Load Sub Fleet Ordnance")] LoadSubFleet,
-  [Description("Replace Sub Fleet Ordnance")] ReplaceSubFleet,
-  [Description("Remove Sub Fleet Ordnance")] RemoveSubFleet,
+    None,
+    [Description("Load Fleet Ordnance")] LoadFleet,
+
+    [Description("Replace Fleet Ordnance")]
+    ReplaceFleet,
+    [Description("Remove Fleet Ordnance")] RemoveFleet,
+
+    [Description("Load Sub Fleet Ordnance")]
+    LoadSubFleet,
+
+    [Description("Replace Sub Fleet Ordnance")]
+    ReplaceSubFleet,
+
+    [Description("Remove Sub Fleet Ordnance")]
+    RemoveSubFleet,
 }

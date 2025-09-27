@@ -9,12 +9,12 @@ using System;
 #nullable disable
 public class GClass56
 {
-  public string string_0;
-  public Decimal decimal_0;
+    public string string_0;
+    public Decimal decimal_0;
 
-  public GClass56(string string_1, Decimal decimal_1)
-  {
-    this.string_0 = string_1;
-    this.decimal_0 = decimal_1;
-  }
+    public GClass56(string string_1, Decimal decimal_1)
+    {
+        this.string_0 = string_1;
+        this.decimal_0 = decimal_1;
+    }
 }
