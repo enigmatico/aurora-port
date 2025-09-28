@@ -5266,7 +5266,7 @@ public partial class GClass0
                     gclass61.RankName = row["RankName"].ToString();
                     gclass61.RankAbbreviation = row["RankAbbrev"].ToString();
                     if (gclass61.RankAbbreviation == "")
-                        gclass61.RankAbbreviation = "R" + gclass61.RankNum.ToString();
+                        gclass61.RankAbbreviation = $"R{gclass61.RankNum}";
                     gclass61.gclass21_0.RacialRankDictionary.Add(gclass61.int_0, gclass61);
                 }
             }

@@ -151,7 +151,7 @@ public class MissileSalvo
             foreach (SurveyLocation gclass213 in this.System.SurveyLocationDictionary.Values)
             {
                 if (this.gclass0_0.method_520(this.double_0, gclass213.XCoord, this.double_1, gclass213.YCoord))
-                    return "Survey Location #" + gclass213.LocationNumber.ToString();
+                    return $"Survey Location #{gclass213.LocationNumber}";
             }
 
             foreach (SystemBodyData gclass1 in this.System.method_20())
@@ -176,15 +176,15 @@ public class MissileSalvo
         {
             string str = "";
             if (this.gclass40_1 != null)
-                str = "  " + this.Race.method_32(this.gclass40_1);
+                str = $"  {this.Race.method_32(this.gclass40_1)}";
             else if (this.gclass132_0 != null)
-                str = "  SalvoID " + this.gclass132_0.int_1.ToString();
+                str = $"  SalvoID {this.gclass132_0.int_1}";
             else if (this.gclass214_0 != null)
-                str = "  " + this.gclass214_0.method_2(true);
+                str = $"  {this.gclass214_0.method_2(true)}";
             else if (this.gclass146_0 != null)
             {
                 if (this.auroraContactType_0 == AuroraContactType.Population)
-                    str = "  " + this.Race.method_42(this.gclass146_0);
+                    str = $"  {this.Race.method_42(this.gclass146_0)}";
                 else if (this.auroraContactType_0 == AuroraContactType.GroundUnit)
                     str = $"  {this.Race.method_42(this.gclass146_0)} Ground Forces";
                 else if (this.auroraContactType_0 == AuroraContactType.STOGroundUnit)
@@ -841,7 +841,7 @@ public class MissileSalvo
                     str1 = flag
                         ? $"{str1}  Thermal {AuroraUtils.smethod_38(gclass65_2.ContactStrength)}"
                         : (!bool_4
-                            ? " Thermal " + AuroraUtils.smethod_38(gclass65_2.ContactStrength)
+                            ? $" Thermal {AuroraUtils.smethod_38(gclass65_2.ContactStrength)}"
                             : $"{gclass65_2.ContactNumber.ToString()}x Thermal {AuroraUtils.smethod_38(gclass65_2.ContactStrength)}");
                     flag = true;
                 }
@@ -858,7 +858,7 @@ public class MissileSalvo
                     str1 = flag
                         ? $"{str1}  {gclass65_3.ContactName}"
                         : (!bool_4
-                            ? " " + gclass65_3.ContactName
+                            ? $" {gclass65_3.ContactName}"
                             : $"{gclass65_3.ContactNumber.ToString()}x {gclass65_3.ContactName}");
                 if (this.int_3 == 0)
                     this.int_3 = gclass65_3.UniqueID;

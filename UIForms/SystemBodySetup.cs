@@ -86,7 +86,7 @@ public class SystemBodySetup : Form
             this.cboGas.DataSource = list;
             this.gclass1_0.method_62(this.gclass194_0);
             if (this.gclass1_0.PopulationCapacity_Probably > 0M)
-                string_11_1 = AuroraUtils.smethod_53(this.gclass1_0.PopulationCapacity_Probably) + "m";
+                string_11_1 = $"{AuroraUtils.smethod_53(this.gclass1_0.PopulationCapacity_Probably)}m";
             if (this.gclass1_0.DominantTerrain.DominantTerrainType != PlanetDominantTerrain.const_0)
             {
                 string name = this.gclass1_0.DominantTerrain.Name;
@@ -103,9 +103,9 @@ public class SystemBodySetup : Form
             this.gclass0_0.method_601(this.lstvReadOnly, "Hydrosphere",
                 AuroraUtils.smethod_82(this.gclass1_0.HydrosphereTypeId), null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Gravity",
-                AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.Gravity, 2) + " G", null);
+                $"{AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.Gravity, 2)} G", null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Pressure",
-                AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.AtmospherePressure, 2) + " atm", null);
+                $"{AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.AtmospherePressure, 2)} atm", null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Eccentricity",
                 AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.Eccentricity, 2), null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Tidal Lock", string_11_2, null);

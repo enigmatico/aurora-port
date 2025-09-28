@@ -398,7 +398,7 @@ public class StarSystem
                          .ThenBy<SystemBodyData, double>(gclass1_0 => gclass1_0.OrbitalDistance)
                          .ToList<SystemBodyData>())
             {
-                gclass1.Name = "Asteroid #" + num.ToString();
+                gclass1.Name = $"Asteroid #{num}";
                 gclass1.OrbitNumber = num;
                 gclass1.UnknownEnumDBUpdateNeedState = Unknown_SystemBodyDataUpdateLevel.ExtendedUpdate;
                 ++num;

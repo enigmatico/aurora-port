@@ -1654,7 +1654,7 @@ public class ClassDesign : Form
                     if (this.chkIncludeParasites.CheckState == CheckState.Checked &&
                         gclass40_2_2.gclass22_0.list_1.Count > 0 && gclass40_2_2.gclass22_0.ParasiteCapacity > 0M)
                     {
-                        FCTSquadronData70 gclass70_2 = gclass40_2_2.method_186(gclass40_2_2.ShipName + " Strikegroup");
+                        FCTSquadronData70 gclass70_2 = gclass40_2_2.method_186($"{gclass40_2_2.ShipName} Strikegroup");
                         foreach (GClass74 gclass74 in this.gclass22_0.list_1)
                         {
                             for (int index2 = 1; index2 <= gclass74.int_0; ++index2)

@@ -208,7 +208,7 @@ public class StarSetup : Form
             this.gclass0_0.method_601(this.lstvStellarType, "Temperature",
                 AuroraUtils.FormatNumberToDigits(selectedValue.Temperature, 4), null);
             this.gclass0_0.method_601(this.lstvStellarType, "Diameter (km)",
-                AuroraUtils.smethod_50(selectedValue.method_1() / 1000000.0) + "m", null);
+                $"{AuroraUtils.smethod_50(selectedValue.method_1() / 1000000.0)}m", null);
         }
         catch (Exception ex)
         {

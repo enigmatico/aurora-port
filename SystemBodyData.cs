@@ -809,8 +809,7 @@ public partial class SystemBodyData
                              .ToList<PopulationData>())
                 {
                     this.gclass0_0.gclass92_0.method_2(EventType.const_192,
-                        gclass146_1.PopName +
-                        " has been destroyed due to the destruction of the body on which it is based",
+                        $"{gclass146_1.PopName} has been destroyed due to the destruction of the body on which it is based",
                         gclass146_1.Race, this.SystemData, this.XCoordinate, this.YCoordinate,
                         AuroraEventCategory.PopSummary);
                     gclass146_1.Race.method_132(gclass146_1);
@@ -2133,25 +2132,25 @@ public partial class SystemBodyData
                     if (this.ColonyCost == -1M)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? AuroraUtils.smethod_45(this.ColonyCost, int_13) + " LG"
+                        ? $"{AuroraUtils.smethod_45(this.ColonyCost, int_13)} LG"
                         : AuroraUtils.smethod_45(this.ColonyCost, int_13).ToString();
                 case GEnum80.const_1:
                     if (this.MaxColonyCost == -1M)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? AuroraUtils.smethod_45(this.MaxColonyCost, int_13) + " LG"
+                        ? $"{AuroraUtils.smethod_45(this.MaxColonyCost, int_13)} LG"
                         : AuroraUtils.smethod_45(this.MaxColonyCost, int_13).ToString();
                 case GEnum80.const_2:
                     if (this.double_34 == -1.0)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? AuroraUtils.smethod_46(this.double_34, int_13) + " LG"
+                        ? $"{AuroraUtils.smethod_46(this.double_34, int_13)} LG"
                         : AuroraUtils.smethod_46(this.double_34, int_13).ToString();
                 case GEnum80.const_3:
                     if (this.double_35 == -1.0)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? AuroraUtils.smethod_46(this.double_35, int_13) + " LG"
+                        ? $"{AuroraUtils.smethod_46(this.double_35, int_13)} LG"
                         : AuroraUtils.smethod_46(this.double_35, int_13).ToString();
                 default:
                     return "error";
@@ -2703,12 +2702,8 @@ public partial class SystemBodyData
             }
             else if (secondGas != null)
             {
-                formPart = " - " + (secondGas.Gas.Type switch
-                {
-                    GasType.CarbonDioxide => "CO2",
-                    GasType.WaterVapor => UITextHelper.GetLocalizedStringFor(LocalizedText.VaporFormWater),
-                    _ => secondGas.Gas.Type.ToLocalizedString()
-                });
+                formPart =
+                    $" - {(secondGas.Gas.Type switch { GasType.CarbonDioxide => "CO2", GasType.WaterVapor => UITextHelper.GetLocalizedStringFor(LocalizedText.VaporFormWater), _ => secondGas.Gas.Type.ToLocalizedString() })}";
             }
 
             return basePart + formPart;
@@ -2845,7 +2840,7 @@ public partial class SystemBodyData
             if (this.BodyClass == PlanetBodyClass.Moon && !bool_10)
             {
                 // ISSUE: reference to a compiler-generated field
-                string_10 = "    " + this.method_79(class317.gclass21_0, true, false);
+                string_10 = $"    {this.method_79(class317.gclass21_0, true, false)}";
             }
 
             // ISSUE: reference to a compiler-generated field
@@ -2906,7 +2901,7 @@ public partial class SystemBodyData
                 0 && bool_10)
                 return "Existing LP";
             string str = AuroraUtils.FormatDoubleToPrecision(60.0 / Math.Sqrt(this.Mass) / 12.0, 2);
-            return bool_11 ? str + " years" : str;
+            return bool_11 ? $"{str} years" : str;
         }
         catch (Exception ex)
         {
@@ -2970,8 +2965,8 @@ public partial class SystemBodyData
             if (this.BodyClass != PlanetBodyClass.Moon)
                 return AuroraUtils.smethod_1(this.DistanceToParent);
             return this.OrbitalDistance > 1000000.0
-                ? AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0) + "m"
-                : AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0) + "k";
+                ? $"{AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0)}m"
+                : $"{AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0)}k";
         }
         catch (Exception ex)
         {
@@ -2987,8 +2982,8 @@ public partial class SystemBodyData
             if (this.BodyClass != PlanetBodyClass.Moon)
                 return AuroraUtils.smethod_1(this.double_27);
             return this.OrbitalDistance > 1000000.0
-                ? AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0) + "m"
-                : AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0) + "k";
+                ? $"{AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0)}m"
+                : $"{AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0)}k";
         }
         catch (Exception ex)
         {
@@ -3004,8 +2999,8 @@ public partial class SystemBodyData
             if (this.BodyClass != PlanetBodyClass.Moon)
                 return AuroraUtils.smethod_1(this.double_28);
             return this.OrbitalDistance > 1000000.0
-                ? AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0) + "m"
-                : AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0) + "k";
+                ? $"{AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0)}m"
+                : $"{AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0)}k";
         }
         catch (Exception ex)
         {
@@ -3072,15 +3067,15 @@ public partial class SystemBodyData
                             AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km"),
                             AuroraUtils.smethod_59(this.OrbitalDistance, "AU")));
 
-                this.gclass0_0.method_597(listView_0, "Gravity", AuroraUtils.smethod_59(this.Gravity, "G"));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Gravity.GetText(), AuroraUtils.smethod_59(this.Gravity, "G"));
                 if (this.AtmosphericGasList.Count == 0)
                 {
-                    this.gclass0_0.method_597(listView_0, "Atmosphere", "None");
+                    this.gclass0_0.method_597(listView_0, LocalizedText.Atmosphere.GetText(), LocalizedText.None.GetText());
                 }
                 else
                 {
-                    this.gclass0_0.method_597(listView_0, "Atmosphere",
-                        "Atmospheric Pressure " + AuroraUtils.smethod_59(this.AtmospherePressure, "atm"));
+                    this.gclass0_0.method_597(listView_0, LocalizedText.Atmosphere.GetText(),
+                        LocalizedText.AtmosphericPressure.GetText() + AuroraUtils.smethod_59(this.AtmospherePressure, " atm"));
                     this.AtmosphericGasList = this.AtmosphericGasList.OrderByDescending<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm)
                         .ToList<SystemBodyAtmosphericGas>();
                     foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
@@ -3089,24 +3084,24 @@ public partial class SystemBodyData
                                 AuroraUtils.smethod_59(gclass224.AtmoGasAmount, "%")));
                 }
 
-                this.gclass0_0.method_597(listView_0, "Hydrosphere", AuroraUtils.smethod_82(this.HydrosphereTypeId));
-                this.gclass0_0.method_597(listView_0, "Hydro Extent", AuroraUtils.smethod_59(this.HydroExtent, "%"));
-                this.gclass0_0.method_597(listView_0, "Year", AuroraUtils.smethod_31(this.Year));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Hydrosphere.GetText(), AuroraUtils.smethod_82(this.HydrosphereTypeId));
+                this.gclass0_0.method_597(listView_0, LocalizedText.HydroExtent.GetText(), AuroraUtils.smethod_59(this.HydroExtent, "%"));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Year.GetText(), AuroraUtils.smethod_31(this.Year));
                 this.gclass0_0.method_597(listView_0, "Day", AuroraUtils.smethod_31(this.Day));
-                this.gclass0_0.method_597(listView_0, "Surface Temperature",
+                this.gclass0_0.method_597(listView_0, LocalizedText.SurfaceTemperature.GetText(),
                     AuroraUtils.smethod_59(this.SurfaceTemp - AuroraUtils.int_17, "C"));
-                this.gclass0_0.method_597(listView_0, "Tectonics", AuroraUtils.smethod_82(this.TectonicActivity));
-                this.gclass0_0.method_597(listView_0, "Mass", AuroraUtils.smethod_48(this.Mass));
-                this.gclass0_0.method_597(listView_0, "Density", AuroraUtils.smethod_48(this.Density));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Tectonics.GetText(), AuroraUtils.smethod_82(this.TectonicActivity));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Mass.GetText(), AuroraUtils.smethod_48(this.Mass));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Density.GetText(), AuroraUtils.smethod_48(this.Density));
                 ListViewItem listViewItem = new ListViewItem("");
                 if (this.TidalLock)
-                    this.gclass0_0.method_597(listView_0, "Tidal Lock", "Yes");
+                    this.gclass0_0.method_597(listView_0, LocalizedText.TidalLockLiteral.GetText(), "Yes");
                 else
-                    this.gclass0_0.method_597(listView_0, "Tidal Lock", "No");
-                this.gclass0_0.method_597(listView_0, "Base Temperature",
+                    this.gclass0_0.method_597(listView_0, LocalizedText.TidalLockLiteral.GetText(), "No");
+                this.gclass0_0.method_597(listView_0, LocalizedText.BaseTemperature.GetText(),
                     AuroraUtils.smethod_59(this.BaseTemp - AuroraUtils.int_17, "C"));
-                this.gclass0_0.method_597(listView_0, "Albedo", AuroraUtils.FormatDoubleToPrecision(this.Albedo, 2));
-                this.gclass0_0.method_597(listView_0, "Greenhouse Factor",
+                this.gclass0_0.method_597(listView_0, LocalizedText.Albedo.GetText(), AuroraUtils.FormatDoubleToPrecision(this.Albedo, 2));
+                this.gclass0_0.method_597(listView_0, LocalizedText.GreenhouseFactor.GetText(),
                     AuroraUtils.FormatDoubleToPrecision(this.GreenhouseFactor, 2));
                 this.gclass0_0.method_597(listView_0, "Anti-GH Factor", AuroraUtils.FormatDoubleToPrecision(this.AntiGreenhouseFactor, 2));
                 if (this.method_77(gclass21_0))
@@ -3115,8 +3110,8 @@ public partial class SystemBodyData
                     {
                         foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
                             this.gclass0_0.method_601(listView_1, gclass124.MaterialID.ToString(),
-                                string.Format("{0:0,0}", gclass124.Amount) + "  tons",
-                                "Acc  " + gclass124.Accessibility.ToString());
+                                $"{string.Format("{0:0,0}", gclass124.Amount)}  tons",
+                                $"Acc  {gclass124.Accessibility}");
                     }
                 }
                 else
@@ -3301,9 +3296,9 @@ public partial class SystemBodyData
                 if (this.RadiationLevel > 0M)
                 {
                     this.gclass0_0.method_601(listView_0, "Radiation Production Impact",
-                        AuroraUtils.smethod_45(this.RadiationLevel / 10000M, 2) + "%", null);
+                        $"{AuroraUtils.smethod_45(this.RadiationLevel / 10000M, 2)}%", null);
                     this.gclass0_0.method_601(listView_0, "Radiation Growth Rate Impact",
-                        AuroraUtils.smethod_45(this.RadiationLevel * 0.0025M, 2) + "%", null);
+                        $"{AuroraUtils.smethod_45(this.RadiationLevel * 0.0025M, 2)}%", null);
                 }
 
                 double num2 = 4.0 * AuroraUtils.PI_Apprx * Math.Pow(this.Radius, 2.0);
@@ -3879,7 +3874,7 @@ public partial class SystemBodyData
         {
             string str = "";
             if (!bool_11)
-                str = this.StarData.method_18(gclass21_0) + " ";
+                str = $"{this.StarData.method_18(gclass21_0)} ";
             switch (this.BodyClass)
             {
                 case PlanetBodyClass.Planet:
@@ -3895,9 +3890,9 @@ public partial class SystemBodyData
                         string.Format("Moon {0}-{1} {2}", this.StarData.method_19(),
                             AuroraUtils.smethod_79(this.PlanetNumber), this.OrbitNumber.ToString());
                 case PlanetBodyClass.Asteroid:
-                    return "Asteroid #" + this.OrbitNumber.ToString();
+                    return $"Asteroid #{this.OrbitNumber}";
                 case PlanetBodyClass.Comet:
-                    return "Comet #" + this.OrbitNumber.ToString();
+                    return $"Comet #{this.OrbitNumber}";
                 default:
                     return "No Name";
             }

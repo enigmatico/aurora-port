@@ -577,7 +577,7 @@ public class GroundUnitFormationData
                                     this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                     AuroraEventCategory.Ship);
-                                gclass550.method_46("Killed during a boarding attempt on " + gclass117.method_11(),
+                                gclass550.method_46($"Killed during a boarding attempt on {gclass117.method_11()}",
                                     GEnum28.const_0);
                                 gclass550.method_42(AuroraRetirementStatus.KilledBoarding);
                             }
@@ -1316,7 +1316,7 @@ public class GroundUnitFormationData
             this.method_26(false, false);
             string string_13_1 = "-";
             if (this.decimal_13 > 0M)
-                string_13_1 = AuroraUtils.smethod_39(this.decimal_14 * 100M) + "%";
+                string_13_1 = $"{AuroraUtils.smethod_39(this.decimal_14 * 100M)}%";
             this.gclass0_0.method_624(listView_0, this.Abbreviation, this.Name, AuroraUtils.smethod_38(this.decimal_3),
                 string_13_1, AuroraUtils.smethod_38(this.decimal_15), AuroraUtils.FormatNumberToDigits(this.decimal_16, 2),
                 AuroraUtils.smethod_38(this.decimal_0), AuroraUtils.smethod_38(this.decimal_1),
@@ -1330,8 +1330,8 @@ public class GroundUnitFormationData
                     object_1.method_26(true, bool_7);
                     string string_13_2 = "-";
                     if (object_1.decimal_13 > 0M)
-                        string_13_2 = AuroraUtils.smethod_39(object_1.decimal_14 * 100M) + "%";
-                    this.gclass0_0.method_624(listView_0, object_1.Abbreviation, "      " + object_1.Name,
+                        string_13_2 = $"{AuroraUtils.smethod_39(object_1.decimal_14 * 100M)}%";
+                    this.gclass0_0.method_624(listView_0, object_1.Abbreviation, $"      {object_1.Name}",
                         AuroraUtils.smethod_38(object_1.decimal_3), string_13_2,
                         AuroraUtils.smethod_38(object_1.decimal_15), AuroraUtils.FormatNumberToDigits(object_1.decimal_16, 2),
                         AuroraUtils.smethod_38(object_1.decimal_0), AuroraUtils.smethod_38(object_1.decimal_1),
@@ -1342,7 +1342,7 @@ public class GroundUnitFormationData
                 this.method_26(true, bool_7);
                 string string_13_3 = "-";
                 if (this.decimal_13 > 0M)
-                    string_13_3 = AuroraUtils.smethod_39(this.decimal_14 * 100M) + "%";
+                    string_13_3 = $"{AuroraUtils.smethod_39(this.decimal_14 * 100M)}%";
                 this.gclass0_0.method_594(listView_0, "");
                 this.gclass0_0.method_620(listView_0, "", "Total Organization", AuroraUtils.smethod_38(this.decimal_3),
                     string_13_3, AuroraUtils.smethod_38(this.decimal_15), AuroraUtils.FormatNumberToDigits(this.decimal_16, 2),

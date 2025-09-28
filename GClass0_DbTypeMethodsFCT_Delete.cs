@@ -131,7 +131,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_System WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_System WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -175,7 +175,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_RaceMedals WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_RaceMedals WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -206,7 +206,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MedalConditionAssignment WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MedalConditionAssignment WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -231,7 +231,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Squadron WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Squadron WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -259,7 +259,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_WindowPosition WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_WindowPosition WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -285,14 +285,14 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitFormationElement WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitFormationElement WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             new SQLiteCommand(
-                "DELETE FROM FCT_GroundUnitFormationElementTemplates WHERE GameID = " + this.GameID.ToString(),
+                $"DELETE FROM FCT_GroundUnitFormationElementTemplates WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ElementRecharge WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ElementRecharge WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_STODetected WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_STODetected WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -358,7 +358,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitFormationTemplate WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitFormationTemplate WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -392,7 +392,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitFormation WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitFormation WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -464,9 +464,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitClass WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitClass WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitCapability WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitCapability WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -551,7 +551,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MapLabel WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_MapLabel WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -585,9 +585,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_SurveyLocation WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_SurveyLocation WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_RaceSurveyLocation WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceSurveyLocation WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -627,7 +627,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Star WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Star WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -670,7 +670,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_JumpPoint WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_JumpPoint WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -702,7 +702,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_OrderTemplate WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_OrderTemplate WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -729,7 +729,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AcidAttack WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_AcidAttack WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -757,7 +757,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ShipTechData WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShipTechData WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -785,7 +785,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_TechProgressionRace WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_TechProgressionRace WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -813,7 +813,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Waypoint WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Waypoint WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -848,7 +848,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MassDriverPackets WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MassDriverPackets WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -894,7 +894,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_LagrangePoint WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_LagrangePoint WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -925,7 +925,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_PopTradeBalance WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PopTradeBalance WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -955,7 +955,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ShippingWealthData WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShippingWealthData WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -997,7 +997,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_PrecursorTombGroup WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PrecursorTombGroup WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1038,7 +1038,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MoveOrders WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_MoveOrders WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1097,7 +1097,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MoveOrderTemplate WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MoveOrderTemplate WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1233,7 +1233,7 @@ public partial class GClass0
                 foreach (SystemBodyData gclass1 in this.list_0)
                 {
                     sqLiteCommand.CommandText =
-                        "DELETE FROM FCT_SystemBody WHERE SystemBodyID = " + gclass1.SystemBodyID.ToString();
+                        $"DELETE FROM FCT_SystemBody WHERE SystemBodyID = {gclass1.SystemBodyID}";
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -1361,7 +1361,7 @@ public partial class GClass0
             }
             else
             {
-                new SQLiteCommand("DELETE FROM FCT_SystemBodySurveys WHERE GameID = " + this.GameID.ToString(),
+                new SQLiteCommand($"DELETE FROM FCT_SystemBodySurveys WHERE GameID = {this.GameID}",
                     sqliteConnection_0).ExecuteNonQuery();
                 using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
                 {
@@ -1390,7 +1390,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_SubFleets WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_SubFleets WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1434,9 +1434,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_StandingOrderTemplate WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_StandingOrderTemplate WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_StandingOrderTemplateOrder WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_StandingOrderTemplateOrder WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1492,13 +1492,13 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Fleet WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Fleet WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_FleetHistory WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_FleetHistory WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_FleetStandingOrder WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_FleetStandingOrder WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_FleetConditionalOrder WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_FleetConditionalOrder WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1635,7 +1635,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_PopulationInstallations WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PopulationInstallations WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1664,7 +1664,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ShipCargo WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_ShipCargo WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1777,17 +1777,17 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Population WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Population WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_PopulationWeapon WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PopulationWeapon WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_PopComponent WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PopComponent WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_PopMDChanges WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PopMDChanges WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_Prisoners WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Prisoners WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_PopInstallationDemand WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PopInstallationDemand WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1989,7 +1989,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MineralDeposit WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MineralDeposit WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2021,17 +2021,17 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ShipClass WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_ShipClass WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ClassMaterials WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ClassMaterials WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ClassOrdnanceTemplate WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ClassOrdnanceTemplate WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ClassComponent WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ClassComponent WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ClassSC WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_ClassSC WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ClassGroundTemplates WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ClassGroundTemplates WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2232,7 +2232,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_SystemBodyName WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_SystemBodyName WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2261,7 +2261,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Survivors WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Survivors WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2289,7 +2289,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AncientConstruct WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AncientConstruct WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2318,7 +2318,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MissileGeoSurvey WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MissileGeoSurvey WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2344,7 +2344,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_RuinRace WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_RuinRace WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2373,29 +2373,29 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Ship WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Ship WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ShipWeapon WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_ShipWeapon WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ShipOrdnanceTemplate WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShipOrdnanceTemplate WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_DamagedComponent WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_DamagedComponent WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ShipHistory WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShipHistory WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_WeaponRecharge WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_WeaponRecharge WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_WeaponAssignment WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_WeaponAssignment WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_DecoyAssignment WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_DecoyAssignment WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_FireControlAssignment WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_FireControlAssignment WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_MissileAssignment WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MissileAssignment WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ArmourDamage WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ArmourDamage WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ShipMeasurement WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShipMeasurement WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2702,7 +2702,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Contacts WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Contacts WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2776,11 +2776,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Wrecks WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Wrecks WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_WreckTech WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_WreckTech WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_WreckComponents WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_WreckComponents WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2850,7 +2850,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_IndustrialProjects WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_IndustrialProjects WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2924,9 +2924,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MissileSalvo WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MissileSalvo WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_Missile WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Missile WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2995,7 +2995,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_MissileType WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_MissileType WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3083,7 +3083,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AtmosphericGas WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AtmosphericGas WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3113,7 +3113,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_DamageControlQueue WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_DamageControlQueue WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3164,17 +3164,17 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Commander WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Commander WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_CommanderHistory WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_CommanderHistory WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_CommanderMedal WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_CommanderMedal WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_CommanderMeasurement WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_CommanderMeasurement WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_CommanderBonuses WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_CommanderBonuses WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_CommanderTraits WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_CommanderTraits WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3352,7 +3352,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Shipyard WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Shipyard WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3417,7 +3417,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ShipyardTask WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShipyardTask WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3486,9 +3486,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Species WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Species WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_KnownSpecies WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_KnownSpecies WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3554,7 +3554,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_WealthData WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_WealthData WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3584,7 +3584,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_RaceMineralData WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceMineralData WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3619,7 +3619,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ShippingLines WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ShippingLines WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3656,7 +3656,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_NavalAdminCommand WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_NavalAdminCommand WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3702,7 +3702,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Lifepods WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Lifepods WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3739,7 +3739,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitTraining WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitTraining WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3776,7 +3776,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitTrainingQueue WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitTrainingQueue WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3810,7 +3810,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_ResearchProject WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ResearchProject WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3844,7 +3844,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_SectorCommand WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_SectorCommand WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3874,11 +3874,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AlienRace WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_AlienRace WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_AlienRaceSpecies WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienRaceSpecies WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_AlienSystem WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienSystem WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3947,13 +3947,13 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AlienClass WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_AlienClass WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_AlienClassSensor WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienClassSensor WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_AlienClassWeapon WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienClassWeapon WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_AlienClassTech WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienClassTech WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4037,7 +4037,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AlienRaceSensor WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienRaceSensor WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4084,7 +4084,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AlienShip WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_AlienShip WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4126,7 +4126,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AlienGroundUnitClass WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienGroundUnitClass WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4162,7 +4162,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AlienPopulation WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienPopulation WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4209,7 +4209,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_RaceTech WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_RaceTech WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4237,7 +4237,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_EligibleProjects WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_EligibleProjects WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4265,7 +4265,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_TechSystem WHERE GameID = 0 OR GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_TechSystem WHERE GameID = 0 OR GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4318,7 +4318,7 @@ public partial class GClass0
         try
         {
             new SQLiteCommand(
-                "DELETE FROM FCT_ShipDesignComponents WHERE GameID = 0 OR GameID = " + this.GameID.ToString(),
+                $"DELETE FROM FCT_ShipDesignComponents WHERE GameID = 0 OR GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4416,7 +4416,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Increments WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Increments WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4549,7 +4549,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_GameLog WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_GameLog WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4592,7 +4592,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_EventColour WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_EventColour WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4622,7 +4622,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AetherRift WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_AetherRift WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4649,7 +4649,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_AetherGates WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AetherGates WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4678,7 +4678,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_OrganizationNode WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_OrganizationNode WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4715,7 +4715,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Ranks WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Ranks WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4746,7 +4746,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_HideEvents WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_HideEvents WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4771,11 +4771,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_RaceSysSurvey WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceSysSurvey WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_RaceJumpPointSurvey WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceJumpPointSurvey WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_AlienRaceSystemStatus WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_AlienRaceSystemStatus WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4872,10 +4872,10 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_DesignPhilosophy WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_DesignPhilosophy WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             new SQLiteCommand(
-                "DELETE FROM FCT_DesignPhilosophyTechProgressionCategories WHERE GameID = " + this.GameID.ToString(),
+                $"DELETE FROM FCT_DesignPhilosophyTechProgressionCategories WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -5077,8 +5077,7 @@ public partial class GClass0
                 {
                     using (SQLiteTransaction sqLiteTransaction = connection.BeginTransaction())
                     {
-                        sqLiteCommand.CommandText = "UPDATE FCT_Game SET GameName = @GameName WHERE GameID =" +
-                                                    int_136.ToString();
+                        sqLiteCommand.CommandText = $"UPDATE FCT_Game SET GameName = @GameName WHERE GameID ={int_136}";
                         sqLiteCommand.Parameters.AddWithValue("@GameName", string_10);
                         sqLiteCommand.ExecuteNonQuery();
                         sqLiteTransaction.Commit();

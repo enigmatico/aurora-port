@@ -828,8 +828,8 @@ internal class Class788
                 {
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    string_10 = class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4) +
-                                " Infantry Support Tank";
+                    string_10 =
+                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)} Infantry Support Tank";
                 }
 
                 // ISSUE: reference to a compiler-generated field

@@ -301,7 +301,7 @@ public class RaceWindow : Form
                 .Sum<TransportedColonist>(gclass181_0 => gclass181_0.Amount) / 1000000M;
             this.txtSpeciesTotalPop.Text = AuroraUtils.smethod_39(decimal_73);
             if (num3 > 0M)
-                this.txtPercentPop.Text = AuroraUtils.FormatNumberToDigits(decimal_73 / num3 * 100M, 1) + "%";
+                this.txtPercentPop.Text = $"{AuroraUtils.FormatNumberToDigits(decimal_73 / num3 * 100M, 1)}%";
             else
                 this.txtPercentPop.Text = "N/A";
             this.pbSpecies.Image =

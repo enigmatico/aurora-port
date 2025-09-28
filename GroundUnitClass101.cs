@@ -144,7 +144,7 @@ public class GroundUnitClass101
                 {
                     GroundUnitSeriesData gclass94_1 = new GroundUnitSeriesData();
                     gclass94_1.GroundUnitSeriesID = this.gclass0_0.method_26(GEnum0.const_50);
-                    gclass94_1.Description = this.ClassName + " Series";
+                    gclass94_1.Description = $"{this.ClassName} Series";
                     gclass21_0.GroundUnitSeriesDictionary.Add(gclass94_1.GroundUnitSeriesID, gclass94_1);
                     GroundUnitSeriesClassData gclass95_1 = new GroundUnitSeriesClassData(gclass94_1, this, 1);
                     gclass21_0.GroundUnitSeriesClassList.Add(gclass95_1);

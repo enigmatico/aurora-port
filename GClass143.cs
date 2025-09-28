@@ -68,7 +68,7 @@ public class GClass143
         this.string_3 = AuroraUtils.GetRandomImageFileNameFromFolder("Races");
         this.string_0 = this.gclass0_0.method_551();
         this.string_1 = this.gclass0_0.GenerateEmpireName(this.string_0);
-        this.string_2 = this.string_0 + " Prime";
+        this.string_2 = $"{this.string_0} Prime";
         this.gclass140_0 = this.gclass0_0.ThemeDictionary
             .ElementAt<KeyValuePair<int, NamingTheme>>(
                 AuroraUtils.GetRandomInteger(this.gclass0_0.ThemeDictionary.Count) - 1).Value;

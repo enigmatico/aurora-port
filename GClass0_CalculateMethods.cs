@@ -1045,8 +1045,7 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     gclass92_0.method_2(EventType.const_30,
-                                        class304.gclass132_0.string_0 +
-                                        " has no target and no onboard sensors and will therefore self-destruct",
+                                        $"{class304.gclass132_0.string_0} has no target and no onboard sensors and will therefore self-destruct",
                                         class304.gclass132_0.Race, class304.gclass132_0.System,
                                         class304.gclass132_0.double_0, class304.gclass132_0.double_1,
                                         AuroraEventCategory.MissileSalvo);
@@ -1067,8 +1066,7 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         gclass92_0.method_2(EventType.const_30,
-                                            class304.gclass132_0.string_0 +
-                                            " cannot locate its target. it will continue to the last known target location and use onboard sensors to search for a new target",
+                                            $"{class304.gclass132_0.string_0} cannot locate its target. it will continue to the last known target location and use onboard sensors to search for a new target",
                                             class304.gclass132_0.Race, class304.gclass132_0.System,
                                             class304.gclass132_0.double_0, class304.gclass132_0.double_1,
                                             AuroraEventCategory.MissileSalvo);

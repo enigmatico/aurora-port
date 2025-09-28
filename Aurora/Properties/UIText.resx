@@ -291,4 +291,11 @@
     <data name="AlbedoFactor" xml:space="preserve">
         <value>Albedo Factor</value>
     </data>
+    <data name="None" xml:space="preserve">
+        <value>None</value>
+    </data>
+    <data name="BaseTemperature" xml:space="preserve">
+        <value>Base Temperature</value>
+    </data>
+
 </root>

@@ -121,7 +121,7 @@ public class LagrangePoint
             if (gclass202_0.Race.chkWP == CheckState.Unchecked)
                 return;
             SolidBrush solidBrush = new SolidBrush(Color.Orange);
-            string str = "LP" + this.int_1.ToString();
+            string str = $"LP{this.int_1}";
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2.0;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2.0;
             graphics_0.FillEllipse(solidBrush, (float)x, (float)y, AuroraUtils.int_61, AuroraUtils.int_61);

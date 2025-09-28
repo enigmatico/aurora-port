@@ -1493,7 +1493,7 @@ public partial class GClass3
                 // ISSUE: reference to a compiler-generated field
                 Waypoint gclass214_0 = class442.gclass85_0.Race.method_188(
                     class442.gclass85_0.System.ActualSystem, null, null, WayPointType.Temporary,
-                    gclass221_0.double_0, gclass221_0.double_1, class442.gclass85_0.FleetName + " Escape Point", 0);
+                    gclass221_0.double_0, gclass221_0.double_1, $"{class442.gclass85_0.FleetName} Escape Point", 0);
                 // ISSUE: reference to a compiler-generated field
                 class442.gclass85_0.method_263();
                 // ISSUE: reference to a compiler-generated field

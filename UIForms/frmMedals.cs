@@ -446,10 +446,10 @@ public class frmMedals : Form
                              .ToList<FCTRaceMedalRecord>())
                 {
                     var cgc42 = gclass42;
-                    streamWriter.Write(cgc42.MedalName + ",");
-                    streamWriter.Write(cgc42.MedalDescription + ",");
-                    streamWriter.Write(cgc42.Abbreviation + ",");
-                    streamWriter.Write(cgc42.MedalPoints.ToString() + ",");
+                    streamWriter.Write($"{cgc42.MedalName},");
+                    streamWriter.Write($"{cgc42.MedalDescription},");
+                    streamWriter.Write($"{cgc42.Abbreviation},");
+                    streamWriter.Write($"{cgc42.MedalPoints},");
                     if (cgc42.AllowMultipleAward)
                         streamWriter.Write("Y,");
                     else
@@ -457,7 +457,7 @@ public class frmMedals : Form
                     streamWriter.Write(cgc42.MedalFileName);
                     foreach (GClass44 gclass44 in this.gclass0_0.list_1
                                  .Where<GClass44>(gc44 => gc44.gclass42_0 == cgc42).ToList<GClass44>())
-                        streamWriter.Write("," + gclass44.gclass43_0.MedalConditionID.ToString());
+                        streamWriter.Write($",{gclass44.gclass43_0.MedalConditionID}");
                     streamWriter.Write(streamWriter.NewLine);
                 }
 

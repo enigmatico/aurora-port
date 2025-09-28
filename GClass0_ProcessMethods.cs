@@ -274,7 +274,7 @@ public partial class GClass0
                          .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 == null && gclass40_0.int_13 > 0)
                          .Where<ShipData>(gclass40_0 => gclass40_0.method_18(false)).ToList<ShipData>())
                 this.gclass92_0.method_2(EventType.const_72,
-                    gclass40.ShipName + " is preparing for offensive fire but her weapons are not yet ready.",
+                    $"{gclass40.ShipName} is preparing for offensive fire but her weapons are not yet ready.",
                     gclass40.gclass21_0, gclass40.gclass85_0.System.ActualSystem, gclass40.gclass85_0.XCoord,
                     gclass40.gclass85_0.YCoord, AuroraEventCategory.Ship);
             List<ShipData> list3 = this.Ships.Values
@@ -325,8 +325,7 @@ public partial class GClass0
                          .Where<ShipData>(gclass40_0 => gclass40_0.bool_6).ToList<ShipData>())
             {
                 this.gclass92_0.method_2(EventType.const_181,
-                    gclass40.ShipName +
-                    " has an active target that cannot be attacked. It may be an invalid target or out of range of the assigned fire control or weapons",
+                    $"{gclass40.ShipName} has an active target that cannot be attacked. It may be an invalid target or out of range of the assigned fire control or weapons",
                     gclass40.gclass21_0, gclass40.gclass85_0.System.ActualSystem, gclass40.gclass85_0.XCoord,
                     gclass40.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 gclass40.bool_6 = false;
@@ -1132,7 +1131,7 @@ public partial class GClass0
                                 // ISSUE: reference to a compiler-generated field
                                 num2 = class48.gclass37_0.int_1 / class48.gclass37_0.gclass129_0.MultipleWarheads;
                                 // ISSUE: reference to a compiler-generated field
-                                str = "    Warheads " + class48.gclass37_0.int_1.ToString();
+                                str = $"    Warheads {class48.gclass37_0.int_1}";
                             }
 
                             // ISSUE: reference to a compiler-generated field
@@ -1943,8 +1942,7 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated field
                                             string str = class50.gclass193_0.int_1 <= 0
                                                 ? "    Shipyard Destroyed"
-                                                : "    Slipways Destroyed: " +
-                                                  (int1 - class50.gclass193_0.int_1).ToString();
+                                                : $"    Slipways Destroyed: {(int1 - class50.gclass193_0.int_1)}";
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             if (class48.gclass37_0.gclass21_0 != null &&
@@ -3026,7 +3024,7 @@ public partial class GClass0
             {
                 if (gclass40_1.gclass21_0.NPR)
                     gclass40_1.gclass85_0.NPRSomething.method_3();
-                string str6 = gclass40_1.method_187() + " Damage Report:";
+                string str6 = $"{gclass40_1.method_187()} Damage Report:";
                 string str7 = "";
                 if (gclass40_1.int_3 > 0)
                 {
@@ -3145,7 +3143,7 @@ public partial class GClass0
                         string_0_1 += "  (Detached from parent fleet due to damage)";
                 }
                 else
-                    string_0_1 = str6 + "   Ship Destroyed";
+                    string_0_1 = $"{str6}   Ship Destroyed";
 
                 this.gclass92_0.method_2(EventType.const_21, string_0_1, gclass40_1.gclass21_0,
                     gclass40_1.gclass85_0.System.ActualSystem, gclass40_1.gclass85_0.XCoord,
@@ -3200,8 +3198,7 @@ public partial class GClass0
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             this.gclass92_0.method_2(EventType.const_72,
-                                class56.gclass40_0.ShipName +
-                                " is waiting for other ships in the same fleet to confirm their readiness before firing.",
+                                $"{class56.gclass40_0.ShipName} is waiting for other ships in the same fleet to confirm their readiness before firing.",
                                 class56.gclass40_0.gclass21_0, class56.gclass40_0.gclass85_0.System.ActualSystem,
                                 class56.gclass40_0.gclass85_0.XCoord, class56.gclass40_0.gclass85_0.YCoord,
                                 AuroraEventCategory.Ship);
@@ -3301,7 +3298,7 @@ public partial class GClass0
                                                 class56.gclass40_0.gclass85_0.YCoord, gclass132_0.double_0,
                                                 gclass132_0.double_1);
                                             double_5 = gclass132_0.double_9;
-                                            string_10 = "Salvo ID" + gclass132_0.int_1.ToString();
+                                            string_10 = $"Salvo ID{gclass132_0.int_1}";
                                             gclass21_3 = gclass132_0.Race;
                                             double_8 = gclass132_0.double_0;
                                             double_9 = gclass132_0.double_1;
@@ -3444,8 +3441,7 @@ public partial class GClass0
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         this.gclass92_0.method_2(EventType.const_72,
-                            class56.gclass40_0.ShipName +
-                            " held fire with one or more weapons that were in range as the chance to hit was zero",
+                            $"{class56.gclass40_0.ShipName} held fire with one or more weapons that were in range as the chance to hit was zero",
                             class56.gclass40_0.gclass21_0, class56.gclass40_0.gclass85_0.System.ActualSystem,
                             class56.gclass40_0.gclass85_0.XCoord, class56.gclass40_0.gclass85_0.YCoord,
                             AuroraEventCategory.Ship);
@@ -3495,8 +3491,7 @@ public partial class GClass0
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 this.gclass92_0.method_2(EventType.const_72,
-                                    class58.gclass40_0.ShipName +
-                                    " is waiting for other ships in the same fleet to confirm their readiness before firing.",
+                                    $"{class58.gclass40_0.ShipName} is waiting for other ships in the same fleet to confirm their readiness before firing.",
                                     class58.gclass40_0.gclass21_0,
                                     class58.gclass40_0.gclass85_0.System.ActualSystem,
                                     class58.gclass40_0.gclass85_0.XCoord, class58.gclass40_0.gclass85_0.YCoord,
@@ -3612,7 +3607,7 @@ public partial class GClass0
                                                 continue;
                                             }
 
-                                            string_10 = "Salvo ID" + gclass132.int_1.ToString();
+                                            string_10 = $"Salvo ID{gclass132.int_1}";
                                             double_6 = gclass132.double_9;
                                             gclass21_3 = gclass132.Race;
                                         }
@@ -4079,8 +4074,7 @@ public partial class GClass0
                                                                                 class66.gclass36_0.TargetID,
                                                                                 class67.gclass31_0.WeaponComponent.int_7, 0,
                                                                                 0, 0, 0, 0M, 0M, double_8, double_9,
-                                                                                "Salvo ID " +
-                                                                                gclass132_0.int_1.ToString(),
+                                                                                $"Salvo ID {gclass132_0.int_1}",
                                                                                 gclass132_0.Race, true, false,
                                                                                 false, false, false, GEnum62.const_0);
                                                                             --num1;
@@ -4232,9 +4226,8 @@ public partial class GClass0
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         gclass65_2.ContactName = !bool_25
-                            ? "Nuclear Detonation: Strength " + AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)
-                            : "Surface Nuclear Detonation: Strength " +
-                              AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3);
+                            ? $"Nuclear Detonation: Strength {AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)}"
+                            : $"Surface Nuclear Detonation: Strength {AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)}";
                     }
                     else
                     {
@@ -4244,8 +4237,8 @@ public partial class GClass0
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            gclass65_2.ContactName = "Secondary Power System Explosion: Strength " +
-                                                  AuroraUtils.smethod_39(class70.class69_0.decimal_0);
+                            gclass65_2.ContactName =
+                                $"Secondary Power System Explosion: Strength {AuroraUtils.smethod_39(class70.class69_0.decimal_0)}";
                         }
                         else
                         {
@@ -4255,8 +4248,8 @@ public partial class GClass0
                             {
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
-                                gclass65_2.ContactName = "Secondary Magazine Explosion: Strength " +
-                                                      AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3);
+                                gclass65_2.ContactName =
+                                    $"Secondary Magazine Explosion: Strength {AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)}";
                             }
                             else
                             {
@@ -4269,10 +4262,8 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     gclass65_2.ContactName = !bool_25
-                                        ? "Energy Weapon Impact: Strength " +
-                                          AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)
-                                        : "Surface Energy Weapon Impact: Strength " +
-                                          AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3);
+                                        ? $"Energy Weapon Impact: Strength {AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)}"
+                                        : $"Surface Energy Weapon Impact: Strength {AuroraUtils.FormatNumberToDigits(class70.class69_0.decimal_0, 3)}";
                                 }
                             }
                         }
@@ -5249,7 +5240,7 @@ public partial class GClass0
                                 this.method_1(gclass31.Ship.gclass21_0, gclass31.Ship, gclass31.WeaponComponent,
                                     null, null, AuroraContactType.Salvo, gclass132.int_1, 1, 0, 0, 0, 1, decimal_13, 0M,
                                     gclass31.double_0, gclass31.double_1 / 100.0,
-                                    "Salvo ID " + gclass132.int_1.ToString(), gclass132.Race, false, true, false,
+                                    $"Salvo ID {gclass132.int_1}", gclass132.Race, false, true, false,
                                     false, false, GEnum62.const_0);
                             else if (AuroraUtils.GetRandomInteger(10000) <= gclass31.double_1)
                             {
@@ -5267,7 +5258,7 @@ public partial class GClass0
                                         this.method_1(gclass31.Ship.gclass21_0, gclass31.Ship,
                                             gclass31.WeaponComponent, null, null, AuroraContactType.Salvo, gclass132.int_1,
                                             1, 0, 1, 0, 0, decimal_13, 0M, gclass31.double_0, gclass31.double_1 / 100.0,
-                                            "Salvo ID " + gclass132.int_1.ToString(), gclass132.Race, false, true,
+                                            $"Salvo ID {gclass132.int_1}", gclass132.Race, false, true,
                                             false, false, false, GEnum62.const_0);
                                     }
                                 }
@@ -5289,7 +5280,7 @@ public partial class GClass0
                                     this.method_1(gclass31.Ship.gclass21_0, gclass31.Ship,
                                         gclass31.WeaponComponent, null, null, AuroraContactType.Salvo, gclass132.int_1, 1,
                                         1, 0, 1, 0, decimal_13, 0M, gclass31.double_0, gclass31.double_1 / 100.0,
-                                        "Salvo ID " + gclass132.int_1.ToString(), gclass132.Race, false, true,
+                                        $"Salvo ID {gclass132.int_1}", gclass132.Race, false, true,
                                         false, false, false, GEnum62.const_0);
                                     gclass31.Ship.method_72(AuroraMeasurementType.HostileOrdnanceDestroyed, 1M);
                                 }
@@ -5298,7 +5289,7 @@ public partial class GClass0
                                 this.method_1(gclass31.Ship.gclass21_0, gclass31.Ship, gclass31.WeaponComponent,
                                     null, null, AuroraContactType.Salvo, gclass132.int_1, 1, 0, 0, 0, 0, decimal_13, 0M,
                                     gclass31.double_0, gclass31.double_1 / 100.0,
-                                    "Salvo ID " + gclass132.int_1.ToString(), gclass132.Race, false, true, false,
+                                    $"Salvo ID {gclass132.int_1}", gclass132.Race, false, true, false,
                                     false, false, GEnum62.const_0);
                         }
 
@@ -5314,7 +5305,7 @@ public partial class GClass0
                                     this.method_1(gclass34.gclass39_0.Formation.RaceData, null,
                                         gclass34.gclass230_0, null, gclass34.gclass39_0, AuroraContactType.Salvo,
                                         gclass132.int_1, 1, 0, 0, 0, 1, decimal_13, 0M, gclass34.double_0,
-                                        gclass34.double_1 / 100.0, "Salvo ID " + gclass132.int_1.ToString(),
+                                        gclass34.double_1 / 100.0, $"Salvo ID {gclass132.int_1}",
                                         gclass132.Race, false, true, false, false, false, GEnum62.const_0);
                                 else if (AuroraUtils.GetRandomInteger(10000) <= gclass34.double_1)
                                 {
@@ -5334,7 +5325,7 @@ public partial class GClass0
                                                 gclass34.gclass230_0, null, gclass34.gclass39_0,
                                                 AuroraContactType.Salvo, gclass132.int_1, 1, 0, 1, 0, 0, decimal_13, 0M,
                                                 gclass34.double_0, gclass34.double_1 / 100.0,
-                                                "Salvo ID " + gclass132.int_1.ToString(), gclass132.Race, false,
+                                                $"Salvo ID {gclass132.int_1}", gclass132.Race, false,
                                                 true, false, false, false, GEnum62.const_0);
                                         }
                                     }
@@ -5347,7 +5338,7 @@ public partial class GClass0
                                         this.method_1(gclass34.gclass39_0.Formation.RaceData, null,
                                             gclass34.gclass230_0, null, gclass34.gclass39_0, AuroraContactType.Salvo,
                                             gclass132.int_1, 1, 1, 0, 1, 0, decimal_13, 0M, gclass34.double_0,
-                                            gclass34.double_1 / 100.0, "Salvo ID " + gclass132.int_1.ToString(),
+                                            gclass34.double_1 / 100.0, $"Salvo ID {gclass132.int_1}",
                                             gclass132.Race, false, true, false, false, false, GEnum62.const_0);
                                         this.method_19(AuroraContactType.EWImpact, decimal_13, 1,
                                             gclass34.gclass39_0.Formation.PopulationData.gclass202_0.ActualSystem,
@@ -5358,7 +5349,7 @@ public partial class GClass0
                                     this.method_1(gclass34.gclass39_0.Formation.RaceData, null,
                                         gclass34.gclass230_0, null, gclass34.gclass39_0, AuroraContactType.Salvo,
                                         gclass132.int_1, 1, 0, 0, 0, 0, decimal_13, 0M, gclass34.double_0,
-                                        gclass34.double_1 / 100.0, "Salvo ID " + gclass132.int_1.ToString(),
+                                        gclass34.double_1 / 100.0, $"Salvo ID {gclass132.int_1}",
                                         gclass132.Race, false, true, false, false, false, GEnum62.const_0);
                             }
 
@@ -5465,7 +5456,7 @@ public partial class GClass0
                                     gclass33.gclass132_0.RaceMissile, null, AuroraContactType.Salvo,
                                     gclass33.gclass132_0.int_0, gclass33.gclass132_0.RaceMissile.MultipleWarheads, 0, 0, 0, 0,
                                     decimal_13, 0M, 0.0, gclass33.double_0 / 100.0,
-                                    "Salvo ID" + class21.gclass132_0.int_1.ToString(), class21.gclass132_0.Race,
+                                    $"Salvo ID{class21.gclass132_0.int_1}", class21.gclass132_0.Race,
                                     false, true, false, false, false, GEnum62.const_0);
                             }
                             else
@@ -5510,7 +5501,7 @@ public partial class GClass0
                                                     gclass33.gclass132_0.RaceMissile, null, AuroraContactType.Salvo,
                                                     gclass33.gclass132_0.int_0, int_137, 0, 1, 0, 0, decimal_13, 0M,
                                                     0.0, gclass33.double_0 / 100.0,
-                                                    "Salvo ID" + class21.gclass132_0.int_1.ToString(),
+                                                    $"Salvo ID{class21.gclass132_0.int_1}",
                                                     class21.gclass132_0.Race, false, true, false, false, false,
                                                     GEnum62.const_0);
                                             }
@@ -5550,7 +5541,7 @@ public partial class GClass0
                                                     gclass33.gclass132_0.RaceMissile, null, AuroraContactType.Salvo,
                                                     gclass33.gclass132_0.int_0, int_137, 1, 0, 0, 0, decimal_13, 0M,
                                                     0.0, gclass33.double_0 / 100.0,
-                                                    "Salvo ID" + class21.gclass132_0.int_1.ToString(),
+                                                    $"Salvo ID{class21.gclass132_0.int_1}",
                                                     class21.gclass132_0.Race, false, true, false, false, false,
                                                     GEnum62.const_0);
                                             }
@@ -5565,7 +5556,7 @@ public partial class GClass0
                                                     gclass33.gclass132_0.RaceMissile, null, AuroraContactType.Salvo,
                                                     gclass33.gclass132_0.int_0, int_137, 1, 0, 1, 0, decimal_13, 0M,
                                                     0.0, gclass33.double_0 / 100.0,
-                                                    "Salvo ID" + class21.gclass132_0.int_1.ToString(),
+                                                    $"Salvo ID{class21.gclass132_0.int_1}",
                                                     class21.gclass132_0.Race, false, true, false, false, false,
                                                     GEnum62.const_0);
                                                 if (gclass33.gclass132_0.Ship != null)
@@ -5587,7 +5578,7 @@ public partial class GClass0
                                             null, gclass33.gclass132_0.RaceMissile, null, AuroraContactType.Salvo,
                                             gclass33.gclass132_0.int_0, int_137, 0, 0, 0, 0, decimal_13, 0M, 0.0,
                                             gclass33.double_0 / 100.0,
-                                            "Salvo ID" + class21.gclass132_0.int_1.ToString(),
+                                            $"Salvo ID{class21.gclass132_0.int_1}",
                                             class21.gclass132_0.Race, false, true, false, false, false,
                                             GEnum62.const_0);
                                     }
@@ -5716,7 +5707,7 @@ public partial class GClass0
                     this.method_1(gclass132_0.gclass40_1.gclass21_0, gclass132_0.gclass40_1,
                         class26.gclass228_0.gclass230_0, null, null, AuroraContactType.Salvo, gclass132_0.int_1,
                         (int)class26.gclass228_0.gclass230_0.decimal_3, num4, int_139, num4, 0, 1M, 0M, 0.0,
-                        num3 / 100.0, "Salvo ID " + gclass132_0.int_1.ToString(), gclass132_0.Race, false, true,
+                        num3 / 100.0, $"Salvo ID {gclass132_0.int_1}", gclass132_0.Race, false, true,
                         false, false, false, GEnum62.const_0);
                     if (num4 > 0)
                     {
@@ -5909,7 +5900,7 @@ public partial class GClass0
                                                 class27.gclass85_0.System.ActualSystem, class27.gclass85_0.XCoord,
                                                 class27.gclass85_0.YCoord, AuroraEventCategory.Fleet);
                                             // ISSUE: reference to a compiler-generated field
-                                            class27.gclass85_0.method_170("Minerals discovered on " + str);
+                                            class27.gclass85_0.method_170($"Minerals discovered on {str}");
                                             if (AuroraUtils.GetRandomInteger(20) == 10)
                                             {
                                                 // ISSUE: reference to a compiler-generated field
@@ -6072,8 +6063,8 @@ public partial class GClass0
                                         {
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
-                                            class27.gclass85_0.method_170("Jump Point discovered in " +
-                                                                          class27.gclass85_0.System.Name);
+                                            class27.gclass85_0.method_170(
+                                                $"Jump Point discovered in {class27.gclass85_0.System.Name}");
                                         }
 
                                         // ISSUE: reference to a compiler-generated field
@@ -6170,8 +6161,7 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             this.gclass92_0.method_2(EventType.const_27,
-                                                class27.gclass85_0.FleetName +
-                                                " cannot complete jump point stabilisation as there are no ships within the fleet that have stabilisation capability",
+                                                $"{class27.gclass85_0.FleetName} cannot complete jump point stabilisation as there are no ships within the fleet that have stabilisation capability",
                                                 class27.gclass85_0.Race,
                                                 class27.gclass85_0.System.ActualSystem, class27.gclass85_0.XCoord,
                                                 class27.gclass85_0.YCoord, AuroraEventCategory.Fleet);
@@ -6265,8 +6255,7 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             this.gclass92_0.method_2(EventType.const_27,
-                                                class27.gclass85_0.FleetName +
-                                                " cannot complete salvage as there are no ships within the fleet that have salvage capability",
+                                                $"{class27.gclass85_0.FleetName} cannot complete salvage as there are no ships within the fleet that have salvage capability",
                                                 class27.gclass85_0.Race,
                                                 class27.gclass85_0.System.ActualSystem, class27.gclass85_0.XCoord,
                                                 class27.gclass85_0.YCoord, AuroraEventCategory.Fleet);
@@ -6665,8 +6654,7 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             this.gclass92_0.method_2(EventType.const_27,
-                                                class27.gclass85_0.FleetName +
-                                                " cannot complete jump point stabilisation as there are no ships within the fleet that have stabilisation capability",
+                                                $"{class27.gclass85_0.FleetName} cannot complete jump point stabilisation as there are no ships within the fleet that have stabilisation capability",
                                                 class27.gclass85_0.Race,
                                                 class27.gclass85_0.System.ActualSystem, class27.gclass85_0.XCoord,
                                                 class27.gclass85_0.YCoord, AuroraEventCategory.Fleet);
@@ -6998,8 +6986,7 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         this.gclass92_0.method_2(EventType.const_44,
-                                            class27.gclass85_0.FleetName +
-                                            " cannot complete its current order due to a fuel shortage",
+                                            $"{class27.gclass85_0.FleetName} cannot complete its current order due to a fuel shortage",
                                             class27.gclass85_0.Race, class27.gclass85_0.System.ActualSystem,
                                             class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
                                             AuroraEventCategory.Fleet);
@@ -7286,8 +7273,7 @@ public partial class GClass0
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
                                                 this.gclass92_0.method_2(EventType.const_84,
-                                                    class27.gclass85_0.FleetName +
-                                                    " has an order to join with itself. While it would be entertaining to watch the attempt, this is not actually possible",
+                                                    $"{class27.gclass85_0.FleetName} has an order to join with itself. While it would be entertaining to watch the attempt, this is not actually possible",
                                                     class27.gclass85_0.Race,
                                                     class27.gclass85_0.System.ActualSystem,
                                                     class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
@@ -7413,8 +7399,7 @@ public partial class GClass0
                                                         // ISSUE: reference to a compiler-generated field
                                                         // ISSUE: reference to a compiler-generated field
                                                         this.gclass92_0.method_2(EventType.const_84,
-                                                            class27.gclass85_0.FleetName +
-                                                            " has an order to join a sub-fleet that no longer exists. Therefore, the fleet will join with the original parent fleet of the sub-fleet",
+                                                            $"{class27.gclass85_0.FleetName} has an order to join a sub-fleet that no longer exists. Therefore, the fleet will join with the original parent fleet of the sub-fleet",
                                                             class27.gclass85_0.Race,
                                                             class27.gclass85_0.System.ActualSystem,
                                                             class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
@@ -7577,8 +7562,7 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             this.gclass92_0.method_2(EventType.const_27,
-                                                class27.gclass85_0.FleetName +
-                                                " has carried out orders to divide into single ships",
+                                                $"{class27.gclass85_0.FleetName} has carried out orders to divide into single ships",
                                                 class27.gclass85_0.Race,
                                                 class27.gclass85_0.System.ActualSystem, class27.gclass85_0.XCoord,
                                                 class27.gclass85_0.YCoord, AuroraEventCategory.Fleet);
@@ -7626,8 +7610,7 @@ public partial class GClass0
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
                                                 this.gclass92_0.method_2(EventType.const_27,
-                                                    class27.gclass85_0.FleetName +
-                                                    " cannot stabilise a jump point as no ships within the fleet have stabilisation capability",
+                                                    $"{class27.gclass85_0.FleetName} cannot stabilise a jump point as no ships within the fleet have stabilisation capability",
                                                     class27.gclass85_0.Race,
                                                     class27.gclass85_0.System.ActualSystem,
                                                     class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
@@ -7723,8 +7706,7 @@ public partial class GClass0
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
                                                 this.gclass92_0.method_2(EventType.const_27,
-                                                    class27.gclass85_0.FleetName +
-                                                    " cannot salvage the target wreck as no ships within the fleet have salvage capability",
+                                                    $"{class27.gclass85_0.FleetName} cannot salvage the target wreck as no ships within the fleet have salvage capability",
                                                     class27.gclass85_0.Race,
                                                     class27.gclass85_0.System.ActualSystem,
                                                     class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
@@ -7766,8 +7748,7 @@ public partial class GClass0
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
                                                 this.gclass92_0.method_2(EventType.const_27,
-                                                    class27.gclass85_0.FleetName +
-                                                    " cannot salvage the target ship as no ships within the fleet have salvage capability",
+                                                    $"{class27.gclass85_0.FleetName} cannot salvage the target ship as no ships within the fleet have salvage capability",
                                                     class27.gclass85_0.Race,
                                                     class27.gclass85_0.System.ActualSystem,
                                                     class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
@@ -7958,8 +7939,7 @@ public partial class GClass0
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
                                                 this.gclass92_0.method_2(EventType.const_27,
-                                                    class27.gclass85_0.FleetName +
-                                                    " cannot stabilise a new lagrange point as no ships within the fleet have stabilisation capability",
+                                                    $"{class27.gclass85_0.FleetName} cannot stabilise a new lagrange point as no ships within the fleet have stabilisation capability",
                                                     class27.gclass85_0.Race,
                                                     class27.gclass85_0.System.ActualSystem,
                                                     class27.gclass85_0.XCoord, class27.gclass85_0.YCoord,
@@ -8370,8 +8350,7 @@ public partial class GClass0
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             this.gclass92_0.method_2(EventType.const_44,
-                                class32.gclass85_0.FleetName +
-                                " cannot complete its current order due to a fuel shortage",
+                                $"{class32.gclass85_0.FleetName} cannot complete its current order due to a fuel shortage",
                                 class32.gclass85_0.Race, class32.gclass85_0.System.ActualSystem,
                                 class32.gclass85_0.XCoord, class32.gclass85_0.YCoord, AuroraEventCategory.Fleet);
                         }

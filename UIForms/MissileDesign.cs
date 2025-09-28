@@ -573,7 +573,7 @@ public class MissileDesign : Form
                     ? $"{this.txtCompanyName.Text} {this.txtMissileName.Text}"
                     : this.txtMissileName.Text;
                 if (this.chkNoEngine.CheckState == CheckState.Unchecked)
-                    this.method_9(this.gclass0_0.gclass164_0.Name + " Engine");
+                    this.method_9($"{this.gclass0_0.gclass164_0.Name} Engine");
                 int num2 = this.gclass0_0.TechDataDictionary.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) +
                            1;
                 this.gclass0_0.gclass164_0.TechSystemID = num2;
@@ -610,7 +610,7 @@ public class MissileDesign : Form
                 ? $"{this.txtCompanyName.Text} {this.txtMissileName.Text}"
                 : this.txtMissileName.Text;
             if (this.chkNoEngine.CheckState == CheckState.Unchecked)
-                this.method_9(this.gclass0_0.gclass164_0.Name + " Engine");
+                this.method_9($"{this.gclass0_0.gclass164_0.Name} Engine");
             int num1 = this.gclass0_0.TechDataDictionary.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) + 1;
             if (num1 > this.gclass0_0.gclass164_0.TechSystemID)
             {

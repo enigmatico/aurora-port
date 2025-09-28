@@ -47,8 +47,8 @@ public class FCTMassDriverPacket126
                 graphics_0.FillEllipse(solidBrush, (float)x, (float)y, AuroraUtils.int_61, AuroraUtils.int_61);
             string str1 = "";
             if (gclass202_0.Race.chkMPC == CheckState.Checked)
-                str1 = "   " + this.MineralsValue.method_38();
-            string str2 = AuroraUtils.smethod_39(this.Speed) + " km/s";
+                str1 = $"   {this.MineralsValue.method_38()}";
+            string str2 = $"{AuroraUtils.smethod_39(this.Speed)} km/s";
             GClass221 gclass221_3 = new GClass221();
             gclass221_3.double_0 = x + AuroraUtils.int_61 + 5.0;
             gclass221_3.double_1 = y - 3.0 - int_1 * 15;

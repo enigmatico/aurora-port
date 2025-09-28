@@ -3294,7 +3294,7 @@ public class FleetWindow : Form
             {
                 tag.int_17 = 1;
                 this.cmdSyncFire.Text = "Sync Fire Off";
-                this.tvFleetList.SelectedNode.Text = tag.method_187() + "  (SF)";
+                this.tvFleetList.SelectedNode.Text = $"{tag.method_187()}  (SF)";
             }
             else
             {
@@ -6537,7 +6537,7 @@ public class FleetWindow : Form
                     source1 = tag.method_176().Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
                         .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
                         .ToList<ShipData>();
-                    gclass85_1 = this.gclass21_0.method_308(tag.FleetName + " Strikegroup", tag.ParentNavalCommand,
+                    gclass85_1 = this.gclass21_0.method_308($"{tag.FleetName} Strikegroup", tag.ParentNavalCommand,
                         tag.System, tag.XCoord, tag.YCoord, tag.OrbitingBody, OperationalGroupID.None);
                 }
                 else if (this.tvFleetList.SelectedNode.Tag is SubFleet)
@@ -6546,7 +6546,7 @@ public class FleetWindow : Form
                     source1 = tag.method_0().Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
                         .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
                         .ToList<ShipData>();
-                    gclass85_1 = this.gclass21_0.method_308(tag.SubFleetName + " Strikegroup", tag.ParentFleet.ParentNavalCommand,
+                    gclass85_1 = this.gclass21_0.method_308($"{tag.SubFleetName} Strikegroup", tag.ParentFleet.ParentNavalCommand,
                         tag.ParentFleet.System, tag.ParentFleet.XCoord, tag.ParentFleet.YCoord,
                         tag.ParentFleet.OrbitingBody, OperationalGroupID.None);
                 }
@@ -6554,7 +6554,7 @@ public class FleetWindow : Form
                 {
                     ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                     source1 = tag.method_205();
-                    gclass85_1 = this.gclass21_0.method_308(tag.ShipName + " Strikegroup", tag.gclass85_0.ParentNavalCommand,
+                    gclass85_1 = this.gclass21_0.method_308($"{tag.ShipName} Strikegroup", tag.gclass85_0.ParentNavalCommand,
                         tag.gclass85_0.System, tag.gclass85_0.XCoord, tag.gclass85_0.YCoord,
                         tag.gclass85_0.OrbitingBody, OperationalGroupID.None);
                 }

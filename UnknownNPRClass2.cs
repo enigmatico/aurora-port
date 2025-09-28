@@ -334,7 +334,7 @@ public partial class UnknownNPRClass2
                             // ISSUE: reference to a compiler-generated field
                             this.gclass21_0.method_188(class339.gclass200_0, class340.gclass1_0, null, WayPointType.POI,
                                 class340.gclass1_0.XCoordinate, class340.gclass1_0.YCoordinate,
-                                "POI - " + class340.gclass1_0.method_78(this.gclass21_0), 0);
+                                $"POI - {class340.gclass1_0.method_78(this.gclass21_0)}", 0);
                         }
                     }
 
@@ -360,7 +360,7 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated field
                                 this.gclass21_0.method_188(class339.gclass200_0, null, null, WayPointType.POI,
                                     class341.gclass213_0.XCoord, class341.gclass213_0.YCoord,
-                                    "POI #" + class341.gclass213_0.LocationNumber.ToString(), 0);
+                                    $"POI #{class341.gclass213_0.LocationNumber}", 0);
                             }
                         }
                     }
@@ -2088,7 +2088,7 @@ public partial class UnknownNPRClass2
                     gclass22_0.Race == this.gclass21_0 && gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmHiveVeryLarge);
             if (gclass22_1 == null)
                 return;
-            gclass40_0.method_204("Refit to " + gclass22_1.ClassName);
+            gclass40_0.method_204($"Refit to {gclass22_1.ClassName}");
             gclass40_0.method_199(gclass22_1, null);
             this.gclass0_0.gclass92_0.method_2(EventType.const_2,
                 $"{gclass40_0.ShipName} refitted to {gclass22_1.ClassName} class", gclass40_0.gclass21_0,
@@ -2856,7 +2856,7 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 if (class382.gclass85_0.method_237(class382.gclass85_0.System, GEnum109.const_41,
-                                        "Move To " + class382.class381_0.gclass17_0.gclass146_0.gclass202_0.Name, false,
+                                        $"Move To {class382.class381_0.gclass17_0.gclass146_0.gclass202_0.Name}", false,
                                         class382.class381_0.gclass17_0.gclass146_0.gclass202_0.ActualSystem.SystemID,
                                         false, false, false).gclass202_0 != null)
                                 {
@@ -2899,7 +2899,7 @@ public partial class UnknownNPRClass2
                                         gclass201.gclass202_0 = gclass85_0.System;
                                     else if (gclass85_0.Race.SpecialNPRID != SpecialNPRIDs.Eldar)
                                         gclass201 = gclass85_0.method_236(GEnum109.const_41,
-                                            "Move To " + gclass17_1.gclass146_0.gclass202_0.Name, false,
+                                            $"Move To {gclass17_1.gclass146_0.gclass202_0.Name}", false,
                                             gclass17_1.gclass146_0.gclass202_0.ActualSystem.SystemID, false);
                                     if (gclass201.gclass202_0 != null)
                                     {
@@ -2920,7 +2920,7 @@ public partial class UnknownNPRClass2
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             if (gclass85_0.method_237(gclass201.gclass202_0, GEnum109.const_41,
-                                                    "Move To " + class381.gclass17_0.gclass146_0.gclass202_0.Name,
+                                                    $"Move To {class381.gclass17_0.gclass146_0.gclass202_0.Name}",
                                                     false,
                                                     class381.gclass17_0.gclass146_0.gclass202_0.ActualSystem.SystemID,
                                                     false, false, false).gclass202_0 != null)
@@ -3348,7 +3348,7 @@ public partial class UnknownNPRClass2
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             FleetData gclass85_1 = this.gclass21_0.method_308(
-                                class393.gclass40_0.ShipName + " Strikegroup",
+                                $"{class393.gclass40_0.ShipName} Strikegroup",
                                 class393.gclass40_0.gclass85_0.ParentNavalCommand, class391.gclass85_0.System,
                                 class391.gclass85_0.XCoord, class391.gclass85_0.YCoord,
                                 class391.gclass85_0.OrbitingBody, class391.gclass85_0.NPROperationGroup.OperationalGroupId);
@@ -3435,14 +3435,14 @@ public partial class UnknownNPRClass2
                         {
                             FCTSquadronData70 gclass70_1 = new FCTSquadronData70(this.gclass0_0);
                             FCTSquadronData70 gclass70_2 = gclass40_3.ChildSquadronDictionary.Count <= 0
-                                ? gclass40_3.method_186(gclass40_3.ShipName + " strikegroup")
+                                ? gclass40_3.method_186($"{gclass40_3.ShipName} strikegroup")
                                 : gclass40_3.ChildSquadronDictionary[0];
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            FleetData gclass85_1 = this.gclass21_0.method_308(gclass40_3.ShipName + " Strikegroup",
+                            FleetData gclass85_1 = this.gclass21_0.method_308($"{gclass40_3.ShipName} Strikegroup",
                                 gclass40_3.gclass85_0.ParentNavalCommand, class391.gclass85_0.System,
                                 class391.gclass85_0.XCoord, class391.gclass85_0.YCoord,
                                 class391.gclass85_0.OrbitingBody, class391.gclass85_0.NPROperationGroup.OperationalGroupId);
@@ -3996,7 +3996,7 @@ public partial class UnknownNPRClass2
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            if (gclass85_2.method_236(GEnum109.const_41, "Move To " + class400.gclass202_0.Name, false,
+                            if (gclass85_2.method_236(GEnum109.const_41, $"Move To {class400.gclass202_0.Name}", false,
                                     class400.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                             {
                                 // ISSUE: reference to a compiler-generated field
@@ -4112,7 +4112,7 @@ public partial class UnknownNPRClass2
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        if (gclass85.method_236(GEnum109.const_41, "Move To " + class403.gclass202_0.Name, false,
+                        if (gclass85.method_236(GEnum109.const_41, $"Move To {class403.gclass202_0.Name}", false,
                                 class403.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                         {
                             gclass85.NPRSomething.bRedeployOrderGiven = true;
@@ -4161,7 +4161,7 @@ public partial class UnknownNPRClass2
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if (gclass85.method_236(GEnum109.const_41, "Move To " + class404.gclass202_0.Name, false,
+                if (gclass85.method_236(GEnum109.const_41, $"Move To {class404.gclass202_0.Name}", false,
                         class404.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                 {
                     gclass85.NPRSomething.bRedeployOrderGiven = true;
@@ -4307,7 +4307,7 @@ public partial class UnknownNPRClass2
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            if (gclass85_2.method_236(GEnum109.const_41, "Move To " + class406.gclass202_0.Name, false,
+                            if (gclass85_2.method_236(GEnum109.const_41, $"Move To {class406.gclass202_0.Name}", false,
                                     class406.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                             {
                                 // ISSUE: reference to a compiler-generated field

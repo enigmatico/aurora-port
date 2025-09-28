@@ -221,7 +221,7 @@ public class AddPlanet : Form
                                      .ThenBy<SystemBodyData, double>(gclass1_0 => gclass1_0.OrbitalDistance)
                                      .ToList<SystemBodyData>())
                         {
-                            gclass1_3.Name = "Asteroid #" + num2.ToString();
+                            gclass1_3.Name = $"Asteroid #{num2}";
                             gclass1_3.OrbitNumber = num2;
                             ++num2;
                         }

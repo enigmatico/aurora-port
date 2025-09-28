@@ -4319,7 +4319,7 @@ public partial class GameRace
 
         internal bool method_1(FleetData gclass85_0)
         {
-            return gclass85_0.FleetName == this.string_0 + " #" + this.int_0.ToString();
+            return gclass85_0.FleetName == $"{this.string_0} #{this.int_0}";
         }
     }
 

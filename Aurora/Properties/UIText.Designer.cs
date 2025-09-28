@@ -150,6 +150,15 @@ namespace Aurora {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Temperature.
+        /// </summary>
+        internal static string BaseTemperature {
+            get {
+                return ResourceManager.GetString("BaseTemperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Body Type.
         /// </summary>
         internal static string BodyType {
@@ -605,6 +614,15 @@ namespace Aurora {
         internal static string NameLiteral {
             get {
                 return ResourceManager.GetString("NameLiteral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
             }
         }
         

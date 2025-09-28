@@ -37,7 +37,7 @@ public class GClass64
             int num = this.string_0.IndexOf("]");
             return num == -1
                 ? $"{this.int_0.ToString()}x {this.string_0}"
-                : this.string_0.Insert(num + 3, this.int_0.ToString() + "x ");
+                : this.string_0.Insert(num + 3, $"{this.int_0}x ");
         }
         catch (Exception ex)
         {

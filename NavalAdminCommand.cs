@@ -97,7 +97,7 @@ public class NavalAdminCommand
                     gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Commander);
             }
 
-            gclass55_1_1.method_46("Assigned to " + AdminCommandName, GEnum28.const_1);
+            gclass55_1_1.method_46($"Assigned to {AdminCommandName}", GEnum28.const_1);
         }
         catch (Exception ex)
         {
@@ -163,8 +163,7 @@ public class NavalAdminCommand
             }
             else
                 this.gclass0_0.gclass92_0.method_2(EventType.const_154,
-                    this.AdminCommandName +
-                    " is currently ineffective due to the destruction of its current headquarters. No other headquarters facilities are currently available",
+                    $"{this.AdminCommandName} is currently ineffective due to the destruction of its current headquarters. No other headquarters facilities are currently available",
                     this.Race, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                     this.gclass146_0.method_88(), AuroraEventCategory.PopSummary);
         }

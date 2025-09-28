@@ -492,7 +492,7 @@ public class UnknownNPRFleetRelatedClass
                 return false;
             Waypoint gclass214_0 = this.Fleet.Race.method_188(this.Fleet.System.ActualSystem, null,
                 null, WayPointType.Temporary, gclass221.double_0, gclass221.double_1,
-                this.Fleet.FleetName + " Manoeuvre Point", 0);
+                $"{this.Fleet.FleetName} Manoeuvre Point", 0);
             this.Fleet.method_263();
             this.Fleet.method_217(gclass214_0, MoveActionType.MoveTo, this.Fleet.System);
             this.Fleet.NPRSomething.bRedeployOrderGiven = true;

@@ -83,7 +83,7 @@ public class GroundComponentTypeDefinition
     {
         try
         {
-            string str = this.GroundUnitComponentName + ":";
+            string str = $"{this.GroundUnitComponentName}:";
             if (this.Damage > 0M)
             {
                 str =

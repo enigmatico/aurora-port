@@ -50,19 +50,19 @@ public class GClass176
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200000;
                 gclass146_0.FuelStockpile += this.int_1;
-                this.string_0 = AuroraUtils.smethod_37(this.int_1) + " litres of fuel";
+                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} litres of fuel";
             }
             else if (this.genum39_0 == GEnum39.const_5)
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200;
                 gclass146_0.MaintenanceStockpile += this.int_1;
-                this.string_0 = AuroraUtils.smethod_37(this.int_1) + " maintenance supplies";
+                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} maintenance supplies";
             }
             else if (this.genum39_0 == GEnum39.const_4)
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200;
                 gclass146_0.Race.method_300(this.int_1, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_28]);
-                this.string_0 = AuroraUtils.smethod_37(this.int_1) + " wealth";
+                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} wealth";
             }
             else if (this.genum39_0 == GEnum39.const_6)
             {
@@ -82,7 +82,7 @@ public class GClass176
 
                 this.int_1 = AuroraUtils.smethod_22(50, 4);
                 gclass190.TradeBalance += this.int_1;
-                this.string_0 = AuroraUtils.smethod_37(this.int_1) + " alien artifacts";
+                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} alien artifacts";
             }
             else if (this.genum39_0 == GEnum39.const_2)
             {
@@ -101,7 +101,7 @@ public class GClass176
                 gclass146_0.method_65(this.auroraInstallationType_0, this.int_1);
                 this.string_0 = this.int_1 != 1
                     ? $"{this.int_1.ToString()} abandoned {AuroraUtils.smethod_11(AuroraUtils.smethod_82(this.auroraInstallationType_0))}"
-                    : "an abandoned " + AuroraUtils.smethod_82(this.auroraInstallationType_0);
+                    : $"an abandoned {AuroraUtils.smethod_82(this.auroraInstallationType_0)}";
                 if (this.auroraInstallationType_0 == AuroraInstallationType.SectorCommand)
                     gclass146_0.method_66();
                 if (AuroraUtils.GetRandomInteger(this.int_4) == 1)

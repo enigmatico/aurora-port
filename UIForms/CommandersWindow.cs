@@ -1313,7 +1313,7 @@ public class CommandersWindow : Form
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     this.gclass0_0.gclass92_0.method_2(EventType.const_193,
-                        class893.gclass55_0.string_0 + " restored to active service", class893.gclass55_0.gclass21_0,
+                        $"{class893.gclass55_0.string_0} restored to active service", class893.gclass55_0.gclass21_0,
                         null, 0.0, 0.0, AuroraEventCategory.Commander);
                     // ISSUE: reference to a compiler-generated field
                     if (class893.gclass55_0.auroraCommanderType_0 == AuroraCommanderType.Scientist)
@@ -1366,7 +1366,7 @@ public class CommandersWindow : Form
                     class893.gclass55_0.int_4 = num + 1;
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    class893.gclass55_0.method_46("Restored to " + class893.gclass55_0.gclass61_0.RankName,
+                    class893.gclass55_0.method_46($"Restored to {class893.gclass55_0.gclass61_0.RankName}",
                         GEnum28.const_0);
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field

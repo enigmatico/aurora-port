@@ -53,7 +53,7 @@ public class Contact
             {
                 if (this.gclass0_0.method_520(this.Xcor, gclass146.method_87(), this.Ycor,
                         gclass146.method_88()))
-                    return "Orbiting " + gclass146.PopName;
+                    return $"Orbiting {gclass146.PopName}";
             }
 
             foreach (JumpPoint gclass120 in this.System.method_27())
@@ -61,19 +61,19 @@ public class Contact
                 if (gclass120.RacialJumpPointSurveys.ContainsKey(this.DetectRace.RaceID) &&
                     gclass120.RacialJumpPointSurveys[this.DetectRace.RaceID].Charted == 1 &&
                     this.gclass0_0.method_520(this.Xcor, gclass120.XCoord, this.Ycor, gclass120.YCoord))
-                    return "Stationed at " + gclass120.method_8(gclass202_0);
+                    return $"Stationed at {gclass120.method_8(gclass202_0)}";
             }
 
             foreach (SurveyLocation gclass213 in this.System.SurveyLocationDictionary.Values)
             {
                 if (this.gclass0_0.method_520(this.Xcor, gclass213.XCoord, this.Ycor, gclass213.YCoord))
-                    return "Stationed at Survey Location #" + gclass213.LocationNumber.ToString();
+                    return $"Stationed at Survey Location #{gclass213.LocationNumber}";
             }
 
             foreach (SystemBodyData gclass1 in this.System.method_20())
             {
                 if (this.gclass0_0.method_520(this.Xcor, gclass1.XCoordinate, this.Ycor, gclass1.YCoordinate))
-                    return "Orbiting " + gclass1.method_78(this.DetectRace);
+                    return $"Orbiting {gclass1.method_78(this.DetectRace)}";
             }
 
             return this.System.method_22(this.Xcor, this.Ycor, gclass202_0);

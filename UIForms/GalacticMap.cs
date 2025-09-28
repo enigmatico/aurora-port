@@ -1636,7 +1636,7 @@ public class GalacticMap : Form
                 {
                     GClass69 gclass69 = new GClass69(local202, gclass85_1);
                     // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
-                    ToolStripMenuItem menuItem4 = new ToolStripMenuItem(gclass85_1.FleetName + " - Tactical", null, this.method_16);
+                    ToolStripMenuItem menuItem4 = new ToolStripMenuItem($"{gclass85_1.FleetName} - Tactical", null, this.method_16);
                     menuItem4.Tag = gclass69;
                     contextMenu.Items.Add(menuItem4);
                 }

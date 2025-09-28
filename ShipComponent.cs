@@ -92,11 +92,11 @@ public class ShipComponent
             if (this.genum86_0 == GEnum86.const_0)
                 this.DisplayName = this.Name;
             else if (this.genum86_0 == GEnum86.const_1)
-                this.DisplayName = this.Name + " (P)";
+                this.DisplayName = $"{this.Name} (P)";
             else if (this.genum86_0 == GEnum86.const_2)
-                this.DisplayName = this.Name + " (FP)";
+                this.DisplayName = $"{this.Name} (FP)";
             else if (this.genum86_0 == GEnum86.const_3)
-                this.DisplayName = this.Name + " (RP)";
+                this.DisplayName = $"{this.Name} (RP)";
             return this.DisplayName;
         }
         catch (Exception ex)
@@ -286,7 +286,7 @@ public class ShipComponent
                             str += " 0";
                     }
                     else
-                        str = !(decimal_73 >= index) ? str + " 0" : $"{str} {this.int_6.ToString()}";
+                        str = !(decimal_73 >= index) ? $"{str} 0" : $"{str} {this.int_6.ToString()}";
                 }
             }
         }
@@ -416,7 +416,7 @@ public class ShipComponent
                         $"{this.Name} ({decimal_19.ToString()})     Total Power Output {AuroraUtils.FormatNumberToDigits(this.decimal_3 * decimal_19, 1)}    Exp {this.decimal_11.ToString()}%{Environment.NewLine}";
                 case AuroraComponentType.BeamFireControl:
                     if (this.decimal_13 > 0M)
-                        str1 = "   ECCM-" + AuroraUtils.smethod_38(this.decimal_13);
+                        str1 = $"   ECCM-{AuroraUtils.smethod_38(this.decimal_13)}";
                     return
                         $"{this.Name} ({decimal_19.ToString()})     Max Range: {AuroraUtils.smethod_38(this.decimal_3)} km   TS: {this.int_3.ToString()} km/s{str1}{Environment.NewLine}";
                 case AuroraComponentType.MissileLauncher:
@@ -439,7 +439,7 @@ public class ShipComponent
                         $"{this.Name} ({decimal_19.ToString()})     GPS {Math.Ceiling(this.decimal_3 * this.decimal_6).ToString()}{str2}Resolution {this.decimal_6.ToString()}{Environment.NewLine}";
                 case AuroraComponentType.MissileFireControl:
                     if (this.decimal_13 > 0M)
-                        str1 = "   ECCM-" + AuroraUtils.smethod_38(this.decimal_13);
+                        str1 = $"   ECCM-{AuroraUtils.smethod_38(this.decimal_13)}";
                     return this.double_0 > 1000000.0
                         ? $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}"
                         : $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}";
@@ -534,8 +534,8 @@ public class ShipComponent
                 case AuroraComponentType.ActiveSearchSensors:
                 case AuroraComponentType.MissileFireControl:
                     string str4 = this.double_0 <= 1000000.0
-                        ? AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1) + "k km    "
-                        : AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1) + "m km    ";
+                        ? $"{AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    "
+                        : $"{AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    ";
                     if (this.decimal_6 == 1M)
                     {
                         double num2 = Math.Pow(AuroraUtils.double_20, 2.0) * this.double_0;
@@ -611,8 +611,8 @@ public class ShipComponent
         try
         {
             return double_2 > 1000000.0
-                ? AuroraUtils.FormatDoubleToPrecision(double_2 / 1000000.0, 1) + "m km"
-                : AuroraUtils.FormatDoubleToPrecision(double_2 / 1000.0, 1) + "k km";
+                ? $"{AuroraUtils.FormatDoubleToPrecision(double_2 / 1000000.0, 1)}m km"
+                : $"{AuroraUtils.FormatDoubleToPrecision(double_2 / 1000.0, 1)}k km";
         }
         catch (Exception ex)
         {

@@ -995,7 +995,7 @@ public class AllMineralsValue
             {
                 List<string> stringList2 = stringList1;
                 num = Math.Round(this.Duranium, 1);
-                string str = num.ToString() + "x Duranium";
+                string str = $"{num}x Duranium";
                 stringList2.Add(str);
             }
 
@@ -1003,7 +1003,7 @@ public class AllMineralsValue
             {
                 List<string> stringList3 = stringList1;
                 num = Math.Round(this.Neutronium, 1);
-                string str = num.ToString() + "x Neutronium";
+                string str = $"{num}x Neutronium";
                 stringList3.Add(str);
             }
 
@@ -1011,7 +1011,7 @@ public class AllMineralsValue
             {
                 List<string> stringList4 = stringList1;
                 num = Math.Round(this.Corbomite, 1);
-                string str = num.ToString() + "x Corbomite";
+                string str = $"{num}x Corbomite";
                 stringList4.Add(str);
             }
 
@@ -1019,7 +1019,7 @@ public class AllMineralsValue
             {
                 List<string> stringList5 = stringList1;
                 num = Math.Round(this.Tritanium, 1);
-                string str = num.ToString() + "x Tritanium";
+                string str = $"{num}x Tritanium";
                 stringList5.Add(str);
             }
 
@@ -1027,7 +1027,7 @@ public class AllMineralsValue
             {
                 List<string> stringList6 = stringList1;
                 num = Math.Round(this.Boronide, 1);
-                string str = num.ToString() + "x Boronide";
+                string str = $"{num}x Boronide";
                 stringList6.Add(str);
             }
 
@@ -1035,7 +1035,7 @@ public class AllMineralsValue
             {
                 List<string> stringList7 = stringList1;
                 num = Math.Round(this.Mercassium, 1);
-                string str = num.ToString() + "x Mercassium";
+                string str = $"{num}x Mercassium";
                 stringList7.Add(str);
             }
 
@@ -1043,7 +1043,7 @@ public class AllMineralsValue
             {
                 List<string> stringList8 = stringList1;
                 num = Math.Round(this.Vendarite, 1);
-                string str = num.ToString() + "x Vendarite";
+                string str = $"{num}x Vendarite";
                 stringList8.Add(str);
             }
 
@@ -1051,7 +1051,7 @@ public class AllMineralsValue
             {
                 List<string> stringList9 = stringList1;
                 num = Math.Round(this.Sorium, 1);
-                string str = num.ToString() + "x Sorium";
+                string str = $"{num}x Sorium";
                 stringList9.Add(str);
             }
 
@@ -1059,7 +1059,7 @@ public class AllMineralsValue
             {
                 List<string> stringList10 = stringList1;
                 num = Math.Round(this.Uridium, 1);
-                string str = num.ToString() + "x Uridium";
+                string str = $"{num}x Uridium";
                 stringList10.Add(str);
             }
 
@@ -1067,7 +1067,7 @@ public class AllMineralsValue
             {
                 List<string> stringList11 = stringList1;
                 num = Math.Round(this.Corundium, 1);
-                string str = num.ToString() + "x Corundium";
+                string str = $"{num}x Corundium";
                 stringList11.Add(str);
             }
 
@@ -1075,7 +1075,7 @@ public class AllMineralsValue
             {
                 List<string> stringList12 = stringList1;
                 num = Math.Round(this.Gallicite, 1);
-                string str = num.ToString() + "x Gallicite";
+                string str = $"{num}x Gallicite";
                 stringList12.Add(str);
             }
 

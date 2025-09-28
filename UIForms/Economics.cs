@@ -1605,14 +1605,13 @@ public class Economics : Form
                 return;
             if (this.gclass193_0.gclass40_1 != null)
             {
-                int num1 = (int)MessageBox.Show(this.gclass193_0.string_0 + " is ship-based and cannot be modified",
+                int num1 = (int)MessageBox.Show($"{this.gclass193_0.string_0} is ship-based and cannot be modified",
                     "Action Not Possible");
             }
             else
             {
                 if (this.gclass193_0.auroraShipyardUpgradeType_0 != AuroraShipyardUpgradeType.None && MessageBox.Show(
-                        this.gclass193_0.string_0 +
-                        " already has a task in progress. Are you sure you want to cancel the existing shipyard activity?",
+                        $"{this.gclass193_0.string_0} already has a task in progress. Are you sure you want to cancel the existing shipyard activity?",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 int int_25 = 0;
@@ -5701,7 +5700,8 @@ public class Economics : Form
                 this.gclass21_0.ShippingLineTax = gclass208.Value / 100M;
                 if (this.gclass21_0.ShippingLineTax < 0M)
                     this.gclass21_0.ShippingLineTax = 0M;
-                this.txtTaxRate.Text = AuroraUtils.FormatNumberToDigits(this.gclass21_0.ShippingLineTax * 100M, 2) + "%";
+                this.txtTaxRate.Text =
+                    $"{AuroraUtils.FormatNumberToDigits(this.gclass21_0.ShippingLineTax * 100M, 2)}%";
             }
         }
         catch (Exception ex)
@@ -6324,8 +6324,7 @@ public class Economics : Form
             else
             {
                 if (MessageBox.Show(
-                        "Are you sure you want to remove all items in the ground construction queue for " +
-                        this.gclass146_0.PopName, "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                        $"Are you sure you want to remove all items in the ground construction queue for {this.gclass146_0.PopName}", "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass146_0.list_0.Clear();
                 this.gclass146_0.method_121(this.lstvGroundUnitTraining);

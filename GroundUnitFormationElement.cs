@@ -1048,7 +1048,7 @@ public class GroundUnitFormationElement
             if (num4 > 0M)
                 string_20 = $"{string_20}LG{Math.Round(num4 / 1000M).ToString()}  ";
             if (this.GroundUnitClass.decimal_4 > 0M)
-                string_13 = AuroraUtils.smethod_37(this.CurrentSupply * 10) + "%";
+                string_13 = $"{AuroraUtils.smethod_37(this.CurrentSupply * 10)}%";
             this.gclass0_0.method_620(listView_0, this.GroundUnitClass.GroundUnitBaseTypeData.string_0, this.GroundUnitClass.ClassName,
                 AuroraUtils.smethod_37(this.UnitCount), string_13, AuroraUtils.smethod_38(this.Morale),
                 AuroraUtils.FormatNumberToDigits(this.FortificationLevel, 2),

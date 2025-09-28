@@ -293,18 +293,19 @@ public static class AuroraUtils
         try
         {
             if (double_32 < 6.67)
-                return AuroraUtils.smethod_43(double_32 * AuroraUtils.double_14 / 1000000.0) + " m";
+                return $"{AuroraUtils.smethod_43(double_32 * AuroraUtils.double_14 / 1000000.0)} m";
             if (double_32 < 33.33)
-                return AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000.0, 2) + " b";
+                return $"{AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000.0, 2)} b";
             if (double_32 < 666.67)
-                return AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000.0, 1) + " b";
+                return $"{AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000.0, 1)} b";
             if (double_32 < 6666.67)
-                return AuroraUtils.smethod_43(double_32 * AuroraUtils.double_14 / 1000000000.0) + " b";
+                return $"{AuroraUtils.smethod_43(double_32 * AuroraUtils.double_14 / 1000000000.0)} b";
             if (double_32 < 33333.0)
-                return AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000000.0, 2) + " t";
+                return
+                    $"{AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000000.0, 2)} t";
             return double_32 < 666666.0
-                ? AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000000.0, 1) + " t"
-                : AuroraUtils.smethod_43(double_32 * AuroraUtils.double_14 / 1000000000000.0) + " t";
+                ? $"{AuroraUtils.FormatDoubleToPrecision(double_32 * AuroraUtils.double_14 / 1000000000000.0, 1)} t"
+                : $"{AuroraUtils.smethod_43(double_32 * AuroraUtils.double_14 / 1000000000000.0)} t";
         }
         catch (Exception ex)
         {
@@ -414,10 +415,10 @@ public static class AuroraUtils
             if (decimal_73 < 10000M)
                 return AuroraUtils.smethod_47(decimal_73);
             if (decimal_73 < 1000000M)
-                return AuroraUtils.smethod_39(decimal_73 / 1000M) + "k";
+                return $"{AuroraUtils.smethod_39(decimal_73 / 1000M)}k";
             return decimal_73 < 10000000M
-                ? AuroraUtils.FormatNumberToDigits(decimal_73 / 1000000M, 1) + "m"
-                : AuroraUtils.smethod_39(decimal_73 / 1000000M) + "m";
+                ? $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 1000000M, 1)}m"
+                : $"{AuroraUtils.smethod_39(decimal_73 / 1000000M)}m";
         }
         catch (Exception ex)
         {
@@ -481,7 +482,7 @@ public static class AuroraUtils
             string str = "-";
             if (int_72 > 0)
                 str = int_72 >= 5000
-                    ? (int_72 >= 1000000 ? (int_72 / 1000000).ToString() + "M" : (int_72 / 1000).ToString())
+                    ? (int_72 >= 1000000 ? $"{(int_72 / 1000000)}M" : (int_72 / 1000).ToString())
                     : AuroraUtils.smethod_37(int_72);
             return str;
         }
@@ -683,7 +684,7 @@ public static class AuroraUtils
     {
         decimal_73 *= 100M;
         decimal_73 = Math.Round(decimal_73, int_72);
-        return decimal_73.ToString() + "%";
+        return $"{decimal_73}%";
     }
 
     public static string smethod_25(string string_2, int int_72) => string_2.Substring(0, int_72);
@@ -708,40 +709,40 @@ public static class AuroraUtils
     public static string smethod_30(Decimal decimal_73)
     {
         if (decimal_73 < 48M)
-            return AuroraUtils.FormatNumberToDigits(decimal_73, 1) + " Hours";
+            return $"{AuroraUtils.FormatNumberToDigits(decimal_73, 1)} Hours";
         return decimal_73 < 8760M
-            ? AuroraUtils.FormatNumberToDigits(decimal_73 / 24M, 1) + " Days"
-            : AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 1) + " Years";
+            ? $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 24M, 1)} Days"
+            : $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 1)} Years";
     }
 
     public static string smethod_31(double double_32)
     {
         if (double_32 < 48.0)
-            return AuroraUtils.FormatDoubleToPrecision(double_32, 1) + " Hours";
+            return $"{AuroraUtils.FormatDoubleToPrecision(double_32, 1)} Hours";
         return double_32 < 8760.0
-            ? AuroraUtils.FormatDoubleToPrecision(double_32 / 24.0, 1) + " Days"
-            : AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 1) + " Years";
+            ? $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 24.0, 1)} Days"
+            : $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 1)} Years";
     }
 
     public static string smethod_32(int int_72)
     {
-        return int_72 < 10 ? "0" + int_72.ToString() : int_72.ToString();
+        return int_72 < 10 ? $"0{int_72}" : int_72.ToString();
     }
 
     public static string smethod_33(int int_72)
     {
         if (int_72 < 10)
-            return "00" + int_72.ToString();
-        return int_72 < 100 ? "0" + int_72.ToString() : int_72.ToString();
+            return $"00{int_72}";
+        return int_72 < 100 ? $"0{int_72}" : int_72.ToString();
     }
 
     public static string smethod_34(int int_72)
     {
         if (int_72 < 10)
-            return "000" + int_72.ToString();
+            return $"000{int_72}";
         if (int_72 < 100)
-            return "00" + int_72.ToString();
-        return int_72 < 1000 ? "0" + int_72.ToString() : int_72.ToString();
+            return $"00{int_72}";
+        return int_72 < 1000 ? $"0{int_72}" : int_72.ToString();
     }
 
     public static Decimal smethod_35(Decimal decimal_73) => (Decimal)Math.Sqrt((double)decimal_73);
@@ -957,12 +958,12 @@ public static class AuroraUtils
                     ? (!(decimal_73 < 8760M)
                         ? (!(decimal_73 < 35000M)
                             ? (!(decimal_73 < 350000M)
-                                ? AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 0) + " years"
-                                : AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 1) + " years")
-                            : AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 2) + " years")
-                        : AuroraUtils.FormatNumberToDigits(decimal_73 / 24M, 0) + " days")
-                    : AuroraUtils.FormatNumberToDigits(decimal_73 / 24M, 1) + " days")
-                : AuroraUtils.FormatNumberToDigits(decimal_73, 1) + " hours";
+                                ? $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 0)} years"
+                                : $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 1)} years")
+                            : $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 8760M, 2)} years")
+                        : $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 24M, 0)} days")
+                    : $"{AuroraUtils.FormatNumberToDigits(decimal_73 / 24M, 1)} days")
+                : $"{AuroraUtils.FormatNumberToDigits(decimal_73, 1)} hours";
         }
         catch (Exception ex)
         {
@@ -980,12 +981,12 @@ public static class AuroraUtils
                     ? (double_32 >= 8760.0
                         ? (double_32 >= 35000.0
                             ? (double_32 >= 350000.0
-                                ? AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 0) + " years"
-                                : AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 1) + " years")
-                            : AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 2) + " years")
-                        : AuroraUtils.FormatDoubleToPrecision(double_32 / 24.0, 0) + " days")
-                    : AuroraUtils.FormatDoubleToPrecision(double_32 / 24.0, 1) + " days")
-                : AuroraUtils.FormatDoubleToPrecision(double_32, 1) + " hours";
+                                ? $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 0)} years"
+                                : $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 1)} years")
+                            : $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 8760.0, 2)} years")
+                        : $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 24.0, 0)} days")
+                    : $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 24.0, 1)} days")
+                : $"{AuroraUtils.FormatDoubleToPrecision(double_32, 1)} hours";
         }
         catch (Exception ex)
         {
@@ -1019,8 +1020,8 @@ public static class AuroraUtils
     public static string smethod_60(double double_32)
     {
         return double_32 >= 1000000000.0
-            ? AuroraUtils.smethod_46(double_32 / 1000000000.0, 2) + " b"
-            : AuroraUtils.FormatDoubleToPrecision(double_32 / 1000000.0, 0) + " m";
+            ? $"{AuroraUtils.smethod_46(double_32 / 1000000000.0, 2)} b"
+            : $"{AuroraUtils.FormatDoubleToPrecision(double_32 / 1000000.0, 0)} m";
     }
 
     public static string smethod_61(Decimal decimal_73, string string_2)
@@ -1138,32 +1139,32 @@ public static class AuroraUtils
         if (int_72 < 1)
             return string.Empty;
         if (int_72 >= 1000)
-            return "M" + AuroraUtils.smethod_79(int_72 - 1000);
+            return $"M{AuroraUtils.smethod_79(int_72 - 1000)}";
         if (int_72 >= 900)
-            return "CM" + AuroraUtils.smethod_79(int_72 - 900);
+            return $"CM{AuroraUtils.smethod_79(int_72 - 900)}";
         if (int_72 >= 500)
-            return "D" + AuroraUtils.smethod_79(int_72 - 500);
+            return $"D{AuroraUtils.smethod_79(int_72 - 500)}";
         if (int_72 >= 400)
-            return "CD" + AuroraUtils.smethod_79(int_72 - 400);
+            return $"CD{AuroraUtils.smethod_79(int_72 - 400)}";
         if (int_72 >= 100)
-            return "C" + AuroraUtils.smethod_79(int_72 - 100);
+            return $"C{AuroraUtils.smethod_79(int_72 - 100)}";
         if (int_72 >= 90)
-            return "XC" + AuroraUtils.smethod_79(int_72 - 90);
+            return $"XC{AuroraUtils.smethod_79(int_72 - 90)}";
         if (int_72 >= 50)
-            return "L" + AuroraUtils.smethod_79(int_72 - 50);
+            return $"L{AuroraUtils.smethod_79(int_72 - 50)}";
         if (int_72 >= 40)
-            return "XL" + AuroraUtils.smethod_79(int_72 - 40);
+            return $"XL{AuroraUtils.smethod_79(int_72 - 40)}";
         if (int_72 >= 10)
-            return "X" + AuroraUtils.smethod_79(int_72 - 10);
+            return $"X{AuroraUtils.smethod_79(int_72 - 10)}";
         if (int_72 >= 9)
-            return "IX" + AuroraUtils.smethod_79(int_72 - 9);
+            return $"IX{AuroraUtils.smethod_79(int_72 - 9)}";
         if (int_72 >= 5)
-            return "V" + AuroraUtils.smethod_79(int_72 - 5);
+            return $"V{AuroraUtils.smethod_79(int_72 - 5)}";
         if (int_72 >= 4)
-            return "IV" + AuroraUtils.smethod_79(int_72 - 4);
+            return $"IV{AuroraUtils.smethod_79(int_72 - 4)}";
         if (int_72 < 1)
             throw new ArgumentOutOfRangeException("Value must be between 1 and 3999");
-        return "I" + AuroraUtils.smethod_79(int_72 - 1);
+        return $"I{AuroraUtils.smethod_79(int_72 - 1)}";
     }
 
     public static string smethod_80(int int_72)
@@ -1175,18 +1176,18 @@ public static class AuroraUtils
             case 11:
             case 12:
             case 13:
-                return int_72.ToString() + "th";
+                return $"{int_72}th";
             default:
                 switch (int_72 % 10)
                 {
                     case 1:
-                        return int_72.ToString() + "st";
+                        return $"{int_72}st";
                     case 2:
-                        return int_72.ToString() + "nd";
+                        return $"{int_72}nd";
                     case 3:
-                        return int_72.ToString() + "rd";
+                        return $"{int_72}rd";
                     default:
-                        return int_72.ToString() + "th";
+                        return $"{int_72}th";
                 }
         }
     }

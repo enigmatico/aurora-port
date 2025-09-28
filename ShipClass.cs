@@ -1523,7 +1523,7 @@ public partial class ShipClass
         {
             ShipClass gclass22_1 = new ShipClass(this.gclass0_0);
             ShipClass gclass22_2 = (ShipClass)this.MemberwiseClone();
-            string str = this.ClassName + " - Copy";
+            string str = $"{this.ClassName} - Copy";
             if (bool_11)
             {
                 GClass115 gclass115 = gclass21_1.method_118(this);
@@ -2287,18 +2287,18 @@ public partial class ShipClass
                     listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_1, 2).ToString());
                     listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_2, 2).ToString());
                     listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_3, 2).ToString());
-                    listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_0 / num2 * 100M, 1).ToString() +
-                                              "%");
-                    listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_1 / num1 * 100M, 1).ToString() +
-                                              "%");
+                    listViewItem.SubItems.Add(
+                        $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_0 / num2 * 100M, 1)}%");
+                    listViewItem.SubItems.Add(
+                        $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_1 / num1 * 100M, 1)}%");
                     if (num3 > 0M)
-                        listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_2 / num3 * 100M, 1)
-                            .ToString() + "%");
+                        listViewItem.SubItems.Add(
+                            $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_2 / num3 * 100M, 1)}%");
                     else
                         listViewItem.SubItems.Add("-");
                     if (num4 > 0M)
-                        listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_3 / num4 * 100M, 1)
-                            .ToString() + "%");
+                        listViewItem.SubItems.Add(
+                            $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_3 / num4 * 100M, 1)}%");
                     else
                         listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
@@ -2317,26 +2317,24 @@ public partial class ShipClass
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_2, 2).ToString());
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_3, 2).ToString());
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_5, 2).ToString());
-                listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_4 / num2 * 100M, 1).ToString() +
-                                          "%");
-                listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_2 / num1 * 100M, 1).ToString() +
-                                          "%");
+                listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_4 / num2 * 100M, 1)}%");
+                listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_2 / num1 * 100M, 1)}%");
                 if (num3 > 0M)
-                    listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_3 / num3 * 100M, 1).ToString() +
-                                              "%");
+                    listViewItem.SubItems.Add(
+                        $"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_3 / num3 * 100M, 1)}%");
                 else
                     listViewItem.SubItems.Add("-");
                 if (num4 > 0M)
-                    listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_5 / num4 * 100M, 1).ToString() +
-                                              "%");
+                    listViewItem.SubItems.Add(
+                        $"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_5 / num4 * 100M, 1)}%");
                 else
                     listViewItem.SubItems.Add("-");
                 if (gclass228.decimal_6 > 0M)
-                    listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_6 * 100M, 1).ToString() + "%");
+                    listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_6 * 100M, 1)}%");
                 else
                     listViewItem.SubItems.Add("-");
                 if (gclass228.decimal_7 > 0M)
-                    listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_7 * 100M, 1).ToString() + "%");
+                    listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_7 * 100M, 1)}%");
                 else
                     listViewItem.SubItems.Add("-");
                 listView_0.Items.Add(listViewItem);
@@ -2469,8 +2467,8 @@ public partial class ShipClass
                 if (class780.gclass228_0.decimal_6 > 0M)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    listViewItem2.SubItems.Add(AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_6 * 100M, 1)
-                        .ToString() + "%");
+                    listViewItem2.SubItems.Add(
+                        $"{AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_6 * 100M, 1)}%");
                 }
                 else
                     listViewItem2.SubItems.Add("-");
@@ -2479,8 +2477,8 @@ public partial class ShipClass
                 if (class780.gclass228_0.decimal_7 > 0M)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    listViewItem2.SubItems.Add(AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_7 * 100M, 1)
-                        .ToString() + "%");
+                    listViewItem2.SubItems.Add(
+                        $"{AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_7 * 100M, 1)}%");
                 }
                 else
                     listViewItem2.SubItems.Add("-");
@@ -2619,17 +2617,17 @@ public partial class ShipClass
                 listViewItem.SubItems.Add(gclass40.gclass85_0.System.Name);
                 listViewItem.SubItems.Add(this.gclass0_0.method_583((double)gclass40.decimal_1));
                 if (this.FuelCapacity > 0)
-                    listViewItem.SubItems.Add(AuroraUtils.smethod_39(gclass40.decimal_14 / this.FuelCapacity * 100M)
-                        .ToString() + "%");
+                    listViewItem.SubItems.Add(
+                        $"{AuroraUtils.smethod_39(gclass40.decimal_14 / this.FuelCapacity * 100M)}%");
                 else
                     listViewItem.SubItems.Add("N/A");
                 if (this.MagazineCapacity + this.DecoyCapacity > 0M)
-                    listViewItem.SubItems.Add(AuroraUtils.smethod_38(gclass40.method_212()).ToString() + "%");
+                    listViewItem.SubItems.Add($"{AuroraUtils.smethod_38(gclass40.method_212())}%");
                 else
                     listViewItem.SubItems.Add("N/A");
                 if (this.MaintSupplies > 0)
                     listViewItem.SubItems.Add(
-                        AuroraUtils.smethod_38(gclass40.decimal_4 / this.MaintSupplies * 100M).ToString() + "%");
+                        $"{AuroraUtils.smethod_38(gclass40.decimal_4 / this.MaintSupplies * 100M)}%");
                 else
                     listViewItem.SubItems.Add("NA");
                 listViewItem.SubItems.Add(AuroraUtils
@@ -2871,7 +2869,7 @@ public partial class ShipClass
                     AuroraComponentType.ColonistTransport && gclass228_0.gclass230_0.genum87_0 == GEnum87.const_7)
                 .Sum<GClass228>(gclass228_0 => gclass228_0.gclass230_0.decimal_3 * gclass228_0.decimal_0);
             this.gclass0_0.method_597(listView_0, "Crew Quarter Design Efficiency",
-                AuroraUtils.FormatNumberToDigits((1M - this.CrewDesignEfficiency) * 100M, 0) + "%");
+                $"{AuroraUtils.FormatNumberToDigits((1M - this.CrewDesignEfficiency) * 100M, 0)}%");
             this.gclass0_0.method_597(listView_0, "Crew Quarter Tons per Man", AuroraUtils.FormatNumberToDigits(decimal_73_1, 2));
             this.gclass0_0.method_597(listView_0, "Crew Capacity per Crew Quarter HS",
                 AuroraUtils.FormatNumberToDigits(decimal_73_2, 2));
@@ -3383,7 +3381,7 @@ public partial class ShipClass
                         this.MaintSupplies = num4 + num3;
                         if (this.Commercial && num1 > 0M)
                         {
-                            str19 = "MSP " + AuroraUtils.smethod_37(this.MaintSupplies);
+                            str19 = $"MSP {AuroraUtils.smethod_37(this.MaintSupplies)}";
                             continue;
                         }
 
@@ -3456,7 +3454,7 @@ public partial class ShipClass
                         this.MaintSupplies = num4 + num3;
                         if (this.Commercial && num1 > 0M)
                         {
-                            str19 = "MSP " + AuroraUtils.smethod_37(this.MaintSupplies);
+                            str19 = $"MSP {AuroraUtils.smethod_37(this.MaintSupplies)}";
                             continue;
                         }
 
@@ -3615,7 +3613,7 @@ public partial class ShipClass
             if (this.Race.BioShips)
             {
                 this.Crew = 0;
-                str20 = str16 + "Biological Organism - No Crew, Maintenance or Fuel Required    ";
+                str20 = $"{str16}Biological Organism - No Crew, Maintenance or Fuel Required    ";
             }
             else
                 str20 = !(this.PlannedDeployment >= 1M)
@@ -3745,7 +3743,7 @@ public partial class ShipClass
                 {
                     str25 += " (P)";
                     if (treeNode_0 != null)
-                        treeNode_0.Text = this.ClassName + " (P)";
+                        treeNode_0.Text = $"{this.ClassName} (P)";
                 }
                 else if (treeNode_0 != null)
                     treeNode_0.Text = this.ClassName;
@@ -3778,8 +3776,7 @@ public partial class ShipClass
                 $"{str27}HTK {this.int_26.ToString()}      Sensors {this.PassiveSensorStrength.ToString()}/{this.EMSensorStrength.ToString()}/{this.GravSurvey.ToString()}/{this.GeoSurvey.ToString()}";
             int num11 = this.method_27();
             string str29 =
-                $"{str28}      DCR {this.DCRating.ToString()}-{num11.ToString()}      PPV {AuroraUtils.FormatNumberToDigits(this.ProtectionValue, 2)}" +
-                Environment.NewLine;
+                $"{str28}      DCR {this.DCRating.ToString()}-{num11.ToString()}      PPV {AuroraUtils.FormatNumberToDigits(this.ProtectionValue, 2)}{Environment.NewLine}";
             if (this.Race.SpecialNPRID != SpecialNPRIDs.StarSwarm)
             {
                 if (this.Commercial)
@@ -3897,16 +3894,15 @@ public partial class ShipClass
             string str;
             if (this.Commercial)
             {
-                str = "This design is classed as a Commercial Vessel for maintenance purposes" + Environment.NewLine;
+                str = $"This design is classed as a Commercial Vessel for maintenance purposes{Environment.NewLine}";
                 if (this.NoArmour == 1)
                     str =
                         $"{str}This design is classed as a Space Station for construction purposes{Environment.NewLine}";
             }
             else
                 str = !this.FighterClass
-                    ? "This design is classed as a Military Vessel for maintenance purposes" + Environment.NewLine
-                    : "This design is classed as a Fighter for production, combat and planetary interaction" +
-                      Environment.NewLine;
+                    ? $"This design is classed as a Military Vessel for maintenance purposes{Environment.NewLine}"
+                    : $"This design is classed as a Fighter for production, combat and planetary interaction{Environment.NewLine}";
 
             return
                 $"{str}This design is classed as a {AuroraUtils.smethod_82(this.MainFunction)} for auto-assignment purposes{Environment.NewLine}";

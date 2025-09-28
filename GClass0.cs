@@ -628,7 +628,7 @@ public partial class GClass0
                                 if (gclass102_0 != null)
                                 {
                                     // ISSUE: reference to a compiler-generated field
-                                    class36.gclass21_0.method_158(gclass40_1.method_187() + " Warriors",
+                                    class36.gclass21_0.method_158($"{gclass40_1.method_187()} Warriors",
                                         gclass102_0.Abbreviation, gclass102_0, null, gclass40_1, gclass194_1, null, 0,
                                         AuroraGroundFormationFieldPosition.FrontlineDefence);
                                 }
@@ -1172,7 +1172,7 @@ public partial class GClass0
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         this.gclass92_0.method_2(EventType.const_153,
-                            "New Combat Contact:  " + class77.gclass65_0.method_4(), class77.gclass65_0.DetectRace,
+                            $"New Combat Contact:  {class77.gclass65_0.method_4()}", class77.gclass65_0.DetectRace,
                             class77.gclass65_0.System, class77.gclass65_0.Xcor, class77.gclass65_0.Ycor,
                             AuroraEventCategory.Combat);
                     }
@@ -1870,8 +1870,7 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             this.gclass92_0.method_2(EventType.const_82,
-                                                "New jump point detected in " + class81.gclass21_0
-                                                    .RacialSystemDictionary[gclass120.SystemData.SystemID].Name,
+                                                $"New jump point detected in {class81.gclass21_0.RacialSystemDictionary[gclass120.SystemData.SystemID].Name}",
                                                 class81.gclass21_0, gclass120.SystemData, gclass120.XCoord,
                                                 gclass120.YCoord, AuroraEventCategory.JumpPoint);
                                             break;
@@ -3688,7 +3687,7 @@ public partial class GClass0
                                 gclass55_1.method_46("Retired from Service", GEnum28.const_0);
                                 GClass55 gclass55_2 = gclass55_1;
                                 num8 = gclass55_1.int_9 + gclass55_1.gclass194_0.int_11;
-                                string string_4 = " retired from service at the age of " + num8.ToString();
+                                string string_4 = $" retired from service at the age of {num8}";
                                 gclass55_2.method_45(string_4);
                                 gclass55_1.method_42(AuroraRetirementStatus.RetiredCareer);
                             }
@@ -4555,7 +4554,7 @@ public partial class GClass0
             {
                 if (gclass40.decimal_14 == 0M)
                 {
-                    this.gclass92_0.method_2(EventType.const_42, gclass40.ShipName + " has run out of fuel",
+                    this.gclass92_0.method_2(EventType.const_42, $"{gclass40.ShipName} has run out of fuel",
                         gclass40.gclass21_0, gclass40.gclass85_0.System.ActualSystem, gclass40.gclass85_0.XCoord,
                         gclass40.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 }
@@ -4577,7 +4576,7 @@ public partial class GClass0
             {
                 if (gclass40.decimal_14 == 0M)
                 {
-                    this.gclass92_0.method_2(EventType.const_42, gclass40.ShipName + " has run out of fuel",
+                    this.gclass92_0.method_2(EventType.const_42, $"{gclass40.ShipName} has run out of fuel",
                         gclass40.gclass21_0, gclass40.gclass85_0.System.ActualSystem, gclass40.gclass85_0.XCoord,
                         gclass40.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 }
@@ -5391,7 +5390,7 @@ public partial class GClass0
                     PopulationData gclass146 = class120.gclass21_0.method_191();
                     // ISSUE: reference to a compiler-generated field
                     this.gclass92_0.method_2(EventType.const_115,
-                        "A new shipping line has been established:  " + gclass187.string_0, class120.gclass21_0,
+                        $"A new shipping line has been established:  {gclass187.string_0}", class120.gclass21_0,
                         gclass146.gclass202_0.ActualSystem, gclass146.method_87(), gclass146.method_88(),
                         AuroraEventCategory.All);
                 }
@@ -5557,14 +5556,14 @@ public partial class GClass0
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        class122.gclass21_0.method_157(gclass146.PopName + " Garrison", AutomatedGroundTemplateDesignType.Garrison, gclass146,
+                        class122.gclass21_0.method_157($"{gclass146.PopName} Garrison", AutomatedGroundTemplateDesignType.Garrison, gclass146,
                             class122.gclass21_0.method_164(), null, false, true);
                     }
                     else
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        class122.gclass21_0.method_157(gclass146.PopName + " Garrison", AutomatedGroundTemplateDesignType.CivilianGarrison, gclass146,
+                        class122.gclass21_0.method_157($"{gclass146.PopName} Garrison", AutomatedGroundTemplateDesignType.CivilianGarrison, gclass146,
                             class122.gclass21_0.method_164(), null, false, true);
                     }
 
@@ -6608,8 +6607,7 @@ public partial class GClass0
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             this.gclass92_0.method_2(EventType.const_43,
-                                "Deposits of Sorium have been exhausted on " +
-                                gclass1.method_78(class132.gclass40_0.gclass21_0), class132.gclass40_0.gclass21_0,
+                                $"Deposits of Sorium have been exhausted on {gclass1.method_78(class132.gclass40_0.gclass21_0)}", class132.gclass40_0.gclass21_0,
                                 gclass1.SystemData, gclass1.XCoordinate, gclass1.YCoordinate,
                                 AuroraEventCategory.PopMining);
                             gclass1.MineralDeposits.Remove(AuroraElement.Sorium);
@@ -6805,7 +6803,7 @@ public partial class GClass0
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         this.gclass92_0.method_2(EventType.const_59,
-                            gclass55.method_38() + " died due to expiry of his lifepod", class136.gclass59_0.gclass21_0,
+                            $"{gclass55.method_38()} died due to expiry of his lifepod", class136.gclass59_0.gclass21_0,
                             class136.gclass59_0.gclass200_0, class136.gclass59_0.double_0, class136.gclass59_0.double_1,
                             AuroraEventCategory.Fleet);
                         gclass55.method_46("Died when lifepod ran out of life support", GEnum28.const_0);
@@ -7190,8 +7188,7 @@ public partial class GClass0
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 this.gclass92_0.method_2(EventType.const_121,
-                                    "Our forces have successfully boarded and captured the alien ships " + gclass210
-                                        .dictionary_12.Values.FirstOrDefault(class141.method_6).method_11(),
+                                    $"Our forces have successfully boarded and captured the alien ships {gclass210.dictionary_12.Values.FirstOrDefault(class141.method_6).method_11()}",
                                     gclass210, class141.gclass40_0.gclass85_0.System.ActualSystem,
                                     class141.gclass40_0.gclass85_0.XCoord, class141.gclass40_0.gclass85_0.YCoord,
                                     AuroraEventCategory.Ship);
@@ -8051,8 +8048,7 @@ public partial class GClass0
                                 if (!(gclass103_2.method_38() * num9 * gclass103_2.decimal_21 < AuroraUtils.decimal_55))
                                 {
                                     this.gclass92_0.method_2(EventType.const_167,
-                                        gclass103_2.method_45() +
-                                        " has achieved a breakthough in ground combat and is pressing the attack",
+                                        $"{gclass103_2.method_45()} has achieved a breakthough in ground combat and is pressing the attack",
                                         gclass103_2.RaceData, gclass103_2.PopulationData.gclass202_0.ActualSystem,
                                         gclass103_2.PopulationData.method_87(), gclass103_2.PopulationData.method_88(),
                                         AuroraEventCategory.PopGroundUnits);
@@ -8180,7 +8176,7 @@ public partial class GClass0
                 foreach (GClass104 gclass104 in gclass39.dictionary_0.Values)
                 {
                     string str =
-                        $"{$"{$"{$"{"Attack Report vs " + gclass104.string_0}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
+                        $"{$"{$"{$"{$"Attack Report vs {gclass104.string_0}"}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
                     if (str != "")
                     {
                         if (gclass39.Formation.PopulationData != null)
@@ -8241,7 +8237,7 @@ public partial class GClass0
                 foreach (GClass104 gclass104 in gclass40.dictionary_4.Values)
                 {
                     string str =
-                        $"{$"{$"{$"{"Attack Report vs " + gclass104.string_0}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
+                        $"{$"{$"{$"{$"Attack Report vs {gclass104.string_0}"}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
                     if (str != "")
                         this.gclass92_0.method_2(EventType.const_173,
                             $"{gclass40.method_187()} ({gclass40.gclass22_0.ClassName}): {str}", gclass40.gclass21_0,
@@ -8291,7 +8287,7 @@ public partial class GClass0
                          .ThenBy(gclass104_0 => gclass104_0.gclass1_0.SystemBodyID).ToList())
             {
                 string string_0 =
-                    $"{$"{$"{$"{"Attack Report vs " + gclass104.string_0}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
+                    $"{$"{$"{$"{$"Attack Report vs {gclass104.string_0}"}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
                 if (string_0 != "")
                     this.gclass92_0.method_2(EventType.const_170, string_0, gclass104.gclass21_0,
                         gclass104.gclass1_0.SystemData, gclass104.gclass1_0.XCoordinate,
@@ -8327,7 +8323,7 @@ public partial class GClass0
                 }
 
                 string string_0 =
-                    $"{$"{$"{$"{"Orbital Support Report vs " + gclass104.string_0}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
+                    $"{$"{$"{$"{$"Orbital Support Report vs {gclass104.string_0}"}   Shots {gclass104.int_0.ToString()}"}   Hits {gclass104.int_1.ToString()}"}   Armour Penetrated {gclass104.int_2.ToString()}"}   Destroyed {gclass104.int_3.ToString()}";
                 if (string_0 != "")
                     this.gclass92_0.method_2(EventType.const_177, string_0, gclass104.gclass21_0, gclass200_0, double_0,
                         double_1, AuroraEventCategory.Intelligence);
@@ -9312,7 +9308,7 @@ public partial class GClass0
                         {
                             gclass40_0.genum29_0 = GEnum29.const_0;
                             this.gclass92_0.method_2(EventType.const_73,
-                                gclass40_0.method_187() + " has completed her overhaul", gclass40_0.gclass21_0,
+                                $"{gclass40_0.method_187()} has completed her overhaul", gclass40_0.gclass21_0,
                                 gclass40_0.gclass85_0.System.ActualSystem, gclass40_0.gclass85_0.XCoord,
                                 gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Ship);
                             gclass40_0.gclass85_0.method_161();
@@ -11272,7 +11268,7 @@ public partial class GClass0
                 label_6.Text = AuroraUtils.FormatNumberToDigits(this.gclass129_0.GeoStrength, 4);
                 label_7.Text = AuroraUtils.smethod_37(this.gclass129_0.ECCM);
                 label_8.Text = AuroraUtils.FormatNumberToDigits(decimal_73_2, 4);
-                label_9.Text = AuroraUtils.smethod_38((this.gclass129_0.ATG - 1M) * 100M) + "%";
+                label_9.Text = $"{AuroraUtils.smethod_38((this.gclass129_0.ATG - 1M) * 100M)}%";
             }
 
             this.gclass129_0.Size = this.gclass129_0.MSPReactor + this.gclass129_0.MSPWarhead +
@@ -11402,7 +11398,7 @@ public partial class GClass0
             Decimal num12 = this.method_445(this.gclass129_0.Cost * 5M);
             this.gclass129_0.Name = gclass21_2.MissileTheme.method_0(gclass21_2, GEnum21.const_5);
             if (this.gclass129_0.Name == "")
-                this.gclass129_0.Name = "Size " + Math.Round(this.gclass129_0.Size, 2).ToString();
+                this.gclass129_0.Name = $"Size {Math.Round(this.gclass129_0.Size, 2)}";
             this.gclass129_0.Name = checkState_3 != CheckState.Checked
                 ? (checkState_4 != CheckState.Checked
                     ? (checkState_5 != CheckState.Checked
@@ -11410,14 +11406,14 @@ public partial class GClass0
                             ? (this.gclass129_0.ShipDecoy != 1
                                 ? (!(this.gclass129_0.WarheadStrength == 0M)
                                     ? (!(this.gclass129_0.Size >= AuroraUtils.int_53)
-                                        ? this.gclass129_0.Name + " AMM"
-                                        : this.gclass129_0.Name + " Anti-Ship Missile")
-                                    : this.gclass129_0.Name + " Missile Stage")
-                                : this.gclass129_0.Name + " Ship Decoy")
-                            : this.gclass129_0.Name + " Buoy")
-                        : this.gclass129_0.Name + " Fighter Air-to-Air Pod")
-                    : this.gclass129_0.Name + " Fighter Autocannon Pod")
-                : this.gclass129_0.Name + " Fighter Bombardment Pod";
+                                        ? $"{this.gclass129_0.Name} AMM"
+                                        : $"{this.gclass129_0.Name} Anti-Ship Missile")
+                                    : $"{this.gclass129_0.Name} Missile Stage")
+                                : $"{this.gclass129_0.Name} Ship Decoy")
+                            : $"{this.gclass129_0.Name} Buoy")
+                        : $"{this.gclass129_0.Name} Fighter Air-to-Air Pod")
+                    : $"{this.gclass129_0.Name} Fighter Autocannon Pod")
+                : $"{this.gclass129_0.Name} Fighter Bombardment Pod";
             if (!bool_31)
             {
                 if (checkState_6 == CheckState.Unchecked)
@@ -11528,12 +11524,12 @@ public partial class GClass0
                 this.gclass230_1.gclass231_0.ComponentTypeID != AuroraComponentType.GaussCannon)
             {
                 this.gclass230_1.decimal_3 = this.gclass230_1.int_6;
-                str1 = AuroraUtils.smethod_38(this.gclass230_1.decimal_17 * gclass230_2.decimal_0) + " km";
+                str1 = $"{AuroraUtils.smethod_38(this.gclass230_1.decimal_17 * gclass230_2.decimal_0)} km";
             }
             else
             {
                 this.gclass230_1.decimal_3 = this.gclass230_1.decimal_17;
-                str1 = AuroraUtils.smethod_38(this.gclass230_1.decimal_17) + " km";
+                str1 = $"{AuroraUtils.smethod_38(this.gclass230_1.decimal_17)} km";
             }
 
             if (this.gclass230_1.decimal_0 > 0M)
@@ -11730,7 +11726,7 @@ public partial class GClass0
             double num7 = Math.Round(double_32 * num6, 3);
             int num8 = (int)Math.Round((gclass164_1.int_4 + gclass164_2.int_4 + gclass164_3.int_4 + gclass164_4.int_4) /
                                        10M);
-            string str1 = gclass194_1.SpeciesName + " 2.0";
+            string str1 = $"{gclass194_1.SpeciesName} 2.0";
             if (!bool_25 && textBox_0 != null)
             {
                 string str2 =
@@ -12308,7 +12304,7 @@ public partial class GClass0
             if (!bool_25 && textBox_0 != null)
             {
                 string str3 =
-                    $"{$"{$"{$"{$"{$"{$"{$"Engine Power {num2.ToString()}      Fuel Use Per Hour {Math.Round(num2 * d, 2).ToString()} Litres{Environment.NewLine}"}Fuel Consumption per Engine Power Hour {Math.Round(d, 3).ToString()} Litres {Environment.NewLine}"}Size {decimal_14.ToString()} HS  ({AuroraUtils.smethod_38(decimal_14 * AuroraUtils.decimal_17)} tons)      HTK {num7.ToString()}{Environment.NewLine}"}Thermal Signature {Math.Round(decimal0 * num2, 1).ToString()}      Explosion Chance {num5.ToString()}%      Max Explosion Size {num6.ToString()}{Environment.NewLine}"}Cost {decimal_13_1.ToString()}      Crew {num9.ToString()}{Environment.NewLine}" + str2 + Environment.NewLine}Development Cost {num8.ToString()} RP{Environment.NewLine}{Environment.NewLine}"}Materials Required{Environment.NewLine}"}Gallicite  {gclass123.Gallicite.ToString()}{Environment.NewLine}";
+                    $"{$"{$"{$"{$"{$"{$"{$"Engine Power {num2.ToString()}      Fuel Use Per Hour {Math.Round(num2 * d, 2).ToString()} Litres{Environment.NewLine}"}Fuel Consumption per Engine Power Hour {Math.Round(d, 3).ToString()} Litres {Environment.NewLine}"}Size {decimal_14.ToString()} HS  ({AuroraUtils.smethod_38(decimal_14 * AuroraUtils.decimal_17)} tons)      HTK {num7.ToString()}{Environment.NewLine}"}Thermal Signature {Math.Round(decimal0 * num2, 1).ToString()}      Explosion Chance {num5.ToString()}%      Max Explosion Size {num6.ToString()}{Environment.NewLine}"}Cost {decimal_13_1.ToString()}      Crew {num9.ToString()}{Environment.NewLine}{str2}{Environment.NewLine}"}Development Cost {num8.ToString()} RP{Environment.NewLine}{Environment.NewLine}"}Materials Required{Environment.NewLine}"}Gallicite  {gclass123.Gallicite.ToString()}{Environment.NewLine}";
                 textBox_1.Text = str1;
                 textBox_0.Text = str3;
             }
@@ -12594,7 +12590,7 @@ public partial class GClass0
             int num14 = this.method_445(decimal_13);
             int num15 = (int)Math.Ceiling(num10);
             int num16 = (int)AuroraUtils.smethod_35(num10);
-            string str1 = "CIWS-" + (decimal_73 / 100M).ToString();
+            string str1 = $"CIWS-{(decimal_73 / 100M)}";
             gclass123.Duranium = num9 * 5M;
             gclass123.Vendarite = gclass164_1.decimal_0 * 5M;
             gclass123.Uridium = num12;
@@ -13334,7 +13330,7 @@ public partial class GClass0
                 Math.Round(AuroraUtils.smethod_35(num1) * AuroraUtils.smethod_35(int_72 / 10000) * decimal0_1, 1);
             int num5 = (int)(num3 * 3M);
             int num6 = (int)Math.Floor((double)num3 / 2.0);
-            string str1 = "Particle Beam-" + num2.ToString();
+            string str1 = $"Particle Beam-{num2}";
             if (decimal0_2 == 1)
             {
                 num1 = (int)(num1 * 2.5M);
@@ -13346,7 +13342,7 @@ public partial class GClass0
                 decimal_13 *= 3M;
                 num5 *= 2;
                 num6 = (int)Math.Floor((double)num3 / 2.0);
-                str1 = "Particle Lance-" + num2.ToString();
+                str1 = $"Particle Lance-{num2}";
             }
 
             int num7 = this.method_445(decimal_13);
@@ -14060,7 +14056,7 @@ public partial class GClass0
             string str2 = "";
             if (bool_25)
             {
-                str1 = "Bio-Acid Cannon: Strength " + num1.ToString();
+                str1 = $"Bio-Acid Cannon: Strength {num1}";
                 str2 = $" (+{num1.ToString()} Acid vs Armour) ";
             }
 
@@ -14256,7 +14252,7 @@ public partial class GClass0
                 Decimal decimal_1_1 = 0.1M;
                 while (decimal_1_1 < 5M)
                 {
-                    GClass170 gclass170_2 = new GClass170("Miscellaneous Component Size: " + decimal_1_1.ToString(),
+                    GClass170 gclass170_2 = new GClass170($"Miscellaneous Component Size: {decimal_1_1}",
                         decimal_1_1);
                     gclass170List.Add(gclass170_2);
                     if (decimal_1_1 == 1M)
@@ -14267,7 +14263,7 @@ public partial class GClass0
                 Decimal decimal_1_2 = 5M;
                 while (decimal_1_2 < 101M)
                 {
-                    GClass170 gclass170_3 = new GClass170("Miscellaneous Component Size: " + decimal_1_2.ToString(),
+                    GClass170 gclass170_3 = new GClass170($"Miscellaneous Component Size: {decimal_1_2}",
                         decimal_1_2);
                     gclass170List.Add(gclass170_3);
                     if (decimal_1_2 == 1M)
@@ -14379,7 +14375,7 @@ public partial class GClass0
                 Decimal decimal_1_4 = 5M;
                 while (decimal_1_4 < 10M)
                 {
-                    GClass170 gclass170 = new GClass170("Pod Bay Size: " + decimal_1_4.ToString(), decimal_1_4);
+                    GClass170 gclass170 = new GClass170($"Pod Bay Size: {decimal_1_4}", decimal_1_4);
                     gclass170List.Add(gclass170);
                     decimal_1_4 += 0.25M;
                 }
@@ -14387,7 +14383,7 @@ public partial class GClass0
                 Decimal decimal_1_5 = 10M;
                 while (decimal_1_5 < 100M)
                 {
-                    GClass170 gclass170 = new GClass170("Pod Bay Size: " + decimal_1_5.ToString(), decimal_1_5);
+                    GClass170 gclass170 = new GClass170($"Pod Bay Size: {decimal_1_5}", decimal_1_5);
                     gclass170List.Add(gclass170);
                     ++decimal_1_5;
                 }
@@ -14503,7 +14499,7 @@ public partial class GClass0
                 Decimal decimal_1_9 = 0.1M;
                 while (decimal_1_9 < 2M)
                 {
-                    GClass170 gclass170_13 = new GClass170("Sensor Size: " + decimal_1_9.ToString(), decimal_1_9);
+                    GClass170 gclass170_13 = new GClass170($"Sensor Size: {decimal_1_9}", decimal_1_9);
                     gclass170List.Add(gclass170_13);
                     if (decimal_1_9 == 1M)
                         gclass170_12 = gclass170_13;
@@ -14513,7 +14509,7 @@ public partial class GClass0
                 Decimal decimal_1_10 = 2M;
                 while (decimal_1_10 < 5M)
                 {
-                    GClass170 gclass170_14 = new GClass170("Sensor Size: " + decimal_1_10.ToString(), decimal_1_10);
+                    GClass170 gclass170_14 = new GClass170($"Sensor Size: {decimal_1_10}", decimal_1_10);
                     gclass170List.Add(gclass170_14);
                     decimal_1_10 += 0.25M;
                 }
@@ -14521,7 +14517,7 @@ public partial class GClass0
                 Decimal decimal_1_11 = 5M;
                 while (decimal_1_11 < 51M)
                 {
-                    GClass170 gclass170_15 = new GClass170("Sensor Size: " + decimal_1_11.ToString(), decimal_1_11);
+                    GClass170 gclass170_15 = new GClass170($"Sensor Size: {decimal_1_11}", decimal_1_11);
                     gclass170List.Add(gclass170_15);
                     ++decimal_1_11;
                 }
@@ -14542,7 +14538,7 @@ public partial class GClass0
                 Decimal decimal_1 = num;
                 while (decimal_1 < 101M)
                 {
-                    GClass170 gclass170 = new GClass170("Cloaking Device Size: " + decimal_1.ToString(), decimal_1);
+                    GClass170 gclass170 = new GClass170($"Cloaking Device Size: {decimal_1}", decimal_1);
                     gclass170List.Add(gclass170);
                     ++decimal_1;
                 }
@@ -14557,7 +14553,7 @@ public partial class GClass0
                 Decimal decimal_1 = 4M;
                 while (decimal_1 > 0M)
                 {
-                    GClass170 gclass170 = new GClass170("Railgun Shots: " + decimal_1.ToString(), decimal_1);
+                    GClass170 gclass170 = new GClass170($"Railgun Shots: {decimal_1}", decimal_1);
                     gclass170List.Add(gclass170);
                     --decimal_1;
                 }
@@ -14571,7 +14567,7 @@ public partial class GClass0
                 Decimal decimal_1 = 0M;
                 while (decimal_1 < 11M)
                 {
-                    GClass170 gclass170 = new GClass170("Magazine Extra HTK + " + decimal_1.ToString(), decimal_1);
+                    GClass170 gclass170 = new GClass170($"Magazine Extra HTK + {decimal_1}", decimal_1);
                     gclass170List.Add(gclass170);
                     ++decimal_1;
                 }
@@ -14599,7 +14595,7 @@ public partial class GClass0
                 Decimal decimal_1_12 = 1M;
                 while (decimal_1_12 < 5M)
                 {
-                    GClass170 gclass170 = new GClass170("Launcher for Missile Size: " + decimal_1_12.ToString(),
+                    GClass170 gclass170 = new GClass170($"Launcher for Missile Size: {decimal_1_12}",
                         decimal_1_12);
                     gclass170List.Add(gclass170);
                     decimal_1_12 += 0.1M;
@@ -14608,7 +14604,7 @@ public partial class GClass0
                 Decimal decimal_1_13 = 5M;
                 while (decimal_1_13 < 10M)
                 {
-                    GClass170 gclass170 = new GClass170("Launcher for Missile Size: " + decimal_1_13.ToString(),
+                    GClass170 gclass170 = new GClass170($"Launcher for Missile Size: {decimal_1_13}",
                         decimal_1_13);
                     gclass170List.Add(gclass170);
                     decimal_1_13 += 0.25M;
@@ -14617,7 +14613,7 @@ public partial class GClass0
                 Decimal decimal_1_14 = 10M;
                 while (decimal_1_14 < 201M)
                 {
-                    GClass170 gclass170 = new GClass170("Launcher for Missile Size: " + decimal_1_14.ToString(),
+                    GClass170 gclass170 = new GClass170($"Launcher for Missile Size: {decimal_1_14}",
                         decimal_1_14);
                     gclass170List.Add(gclass170);
                     ++decimal_1_14;
@@ -14632,7 +14628,7 @@ public partial class GClass0
                 Decimal decimal_1_15 = 5M;
                 while (decimal_1_15 < 10M)
                 {
-                    GClass170 gclass170 = new GClass170("Launcher for Decoy Size: " + decimal_1_15.ToString(),
+                    GClass170 gclass170 = new GClass170($"Launcher for Decoy Size: {decimal_1_15}",
                         decimal_1_15);
                     gclass170List.Add(gclass170);
                     decimal_1_15 += 0.25M;
@@ -14641,7 +14637,7 @@ public partial class GClass0
                 Decimal decimal_1_16 = 10M;
                 while (decimal_1_16 < 100M)
                 {
-                    GClass170 gclass170 = new GClass170("Launcher for Decoy Size: " + decimal_1_16.ToString(),
+                    GClass170 gclass170 = new GClass170($"Launcher for Decoy Size: {decimal_1_16}",
                         decimal_1_16);
                     gclass170List.Add(gclass170);
                     ++decimal_1_16;
@@ -14868,7 +14864,7 @@ public partial class GClass0
                 if (AuroraUtils.GetRandomInteger(5) >= 3 && !flag)
                 {
                     flag = true;
-                    str1 = AuroraUtils.GetRandomInteger(5) != 1 ? str2 + "-" : str2 + " & ";
+                    str1 = AuroraUtils.GetRandomInteger(5) != 1 ? $"{str2}-" : $"{str2} & ";
                 }
                 else
                     break;
@@ -16085,7 +16081,7 @@ public partial class GClass0
             string str2 = $"{gclass184_0.ShipClassTemplateName} class {str1}    ";
             string str3 = gclass184_0.NoArmour != 1
                 ? $"{str2}Armour Thickness {gclass184_0.ArmourThickness.ToString()}    "
-                : str2 + "No Armour    ";
+                : $"{str2}No Armour    ";
             string str4 = (!(gclass184_0.PlannedDeployment >= 1M)
                 ? $"{str3}Deployment Time: {AuroraUtils.FormatNumberToDigits(gclass184_0.PlannedDeployment * 30M, 1)} days"
                 : $"{str3}Deployment Time: {gclass184_0.PlannedDeployment.ToString()} months") + Environment.NewLine;
@@ -17507,7 +17503,7 @@ public partial class GClass0
                         class233.gclass21_0.RaceTitle = this.GenerateEmpireName(class233.gclass21_0.RaceName);
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        class233.gclass21_0.string_6 = class233.gclass21_0.RaceName + " Prime";
+                        class233.gclass21_0.string_6 = $"{class233.gclass21_0.RaceName} Prime";
                         // ISSUE: reference to a compiler-generated field
                         class233.gclass21_0.FlagPic = AuroraUtils.GetRandomImageFileNameFromFolder("Flags");
                         break;
@@ -17524,7 +17520,7 @@ public partial class GClass0
                     case SpecialNPRIDs.StarSwarm:
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        class233.gclass21_0.RaceName = "Star Swarm #" + class233.gclass21_0.RaceID.ToString();
+                        class233.gclass21_0.RaceName = $"Star Swarm #{class233.gclass21_0.RaceID}";
                         // ISSUE: reference to a compiler-generated field
                         class233.gclass21_0.RaceTitle = "Swarm";
                         // ISSUE: reference to a compiler-generated field
@@ -17545,7 +17541,7 @@ public partial class GClass0
                     case SpecialNPRIDs.Rakhas:
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        class233.gclass21_0.RaceName = "Rakhas #" + class233.gclass21_0.RaceID.ToString();
+                        class233.gclass21_0.RaceName = $"Rakhas #{class233.gclass21_0.RaceID}";
                         // ISSUE: reference to a compiler-generated field
                         class233.gclass21_0.RaceTitle = "Rakhas";
                         // ISSUE: reference to a compiler-generated field
@@ -18071,7 +18067,7 @@ public partial class GClass0
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     NavalAdminCommand gclass83_1 = class233.gclass21_0.method_248(null, gclass146, null,
-                        class233.gclass21_0.RaceTitle + " Navy", AdminCommandType.const_0);
+                        $"{class233.gclass21_0.RaceTitle} Navy", AdminCommandType.const_0);
                     // ISSUE: reference to a compiler-generated field
                     if (!class233.gclass21_0.NPR)
                     {
@@ -18141,7 +18137,7 @@ public partial class GClass0
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            class233.gclass21_0.method_157(AuroraUtils.smethod_80(int_72) + " Regiment",
+                            class233.gclass21_0.method_157($"{AuroraUtils.smethod_80(int_72)} Regiment",
                                 AutomatedGroundTemplateDesignType.PreindustrialRegiment, gclass146, class233.gclass194_0, null, false, true);
                         }
                     }
@@ -19473,16 +19469,16 @@ public partial class GClass0
         int_136 -= num3 * 60;
         string str1 = num1.ToString();
         if (num1 < 10)
-            str1 = "0" + str1;
+            str1 = $"0{str1}";
         string str2 = num2.ToString();
         if (num2 < 10)
-            str2 = "0" + str2;
+            str2 = $"0{str2}";
         string str3 = num3.ToString();
         if (num3 < 10)
-            str3 = "0" + str3;
+            str3 = $"0{str3}";
         string str4 = int_136.ToString();
         if (int_136 < 10)
-            str4 = "0" + str4;
+            str4 = $"0{str4}";
         return !bool_25 ? $"{str1}:{str2}:{str3}" : $"{str1}:{str2}:{str3}:{str4}";
     }
 
@@ -21908,7 +21904,7 @@ public partial class GClass0
                              .ThenBy(gclass1_0 => gclass1_0.OrbitalDistance)
                              .ToList())
                 {
-                    gclass1.Name = "Asteroid #" + num.ToString();
+                    gclass1.Name = $"Asteroid #{num}";
                     gclass1.OrbitNumber = num;
                     ++num;
                 }
@@ -23701,7 +23697,7 @@ public partial class GClass0
                 gclass1_1_1.ParentBodyType = ParentBodyType.EnumVal0;
                 gclass1_1_1.PlanetNumber = 100;
                 gclass1_1_1.ParentBodyID = gclass1_1.StarData.StarID;
-                gclass1_1_1.Name = "Asteroid #" + gclass1_1_1.SystemBodyID.ToString();
+                gclass1_1_1.Name = $"Asteroid #{gclass1_1_1.SystemBodyID}";
                 gclass1_1_1.Density = gclass1_1.Density;
                 gclass1_1_1.Bearing = (AuroraUtils.GetRandomInteger(3600) - 1) / 10.0;
                 double num = gclass1_1.OrbitalDistance - gclass1_1.double_39;
@@ -23898,7 +23894,7 @@ public partial class GClass0
                 SystemData = class302.gclass197_0.SystemData
             };
             gclass1_1.SystemID = gclass1_1.SystemData.SystemID;
-            gclass1_1.Name = "Comet #" + gclass1_1.SystemBodyID.ToString();
+            gclass1_1.Name = $"Comet #{gclass1_1.SystemBodyID}";
             gclass1_1.PlanetNumber = 102;
             gclass1_1.OrbitNumber = int_136;
             gclass1_1.BodyClass = PlanetBodyClass.Comet;

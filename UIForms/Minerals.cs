@@ -714,7 +714,7 @@ public class Minerals : Form
                 // ISSUE: reference to a compiler-generated method
                 PopulationData gclass146 = this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(class1084.method_0);
                 if (gclass146 != null)
-                    text1 = gclass146.PopName + " (C)";
+                    text1 = $"{gclass146.PopName} (C)";
                 listViewItem_0.SubItems.Add(text1);
                 if (this.lstvMineralsWide.Visible)
                 {

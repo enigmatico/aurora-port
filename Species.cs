@@ -81,7 +81,7 @@ public class Species
             string str8 = num3.ToString();
             string str9 = $"{str7}  to  {str8}";
             label3.Text = str9;
-            label_4.Text = Math.Round(this.double_2, 2).ToString() + " atm";
+            label_4.Text = $"{Math.Round(this.double_2, 2)} atm";
             label_3.Text = this.gclass223_0.Name;
         }
         catch (Exception ex)

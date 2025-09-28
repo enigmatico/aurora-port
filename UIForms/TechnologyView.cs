@@ -252,15 +252,15 @@ public class TechnologyView : Form
                     string_11 = $"{string_11} x {object_1.int_7.ToString()}";
                 string string_13 = "-";
                 if (object_1.int_3 > 0)
-                    string_13 = AuroraUtils.smethod_37(object_1.int_3) + " km/s";
+                    string_13 = $"{AuroraUtils.smethod_37(object_1.int_3)} km/s";
                 string name = object_1.Name;
                 if (object_1.genum86_0 != GEnum86.const_0)
                     name += " (P)";
                 this.gclass0_0.method_624(this.lstvDisplayTech, name, string_11,
-                    AuroraUtils.smethod_39(decimal_73) + " km", string_13, num.ToString() + " secs",
+                    $"{AuroraUtils.smethod_39(decimal_73)} km", string_13, $"{num} secs",
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_39(object_1.decimal_0),
-                    AuroraUtils.smethod_39(object_1.decimal_4), AuroraUtils.smethod_39(object_1.decimal_17) + " km",
+                    AuroraUtils.smethod_39(object_1.decimal_4), $"{AuroraUtils.smethod_39(object_1.decimal_17)} km",
                     AuroraUtils.smethod_37(object_1.int_1), AuroraUtils.smethod_37(object_1.int_4), string_22,
                     object_1);
             }
@@ -436,7 +436,7 @@ public class TechnologyView : Form
                     object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
                     string_17 = "Yes";
                 this.gclass0_0.method_614(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.smethod_38(object_1.decimal_3), AuroraUtils.smethod_38(object_1.decimal_4) + " secs",
+                    AuroraUtils.smethod_38(object_1.decimal_3), $"{AuroraUtils.smethod_38(object_1.decimal_4)} secs",
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_17, object_1);
@@ -538,7 +538,7 @@ public class TechnologyView : Form
                 this.gclass0_0.method_617(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.smethod_39(object_1.decimal_3),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_3 / object_1.decimal_1, 2),
-                    AuroraUtils.FormatNumberToDigits(object_1.decimal_11, 1) + "%", string_14,
+                    $"{AuroraUtils.FormatNumberToDigits(object_1.decimal_11, 1)}%", string_14,
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_19, object_1);
@@ -581,7 +581,7 @@ public class TechnologyView : Form
                     object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
                     string_17 = "Yes";
                 this.gclass0_0.method_614(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.smethod_39(object_1.decimal_3), AuroraUtils.smethod_39(object_1.int_11) + " secs",
+                    AuroraUtils.smethod_39(object_1.decimal_3), $"{AuroraUtils.smethod_39(object_1.int_11)} secs",
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_17, object_1);
@@ -679,7 +679,7 @@ public class TechnologyView : Form
                     string_19 = AuroraUtils.FormatNumberToDigits(object_1.GeoStrength, 3);
                 string string_22 = "-";
                 if (object_1.ATG > 1M)
-                    string_22 = AuroraUtils.FormatNumberToDigits((object_1.ATG - 1M) * 100M, 3) + "%";
+                    string_22 = $"{AuroraUtils.FormatNumberToDigits((object_1.ATG - 1M) * 100M, 3)}%";
                 string string_23 = "-";
                 if (object_1.Retargeting == 1)
                     string_23 = "Yes";

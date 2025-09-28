@@ -47,8 +47,7 @@ public class GClass59
             if (this.gclass21_0 == gclass202_0.Race)
             {
                 string str1 = !(AuroraUtils.decimal_35 - (this.gclass0_0.GameTime - this.decimal_0) < 0M)
-                    ? "LS: " + this.gclass0_0.method_568(
-                        (int)(AuroraUtils.decimal_35 - (this.gclass0_0.GameTime - this.decimal_0)), false)
+                    ? $"LS: {this.gclass0_0.method_568((int)(AuroraUtils.decimal_35 - (this.gclass0_0.GameTime - this.decimal_0)), false)}"
                     : "Life Support Failure Imminent";
                 string str2 = $"{this.string_0} Life Pods:  {AuroraUtils.smethod_37(this.int_1)} crew";
                 foreach (GClass55 gclass55 in this.gclass0_0.dictionary_42.Values

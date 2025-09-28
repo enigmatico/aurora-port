@@ -548,7 +548,7 @@ public class RaceCreation : Form
             string string_10 = this.gclass0_0.method_551();
             this.txtShortName.Text = string_10;
             this.txtTitle.Text = this.gclass0_0.GenerateEmpireName(string_10);
-            this.txtHomeworld.Text = string_10 + " Prime";
+            this.txtHomeworld.Text = $"{string_10} Prime";
             if (this.gclass146_0.Species.int_10 != 0)
                 return;
             this.txtSpeciesName.Text = string_10;

@@ -968,7 +968,7 @@ public partial class GClass0
                         gclass61.CommanderType = AuroraCommanderType.Naval;
                         gclass61.RankAbbreviation = row["NavalRankAbbrev"].ToString();
                         if (gclass61.RankAbbreviation == "")
-                            gclass61.RankAbbreviation = "R" + num1.ToString();
+                            gclass61.RankAbbreviation = $"R{num1}";
                         this.RankThemeDictionary[int32].RankThemeEntries.Add(gclass61);
                         ++num1;
                     }
@@ -985,7 +985,7 @@ public partial class GClass0
                         gclass61.CommanderType = AuroraCommanderType.GroundForce;
                         gclass61.RankAbbreviation = row["GroundRankAbbrev"].ToString();
                         if (gclass61.RankAbbreviation == "")
-                            gclass61.RankAbbreviation = "R" + num2.ToString();
+                            gclass61.RankAbbreviation = $"R{num2}";
                         this.RankThemeDictionary[int32].RankThemeEntries.Add(gclass61);
                         ++num2;
                     }
@@ -2016,7 +2016,7 @@ public partial class GClass0
                          .ToList<SystemBodyData>())
             {
                 gclass1.OrbitNumber = num4;
-                gclass1.Name = "Minerva - Moon #" + num4.ToString();
+                gclass1.Name = $"Minerva - Moon #{num4}";
                 ++num4;
             }
 
@@ -2028,7 +2028,7 @@ public partial class GClass0
                          .ToList<SystemBodyData>())
             {
                 gclass1.OrbitNumber = num5;
-                gclass1.Name = "Minerva - Trojan #" + num5.ToString();
+                gclass1.Name = $"Minerva - Trojan #{num5}";
                 ++num5;
             }
         }

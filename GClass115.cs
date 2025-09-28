@@ -289,7 +289,7 @@ public class GClass115
                         gclass21_1 = this.gclass22_0.Race,
                         gclass21_0 = this.gclass21_1
                     };
-                    gclass118.string_0 = "AS " + gclass118.int_0.ToString();
+                    gclass118.string_0 = $"AS {gclass118.int_0}";
                     this.gclass110_0.dictionary_2.Add(gclass118.int_0, gclass118);
                 }
                 else

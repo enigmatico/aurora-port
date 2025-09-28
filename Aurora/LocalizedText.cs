@@ -81,6 +81,7 @@ public enum LocalizedText
     Year,
     Day,
     SurfaceTemperature,
+    BaseTemperature,
     Tectonics,
     Mass,
     Density,
@@ -97,6 +98,7 @@ public enum LocalizedText
     AntiGreenHouseGasPressure,
     DustEffectiveAtm,
     AlbedoFactor,
+    None,
 }
 
 public static class UITextHelper

@@ -2184,7 +2184,7 @@ public partial class GroundUnitDesign : Form
 
                     // ISSUE: reference to a compiler-generated field
                     class1061.list_0 = tag.method_22(null, null);
-                    str = " to all officers in the hierarchy of " + tag.Name;
+                    str = $" to all officers in the hierarchy of {tag.Name}";
                 }
                 else if (this.tvFormations.SelectedNode.Tag is PopulationData)
                 {
@@ -2205,7 +2205,7 @@ public partial class GroundUnitDesign : Form
                     class1061.list_0 = this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(class1062.method_0)
                         .ToList<GroundUnitFormationData>();
                     // ISSUE: reference to a compiler-generated field
-                    str = " to all officers in formations based on " + class1062.gclass146_0.PopName;
+                    str = $" to all officers in formations based on {class1062.gclass146_0.PopName}";
                 }
 
                 this.gclass0_0.gclass42_0 = null;

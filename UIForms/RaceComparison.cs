@@ -43,7 +43,7 @@ public class RaceComparison : Form
             WindowPosition207 gclass207 = this.gclass0_0.method_513(this.Name);
             this.Left = gclass207.Left;
             this.Top = gclass207.Top;
-            this.Text = "Race Comparison   " + this.gclass0_0.method_586(true);
+            this.Text = $"Race Comparison   {this.gclass0_0.method_586(true)}";
             this.Width = this.gclass0_0.method_514(this.lstvCompare) + 40;
             this.ActiveControl = this.label1;
         }

@@ -121,7 +121,7 @@ public class PopulationText : Form
             else if (this.gclass110_0 != null)
             {
                 this.Width = 1000;
-                this.Text = "Alien Class Intelligence - " + this.gclass110_0.AlienRaceName;
+                this.Text = $"Alien Class Intelligence - {this.gclass110_0.AlienRaceName}";
                 this.txtDetails.Text = this.gclass110_0.ViewingRace.method_21(this.gclass110_0);
             }
             else if (this.gclass21_0 != null)

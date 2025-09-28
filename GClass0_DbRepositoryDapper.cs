@@ -46,33 +46,33 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand("DELETE FROM FCT_Race WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_Race WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_ResearchQueue WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_ResearchQueue WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_PausedResearch WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_PausedResearch WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_SwarmResearch WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_SwarmResearch WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_KnownRuinRace WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_KnownRuinRace WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_RaceNameThemes WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceNameThemes WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_BannedBodies WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_BannedBodies WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_WindowPosition WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_WindowPosition WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_RaceGroundCombat WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceGroundCombat WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitSeries WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitSeries WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_GroundUnitSeriesClass WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_GroundUnitSeriesClass WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_RaceOperationalGroupElements WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_RaceOperationalGroupElements WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_HullNumber WHERE GameID = " + this.GameID.ToString(), sqliteConnection_0)
+            new SQLiteCommand($"DELETE FROM FCT_HullNumber WHERE GameID = {this.GameID}", sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand("DELETE FROM FCT_WealthHistory WHERE GameID = " + this.GameID.ToString(),
+            new SQLiteCommand($"DELETE FROM FCT_WealthHistory WHERE GameID = {this.GameID}",
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {

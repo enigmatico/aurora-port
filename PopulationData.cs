@@ -361,7 +361,7 @@ public partial class PopulationData
             {
                 this.UnrestPoints += this.decimal_38;
                 if (str1 != "")
-                    str3 = str1 + ", ";
+                    str3 = $"{str1}, ";
                 str1 = "overcrowding";
             }
 
@@ -373,7 +373,7 @@ public partial class PopulationData
                 else
                     this.UnrestPoints += 100M * (1M - this.decimal_85 / this.decimal_84) * decimal_90;
                 if (str1 != "")
-                    str3 = str1 + ", ";
+                    str3 = $"{str1}, ";
                 str1 = "an insufficient occupation force";
             }
 
@@ -385,7 +385,7 @@ public partial class PopulationData
                     Decimal num = 1M - this.decimal_28 / this.decimal_70;
                     this.UnrestPoints += 25M * num * decimal_90;
                     if (str1 != "")
-                        str3 = str1 + ", ";
+                        str3 = $"{str1}, ";
                     str1 = "insufficient military protection";
                     this.ColonizationPressure += num / 10M;
                 }
@@ -556,8 +556,7 @@ public partial class PopulationData
             if (num2 > num3)
             {
                 this.gclass0_0.gclass92_0.method_3(EventType.const_126,
-                    this.PopName +
-                    " has too few research facilities for its assigned projects. Appropriate adjustments will be made",
+                    $"{this.PopName} has too few research facilities for its assigned projects. Appropriate adjustments will be made",
                     this.Race, this.SystemBodyData.SystemData, this, this.SystemBodyData.XCoordinate,
                     this.SystemBodyData.YCoordinate, AuroraEventCategory.PopResearch);
                 int num7 = num2 - num3;
@@ -1149,7 +1148,7 @@ public partial class PopulationData
             {
                 num = this.CurrentMinerals.Sorium / AuroraUtils.int_28;
                 this.gclass0_0.gclass92_0.method_3(EventType.const_41,
-                    "Shortage of Sorium in fuel production at " + this.PopName, this.Race,
+                    $"Shortage of Sorium in fuel production at {this.PopName}", this.Race,
                     this.SystemBodyData.SystemData, this, this.method_87(), this.method_88(),
                     AuroraEventCategory.PopProduction);
             }
@@ -1182,7 +1181,7 @@ public partial class PopulationData
             if (num2 < num1)
             {
                 this.gclass0_0.gclass92_0.method_3(EventType.const_41,
-                    "Mineral shortage in maintenance supply production at " + this.PopName, this.Race,
+                    $"Mineral shortage in maintenance supply production at {this.PopName}", this.Race,
                     this.SystemBodyData.SystemData, this, this.method_87(), this.method_88(),
                     AuroraEventCategory.PopProduction);
                 num1 = num2;
@@ -1457,7 +1456,7 @@ public partial class PopulationData
                                     gclass192_0.gclass40_0.dictionary_5.Clear();
                                     gclass192_0.gclass40_0.DamageControlQueue.Clear();
                                     gclass192_0.gclass40_0.bool_9 = false;
-                                    gclass192_0.gclass40_0.method_204("Repair completed at " + this.PopName);
+                                    gclass192_0.gclass40_0.method_204($"Repair completed at {this.PopName}");
                                     Decimal decimal_73_1 = gclass192_0.gclass21_0.method_293(gclass192_0.gclass40_0);
                                     if (gclass192_0.gclass40_0.decimal_15 > decimal_73_1)
                                         this.gclass0_0.gclass92_0.method_3(EventType.const_3,
@@ -2034,7 +2033,7 @@ public partial class PopulationData
                                                 {
                                                     // ISSUE: reference to a compiler-generated field
                                                     this.FighterDestFleet = this.Race.method_308(
-                                                        this.Race.method_290("New Fighters - " + this.PopName),
+                                                        this.Race.method_290($"New Fighters - {this.PopName}"),
                                                         null, this.gclass202_0, this.method_87(), this.method_88(),
                                                         this.SystemBodyData, class1092.genum105_0);
                                                 }
@@ -3767,7 +3766,7 @@ public partial class PopulationData
             gclass62.int_0 = this.gclass0_0.method_26(GEnum0.const_30);
             gclass62.gclass146_0 = this;
             gclass62.gclass21_0 = this.Race;
-            gclass62.SectorName = this.gclass202_0.Name + " Sector";
+            gclass62.SectorName = $"{this.gclass202_0.Name} Sector";
             gclass62.color_0 = Color.Red;
             this.Race.dictionary_2.Add(gclass62.int_0, gclass62);
         }
@@ -4547,9 +4546,9 @@ public partial class PopulationData
             {
                 string string_11 = object_1.gclass164_0.Name;
                 if (object_1.bool_1)
-                    string_11 = "(N) " + string_11;
+                    string_11 = $"(N) {string_11}";
                 if (object_1.gclass146_0 != this)
-                    string_11 = "(E) " + string_11;
+                    string_11 = $"(E) {string_11}";
                 string string_12 = object_1.gclass55_0.string_0;
                 if (object_1.gclass146_0 != this)
                     string_12 = object_1.gclass146_0.PopName;
@@ -4558,7 +4557,7 @@ public partial class PopulationData
                     color_0 = AuroraUtils.color_3;
                 this.gclass0_0.method_618(listView_0, object_1.gclass162_0.Abbreviation, string_11, string_12,
                     $"{object_1.gclass55_0.gclass162_0.Abbreviation} {AuroraUtils.smethod_39((object_1.gclass55_0.method_5(CommanderBonusType.Research) - 1M) * 100M)}%",
-                    AuroraUtils.FormatNumberToDigits(object_1.decimal_3, 3) + "x",
+                    $"{AuroraUtils.FormatNumberToDigits(object_1.decimal_3, 3)}x",
                     $"{object_1.int_0.ToString()} / {object_1.gclass55_0.method_5(CommanderBonusType.ResearchAdmin).ToString()}",
                     AuroraUtils.smethod_39(object_1.decimal_2), AuroraUtils.smethod_39(object_1.decimal_0),
                     this.gclass0_0.method_584(this.gclass0_0.GameTime + object_1.decimal_1), object_1.string_0,
@@ -4634,10 +4633,10 @@ public partial class PopulationData
                         class1105.gclass166_0.TechSystem.gclass163_0.ResearchField.Abbreviation,
                         class1105.gclass166_0.TechSystem.Name, gclass550.string_0,
                         $"{gclass550.gclass162_0.Abbreviation} {AuroraUtils.smethod_39((gclass550.method_5(CommanderBonusType.Research) - 1M) * 100M)}%",
-                        AuroraUtils.FormatNumberToDigits(decimal_73_2, 2) + "x",
+                        $"{AuroraUtils.FormatNumberToDigits(decimal_73_2, 2)}x",
                         $"{class1105.gclass166_0.CurrentProject.int_0.ToString()} / {gclass550.method_5(CommanderBonusType.ResearchAdmin).ToString()}",
                         AuroraUtils.smethod_39(decimal_73_3), AuroraUtils.smethod_39(decimal_73_1),
-                        AuroraUtils.FormatNumberToDigits(decimal_73_4, 2) + " years", class1105.gclass166_0.ResearchOrder.ToString(),
+                        $"{AuroraUtils.FormatNumberToDigits(decimal_73_4, 2)} years", class1105.gclass166_0.ResearchOrder.ToString(),
                         class1105.gclass166_0);
                 }
             }
@@ -4826,7 +4825,7 @@ public partial class PopulationData
 
             foreach (GClass55 object_1 in list)
                 this.gclass0_0.method_604(listView_0, object_1.string_0, object_1.gclass162_0.FieldName,
-                    AuroraUtils.smethod_39((object_1.method_5(CommanderBonusType.Research) - 1M) * 100M) + "%",
+                    $"{AuroraUtils.smethod_39((object_1.method_5(CommanderBonusType.Research) - 1M) * 100M)}%",
                     AuroraUtils.smethod_39(object_1.method_5(CommanderBonusType.ResearchAdmin)), object_1);
         }
         catch (Exception ex)
@@ -4971,7 +4970,7 @@ public partial class PopulationData
             textBox_0.Text = AuroraUtils.smethod_39(this.Race.AnnualWealth);
             textBox_1.Text = AuroraUtils.FormatNumberToDigits(this.Race.WealthCreationRate, 2);
             textBox_2.Text = AuroraUtils.FormatNumberToDigits(this.decimal_66, 2);
-            textBox_3.Text = AuroraUtils.FormatNumberToDigits(this.Race.ShippingLineTax * 100M, 2) + "%";
+            textBox_3.Text = $"{AuroraUtils.FormatNumberToDigits(this.Race.ShippingLineTax * 100M, 2)}%";
             List<WealthUsageData> list1 = this.Race.list_3
                 .Select<GClass151, WealthUsageData>(gclass151_0 => gclass151_0.gclass150_0).Distinct<WealthUsageData>()
                 .ToList<WealthUsageData>();
@@ -5003,7 +5002,7 @@ public partial class PopulationData
                         source1.Add(new GClass152()
                         {
                             string_0 = class1115.gclass150_0.Description,
-                            string_1 = AuroraUtils.FormatNumberToDigits(num2 * 100M, 1) + "%",
+                            string_1 = $"{AuroraUtils.FormatNumberToDigits(num2 * 100M, 1)}%",
                             decimal_0 = num1
                         });
                     }
@@ -5014,7 +5013,7 @@ public partial class PopulationData
                         source2.Add(new GClass152()
                         {
                             string_0 = class1115.gclass150_0.Description,
-                            string_1 = AuroraUtils.FormatNumberToDigits(num3 * 100M, 1) + "%",
+                            string_1 = $"{AuroraUtils.FormatNumberToDigits(num3 * 100M, 1)}%",
                             decimal_0 = num1
                         });
                     }
@@ -5672,7 +5671,7 @@ public partial class PopulationData
             this.gclass0_0.method_597(listView_0, "Police Strength / Resistance",
                 $"{AuroraUtils.smethod_39(this.decimal_86)} / {AuroraUtils.smethod_39(this.decimal_87)}");
             this.gclass0_0.method_597(listView_0, "Annual Unrest Reduction",
-                AuroraUtils.smethod_39(this.decimal_88 * 100M) + "%");
+                $"{AuroraUtils.smethod_39(this.decimal_88 * 100M)}%");
         }
         catch (Exception ex)
         {
@@ -5721,7 +5720,7 @@ public partial class PopulationData
     {
         try
         {
-            return "Ground Attack In Progress vs " + this.Race.method_284(this.GroundAttackID);
+            return $"Ground Attack In Progress vs {this.Race.method_284(this.GroundAttackID)}";
         }
         catch (Exception ex)
         {
@@ -6012,11 +6011,13 @@ public partial class PopulationData
                     string_13 = object_1.gclass83_0.AdminCommandName;
                 if (!object_1.bool_2)
                     this.gclass0_0.method_613(listView_0, object_1.gclass193_0.string_0, object_1.method_0(),
-                        object_1.string_0, string_13, string_14, AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 1) + "%",
+                        object_1.string_0, string_13, string_14,
+                        $"{AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 1)}%",
                         AuroraUtils.smethod_39(object_1.gclass193_0.decimal_4), object_1);
                 else
                     this.gclass0_0.method_613(listView_0, object_1.gclass193_0.string_0, object_1.method_0(),
-                        object_1.string_0, string_13, string_14, AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 1) + "%",
+                        object_1.string_0, string_13, string_14,
+                        $"{AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 1)}%",
                         "Paused", object_1);
             }
         }
@@ -6061,8 +6062,8 @@ public partial class PopulationData
 
                 num1 += object_1.decimal_2;
                 this.gclass0_0.method_612(listView_0, object_1.gclass102_0.Name, object_1.string_0,
-                    AuroraUtils.smethod_38(object_1.decimal_0), AuroraUtils.smethod_38(object_1.decimal_2) + " % ",
-                    AuroraUtils.FormatNumberToDigits(decimal_73_2, 1) + " % ", string_15, object_1);
+                    AuroraUtils.smethod_38(object_1.decimal_0), $"{AuroraUtils.smethod_38(object_1.decimal_2)} % ",
+                    $"{AuroraUtils.FormatNumberToDigits(decimal_73_2, 1)} % ", string_15, object_1);
             }
 
             if (num1 < 100M)
@@ -6095,8 +6096,8 @@ public partial class PopulationData
                 }
 
                 this.gclass0_0.method_612(listView_0, object_1.gclass102_0.Name, object_1.string_0,
-                    AuroraUtils.smethod_38(decimal_73_3), AuroraUtils.smethod_38(object_1.decimal_0) + " % ",
-                    object_1.int_0.ToString(), AuroraUtils.FormatNumberToDigits(decimal_73_1, 2) + " years", object_1);
+                    AuroraUtils.smethod_38(decimal_73_3), $"{AuroraUtils.smethod_38(object_1.decimal_0)} % ",
+                    object_1.int_0.ToString(), $"{AuroraUtils.FormatNumberToDigits(decimal_73_1, 2)} years", object_1);
             }
         }
         catch (Exception ex)
@@ -6693,7 +6694,7 @@ public partial class PopulationData
                             else
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                string_16 = "Retool: " + class1122.gclass193_0.gclass22_1.ClassName;
+                                string_16 = $"Retool: {class1122.gclass193_0.gclass22_1.ClassName}";
                             }
                         }
                         else
@@ -6746,9 +6747,7 @@ public partial class PopulationData
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         string_17 = !(class1122.gclass193_0.decimal_1 == 0M)
-                            ? AuroraUtils
-                                .FormatNumberToDigits(class1122.gclass193_0.decimal_2 / class1122.gclass193_0.decimal_1 * 100M, 1)
-                                .ToString() + "%"
+                            ? $"{AuroraUtils.FormatNumberToDigits(class1122.gclass193_0.decimal_2 / class1122.gclass193_0.decimal_1 * 100M, 1)}%"
                             : "100%";
                     }
                     else
@@ -6890,7 +6889,7 @@ public partial class PopulationData
             }
 
             if (num1 < 100M)
-                this.gclass0_0.method_609(listView_0, "", "Unused " + string_10, "",
+                this.gclass0_0.method_609(listView_0, "", $"Unused {string_10}", "",
                     AuroraUtils.FormatNumberToDigits(100M - num1, 2), null);
             this.gclass0_0.method_597(listView_0, "", "");
         }
@@ -7634,7 +7633,7 @@ public partial class PopulationData
             this.gclass0_0.gclass92_0.method_2(EventType.const_78,
                 $"{gclass55.method_36()} assigned as governor of {this.PopName}", gclass55.gclass21_0,
                 this.gclass202_0.ActualSystem, this.method_87(), this.method_88(), AuroraEventCategory.Commander);
-            gclass55.method_46("Assigned to " + this.PopName, GEnum28.const_1);
+            gclass55.method_46($"Assigned to {this.PopName}", GEnum28.const_1);
         }
         catch (Exception ex)
         {
@@ -7730,8 +7729,8 @@ public partial class PopulationData
                 comboBox_5.SelectedItem = this.TerraformingTargetGas;
             checkBox_0.CheckState = this.TerraformStatus != TerraformStatus.Yes ? CheckState.Unchecked : CheckState.Checked;
             textBox_0.Text = this.MaxAtm.ToString();
-            string str1 = "Fuel Refinery Capacity  " +
-                          AuroraUtils.smethod_37((int)this.method_62(AuroraProductionCategory.Refinery));
+            string str1 =
+                $"Fuel Refinery Capacity  {AuroraUtils.smethod_37((int)this.method_62(AuroraProductionCategory.Refinery))}";
             string str2;
             if (this.bFuelProdStatus)
             {
@@ -7741,14 +7740,14 @@ public partial class PopulationData
             }
             else
             {
-                str2 = str1 + "        Annual Production  0m";
+                str2 = $"{str1}        Annual Production  0m";
                 button_0.Text = "Start";
             }
 
             string str3 = $"{str2}        Fuel Reserves  {AuroraUtils.FormatNumberToDigits(this.FuelStockpile / 1000000M, 2)}m";
             label_2.Text = str3;
-            string str4 = "Genetic Modification Centres  " +
-                          AuroraUtils.smethod_37((int)this.method_62(AuroraProductionCategory.GeneticModification));
+            string str4 =
+                $"Genetic Modification Centres  {AuroraUtils.smethod_37((int)this.method_62(AuroraProductionCategory.GeneticModification))}";
             string str5;
             if (this.bGeneticProdStatus)
             {
@@ -7757,7 +7756,7 @@ public partial class PopulationData
             }
             else
             {
-                str5 = str4 + "        Annual Modification Rate  0m";
+                str5 = $"{str4}        Annual Modification Rate  0m";
                 button_2.Text = "Start";
             }
 
@@ -7766,7 +7765,7 @@ public partial class PopulationData
             this.decimal_77 = this.method_62(AuroraProductionCategory.MaintenanceFacility) *
                               this.Race.MaintenanceCapacity * this.Efficiency * this.decimal_31 * this.decimal_33 *
                               this.PopulationPoliticalStatus.ProductionModifier * this.Race.EconomicProdModifier;
-            string str6 = "Maintenance Facilities  " + AuroraUtils.smethod_37(this.int_22);
+            string str6 = $"Maintenance Facilities  {AuroraUtils.smethod_37(this.int_22)}";
             string str7;
             if (this.bMaintProdStatus)
             {
@@ -7778,7 +7777,7 @@ public partial class PopulationData
             }
             else
             {
-                str7 = str6 + "        Annual Production  0 MSP";
+                str7 = $"{str6}        Annual Production  0 MSP";
                 button_1.Text = "Start";
             }
 
@@ -7791,7 +7790,7 @@ public partial class PopulationData
                 this.gclass0_0.method_597(listView_0, "Planetary Suitability (Colony Cost)", "Not Habitable");
             else if (this.SystemBodyData.Gravity < this.Species.double_7)
                 this.gclass0_0.method_597(listView_0, "Planetary Suitability (Colony Cost)",
-                    AuroraUtils.smethod_45(this.ColonyCost, 4) + " LG");
+                    $"{AuroraUtils.smethod_45(this.ColonyCost, 4)} LG");
             else
                 this.gclass0_0.method_597(listView_0, "Planetary Suitability (Colony Cost)",
                     AuroraUtils.smethod_45(this.ColonyCost, 4));
@@ -7799,7 +7798,7 @@ public partial class PopulationData
             {
                 if (this.SystemBodyData.Gravity < this.Species.double_7)
                     this.gclass0_0.method_597(listView_0, "Maximum Colony Cost",
-                        AuroraUtils.smethod_45(this.MaxColonyCost, 4) + " LG");
+                        $"{AuroraUtils.smethod_45(this.MaxColonyCost, 4)} LG");
                 else
                     this.gclass0_0.method_597(listView_0, "Maximum Colony Cost",
                         AuroraUtils.smethod_45(this.MaxColonyCost, 4));
@@ -7872,7 +7871,7 @@ public partial class PopulationData
                     GClass0 gclass00 = this.gclass0_0;
                     ListView listView_0_2 = listView_0;
                     num1 = Math.Round(this.Population, 2);
-                    string string_11 = num1.ToString() + "m";
+                    string string_11 = $"{num1}m";
                     gclass00.method_597(listView_0_2, "Population", string_11);
                 }
                 else if (this.Population == 0M && this.decimal_29 > 0M)
@@ -7880,7 +7879,7 @@ public partial class PopulationData
                     GClass0 gclass00 = this.gclass0_0;
                     ListView listView_0_3 = listView_0;
                     num1 = Math.Round(this.decimal_29, 2);
-                    string string_11 = num1.ToString() + "m";
+                    string string_11 = $"{num1}m";
                     gclass00.method_597(listView_0_3, "Orbital Population", string_11);
                 }
                 else
@@ -7888,17 +7887,17 @@ public partial class PopulationData
                     GClass0 gclass00_1 = this.gclass0_0;
                     ListView listView_0_4 = listView_0;
                     num1 = Math.Round(this.Population, 2);
-                    string string_11_1 = num1.ToString() + "m";
+                    string string_11_1 = $"{num1}m";
                     gclass00_1.method_597(listView_0_4, "Surface Population", string_11_1);
                     GClass0 gclass00_2 = this.gclass0_0;
                     ListView listView_0_5 = listView_0;
                     num1 = Math.Round(this.decimal_29, 2);
-                    string string_11_2 = num1.ToString() + "m";
+                    string string_11_2 = $"{num1}m";
                     gclass00_2.method_597(listView_0_5, "Orbital Population", string_11_2);
                     GClass0 gclass00_3 = this.gclass0_0;
                     ListView listView_0_6 = listView_0;
                     num1 = Math.Round(this.decimal_30, 2);
-                    string string_11_3 = num1.ToString() + "m";
+                    string string_11_3 = $"{num1}m";
                     gclass00_3.method_597(listView_0_6, "Total Population", string_11_3);
                 }
             }
@@ -7916,19 +7915,19 @@ public partial class PopulationData
                 ListView listView_0_7 = listView_0;
                 num1 = Math.Round(this.decimal_42 * 100M, 1);
                 string string_10_3 = $"   Agriculture / Environmental ({num1.ToString()}%)";
-                string string_11_4 = AuroraUtils.FormatNumberToDigits(this.decimal_48, 2) + "m";
+                string string_11_4 = $"{AuroraUtils.FormatNumberToDigits(this.decimal_48, 2)}m";
                 gclass00_4.method_597(listView_0_7, string_10_3, string_11_4);
                 GClass0 gclass00_5 = this.gclass0_0;
                 ListView listView_0_8 = listView_0;
                 num1 = Math.Round(this.decimal_44 * 100M, 1);
                 string string_10_4 = $"   Service Industries ({num1.ToString()}%)";
-                string string_11_5 = AuroraUtils.FormatNumberToDigits(this.decimal_50, 2) + "m";
+                string string_11_5 = $"{AuroraUtils.FormatNumberToDigits(this.decimal_50, 2)}m";
                 gclass00_5.method_597(listView_0_8, string_10_4, string_11_5);
                 GClass0 gclass00_6 = this.gclass0_0;
                 ListView listView_0_9 = listView_0;
                 num1 = Math.Round(this.decimal_46 * 100M, 1);
                 string string_10_5 = $"   Manufacturing ({num1.ToString()}%)";
-                string string_11_6 = AuroraUtils.FormatNumberToDigits(this.decimal_52, 2) + "m";
+                string string_11_6 = $"{AuroraUtils.FormatNumberToDigits(this.decimal_52, 2)}m";
                 gclass00_6.method_597(listView_0_9, string_10_5, string_11_6);
             }
             else
@@ -7946,7 +7945,7 @@ public partial class PopulationData
                     ListView listView_0_11 = listView_0;
                     num1 = Math.Round(this.decimal_44 * 100M, 1);
                     string string_10_7 = $"   Service Industries ({num1.ToString()}%)";
-                    string string_11_8 = AuroraUtils.FormatNumberToDigits(this.decimal_50, int_72) + "m";
+                    string string_11_8 = $"{AuroraUtils.FormatNumberToDigits(this.decimal_50, int_72)}m";
                     gclass00_8.method_597(listView_0_11, string_10_7, string_11_8);
                 }
                 else
@@ -7971,7 +7970,7 @@ public partial class PopulationData
 
             if (this.Population > 0M)
                 this.gclass0_0.method_597(listView_0, "Annual Growth Rate (Surface)",
-                    AuroraUtils.FormatNumberToDigits(this.decimal_35 * 100M, 2) + "%");
+                    $"{AuroraUtils.FormatNumberToDigits(this.decimal_35 * 100M, 2)}%");
             this.gclass0_0.method_597(listView_0, "", "");
             Decimal object_1 = this.method_62(AuroraProductionCategory.Infrastructure);
             if (this.ColonyCost == -1M)
@@ -7998,11 +7997,11 @@ public partial class PopulationData
                 else
                 {
                     string_11_11 = this.decimal_54.ToString();
-                    string_11_12 = AuroraUtils.FormatNumberToDigits(this.decimal_37, int_72).ToString() + "m";
+                    string_11_12 = $"{AuroraUtils.FormatNumberToDigits(this.decimal_37, int_72)}m";
                 }
 
                 string str9 = this.decimal_55.ToString();
-                string str10 = AuroraUtils.FormatNumberToDigits(this.decimal_36, int_72).ToString() + "m";
+                string str10 = $"{AuroraUtils.FormatNumberToDigits(this.decimal_36, int_72)}m";
                 this.gclass0_0.method_595(listView_0, "Current Infrastructure", object_1);
                 if (this.MaxColonyCost > this.ColonyCost)
                     this.gclass0_0.method_597(listView_0, "Infrastructure per Million (Current / Max)",
@@ -8047,36 +8046,36 @@ public partial class PopulationData
                              Decimal>(keyValuePair_0 => keyValuePair_0.Value)
                          .ToDictionary<KeyValuePair<string, Decimal>, string, Decimal>(
                              keyValuePair_0 => keyValuePair_0.Key, keyValuePair_0 => keyValuePair_0.Value))
-                this.gclass0_0.method_597(listView_0, "   " + keyValuePair.Key,
-                    AuroraUtils.FormatNumberToDigits(keyValuePair.Value, 2).ToString() + "m");
+                this.gclass0_0.method_597(listView_0, $"   {keyValuePair.Key}",
+                    $"{AuroraUtils.FormatNumberToDigits(keyValuePair.Value, 2)}m");
             if (this.decimal_52 >= this.decimal_56)
                 this.gclass0_0.method_597(listView_0, "Available Workers",
-                    AuroraUtils.FormatNumberToDigits(this.decimal_52 - this.decimal_56, 2).ToString() + "m");
+                    $"{AuroraUtils.FormatNumberToDigits(this.decimal_52 - this.decimal_56, 2)}m");
             else
                 this.gclass0_0.method_597(listView_0, "Worker Shortage",
-                    AuroraUtils.FormatNumberToDigits(this.decimal_52 - this.decimal_56, 2).ToString() + "m");
+                    $"{AuroraUtils.FormatNumberToDigits(this.decimal_52 - this.decimal_56, 2)}m");
             this.gclass0_0.method_597(listView_0, "", "");
             if (this.SystemBodyData.IsFixedBody)
             {
                 this.gclass0_0.method_597(listView_0, "System Body Diameter", "N/A");
                 this.gclass0_0.method_597(listView_0, "Gravity", "N/A");
                 this.gclass0_0.method_597(listView_0, "Temperature",
-                    AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.SurfaceTemp - AuroraUtils.int_17, 1).ToString() + " C");
+                    $"{AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.SurfaceTemp - AuroraUtils.int_17, 1)} C");
                 this.gclass0_0.method_597(listView_0, "Atmosphere", "N/A");
                 this.gclass0_0.method_597(listView_0, "Population Capacity", "0");
             }
             else
             {
                 this.gclass0_0.method_597(listView_0, "System Body Diameter",
-                    AuroraUtils.smethod_43(this.SystemBodyData.Radius * 2.0).ToString() + " km");
+                    $"{AuroraUtils.smethod_43(this.SystemBodyData.Radius * 2.0)} km");
                 if (this.SystemBodyData.Gravity > 0.01)
                     this.gclass0_0.method_597(listView_0, "Gravity",
-                        AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.Gravity, 2).ToString() + " G");
+                        $"{AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.Gravity, 2)} G");
                 else
                     this.gclass0_0.method_597(listView_0, "Gravity",
-                        AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.Gravity, 4).ToString() + " G");
+                        $"{AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.Gravity, 4)} G");
                 this.gclass0_0.method_597(listView_0, "Temperature",
-                    AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.SurfaceTemp - AuroraUtils.int_17, 1).ToString() + " C");
+                    $"{AuroraUtils.FormatDoubleToPrecision(this.SystemBodyData.SurfaceTemp - AuroraUtils.int_17, 1)} C");
                 if (this.SystemBodyData.method_43(this.Species) == 3)
                     this.gclass0_0.method_597(listView_0, "Atmosphere", "Toxic");
                 else if (this.SystemBodyData.AtmospherePressure > this.Species.double_2)
@@ -8088,7 +8087,7 @@ public partial class PopulationData
                 Decimal decimal_73 = this.SystemBodyData.method_62(this.Species);
                 if (decimal_73 > 0M)
                     this.gclass0_0.method_597(listView_0, "Population Capacity",
-                        AuroraUtils.smethod_53(decimal_73) + "m");
+                        $"{AuroraUtils.smethod_53(decimal_73)}m");
             }
 
             this.gclass0_0.method_597(listView_0, "", "");
@@ -8112,34 +8111,33 @@ public partial class PopulationData
                     $"Level {decimal_13_2.ToString()}  Radius {this.gclass0_0.method_589(decimal_13_2).ToString()}");
             if (this.decimal_13 > 0M)
                 this.gclass0_0.method_597(listView_1, "Naval Shipyard Capacity",
-                    AuroraUtils.smethod_38(this.decimal_13) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_13)} tons");
             if (this.decimal_14 > 0M)
                 this.gclass0_0.method_597(listView_1, "Commercial Shipyard Capacity",
-                    AuroraUtils.smethod_38(this.decimal_14) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_14)} tons");
             if (this.decimal_15 > 0M)
                 this.gclass0_0.method_597(listView_1, "Repair Yard Capacity",
-                    AuroraUtils.smethod_38(this.decimal_15) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_15)} tons");
             if (this.int_22 > 0)
                 this.gclass0_0.method_597(listView_1, "Maintenance Facilities Capacity",
-                    AuroraUtils.smethod_38(this.decimal_77) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_77)} tons");
             int num3 = this.method_202(AuroraComponentType.MaintenanceModule);
             if (num3 > 0)
                 this.gclass0_0.method_597(listView_1, "Maintenance Capacity including Orbital",
-                    AuroraUtils.smethod_38(this.decimal_77 + num3 * this.Race.MaintenanceCapacity *
-                        this.Race.EconomicProdModifier) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_77 + num3 * this.Race.MaintenanceCapacity * this.Race.EconomicProdModifier)} tons");
             if (this.decimal_75 > 0M)
                 this.gclass0_0.method_597(listView_1, "Shipping Tonnage Maintained",
-                    AuroraUtils.smethod_38(this.decimal_75) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_75)} tons");
             if (this.decimal_76 > 0M)
                 this.gclass0_0.method_597(listView_1, "Maintained plus SY Task Tonnage",
-                    AuroraUtils.smethod_38(this.decimal_75 + this.decimal_76) + " tons");
+                    $"{AuroraUtils.smethod_38(this.decimal_75 + this.decimal_76)} tons");
             int num4 = (int)this.method_62(AuroraProductionCategory.Academy);
             if (num4 > 0)
             {
                 string string_10_10 = "Military Academy";
                 if (this.AcademyName != "")
                     string_10_10 = this.AcademyName;
-                this.gclass0_0.method_597(listView_1, string_10_10, "Level " + num4.ToString());
+                this.gclass0_0.method_597(listView_1, string_10_10, $"Level {num4}");
             }
 
             int num5 = (int)this.method_62(AuroraProductionCategory.Sensors);
@@ -8153,7 +8151,7 @@ public partial class PopulationData
             int num7 = (int)this.method_62(AuroraProductionCategory.MassDriver);
             if (num7 > 0)
                 this.gclass0_0.method_597(listView_1, "Mass Driver Capacity",
-                    AuroraUtils.smethod_37(AuroraUtils.int_25 * num7) + " tons");
+                    $"{AuroraUtils.smethod_37(AuroraUtils.int_25 * num7)} tons");
             if (decimal_13_1 > 0 || decimal_13_2 > 0 || num4 > 0 || num5 > 0 || num6 > 0 || this.int_22 > 0 ||
                 num7 > 0 || this.decimal_13 > 0M || this.decimal_14 > 0M || this.decimal_15 > 0M)
                 this.gclass0_0.method_597(listView_1, "", "");
@@ -8179,15 +8177,15 @@ public partial class PopulationData
             this.method_116(listView_1);
             this.gclass0_0.method_597(listView_1, "", "");
             this.gclass0_0.method_597(listView_1, "Economic Production Modifier",
-                AuroraUtils.FormatNumberToDigits(this.Race.EconomicProdModifier * 100M, 2) + "%");
+                $"{AuroraUtils.FormatNumberToDigits(this.Race.EconomicProdModifier * 100M, 2)}%");
             this.gclass0_0.method_597(listView_1, "Manufacturing Efficiency Modifier",
-                AuroraUtils.FormatNumberToDigits(this.Efficiency * 100M, 2) + "%");
+                $"{AuroraUtils.FormatNumberToDigits(this.Efficiency * 100M, 2)}%");
             this.gclass0_0.method_597(listView_1, "Political Status Production Modifier",
-                AuroraUtils.FormatNumberToDigits(this.PopulationPoliticalStatus.ProductionModifier * 100M, 2) + "%");
+                $"{AuroraUtils.FormatNumberToDigits(this.PopulationPoliticalStatus.ProductionModifier * 100M, 2)}%");
             this.gclass0_0.method_597(listView_1, "Political Status Wealth Modifier",
-                AuroraUtils.FormatNumberToDigits(this.PopulationPoliticalStatus.WealthModifier * 100M, 2) + "%");
+                $"{AuroraUtils.FormatNumberToDigits(this.PopulationPoliticalStatus.WealthModifier * 100M, 2)}%");
             this.gclass0_0.method_597(listView_1, "Political Stability Modifier",
-                AuroraUtils.FormatNumberToDigits(this.decimal_33 * 100M, 2) + "%");
+                $"{AuroraUtils.FormatNumberToDigits(this.decimal_33 * 100M, 2)}%");
             listView_2.Items.Clear();
             if (this.SystemBodyData.AncientConstruct != null)
             {
@@ -8236,9 +8234,9 @@ public partial class PopulationData
             {
                 this.gclass0_0.method_597(listView_2, "", "");
                 this.gclass0_0.method_597(listView_2, "Colonisation Pressure",
-                    AuroraUtils.FormatNumberToDigits(this.ColonizationPressure, 2) + "%");
+                    $"{AuroraUtils.FormatNumberToDigits(this.ColonizationPressure, 2)}%");
                 this.gclass0_0.method_597(listView_2, "Available Colonists",
-                    AuroraUtils.FormatNumberToDigits(this.AvailableColonists, 2) + "m");
+                    $"{AuroraUtils.FormatNumberToDigits(this.AvailableColonists, 2)}m");
             }
 
             this.gclass0_0.method_597(listView_2, "", "");
@@ -8318,9 +8316,9 @@ public partial class PopulationData
                     this.MassDriverDestPopulation.method_88()) / 1000.0;
                 string str = num >= 170000.0
                     ? (num >= 1700000.0
-                        ? AuroraUtils.smethod_43(num / 86400.0) + " days"
-                        : AuroraUtils.FormatDoubleToPrecision(num / 86400.0, 1) + " days")
-                    : AuroraUtils.FormatDoubleToPrecision(num / 3600.0, 1) + " hours";
+                        ? $"{AuroraUtils.smethod_43(num / 86400.0)} days"
+                        : $"{AuroraUtils.FormatDoubleToPrecision(num / 86400.0, 1)} days")
+                    : $"{AuroraUtils.FormatDoubleToPrecision(num / 3600.0, 1)} hours";
                 label_0.Text = str;
             }
         }
@@ -8506,7 +8504,7 @@ public partial class PopulationData
             if (!(this.decimal_82 > 0M))
                 return;
             this.gclass0_0.method_601(listView_0, "Fuel", AuroraUtils.FormatNumberToDigits(this.decimal_82, 2).ToString(),
-                AuroraUtils.FormatNumberToDigits(this.FuelStockpile / 1000000M, 1) + "m");
+                $"{AuroraUtils.FormatNumberToDigits(this.FuelStockpile / 1000000M, 1)}m");
         }
         catch (Exception ex)
         {
@@ -8937,7 +8935,7 @@ public partial class PopulationData
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        this.gclass0_0.method_598(listView_0, "C - " + class1139.gclass193_0.string_0,
+                        this.gclass0_0.method_598(listView_0, $"C - {class1139.gclass193_0.string_0}",
                             $"{AuroraUtils.smethod_38(class1139.gclass193_0.decimal_0)}  ({class1139.gclass193_0.int_1.ToString()})",
                             class1139.gclass193_0);
                     }
@@ -8950,7 +8948,7 @@ public partial class PopulationData
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            this.gclass0_0.method_598(listView_0, "N - " + class1139.gclass193_0.string_0,
+                            this.gclass0_0.method_598(listView_0, $"N - {class1139.gclass193_0.string_0}",
                                 $"{AuroraUtils.smethod_38(class1139.gclass193_0.decimal_0)}  ({class1139.gclass193_0.int_1.ToString()})",
                                 class1139.gclass193_0);
                         }
@@ -8960,7 +8958,7 @@ public partial class PopulationData
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            this.gclass0_0.method_598(listView_0, "R - " + class1139.gclass193_0.string_0,
+                            this.gclass0_0.method_598(listView_0, $"R - {class1139.gclass193_0.string_0}",
                                 $"{AuroraUtils.smethod_38(class1139.gclass193_0.decimal_0)}  ({class1139.gclass193_0.int_1.ToString()})",
                                 class1139.gclass193_0);
                         }
@@ -9768,7 +9766,7 @@ public partial class PopulationData
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     class1145.gclass146_0.ContactDropdownName =
-                        this.Race.PerceivedAliens[class1145.gclass146_0.Race.RaceID].AlienRaceName + "   ";
+                        $"{this.Race.PerceivedAliens[class1145.gclass146_0.Race.RaceID].AlienRaceName}   ";
                     // ISSUE: reference to a compiler-generated method
                     Decimal decimal_73_1 = this.gclass0_0.Contacts.Values.Where<Contact>(class1145.method_0)
                         .Select<Contact, Decimal>(gclass65_0 => gclass65_0.ContactStrength).FirstOrDefault<Decimal>();

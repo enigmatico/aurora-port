@@ -373,7 +373,7 @@ public class GClass55
             }
 
             string string_0 = $"{this.method_36()} awarded the {gclass53.gclass42_0.MedalName}";
-            string string_4_1 = "Awarded the " + gclass53.gclass42_0.MedalName;
+            string string_4_1 = $"Awarded the {gclass53.gclass42_0.MedalName}";
             if (gclass43_0 != null)
             {
                 string_0 = $"{string_0} based on the condition: {gclass43_0.Description}";
@@ -394,7 +394,7 @@ public class GClass55
             }
 
             this.method_46(string_4_1, GEnum28.const_0);
-            this.method_45(" awarded the " + gclass53.gclass42_0.MedalName);
+            this.method_45($" awarded the {gclass53.gclass42_0.MedalName}");
             this.gclass0_0.gclass92_0.method_2(EventType.const_164, string_0, this.gclass21_0, null, 0.0, 0.0,
                 AuroraEventCategory.Commander);
         }
@@ -460,7 +460,7 @@ public class GClass55
         {
             Decimal decimal_73 = this.method_5(genum121_0);
             return this.gclass0_0.CommanderBonusDictionary[genum121_0].Percentage
-                ? AuroraUtils.FormatNumberToDigits((decimal_73 - 1M) * 100M, 0) + "% "
+                ? $"{AuroraUtils.FormatNumberToDigits((decimal_73 - 1M) * 100M, 0)}% "
                 : AuroraUtils.FormatNumberToDigits(decimal_73, 0);
         }
         catch (Exception ex)
@@ -839,10 +839,10 @@ public class GClass55
                 case AuroraCommandType.Ship:
                     if (this.gclass40_1.gclass85_0.method_179() == 1)
                     {
-                        str = "C.O. " + this.gclass40_1.method_187();
+                        str = $"C.O. {this.gclass40_1.method_187()}";
                         if (bool_6)
                         {
-                            str = "CO " + this.gclass40_1.method_187();
+                            str = $"CO {this.gclass40_1.method_187()}";
                             break;
                         }
 
@@ -851,119 +851,119 @@ public class GClass55
 
                     if (this.gclass40_1.gclass85_0.method_162() == this)
                     {
-                        str = "Fleet Commander:  " + this.gclass40_1.gclass85_0.FleetName;
+                        str = $"Fleet Commander:  {this.gclass40_1.gclass85_0.FleetName}";
                         if (bool_6)
                         {
-                            str = "FCO " + this.gclass40_1.gclass85_0.FleetName;
+                            str = $"FCO {this.gclass40_1.gclass85_0.FleetName}";
                             break;
                         }
 
                         break;
                     }
 
-                    str = "C.O. " + this.gclass40_1.method_187();
+                    str = $"C.O. {this.gclass40_1.method_187()}";
                     if (bool_6)
                     {
-                        str = "CO " + this.gclass40_1.method_187();
+                        str = $"CO {this.gclass40_1.method_187()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.Colony:
-                    str = "Planetary Governor:  " + this.gclass146_1.PopName;
+                    str = $"Planetary Governor:  {this.gclass146_1.PopName}";
                     if (bool_6)
                     {
-                        str = "GOV " + this.gclass146_1.PopName;
+                        str = $"GOV {this.gclass146_1.PopName}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.Sector:
-                    str = "Sector Commander:  " + this.gclass62_0.SectorName;
+                    str = $"Sector Commander:  {this.gclass62_0.SectorName}";
                     if (bool_6)
                     {
-                        str = "SEC " + this.gclass62_0.SectorName;
+                        str = $"SEC {this.gclass62_0.SectorName}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.GroundFormation:
-                    str = "C.O. " + this.gclass103_0.method_45();
+                    str = $"C.O. {this.gclass103_0.method_45()}";
                     if (bool_6)
                     {
-                        str = "CO " + this.gclass103_0.method_45();
+                        str = $"CO {this.gclass103_0.method_45()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.ResearchProject:
-                    str = "Research Project:  " + this.gclass161_0.gclass164_0.Name;
+                    str = $"Research Project:  {this.gclass161_0.gclass164_0.Name}";
                     if (bool_6)
                     {
-                        str = "RES " + this.gclass161_0.gclass164_0.Name;
+                        str = $"RES {this.gclass161_0.gclass164_0.Name}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.ExecutiveOfficer:
-                    str = "Executive Officer " + this.gclass40_2.method_187();
+                    str = $"Executive Officer {this.gclass40_2.method_187()}";
                     if (bool_6)
                     {
-                        str = "XO " + this.gclass40_2.method_187();
+                        str = $"XO {this.gclass40_2.method_187()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.ChiefEngineer:
-                    str = "Chief Engineer " + this.gclass40_3.method_187();
+                    str = $"Chief Engineer {this.gclass40_3.method_187()}";
                     if (bool_6)
                     {
-                        str = "ENG " + this.gclass40_3.method_187();
+                        str = $"ENG {this.gclass40_3.method_187()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.ScienceOfficer:
-                    str = "Science Officer " + this.gclass40_4.method_187();
+                    str = $"Science Officer {this.gclass40_4.method_187()}";
                     if (bool_6)
                     {
-                        str = "SCI " + this.gclass40_4.method_187();
+                        str = $"SCI {this.gclass40_4.method_187()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.TacticalOfficer:
-                    str = "Tactical Officer " + this.gclass40_5.method_187();
+                    str = $"Tactical Officer {this.gclass40_5.method_187()}";
                     if (bool_6)
                     {
-                        str = "TAC " + this.gclass40_5.method_187();
+                        str = $"TAC {this.gclass40_5.method_187()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.NavalAdminCommand:
-                    str = "Administrative Command:  " + this.gclass83_0.AdminCommandName;
+                    str = $"Administrative Command:  {this.gclass83_0.AdminCommandName}";
                     if (bool_6)
                     {
-                        str = "NAC " + this.gclass83_0.AdminCommandName;
+                        str = $"NAC {this.gclass83_0.AdminCommandName}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.CAG:
-                    str = "Commander, Air Group " + this.gclass40_6.method_187();
+                    str = $"Commander, Air Group {this.gclass40_6.method_187()}";
                     if (bool_6)
                     {
-                        str = "CAG " + this.gclass40_6.method_187();
+                        str = $"CAG {this.gclass40_6.method_187()}";
                         break;
                     }
 
                     break;
                 case AuroraCommandType.AcademyCommandant:
-                    str = "Academy Commandant:  " + this.gclass146_3.PopName;
+                    str = $"Academy Commandant:  {this.gclass146_3.PopName}";
                     if (bool_6)
                     {
-                        str = "ACM " + this.gclass146_3.PopName;
+                        str = $"ACM {this.gclass146_3.PopName}";
                         break;
                     }
 
@@ -1067,7 +1067,7 @@ public class GClass55
             listView_0.Items.Clear();
             this.method_27();
             label_0.Text = this.method_36();
-            label_1.Text = "    " + this.method_17(false);
+            label_1.Text = $"    {this.method_17(false)}";
             string string_11 = "Unknown";
             if (this.gclass146_2 != null)
             {
@@ -1248,7 +1248,7 @@ public class GClass55
                 gclass103_1.gclass55_0.method_40(true);
             this.gclass103_0 = gclass103_1;
             this.auroraCommandType_0 = AuroraCommandType.GroundFormation;
-            this.method_46("Assigned as Commanding Officer of " + gclass103_1.method_45(), GEnum28.const_1);
+            this.method_46($"Assigned as Commanding Officer of {gclass103_1.method_45()}", GEnum28.const_1);
             this.gclass0_0.gclass92_0.method_2(EventType.const_78,
                 $"{this.method_36()} assigned as Commanding Officer of {gclass103_1.method_45()}", this.gclass21_0,
                 null, 0.0, 0.0, AuroraEventCategory.Commander);
@@ -1281,7 +1281,7 @@ public class GClass55
 
                     if (tag.gclass55_0 == this)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is already assigned to this role");
+                        int num = (int)MessageBox.Show($"{this.string_0} is already assigned to this role");
                         return;
                     }
 
@@ -1293,7 +1293,7 @@ public class GClass55
                     this.gclass146_0 = tag.gclass146_0;
                     this.decimal_1 = this.gclass0_0.GameTime;
                     tag.gclass55_0 = this;
-                    this.method_46("Assigned to " + tag.SectorName, GEnum28.const_1);
+                    this.method_46($"Assigned to {tag.SectorName}", GEnum28.const_1);
                 }
             }
 
@@ -1311,7 +1311,7 @@ public class GClass55
 
                     if (tag.gclass55_0 == this)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is already assigned to this role");
+                        int num = (int)MessageBox.Show($"{this.string_0} is already assigned to this role");
                         return;
                     }
 
@@ -1323,7 +1323,7 @@ public class GClass55
                     this.gclass146_0 = tag;
                     this.decimal_1 = this.gclass0_0.GameTime;
                     tag.gclass55_0 = this;
-                    this.method_46("Assigned to " + tag.PopName, GEnum28.const_1);
+                    this.method_46($"Assigned to {tag.PopName}", GEnum28.const_1);
                 }
             }
 
@@ -1335,7 +1335,7 @@ public class GClass55
                     GClass55 gclass55 = tag.method_82();
                     if (gclass55 == this)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is already assigned to this role");
+                        int num = (int)MessageBox.Show($"{this.string_0} is already assigned to this role");
                         return;
                     }
 
@@ -1345,7 +1345,7 @@ public class GClass55
                     this.auroraCommandType_0 = AuroraCommandType.AcademyCommandant;
                     this.gclass146_0 = tag;
                     this.decimal_1 = this.gclass0_0.GameTime;
-                    this.method_46("Assigned as Academy Commandant on " + tag.PopName, GEnum28.const_1);
+                    this.method_46($"Assigned as Academy Commandant on {tag.PopName}", GEnum28.const_1);
                 }
             }
 
@@ -1357,20 +1357,20 @@ public class GClass55
                     if (gclass49_0.ShipboardPosition == AuroraCommandType.Ship &&
                         this.gclass61_0.RankNum > tag.gclass22_0.RankTheme.RankNum)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is too junior for this assignment");
+                        int num = (int)MessageBox.Show($"{this.string_0} is too junior for this assignment");
                         return;
                     }
 
                     if (gclass49_0.ShipboardPosition != AuroraCommandType.Ship && this.gclass61_0.RankNum !=
                         tag.gclass22_0.RankTheme.RankNum + gclass49_0.RankPriorityModifier)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is not the required rank for this assignment");
+                        int num = (int)MessageBox.Show($"{this.string_0} is not the required rank for this assignment");
                         return;
                     }
 
                     if (tag.method_192(gclass49_0.ShipboardPosition) == this)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is already assigned to this role");
+                        int num = (int)MessageBox.Show($"{this.string_0} is already assigned to this role");
                         return;
                     }
 
@@ -1391,7 +1391,7 @@ public class GClass55
 
                     if (tag.gclass55_0 == this)
                     {
-                        int num = (int)MessageBox.Show(this.string_0 + " is already assigned to this role");
+                        int num = (int)MessageBox.Show($"{this.string_0} is already assigned to this role");
                         return;
                     }
 
@@ -1410,7 +1410,7 @@ public class GClass55
             }
             else if (tag1.gclass55_0 == this)
             {
-                int num2 = (int)MessageBox.Show(this.string_0 + " is already assigned to this role");
+                int num2 = (int)MessageBox.Show($"{this.string_0} is already assigned to this role");
             }
             else
             {
@@ -1423,7 +1423,7 @@ public class GClass55
                 this.gclass40_0 = tag1.gclass40_0;
                 this.decimal_1 = this.gclass0_0.GameTime;
                 tag1.gclass55_0 = this;
-                this.method_46("Assigned to " + tag1.AdminCommandName, GEnum28.const_1);
+                this.method_46($"Assigned to {tag1.AdminCommandName}", GEnum28.const_1);
             }
         }
         catch (Exception ex)
@@ -1467,7 +1467,7 @@ public class GClass55
                              .Where<GClass62>(class911.method_1)
                              .OrderByDescending<GClass62, int>(gclass62_0 => gclass62_0.int_1)
                              .ThenBy<GClass62, string>(gclass62_0 => gclass62_0.SectorName).ToList<GClass62>())
-                    this.gclass0_0.method_599(listView_0, "A" + object_1.int_1.ToString(), object_1.SectorName,
+                    this.gclass0_0.method_599(listView_0, $"A{object_1.int_1}", object_1.SectorName,
                         AuroraUtils.color_2, object_1);
             }
 
@@ -1491,10 +1491,10 @@ public class GClass55
                              .ThenBy<PopulationData, string>(gclass146_0 => gclass146_0.PopName).ToList<PopulationData>())
                 {
                     if (object_1.gclass55_0 == null)
-                        this.gclass0_0.method_598(listView_0, "A" + object_1.int_17.ToString(), object_1.PopName,
+                        this.gclass0_0.method_598(listView_0, $"A{object_1.int_17}", object_1.PopName,
                             object_1);
                     else
-                        this.gclass0_0.method_599(listView_0, "A" + object_1.int_17.ToString(), object_1.PopName,
+                        this.gclass0_0.method_599(listView_0, $"A{object_1.int_17}", object_1.PopName,
                             Color.LightGray, object_1);
                 }
             }
@@ -1521,10 +1521,10 @@ public class GClass55
                         if (this.method_5(CommanderBonusType.ColonyAdmnistration) >= genum15_0)
                         {
                             if (gclass55 == null)
-                                this.gclass0_0.method_598(listView_0, "A" + genum15_0.ToString(), object_1.PopName,
+                                this.gclass0_0.method_598(listView_0, $"A{genum15_0}", object_1.PopName,
                                     object_1);
                             else
-                                this.gclass0_0.method_599(listView_0, "A" + genum15_0.ToString(), object_1.PopName,
+                                this.gclass0_0.method_599(listView_0, $"A{genum15_0}", object_1.PopName,
                                     Color.LightGray, object_1);
                         }
                     }
@@ -1536,10 +1536,10 @@ public class GClass55
                         if (this.method_5(CommanderBonusType.ResearchAdmin) / num >= genum15_0)
                         {
                             if (gclass55 == null)
-                                this.gclass0_0.method_598(listView_0, "RA" + genum15_0.ToString(), object_1.PopName,
+                                this.gclass0_0.method_598(listView_0, $"RA{genum15_0}", object_1.PopName,
                                     object_1);
                             else
-                                this.gclass0_0.method_599(listView_0, "RA" + genum15_0.ToString(), object_1.PopName,
+                                this.gclass0_0.method_599(listView_0, $"RA{genum15_0}", object_1.PopName,
                                     Color.LightGray, object_1);
                         }
                     }
@@ -1641,10 +1641,10 @@ public class GClass55
                         // ISSUE: reference to a compiler-generated field
                         if (object_1.method_192(class912.class911_0.gclass49_0.ShipboardPosition) == null)
                             this.gclass0_0.method_604(listView_0, gclass61.RankAbbreviation, object_1.gclass22_0.method_34(),
-                                object_1.ShipName, AuroraUtils.smethod_38(object_1.method_189()) + "%", object_1);
+                                object_1.ShipName, $"{AuroraUtils.smethod_38(object_1.method_189())}%", object_1);
                         else
                             this.gclass0_0.method_605(listView_0, gclass61.RankAbbreviation, object_1.gclass22_0.method_34(),
-                                object_1.ShipName, AuroraUtils.smethod_38(object_1.method_189()) + "%", Color.LightGray,
+                                object_1.ShipName, $"{AuroraUtils.smethod_38(object_1.method_189())}%", Color.LightGray,
                                 object_1);
                     }
                 }
@@ -1836,7 +1836,7 @@ public class GClass55
             {
                 if (gclass52.gclass50_0.Percentage)
                     this.gclass0_0.method_597(listView_0, gclass52.gclass50_0.Description,
-                        AuroraUtils.smethod_38((gclass52.decimal_0 - 1M) * 100M) + "%");
+                        $"{AuroraUtils.smethod_38((gclass52.decimal_0 - 1M) * 100M)}%");
                 else
                     this.gclass0_0.method_597(listView_0, gclass52.gclass50_0.Description,
                         AuroraUtils.smethod_38(gclass52.decimal_0));
@@ -2060,62 +2060,62 @@ public class GClass55
         {
             string str = "";
             if (this.gclass146_3 != null && bool_8)
-                str = "elieved as Academy Commandant on " + this.gclass146_3.PopName;
+                str = $"elieved as Academy Commandant on {this.gclass146_3.PopName}";
             if (this.gclass161_0 != null)
                 str = $"elieved from leadership of {this.gclass161_0.gclass164_0.Name} research project";
             else if (this.gclass103_0 != null)
             {
-                str = "elieved from command of " + this.gclass103_0.method_45();
+                str = $"elieved from command of {this.gclass103_0.method_45()}";
                 this.gclass103_0.gclass55_0 = null;
             }
             else if (this.gclass146_1 != null)
             {
-                str = "elieved from command of " + this.gclass146_1.PopName;
+                str = $"elieved from command of {this.gclass146_1.PopName}";
                 this.gclass146_1.gclass55_0 = null;
             }
             else if (this.gclass62_0 != null)
             {
-                str = "elieved from command of " + this.gclass62_0.SectorName;
+                str = $"elieved from command of {this.gclass62_0.SectorName}";
                 this.gclass62_0.gclass55_0 = null;
             }
             else if (this.gclass83_0 != null)
             {
-                str = "elieved from command of " + this.gclass83_0.AdminCommandName;
+                str = $"elieved from command of {this.gclass83_0.AdminCommandName}";
                 this.gclass83_0.gclass55_0 = null;
             }
             else if (this.gclass40_1 != null)
             {
-                str = "elieved from command of " + this.gclass40_1.method_187();
+                str = $"elieved from command of {this.gclass40_1.method_187()}";
                 this.gclass40_1.dictionary_1.Remove(AuroraCommandType.Ship);
             }
             else if (this.gclass40_2 != null)
             {
-                str = "elieved as executive officer of " + this.gclass40_2.method_187();
+                str = $"elieved as executive officer of {this.gclass40_2.method_187()}";
                 this.gclass40_2.dictionary_1.Remove(AuroraCommandType.ExecutiveOfficer);
             }
             else if (this.gclass40_3 != null)
             {
-                str = "elieved as Chief Engineer of " + this.gclass40_3.method_187();
+                str = $"elieved as Chief Engineer of {this.gclass40_3.method_187()}";
                 this.gclass40_3.dictionary_1.Remove(AuroraCommandType.ChiefEngineer);
             }
             else if (this.gclass40_4 != null)
             {
-                str = "elieved as Science Officer of " + this.gclass40_4.method_187();
+                str = $"elieved as Science Officer of {this.gclass40_4.method_187()}";
                 this.gclass40_4.dictionary_1.Remove(AuroraCommandType.ScienceOfficer);
             }
             else if (this.gclass40_5 != null)
             {
-                str = "elieved as Tactical Officer of " + this.gclass40_5.method_187();
+                str = $"elieved as Tactical Officer of {this.gclass40_5.method_187()}";
                 this.gclass40_5.dictionary_1.Remove(AuroraCommandType.TacticalOfficer);
             }
             else if (this.gclass40_6 != null)
             {
-                str = "elieved as Commander, Air Group on " + this.gclass40_6.method_187();
+                str = $"elieved as Commander, Air Group on {this.gclass40_6.method_187()}";
                 this.gclass40_6.dictionary_1.Remove(AuroraCommandType.CAG);
             }
 
             if (bool_6 && str != "")
-                this.method_46("R" + str, GEnum28.const_2);
+                this.method_46($"R{str}", GEnum28.const_2);
             if (bool_7 && str != "")
                 this.gclass0_0.gclass92_0.method_2(EventType.const_78,
                     $"As a result of promotion, {this.string_0} was r{str}", this.gclass21_0, null, 0.0, 0.0,

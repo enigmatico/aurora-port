@@ -1374,7 +1374,7 @@ public partial class RacialSystemSurvey
                 string str = "  Unexplored";
                 if (object_1.LinkedJumpPoint != null &&
                     this.Race.RacialSystemDictionary.ContainsKey(object_1.LinkedJumpPoint.SystemData.SystemID))
-                    str = "  " + this.Race.RacialSystemDictionary[object_1.LinkedJumpPoint.SystemData.SystemID].Name;
+                    str = $"  {this.Race.RacialSystemDictionary[object_1.LinkedJumpPoint.SystemData.SystemID].Name}";
                 if (object_1.JumpGateStrength > 0)
                     str += " (S)";
                 this.gclass0_0.method_602(listView_0, num1.ToString() + str,
@@ -1634,8 +1634,8 @@ public partial class RacialSystemSurvey
                     string str2 = this.ActualSystem.double_5 <= 1000000.0
                         ? (this.ActualSystem.double_5 <= 1000.0
                             ? AuroraUtils.smethod_43(this.ActualSystem.double_5)
-                            : AuroraUtils.smethod_43(this.ActualSystem.double_5 / 1000.0) + "k")
-                        : AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_5 / 1000000.0, 1) + "m";
+                            : $"{AuroraUtils.smethod_43(this.ActualSystem.double_5 / 1000.0)}k")
+                        : $"{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_5 / 1000000.0, 1)}m";
                     if (this.ActualSystem.double_4 > 1.0)
                         string_10 = $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4, 1)}y - {str2}]";
                     else if (this.ActualSystem.double_4 > 0.1)
@@ -1666,7 +1666,7 @@ public partial class RacialSystemSurvey
             if (this.Race.chkSurveyedSystemBodies == CheckState.Checked && this.list_6.Count > 0)
                 this.gclass0_0.method_528(graphics_0, font_0, AuroraUtils.color_16,
                     this.double_9 + this.Race.double_1 * 1.1, this.double_10 + this.Race.double_1 * 0.65,
-                    this.Race.double_1, int_136_2, this.int_27.ToString() + "%", StringAlignment.Near,
+                    this.Race.double_1, int_136_2, $"{this.int_27}%", StringAlignment.Near,
                     StringAlignment.Near);
             bool flag = false;
             if (this.Race.gclass112_0 == null)
@@ -1950,13 +1950,13 @@ public partial class RacialSystemSurvey
             RacialSystemSurvey.Class1201 class1201 = new RacialSystemSurvey.Class1201();
             // ISSUE: reference to a compiler-generated field
             class1201.gclass202_0 = this;
-            label_0.Text = this.ActualSystem.Age.ToString() + " GY";
+            label_0.Text = $"{this.ActualSystem.Age} GY";
             label_1.Text = this.Discovered;
             label_2.Text = this.ActualSystem.JumpPointSurveyPoints.ToString();
             int num1 = this.ActualSystem.SurveyLocationDictionary.Values
                 .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
                 .Count<SurveyLocation>();
-            label_3.Text = AuroraUtils.smethod_38(num1 / 30M * 100M) + "%";
+            label_3.Text = $"{AuroraUtils.smethod_38(num1 / 30M * 100M)}%";
             // ISSUE: reference to a compiler-generated field
             class1201.list_0 = this.gclass0_0.SystemBodyRecordDic.Values
                 .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.ActualSystem)
@@ -1971,7 +1971,7 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated method
                 int num2 = this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class1201.method_0).Count<RacialSystemBodySurvey>();
                 // ISSUE: reference to a compiler-generated field
-                label_4.Text = AuroraUtils.smethod_38(num2 / (Decimal)class1201.list_0.Count * 100M) + "%";
+                label_4.Text = $"{AuroraUtils.smethod_38(num2 / (Decimal)class1201.list_0.Count * 100M)}%";
             }
         }
         catch (Exception ex)
@@ -2074,7 +2074,7 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 this.gclass0_0.method_628(listView_0, string_10, class1202.gclass197_0.StellarType.StellarDescription,
-                    AuroraUtils.smethod_50(class1202.gclass197_0.StellarType.method_1() / 1000000.0) + "m",
+                    $"{AuroraUtils.smethod_50(class1202.gclass197_0.StellarType.method_1() / 1000000.0)}m",
                     AuroraUtils.smethod_50(class1202.gclass197_0.StellarType.Mass),
                     AuroraUtils.smethod_50(class1202.gclass197_0.Luminosity), string_15, string_16, string_17,
                     string_18, string_19, num2.ToString(), num3.ToString(), num4.ToString(), num5.ToString(),
@@ -2097,7 +2097,7 @@ public partial class RacialSystemSurvey
                     .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
                     .Count<SurveyLocation>() != 30)
                 return false;
-            this.gclass0_0.gclass92_0.method_2(EventType.const_22, "Gravitational survey completed in " + this.Name,
+            this.gclass0_0.gclass92_0.method_2(EventType.const_22, $"Gravitational survey completed in {this.Name}",
                 this.Race, this.ActualSystem, 0.0, 0.0, AuroraEventCategory.System);
             this.bSurveyComplete = true;
             return true;

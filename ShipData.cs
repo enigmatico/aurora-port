@@ -1500,7 +1500,7 @@ public partial class ShipData
             if (this.gclass0_0.MissileSalvoes.ContainsKey(int_40))
                 return this.gclass0_0.MissileSalvoes[int_40];
             this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                this.ShipName + " cannot locate its designated missile salvo target", this.gclass21_0,
+                $"{this.ShipName} cannot locate its designated missile salvo target", this.gclass21_0,
                 this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                 AuroraEventCategory.Ship);
             return null;
@@ -1527,7 +1527,7 @@ public partial class ShipData
             if (!this.gclass0_0.Populations.ContainsKey(class802.int_0))
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                    this.ShipName + " cannot locate its designated population target", this.gclass21_0,
+                    $"{this.ShipName} cannot locate its designated population target", this.gclass21_0,
                     this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                     AuroraEventCategory.Ship);
                 return null;
@@ -1540,7 +1540,7 @@ public partial class ShipData
                     if (this.gclass0_0.FormationDictionary.Values.Count<GroundUnitFormationData>(class802.method_1) == 0)
                     {
                         this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                            this.ShipName + " cannot locate its designated ground forces target", this.gclass21_0,
+                            $"{this.ShipName} cannot locate its designated ground forces target", this.gclass21_0,
                             this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                             AuroraEventCategory.Ship);
                         return null;
@@ -1555,7 +1555,7 @@ public partial class ShipData
                     if (this.gclass0_0.FormationDictionary.Values.Count<GroundUnitFormationData>(class802.method_3) == 0)
                     {
                         this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                            this.ShipName + " cannot locate its designated STO ground forces target", this.gclass21_0,
+                            $"{this.ShipName} cannot locate its designated STO ground forces target", this.gclass21_0,
                             this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                             AuroraEventCategory.Ship);
                         return null;
@@ -1565,7 +1565,7 @@ public partial class ShipData
                             .Count<GroundUnitFormationElement>(gclass39_0 => gclass39_0.GroundUnitClass.gclass230_0 != null) == 0)
                     {
                         this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                            this.ShipName + " cannot locate its designated STO ground forces target", this.gclass21_0,
+                            $"{this.ShipName} cannot locate its designated STO ground forces target", this.gclass21_0,
                             this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                             AuroraEventCategory.Ship);
                         return null;
@@ -1577,7 +1577,7 @@ public partial class ShipData
                     if (this.gclass0_0.dictionary_31.Values.Count<GClass193>(class802.method_0) == 0)
                     {
                         this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                            this.ShipName + " cannot locate its designated shipyard target", this.gclass21_0,
+                            $"{this.ShipName} cannot locate its designated shipyard target", this.gclass21_0,
                             this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                             AuroraEventCategory.Ship);
                         return null;
@@ -1603,7 +1603,7 @@ public partial class ShipData
             if (this.gclass0_0.Waypoints.ContainsKey(int_40))
                 return this.gclass0_0.Waypoints[int_40];
             this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                this.ShipName + " cannot locate its designated waypoint target", this.gclass21_0,
+                $"{this.ShipName} cannot locate its designated waypoint target", this.gclass21_0,
                 this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                 AuroraEventCategory.Ship);
             return null;
@@ -1628,7 +1628,7 @@ public partial class ShipData
                     this.gclass85_0.YCoord, AuroraEventCategory.Ship);
             else
                 this.gclass0_0.gclass92_0.method_2(EventType.const_10,
-                    this.ShipName + " cannot locate its designated ship target", this.gclass21_0,
+                    $"{this.ShipName} cannot locate its designated ship target", this.gclass21_0,
                     this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                     AuroraEventCategory.Ship);
             return null;
@@ -2665,7 +2665,7 @@ public partial class ShipData
                                 string str2 = str1 + gclass36.method_1(this);
                                 node2.Nodes.Add(new TreeNode()
                                 {
-                                    Text = "Target:  " + str2,
+                                    Text = $"Target:  {str2}",
                                     Tag = gclass36.TargetID
                                 });
                             }
@@ -2674,7 +2674,7 @@ public partial class ShipData
                         if (gclass36.PointDefenceMode != AuroraPointDefenceMode.None)
                         {
                             TreeNode node3 = new TreeNode();
-                            node3.Text = "Point Defence:  " + AuroraUtils.smethod_82(gclass36.PointDefenceMode);
+                            node3.Text = $"Point Defence:  {AuroraUtils.smethod_82(gclass36.PointDefenceMode)}";
                             if (gclass36.FCComponent.gclass231_0.ComponentTypeID ==
                                 AuroraComponentType.BeamFireControl)
                                 node3.Text =
@@ -3038,7 +3038,7 @@ public partial class ShipData
                 case AuroraContactType.Salvo:
                     if (this.gclass0_0.MissileSalvoes.ContainsKey(int_40))
                     {
-                        str1 = "Missile Salvo #" + this.gclass0_0.MissileSalvoes[int_40].int_1.ToString();
+                        str1 = $"Missile Salvo #{this.gclass0_0.MissileSalvoes[int_40].int_1}";
                         break;
                     }
 
@@ -3077,8 +3077,7 @@ public partial class ShipData
                             this.gclass0_0.dictionary_31.ContainsKey(int_40))
                         {
                             str1 =
-                                $"[{this.gclass21_0.PerceivedAliens[this.gclass0_0.Populations[int_40].Race.RaceID].Abbreviation}]  " +
-                                "Deep Space Shipyard";
+                                $"[{this.gclass21_0.PerceivedAliens[this.gclass0_0.Populations[int_40].Race.RaceID].Abbreviation}]  Deep Space Shipyard";
                             break;
                         }
 
@@ -3498,7 +3497,7 @@ public partial class ShipData
                         $"{gclass55_7.string_0} failed to escape the destruction of {this.ShipName}", this.gclass21_0,
                         this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                         AuroraEventCategory.Ship);
-                    gclass55_7.method_46("Killed during the destruction of " + this.ShipName, GEnum28.const_0);
+                    gclass55_7.method_46($"Killed during the destruction of {this.ShipName}", GEnum28.const_0);
                     gclass55_7.method_42(AuroraRetirementStatus.KilledNaval);
                 }
                 else if (gclass59 != null)
@@ -3518,7 +3517,7 @@ public partial class ShipData
                         $"{gclass55_7.string_0} escaped from the destruction of {this.ShipName}", this.gclass21_0,
                         this.gclass85_0.System.ActualSystem, this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                         AuroraEventCategory.Ship);
-                    gclass55_7.method_46("Escaped the destruction of " + this.ShipName, GEnum28.const_0);
+                    gclass55_7.method_46($"Escaped the destruction of {this.ShipName}", GEnum28.const_0);
                     if (gclass146 != null)
                         gclass55_7.gclass146_0 = gclass146;
                 }
@@ -4140,7 +4139,7 @@ public partial class ShipData
             gclass180.Ship = this;
             foreach (GClass55 gclass55 in this.dictionary_1.Values.ToList<GClass55>())
             {
-                gclass55.method_46("Surrendered to " + gclass21_1.RaceTitle, GEnum28.const_2);
+                gclass55.method_46($"Surrendered to {gclass21_1.RaceTitle}", GEnum28.const_2);
                 gclass55.method_40(false);
                 gclass55.gclass40_0 = this;
                 gclass55.bool_4 = true;
@@ -4829,7 +4828,8 @@ public partial class ShipData
                         str = AuroraUtils.FormatNumberToDigits(num * 100M, 1);
                 }
 
-                this.gclass0_0.method_602(listView_0, object_1.RepairOrder.ToString(), object_1.Component.Name, str + "%",
+                this.gclass0_0.method_602(listView_0, object_1.RepairOrder.ToString(), object_1.Component.Name,
+                    $"{str}%",
                     object_1);
             }
         }
@@ -4913,7 +4913,7 @@ public partial class ShipData
         {
             return this.gclass22_0.MaintSupplies == 0
                 ? "0%"
-                : AuroraUtils.smethod_39(this.decimal_4 / this.gclass22_0.MaintSupplies * 100M) + "%";
+                : $"{AuroraUtils.smethod_39(this.decimal_4 / this.gclass22_0.MaintSupplies * 100M)}%";
         }
         catch (Exception ex)
         {
@@ -6020,7 +6020,7 @@ public partial class ShipData
                         if (AuroraUtils.GetRandomInteger(100) < num2 / 2.0)
                         {
                             gclass55.method_42(AuroraRetirementStatus.DiedLifeSupportFailure);
-                            gclass55.method_46("Died due to life support failure on board " + this.method_187(),
+                            gclass55.method_46($"Died due to life support failure on board {this.method_187()}",
                                 GEnum28.const_0);
                             this.method_204(
                                 $"{AuroraUtils.smethod_82(gclass55.auroraCommandType_0)} {gclass55.method_36()} died due to life support failure");
@@ -7738,7 +7738,7 @@ public partial class ShipData
                          .OrderBy<GClass54, string>(gclass54_0 =>
                              AuroraUtils.smethod_82(gclass54_0.auroraMeasurementType_0)).ToList<GClass54>())
                 this.gclass0_0.method_601(listView_0,
-                    AuroraUtils.smethod_82(gclass54.auroraMeasurementType_0) + " (SG)",
+                    $"{AuroraUtils.smethod_82(gclass54.auroraMeasurementType_0)} (SG)",
                     AuroraUtils.smethod_38(gclass54.decimal_0), null);
         }
         catch (Exception ex)
@@ -7752,14 +7752,14 @@ public partial class ShipData
         try
         {
             if (this.decimal_10 < 1000000M)
-                return AuroraUtils.FormatNumberToDigits(this.decimal_10 / 1000000M, 2) + "m";
+                return $"{AuroraUtils.FormatNumberToDigits(this.decimal_10 / 1000000M, 2)}m";
             if (this.decimal_10 < 10000000M)
-                return AuroraUtils.FormatNumberToDigits(this.decimal_10 / 1000000M, 1) + "m";
+                return $"{AuroraUtils.FormatNumberToDigits(this.decimal_10 / 1000000M, 1)}m";
             if (this.decimal_10 < 1000000000M)
-                return AuroraUtils.smethod_39(this.decimal_10 / 1000000M) + "m";
+                return $"{AuroraUtils.smethod_39(this.decimal_10 / 1000000M)}m";
             return this.decimal_10 < 10000000000M
-                ? AuroraUtils.FormatNumberToDigits(this.decimal_10 / 1000000000M, 1) + "b"
-                : AuroraUtils.smethod_39(this.decimal_10 / 1000000000M) + "b";
+                ? $"{AuroraUtils.FormatNumberToDigits(this.decimal_10 / 1000000000M, 1)}b"
+                : $"{AuroraUtils.smethod_39(this.decimal_10 / 1000000000M)}b";
         }
         catch (Exception ex)
         {
@@ -7859,39 +7859,39 @@ public partial class ShipData
             foreach (GClass228 gclass228_0 in gclass22.dictionary_0.Values)
                 gclass228_0.int_4 = this.method_158(gclass228_0);
             gclass22.method_85(int_40, int_41, this.method_187());
-            string string_11_1 = this.method_189().ToString() + "%";
-            string string_11_2 = Math.Round(this.decimal_16 / 5M).ToString() + "%";
-            string string_11_3 = AuroraUtils.smethod_38(this.decimal_2 * 100M) + "%";
+            string string_11_1 = $"{this.method_189()}%";
+            string string_11_2 = $"{Math.Round(this.decimal_16 / 5M)}%";
+            string string_11_3 = $"{AuroraUtils.smethod_38(this.decimal_2 * 100M)}%";
             Decimal num1;
             if (this.method_172() > 0M)
             {
                 num1 = Math.Round(this.decimal_4 / this.method_172() * 100M);
-                string str = num1.ToString() + "%";
+                string str = $"{num1}%";
             }
 
             Decimal num2 = this.method_157(AuroraComponentType.FuelStorage, false);
             if (num2 > 0M)
             {
                 num1 = Math.Round(this.decimal_14 / num2 * 100M);
-                string str = num1.ToString() + "%";
+                string str = $"{num1}%";
             }
 
             if (this.method_181() > 0M)
             {
                 num1 = Math.Round(this.method_212());
-                string str = num1.ToString() + "%";
+                string str = $"{num1}%";
             }
 
             int num3 = this.gclass22_0.ArmourThickness * this.gclass22_0.ArmourWidth;
             int num4 = this.dictionary_5.Sum<KeyValuePair<int, int>>(keyValuePair_0 => keyValuePair_0.Value);
             num1 = Math.Round((num3 - num4) / (Decimal)num3 * 100M);
-            string string_11_4 = num1.ToString() + "%";
+            string string_11_4 = $"{num1}%";
             Decimal num5 = this.method_157(AuroraComponentType.Shields, false) * this.decimal_9;
             string string_11_5 = "-";
             if (num5 > 0M)
             {
                 num1 = Math.Round(this.decimal_3 / num5 * 100M);
-                string_11_5 = num1.ToString() + "%";
+                string_11_5 = $"{num1}%";
             }
 
             string string_11_6 = "-";
@@ -7904,7 +7904,7 @@ public partial class ShipData
                     AuroraUtils.smethod_45((this.gclass0_0.GameTime - this.decimal_6) / AuroraUtils.decimal_29, 2);
             string string_11_8 = AuroraUtils.FormatNumberToDigits(this.method_166(), 2);
             num1 = Math.Round(this.method_171(false) / this.gclass22_0.MaxSpeed * 100M);
-            string string_11_9 = num1.ToString() + "%";
+            string string_11_9 = $"{num1}%";
             listView_2.Items.Clear();
             listView_0.Items.Clear();
             listView_1.Items.Clear();
@@ -8045,7 +8045,7 @@ public partial class ShipData
                 num1 += num4 * gclass228_0.gclass230_0.decimal_3;
             }
 
-            return num2 == 0M ? "-" : AuroraUtils.smethod_38(num1 / num2 * 100M) + "%";
+            return num2 == 0M ? "-" : $"{AuroraUtils.smethod_38(num1 / num2 * 100M)}%";
         }
         catch (Exception ex)
         {
@@ -8935,7 +8935,7 @@ public partial class ShipData
                 .Where<ShipData>(gclass40_4 => gclass40_4.gclass40_0 == this).ToList<ShipData>();
             if (list.Count == 0)
                 return;
-            string str = this.ShipName + " Parasites";
+            string str = $"{this.ShipName} Parasites";
             foreach (ShipData gclass40 in list)
                 gclass40.gclass40_0 = null;
         }
