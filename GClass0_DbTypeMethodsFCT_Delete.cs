@@ -131,7 +131,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_System WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_System WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -175,7 +175,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_RaceMedals WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceMedals WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -206,16 +206,16 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MedalConditionAssignment WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MedalConditionAssignment WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass44 gclass44 in this.list_1)
+                foreach (ConditionForMedal gclass44 in this.ConditionForMedals)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_MedalConditionAssignment (MedalConditionID, MedalID, GameID ) \r\n                        VALUES ( @MedalConditionID, @MedalID, @GameID )";
-                    sqLiteCommand.Parameters.AddWithValue("@MedalConditionID", gclass44.gclass43_0.MedalConditionID);
-                    sqLiteCommand.Parameters.AddWithValue("@MedalID", gclass44.gclass42_0.MedalID);
+                    sqLiteCommand.Parameters.AddWithValue("@MedalConditionID", gclass44.Condition.MedalConditionID);
+                    sqLiteCommand.Parameters.AddWithValue("@MedalID", gclass44.Medal.MedalID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.ExecuteNonQuery();
                 }
@@ -231,7 +231,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Squadron WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Squadron WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -259,7 +259,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_WindowPosition WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WindowPosition WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -285,14 +285,15 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitFormationElement WHERE GameID = {this.GameID}",
+            new SQLiteCommand(
+                string.Format("DELETE FROM FCT_GroundUnitFormationElement WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             new SQLiteCommand(
-                $"DELETE FROM FCT_GroundUnitFormationElementTemplates WHERE GameID = {this.GameID}",
+                string.Format("DELETE FROM FCT_GroundUnitFormationElementTemplates WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ElementRecharge WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ElementRecharge WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_STODetected WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_STODetected WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -358,15 +359,16 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitFormationTemplate WHERE GameID = {this.GameID}",
+            new SQLiteCommand(
+                string.Format("DELETE FROM FCT_GroundUnitFormationTemplate WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
                 foreach (GroundUnitFormationTemplateData gclass102 in this.FormationTemplateRecordDic.Values)
                 {
                     int num = 0;
-                    if (gclass102.RequiredRankData != null)
-                        num = gclass102.RequiredRankData.int_0;
+                    if (gclass102.RequiredRacialRankData != null)
+                        num = gclass102.RequiredRacialRankData.RankID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_GroundUnitFormationTemplate (GameID, RaceID, Name, Abbreviation, TemplateID, RequiredRank, AutomatedTemplateID, FormationsTrained, Obsolete ) \r\n                        VALUES ( @GameID, @RaceID, @Name, @Abbreviation, @TemplateID, @RequiredRank, @AutomatedTemplateID, @FormationsTrained, @Obsolete)";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
@@ -392,7 +394,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitFormation WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitFormation WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -415,8 +417,8 @@ public partial class GClass0
                             num3 = gclass103.ParentFormationData.FormationID;
                         if (gclass103.AssignedFormationData != null)
                             num4 = gclass103.AssignedFormationData.FormationID;
-                        if (gclass103.RequiredRankData != null)
-                            num5 = gclass103.RequiredRankData.int_0;
+                        if (gclass103.RequiredRacialRankData != null)
+                            num5 = gclass103.RequiredRacialRankData.RankID;
                         if (gclass103.OriginalTemplateData != null)
                             num6 = gclass103.OriginalTemplateData.TemplateID;
                         if (gclass103.ReplacementTemplateData != null)
@@ -464,9 +466,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitClass WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitClass WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitCapability WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitCapability WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -485,8 +487,8 @@ public partial class GClass0
                         num3 = (int)gclass101.GroundUnitComponentList[2].GroundUnitComponentType;
                     if (gclass101.GroundUnitComponentList.Count > 3)
                         num4 = (int)gclass101.GroundUnitComponentList[3].GroundUnitComponentType;
-                    if (gclass101.gclass230_0 != null)
-                        num5 = gclass101.gclass230_0.int_0;
+                    if (gclass101.SurfaceToOrbitWeapon != null)
+                        num5 = gclass101.SurfaceToOrbitWeapon.int_0;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_GroundUnitClass (BaseType, GroundUnitClassID, TechSystemID, ClassName, ArmourType, ComponentA, ComponentB, ComponentC, ComponentD, ArmourStrengthModifier, WeaponStrengthModifier, Size, Cost, GameID, STOWeapon, MaxWeaponRange, MaxFireControlRange, ActiveSensorRange, SensorStrength, TrackingSpeed, ECCM, GUClassType, UnitSupplyCost, RechargeTime, ConstructionRating, HQCapacity, NonCombatClass, PointDefenceWeapon,\r\n                                    Duranium, Neutronium, Corbomite, Tritanium, Boronide, Mercassium, Vendarite, Sorium, Uridium, Corundium, Gallicite) \r\n                        VALUES ( @BaseType, @GroundUnitClassID, @TechSystemID, @ClassName, @ArmourType, @ComponentA, @ComponentB, @ComponentC, @ComponentD, @ArmourStrengthModifier, @WeaponStrengthModifier, @Size, @Cost, @GameID, @STOWeapon, @MaxWeaponRange, @MaxFireControlRange, @ActiveSensorRange, @SensorStrength, @TrackingSpeed, @ECCM, @GUClassType, @UnitSupplyCost, @RechargeTime, @ConstructionRating, @HQCapacity, @NonCombatClass, @PointDefenceWeapon,\r\n                                    @Duranium, @Neutronium, @Corbomite, @Tritanium, @Boronide, @Mercassium, @Vendarite, @Sorium, @Uridium, @Corundium, @Gallicite)";
                     sqLiteCommand.Parameters.AddWithValue("@BaseType", gclass101.GroundUnitBaseTypeData.genum112_0);
@@ -551,7 +553,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MapLabel WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MapLabel WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -585,9 +587,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_SurveyLocation WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_SurveyLocation WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_RaceSurveyLocation WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceSurveyLocation WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -627,7 +629,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Star WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Star WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -670,7 +672,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_JumpPoint WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_JumpPoint WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -702,7 +704,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_OrderTemplate WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_OrderTemplate WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -729,7 +731,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AcidAttack WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AcidAttack WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -757,7 +759,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ShipTechData WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipTechData WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -785,7 +787,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_TechProgressionRace WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_TechProgressionRace WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -813,7 +815,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Waypoint WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Waypoint WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -848,7 +850,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MassDriverPackets WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MassDriverPackets WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -894,7 +896,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_LagrangePoint WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_LagrangePoint WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -925,7 +927,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_PopTradeBalance WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PopTradeBalance WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -955,7 +957,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ShippingWealthData WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShippingWealthData WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -973,7 +975,7 @@ public partial class GClass0
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_ShippingWealthData (GameID, ShippingLineID, ShipID, Contract, Colonist, Fuel, Amount, TradeGood, TradeTime, OriginPop, DestinationPop ) VALUES ( @GameID, @ShippingLineID, @ShipID, @Contract, @Colonist, @Fuel, @Amount, @TradeGood, @TradeTime, @OriginPop, @DestinationPop )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@ShippingLineID", gclass188.ShippingLine.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ShippingLineID", gclass188.ShippingLine.ShippingLineID);
                     sqLiteCommand.Parameters.AddWithValue("@ShipID", num1);
                     sqLiteCommand.Parameters.AddWithValue("@Contract", gclass188.Contract);
                     sqLiteCommand.Parameters.AddWithValue("@Colonist", gclass188.Colonist);
@@ -997,11 +999,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_PrecursorTombGroup WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PrecursorTombGroup WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass172 gclass172 in this.list_8)
+                foreach (PrecursorTombGroup gclass172 in this.list_8)
                 {
                     int num1 = 0;
                     OperationalGroupID genum105 = OperationalGroupID.None;
@@ -1038,7 +1040,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MoveOrders WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MoveOrders WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1097,7 +1099,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MoveOrderTemplate WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MoveOrderTemplate WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1233,7 +1235,7 @@ public partial class GClass0
                 foreach (SystemBodyData gclass1 in this.list_0)
                 {
                     sqLiteCommand.CommandText =
-                        $"DELETE FROM FCT_SystemBody WHERE SystemBodyID = {gclass1.SystemBodyID}";
+                        string.Format("DELETE FROM FCT_SystemBody WHERE SystemBodyID = {0}", gclass1.SystemBodyID);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -1361,7 +1363,7 @@ public partial class GClass0
             }
             else
             {
-                new SQLiteCommand($"DELETE FROM FCT_SystemBodySurveys WHERE GameID = {this.GameID}",
+                new SQLiteCommand(string.Format("DELETE FROM FCT_SystemBodySurveys WHERE GameID = {0}", this.GameID),
                     sqliteConnection_0).ExecuteNonQuery();
                 using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
                 {
@@ -1390,7 +1392,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_SubFleets WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_SubFleets WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1434,43 +1436,44 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_StandingOrderTemplate WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_StandingOrderTemplate WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_StandingOrderTemplateOrder WHERE GameID = {this.GameID}",
+            new SQLiteCommand(
+                string.Format("DELETE FROM FCT_StandingOrderTemplateOrder WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
                 foreach (GameRace gclass21 in this.GameRaces.Values)
                 {
-                    foreach (GClass135 gclass135 in gclass21.dictionary_9.Values)
+                    foreach (StandingOrderTemplate gclass135 in gclass21.StandingOrderTemplates.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_StandingOrderTemplate (GameID, RaceID, TemplateID, TemplateName ) \r\n                                    VALUES ( @GameID, @RaceID, @TemplateID, @TemplateName )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass21.RaceID);
-                        sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass135.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@TemplateName", gclass135.string_0);
+                        sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass135.TemplateID);
+                        sqLiteCommand.Parameters.AddWithValue("@TemplateName", gclass135.TemplateName);
                         sqLiteCommand.ExecuteNonQuery();
-                        foreach (KeyValuePair<int, StandingOrderDefinition> keyValuePair in gclass135.dictionary_0)
+                        foreach (KeyValuePair<int, StandingOrderDefinition> keyValuePair in gclass135.StandingOrders)
                         {
                             sqLiteCommand.CommandText =
                                 "INSERT INTO FCT_StandingOrderTemplateOrder ( GameID, RaceID, TemplateID, OrderID, ConditionID, Priority ) \r\n                                        VALUES ( @GameID, @RaceID, @TemplateID, @OrderID, @ConditionID, @Priority )";
                             sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                             sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass21.RaceID);
-                            sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass135.int_0);
+                            sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass135.TemplateID);
                             sqLiteCommand.Parameters.AddWithValue("@OrderID", keyValuePair.Value.auroraStandingOrder_0);
                             sqLiteCommand.Parameters.AddWithValue("@ConditionID", 0);
                             sqLiteCommand.Parameters.AddWithValue("@Priority", keyValuePair.Key);
                             sqLiteCommand.ExecuteNonQuery();
                         }
 
-                        foreach (KeyValuePair<int, FleetConditionalOrder> keyValuePair in gclass135.dictionary_1)
+                        foreach (KeyValuePair<int, FleetConditionalOrder> keyValuePair in gclass135.ConditionalOrders)
                         {
                             sqLiteCommand.CommandText =
                                 "INSERT INTO FCT_StandingOrderTemplateOrder ( GameID, RaceID, TemplateID, OrderID, ConditionID, Priority, CreateFWP ) \r\n                                        VALUES ( @GameID, @RaceID, @TemplateID, @OrderID, @ConditionID, @Priority, @CreateFWP )";
                             sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                             sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass21.RaceID);
-                            sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass135.int_0);
+                            sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass135.TemplateID);
                             sqLiteCommand.Parameters.AddWithValue("@OrderID", keyValuePair.Value.StandingOrder);
                             sqLiteCommand.Parameters.AddWithValue("@ConditionID",
                                 keyValuePair.Value.Condition);
@@ -1492,13 +1495,13 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Fleet WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Fleet WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_FleetHistory WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_FleetHistory WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_FleetStandingOrder WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_FleetStandingOrder WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_FleetConditionalOrder WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_FleetConditionalOrder WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1525,7 +1528,7 @@ public partial class GClass0
                     if (gclass85.NPROperationGroup != null)
                         genum105 = gclass85.NPROperationGroup.OperationalGroupId;
                     if (gclass85.ShippingLine != null)
-                        num5 = gclass85.ShippingLine.int_0;
+                        num5 = gclass85.ShippingLine.ShippingLineID;
                     if (gclass85.NPRSomething != null)
                         flag = gclass85.NPRSomething.bRedeployOrderGiven;
                     sqLiteCommand.CommandText =
@@ -1534,7 +1537,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@FleetName", gclass85.FleetName);
                     sqLiteCommand.Parameters.AddWithValue("@AssignedPopulationID", num1);
-                    sqLiteCommand.Parameters.AddWithValue("@ParentCommandID", gclass85.ParentNavalCommand.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ParentCommandID", gclass85.ParentNavalCommand.NavalAdminCommandID);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitBodyID", num2);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitDistance", gclass85.OrbitDistance);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitBearing", gclass85.OrbitBearing);
@@ -1583,16 +1586,16 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@IgnoreConditional", gclass85.bIgnoreConditional);
                     sqLiteCommand.ExecuteNonQuery();
                     if (gclass85.Race.NPR || gclass85.ShippingLine != null)
-                        gclass85.list_0 = gclass85.list_0.Where<GClass177>(gclass177_0 =>
-                            gclass177_0.decimal_0 > this.GameTime - AuroraUtils.decimal_30).ToList<GClass177>();
-                    foreach (GClass177 gclass177 in gclass85.list_0)
+                        gclass85.Histories = gclass85.Histories.Where<HistoryRecord>(gclass177_0 =>
+                            gclass177_0.GameTime > this.GameTime - AuroraUtils.decimal_30).ToList<HistoryRecord>();
+                    foreach (HistoryRecord gclass177 in gclass85.Histories)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_FleetHistory ( GameID, FleetID, Description, GameTime ) VALUES ( @GameID, @FleetID, @Description, @GameTime )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@FleetID", gclass85.FleetID);
                         sqLiteCommand.Parameters.AddWithValue("@Description", gclass177.Description);
-                        sqLiteCommand.Parameters.AddWithValue("@GameTime", gclass177.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@GameTime", gclass177.GameTime);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
@@ -1635,7 +1638,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_PopulationInstallations WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PopulationInstallations WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1664,7 +1667,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ShipCargo WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipCargo WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1732,7 +1735,7 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (TransportedComponent gclass73 in gclass40.TransportedComponents)
+                    foreach (StoredComponent gclass73 in gclass40.TransportedComponents)
                     {
                         int num = 0;
                         if (gclass73.PopOrigin != null)
@@ -1777,17 +1780,17 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Population WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Population WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_PopulationWeapon WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PopulationWeapon WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_PopComponent WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PopComponent WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_PopMDChanges WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PopMDChanges WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_Prisoners WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Prisoners WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_PopInstallationDemand WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PopInstallationDemand WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -1908,7 +1911,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@WarningMSP", gclass146.WarningMSP);
                     sqLiteCommand.Parameters.AddWithValue("@WarningConstant", gclass146.WarningConstant);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (PopOrdnanceStock gclass130 in gclass146.OrdnanceStocks)
+                    foreach (ShipOrdnance gclass130 in gclass146.OrdnanceStocks)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PopulationWeapon (GameID, PopulationID, MissileID, Amount ) VALUES ( @GameID, @PopulationID, @MissileID, @Amount )";
@@ -1919,7 +1922,7 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass147 gclass147 in gclass146.list_3)
+                    foreach (Prisoner gclass147 in gclass146.list_3)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_Prisoners (GameID, NumPrisoners, NumProcessed, PopulationID, PrisonerRaceID, PrisonerSpeciesID ) VALUES ( @GameID, @NumPrisoners, @NumProcessed, @PopulationID, @PrisonerRaceID, @PrisonerSpeciesID )";
@@ -1932,7 +1935,7 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (TransportedComponent gclass73 in gclass146.list_2)
+                    foreach (StoredComponent gclass73 in gclass146.StoredComponents)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PopComponent (ComponentID, PopulationID, GameID, Amount ) VALUES ( @ComponentID, @PopulationID, @GameID, @Amount )";
@@ -1957,23 +1960,23 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    if (gclass146.gclass123_3.HasAnyNonZeroMineralValue())
+                    if (gclass146.MineralDepositChange.HasAnyNonZeroMineralValue())
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PopMDChanges (PopulationID, GameID, Duranium, Neutronium, Corbomite, Tritanium, Boronide, Mercassium, Vendarite, Sorium, Uridium, Corundium, Gallicite ) VALUES ( @PopulationID, @GameID, @Duranium, @Neutronium, @Corbomite, @Tritanium, @Boronide, @Mercassium, @Vendarite, @Sorium, @Uridium, @Corundium, @Gallicite )";
                         sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass146.PopulationID);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@Duranium", gclass146.gclass123_3.Duranium);
-                        sqLiteCommand.Parameters.AddWithValue("@Neutronium", gclass146.gclass123_3.Neutronium);
-                        sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass146.gclass123_3.Corbomite);
-                        sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass146.gclass123_3.Tritanium);
-                        sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass146.gclass123_3.Boronide);
-                        sqLiteCommand.Parameters.AddWithValue("@Mercassium", gclass146.gclass123_3.Mercassium);
-                        sqLiteCommand.Parameters.AddWithValue("@Vendarite", gclass146.gclass123_3.Vendarite);
-                        sqLiteCommand.Parameters.AddWithValue("@Sorium", gclass146.gclass123_3.Sorium);
-                        sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass146.gclass123_3.Uridium);
-                        sqLiteCommand.Parameters.AddWithValue("@Corundium", gclass146.gclass123_3.Corundium);
-                        sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass146.gclass123_3.Gallicite);
+                        sqLiteCommand.Parameters.AddWithValue("@Duranium", gclass146.MineralDepositChange.Duranium);
+                        sqLiteCommand.Parameters.AddWithValue("@Neutronium", gclass146.MineralDepositChange.Neutronium);
+                        sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass146.MineralDepositChange.Corbomite);
+                        sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass146.MineralDepositChange.Tritanium);
+                        sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass146.MineralDepositChange.Boronide);
+                        sqLiteCommand.Parameters.AddWithValue("@Mercassium", gclass146.MineralDepositChange.Mercassium);
+                        sqLiteCommand.Parameters.AddWithValue("@Vendarite", gclass146.MineralDepositChange.Vendarite);
+                        sqLiteCommand.Parameters.AddWithValue("@Sorium", gclass146.MineralDepositChange.Sorium);
+                        sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass146.MineralDepositChange.Uridium);
+                        sqLiteCommand.Parameters.AddWithValue("@Corundium", gclass146.MineralDepositChange.Corundium);
+                        sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass146.MineralDepositChange.Gallicite);
                         sqLiteCommand.ExecuteNonQuery();
                     }
                 }
@@ -1989,7 +1992,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MineralDeposit WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MineralDeposit WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2021,31 +2024,29 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ShipClass WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipClass WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ClassMaterials WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ClassMaterials WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ClassOrdnanceTemplate WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ClassOrdnanceTemplate WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ClassComponent WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ClassComponent WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ClassSC WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ClassSC WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ClassGroundTemplates WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ClassGroundTemplates WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                int num1 = 0;
                 foreach (ShipClass gclass22 in this.ShipClasses.Values)
                 {
                     int num2 = 0;
-                    num1 = 0;
                     int num3 = 0;
                     AutomatedClassDesignType genum120 = AutomatedClassDesignType.const_0;
                     int num4 = 0;
                     int num5 = 25;
                     if (gclass22.gclass187_0 != null)
-                        num2 = gclass22.gclass187_0.int_0;
+                        num2 = gclass22.gclass187_0.ShippingLineID;
                     if (gclass22.gclass163_0 != null)
                         num3 = (int)gclass22.gclass163_0.TechType;
                     if (gclass22.AutomatedClassDesign != null)
@@ -2054,8 +2055,8 @@ public partial class GClass0
                         num4 = gclass22.NameTheme.ThemeID;
                     if (gclass22.ShipHull != null)
                         num5 = gclass22.ShipHull.ShipHullDescriptionID;
-                    int num6 = gclass22.RankTheme != null
-                        ? gclass22.Race.method_254(gclass22.RankTheme, AuroraCommanderType.Naval)
+                    int num6 = gclass22.RacialRankTheme != null
+                        ? gclass22.Race.method_254(gclass22.RacialRankTheme, AuroraCommanderType.Naval)
                         : gclass22.RankRequired;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_ShipClass (ShipClassID, ClassShippingLineID, AutomatedDesignID, ClassName, GameID, RaceID, ActiveSensorStrength, ArmourThickness, ArmourWidth, BaseFailureChance, CargoCapacity, ClassCrossSection, ClassThermal, Collier, ColonistCapacity, CommanderPriority, CommercialJumpDrive, MilitaryEngines, ControlRating, ConscriptOnly, \r\n                        Cost, Crew, CrewQuartersHS, TroopTransportType, DCRating, ActiveJammerStrength, FireControlJammerStrength, MissileJammerStrength, MissileJammerCount, ELINTRating, DiplomacyRating, BioEnergyCapacity, ClassHullNumbers, NoOfficers, RepairYardCapacity, ArkShip, FlagBridge,\r\n                        EMSensorStrength, EnginePower, ESMaxDACRoll, FighterClass, Commercial, FuelCapacity, FuelEfficiency, FuelTanker, GeoSurvey, GravSurvey, Harvesters, HullDescriptionID, JGConstructionTime, JumpDistance, JumpRating, Locked, MagazineCapacity, DecoyCapacity, MaxChance, MaxDACRoll, MaxSpeed, MaintModules, MinimumFuel, MinimumSupplies, MiningModules, NameThemeID, NoArmour, \r\n                        Notes, MainFunction, Obsolete, OtherRaceClassID, ParasiteCapacity, PassiveSensorStrength, PlannedDeployment, PreTNT, ProtectionValue, RankRequired, ReactorPower, RecreationalModule, MoraleCheckRequired, RefuelPriority, ResupplyPriority, RefuellingRate, RequiredPower, SalvageRate, SensorReduction, ShieldStrength, Size, MaintSupplies, STSTractor, \r\n                        SupplyShip, Terraformers, TotalNumber, CargoShuttleStrength, TroopCapacity, WorkerCapacity, MaintPriority, CommercialHangar, OrdnanceTransferRate, OrdnanceTransferHub, SeniorCO, PrefixName, SuffixName, RandomShipNameFromTheme, PDProtectionPriority, CrewDesignEfficiency) \r\n                        VALUES ( @ShipClassID, @ClassShippingLineID, @AutomatedDesignID, @ClassName, @GameID, @RaceID, @ActiveSensorStrength, @ArmourThickness, @ArmourWidth, @BaseFailureChance, @CargoCapacity, @ClassCrossSection, @ClassThermal, @Collier, @ColonistCapacity, @CommanderPriority, @CommercialJumpDrive, @MilitaryEngines, @ControlRating, @ConscriptOnly, \r\n                        @Cost, @Crew, @CrewQuartersHS, @TroopTransportType, @DCRating, @ActiveJammerStrength, @FireControlJammerStrength, @MissileJammerStrength, @MissileJammerCount,@ELINTRating, @DiplomacyRating, @BioEnergyCapacity, @ClassHullNumbers, @NoOfficers, @RepairYardCapacity, @ArkShip, @FlagBridge,\r\n                        @EMSensorStrength, @EnginePower, @ESMaxDACRoll, @FighterClass, @Commercial, @FuelCapacity, @FuelEfficiency, @FuelTanker, @GeoSurvey, @GravSurvey, @Harvesters, @HullDescriptionID, @JGConstructionTime, @JumpDistance, @JumpRating, @Locked, @MagazineCapacity, @DecoyCapacity, @MaxChance, @MaxDACRoll, @MaxSpeed, @MaintModules, @MinimumFuel, @MinimumSupplies, @MiningModules, @NameThemeID, @NoArmour,\r\n                        @Notes, @MainFunction, @Obsolete, @OtherRaceClassID, @ParasiteCapacity, @PassiveSensorStrength, @PlannedDeployment, @PreTNT, @ProtectionValue, @RankRequired, @ReactorPower, @RecreationalModule, @MoraleCheckRequired, @RefuelPriority, @ResupplyPriority, @RefuellingRate, @RequiredPower, @SalvageRate, @SensorReduction, @ShieldStrength, @Size, @MaintSupplies, @STSTractor, \r\n                        @SupplyShip, @Terraformers, @TotalNumber, @CargoShuttleStrength, @TroopCapacity, @WorkerCapacity, @MaintPriority, @CommercialHangar, @OrdnanceTransferRate, @OrdnanceTransferHub, @SeniorCO, @PrefixName, @SuffixName, @RandomShipNameFromTheme, @PDProtectionPriority, @CrewDesignEfficiency)";
@@ -2174,7 +2175,7 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (PopOrdnanceStock gclass130 in gclass22.list_0)
+                    foreach (ShipOrdnance gclass130 in gclass22.OrdnanceTemplate)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassOrdnanceTemplate (GameID, ShipClassID, MissileID, Amount ) VALUES ( @GameID, @ShipClassID, @MissileID, @Amount )";
@@ -2185,38 +2186,38 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass228 gclass228 in gclass22.dictionary_0.Values)
+                    foreach (ClassComponent gclass228 in gclass22.ClassComponents.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassComponent (GameID, ClassID, ComponentID, NumComponent, ChanceToHit, ElectronicCTH ) VALUES ( @GameID, @ClassID, @ComponentID, @NumComponent, @ChanceToHit, @ElectronicCTH )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
-                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass228.gclass230_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@NumComponent", gclass228.decimal_0);
-                        sqLiteCommand.Parameters.AddWithValue("@ChanceToHit", gclass228.int_2);
-                        sqLiteCommand.Parameters.AddWithValue("@ElectronicCTH", gclass228.int_3);
+                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass228.Component.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@NumComponent", gclass228.NumComponent);
+                        sqLiteCommand.Parameters.AddWithValue("@ChanceToHit", gclass228.ChanceToHit);
+                        sqLiteCommand.Parameters.AddWithValue("@ElectronicCTH", gclass228.ElectronicCTH);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass74 gclass74 in gclass22.list_1)
+                    foreach (ClassFighterTemplate gclass74 in gclass22.FighterClassTemplates)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassSC (GameID, ShipClassID, FighterClassID, Number ) VALUES ( @GameID, @ShipClassID, @FighterClassID, @Number )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
-                        sqLiteCommand.Parameters.AddWithValue("@FighterClassID", gclass74.gclass22_0.ShipClassID);
-                        sqLiteCommand.Parameters.AddWithValue("@Number", gclass74.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@FighterClassID", gclass74.FighterClass.ShipClassID);
+                        sqLiteCommand.Parameters.AddWithValue("@Number", gclass74.Number);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass75 gclass75 in gclass22.list_2)
+                    foreach (ClassGroundTemplate gclass75 in gclass22.GroundUnitTemplates)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassGroundTemplates (GameID, ShipClassID, TemplateID, Number ) VALUES ( @GameID, @ShipClassID, @TemplateID, @Number )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
-                        sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass75.gclass102_0.TemplateID);
-                        sqLiteCommand.Parameters.AddWithValue("@Number", gclass75.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass75.GroundUnitTemplate.TemplateID);
+                        sqLiteCommand.Parameters.AddWithValue("@Number", gclass75.Number);
                         sqLiteCommand.ExecuteNonQuery();
                     }
                 }
@@ -2232,7 +2233,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_SystemBodyName WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_SystemBodyName WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2261,7 +2262,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Survivors WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Survivors WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2289,7 +2290,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AncientConstruct WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AncientConstruct WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2301,7 +2302,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass220.SystemBody.SystemBodyID);
                     sqLiteCommand.Parameters.AddWithValue("@AncientConstructTypeID", gclass220.AncientConstructTypeID);
-                    sqLiteCommand.Parameters.AddWithValue("@ResearchField", gclass220.ResearchField.ResearchFieldID);
+                    sqLiteCommand.Parameters.AddWithValue("@ResearchField", gclass220.ResearchField.ResearchFieldType);
                     sqLiteCommand.Parameters.AddWithValue("@ResearchBonus", gclass220.ResearchBonus);
                     sqLiteCommand.Parameters.AddWithValue("@Active", gclass220.Active);
                     sqLiteCommand.ExecuteNonQuery();
@@ -2318,7 +2319,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MissileGeoSurvey WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MissileGeoSurvey WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2344,7 +2345,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_RuinRace WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RuinRace WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2373,29 +2374,29 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Ship WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Ship WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ShipWeapon WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipWeapon WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ShipOrdnanceTemplate WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipOrdnanceTemplate WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_DamagedComponent WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_DamagedComponent WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ShipHistory WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipHistory WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_WeaponRecharge WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WeaponRecharge WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_WeaponAssignment WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WeaponAssignment WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_DecoyAssignment WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_DecoyAssignment WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_FireControlAssignment WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_FireControlAssignment WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_MissileAssignment WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MissileAssignment WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ArmourDamage WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ArmourDamage WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ShipMeasurement WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipMeasurement WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2419,11 +2420,11 @@ public partial class GClass0
                         if (gclass40.gclass40_0 != null)
                             num3 = gclass40.gclass40_0.int_8;
                         if (gclass40.gclass187_0 != null)
-                            num4 = gclass40.gclass187_0.int_0;
+                            num4 = gclass40.gclass187_0.ShippingLineID;
                         if (gclass40.gclass40_2 != null)
                             num6 = gclass40.gclass40_2.int_8;
-                        if (gclass40.gclass193_0 != null)
-                            num5 = gclass40.gclass193_0.int_0;
+                        if (gclass40.TractorTargetShipyard != null)
+                            num5 = gclass40.TractorTargetShipyard.ShipyardID;
                         if (gclass40.gclass40_3 != null)
                             num7 = gclass40.gclass40_3.int_8;
                         if (gclass40.gclass103_0 != null)
@@ -2462,7 +2463,7 @@ public partial class GClass0
                         sqLiteCommand.Parameters.AddWithValue("@LaunchMorale", gclass40.decimal_8);
                         sqLiteCommand.Parameters.AddWithValue("@MaintenanceState", gclass40.genum29_0);
                         sqLiteCommand.Parameters.AddWithValue("@MothershipID", num3);
-                        sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass40.gclass21_0.RaceID);
+                        sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass40.Race.RaceID);
                         sqLiteCommand.Parameters.AddWithValue("@RefuelPriority", gclass40.int_18);
                         sqLiteCommand.Parameters.AddWithValue("@ResupplyStatus", gclass40.auroraResupplyStatus_0);
                         sqLiteCommand.Parameters.AddWithValue("@ResupplyPriority", gclass40.int_19);
@@ -2472,7 +2473,7 @@ public partial class GClass0
                         sqLiteCommand.Parameters.AddWithValue("@ScrapFlag", gclass40.bool_11);
                         sqLiteCommand.Parameters.AddWithValue("@SensorDelay", gclass40.int_15);
                         sqLiteCommand.Parameters.AddWithValue("@ShieldsActive", gclass40.bool_10);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass40.gclass22_0.ShipClassID);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass40.Class.ShipClassID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipNotes", gclass40.string_0);
                         sqLiteCommand.Parameters.AddWithValue("@ShippingLineID", num4);
                         sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass40.gclass194_0.int_0);
@@ -2504,7 +2505,7 @@ public partial class GClass0
                         break;
                     }
 
-                    foreach (PopOrdnanceStock gclass130 in gclass40.list_9)
+                    foreach (ShipOrdnance gclass130 in gclass40.ShipOrdnanceTemplate)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipOrdnanceTemplate (GameID, ShipID, MissileID, Amount ) VALUES ( @GameID, @ShipID, @MissileID, @Amount )";
@@ -2517,14 +2518,14 @@ public partial class GClass0
 
                     try
                     {
-                        foreach (GClass54 gclass54 in gclass40.list_0)
+                        foreach (Measurement gclass54 in gclass40.Measurements)
                         {
                             sqLiteCommand.CommandText =
                                 "INSERT INTO FCT_ShipMeasurement ( ShipID, MeasurementType, Amount, StrikeGroup, GameID ) VALUES ( @ShipID, @MeasurementType, @Amount, @StrikeGroup, @GameID )";
                             sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
-                            sqLiteCommand.Parameters.AddWithValue("@MeasurementType", gclass54.auroraMeasurementType_0);
-                            sqLiteCommand.Parameters.AddWithValue("@Amount", gclass54.decimal_0);
-                            sqLiteCommand.Parameters.AddWithValue("@StrikeGroup", gclass54.bool_0);
+                            sqLiteCommand.Parameters.AddWithValue("@MeasurementType", gclass54.MeasurementType);
+                            sqLiteCommand.Parameters.AddWithValue("@Amount", gclass54.Amount);
+                            sqLiteCommand.Parameters.AddWithValue("@StrikeGroup", gclass54.StrikeGroup);
                             sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                             sqLiteCommand.ExecuteNonQuery();
                         }
@@ -2535,7 +2536,7 @@ public partial class GClass0
                         break;
                     }
 
-                    foreach (PopOrdnanceStock gclass130 in gclass40.list_10)
+                    foreach (ShipOrdnance gclass130 in gclass40.Ordnances)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipWeapon (GameID, ShipID, MissileID, Amount ) VALUES ( @GameID, @ShipID, @MissileID, @Amount )";
@@ -2546,27 +2547,27 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass178 gclass178 in gclass40.list_12)
+                    foreach (ComponentDamage gclass178 in gclass40.ComponentDamages)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_DamagedComponent (ShipID, ComponentID, GameID, Number ) VALUES ( @ShipID, @ComponentID, @GameID, @Number )";
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
-                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass178.gclass230_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass178.ShipComponent.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@Number", gclass178.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@Number", gclass178.Number);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
                     try
                     {
-                        foreach (GClass177 gclass177 in gclass40.list_11)
+                        foreach (HistoryRecord gclass177 in gclass40.Histories)
                         {
                             sqLiteCommand.CommandText =
                                 "INSERT INTO FCT_ShipHistory ( GameID, ShipID, Description, GameTime ) VALUES ( @GameID, @ShipID, @Description, @GameTime )";
                             sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                             sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
                             sqLiteCommand.Parameters.AddWithValue("@Description", gclass177.Description);
-                            sqLiteCommand.Parameters.AddWithValue("@GameTime", gclass177.decimal_0);
+                            sqLiteCommand.Parameters.AddWithValue("@GameTime", gclass177.GameTime);
                             sqLiteCommand.ExecuteNonQuery();
                         }
                     }
@@ -2673,7 +2674,7 @@ public partial class GClass0
 
                     try
                     {
-                        foreach (KeyValuePair<int, int> keyValuePair in gclass40.dictionary_5)
+                        foreach (KeyValuePair<int, int> keyValuePair in gclass40.ArmorDamages)
                         {
                             sqLiteCommand.CommandText =
                                 "INSERT INTO FCT_ArmourDamage (ShipID, ArmourColumn, Damage, GameID ) VALUES ( @ShipID, @ArmourColumn, @Damage, @GameID )";
@@ -2702,7 +2703,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Contacts WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Contacts WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2776,11 +2777,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Wrecks WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Wrecks WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_WreckTech WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WreckTech WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_WreckComponents WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WreckComponents WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2850,7 +2851,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_IndustrialProjects WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_IndustrialProjects WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -2891,7 +2892,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@ProductionType", gclass156.ProductionType);
                     sqLiteCommand.Parameters.AddWithValue("@ProductionID", num1);
                     sqLiteCommand.Parameters.AddWithValue("@RefitClassID", num2);
-                    sqLiteCommand.Parameters.AddWithValue("@WealthUse", gclass156.WealthUsage.WealthUsage);
+                    sqLiteCommand.Parameters.AddWithValue("@WealthUse", gclass156.WealthUsage.WealthUsageType);
                     sqLiteCommand.Parameters.AddWithValue("@Amount", gclass156.Amount);
                     sqLiteCommand.Parameters.AddWithValue("@PartialCompletion", gclass156.PartialCompletion);
                     sqLiteCommand.Parameters.AddWithValue("@ProdPerUnit", gclass156.ProdPerUnit);
@@ -2924,61 +2925,61 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MissileSalvo WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MissileSalvo WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_Missile WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Missile WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (MissileSalvo gclass132 in this.MissileSalvoes.Values)
+                foreach (MissileSalvo missileSalvo in this.MissileSalvoes.Values)
                 {
                     int num1 = 0;
                     int num2 = 0;
                     int num3 = 0;
-                    if (gclass132.Ship != null)
-                        num1 = gclass132.Ship.int_8;
-                    if (gclass132.gclass1_0 != null)
-                        num2 = gclass132.gclass1_0.SystemBodyID;
-                    if (gclass132.gclass230_0 != null)
-                        num3 = gclass132.gclass230_0.int_0;
-                    if (gclass132.gclass40_1 != null || gclass132.gclass132_0 != null ||
-                        gclass132.gclass146_0 != null || gclass132.gclass214_0 != null)
-                        ;
+                    if (missileSalvo.Ship != null)
+                        num1 = missileSalvo.Ship.int_8;
+                    if (missileSalvo.OrbitBody != null)
+                        num2 = missileSalvo.OrbitBody.SystemBodyID;
+                    if (missileSalvo.FireControl != null)
+                        num3 = missileSalvo.FireControl.int_0;
+                    if (missileSalvo.TargetShip != null || missileSalvo.TargetSalvo != null ||
+                        missileSalvo.TargetPopulation != null || missileSalvo.TargetWaypoint != null)
+                        ; //??
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_MissileSalvo (MissileSalvoID, GameID, ShipID, RaceID, SystemID, OrbitBodyID, MissileID, LaunchTime, FireControlID, FCNum, TargetID, TargetType, MissileSpeed, ModifierToHit, Endurance, Xcor, Ycor, LastXcor, LastYcor, LastTargetX, LastTargetY, IncrementStartX, IncrementStartY, HomingMethod, CurrentDetonationRange ) \r\n                        VALUES ( @MissileSalvoID, @GameID, @ShipID, @RaceID, @SystemID, @OrbitBodyID, @MissileID, @LaunchTime, @FireControlID, @FCNum, @TargetID, @TargetType, @MissileSpeed, @ModifierToHit, @Endurance, @Xcor, @Ycor, @LastXcor, @LastYcor, @LastTargetX, @LastTargetY, @IncrementStartX, @IncrementStartY, @HomingMethod, @CurrentDetonationRange )";
-                    sqLiteCommand.Parameters.AddWithValue("@MissileSalvoID", gclass132.int_1);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileSalvoID", missileSalvo.MissileSalvoID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@ShipID", num1);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass132.Race.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass132.System.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", missileSalvo.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", missileSalvo.System.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitBodyID", num2);
-                    sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass132.RaceMissile.MissileID);
-                    sqLiteCommand.Parameters.AddWithValue("@LaunchTime", gclass132.decimal_0);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileID", missileSalvo.RaceMissile.MissileID);
+                    sqLiteCommand.Parameters.AddWithValue("@LaunchTime", missileSalvo.LaunchTime);
                     sqLiteCommand.Parameters.AddWithValue("@FireControlID", num3);
-                    sqLiteCommand.Parameters.AddWithValue("@FCNum", gclass132.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@TargetID", gclass132.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@TargetType", gclass132.auroraContactType_0);
-                    sqLiteCommand.Parameters.AddWithValue("@MissileSpeed", gclass132.double_9);
-                    sqLiteCommand.Parameters.AddWithValue("@ModifierToHit", gclass132.double_8);
-                    sqLiteCommand.Parameters.AddWithValue("@Endurance", gclass132.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass132.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass132.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@LastXcor", gclass132.double_2);
-                    sqLiteCommand.Parameters.AddWithValue("@LastYcor", gclass132.double_3);
-                    sqLiteCommand.Parameters.AddWithValue("@LastTargetX", gclass132.double_4);
-                    sqLiteCommand.Parameters.AddWithValue("@LastTargetY", gclass132.double_5);
-                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartX", gclass132.double_6);
-                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartY", gclass132.double_7);
-                    sqLiteCommand.Parameters.AddWithValue("@HomingMethod", gclass132.genum58_0);
-                    sqLiteCommand.Parameters.AddWithValue("@CurrentDetonationRange", gclass132.decimal_2);
+                    sqLiteCommand.Parameters.AddWithValue("@FCNum", missileSalvo.FCNum);
+                    sqLiteCommand.Parameters.AddWithValue("@TargetID", missileSalvo.TargetID);
+                    sqLiteCommand.Parameters.AddWithValue("@TargetType", missileSalvo.TargetType);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileSpeed", missileSalvo.MissileSpeed);
+                    sqLiteCommand.Parameters.AddWithValue("@ModifierToHit", missileSalvo.ModifierToHit);
+                    sqLiteCommand.Parameters.AddWithValue("@Endurance", missileSalvo.Endurance);
+                    sqLiteCommand.Parameters.AddWithValue("@Xcor", missileSalvo.Xcor);
+                    sqLiteCommand.Parameters.AddWithValue("@Ycor", missileSalvo.Ycor);
+                    sqLiteCommand.Parameters.AddWithValue("@LastXcor", missileSalvo.LastXcor);
+                    sqLiteCommand.Parameters.AddWithValue("@LastYcor", missileSalvo.LastYcor);
+                    sqLiteCommand.Parameters.AddWithValue("@LastTargetX", missileSalvo.LastTargetX);
+                    sqLiteCommand.Parameters.AddWithValue("@LastTargetY", missileSalvo.LastTargetY);
+                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartX", missileSalvo.IncrementStartX);
+                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartY", missileSalvo.IncrementStartY);
+                    sqLiteCommand.Parameters.AddWithValue("@HomingMethod", missileSalvo.HomingMethod);
+                    sqLiteCommand.Parameters.AddWithValue("@CurrentDetonationRange", missileSalvo.CurrentDetonationRange);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (KeyValuePair<int, int> keyValuePair in gclass132.RemainingDecoys)
+                    foreach (KeyValuePair<int, int> keyValuePair in missileSalvo.RemainingDecoys)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_Missile (MissileNumber, RemainingDecoys, SalvoID, GameID ) VALUES ( @MissileNumber, @RemainingDecoys, @SalvoID, @GameID )";
                         sqLiteCommand.Parameters.AddWithValue("@MissileNumber", keyValuePair.Key);
                         sqLiteCommand.Parameters.AddWithValue("@RemainingDecoys", keyValuePair.Value);
-                        sqLiteCommand.Parameters.AddWithValue("@SalvoID", gclass132.int_1);
+                        sqLiteCommand.Parameters.AddWithValue("@SalvoID", missileSalvo.MissileSalvoID);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.ExecuteNonQuery();
                     }
@@ -2995,7 +2996,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_MissileType WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_MissileType WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3083,7 +3084,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AtmosphericGas WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AtmosphericGas WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3113,7 +3114,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_DamageControlQueue WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_DamageControlQueue WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3164,24 +3165,24 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Commander WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Commander WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_CommanderHistory WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_CommanderHistory WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_CommanderMedal WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_CommanderMedal WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_CommanderMeasurement WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_CommanderMeasurement WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_CommanderBonuses WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_CommanderBonuses WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_CommanderTraits WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_CommanderTraits WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                List<GClass55> list = this.dictionary_42.Values.ToList<GClass55>();
-                list.AddRange(this.dictionary_43.Values
-                    .Where<GClass55>(gclass55_0 => gclass55_0.bool_3 || gclass55_0.bool_4).ToList<GClass55>());
-                foreach (GClass55 gclass55 in list)
+                List<Commander> list = this.ActiveCommanders.Values.ToList<Commander>();
+                list.AddRange(this.RetiredCommanders.Values
+                    .Where<Commander>(gclass55_0 => gclass55_0.RetainRetired || gclass55_0.Prisoner).ToList<Commander>());
+                foreach (Commander gclass55 in list)
                 {
                     int num1 = 0;
                     int num2 = 0;
@@ -3191,151 +3192,151 @@ public partial class GClass0
                     int num6 = 0;
                     int num7 = 0;
                     int num8 = 0;
-                    if (gclass55.gclass146_0 != null)
-                        num2 = gclass55.gclass146_0.PopulationID;
-                    if (gclass55.gclass146_2 != null)
-                        num7 = gclass55.gclass146_2.PopulationID;
-                    if (gclass55.gclass40_0 != null)
-                        num3 = gclass55.gclass40_0.int_8;
-                    if (gclass55.gclass59_0 != null)
-                        num4 = gclass55.gclass59_0.int_0;
-                    if (gclass55.gclass1_0 != null)
-                        num5 = gclass55.gclass1_0.SystemBodyID;
-                    if (gclass55.gclass21_1 != null)
-                        num6 = gclass55.gclass21_1.RaceID;
-                    if (gclass55.gclass61_0 != null)
-                        num8 = gclass55.gclass61_0.int_0;
-                    switch (gclass55.auroraCommandType_0)
+                    if (gclass55.Population != null)
+                        num2 = gclass55.Population.PopulationID;
+                    if (gclass55.EducatedColony != null)
+                        num7 = gclass55.EducatedColony.PopulationID;
+                    if (gclass55.TransportShip != null)
+                        num3 = gclass55.TransportShip.int_8;
+                    if (gclass55.LifePod != null)
+                        num4 = gclass55.LifePod.int_0;
+                    if (gclass55.HomeworldSystem != null)
+                        num5 = gclass55.HomeworldSystem.SystemBodyID;
+                    if (gclass55.PrisonedRace != null)
+                        num6 = gclass55.PrisonedRace.RaceID;
+                    if (gclass55.RacialRank != null)
+                        num8 = gclass55.RacialRank.RankID;
+                    switch (gclass55.CommandType)
                     {
                         case AuroraCommandType.Ship:
-                            num1 = gclass55.gclass40_1.int_8;
+                            num1 = gclass55.CommandingShip.int_8;
                             break;
                         case AuroraCommandType.Colony:
-                            num1 = gclass55.gclass146_1.PopulationID;
+                            num1 = gclass55.GoverningPopulation.PopulationID;
                             break;
                         case AuroraCommandType.Sector:
-                            num1 = gclass55.gclass62_0.int_0;
+                            num1 = gclass55.CommandingSector.SectorCommandID;
                             break;
                         case AuroraCommandType.GroundFormation:
-                            num1 = gclass55.gclass103_0.FormationID;
+                            num1 = gclass55.CommandingFormation.FormationID;
                             break;
                         case AuroraCommandType.ResearchProject:
-                            num1 = gclass55.gclass161_0.ResearchProjectID;
+                            num1 = gclass55.ResearchingProject.ResearchProjectID;
                             break;
                         case AuroraCommandType.ExecutiveOfficer:
-                            num1 = gclass55.gclass40_2.int_8;
+                            num1 = gclass55.ShipOnboardAsXO.int_8;
                             break;
                         case AuroraCommandType.ChiefEngineer:
-                            num1 = gclass55.gclass40_3.int_8;
+                            num1 = gclass55.ShipOnboardAsChiefEngi.int_8;
                             break;
                         case AuroraCommandType.ScienceOfficer:
-                            num1 = gclass55.gclass40_4.int_8;
+                            num1 = gclass55.ShipOnboardAsScienceOfficer.int_8;
                             break;
                         case AuroraCommandType.TacticalOfficer:
-                            num1 = gclass55.gclass40_5.int_8;
+                            num1 = gclass55.ShipOnboardAsTactician.int_8;
                             break;
                         case AuroraCommandType.NavalAdminCommand:
-                            num1 = gclass55.gclass83_0.int_0;
+                            num1 = gclass55.CurrentAdmin.NavalAdminCommandID;
                             break;
                         case AuroraCommandType.CAG:
-                            num1 = gclass55.gclass40_6.int_8;
+                            num1 = gclass55.ShipOnboardAsCAG.int_8;
                             break;
                         case AuroraCommandType.AcademyCommandant:
-                            num1 = gclass55.gclass146_3.PopulationID;
+                            num1 = gclass55.PopulationAsAcademyCommandant.PopulationID;
                             break;
                     }
 
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Commander (CommanderID, GameID,  RaceID, SpeciesID, Name, ResSpecID, CommanderType, Title, RankID, PromotionScore, PopPromotionScore, GameTimePromoted, GameTimeAssigned, DoNotRelieve, CommandType, CommandID, PopLocationID, TransportShipID, Seniority, RetireStatus, DoNotPromote, StoryCharacter, LifepodID, Orders, Notes, HomeworldID, \r\n                        POWRaceID, CareerStart, Loyalty, HealthRisk, Female, KillTonnageCommercial, KillTonnageMilitary, EducationColony, RetainRetired, Prisoner, Processed ) \r\n                        VALUES ( @CommanderID, @GameID, @RaceID, @SpeciesID, @Name, @ResSpecID, @CommanderType, @Title, @RankID, @PromotionScore, @PopPromotionScore, @GameTimePromoted, @GameTimeAssigned, @DoNotRelieve, @CommandType, @CommandID, @PopLocationID, @TransportShipID, @Seniority, @RetireStatus, @DoNotPromote, @StoryCharacter, @LifepodID, @Orders, @Notes, @HomeworldID, \r\n                        @POWRaceID, @CareerStart, @Loyalty, @HealthRisk, @Female, @KillTonnageCommercial, @KillTonnageMilitary, @EducationColony, @RetainRetired, @Prisoner, @Processed )";
-                    sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.CommanderID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass55.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass55.gclass194_0.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Name", gclass55.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ResSpecID", gclass55.gclass162_0.ResearchFieldID);
-                    sqLiteCommand.Parameters.AddWithValue("@CommanderType", gclass55.auroraCommanderType_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Title", gclass55.string_1);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass55.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass55.Species.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@Name", gclass55.Name);
+                    sqLiteCommand.Parameters.AddWithValue("@ResSpecID", gclass55.ResearchField.ResearchFieldType);
+                    sqLiteCommand.Parameters.AddWithValue("@CommanderType", gclass55.CommanderType);
+                    sqLiteCommand.Parameters.AddWithValue("@Title", gclass55.Title);
                     sqLiteCommand.Parameters.AddWithValue("@RankID", num8);
-                    sqLiteCommand.Parameters.AddWithValue("@PromotionScore", gclass55.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@PopPromotionScore", gclass55.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@GameTimePromoted", gclass55.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@GameTimeAssigned", gclass55.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@DoNotRelieve", gclass55.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@CommandType", gclass55.auroraCommandType_0);
+                    sqLiteCommand.Parameters.AddWithValue("@PromotionScore", gclass55.PromotionScore);
+                    sqLiteCommand.Parameters.AddWithValue("@PopPromotionScore", gclass55.PopPromotionScore);
+                    sqLiteCommand.Parameters.AddWithValue("@GameTimePromoted", gclass55.GameTimePromoted);
+                    sqLiteCommand.Parameters.AddWithValue("@GameTimeAssigned", gclass55.GameTimeAssigned);
+                    sqLiteCommand.Parameters.AddWithValue("@DoNotRelieve", gclass55.DoNotRelieve);
+                    sqLiteCommand.Parameters.AddWithValue("@CommandType", gclass55.CommandType);
                     sqLiteCommand.Parameters.AddWithValue("@CommandID", num1);
                     sqLiteCommand.Parameters.AddWithValue("@PopLocationID", num2);
                     sqLiteCommand.Parameters.AddWithValue("@TransportShipID", num3);
-                    sqLiteCommand.Parameters.AddWithValue("@Seniority", gclass55.int_4);
-                    sqLiteCommand.Parameters.AddWithValue("@RetireStatus", gclass55.auroraRetirementStatus_0);
-                    sqLiteCommand.Parameters.AddWithValue("@DoNotPromote", gclass55.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@StoryCharacter", gclass55.bool_2);
+                    sqLiteCommand.Parameters.AddWithValue("@Seniority", gclass55.Seniority);
+                    sqLiteCommand.Parameters.AddWithValue("@RetireStatus", gclass55.RetirementStatus);
+                    sqLiteCommand.Parameters.AddWithValue("@DoNotPromote", gclass55.DoNotPromote);
+                    sqLiteCommand.Parameters.AddWithValue("@StoryCharacter", gclass55.StoryCharacter);
                     sqLiteCommand.Parameters.AddWithValue("@LifepodID", num4);
-                    sqLiteCommand.Parameters.AddWithValue("@Orders", gclass55.string_2);
-                    sqLiteCommand.Parameters.AddWithValue("@Notes", gclass55.string_3);
+                    sqLiteCommand.Parameters.AddWithValue("@Orders", gclass55.Orders);
+                    sqLiteCommand.Parameters.AddWithValue("@Notes", gclass55.Notes);
                     sqLiteCommand.Parameters.AddWithValue("@HomeworldID", num5);
                     sqLiteCommand.Parameters.AddWithValue("@POWRaceID", num6);
-                    sqLiteCommand.Parameters.AddWithValue("@CareerStart", gclass55.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@Loyalty", gclass55.int_5);
-                    sqLiteCommand.Parameters.AddWithValue("@HealthRisk", gclass55.int_6);
-                    sqLiteCommand.Parameters.AddWithValue("@Female", gclass55.bool_1);
-                    sqLiteCommand.Parameters.AddWithValue("@KillTonnageCommercial", gclass55.int_7);
-                    sqLiteCommand.Parameters.AddWithValue("@KillTonnageMilitary", gclass55.int_8);
+                    sqLiteCommand.Parameters.AddWithValue("@CareerStart", gclass55.CareerStart);
+                    sqLiteCommand.Parameters.AddWithValue("@Loyalty", gclass55.Loyalty);
+                    sqLiteCommand.Parameters.AddWithValue("@HealthRisk", gclass55.HealthRisk);
+                    sqLiteCommand.Parameters.AddWithValue("@Female", gclass55.Female);
+                    sqLiteCommand.Parameters.AddWithValue("@KillTonnageCommercial", gclass55.KillTonnageCommercial);
+                    sqLiteCommand.Parameters.AddWithValue("@KillTonnageMilitary", gclass55.KillTonnageMilitary);
                     sqLiteCommand.Parameters.AddWithValue("@EducationColony", num7);
-                    sqLiteCommand.Parameters.AddWithValue("@RetainRetired", gclass55.bool_3);
-                    sqLiteCommand.Parameters.AddWithValue("@Prisoner", gclass55.bool_4);
-                    sqLiteCommand.Parameters.AddWithValue("@Processed", gclass55.bool_5);
+                    sqLiteCommand.Parameters.AddWithValue("@RetainRetired", gclass55.RetainRetired);
+                    sqLiteCommand.Parameters.AddWithValue("@Prisoner", gclass55.Prisoner);
+                    sqLiteCommand.Parameters.AddWithValue("@Processed", gclass55.Processed);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (GClass177 gclass177 in gclass55.list_0)
+                    foreach (HistoryRecord gclass177 in gclass55.Histories)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_CommanderHistory ( GameID, CommanderID, HistoryText, GameTime ) VALUES ( @GameID, @CommanderID, @HistoryText, @GameTime )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.CommanderID);
                         sqLiteCommand.Parameters.AddWithValue("@HistoryText", gclass177.Description);
-                        sqLiteCommand.Parameters.AddWithValue("@GameTime", gclass177.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@GameTime", gclass177.GameTime);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass53 gclass53 in gclass55.dictionary_1.Values)
+                    foreach (CommanderMedal gclass53 in gclass55.dictionary_1.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_CommanderMedal ( NumAwarded, MedalID, CommanderID, GameID, AwardReason ) VALUES ( @NumAwarded, @MedalID, @CommanderID, @GameID, @AwardReason )";
                         sqLiteCommand.Parameters.AddWithValue("@NumAwarded", gclass53.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@MedalID", gclass53.gclass42_0.MedalID);
-                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.CommanderID);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@AwardReason", gclass53.string_0);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass54 gclass54 in gclass55.dictionary_2.Values)
+                    foreach (Measurement gclass54 in gclass55.Measurements.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_CommanderMeasurement ( CommanderID, MeasurementType, Amount, GameID ) VALUES ( @CommanderID, @MeasurementType, @Amount,  @GameID )";
-                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@MeasurementType", gclass54.auroraMeasurementType_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass54.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.CommanderID);
+                        sqLiteCommand.Parameters.AddWithValue("@MeasurementType", gclass54.MeasurementType);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass54.Amount);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass52 gclass52 in gclass55.dictionary_0.Values)
+                    foreach (CommanderBonus gclass52 in gclass55.SkillBonuses.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_CommanderBonuses ( GameID, CommanderID, BonusID, BonusValue ) VALUES ( @GameID, @CommanderID, @BonusID, @BonusValue )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@BonusID", gclass52.gclass50_0.CommanderBonusType);
-                        sqLiteCommand.Parameters.AddWithValue("@BonusValue", gclass52.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CommanderID", gclass55.CommanderID);
+                        sqLiteCommand.Parameters.AddWithValue("@BonusID", gclass52.BonusDefinition.CommanderBonusType);
+                        sqLiteCommand.Parameters.AddWithValue("@BonusValue", gclass52.BonusValue);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (int num9 in gclass55.list_1)
+                    foreach (int num9 in gclass55.Traits)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_CommanderTraits ( GameID, CmdrID, TraitID ) VALUES ( @GameID, @CmdrID, @TraitID )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@CmdrID", gclass55.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CmdrID", gclass55.CommanderID);
                         sqLiteCommand.Parameters.AddWithValue("@TraitID", num9);
                         sqLiteCommand.ExecuteNonQuery();
                     }
@@ -3352,11 +3353,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Shipyard WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Shipyard WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass193 gclass193 in this.dictionary_31.Values)
+                foreach (Shipyard gclass193 in this.Shipyards.Values)
                 {
                     int num1 = 0;
                     int num2 = 0;
@@ -3365,44 +3366,44 @@ public partial class GClass0
                     int num5 = 0;
                     int num6 = 0;
                     int num7 = 0;
-                    if (gclass193.gclass22_0 != null)
-                        num1 = gclass193.gclass22_0.ShipClassID;
-                    if (gclass193.gclass22_1 != null)
-                        num2 = gclass193.gclass22_1.ShipClassID;
-                    if (gclass193.gclass85_0 != null)
-                        num3 = gclass193.gclass85_0.FleetID;
-                    if (gclass193.gclass40_0 != null)
-                        num4 = gclass193.gclass40_0.int_8;
-                    if (gclass193.gclass40_1 != null)
-                        num6 = gclass193.gclass40_1.int_8;
-                    if (gclass193.gclass146_0 != null)
-                        num5 = gclass193.gclass146_0.PopulationID;
-                    if (gclass193.gclass83_0 != null)
-                        num7 = gclass193.gclass83_0.int_0;
+                    if (gclass193.BuildShipClass != null)
+                        num1 = gclass193.BuildShipClass.ShipClassID;
+                    if (gclass193.RetoolClassID != null)
+                        num2 = gclass193.RetoolClassID.ShipClassID;
+                    if (gclass193.DefaultFleet != null)
+                        num3 = gclass193.DefaultFleet.FleetID;
+                    if (gclass193.TractorParentShip != null)
+                        num4 = gclass193.TractorParentShip.int_8;
+                    if (gclass193.ParentShip != null)
+                        num6 = gclass193.ParentShip.int_8;
+                    if (gclass193.Population != null)
+                        num5 = gclass193.Population.PopulationID;
+                    if (gclass193.DefaultNavalAdmin != null)
+                        num7 = gclass193.DefaultNavalAdmin.NavalAdminCommandID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Shipyard (ShipyardID, GameID, PopulationID, SYType, ShipyardName, Slipways, Capacity, BuildClassID, RetoolClassID, TaskType, RequiredBP, CompletedBP, PauseActivity, DefaultFleetID, DefaultNavalAdminID, Xcor, Ycor, RaceID, TractorParentShipID, CapacityTarget, ParentShipID, UseAdmin ) \r\n                        VALUES ( @ShipyardID, @GameID, @PopulationID, @SYType, @ShipyardName, @Slipways, @Capacity, @BuildClassID, @RetoolClassID, @TaskType, @RequiredBP, @CompletedBP, @PauseActivity, @DefaultFleetID, @DefaultNavalAdminID, @Xcor, @Ycor, @RaceID, @TractorParentShipID, @CapacityTarget, @ParentShipID, @UseAdmin)";
-                    sqLiteCommand.Parameters.AddWithValue("@ShipyardID", gclass193.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipyardID", gclass193.ShipyardID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", num5);
-                    sqLiteCommand.Parameters.AddWithValue("@SYType", gclass193.auroraShipyardType_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ShipyardName", gclass193.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Slipways", gclass193.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Capacity", gclass193.decimal_0);
+                    sqLiteCommand.Parameters.AddWithValue("@SYType", gclass193.SYType);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipyardName", gclass193.ShipyardName);
+                    sqLiteCommand.Parameters.AddWithValue("@Slipways", gclass193.Slipways);
+                    sqLiteCommand.Parameters.AddWithValue("@Capacity", gclass193.Capacity);
                     sqLiteCommand.Parameters.AddWithValue("@BuildClassID", num1);
                     sqLiteCommand.Parameters.AddWithValue("@RetoolClassID", num2);
-                    sqLiteCommand.Parameters.AddWithValue("@TaskType", gclass193.auroraShipyardUpgradeType_0);
-                    sqLiteCommand.Parameters.AddWithValue("@RequiredBP", gclass193.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@CompletedBP", gclass193.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@PauseActivity", gclass193.bool_0);
+                    sqLiteCommand.Parameters.AddWithValue("@TaskType", gclass193.TaskType);
+                    sqLiteCommand.Parameters.AddWithValue("@RequiredBP", gclass193.RequiredBP);
+                    sqLiteCommand.Parameters.AddWithValue("@CompletedBP", gclass193.CompletedBP);
+                    sqLiteCommand.Parameters.AddWithValue("@PauseActivity", gclass193.PauseActivity);
                     sqLiteCommand.Parameters.AddWithValue("@DefaultFleetID", num3);
                     sqLiteCommand.Parameters.AddWithValue("@DefaultNavalAdminID", num7);
-                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass193.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass193.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass193.gclass21_0.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass193.XCor);
+                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass193.YCor);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass193.Race.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@TractorParentShipID", num4);
-                    sqLiteCommand.Parameters.AddWithValue("@CapacityTarget", gclass193.int_2);
+                    sqLiteCommand.Parameters.AddWithValue("@CapacityTarget", gclass193.CapacityTarget);
                     sqLiteCommand.Parameters.AddWithValue("@ParentShipID", num6);
-                    sqLiteCommand.Parameters.AddWithValue("@UseAdmin", gclass193.int_3);
+                    sqLiteCommand.Parameters.AddWithValue("@UseAdmin", gclass193.UseAdmin);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3417,11 +3418,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ShipyardTask WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShipyardTask WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass192 gclass192 in this.dictionary_32.Values)
+                foreach (ShipyardTask gclass192 in this.dictionary_32.Values)
                 {
                     if (gclass192 != null)
                     {
@@ -3433,7 +3434,7 @@ public partial class GClass0
                         if (gclass192.gclass40_0 != null)
                             num1 = gclass192.gclass40_0.int_8;
                         if (gclass192.gclass83_0 != null)
-                            num2 = gclass192.gclass83_0.int_0;
+                            num2 = gclass192.gclass83_0.NavalAdminCommandID;
                         if (gclass192.gclass22_0 != null)
                             num3 = gclass192.gclass22_0.ShipClassID;
                         if (gclass192.gclass22_1 != null)
@@ -3446,7 +3447,7 @@ public partial class GClass0
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass192.gclass21_0.RaceID);
                         sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass192.gclass146_0.PopulationID);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipyardID", gclass192.gclass193_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipyardID", gclass192.gclass193_0.ShipyardID);
                         sqLiteCommand.Parameters.AddWithValue("@TaskTypeID", gclass192.auroraSYTaskType_0);
                         sqLiteCommand.Parameters.AddWithValue("@Freighter", gclass192.bool_0);
                         sqLiteCommand.Parameters.AddWithValue("@FleetID", num5);
@@ -3486,9 +3487,9 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Species WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Species WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_KnownSpecies WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_KnownSpecies WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3531,14 +3532,14 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@SpecialNPRID", gclass194.genum6_0);
                     sqLiteCommand.Parameters.AddWithValue("@GraduationAge", gclass194.int_11);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (GClass195 gclass195 in gclass194.dictionary_0.Values)
+                    foreach (KnownSpecies gclass195 in gclass194.KnownSpecies.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_KnownSpecies ( GameID, SpeciesID, ViewRaceID, Status ) VALUES ( @GameID, @SpeciesID, @ViewRaceID, @Status )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass194.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@ViewRaceID", gclass195.gclass21_0.RaceID);
-                        sqLiteCommand.Parameters.AddWithValue("@Status", gclass195.genum25_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ViewRaceID", gclass195.ViewRace.RaceID);
+                        sqLiteCommand.Parameters.AddWithValue("@Status", gclass195.Status);
                         sqLiteCommand.ExecuteNonQuery();
                     }
                 }
@@ -3554,22 +3555,22 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_WealthData WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WealthData WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass151 gclass151 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass151>(gclass21_0 => gclass21_0.list_3)
-                             .Where<GClass151>(gclass151_0 =>
-                                 gclass151_0.decimal_1 - this.GameTime < AuroraUtils.decimal_29).ToList<GClass151>())
+                foreach (WealthUsage gclass151 in this.GameRaces.Values
+                             .SelectMany<GameRace, WealthUsage>(gclass21_0 => gclass21_0.WealthUsages)
+                             .Where<WealthUsage>(gclass151_0 =>
+                                 gclass151_0.TimeUsed - this.GameTime < AuroraUtils.decimal_29).ToList<WealthUsage>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_WealthData (GameID, RaceID, Amount, UseID, TimeUsed ) VALUES ( @GameID, @RaceID, @Amount, @UseID, @TimeUsed )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass151.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass151.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@UseID", gclass151.gclass150_0.WealthUsage);
-                    sqLiteCommand.Parameters.AddWithValue("@TimeUsed", gclass151.decimal_1);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass151.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass151.Amount);
+                    sqLiteCommand.Parameters.AddWithValue("@UseID", gclass151.Data.WealthUsageType);
+                    sqLiteCommand.Parameters.AddWithValue("@TimeUsed", gclass151.TimeUsed);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3584,27 +3585,27 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_RaceMineralData WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceMineralData WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass153 gclass153 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass153>(gclass21_0 => gclass21_0.list_4)
-                             .Where<GClass153>(gclass153_0 =>
-                                 gclass153_0.decimal_1 - this.GameTime < AuroraUtils.decimal_29).ToList<GClass153>())
+                foreach (RaceMineralUsage gclass153 in this.GameRaces.Values
+                             .SelectMany<GameRace, RaceMineralUsage>(gclass21_0 => gclass21_0.list_4)
+                             .Where<RaceMineralUsage>(gclass153_0 =>
+                                 gclass153_0.Time - this.GameTime < AuroraUtils.decimal_29).ToList<RaceMineralUsage>())
                 {
                     int num = 0;
-                    if (gclass153.gclass146_0 != null)
-                        num = gclass153.gclass146_0.PopulationID;
+                    if (gclass153.Population != null)
+                        num = gclass153.Population.PopulationID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_RaceMineralData (GameID, RaceID, PopulationID, Amount, MineralDataType, MineralID, Time ) VALUES ( @GameID, @RaceID, @PopulationID, @Amount, @MineralDataType, @MineralID, @Time )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass153.gclass21_0.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass153.Race.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", num);
-                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass153.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@MineralDataType", gclass153.genum85_0);
-                    sqLiteCommand.Parameters.AddWithValue("@MineralID", gclass153.auroraElement_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Time", gclass153.decimal_1);
+                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass153.Amount);
+                    sqLiteCommand.Parameters.AddWithValue("@MineralDataType", gclass153.MineralDataType);
+                    sqLiteCommand.Parameters.AddWithValue("@MineralID", gclass153.MineralID);
+                    sqLiteCommand.Parameters.AddWithValue("@Time", gclass153.Time);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3619,29 +3620,29 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ShippingLines WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ShippingLines WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
                 foreach (ShippingLineData gclass187 in this.ShippingLineDictionary.Values)
                 {
                     int num = 0;
-                    if (gclass187.gclass230_0 != null)
-                        num = gclass187.gclass230_0.int_0;
+                    if (gclass187.EngineComponent != null)
+                        num = gclass187.EngineComponent.int_0;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_ShippingLines (ShippingLineID, GameID, EmpireID, NPRace, LineName, ShortName, ShipNum, WealthBalance, LastDividendPaid, LastDividendTime, CommEngineID, CommercialEngines ) \r\n                        VALUES ( @ShippingLineID, @GameID, @EmpireID, @NPRace, @LineName, @ShortName, @ShipNum, @WealthBalance, @LastDividendPaid, @LastDividendTime, @CommEngineID, @CommercialEngines )";
-                    sqLiteCommand.Parameters.AddWithValue("@ShippingLineID", gclass187.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ShippingLineID", gclass187.ShippingLineID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@EmpireID", gclass187.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@NPRace", gclass187.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@LineName", gclass187.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ShortName", gclass187.string_1);
-                    sqLiteCommand.Parameters.AddWithValue("@ShipNum", gclass187.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@WealthBalance", gclass187.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@LastDividendPaid", gclass187.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@LastDividendTime", gclass187.decimal_2);
+                    sqLiteCommand.Parameters.AddWithValue("@EmpireID", gclass187.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@NPRace", gclass187.NPRace);
+                    sqLiteCommand.Parameters.AddWithValue("@LineName", gclass187.LineName);
+                    sqLiteCommand.Parameters.AddWithValue("@ShortName", gclass187.ShortName);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipNum", gclass187.ShipNum);
+                    sqLiteCommand.Parameters.AddWithValue("@WealthBalance", gclass187.WealthBalance);
+                    sqLiteCommand.Parameters.AddWithValue("@LastDividendPaid", gclass187.LastDividendPaid);
+                    sqLiteCommand.Parameters.AddWithValue("@LastDividendTime", gclass187.LastDividendTime);
                     sqLiteCommand.Parameters.AddWithValue("@CommEngineID", num);
-                    sqLiteCommand.Parameters.AddWithValue("@CommercialEngines", gclass187.int_2);
+                    sqLiteCommand.Parameters.AddWithValue("@CommercialEngines", gclass187.CommercialEngines);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3656,7 +3657,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_NavalAdminCommand WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_NavalAdminCommand WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3665,28 +3666,28 @@ public partial class GClass0
                     int num1 = 0;
                     int num2 = 0;
                     int num3 = 0;
-                    if (gclass83.gclass146_0 != null)
-                        num1 = gclass83.gclass146_0.PopulationID;
+                    if (gclass83.Population != null)
+                        num1 = gclass83.Population.PopulationID;
                     if (gclass83.gclass40_0 != null)
                         num3 = gclass83.gclass40_0.int_8;
                     if (gclass83.ParentAdminCommand != null)
-                        num2 = gclass83.ParentAdminCommand.int_0;
+                        num2 = gclass83.ParentAdminCommand.NavalAdminCommandID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_NavalAdminCommand (NavalAdminCommandID, GameID, RaceID, PopulationID, ParentAdminCommandID, AdminCommandTypeID, AdminCommandName, BonusOne, BonusTwo, BonusThree, AutoAssign, \r\n                                CommandPriority, MinimumRankPriority, FleetNodeExpanded, ShipID ) \r\n                            VALUES ( @NavalAdminCommandID, @GameID, @RaceID, @PopulationID, @ParentAdminCommandID, @AdminCommandTypeID, @AdminCommandName, @BonusOne, @BonusTwo, @BonusThree, @AutoAssign, \r\n                                @CommandPriority, @MinimumRankPriority, @FleetNodeExpanded, @ShipID )";
-                    sqLiteCommand.Parameters.AddWithValue("@NavalAdminCommandID", gclass83.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@NavalAdminCommandID", gclass83.NavalAdminCommandID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass83.Race.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", num1);
                     sqLiteCommand.Parameters.AddWithValue("@ParentAdminCommandID", num2);
                     sqLiteCommand.Parameters.AddWithValue("@AdminCommandTypeID", gclass83.gclass79_0.AdminCommandType);
                     sqLiteCommand.Parameters.AddWithValue("@AdminCommandName", gclass83.AdminCommandName);
-                    sqLiteCommand.Parameters.AddWithValue("@BonusOne", gclass83.genum121_0);
-                    sqLiteCommand.Parameters.AddWithValue("@BonusTwo", gclass83.genum121_1);
-                    sqLiteCommand.Parameters.AddWithValue("@BonusThree", gclass83.genum121_2);
-                    sqLiteCommand.Parameters.AddWithValue("@AutoAssign", gclass83.bool_1);
-                    sqLiteCommand.Parameters.AddWithValue("@CommandPriority", gclass83.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@MinimumRankPriority", gclass83.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@FleetNodeExpanded", gclass83.bool_0);
+                    sqLiteCommand.Parameters.AddWithValue("@BonusOne", gclass83.BonusOne);
+                    sqLiteCommand.Parameters.AddWithValue("@BonusTwo", gclass83.BonusTwo);
+                    sqLiteCommand.Parameters.AddWithValue("@BonusThree", gclass83.BonusThree);
+                    sqLiteCommand.Parameters.AddWithValue("@AutoAssign", gclass83.AutoAssign);
+                    sqLiteCommand.Parameters.AddWithValue("@CommandPriority", gclass83.CommandPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@MinimumRankPriority", gclass83.MinimumRankPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@FleetNodeExpanded", gclass83.FleetNodeExpanded);
                     sqLiteCommand.Parameters.AddWithValue("@ShipID", num3);
                     sqLiteCommand.ExecuteNonQuery();
                 }
@@ -3702,11 +3703,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Lifepods WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Lifepods WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass59 gclass59 in this.dictionary_30.Values)
+                foreach (LifePod gclass59 in this.LifePods.Values)
                 {
                     int num = 0;
                     if (gclass59.gclass22_0 != null)
@@ -3739,13 +3740,13 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitTraining WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitTraining WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass106 gclass106 in this.Populations.Values
-                             .SelectMany<PopulationData, GClass106>(gclass146_0 => gclass146_0.dictionary_3.Values)
-                             .ToList<GClass106>())
+                foreach (GroundUnitTraining gclass106 in this.Populations.Values
+                             .SelectMany<PopulationData, GroundUnitTraining>(gclass146_0 => gclass146_0.dictionary_3.Values)
+                             .ToList<GroundUnitTraining>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_GroundUnitTraining (TaskID, GameID, RaceID, PopulationID, FormationTemplateID, TotalBP, CompletedBP, FormationName, TaskPercentage, OrganizationLinkID, ParentLinkID, FieldPosition) VALUES ( @TaskID, @GameID, @RaceID, @PopulationID, @FormationTemplateID, @TotalBP, @CompletedBP, @FormationName, @TaskPercentage, @OrganizationLinkID, @ParentLinkID, @FieldPosition )";
@@ -3776,13 +3777,13 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitTrainingQueue WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitTrainingQueue WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass107 gclass107 in this.Populations.Values
-                             .SelectMany<PopulationData, GClass107>(gclass146_0 => gclass146_0.list_0)
-                             .ToList<GClass107>())
+                foreach (GroundUnitTrainingQueue gclass107 in this.Populations.Values
+                             .SelectMany<PopulationData, GroundUnitTrainingQueue>(gclass146_0 => gclass146_0.list_0)
+                             .ToList<GroundUnitTrainingQueue>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_GroundUnitTrainingQueue (QueueID, GameID, PopulationID, FormationTemplateID, FormationName, TaskPercentage, OrganizationLinkID, ParentLinkID, FieldPosition) VALUES ( @QueueID, @GameID, @PopulationID, @FormationTemplateID, @FormationName, @TaskPercentage, @OrganizationLinkID, @ParentLinkID, @FieldPosition )";
@@ -3810,7 +3811,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_ResearchProject WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ResearchProject WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -3826,7 +3827,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass161.gclass21_0.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass161.gclass146_0.PopulationID);
                     sqLiteCommand.Parameters.AddWithValue("@Facilities", gclass161.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ResSpecID", gclass161.gclass162_0.ResearchFieldID);
+                    sqLiteCommand.Parameters.AddWithValue("@ResSpecID", gclass161.gclass162_0.ResearchFieldType);
                     sqLiteCommand.Parameters.AddWithValue("@ResearchPointsRequired", gclass161.decimal_0);
                     sqLiteCommand.Parameters.AddWithValue("@Pause", gclass161.bool_0);
                     sqLiteCommand.Parameters.AddWithValue("@AssignNew", gclass161.bool_1);
@@ -3844,21 +3845,21 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_SectorCommand WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_SectorCommand WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass62 gclass62 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass62>(
-                                 gclass21_0 => gclass21_0.dictionary_2.Values).ToList<GClass62>())
+                foreach (Sector gclass62 in this.GameRaces.Values
+                             .SelectMany<GameRace, Sector>(
+                                 gclass21_0 => gclass21_0.Sectors.Values).ToList<Sector>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_SectorCommand (SectorCommandID, RaceID, PopulationID, SectorName, Colour, GameID) VALUES ( @SectorCommandID, @RaceID, @PopulationID, @SectorName, @Colour, @GameID )";
-                    sqLiteCommand.Parameters.AddWithValue("@SectorCommandID", gclass62.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass62.gclass21_0.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SectorCommandID", gclass62.SectorCommandID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass62.Race.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass62.gclass146_0.PopulationID);
                     sqLiteCommand.Parameters.AddWithValue("@SectorName", gclass62.SectorName);
-                    sqLiteCommand.Parameters.AddWithValue("@Colour", gclass62.color_0.ToArgb());
+                    sqLiteCommand.Parameters.AddWithValue("@Colour", gclass62.Colour.ToArgb());
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.ExecuteNonQuery();
                 }
@@ -3874,16 +3875,16 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AlienRace WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienRace WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_AlienRaceSpecies WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienRaceSpecies WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_AlienSystem WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienSystem WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (AlienRaceInfo gclass110 in this.GameRaces.Values
-                             .SelectMany<GameRace, AlienRaceInfo>(gclass21_0 => gclass21_0.PerceivedAliens.Values).ToList<AlienRaceInfo>())
+                foreach (AlienRaceIntel gclass110 in this.GameRaces.Values
+                             .SelectMany<GameRace, AlienRaceIntel>(gclass21_0 => gclass21_0.AlienRaceIntels.Values).ToList<AlienRaceIntel>())
                 {
                     int num = 0;
                     if (gclass110.ClassTheme != null)
@@ -3913,7 +3914,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@RandomNameOrder", gclass110.RandomNameOrder);
                     sqLiteCommand.Parameters.AddWithValue("@PortraitShown", gclass110.bPortraitShown);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (Species gclass194 in gclass110.dictionary_0.Values)
+                    foreach (Species gclass194 in gclass110.SpeciesIntels.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_AlienRaceSpecies (AlienRaceID, SpeciesID, DetectRaceID, GameID ) VALUES ( @AlienRaceID, @SpeciesID, @DetectRaceID, @GameID )";
@@ -3924,7 +3925,7 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (StarSystem gclass200 in gclass110.dictionary_1.Values)
+                    foreach (StarSystem gclass200 in gclass110.SystemIntels.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_AlienSystem (GameID, SystemID, AlienRaceID, DetectRaceID ) VALUES ( @GameID, @SystemID, @AlienRaceID, @DetectRaceID )";
@@ -3947,18 +3948,18 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AlienClass WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienClass WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_AlienClassSensor WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienClassSensor WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_AlienClassWeapon WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienClassWeapon WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_AlienClassTech WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienClassTech WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass115 gclass115 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass115>(gclass21_0 => gclass21_0.dictionary_11.Values).ToList<GClass115>())
+                foreach (AlienShipClassIntel gclass115 in this.GameRaces.Values
+                             .SelectMany<GameRace, AlienShipClassIntel>(gclass21_0 => gclass21_0.dictionary_11.Values).ToList<AlienShipClassIntel>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AlienClass (AlienClassID, GameID, AlienRaceID, ActualClassID, ViewRaceID, HullID, ClassName, TCS, ThermalSignature, ShieldStrength, ShieldRecharge, ArmourStrength, MaxSpeed, JumpDistance, ActiveJammerStrength, FireControlJammerStrength, MissileJammerStrength, Notes, Summary, ShipCount, FirstDetected, MaxEnergyPDShots, TotalEnergyPDShots, TotalEnergyPDHits, AlienClassRole, ObservedMissileDefence, DiplomaticShip, EngineType ) \r\n                        VALUES ( @AlienClassID, @GameID, @AlienRaceID, @ActualClassID, @ViewRaceID, @HullID, @ClassName, @TCS, @ThermalSignature, @ShieldStrength, @ShieldRecharge, @ArmourStrength, @MaxSpeed, @JumpDistance, @ActiveJammerStrength, @FireControlJammerStrength, @MissileJammerStrength, @Notes, @Summary, @ShipCount, @FirstDetected, @MaxEnergyPDShots, @TotalEnergyPDShots, @TotalEnergyPDHits, @AlienClassRole, @ObservedMissileDefence, @DiplomaticShip, @EngineType )";
@@ -3991,17 +3992,17 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@DiplomaticShip", gclass115.bool_1);
                     sqLiteCommand.Parameters.AddWithValue("@EngineType", gclass115.genum70_0);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (GClass118 gclass118 in gclass115.list_0)
+                    foreach (AlienSensorIntel gclass118 in gclass115.list_0)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_AlienClassSensor (GameID, AlienClassID, AlienSensorID ) VALUES ( @GameID, @AlienClassID, @AlienSensorID )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@AlienClassID", gclass115.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@AlienSensorID", gclass118.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@AlienSensorID", gclass118.AlienSensorID);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass119 gclass119 in gclass115.list_1)
+                    foreach (AlienShipWeaponIntel gclass119 in gclass115.list_1)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_AlienClassWeapon (AlienClassID, Amount, GameID, ROF, Range, WeaponID, LastFired) VALUES ( @AlienClassID, @Amount, @GameID, @ROF, @Range, @WeaponID, @LastFired )";
@@ -4037,39 +4038,39 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AlienRaceSensor WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienRaceSensor WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass118 gclass118 in this.GameRaces.Values
+                foreach (AlienSensorIntel gclass118 in this.GameRaces.Values
                              .SelectMany<GameRace,
-                                 AlienRaceInfo>(gclass21_0 => gclass21_0.PerceivedAliens.Values)
-                             .SelectMany<AlienRaceInfo, GClass118>(gclass110_0 => gclass110_0.dictionary_2.Values)
-                             .Distinct<GClass118>().ToList<GClass118>())
+                                 AlienRaceIntel>(gclass21_0 => gclass21_0.AlienRaceIntels.Values)
+                             .SelectMany<AlienRaceIntel, AlienSensorIntel>(gclass110_0 => gclass110_0.dictionary_2.Values)
+                             .Distinct<AlienSensorIntel>().ToList<AlienSensorIntel>())
                 {
                     int num1 = 0;
                     int num2 = 0;
                     int num3 = 0;
-                    if (gclass118.gclass230_0 != null)
-                        num1 = gclass118.gclass230_0.int_0;
-                    if (gclass118.gclass129_0 != null)
-                        num2 = gclass118.gclass129_0.MissileID;
-                    if (gclass118.gclass101_0 != null)
-                        num3 = gclass118.gclass101_0.ClassID;
+                    if (gclass118.ActualSensor != null)
+                        num1 = gclass118.ActualSensor.int_0;
+                    if (gclass118.ActualMissile != null)
+                        num2 = gclass118.ActualMissile.MissileID;
+                    if (gclass118.ActualGroundUnitClass != null)
+                        num3 = gclass118.ActualGroundUnitClass.ClassID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AlienRaceSensor (AlienSensorID, GameID, Strength, Resolution, Range, IntelligencePoints, ActualSensor, ActualMissile, ActualGroundUnitClass, AlienRaceID, ViewingRaceID, Name ) VALUES ( @AlienSensorID, @GameID, @Strength, @Resolution, @Range, @IntelligencePoints, @ActualSensor, @ActualMissile, @ActualGroundUnitClass, @AlienRaceID, @ViewingRaceID, @Name )";
-                    sqLiteCommand.Parameters.AddWithValue("@AlienSensorID", gclass118.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@AlienSensorID", gclass118.AlienSensorID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@Strength", gclass118.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Resolution", gclass118.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Range", gclass118.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@IntelligencePoints", gclass118.double_1);
+                    sqLiteCommand.Parameters.AddWithValue("@Strength", gclass118.Strength);
+                    sqLiteCommand.Parameters.AddWithValue("@Resolution", gclass118.Resolution);
+                    sqLiteCommand.Parameters.AddWithValue("@Range", gclass118.Range);
+                    sqLiteCommand.Parameters.AddWithValue("@IntelligencePoints", gclass118.IntelligencePoints);
                     sqLiteCommand.Parameters.AddWithValue("@ActualSensor", num1);
                     sqLiteCommand.Parameters.AddWithValue("@ActualMissile", num2);
                     sqLiteCommand.Parameters.AddWithValue("@ActualGroundUnitClass", num3);
-                    sqLiteCommand.Parameters.AddWithValue("@AlienRaceID", gclass118.gclass21_1.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@ViewingRaceID", gclass118.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@Name", gclass118.string_0);
+                    sqLiteCommand.Parameters.AddWithValue("@AlienRaceID", gclass118.AlienRace.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@ViewingRaceID", gclass118.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@Name", gclass118.Name);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -4084,12 +4085,12 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AlienShip WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienShip WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass117 gclass117 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass117>(gclass21_0 => gclass21_0.dictionary_12.Values).ToList<GClass117>())
+                foreach (AlienShipIntel gclass117 in this.GameRaces.Values
+                             .SelectMany<GameRace, AlienShipIntel>(gclass21_0 => gclass21_0.dictionary_12.Values).ToList<AlienShipIntel>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AlienShip (GameID, AlienRaceID, AlienClassID, ViewRaceID, ShipID, Name, Speed, LastX, LastY, LastSysID, LastContactTime, FirstDetected, Destroyed, DamageTaken, GameTimeDamaged, ArmourDamage, ShieldDamage, PenetratingDamage, Salvaged ) \r\n                        VALUES ( @GameID, @AlienRaceID, @AlienClassID, @ViewRaceID, @ShipID, @Name, @Speed, @LastX, @LastY, @LastSysID, @LastContactTime, @FirstDetected, @Destroyed, @DamageTaken, @GameTimeDamaged, @ArmourDamage, @ShieldDamage, @PenetratingDamage, @Salvaged )";
@@ -4126,12 +4127,12 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AlienGroundUnitClass WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienGroundUnitClass WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass114 gclass114 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass114>(gclass21_0 => gclass21_0.dictionary_14.Values).ToList<GClass114>())
+                foreach (AlienGroundUnitClassIntel gclass114 in this.GameRaces.Values
+                             .SelectMany<GameRace, AlienGroundUnitClassIntel>(gclass21_0 => gclass21_0.dictionary_14.Values).ToList<AlienGroundUnitClassIntel>())
                 {
                     int num = 0;
                     if (gclass114.gclass101_0 != null)
@@ -4162,39 +4163,39 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AlienPopulation WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienPopulation WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass113 gclass113 in this.GameRaces.Values
-                             .SelectMany<GameRace, GClass113>(gclass21_0 => gclass21_0.dictionary_13.Values).ToList<GClass113>())
+                foreach (AlienPopulationIntel gclass113 in this.GameRaces.Values
+                             .SelectMany<GameRace, AlienPopulationIntel>(gclass21_0 => gclass21_0.AlienPopulationIntels.Values).ToList<AlienPopulationIntel>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AlienPopulation (GameID, AlienRaceID, ViewingRaceID, PopulationID, Installations, Mines, Factories, Refineries, ResearchFacilities, MaintenanceFacilities, GFTF, Spaceport, RefuellingStation, NavalHeadquarters, SectorCommand, OrdnanceTransfer, CargoStation, PopulationAmount, AlienPopulationIntelligencePoints, MaxIntelligence, PreviousMaxIntelligence, PopulationName, EMSignature, ThermalSignature ) \r\n                        VALUES ( @GameID, @AlienRaceID, @ViewingRaceID, @PopulationID, @Installations, @Mines, @Factories, @Refineries, @ResearchFacilities, @MaintenanceFacilities, @GFTF, @Spaceport, @RefuellingStation, @NavalHeadquarters, @SectorCommand, @OrdnanceTransfer, @CargoStation, @PopulationAmount, @AlienPopulationIntelligencePoints, @MaxIntelligence, @PreviousMaxIntelligence, @PopulationName, @EMSignature, @ThermalSignature )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@AlienRaceID", gclass113.gclass110_0.ActualAlienRace.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass113.gclass146_0.PopulationID);
-                    sqLiteCommand.Parameters.AddWithValue("@ViewingRaceID", gclass113.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@Installations", gclass113.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Mines", gclass113.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Factories", gclass113.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@Refineries", gclass113.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@ResearchFacilities", gclass113.int_4);
-                    sqLiteCommand.Parameters.AddWithValue("@MaintenanceFacilities", gclass113.int_5);
-                    sqLiteCommand.Parameters.AddWithValue("@GFTF", gclass113.int_6);
-                    sqLiteCommand.Parameters.AddWithValue("@Spaceport", gclass113.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@RefuellingStation", gclass113.bool_3);
-                    sqLiteCommand.Parameters.AddWithValue("@NavalHeadquarters", gclass113.bool_1);
-                    sqLiteCommand.Parameters.AddWithValue("@SectorCommand", gclass113.bool_2);
-                    sqLiteCommand.Parameters.AddWithValue("@OrdnanceTransfer", gclass113.bool_4);
-                    sqLiteCommand.Parameters.AddWithValue("@CargoStation", gclass113.bool_5);
-                    sqLiteCommand.Parameters.AddWithValue("@PopulationAmount", gclass113.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@AlienPopulationIntelligencePoints", gclass113.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@MaxIntelligence", gclass113.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@PreviousMaxIntelligence", gclass113.double_2);
-                    sqLiteCommand.Parameters.AddWithValue("@PopulationName", gclass113.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@EMSignature", gclass113.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@ThermalSignature", gclass113.decimal_3);
+                    sqLiteCommand.Parameters.AddWithValue("@AlienRaceID", gclass113.RaceIntel.ActualAlienRace.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass113.Population.PopulationID);
+                    sqLiteCommand.Parameters.AddWithValue("@ViewingRaceID", gclass113.ViewingRace.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@Installations", gclass113.Installations);
+                    sqLiteCommand.Parameters.AddWithValue("@Mines", gclass113.Mines);
+                    sqLiteCommand.Parameters.AddWithValue("@Factories", gclass113.Factories);
+                    sqLiteCommand.Parameters.AddWithValue("@Refineries", gclass113.Refineries);
+                    sqLiteCommand.Parameters.AddWithValue("@ResearchFacilities", gclass113.ResearchFacilities);
+                    sqLiteCommand.Parameters.AddWithValue("@MaintenanceFacilities", gclass113.MaintenanceFacilities);
+                    sqLiteCommand.Parameters.AddWithValue("@GFTF", gclass113.GFTF);
+                    sqLiteCommand.Parameters.AddWithValue("@Spaceport", gclass113.Spaceport);
+                    sqLiteCommand.Parameters.AddWithValue("@RefuellingStation", gclass113.RefuellingStation);
+                    sqLiteCommand.Parameters.AddWithValue("@NavalHeadquarters", gclass113.NavalHeadquarters);
+                    sqLiteCommand.Parameters.AddWithValue("@SectorCommand", gclass113.SectorCommand);
+                    sqLiteCommand.Parameters.AddWithValue("@OrdnanceTransfer", gclass113.OrdnanceTransfer);
+                    sqLiteCommand.Parameters.AddWithValue("@CargoStation", gclass113.CargoStation);
+                    sqLiteCommand.Parameters.AddWithValue("@PopulationAmount", gclass113.PopulationAmount);
+                    sqLiteCommand.Parameters.AddWithValue("@AlienPopulationIntelligencePoints", gclass113.AlienPopulationIntelligencePoints);
+                    sqLiteCommand.Parameters.AddWithValue("@MaxIntelligence", gclass113.MaxIntelligence);
+                    sqLiteCommand.Parameters.AddWithValue("@PreviousMaxIntelligence", gclass113.PreviousMaxIntelligence);
+                    sqLiteCommand.Parameters.AddWithValue("@PopulationName", gclass113.PopulationName);
+                    sqLiteCommand.Parameters.AddWithValue("@EMSignature", gclass113.EMSignature);
+                    sqLiteCommand.Parameters.AddWithValue("@ThermalSignature", gclass113.ThermalSignature);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -4209,20 +4210,20 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_RaceTech WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceTech WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass165 gclass165 in this.TechDataDictionary.Values
-                             .SelectMany<TechSystem, GClass165>(gclass164_0 => gclass164_0.dictionary_0.Values)
-                             .ToList<GClass165>())
+                foreach (RacialTech gclass165 in this.TechSystems.Values
+                             .SelectMany<TechSystem, RacialTech>(gclass164_0 => gclass164_0.dictionary_0.Values)
+                             .ToList<RacialTech>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_RaceTech (GameID, TechID, RaceID, Obsolete ) \r\n                        VALUES ( @GameID, @TechID, @RaceID, @Obsolete )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@TechID", gclass165.gclass164_0.TechSystemID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass165.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@Obsolete", gclass165.bool_0);
+                    sqLiteCommand.Parameters.AddWithValue("@TechID", gclass165.TechSystem.TechSystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass165.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@Obsolete", gclass165.Obsolete);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -4237,13 +4238,13 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_EligibleProjects WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_EligibleProjects WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
                 foreach (GameRace gclass21 in this.GameRaces.Values)
                 {
-                    foreach (TechSystem gclass164 in gclass21.list_18)
+                    foreach (TechSystem gclass164 in gclass21.EligibleProjects)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_EligibleProjects (GameID, RaceID, TechSystemID  ) \r\n                                    VALUES ( @GameID, @RaceID, @TechSystemID )";
@@ -4265,11 +4266,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_TechSystem WHERE GameID = 0 OR GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_TechSystem WHERE GameID = 0 OR GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (TechSystem gclass164 in this.TechDataDictionary.Values)
+                foreach (TechSystem gclass164 in this.TechSystems.Values)
                 {
                     try
                     {
@@ -4318,7 +4319,7 @@ public partial class GClass0
         try
         {
             new SQLiteCommand(
-                $"DELETE FROM FCT_ShipDesignComponents WHERE GameID = 0 OR GameID = {this.GameID}",
+                string.Format("DELETE FROM FCT_ShipDesignComponents WHERE GameID = 0 OR GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4341,7 +4342,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@Size", gclass230.decimal_1);
                     sqLiteCommand.Parameters.AddWithValue("@Cost", gclass230.decimal_2);
                     sqLiteCommand.Parameters.AddWithValue("@ComponentTypeID",
-                        gclass230.gclass231_0.ComponentTypeID);
+                        gclass230.Data.ComponentTypeID);
                     sqLiteCommand.Parameters.AddWithValue("@ComponentValue", gclass230.decimal_3);
                     sqLiteCommand.Parameters.AddWithValue("@PowerRequirement", gclass230.decimal_0);
                     sqLiteCommand.Parameters.AddWithValue("@RechargeRate", gclass230.decimal_4);
@@ -4351,12 +4352,12 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@SpecialFunction", gclass230.genum87_0);
                     sqLiteCommand.Parameters.AddWithValue("@WeaponToHitModifier", gclass230.decimal_5);
                     sqLiteCommand.Parameters.AddWithValue("@MaxSensorRange", gclass230.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Resolution", gclass230.decimal_6);
+                    sqLiteCommand.Parameters.AddWithValue("@Resolution", gclass230.Resolution);
                     sqLiteCommand.Parameters.AddWithValue("@HTK", gclass230.int_4);
                     sqLiteCommand.Parameters.AddWithValue("@FuelUse", gclass230.decimal_7);
                     sqLiteCommand.Parameters.AddWithValue("@NoMaintFailure", gclass230.bool_6);
                     sqLiteCommand.Parameters.AddWithValue("@HangarReloadOnly", gclass230.bool_7);
-                    sqLiteCommand.Parameters.AddWithValue("@ExplosionChance", gclass230.decimal_11);
+                    sqLiteCommand.Parameters.AddWithValue("@ExplosionChance", gclass230.ExplosionChance);
                     sqLiteCommand.Parameters.AddWithValue("@MaxExplosionSize", gclass230.int_5);
                     sqLiteCommand.Parameters.AddWithValue("@DamageOutput", gclass230.int_6);
                     sqLiteCommand.Parameters.AddWithValue("@NumberOfShots", gclass230.int_7);
@@ -4416,11 +4417,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Increments WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Increments WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass91 gclass91 in this.gclass92_0.dictionary_0.Values)
+                foreach (IncrementRecord gclass91 in this.gclass92_0.dictionary_0.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Increments (IncrementID, GameID, GameTime, Length ) \r\n                        VALUES ( @IncrementID, @GameID, @GameTime, @Length )";
@@ -4445,7 +4446,7 @@ public partial class GClass0
             new SQLiteCommand("DELETE FROM FCT_ShipComponentTemplate", sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass185 gclass185 in this.dictionary_76.Values)
+                foreach (ShipComponentTemplate gclass185 in this.dictionary_76.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_ShipComponentTemplate (ShipComponentTemplateID, ComponentTypeID, Resolution, NumberOfShots, ExtraHTK, BGTech1, BGTech2, BGTech3, BGTech4, BGTech5, BGTech6, BGTech7, EnginePowerMod, ComponentSize, ComponentName, TurretWeaponTemplateID, TrackingSpeed, ComponentValue) \r\n                        VALUES ( @ShipComponentTemplateID, @ComponentTypeID, @Resolution, @NumberOfShots, @ExtraHTK, @BGTech1, @BGTech2, @BGTech3, @BGTech4, @BGTech5, @BGTech6, @BGTech7, @EnginePowerMod, @ComponentSize, @ComponentName, @TurretWeaponTemplateID, @TrackingSpeed, @ComponentValue )";
@@ -4549,14 +4550,14 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_GameLog WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GameLog WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass87 gclass87 in this.gclass92_0.dictionary_0.Values
-                             .Where<GClass91>(gclass91_0 =>
+                foreach (GameLogEntry gclass87 in this.gclass92_0.dictionary_0.Values
+                             .Where<IncrementRecord>(gclass91_0 =>
                                  this.GameTime - gclass91_0.decimal_0 < AuroraUtils.decimal_30)
-                             .SelectMany<GClass91, GClass87>(gclass91_0 => gclass91_0.list_0).ToList<GClass87>())
+                             .SelectMany<IncrementRecord, GameLogEntry>(gclass91_0 => gclass91_0.list_0).ToList<GameLogEntry>())
                 {
                     int num1 = 0;
                     int num2 = 0;
@@ -4592,7 +4593,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_EventColour WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_EventColour WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4622,11 +4623,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AetherRift WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AetherRift WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass211 gclass211 in this.dictionary_15.Values)
+                foreach (AetherRift gclass211 in this.dictionary_15.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AetherRift (SystemID, Diameter, Xcor, Ycor, GameID) \r\n                        VALUES ( @SystemID, @Diameter, @Xcor, @Ycor, @GameID )";
@@ -4649,11 +4650,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_AetherGates WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AetherGates WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass210 gclass210 in this.dictionary_16.Values)
+                foreach (AetherGate gclass210 in this.dictionary_16.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AetherGates (AetherGateID, SystemID, Xcor, Ycor, CreationTime, CooldownTime, GameID) \r\n                        VALUES ( @AetherGateID, @SystemID, @Xcor, @Ycor, @CreationTime, @CooldownTime, @GameID )";
@@ -4678,7 +4679,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_OrganizationNode WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_OrganizationNode WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4715,18 +4716,18 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Ranks WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Ranks WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (RankThemeEntry gclass61 in this.GameRaces.Values
-                             .SelectMany<GameRace, RankThemeEntry>(
-                                 gclass21_0 => gclass21_0.RacialRankDictionary.Values).ToList<RankThemeEntry>())
+                foreach (RacialRank gclass61 in this.GameRaces.Values
+                             .SelectMany<GameRace, RacialRank>(
+                                 gclass21_0 => gclass21_0.RacialRankDictionary.Values).ToList<RacialRank>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Ranks (RankID, RaceID, RankName, Priority, RankType, RankAbbrev, GameID) \r\n                        VALUES ( @RankID, @RaceID, @RankName, @Priority, @RankType, @RankAbbrev, @GameID )";
-                    sqLiteCommand.Parameters.AddWithValue("@RankID", gclass61.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass61.gclass21_0.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@RankID", gclass61.RankID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass61.Race.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@RankName", gclass61.RankName);
                     sqLiteCommand.Parameters.AddWithValue("@Priority", gclass61.RankNum);
                     sqLiteCommand.Parameters.AddWithValue("@RankType", gclass61.CommanderType);
@@ -4746,7 +4747,7 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_HideEvents WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_HideEvents WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4771,11 +4772,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_RaceSysSurvey WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceSysSurvey WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_RaceJumpPointSurvey WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceJumpPointSurvey WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_AlienRaceSystemStatus WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_AlienRaceSystemStatus WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -4793,7 +4794,7 @@ public partial class GClass0
                     if (gclass202.gclass110_0 != null)
                         num2 = gclass202.gclass110_0.ActualAlienRaceID;
                     if (gclass202.gclass62_0 != null)
-                        num3 = gclass202.gclass62_0.int_0;
+                        num3 = gclass202.gclass62_0.SectorCommandID;
                     if (gclass202.gclass3_0 != null)
                         num4 = (int)gclass202.gclass3_0.genum95_0;
                     sqLiteCommand.CommandText =
@@ -4872,10 +4873,11 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_DesignPhilosophy WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_DesignPhilosophy WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             new SQLiteCommand(
-                $"DELETE FROM FCT_DesignPhilosophyTechProgressionCategories WHERE GameID = {this.GameID}",
+                string.Format("DELETE FROM FCT_DesignPhilosophyTechProgressionCategories WHERE GameID = {0}",
+                    this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -5077,7 +5079,8 @@ public partial class GClass0
                 {
                     using (SQLiteTransaction sqLiteTransaction = connection.BeginTransaction())
                     {
-                        sqLiteCommand.CommandText = $"UPDATE FCT_Game SET GameName = @GameName WHERE GameID ={int_136}";
+                        sqLiteCommand.CommandText =
+                            string.Format("UPDATE FCT_Game SET GameName = @GameName WHERE GameID ={0}", int_136);
                         sqLiteCommand.Parameters.AddWithValue("@GameName", string_10);
                         sqLiteCommand.ExecuteNonQuery();
                         sqLiteTransaction.Commit();

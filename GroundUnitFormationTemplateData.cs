@@ -15,7 +15,7 @@ public class GroundUnitFormationTemplateData
 {
     private GClass0 gclass0_0;
     public GameRace RaceData;
-    public RankThemeEntry RequiredRankData;
+    public RacialRank RequiredRacialRankData;
     public List<GroundUnitFormationElement> FormationElementList = new List<GroundUnitFormationElement>();
     public AutomatedGroundTemplateDesignType AutomatedTemplateType;
     public int TemplateID;
@@ -47,7 +47,7 @@ public class GroundUnitFormationTemplateData
         try
         {
             ++this.FormationTrained;
-            return $"{AuroraUtils.smethod_80(this.FormationTrained)} {this.Name}";
+            return string.Format("{0} {1}", AuroraUtils.smethod_80(this.FormationTrained), this.Name);
         }
         catch (Exception ex)
         {
@@ -65,7 +65,7 @@ public class GroundUnitFormationTemplateData
             foreach (GroundUnitFormationElement gclass39 in this.FormationElementList)
                 treeNode_0.Nodes.Add(new TreeNode()
                 {
-                    Text = $"{gclass39.UnitCount.ToString()}x {gclass39.GroundUnitClass.ClassName}",
+                    Text = string.Format("{0}x {1}", gclass39.UnitCount.ToString(), gclass39.GroundUnitClass.ClassName),
                     Tag = gclass39
                 });
         }
@@ -80,8 +80,8 @@ public class GroundUnitFormationTemplateData
         try
         {
             return this.gclass0_0.Populations.Values
-                .SelectMany<PopulationData, GClass106>(gclass146_0 => gclass146_0.dictionary_3.Values)
-                .Count<GClass106>(gclass106_0 => gclass106_0.gclass102_0 == this) > 0;
+                .SelectMany<PopulationData, GroundUnitTraining>(gclass146_0 => gclass146_0.dictionary_3.Values)
+                .Count<GroundUnitTraining>(gclass106_0 => gclass106_0.gclass102_0 == this) > 0;
         }
         catch (Exception ex)
         {
@@ -210,27 +210,27 @@ public class GroundUnitFormationTemplateData
     {
         try
         {
-            RankThemeEntry gclass61 = this.method_7();
+            RacialRank gclass61 = this.method_7();
             this.method_5();
             string string_17 = "";
             if (this.string_2 != "-")
-                string_17 = $"{string_17}HQ{this.string_2}  ";
+                string_17 = string.Format("{0}HQ{1}  ", string_17, this.string_2);
             if (this.decimal_5 > 0M)
-                string_17 = $"{string_17}ST{this.decimal_5.ToString()}   ";
+                string_17 = string.Format("{0}ST{1}   ", string_17, this.decimal_5.ToString());
             if (this.decimal_4 > 0M)
-                string_17 = $"{string_17}CW{this.decimal_4.ToString()}  ";
+                string_17 = string.Format("{0}CW{1}  ", string_17, this.decimal_4.ToString());
             if (this.decimal_8 > 0M)
-                string_17 = $"{string_17}FD{this.decimal_8.ToString()}  ";
+                string_17 = string.Format("{0}FD{1}  ", string_17, this.decimal_8.ToString());
             if (this.decimal_6 > 0M)
-                string_17 = $"{string_17}CN{this.decimal_6.ToString()}  ";
+                string_17 = string.Format("{0}CN{1}  ", string_17, this.decimal_6.ToString());
             if (this.decimal_9 > 0M)
-                string_17 = $"{string_17}GE{this.decimal_9.ToString()}  ";
+                string_17 = string.Format("{0}GE{1}  ", string_17, this.decimal_9.ToString());
             if (this.decimal_10 > 0M)
-                string_17 = $"{string_17}XN{this.decimal_10.ToString()}  ";
+                string_17 = string.Format("{0}XN{1}  ", string_17, this.decimal_10.ToString());
             if (this.decimal_13 > 0M)
-                string_17 = $"{string_17}DC{this.decimal_13.ToString()}  ";
+                string_17 = string.Format("{0}DC{1}  ", string_17, this.decimal_13.ToString());
             if (this.decimal_12 > 0M)
-                string_17 = $"{string_17}LG{Math.Round(this.decimal_12 / 1000M).ToString()}  ";
+                string_17 = string.Format("{0}LG{1}  ", string_17, Math.Round(this.decimal_12 / 1000M).ToString());
             Color color_0 = AuroraUtils.color_16;
             if (this.Obsolete == 1)
                 color_0 = Color.Orange;
@@ -245,12 +245,12 @@ public class GroundUnitFormationTemplateData
         }
     }
 
-    public RankThemeEntry method_7()
+    public RacialRank method_7()
     {
         try
         {
-            if (this.RequiredRankData != null)
-                return this.RequiredRankData;
+            if (this.RequiredRacialRankData != null)
+                return this.RequiredRacialRankData;
             int int_57 = this.method_8();
             this.decimal_0 = this.method_9();
             return this.RaceData.method_156((int)this.decimal_0, int_57);
@@ -320,27 +320,28 @@ public class GroundUnitFormationTemplateData
                 for (int index = 0; index < object_1.GroundUnitClass.GroundUnitComponentList.Count; ++index)
                 {
                     if (object_1.GroundUnitClass.GroundUnitComponentList[index].GroundWeapon)
-                        string_16 = $"{string_16}{object_1.GroundUnitClass.GroundUnitComponentList[index].Abbreviation}  ";
+                        string_16 = string.Format("{0}{1}  ", string_16,
+                            object_1.GroundUnitClass.GroundUnitComponentList[index].Abbreviation);
                 }
 
                 if (str != "-")
-                    string_16 = $"{string_16}HQ {str}  ";
+                    string_16 = string.Format("{0}HQ {1}  ", string_16, str);
                 if (object_1.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.STO) > 0)
                     string_16 += "ST  ";
                 if (object_1.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.int_1) > 0)
                     string_16 += "CW  ";
                 if (num1 > 0)
-                    string_16 = $"{string_16}FD {num1.ToString()}  ";
+                    string_16 = string.Format("{0}FD {1}  ", string_16, num1.ToString());
                 if (num2 > 0M)
-                    string_16 = $"{string_16}CN {num2.ToString()}  ";
+                    string_16 = string.Format("{0}CN {1}  ", string_16, num2.ToString());
                 if (num3 > 0M)
-                    string_16 = $"{string_16}GE {num3.ToString()}  ";
+                    string_16 = string.Format("{0}GE {1}  ", string_16, num3.ToString());
                 if (num4 > 0M)
-                    string_16 = $"{string_16}XN {num4.ToString()}  ";
+                    string_16 = string.Format("{0}XN {1}  ", string_16, num4.ToString());
                 if (num5 > 0M)
-                    string_16 = $"{string_16}DC {num5.ToString()}  ";
+                    string_16 = string.Format("{0}DC {1}  ", string_16, num5.ToString());
                 if (decimal_73 > 0M)
-                    string_16 = $"{string_16}GSP {AuroraUtils.smethod_38(decimal_73)}  ";
+                    string_16 = string.Format("{0}GSP {1}  ", string_16, AuroraUtils.smethod_38(decimal_73));
                 this.gclass0_0.method_613(listView_0, object_1.GroundUnitClass.ClassName, object_1.UnitCount.ToString(),
                     AuroraUtils.smethod_38(object_1.GroundUnitClass.decimal_2 * object_1.UnitCount),
                     AuroraUtils.smethod_45(object_1.GroundUnitClass.decimal_3 * object_1.UnitCount, 1),
@@ -359,9 +360,13 @@ public class GroundUnitFormationTemplateData
         try
         {
             string str =
-                $"{$"{this.Name + Environment.NewLine}Transport Size: {AuroraUtils.smethod_39(this.method_9())} tons{Environment.NewLine}"}Build Cost: {AuroraUtils.FormatNumberToDigits(this.method_3(null), 1)} BP{Environment.NewLine}";
+                string.Format("{0}Build Cost: {1} BP{2}",
+                    string.Format("{0}Transport Size: {1} tons{2}", this.Name + Environment.NewLine,
+                        AuroraUtils.smethod_39(this.method_9()), Environment.NewLine),
+                    AuroraUtils.FormatNumberToDigits(this.method_3(null), 1), Environment.NewLine);
             foreach (GroundUnitFormationElement gclass39 in this.FormationElementList)
-                str = $"{str}{gclass39.UnitCount.ToString()}x {gclass39.GroundUnitClass.ClassName}{Environment.NewLine}";
+                str = string.Format("{0}{1}x {2}{3}", str, gclass39.UnitCount.ToString(),
+                    gclass39.GroundUnitClass.ClassName, Environment.NewLine);
             return str;
         }
         catch (Exception ex)

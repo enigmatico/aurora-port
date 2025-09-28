@@ -8,7 +8,7 @@ public partial class ShipData
 {
     private sealed class staticCompGen
     {
-        public static Func<GClass228, int> staticCompMem__2_1;
+        public static Func<ClassComponent, int> staticCompMem__2_1;
         public static Func<KeyValuePair<int, int>, int> staticCompMem__41_1;
     }
 
@@ -17,9 +17,9 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass230_0;
         }
     }
 
@@ -29,9 +29,9 @@ public partial class ShipData
         public ShipData gclass40_0;
         public int int_0;
 
-        internal bool method_0(GClass193 gclass193_0)
+        internal bool method_0(Shipyard gclass193_0)
         {
-            return gclass193_0.gclass146_0 == this.gclass40_0.gclass0_0.Populations[this.int_0];
+            return gclass193_0.Population == this.gclass40_0.gclass0_0.Populations[this.int_0];
         }
 
         internal bool method_1(GroundUnitFormationData gclass103_0)
@@ -56,9 +56,9 @@ public partial class ShipData
         public ShipData gclass40_0;
         public GameRace gclass21_0;
         public GClass37 gclass37_0;
-        public Func<GClass117, bool> func_0;
-        public Func<GClass117, bool> func_1;
-        public Func<GClass113, bool> func_2;
+        public Func<AlienShipIntel, bool> func_0;
+        public Func<AlienShipIntel, bool> func_1;
+        public Func<AlienPopulationIntel, bool> func_2;
 
         internal bool method_0(Contact gclass65_0)
         {
@@ -82,19 +82,19 @@ public partial class ShipData
                    gclass65_0.ContactType == AuroraContactType.STOGroundUnit;
         }
 
-        internal bool method_3(GClass117 gclass117_0)
+        internal bool method_3(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass40_0 == this.gclass40_0;
         }
 
-        internal bool method_4(GClass117 gclass117_0)
+        internal bool method_4(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass40_0 == this.gclass37_0.gclass40_0;
         }
 
-        internal bool method_5(GClass113 gclass113_0)
+        internal bool method_5(AlienPopulationIntel gclass113_0)
         {
-            return gclass113_0.gclass146_0 == this.gclass37_0.gclass39_0.Formation.PopulationData;
+            return gclass113_0.Population == this.gclass37_0.gclass39_0.Formation.PopulationData;
         }
     }
 
@@ -126,12 +126,12 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(TransportedComponent gclass73_0)
+        internal bool method_0(StoredComponent gclass73_0)
         {
             return gclass73_0.Component == this.gclass230_0;
         }
 
-        internal bool method_1(TransportedComponent gclass73_0)
+        internal bool method_1(StoredComponent gclass73_0)
         {
             return gclass73_0.Component != this.gclass230_0;
         }
@@ -140,11 +140,11 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class807
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass228_0.Component;
         }
     }
 
@@ -164,14 +164,14 @@ public partial class ShipData
     {
         public AuroraMeasurementType auroraMeasurementType_0;
 
-        internal bool method_0(GClass54 gclass54_0)
+        internal bool method_0(Measurement gclass54_0)
         {
-            return gclass54_0.auroraMeasurementType_0 == this.auroraMeasurementType_0 && !gclass54_0.bool_0;
+            return gclass54_0.MeasurementType == this.auroraMeasurementType_0 && !gclass54_0.StrikeGroup;
         }
 
-        internal bool method_1(GClass54 gclass54_0)
+        internal bool method_1(Measurement gclass54_0)
         {
-            return gclass54_0.auroraMeasurementType_0 == this.auroraMeasurementType_0 && gclass54_0.bool_0;
+            return gclass54_0.MeasurementType == this.auroraMeasurementType_0 && gclass54_0.StrikeGroup;
         }
     }
 
@@ -182,7 +182,7 @@ public partial class ShipData
 
         internal bool method_0(FireControlAssignment gclass36_0)
         {
-            return gclass36_0.FCComponent.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+            return gclass36_0.FCComponent.Data.ComponentTypeID == this.auroraComponentType_0;
         }
     }
 
@@ -224,7 +224,7 @@ public partial class ShipData
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile == this.gclass129_0;
         }
@@ -233,9 +233,9 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class815
     {
-        public PopOrdnanceStock gclass130_0;
+        public ShipOrdnance gclass130_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_1)
+        internal bool method_0(ShipOrdnance gclass130_1)
         {
             return gclass130_1 == this.gclass130_0;
         }
@@ -270,7 +270,7 @@ public partial class ShipData
         {
             return gclass36_0.TargetContactType == AuroraContactType.Ship &&
                    gclass36_0.TargetID == this.gclass40_0.int_8 &&
-                   gclass36_0.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl;
+                   gclass36_0.FCComponent.Data.ComponentTypeID == AuroraComponentType.BeamFireControl;
         }
 
         internal IEnumerable<WeaponFireControlAssignment> method_1(FireControlAssignment gclass36_0)
@@ -289,7 +289,7 @@ public partial class ShipData
         {
             return gclass36_0.TargetContactType == AuroraContactType.Ship &&
                    gclass36_0.TargetID == this.gclass40_0.int_8 &&
-                   gclass36_0.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl;
+                   gclass36_0.FCComponent.Data.ComponentTypeID == AuroraComponentType.MissileFireControl;
         }
 
         internal IEnumerable<WeaponFireControlAssignment> method_1(FireControlAssignment gclass36_0)
@@ -316,7 +316,7 @@ public partial class ShipData
                     gclass36_0.TargetContactType == AuroraContactType.GroundUnit ||
                     gclass36_0.TargetContactType == AuroraContactType.Shipyard) &&
                    gclass36_0.TargetID == this.gclass146_0.PopulationID &&
-                   gclass36_0.FCComponent.gclass231_0.ComponentTypeID ==
+                   gclass36_0.FCComponent.Data.ComponentTypeID ==
                    AuroraComponentType.MissileFireControl;
         }
 
@@ -358,9 +358,9 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass230_0;
         }
     }
 
@@ -369,23 +369,23 @@ public partial class ShipData
     {
         public int int_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl &&
-                   gclass228_0.gclass230_0.int_3 >= this.int_0 * 3;
+            return gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.BeamFireControl &&
+                   gclass228_0.Component.int_3 >= this.int_0 * 3;
         }
 
-        internal bool method_1(GClass228 gclass228_0)
+        internal bool method_1(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl &&
-                   gclass228_0.gclass230_0.int_3 < this.int_0 * 3;
+            return gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.BeamFireControl &&
+                   gclass228_0.Component.int_3 < this.int_0 * 3;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class824
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
         public int int_0;
         public Func<WeaponFireControlAssignment, bool> func_0;
         public Func<WeaponFireControlAssignment, bool> func_1;
@@ -393,29 +393,29 @@ public partial class ShipData
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+            return gclass31_0.FireControlComponent == this.gclass228_0.Component && gclass31_0.FireControlNum == this.int_0;
         }
 
         internal bool method_1(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+            return gclass31_0.FireControlComponent == this.gclass228_0.Component && gclass31_0.FireControlNum == this.int_0;
         }
 
         internal bool method_2(FireControlAssignment gclass36_0)
         {
-            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0 && gclass36_0.FCNum == this.int_0;
+            return gclass36_0.FCComponent == this.gclass228_0.Component && gclass36_0.FCNum == this.int_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class825
     {
-        public GClass228 gclass228_0;
-        public Func<PopOrdnanceStock, bool> func_0;
+        public ClassComponent gclass228_0;
+        public Func<ShipOrdnance, bool> func_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
-            return gclass130_0.RaceMissile.Size <= this.gclass228_0.gclass230_0.decimal_3 &&
+            return gclass130_0.RaceMissile.Size <= this.gclass228_0.Component.decimal_3 &&
                    gclass130_0.RaceMissile.ShipDecoy == 1;
         }
     }
@@ -423,31 +423,31 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class826
     {
-        public GClass228 gclass228_0;
-        public Func<PopOrdnanceStock, bool> func_0;
+        public ClassComponent gclass228_0;
+        public Func<ShipOrdnance, bool> func_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
-            return gclass130_0.RaceMissile.Size <= this.gclass228_0.gclass230_0.decimal_3;
+            return gclass130_0.RaceMissile.Size <= this.gclass228_0.Component.decimal_3;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class827
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
         public int int_0;
         public Func<WeaponFireControlAssignment, bool> func_0;
         public Func<FireControlAssignment, bool> func_1;
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+            return gclass31_0.FireControlComponent == this.gclass228_0.Component && gclass31_0.FireControlNum == this.int_0;
         }
 
         internal bool method_1(FireControlAssignment gclass36_0)
         {
-            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0 && gclass36_0.FCNum == this.int_0;
+            return gclass36_0.FCComponent == this.gclass228_0.Component && gclass36_0.FCNum == this.int_0;
         }
     }
 
@@ -473,10 +473,10 @@ public partial class ShipData
         internal bool method_0(MissileSalvo gclass132_0)
         {
             return gclass132_0.Ship == this.gclass40_0 &&
-                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.GameTime &&
+                   gclass132_0.LaunchTime == this.gclass40_0.gclass0_0.GameTime &&
                    gclass132_0.RaceMissile == this.gclass30_0.Missile &&
-                   gclass132_0.gclass230_0 == this.gclass36_0.FCComponent &&
-                   gclass132_0.int_2 == this.gclass36_0.FCNum && gclass132_0.int_0 == this.int_0;
+                   gclass132_0.FireControl == this.gclass36_0.FCComponent &&
+                   gclass132_0.FCNum == this.gclass36_0.FCNum && gclass132_0.TargetID == this.int_0;
         }
     }
 
@@ -490,8 +490,8 @@ public partial class ShipData
         internal bool method_0(MissileSalvo gclass132_0)
         {
             return gclass132_0.Ship == this.gclass40_0 &&
-                   gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.GameTime &&
-                   gclass132_0.RaceMissile == this.gclass30_0.Missile && gclass132_0.int_0 == this.int_0;
+                   gclass132_0.LaunchTime == this.gclass40_0.gclass0_0.GameTime &&
+                   gclass132_0.RaceMissile == this.gclass30_0.Missile && gclass132_0.TargetID == this.int_0;
         }
     }
 
@@ -500,7 +500,7 @@ public partial class ShipData
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile == this.gclass129_0;
         }
@@ -544,7 +544,7 @@ public partial class ShipData
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile == this.gclass129_0;
         }
@@ -574,9 +574,9 @@ public partial class ShipData
     {
         public int int_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.int_2 >= this.int_0;
+            return gclass228_0.ChanceToHit >= this.int_0;
         }
     }
 
@@ -585,9 +585,9 @@ public partial class ShipData
     {
         public int int_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.int_3 >= this.int_0;
+            return gclass228_0.ElectronicCTH >= this.int_0;
         }
     }
 
@@ -596,7 +596,7 @@ public partial class ShipData
     {
         public Survivors gclass180_0;
 
-        internal bool method_0(GClass147 gclass147_0)
+        internal bool method_0(Prisoner gclass147_0)
         {
             return gclass147_0.gclass21_0 == this.gclass180_0.Race &&
                    gclass147_0.gclass194_0 == this.gclass180_0.Species;
@@ -637,9 +637,9 @@ public partial class ShipData
     {
         public WreckComponents gclass235_0;
 
-        internal bool method_0(TransportedComponent gclass73_0)
+        internal bool method_0(StoredComponent gclass73_0)
         {
-            return gclass73_0.int_0 == this.gclass235_0.Component.int_0;
+            return gclass73_0.ComponentID == this.gclass235_0.Component.int_0;
         }
     }
 
@@ -648,14 +648,14 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(TransportedComponent gclass73_0)
+        internal bool method_0(StoredComponent gclass73_0)
         {
-            return gclass73_0.int_0 == this.gclass230_0.int_0;
+            return gclass73_0.ComponentID == this.gclass230_0.int_0;
         }
 
-        internal bool method_1(TransportedComponent gclass73_0)
+        internal bool method_1(StoredComponent gclass73_0)
         {
-            return gclass73_0.int_0 == this.gclass230_0.int_0;
+            return gclass73_0.ComponentID == this.gclass230_0.int_0;
         }
     }
 
@@ -668,14 +668,14 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class845
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
         public int int_0;
         public ShipData.Class844 class844_0;
         public Func<FireControlAssignment, bool> func_0;
 
         internal bool method_0(FireControlAssignment gclass36_0)
         {
-            if (gclass36_0.FCComponent != this.gclass228_0.gclass230_0 || gclass36_0.FCNum != this.int_0)
+            if (gclass36_0.FCComponent != this.gclass228_0.Component || gclass36_0.FCNum != this.int_0)
                 return false;
             return gclass36_0.TargetID != 0 || this.class844_0.genum61_0 == GEnum61.const_2;
         }
@@ -708,7 +708,7 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(TransportedComponent gclass73_0)
+        internal bool method_0(StoredComponent gclass73_0)
         {
             return gclass73_0.Component == this.gclass230_0;
         }
@@ -722,10 +722,10 @@ public partial class ShipData
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
         {
-            return gclass103_0.RaceData == this.gclass40_0.gclass21_0 && this.list_0.Contains(gclass103_0.ShipData);
+            return gclass103_0.RaceData == this.gclass40_0.Race && this.list_0.Contains(gclass103_0.ShipData);
         }
 
-        internal bool method_1(GClass117 gclass117_0)
+        internal bool method_1(AlienShipIntel gclass117_0)
         {
             return this.list_0.Contains(gclass117_0.gclass40_0);
         }
@@ -794,20 +794,20 @@ public partial class ShipData
     {
         public AuroraComponentType auroraComponentType_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+            return gclass228_0.Component.Data.ComponentTypeID == this.auroraComponentType_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class855
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass228_0.Component;
         }
     }
 
@@ -816,9 +816,9 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0 == this.gclass230_0;
+            return gclass228_0.Component == this.gclass230_0;
         }
     }
 
@@ -843,9 +843,9 @@ public partial class ShipData
     {
         public AuroraComponentType auroraComponentType_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+            return gclass228_0.Component.Data.ComponentTypeID == this.auroraComponentType_0;
         }
     }
 
@@ -854,9 +854,9 @@ public partial class ShipData
     {
         public AuroraComponentType auroraComponentType_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+            return gclass228_0.Component.Data.ComponentTypeID == this.auroraComponentType_0;
         }
     }
 
@@ -865,9 +865,9 @@ public partial class ShipData
     {
         public AuroraComponentType auroraComponentType_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == this.auroraComponentType_0;
+            return gclass228_0.Component.Data.ComponentTypeID == this.auroraComponentType_0;
         }
     }
 
@@ -967,19 +967,19 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class867
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
         public int int_0;
         public Func<FireControlAssignment, bool> func_0;
         public Func<WeaponFireControlAssignment, bool> func_1;
 
         internal bool method_0(FireControlAssignment gclass36_0)
         {
-            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0 && gclass36_0.FCNum == this.int_0;
+            return gclass36_0.FCComponent == this.gclass228_0.Component && gclass36_0.FCNum == this.int_0;
         }
 
         internal bool method_1(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.FireControlComponent == this.gclass228_0.gclass230_0 && gclass31_0.FireControlNum == this.int_0;
+            return gclass31_0.FireControlComponent == this.gclass228_0.Component && gclass31_0.FireControlNum == this.int_0;
         }
     }
 
@@ -1020,7 +1020,7 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class870
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
         public int int_0;
         public Func<WeaponFireControlAssignment, bool> func_0;
         public Func<FCTDecoyAssignmentData32, bool> func_1;
@@ -1028,17 +1028,17 @@ public partial class ShipData
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.WeaponComponent == this.gclass228_0.gclass230_0 && gclass31_0.WeaponNum == this.int_0;
+            return gclass31_0.WeaponComponent == this.gclass228_0.Component && gclass31_0.WeaponNum == this.int_0;
         }
 
         internal bool method_1(FCTDecoyAssignmentData32 gclass32_0)
         {
-            return gclass32_0.LauncherData == this.gclass228_0.gclass230_0 && gclass32_0.LauncherNum == this.int_0;
+            return gclass32_0.LauncherData == this.gclass228_0.Component && gclass32_0.LauncherNum == this.int_0;
         }
 
         internal bool method_2(MissileAssignment gclass30_0)
         {
-            return gclass30_0.FiringWeaponComponent == this.gclass228_0.gclass230_0 && gclass30_0.WeaponNum == this.int_0;
+            return gclass30_0.FiringWeaponComponent == this.gclass228_0.Component && gclass30_0.WeaponNum == this.int_0;
         }
     }
 
@@ -1057,7 +1057,7 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class872
     {
-        public AlienRaceInfo gclass110_0;
+        public AlienRaceIntel gclass110_0;
 
         internal bool method_0(Contact gclass65_0)
         {
@@ -1068,11 +1068,11 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class873
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass228_0.Component;
         }
     }
 
@@ -1092,9 +1092,9 @@ public partial class ShipData
     {
         public List<ShipComponent> list_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return this.list_0.Contains(gclass228_0.gclass230_0);
+            return this.list_0.Contains(gclass228_0.Component);
         }
     }
 
@@ -1115,9 +1115,9 @@ public partial class ShipData
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass230_0;
         }
     }
 
@@ -1144,13 +1144,13 @@ public partial class ShipData
         public Decimal decimal_0;
         public ShipData gclass40_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                AuroraComponentType.ActiveSearchSensors && gclass228_0.gclass230_0.decimal_6 == this.decimal_0;
+            return gclass228_0.Component.Data.ComponentTypeID ==
+                AuroraComponentType.ActiveSearchSensors && gclass228_0.Component.Resolution == this.decimal_0;
         }
 
-        internal bool method_1(GClass228 gclass228_0)
+        internal bool method_1(ClassComponent gclass228_0)
         {
             return this.gclass40_0.method_158(gclass228_0) > 0;
         }
@@ -1161,9 +1161,9 @@ public partial class ShipData
     {
         public FireControlAssignment gclass36_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0 == this.gclass36_0.FCComponent;
+            return gclass228_0.Component == this.gclass36_0.FCComponent;
         }
 
         internal bool method_1(WeaponFireControlAssignment gclass31_0)
@@ -1177,9 +1177,9 @@ public partial class ShipData
     {
         public List<ShipComponent> list_0;
 
-        internal bool method_0(GClass228 gclass228_0)
+        internal bool method_0(ClassComponent gclass228_0)
         {
-            return this.list_0.Contains(gclass228_0.gclass230_0);
+            return this.list_0.Contains(gclass228_0.Component);
         }
     }
 
@@ -1241,28 +1241,28 @@ public partial class ShipData
     [CompilerGenerated]
     private sealed class Class885
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass228_0.Component;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class886
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
         public ShipData gclass40_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass228_0.Component;
         }
 
         internal bool method_1(FireControlAssignment gclass36_0)
         {
-            return gclass36_0.FCComponent == this.gclass228_0.gclass230_0;
+            return gclass36_0.FCComponent == this.gclass228_0.Component;
         }
     }
 
@@ -1274,18 +1274,18 @@ public partial class ShipData
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.WeaponComponent == this.class886_0.gclass228_0.gclass230_0 && gclass31_0.WeaponNum > this.int_0;
+            return gclass31_0.WeaponComponent == this.class886_0.gclass228_0.Component && gclass31_0.WeaponNum > this.int_0;
         }
 
         internal bool method_1(FCTDecoyAssignmentData32 gclass32_0)
         {
-            return gclass32_0.LauncherData == this.class886_0.gclass228_0.gclass230_0 &&
+            return gclass32_0.LauncherData == this.class886_0.gclass228_0.Component &&
                    gclass32_0.LauncherNum > this.int_0;
         }
 
         internal bool method_2(WeaponComponentRechargeStatus gclass27_0)
         {
-            return gclass27_0.WeaponComponent == this.class886_0.gclass228_0.gclass230_0 && gclass27_0.WeaponNumber > this.int_0;
+            return gclass27_0.WeaponComponent == this.class886_0.gclass228_0.Component && gclass27_0.WeaponNumber > this.int_0;
         }
     }
 
@@ -1297,15 +1297,15 @@ public partial class ShipData
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
-            return gclass31_0.FireControlComponent == this.class887_0.class886_0.gclass228_0.gclass230_0 &&
+            return gclass31_0.FireControlComponent == this.class887_0.class886_0.gclass228_0.Component &&
                    gclass31_0.FireControlNum == this.gclass36_0.FCNum;
         }
 
         internal bool method_1(MissileSalvo gclass132_0)
         {
             return gclass132_0.Ship == this.class887_0.class886_0.gclass40_0 &&
-                   gclass132_0.gclass230_0 == this.class887_0.class886_0.gclass228_0.gclass230_0 &&
-                   gclass132_0.int_2 == this.gclass36_0.FCNum;
+                   gclass132_0.FireControl == this.class887_0.class886_0.gclass228_0.Component &&
+                   gclass132_0.FCNum == this.gclass36_0.FCNum;
         }
     }
 

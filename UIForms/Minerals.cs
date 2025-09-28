@@ -106,7 +106,7 @@ public class Minerals : Form
     private RacialSystemSurvey gclass202_0;
     private TacticalMap tacticalMap_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private ListView lstvMinerals;
     private ColumnHeader columnHeader_0;
     private ColumnHeader columnHeader_1;
@@ -714,7 +714,7 @@ public class Minerals : Form
                 // ISSUE: reference to a compiler-generated method
                 PopulationData gclass146 = this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(class1084.method_0);
                 if (gclass146 != null)
-                    text1 = $"{gclass146.PopName} (C)";
+                    text1 = string.Format("{0} (C)", gclass146.PopName);
                 listViewItem_0.SubItems.Add(text1);
                 if (this.lstvMineralsWide.Visible)
                 {
@@ -1063,12 +1063,7 @@ public class Minerals : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

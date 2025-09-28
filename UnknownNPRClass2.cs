@@ -15,7 +15,7 @@ using System.Windows.Forms;
 public partial class UnknownNPRClass2
 {
     public List<GClass17> list_0 = new List<GClass17>();
-    public List<PopOrdnanceStock> list_1 = new List<PopOrdnanceStock>();
+    public List<ShipOrdnance> list_1 = new List<ShipOrdnance>();
     public List<PopulationData> list_2 = new List<PopulationData>();
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
@@ -32,7 +32,7 @@ public partial class UnknownNPRClass2
         this.gclass21_0 = gclass21_1;
     }
 
-    public bool method_0(GClass210 gclass210_0, Decimal decimal_5)
+    public bool method_0(AetherGate gclass210_0, Decimal decimal_5)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -109,8 +109,8 @@ public partial class UnknownNPRClass2
                     .Select<PopulationData, StarSystem>(gclass146_0 => gclass146_0.gclass202_0.ActualSystem)
                     .ToList<StarSystem>());
                 // ISSUE: reference to a compiler-generated method
-                first.AddRange(this.gclass0_0.dictionary_30.Values.Where<GClass59>(class336.method_3)
-                    .Select<GClass59, StarSystem>(gclass59_0 => gclass59_0.gclass200_0).ToList<StarSystem>());
+                first.AddRange(this.gclass0_0.LifePods.Values.Where<LifePod>(class336.method_3)
+                    .Select<LifePod, StarSystem>(gclass59_0 => gclass59_0.gclass200_0).ToList<StarSystem>());
                 first = first.Except<StarSystem>(list2).Distinct<StarSystem>().ToList<StarSystem>();
             }
             else
@@ -127,7 +127,7 @@ public partial class UnknownNPRClass2
 
             foreach (StarSystem gclass200_0 in first)
             {
-                GClass210 gclass210_0 = gclass200_0.method_2();
+                AetherGate gclass210_0 = gclass200_0.method_2();
                 if (gclass210_0 != null)
                 {
                     // ISSUE: object of a compiler-generated type is created
@@ -165,7 +165,7 @@ public partial class UnknownNPRClass2
         }
     }
 
-    public GClass210 method_2(StarSystem gclass200_0)
+    public AetherGate method_2(StarSystem gclass200_0)
     {
         try
         {
@@ -175,7 +175,7 @@ public partial class UnknownNPRClass2
                 double_10 = 3000000000.0;
             GClass221 gclass221 =
                 this.gclass0_0.method_592(0.0, 0.0, double_10, (AuroraUtils.GetRandomInteger(3600) - 1) / 10.0);
-            GClass210 gclass210 = new GClass210(this.gclass0_0);
+            AetherGate gclass210 = new AetherGate(this.gclass0_0);
             gclass210.int_0 = this.gclass0_0.method_26(GEnum0.const_51);
             gclass210.gclass200_0 = gclass200_0;
             gclass210.decimal_0 = this.gclass0_0.GameTime;
@@ -297,14 +297,14 @@ public partial class UnknownNPRClass2
                     // ISSUE: reference to a compiler-generated field
                     gclass202_2.method_8(class339.class338_0.gclass202_0);
                     this.gclass0_0.gclass92_0.method_2(EventType.const_106,
-                        $"The system of {gclass202_2.Name} has been discovered", this.gclass21_0,
+                        string.Format("The system of {0} has been discovered", gclass202_2.Name), this.gclass21_0,
                         gclass202_2.ActualSystem, 0.0, 0.0, AuroraEventCategory.Fleet);
                 }
                 else if (gclass202_1.DangerRating > list2[0].method_156())
                     continue;
 
                 // ISSUE: reference to a compiler-generated field
-                GClass210 gclass210_0 = class339.gclass200_0.method_2();
+                AetherGate gclass210_0 = class339.gclass200_0.method_2();
                 if (gclass210_0 == null)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -334,7 +334,7 @@ public partial class UnknownNPRClass2
                             // ISSUE: reference to a compiler-generated field
                             this.gclass21_0.method_188(class339.gclass200_0, class340.gclass1_0, null, WayPointType.POI,
                                 class340.gclass1_0.XCoordinate, class340.gclass1_0.YCoordinate,
-                                $"POI - {class340.gclass1_0.method_78(this.gclass21_0)}", 0);
+                                string.Format("POI - {0}", class340.gclass1_0.method_78(this.gclass21_0)), 0);
                         }
                     }
 
@@ -360,7 +360,7 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated field
                                 this.gclass21_0.method_188(class339.gclass200_0, null, null, WayPointType.POI,
                                     class341.gclass213_0.XCoord, class341.gclass213_0.YCoord,
-                                    $"POI #{class341.gclass213_0.LocationNumber}", 0);
+                                    string.Format("POI #{0}", class341.gclass213_0.LocationNumber), 0);
                             }
                         }
                     }
@@ -429,7 +429,7 @@ public partial class UnknownNPRClass2
         }
     }
 
-    public double method_5(AlienRaceInfo gclass110_0, RacialSystemSurvey gclass202_0)
+    public double method_5(AlienRaceIntel gclass110_0, RacialSystemSurvey gclass202_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -441,8 +441,8 @@ public partial class UnknownNPRClass2
         try
         {
             // ISSUE: reference to a compiler-generated method
-            double num1 = (double)this.gclass21_0.dictionary_12.Values.Where<GClass117>(class343.method_0)
-                .Sum<GClass117>(gclass117_0 => gclass117_0.gclass115_0.gclass22_0.Size);
+            double num1 = (double)this.gclass21_0.dictionary_12.Values.Where<AlienShipIntel>(class343.method_0)
+                .Sum<AlienShipIntel>(gclass117_0 => gclass117_0.gclass115_0.gclass22_0.Size);
             if (num1 == 0.0)
                 return 0.0;
             // ISSUE: reference to a compiler-generated field
@@ -451,37 +451,37 @@ public partial class UnknownNPRClass2
                 num1 *= 1.5;
             // ISSUE: reference to a compiler-generated method
             double num2 = (double)this.gclass0_0.Ships.Values.Where<ShipData>(class343.method_1)
-                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size);
+                .Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size);
             double num3 = num1 / num2;
             double num4 = this.gclass21_0.dictionary_11.Values
-                .SelectMany<GClass115, GClass119>(gclass115_0 => gclass115_0.list_1)
-                .Select<GClass119, ShipComponent>(gclass119_0 => gclass119_0.gclass230_0)
+                .SelectMany<AlienShipClassIntel, AlienShipWeaponIntel>(gclass115_0 => gclass115_0.list_1)
+                .Select<AlienShipWeaponIntel, ShipComponent>(gclass119_0 => gclass119_0.gclass230_0)
                 .SelectMany<ShipComponent, TechSystem>(gclass230_0 => gclass230_0.list_0)
                 .Select<TechSystem, int>(gclass164_0 => gclass164_0.int_4).DefaultIfEmpty<int>(0)
                 .Max<int>(int_0 => int_0);
             // ISSUE: reference to a compiler-generated method
             double num5 = this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class343.method_2)
-                .SelectMany<ShipClass, GClass228>(gclass22_0 => gclass22_0.dictionary_0.Values)
-                .Where<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_11)
-                .SelectMany<GClass228, TechSystem>(gclass228_0 => gclass228_0.gclass230_0.list_0)
+                .SelectMany<ShipClass, ClassComponent>(gclass22_0 => gclass22_0.ClassComponents.Values)
+                .Where<ClassComponent>(gclass228_0 => gclass228_0.Component.bool_11)
+                .SelectMany<ClassComponent, TechSystem>(gclass228_0 => gclass228_0.Component.list_0)
                 .Max<TechSystem>(gclass164_0 => gclass164_0.int_4);
             if (num4 > 0.0)
                 num3 *= num4 / num5;
             // ISSUE: reference to a compiler-generated method
-            double num6 = this.gclass21_0.dictionary_11.Values.Where<GClass115>(class343.method_3)
-                .Select<GClass115, ShipClass>(gclass115_0 => gclass115_0.gclass22_0)
-                .SelectMany<ShipClass, GClass228>(gclass22_0 => gclass22_0.dictionary_0.Values)
-                .Where<GClass228>(gclass228_0 =>
-                    gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Engine)
-                .SelectMany<GClass228, TechSystem>(gclass228_0 => gclass228_0.gclass230_0.list_0)
+            double num6 = this.gclass21_0.dictionary_11.Values.Where<AlienShipClassIntel>(class343.method_3)
+                .Select<AlienShipClassIntel, ShipClass>(gclass115_0 => gclass115_0.gclass22_0)
+                .SelectMany<ShipClass, ClassComponent>(gclass22_0 => gclass22_0.ClassComponents.Values)
+                .Where<ClassComponent>(gclass228_0 =>
+                    gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.Engine)
+                .SelectMany<ClassComponent, TechSystem>(gclass228_0 => gclass228_0.Component.list_0)
                 .Select<TechSystem, int>(gclass164_0 => gclass164_0.int_4).DefaultIfEmpty<int>(0)
                 .Max<int>(int_0 => int_0);
             // ISSUE: reference to a compiler-generated method
             double num7 = this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class343.method_4)
-                .SelectMany<ShipClass, GClass228>(gclass22_0 => gclass22_0.dictionary_0.Values)
-                .Where<GClass228>(gclass228_0 =>
-                    gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Engine)
-                .SelectMany<GClass228, TechSystem>(gclass228_0 => gclass228_0.gclass230_0.list_0)
+                .SelectMany<ShipClass, ClassComponent>(gclass22_0 => gclass22_0.ClassComponents.Values)
+                .Where<ClassComponent>(gclass228_0 =>
+                    gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.Engine)
+                .SelectMany<ClassComponent, TechSystem>(gclass228_0 => gclass228_0.Component.list_0)
                 .Max<TechSystem>(gclass164_0 => gclass164_0.int_4);
             if (num6 > 0.0)
                 num3 *= num6 / num7;
@@ -494,7 +494,7 @@ public partial class UnknownNPRClass2
         }
     }
 
-    public void method_6(AlienRaceInfo gclass110_0)
+    public void method_6(AlienRaceIntel gclass110_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -508,7 +508,7 @@ public partial class UnknownNPRClass2
             // ISSUE: reference to a compiler-generated method
             foreach (RacialSystemSurvey gclass202 in this.gclass21_0.RacialSystemDictionary.Values.Where<RacialSystemSurvey>(class344.method_0)
                          .ToList<RacialSystemSurvey>())
-                gclass202.gclass3_0.genum95_0 = GEnum95.const_1;
+                gclass202.gclass3_0.genum95_0 = NPRSystemValue.const_1;
         }
         catch (Exception ex)
         {
@@ -517,7 +517,7 @@ public partial class UnknownNPRClass2
     }
 
     public object method_7(
-        AlienRaceInfo gclass110_0,
+        AlienRaceIntel gclass110_0,
         RacialSystemSurvey gclass202_0,
         ShipData gclass40_0,
         PopulationData gclass146_0)
@@ -632,15 +632,15 @@ public partial class UnknownNPRClass2
                 // ISSUE: reference to a compiler-generated field
                 class348.gclass202_0 = this.gclass21_0.method_128(class347.gclass202_0.ActualSystem);
                 // ISSUE: reference to a compiler-generated field
-                if (class348.gclass202_0.gclass3_0.genum95_0 != GEnum95.const_0)
+                if (class348.gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_0)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    AlienRaceInfo key = class347.gclass202_0.Race.method_325(this.gclass21_0.RaceID);
+                    AlienRaceIntel key = class347.gclass202_0.Race.method_325(this.gclass21_0.RaceID);
                     if (key != null && key.FixedRelationShip != 1)
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        AlienRaceInfo gclass110_0 =
+                        AlienRaceIntel gclass110_0 =
                             class348.gclass202_0.Race.method_325(class347.gclass202_0.Race.RaceID);
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
@@ -669,11 +669,11 @@ public partial class UnknownNPRClass2
                                     .Select<Contact, int>(gclass65_0 => gclass65_0.ContactID).Distinct<int>().Count<int>();
                                 string str1 = "";
                                 if (num4 > 0)
-                                    str1 = $"{str1}{num4.ToString()}x Ship ";
+                                    str1 = string.Format("{0}{1}x Ship ", str1, num4.ToString());
                                 if (num5 > 0)
-                                    str1 = $"{str1}{num5.ToString()}x Population ";
+                                    str1 = string.Format("{0}{1}x Population ", str1, num5.ToString());
                                 if (num6 > 0)
-                                    str1 = $"{str1}{num6.ToString()}x Salvo";
+                                    str1 = string.Format("{0}{1}x Salvo", str1, num6.ToString());
                                 // ISSUE: reference to a compiler-generated field
                                 string str2 = AuroraUtils.smethod_82(class347.gclass202_0.dictionary_0[key]
                                     .auroraSystemProtectionStatus_0);
@@ -681,7 +681,9 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_100,
-                                    $"Forces of the {key.AlienRaceName} have been detected in {class347.gclass202_0.Name}. As we have a protection status for this system of '{str2}', an appropriate message has been sent. Current contacts are {str1}",
+                                    string.Format(
+                                        "Forces of the {0} have been detected in {1}. As we have a protection status for this system of '{2}', an appropriate message has been sent. Current contacts are {3}",
+                                        key.AlienRaceName, class347.gclass202_0.Name, str2, str1),
                                     class347.gclass202_0.Race, class347.gclass202_0.ActualSystem, 0.0, 0.0,
                                     AuroraEventCategory.Intelligence);
                             }
@@ -710,7 +712,9 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                    $"The {key.AlienRaceName} has rejected our claim on {class347.gclass202_0.Name} on the basis they have not detected sufficient evidence of a permament presence that would warrant such a claim. They warn that repeated claims without justification will damage relations.",
+                                    string.Format(
+                                        "The {0} has rejected our claim on {1} on the basis they have not detected sufficient evidence of a permament presence that would warrant such a claim. They warn that repeated claims without justification will damage relations.",
+                                        key.AlienRaceName, class347.gclass202_0.Name),
                                     class347.gclass202_0.Race, class347.gclass202_0.ActualSystem, 0.0, 0.0,
                                     AuroraEventCategory.Intelligence);
                             }
@@ -718,26 +722,28 @@ public partial class UnknownNPRClass2
                             {
                                 int num9 = this.gclass0_0.method_33(gclass202_1);
                                 // ISSUE: reference to a compiler-generated field
-                                GEnum95 genum950 = class348.gclass202_0.gclass3_0.genum95_0;
+                                NPRSystemValue genum950 = class348.gclass202_0.gclass3_0.genum95_0;
                                 // ISSUE: reference to a compiler-generated field
-                                class348.gclass202_0.gclass3_0.genum95_0 = GEnum95.const_0;
+                                class348.gclass202_0.gclass3_0.genum95_0 = NPRSystemValue.const_0;
                                 int num10 = this.gclass0_0.method_33(gclass202_1);
                                 // ISSUE: reference to a compiler-generated field
                                 class348.gclass202_0.gclass3_0.genum95_0 = genum950;
                                 int num11 = num10;
                                 double num12 = (num9 - num11) / 4.0;
                                 // ISSUE: reference to a compiler-generated field
-                                if (class348.gclass202_0.gclass3_0.genum95_0 < GEnum95.const_2 && num12 == 0.0)
+                                if (class348.gclass202_0.gclass3_0.genum95_0 < NPRSystemValue.const_2 && num12 == 0.0)
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                        $"The {key.AlienRaceName} has accepted our sovereignty of {class347.gclass202_0.Name} as they have no significant interest in the system",
+                                        string.Format(
+                                            "The {0} has accepted our sovereignty of {1} as they have no significant interest in the system",
+                                            key.AlienRaceName, class347.gclass202_0.Name),
                                         class347.gclass202_0.Race, class347.gclass202_0.ActualSystem, 0.0, 0.0,
                                         AuroraEventCategory.Intelligence);
                                     // ISSUE: reference to a compiler-generated field
-                                    class348.gclass202_0.gclass3_0.genum95_0 = GEnum95.const_0;
+                                    class348.gclass202_0.gclass3_0.genum95_0 = NPRSystemValue.const_0;
                                     // ISSUE: reference to a compiler-generated field
                                     class348.gclass202_0.gclass110_0 = gclass110_0;
                                     // ISSUE: reference to a compiler-generated field
@@ -771,11 +777,13 @@ public partial class UnknownNPRClass2
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                            $"The {key.AlienRaceName} has accepted our sovereignty of {class347.gclass202_0.Name} but warn that claims on additional systems will damage relations",
+                                            string.Format(
+                                                "The {0} has accepted our sovereignty of {1} but warn that claims on additional systems will damage relations",
+                                                key.AlienRaceName, class347.gclass202_0.Name),
                                             class347.gclass202_0.Race, class347.gclass202_0.ActualSystem, 0.0, 0.0,
                                             AuroraEventCategory.Intelligence);
                                         // ISSUE: reference to a compiler-generated field
-                                        class348.gclass202_0.gclass3_0.genum95_0 = GEnum95.const_0;
+                                        class348.gclass202_0.gclass3_0.genum95_0 = NPRSystemValue.const_0;
                                         // ISSUE: reference to a compiler-generated field
                                         class348.gclass202_0.gclass110_0 = gclass110_0;
                                         // ISSUE: reference to a compiler-generated field
@@ -790,7 +798,9 @@ public partial class UnknownNPRClass2
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                            $"The {key.AlienRaceName} has rejected our claim on {class347.gclass202_0.Name}. The system is important to them and they will defend it. Further claims will damage relations.",
+                                            string.Format(
+                                                "The {0} has rejected our claim on {1}. The system is important to them and they will defend it. Further claims will damage relations.",
+                                                key.AlienRaceName, class347.gclass202_0.Name),
                                             class347.gclass202_0.Race, class347.gclass202_0.ActualSystem, 0.0, 0.0,
                                             AuroraEventCategory.Intelligence);
                                     }
@@ -802,7 +812,7 @@ public partial class UnknownNPRClass2
             }
 
             foreach (RacialSystemSurvey gclass202_3 in this.gclass21_0.RacialSystemDictionary.Values
-                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 > GEnum95.const_2)
+                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 > NPRSystemValue.const_2)
                          .Intersect<RacialSystemSurvey>(list2).ToList<RacialSystemSurvey>())
             {
                 // ISSUE: object of a compiler-generated type is created
@@ -811,11 +821,11 @@ public partial class UnknownNPRClass2
                 // ISSUE: reference to a compiler-generated field
                 class349.gclass202_0 = gclass202_3;
                 // ISSUE: reference to a compiler-generated method
-                foreach (AlienRaceInfo gclass110_1 in list1.Where<Contact>(class349.method_0)
+                foreach (AlienRaceIntel gclass110_1 in list1.Where<Contact>(class349.method_0)
                              .Select<Contact, GameRace>(gclass65_0 => gclass65_0.ContactRace)
                              .Distinct<GameRace>()
-                             .Select<GameRace, AlienRaceInfo>(gclass21_1 =>
-                                 this.gclass21_0.method_325(gclass21_1.RaceID)).ToList<AlienRaceInfo>())
+                             .Select<GameRace, AlienRaceIntel>(gclass21_1 =>
+                                 this.gclass21_0.method_325(gclass21_1.RaceID)).ToList<AlienRaceIntel>())
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
@@ -831,7 +841,7 @@ public partial class UnknownNPRClass2
                     // ISSUE: reference to a compiler-generated field
                     if (class350.gclass110_0.ContactStatus < AuroraContactStatus.Allied &&
                         (class350.gclass110_0.ContactStatus < AuroraContactStatus.Friendly ||
-                         class350.class349_0.gclass202_0.gclass3_0.genum95_0 >= GEnum95.const_4) &&
+                         class350.class349_0.gclass202_0.gclass3_0.genum95_0 >= NPRSystemValue.const_4) &&
                         class350.gclass110_0.FixedRelationShip != 1)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -866,15 +876,15 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated method
                                 ShipData gclass40_0_1 = list1.Where<Contact>(class350.method_1)
                                     .Select<Contact, ShipData>(gclass65_0 => gclass65_0.TargetShip)
-                                    .OrderBy<ShipData, bool>(gclass40_0 => gclass40_0.gclass22_0.Commercial)
+                                    .OrderBy<ShipData, bool>(gclass40_0 => gclass40_0.Class.Commercial)
                                     .ThenByDescending<ShipData, Decimal>(gclass40_0 =>
-                                        gclass40_0.gclass22_0.Size).FirstOrDefault<ShipData>();
+                                        gclass40_0.Class.Size).FirstOrDefault<ShipData>();
                                 if (gclass40_0_1 != null || gclass146_0_1 != null)
                                 {
                                     Decimal num22 = 1M;
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
-                                    if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 == GEnum95.const_3)
+                                    if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_3)
                                     {
                                         num22 = 2.5M;
                                     }
@@ -882,7 +892,7 @@ public partial class UnknownNPRClass2
                                     {
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
-                                        if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 == GEnum95.const_4)
+                                        if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_4)
                                         {
                                             num22 = 5M;
                                         }
@@ -890,7 +900,7 @@ public partial class UnknownNPRClass2
                                         {
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
-                                            if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 == GEnum95.const_5)
+                                            if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_5)
                                             {
                                                 num22 = 10M;
                                             }
@@ -899,7 +909,7 @@ public partial class UnknownNPRClass2
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
                                                 if (class350.class349_0.gclass202_0.gclass3_0.genum95_0 ==
-                                                    GEnum95.const_6)
+                                                    NPRSystemValue.const_6)
                                                     num22 = 20M;
                                             }
                                         }
@@ -926,9 +936,9 @@ public partial class UnknownNPRClass2
                                     Decimal num23 = list1.Where<Contact>(class350.method_2)
                                         .Select<Contact, ShipData>(gclass65_0 => gclass65_0.TargetShip)
                                         .Distinct<ShipData>().Where<ShipData>(class350.method_3)
-                                        .Select<ShipData, GClass115>(gclass40_0 =>
-                                            this.gclass21_0.method_118(gclass40_0.gclass22_0))
-                                        .Sum<GClass115>(class350.class349_0.func_1 ??
+                                        .Select<ShipData, AlienShipClassIntel>(gclass40_0 =>
+                                            this.gclass21_0.method_118(gclass40_0.Class))
+                                        .Sum<AlienShipClassIntel>(class350.class349_0.func_1 ??
                                                         (class350.class349_0.func_1 = class350.class349_0.method_2));
                                     if (num23 > 0M && num23 < 1000M)
                                         num23 = 1000M;
@@ -970,15 +980,19 @@ public partial class UnknownNPRClass2
                                                 {
                                                     if (gclass146_0_1 != null)
                                                         this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                                            $"{gclass146_0_1.PopName} has receieved an unintelligible communication orginating from {str3}",
+                                                            string.Format(
+                                                                "{0} has receieved an unintelligible communication orginating from {1}",
+                                                                gclass146_0_1.PopName, str3),
                                                             gclass146_0_1.Race,
                                                             gclass146_0_1.gclass202_0.ActualSystem,
                                                             gclass146_0_1.method_87(), gclass146_0_1.method_88(),
                                                             AuroraEventCategory.PopSummary);
                                                     else
                                                         this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                                            $"{gclass40_0_1.gclass85_0.FleetName} has receieved an unintelligible communication orginating from {str3}",
-                                                            gclass40_0_1.gclass21_0,
+                                                            string.Format(
+                                                                "{0} has receieved an unintelligible communication orginating from {1}",
+                                                                gclass40_0_1.gclass85_0.FleetName, str3),
+                                                            gclass40_0_1.Race,
                                                             gclass40_0_1.gclass85_0.System.ActualSystem,
                                                             gclass40_0_1.gclass85_0.XCoord,
                                                             gclass40_0_1.gclass85_0.YCoord, AuroraEventCategory.Ship);
@@ -986,11 +1000,13 @@ public partial class UnknownNPRClass2
                                                 else
                                                 {
                                                     // ISSUE: reference to a compiler-generated field
-                                                    AlienRaceInfo gclass110_2 =
+                                                    AlienRaceIntel gclass110_2 =
                                                         class350.gclass110_0.ActualAlienRace.method_325(this.gclass21_0
                                                             .RaceID);
                                                     string str4 =
-                                                        $" suggesting that our forces leave {gclass202_5.Name} in the near future as the system lies within their territory";
+                                                        string.Format(
+                                                            " suggesting that our forces leave {0} in the near future as the system lies within their territory",
+                                                            gclass202_5.Name);
                                                     if (!(num22 >= 16M) && !(num26 < 2M))
                                                     {
                                                         if (!(num22 >= 8M) && !(num26 < 5M))
@@ -999,31 +1015,45 @@ public partial class UnknownNPRClass2
                                                             {
                                                                 if (num22 >= 2M)
                                                                     str4 =
-                                                                        $" requesting that our forces leave {gclass202_5.Name} as the system lies within their territory";
+                                                                        string.Format(
+                                                                            " requesting that our forces leave {0} as the system lies within their territory",
+                                                                            gclass202_5.Name);
                                                             }
                                                             else
                                                                 str4 =
-                                                                    $" requesting that our forces leave {gclass202_5.Name} as a matter of urgency";
+                                                                    string.Format(
+                                                                        " requesting that our forces leave {0} as a matter of urgency",
+                                                                        gclass202_5.Name);
                                                         }
                                                         else
                                                             str4 =
-                                                                $" demanding that our forces leave {gclass202_5.Name} immediately";
+                                                                string.Format(
+                                                                    " demanding that our forces leave {0} immediately",
+                                                                    gclass202_5.Name);
                                                     }
                                                     else
                                                         str4 =
-                                                            $" demanding that our forces leave {gclass202_5.Name} immediately or they will be fired upon";
+                                                            string.Format(
+                                                                " demanding that our forces leave {0} immediately or they will be fired upon",
+                                                                gclass202_5.Name);
 
                                                     if (gclass146_0_1 != null)
                                                         this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                                            $"The {gclass110_2.AlienRaceName} has sent a message to {gclass146_0_1.PopName}{str4}. Origin of message was {str3}",
+                                                            string.Format(
+                                                                "The {0} has sent a message to {1}{2}. Origin of message was {3}",
+                                                                gclass110_2.AlienRaceName, gclass146_0_1.PopName, str4,
+                                                                str3),
                                                             gclass146_0_1.Race,
                                                             gclass146_0_1.gclass202_0.ActualSystem,
                                                             gclass146_0_1.method_87(), gclass146_0_1.method_88(),
                                                             AuroraEventCategory.PopSummary);
                                                     else
                                                         this.gclass0_0.gclass92_0.method_2(EventType.const_183,
-                                                            $"The {gclass110_2.AlienRaceName} has sent a message to {gclass40_0_1.ShipName}{str4}. Origin of message was {str3}",
-                                                            gclass40_0_1.gclass21_0,
+                                                            string.Format(
+                                                                "The {0} has sent a message to {1}{2}. Origin of message was {3}",
+                                                                gclass110_2.AlienRaceName, gclass40_0_1.ShipName, str4,
+                                                                str3),
+                                                            gclass40_0_1.Race,
                                                             gclass40_0_1.gclass85_0.System.ActualSystem,
                                                             gclass40_0_1.gclass85_0.XCoord,
                                                             gclass40_0_1.gclass85_0.YCoord, AuroraEventCategory.Ship);
@@ -1101,7 +1131,7 @@ public partial class UnknownNPRClass2
             List<FleetData> list1 = this.gclass0_0.FleetDictionary.Values
                 .Where<FleetData>(gclass85_0 => gclass85_0.Race == this.gclass21_0).ToList<FleetData>();
             List<ShipData> list2 = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0).ToList<ShipData>();
+                .Where<ShipData>(gclass40_0 => gclass40_0.Race == this.gclass21_0).ToList<ShipData>();
             List<PopulationData> list3 = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(gclass146_0 => gclass146_0.Race == this.gclass21_0).ToList<PopulationData>();
             if (list2.Count == 0 && list3.Count == 0)
@@ -1149,11 +1179,11 @@ public partial class UnknownNPRClass2
             List<RacialSystemSurvey> list8 = this.gclass21_0.RacialSystemDictionary.Values.Where<RacialSystemSurvey>(class351.method_2)
                 .ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list9 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_0)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_0)
                 .ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list10 = list7.SelectMany<RacialSystemSurvey, RacialSystemSurvey>(gclass202_0 => gclass202_0.method_37(true))
                 .Distinct<RacialSystemSurvey>()
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list11 = this.gclass21_0.RacialSystemDictionary.Values.Except<RacialSystemSurvey>(list10)
                 .Except<RacialSystemSurvey>(list7).Except<RacialSystemSurvey>(list9).ToList<RacialSystemSurvey>();
@@ -1349,8 +1379,8 @@ public partial class UnknownNPRClass2
                         // ISSUE: reference to a compiler-generated field
                         class355.list_0 = list15.Except<StarSystem>(list14).ToList<StarSystem>();
                         // ISSUE: reference to a compiler-generated method
-                        List<GClass113> list16 = this.gclass21_0.dictionary_13.Values
-                            .Where<GClass113>(class355.method_0).ToList<GClass113>();
+                        List<AlienPopulationIntel> list16 = this.gclass21_0.AlienPopulationIntels.Values
+                            .Where<AlienPopulationIntel>(class355.method_0).ToList<AlienPopulationIntel>();
                         this.method_27(list3, list1, list13, list16);
                     }
                 }
@@ -1361,7 +1391,7 @@ public partial class UnknownNPRClass2
                     {
                         List<StarSystem> list17 = this.gclass21_0.RacialSystemDictionary.Values
                             .Where<RacialSystemSurvey>(gclass202_0 =>
-                                gclass202_0.gclass3_0.genum95_0 > GEnum95.const_1 && gclass202_0.bGeoSurveyDefaultDone)
+                                gclass202_0.gclass3_0.genum95_0 > NPRSystemValue.const_1 && gclass202_0.bGeoSurveyDefaultDone)
                             .Except<RacialSystemSurvey>(list10)
                             .Select<RacialSystemSurvey, StarSystem>(gclass202_0 => gclass202_0.ActualSystem)
                             .ToList<StarSystem>();
@@ -1458,7 +1488,7 @@ public partial class UnknownNPRClass2
         {
             foreach (ShipData gclass40 in list_4)
             {
-                int num = (int)gclass40.gclass5_0.method_12();
+                int num = (int)gclass40.NPRShipBehaviour.method_12();
             }
 
             foreach (FleetData gclass85 in list_3)
@@ -1500,7 +1530,7 @@ public partial class UnknownNPRClass2
                 .Where<GroundUnitFormationData>(class359.method_0).SelectMany<GroundUnitFormationData, GroundUnitFormationElement>(gclass103_0 => gclass103_0.ElementList)
                 .Where<GroundUnitFormationElement>(gclass39_0 =>
                 {
-                    if (gclass39_0.GroundUnitClass.gclass230_0 == null)
+                    if (gclass39_0.GroundUnitClass.SurfaceToOrbitWeapon == null)
                         return false;
                     return gclass39_0.TargetSelectionType == AuroraTargetSelection.PointBlankDefensiveFire ||
                            gclass39_0.TargetSelectionType == AuroraTargetSelection.PointBlankDefensiveFireSelf ||
@@ -1512,7 +1542,7 @@ public partial class UnknownNPRClass2
                 gclass40.method_104();
                 foreach (FireControlAssignment gclass36 in gclass40.list_4.Where<FireControlAssignment>(gclass36_0 =>
                          {
-                             if (gclass36_0.FCComponent.gclass231_0.ComponentTypeID !=
+                             if (gclass36_0.FCComponent.Data.ComponentTypeID !=
                                  AuroraComponentType.BeamFireControl)
                                  return false;
                              return gclass36_0.PointDefenceMode ==
@@ -1550,7 +1580,7 @@ public partial class UnknownNPRClass2
                 double num1 = gclass39.method_1(0.0, int_0, 1.0, true, 1M) / 100.0;
                 if (num1 > 1.0)
                     num1 = 1.0;
-                int num2 = gclass39.UnitCount * gclass39.GroundUnitClass.gclass230_0.int_7;
+                int num2 = gclass39.UnitCount * gclass39.GroundUnitClass.SurfaceToOrbitWeapon.int_7;
                 d += num1 * num2;
             }
 
@@ -1569,10 +1599,10 @@ public partial class UnknownNPRClass2
         {
             bool flag1 = false;
             List<RacialSystemSurvey> list1 = list_4
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ToList<RacialSystemSurvey>();
             if (list1.Count == 0)
-                list1 = list_5.OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                list1 = list_5.OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                     .ToList<RacialSystemSurvey>();
             foreach (RacialSystemSurvey gclass202 in list1)
             {
@@ -1589,8 +1619,8 @@ public partial class UnknownNPRClass2
                     .ToList<ShipData>();
                 list2.Select<ShipData, FleetData>(gclass40_0 => gclass40_0.gclass85_0).Distinct<FleetData>()
                     .ToList<FleetData>();
-                Decimal num = list2.Where<ShipData>(gclass40_0 => !gclass40_0.gclass22_0.Commercial)
-                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ClassCrossSection * gclass40_0.gclass22_0.MaxSpeed);
+                Decimal num = list2.Where<ShipData>(gclass40_0 => !gclass40_0.Class.Commercial)
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.Class.ClassCrossSection * gclass40_0.Class.MaxSpeed);
                 // ISSUE: reference to a compiler-generated method
                 List<FleetData> list3 = list_3.Where<FleetData>(class361.method_1)
                     .Where<FleetData>(gclass85_0 => gclass85_0.NPROperationGroup.bool_2).ToList<FleetData>();
@@ -1688,7 +1718,7 @@ public partial class UnknownNPRClass2
                 .Where<GroundUnitFormationData>(gclass103_0 =>
                     gclass103_0.RaceData == this.gclass21_0 && gclass103_0.PopulationData != null)
                 .SelectMany<GroundUnitFormationData, GroundUnitFormationElement>(gclass103_0 => gclass103_0.ElementList)
-                .Where<GroundUnitFormationElement>(gclass39_0 => gclass39_0.GroundUnitClass.gclass230_0 != null)
+                .Where<GroundUnitFormationElement>(gclass39_0 => gclass39_0.GroundUnitClass.SurfaceToOrbitWeapon != null)
                 .Select<GroundUnitFormationElement, GroundUnitFormationData>(gclass39_0 => gclass39_0.Formation).Distinct<GroundUnitFormationData>()
                 .ToList<GroundUnitFormationData>();
             if (list1.Count == 0 && list2.Count == 0)
@@ -1767,14 +1797,14 @@ public partial class UnknownNPRClass2
         try
         {
             List<ShipData> list1 = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0).ToList<ShipData>();
+                .Where<ShipData>(gclass40_0 => gclass40_0.Race == this.gclass21_0).ToList<ShipData>();
             List<ShipData> list2 = list1
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0.AutomatedClassDesign.HiveShipSizeClass > 0)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Class.AutomatedClassDesign.HiveShipSizeClass > 0)
                 .ToList<ShipData>();
             if (list2.Count == 0)
                 return;
             foreach (ShipData gclass40_1 in list1.Where<ShipData>(gclass40_0 =>
-                             gclass40_0.gclass22_0.AutomatedClassDesign.HiveShipSizeClass == 0 && gclass40_0.decimal_17 > 0M)
+                             gclass40_0.Class.AutomatedClassDesign.HiveShipSizeClass == 0 && gclass40_0.decimal_17 > 0M)
                          .ToList<ShipData>())
             {
                 // ISSUE: object of a compiler-generated type is created
@@ -1793,10 +1823,10 @@ public partial class UnknownNPRClass2
                     foreach (ShipData gclass40_2 in list3)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        if (!(gclass40_2.gclass22_0.BioEnergyCapacity - gclass40_2.decimal_17 >= class365.gclass40_0.decimal_17))
+                        if (!(gclass40_2.Class.BioEnergyCapacity - gclass40_2.decimal_17 >= class365.gclass40_0.decimal_17))
                         {
-                            Decimal num = gclass40_2.gclass22_0.BioEnergyCapacity - gclass40_2.decimal_17;
-                            gclass40_2.decimal_17 = gclass40_2.gclass22_0.BioEnergyCapacity;
+                            Decimal num = gclass40_2.Class.BioEnergyCapacity - gclass40_2.decimal_17;
+                            gclass40_2.decimal_17 = gclass40_2.Class.BioEnergyCapacity;
                             // ISSUE: reference to a compiler-generated field
                             class365.gclass40_0.decimal_17 -= num;
                         }
@@ -1824,10 +1854,10 @@ public partial class UnknownNPRClass2
         {
             List<ShipData> list = list_3
                 .Where<ShipData>(gclass40_0 =>
-                    gclass40_0.gclass22_0.AutomatedClassDesign.HiveShipSizeClass > 0 && gclass40_0.decimal_17 > 250M)
+                    gclass40_0.Class.AutomatedClassDesign.HiveShipSizeClass > 0 && gclass40_0.decimal_17 > 250M)
                 .ToList<ShipData>();
-            int num1 = list.OrderByDescending<ShipData, int>(gclass40_0 => gclass40_0.gclass22_0.AutomatedClassDesign.HiveShipSizeClass)
-                .Select<ShipData, int>(gclass40_0 => gclass40_0.gclass22_0.AutomatedClassDesign.HiveShipSizeClass)
+            int num1 = list.OrderByDescending<ShipData, int>(gclass40_0 => gclass40_0.Class.AutomatedClassDesign.HiveShipSizeClass)
+                .Select<ShipData, int>(gclass40_0 => gclass40_0.Class.AutomatedClassDesign.HiveShipSizeClass)
                 .FirstOrDefault<int>();
             using (List<ShipData>.Enumerator enumerator = list.GetEnumerator())
             {
@@ -1835,8 +1865,8 @@ public partial class UnknownNPRClass2
                 while (enumerator.MoveNext())
                 {
                     ShipData current = enumerator.Current;
-                    if (current.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveVeryLarge &&
-                        current.decimal_17 == current.gclass22_0.BioEnergyCapacity)
+                    if (current.Class.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveVeryLarge &&
+                        current.decimal_17 == current.Class.BioEnergyCapacity)
                         this.method_21(current);
                     else if (list_4.Contains(current.gclass85_0.System))
                     {
@@ -1923,15 +1953,15 @@ public partial class UnknownNPRClass2
                     else
                     {
                         Decimal num12 = list_3.Count<ShipData>(gclass40_0 =>
-                            gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmSalvager);
+                            gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmSalvager);
                         Decimal num13 = list_3.Count<ShipData>(gclass40_0 =>
-                            gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmWorker);
+                            gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmWorker);
                         Decimal num14 = list_3.Count<ShipData>(gclass40_0 =>
-                            gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmGeosurvey);
+                            gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmGeosurvey);
                         Decimal num15 = list_3.Count<ShipData>(gclass40_0 =>
-                            gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmGravsurvey);
+                            gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmGravsurvey);
                         Decimal num16 = list_3.Count<ShipData>(gclass40_0 =>
-                            gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmAssualtTransport);
+                            gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmAssualtTransport);
                         ShipClass gclass22_0_1 = this.method_19(AutomatedClassDesignType.SwarmWorker);
                         if (num13 < num14 && gclass22_0_1.Cost <= current.decimal_17)
                         {
@@ -1993,7 +2023,7 @@ public partial class UnknownNPRClass2
                             }
                         }
 
-                        if (current.gclass22_0.AutomatedClassDesign.HiveShipSizeClass == 4)
+                        if (current.Class.AutomatedClassDesign.HiveShipSizeClass == 4)
                         {
                             ShipClass gclass22_0_6 = this.method_19(AutomatedClassDesignType.SwarmHiveSmall);
                             if (gclass22_0_6.Cost <= current.decimal_17)
@@ -2019,7 +2049,8 @@ public partial class UnknownNPRClass2
             ShipData gclass40 = this.gclass21_0.method_304(null, gclass40_0, null, gclass22_0, null, null, null,
                 null, null, "", 100M, false, false, GEnum20.const_0);
             gclass40.gclass85_0.method_202();
-            this.gclass0_0.gclass92_0.method_2(EventType.const_2, $"{gclass40.ShipName} built by {gclass40_0.ShipName}",
+            this.gclass0_0.gclass92_0.method_2(EventType.const_2,
+                string.Format("{0} built by {1}", gclass40.ShipName, gclass40_0.ShipName),
                 this.gclass21_0, gclass40_0.gclass85_0.System.ActualSystem, gclass40_0.gclass85_0.XCoord,
                 gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Ship);
         }
@@ -2063,7 +2094,7 @@ public partial class UnknownNPRClass2
         {
             // ISSUE: reference to a compiler-generated method
             return list_3.Where<ShipData>(class367.method_0)
-                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size);
+                .Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size);
         }
         catch (Exception ex)
         {
@@ -2077,21 +2108,21 @@ public partial class UnknownNPRClass2
         try
         {
             ShipClass gclass22_1 = null;
-            if (gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveSmall)
+            if (gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveSmall)
                 gclass22_1 = this.gclass0_0.ShipClasses.Values.FirstOrDefault<ShipClass>(gclass22_0 =>
                     gclass22_0.Race == this.gclass21_0 && gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmHiveMedium);
-            else if (gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveMedium)
+            else if (gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveMedium)
                 gclass22_1 = this.gclass0_0.ShipClasses.Values.FirstOrDefault<ShipClass>(gclass22_0 =>
                     gclass22_0.Race == this.gclass21_0 && gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmHiveLarge);
-            else if (gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveLarge)
+            else if (gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID != AutomatedClassDesignType.SwarmHiveLarge)
                 gclass22_1 = this.gclass0_0.ShipClasses.Values.FirstOrDefault<ShipClass>(gclass22_0 =>
                     gclass22_0.Race == this.gclass21_0 && gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.SwarmHiveVeryLarge);
             if (gclass22_1 == null)
                 return;
-            gclass40_0.method_204($"Refit to {gclass22_1.ClassName}");
+            gclass40_0.method_204(string.Format("Refit to {0}", gclass22_1.ClassName));
             gclass40_0.method_199(gclass22_1, null);
             this.gclass0_0.gclass92_0.method_2(EventType.const_2,
-                $"{gclass40_0.ShipName} refitted to {gclass22_1.ClassName} class", gclass40_0.gclass21_0,
+                string.Format("{0} refitted to {1} class", gclass40_0.ShipName, gclass22_1.ClassName), gclass40_0.Race,
                 gclass40_0.gclass85_0.System.ActualSystem, gclass40_0.gclass85_0.XCoord,
                 gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Ship);
         }
@@ -2111,7 +2142,7 @@ public partial class UnknownNPRClass2
         try
         {
             // ISSUE: reference to a compiler-generated method
-            SwarmResearch gclass168 = this.gclass21_0.list_7.FirstOrDefault<SwarmResearch>(class368.method_0);
+            SwarmResearch gclass168 = this.gclass21_0.SwarmResearches.FirstOrDefault<SwarmResearch>(class368.method_0);
             if (gclass168 != null)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -2123,13 +2154,13 @@ public partial class UnknownNPRClass2
                 {
                     // ISSUE: reference to a compiler-generated field
                     this.gclass21_0.method_282(class368.gclass164_0, null, null, null, false, false);
-                    this.gclass21_0.list_7.Remove(gclass168);
+                    this.gclass21_0.SwarmResearches.Remove(gclass168);
                 }
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.gclass21_0.list_7.Add(new SwarmResearch()
+                this.gclass21_0.SwarmResearches.Add(new SwarmResearch()
                 {
                     TechSystem = class368.gclass164_0,
                     Race = this.gclass21_0,
@@ -2399,7 +2430,7 @@ public partial class UnknownNPRClass2
         List<PopulationData> list_3,
         List<FleetData> list_4,
         List<FleetData> list_5,
-        List<GClass113> list_6)
+        List<AlienPopulationIntel> list_6)
     {
         try
         {
@@ -2461,7 +2492,7 @@ public partial class UnknownNPRClass2
                     .Select<PopulationData, SystemBodyData>(gclass146_0 => gclass146_0.SystemBodyData)
                     .ToList<SystemBodyData>();
                 Species gclass194_1 = this.gclass21_0.method_164();
-                foreach (GClass113 gclass113 in list_6)
+                foreach (AlienPopulationIntel gclass113 in list_6)
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
@@ -2470,10 +2501,10 @@ public partial class UnknownNPRClass2
                     class375.gclass113_0 = gclass113;
                     PopulationData gclass146_3;
                     // ISSUE: reference to a compiler-generated field
-                    if (!list6.Contains(class375.gclass113_0.gclass146_0.SystemBodyData))
+                    if (!list6.Contains(class375.gclass113_0.Population.SystemBodyData))
                     {
                         // ISSUE: reference to a compiler-generated field
-                        gclass146_3 = this.gclass21_0.method_276(class375.gclass113_0.gclass146_0.SystemBodyData,
+                        gclass146_3 = this.gclass21_0.method_276(class375.gclass113_0.Population.SystemBodyData,
                             gclass194_1, false);
                         list_3.Add(gclass146_3);
                     }
@@ -2493,7 +2524,7 @@ public partial class UnknownNPRClass2
                         // ISSUE: reference to a compiler-generated field
                         gclass146_3.decimal_10 = gclass65 != null
                             ? 100M * gclass146_3.SystemBodyData.DominantTerrain.FortificationModifier * 3M * gclass65.ContactStrength
-                            : class375.gclass113_0.gclass146_0.Population * 1000M;
+                            : class375.gclass113_0.Population.Population * 1000M;
                     }
                 }
             }
@@ -2829,7 +2860,7 @@ public partial class UnknownNPRClass2
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
-                                    GClass210 gclass210_0 =
+                                    AetherGate gclass210_0 =
                                         class382.class381_0.class380_0.gclass146_0.gclass202_0.ActualSystem.method_2() ??
                                         this.method_2(
                                             class382.class381_0.class380_0.gclass146_0.gclass202_0.ActualSystem);
@@ -2856,7 +2887,8 @@ public partial class UnknownNPRClass2
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 if (class382.gclass85_0.method_237(class382.gclass85_0.System, GEnum109.const_41,
-                                        $"Move To {class382.class381_0.gclass17_0.gclass146_0.gclass202_0.Name}", false,
+                                        string.Format("Move To {0}",
+                                            class382.class381_0.gclass17_0.gclass146_0.gclass202_0.Name), false,
                                         class382.class381_0.gclass17_0.gclass146_0.gclass202_0.ActualSystem.SystemID,
                                         false, false, false).gclass202_0 != null)
                                 {
@@ -2899,7 +2931,7 @@ public partial class UnknownNPRClass2
                                         gclass201.gclass202_0 = gclass85_0.System;
                                     else if (gclass85_0.Race.SpecialNPRID != SpecialNPRIDs.Eldar)
                                         gclass201 = gclass85_0.method_236(GEnum109.const_41,
-                                            $"Move To {gclass17_1.gclass146_0.gclass202_0.Name}", false,
+                                            string.Format("Move To {0}", gclass17_1.gclass146_0.gclass202_0.Name), false,
                                             gclass17_1.gclass146_0.gclass202_0.ActualSystem.SystemID, false);
                                     if (gclass201.gclass202_0 != null)
                                     {
@@ -2920,7 +2952,8 @@ public partial class UnknownNPRClass2
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             if (gclass85_0.method_237(gclass201.gclass202_0, GEnum109.const_41,
-                                                    $"Move To {class381.gclass17_0.gclass146_0.gclass202_0.Name}",
+                                                    string.Format("Move To {0}",
+                                                        class381.gclass17_0.gclass146_0.gclass202_0.Name),
                                                     false,
                                                     class381.gclass17_0.gclass146_0.gclass202_0.ActualSystem.SystemID,
                                                     false, false, false).gclass202_0 != null)
@@ -3088,10 +3121,10 @@ public partial class UnknownNPRClass2
             }
 
             // ISSUE: reference to a compiler-generated method
-            List<GClass193> list4 = this.gclass0_0.dictionary_31.Values
-                .Where<GClass193>(gclass193_0 =>
-                    gclass193_0.gclass21_0 == this.gclass21_0 && gclass193_0.gclass146_0 != null).ToList<GClass193>()
-                .Where<GClass193>(class385.method_0).ToList<GClass193>();
+            List<Shipyard> list4 = this.gclass0_0.Shipyards.Values
+                .Where<Shipyard>(gclass193_0 =>
+                    gclass193_0.Race == this.gclass21_0 && gclass193_0.Population != null).ToList<Shipyard>()
+                .Where<Shipyard>(class385.method_0).ToList<Shipyard>();
             if (list4.Count == 0)
                 return;
             foreach (FleetData gclass85 in list1)
@@ -3108,19 +3141,19 @@ public partial class UnknownNPRClass2
                 if (source.Count != 0)
                 {
                     ShipData gclass40 = source
-                        .Where<ShipData>(gclass40_0 => gclass40_0.gclass5_0.genum102_0 < GEnum102.const_3)
-                        .OrderByDescending<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                        .Where<ShipData>(gclass40_0 => gclass40_0.NPRShipBehaviour.genum102_0 < GEnum102.const_3)
+                        .OrderByDescending<ShipData, Decimal>(gclass40_0 => gclass40_0.Class.Size)
                         .FirstOrDefault<ShipData>();
                     if (gclass40 != null)
                     {
-                        this.decimal_4 = gclass40.gclass22_0.Size;
+                        this.decimal_4 = gclass40.Class.Size;
                         this.auroraShipyardType_0 = AuroraShipyardType.Naval;
-                        if (gclass40.gclass22_0.Commercial)
+                        if (gclass40.Class.Commercial)
                             this.auroraShipyardType_0 = AuroraShipyardType.Commercial;
                         // ISSUE: reference to a compiler-generated method
                         // ISSUE: reference to a compiler-generated method
-                        PopulationData gclass146_1 = list4.Where<GClass193>(class386.method_0)
-                            .Select<GClass193, PopulationData>(gclass193_0 => gclass193_0.gclass146_0)
+                        PopulationData gclass146_1 = list4.Where<Shipyard>(class386.method_0)
+                            .Select<Shipyard, PopulationData>(gclass193_0 => gclass193_0.Population)
                             .OrderBy<PopulationData, double>(class386.method_1).FirstOrDefault<PopulationData>();
                         if (gclass146_1 != null)
                         {
@@ -3271,8 +3304,8 @@ public partial class UnknownNPRClass2
                 // ISSUE: reference to a compiler-generated field
                 class390.gclass85_0 = gclass85;
                 // ISSUE: reference to a compiler-generated method
-                GClass210 gclass210_0 = this.gclass0_0.dictionary_16.Values.Where<GClass210>(class390.method_0)
-                    .FirstOrDefault<GClass210>();
+                AetherGate gclass210_0 = this.gclass0_0.dictionary_16.Values.Where<AetherGate>(class390.method_0)
+                    .FirstOrDefault<AetherGate>();
                 if (gclass210_0.double_2 <= 0.0)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -3348,7 +3381,7 @@ public partial class UnknownNPRClass2
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             FleetData gclass85_1 = this.gclass21_0.method_308(
-                                $"{class393.gclass40_0.ShipName} Strikegroup",
+                                string.Format("{0} Strikegroup", class393.gclass40_0.ShipName),
                                 class393.gclass40_0.gclass85_0.ParentNavalCommand, class391.gclass85_0.System,
                                 class391.gclass85_0.XCoord, class391.gclass85_0.YCoord,
                                 class391.gclass85_0.OrbitingBody, class391.gclass85_0.NPROperationGroup.OperationalGroupId);
@@ -3387,19 +3420,19 @@ public partial class UnknownNPRClass2
                     // ISSUE: reference to a compiler-generated method
                     List<ShipData> list3 = this.gclass0_0.Ships.Values
                         .Where<ShipData>(class391.method_1).Where<ShipData>(gclass40_0 =>
-                            gclass40_0.gclass22_0.MainFunction == AuroraClassMainFunction.Carrier)
+                            gclass40_0.Class.MainFunction == AuroraClassMainFunction.Carrier)
                         .ToList<ShipData>();
                     // ISSUE: reference to a compiler-generated field
                     if (class391.gclass85_0.NPROperationGroup.OperationalGroupId == OperationalGroupID.BeamFighterSquadron)
                     {
-                        list3 = list3.Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0.MagazineCapacity == 0M)
+                        list3 = list3.Where<ShipData>(gclass40_0 => gclass40_0.Class.MagazineCapacity == 0M)
                             .ToList<ShipData>();
                     }
                     else
                     {
                         // ISSUE: reference to a compiler-generated field
                         if (class391.gclass85_0.NPROperationGroup.OperationalGroupId == OperationalGroupID.MissileFighterSquadron)
-                            list3 = list3.Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0.MagazineCapacity > 0M)
+                            list3 = list3.Where<ShipData>(gclass40_0 => gclass40_0.Class.MagazineCapacity > 0M)
                                 .ToList<ShipData>();
                     }
 
@@ -3409,23 +3442,23 @@ public partial class UnknownNPRClass2
                     List<ShipData> list4 = list3.OrderBy<ShipData, double>(class391.method_2)
                         .ToList<ShipData>();
                     // ISSUE: reference to a compiler-generated field
-                    class392.list_0.Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size);
+                    class392.list_0.Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size);
                     foreach (ShipData gclass40_3 in list4)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        class392.list_0.OrderBy<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                        class392.list_0.OrderBy<ShipData, Decimal>(gclass40_0 => gclass40_0.Class.Size)
                             .ToList<ShipData>();
                         Decimal num2 = gclass40_3.method_126();
                         List<ShipData> gclass40List = new List<ShipData>();
                         // ISSUE: reference to a compiler-generated field
                         foreach (ShipData gclass40_4 in class392.list_0)
                         {
-                            if (num2 >= gclass40_4.gclass22_0.Size)
+                            if (num2 >= gclass40_4.Class.Size)
                             {
                                 gclass40List.Add(gclass40_4);
                                 // ISSUE: reference to a compiler-generated field
                                 class392.list_0.Remove(gclass40_4);
-                                num2 -= gclass40_4.gclass22_0.Size;
+                                num2 -= gclass40_4.Class.Size;
                             }
                             else
                                 break;
@@ -3435,14 +3468,15 @@ public partial class UnknownNPRClass2
                         {
                             FCTSquadronData70 gclass70_1 = new FCTSquadronData70(this.gclass0_0);
                             FCTSquadronData70 gclass70_2 = gclass40_3.ChildSquadronDictionary.Count <= 0
-                                ? gclass40_3.method_186($"{gclass40_3.ShipName} strikegroup")
+                                ? gclass40_3.method_186(string.Format("{0} strikegroup", gclass40_3.ShipName))
                                 : gclass40_3.ChildSquadronDictionary[0];
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            FleetData gclass85_1 = this.gclass21_0.method_308($"{gclass40_3.ShipName} Strikegroup",
+                            FleetData gclass85_1 = this.gclass21_0.method_308(
+                                string.Format("{0} Strikegroup", gclass40_3.ShipName),
                                 gclass40_3.gclass85_0.ParentNavalCommand, class391.gclass85_0.System,
                                 class391.gclass85_0.XCoord, class391.gclass85_0.YCoord,
                                 class391.gclass85_0.OrbitingBody, class391.gclass85_0.NPROperationGroup.OperationalGroupId);
@@ -3526,9 +3560,9 @@ public partial class UnknownNPRClass2
                 foreach (PopulationData gclass146 in list4)
                 {
                     gclass146.gclass6_0.dictionary_0.Clear();
-                    foreach (PopOrdnanceStock gclass130_1 in gclass146.OrdnanceStocks)
+                    foreach (ShipOrdnance gclass130_1 in gclass146.OrdnanceStocks)
                     {
-                        PopOrdnanceStock gclass130_2 = gclass130_1.method_0();
+                        ShipOrdnance gclass130_2 = gclass130_1.method_0();
                         gclass146.gclass6_0.dictionary_0.Add(gclass130_2.RaceMissile, gclass130_2);
                     }
                 }
@@ -3540,13 +3574,13 @@ public partial class UnknownNPRClass2
                     UnknownNPRClass2.Class395 class395 = new UnknownNPRClass2.Class395();
                     // ISSUE: reference to a compiler-generated field
                     class395.gclass85_0 = gclass85;
-                    List<PopOrdnanceStock> source1 = new List<PopOrdnanceStock>();
+                    List<ShipOrdnance> source1 = new List<ShipOrdnance>();
                     // ISSUE: reference to a compiler-generated field
                     List<ShipData> source2 = class395.gclass85_0.method_176();
                     // ISSUE: reference to a compiler-generated method
                     foreach (RaceMissile gclass129 in source2.Where<ShipData>(class395.method_0)
-                                 .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.gclass22_0.list_0)
-                                 .Select<PopOrdnanceStock, RaceMissile>(gclass130_0 => gclass130_0.RaceMissile)
+                                 .SelectMany<ShipData, ShipOrdnance>(gclass40_0 => gclass40_0.Class.OrdnanceTemplate)
+                                 .Select<ShipOrdnance, RaceMissile>(gclass130_0 => gclass130_0.RaceMissile)
                                  .Distinct<RaceMissile>().ToList<RaceMissile>())
                     {
                         // ISSUE: object of a compiler-generated type is created
@@ -3563,28 +3597,28 @@ public partial class UnknownNPRClass2
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated method
                         // ISSUE: reference to a compiler-generated method
-                        source1.Add(new PopOrdnanceStock()
+                        source1.Add(new ShipOrdnance()
                         {
                             RaceMissile = class396.gclass129_0,
                             Amount = source2
                                         .Where<ShipData>(class395.func_0 ?? (class395.func_0 = class395.method_1))
-                                        .SelectMany<ShipData, PopOrdnanceStock>(
-                                            gclass40_0 => gclass40_0.gclass22_0.list_0)
-                                        .Where<PopOrdnanceStock>(class396.method_0)
-                                        .Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount) -
+                                        .SelectMany<ShipData, ShipOrdnance>(
+                                            gclass40_0 => gclass40_0.Class.OrdnanceTemplate)
+                                        .Where<ShipOrdnance>(class396.method_0)
+                                        .Sum<ShipOrdnance>(gclass130_0 => gclass130_0.Amount) -
                                     source2.Where<ShipData>(class395.func_1 ??
                                                                  (class395.func_1 = class395.method_2))
-                                        .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.list_10)
-                                        .Where<PopOrdnanceStock>(class396.method_1)
-                                        .Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount)
+                                        .SelectMany<ShipData, ShipOrdnance>(gclass40_0 => gclass40_0.Ordnances)
+                                        .Where<ShipOrdnance>(class396.method_1)
+                                        .Sum<ShipOrdnance>(gclass130_0 => gclass130_0.Amount)
                         });
                     }
 
-                    List<PopOrdnanceStock> list5 = source1.Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount > 0)
-                        .OrderByDescending<PopOrdnanceStock, int>(gclass130_0 => gclass130_0.Amount).ToList<PopOrdnanceStock>();
+                    List<ShipOrdnance> list5 = source1.Where<ShipOrdnance>(gclass130_0 => gclass130_0.Amount > 0)
+                        .OrderByDescending<ShipOrdnance, int>(gclass130_0 => gclass130_0.Amount).ToList<ShipOrdnance>();
                     if (list5.Count != 0)
                     {
-                        foreach (PopOrdnanceStock gclass130 in list5)
+                        foreach (ShipOrdnance gclass130 in list5)
                         {
                             // ISSUE: object of a compiler-generated type is created
                             // ISSUE: variable of a compiler-generated type
@@ -3681,7 +3715,7 @@ public partial class UnknownNPRClass2
                 {
                     foreach (ShipData gclass40_0 in gclass85.method_176())
                     {
-                        if (gclass40_0.gclass5_0.genum103_0 == GEnum103.const_0)
+                        if (gclass40_0.NPRShipBehaviour.genum103_0 == GEnum103.const_0)
                             gclass85.method_75(gclass40_0, OperationalGroupID.RammingForce, true);
                     }
                 }
@@ -3698,22 +3732,22 @@ public partial class UnknownNPRClass2
         try
         {
             List<RacialSystemSurvey> list1 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_5)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_5)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list2 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_5)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_5)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list3 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_4)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_4)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list4 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_4)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_4)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list5 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_3)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_3)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list6 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_3)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_3)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             if (list1.Count > 0)
             {
@@ -3746,28 +3780,28 @@ public partial class UnknownNPRClass2
         try
         {
             List<RacialSystemSurvey> list1 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_6)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_6)
                 .ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list2 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_6)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_6)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list3 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_5)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_5)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list4 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_5)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_5)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list5 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_4)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_4)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list6 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_4)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_4)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list7 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_3)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_3)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             List<RacialSystemSurvey> list8 = this.gclass21_0.RacialSystemDictionary.Values
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != GEnum95.const_3)
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_3)
                 .OrderBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             this.method_43(list1, list2, list_3, GEnum104.const_1, GEnum100.const_2);
             this.method_43(list1, list2, list_3, GEnum104.const_6, GEnum100.const_2);
@@ -3806,7 +3840,7 @@ public partial class UnknownNPRClass2
                     gclass214_0.WaypointType == WayPointType.UrgentPOI && gclass214_0.Race == this.gclass21_0)
                 .Select<Waypoint, RacialSystemSurvey>(gclass214_0 => gclass21_0.method_128(gclass214_0.System))
                 .Distinct<RacialSystemSurvey>()
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ThenBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             if (list1.Count > 0)
             {
@@ -3820,7 +3854,7 @@ public partial class UnknownNPRClass2
                     gclass214_0.WaypointType == WayPointType.POI && gclass214_0.Race == this.gclass21_0)
                 .Select<Waypoint, RacialSystemSurvey>(gclass214_0 => gclass21_0.method_128(gclass214_0.System))
                 .Distinct<RacialSystemSurvey>()
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ThenBy<RacialSystemSurvey, int>(gclass202_0 => gclass202_0.ActualSystem.SystemID).ToList<RacialSystemSurvey>();
             if (list3.Count <= 0)
                 return;
@@ -3849,7 +3883,7 @@ public partial class UnknownNPRClass2
                 .Where<Contact>(gclass65_0 => gclass65_0.method_6() != AuroraCommStatus.CommunicationImpossible)
                 .Select<Contact, StarSystem>(gclass65_0 => gclass65_0.System).Distinct<StarSystem>()
                 .Select<StarSystem, RacialSystemSurvey>(gclass200_0 => gclass21_0.method_128(gclass200_0))
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ToList<RacialSystemSurvey>();
             if (list2.Count == 0)
                 return;
@@ -3868,7 +3902,7 @@ public partial class UnknownNPRClass2
         {
             List<RacialSystemSurvey> list1 = this.gclass21_0.RacialSystemDictionary.Values
                 .Where<RacialSystemSurvey>(gclass202_0 => !gclass202_0.bSurveyComplete && gclass202_0.gclass3_0.genum95_0 != 0)
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ToList<RacialSystemSurvey>();
             if (list1.Count <= 0)
                 return;
@@ -3889,7 +3923,7 @@ public partial class UnknownNPRClass2
         {
             List<RacialSystemSurvey> list1 = this.gclass21_0.RacialSystemDictionary.Values
                 .Where<RacialSystemSurvey>(gclass202_0 => !gclass202_0.bGeoSurveyDefaultDone && gclass202_0.gclass3_0.genum95_0 != 0)
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ToList<RacialSystemSurvey>();
             if (list1.Count <= 0)
                 return;
@@ -3939,7 +3973,7 @@ public partial class UnknownNPRClass2
             // ISSUE: reference to a compiler-generated method
             List<RacialSystemSurvey> list3 = list2.Select<JumpPoint, RacialSystemSurvey>(class399.class398_0.method_2)
                 .Distinct<RacialSystemSurvey>()
-                .OrderByDescending<RacialSystemSurvey, GEnum95>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
+                .OrderByDescending<RacialSystemSurvey, NPRSystemValue>(gclass202_0 => gclass202_0.gclass3_0.genum95_0)
                 .ToList<RacialSystemSurvey>();
             // ISSUE: reference to a compiler-generated field
             class399.list_1 = this.gclass21_0.RacialSystemDictionary.Values.Except<RacialSystemSurvey>(list3).ToList<RacialSystemSurvey>();
@@ -3996,7 +4030,8 @@ public partial class UnknownNPRClass2
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            if (gclass85_2.method_236(GEnum109.const_41, $"Move To {class400.gclass202_0.Name}", false,
+                            if (gclass85_2.method_236(GEnum109.const_41,
+                                    string.Format("Move To {0}", class400.gclass202_0.Name), false,
                                     class400.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                             {
                                 // ISSUE: reference to a compiler-generated field
@@ -4112,7 +4147,8 @@ public partial class UnknownNPRClass2
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        if (gclass85.method_236(GEnum109.const_41, $"Move To {class403.gclass202_0.Name}", false,
+                        if (gclass85.method_236(GEnum109.const_41,
+                                string.Format("Move To {0}", class403.gclass202_0.Name), false,
                                 class403.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                         {
                             gclass85.NPRSomething.bRedeployOrderGiven = true;
@@ -4161,7 +4197,7 @@ public partial class UnknownNPRClass2
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if (gclass85.method_236(GEnum109.const_41, $"Move To {class404.gclass202_0.Name}", false,
+                if (gclass85.method_236(GEnum109.const_41, string.Format("Move To {0}", class404.gclass202_0.Name), false,
                         class404.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                 {
                     gclass85.NPRSomething.bRedeployOrderGiven = true;
@@ -4307,7 +4343,8 @@ public partial class UnknownNPRClass2
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            if (gclass85_2.method_236(GEnum109.const_41, $"Move To {class406.gclass202_0.Name}", false,
+                            if (gclass85_2.method_236(GEnum109.const_41,
+                                    string.Format("Move To {0}", class406.gclass202_0.Name), false,
                                     class406.gclass202_0.ActualSystem.SystemID, false).gclass202_0 != null)
                             {
                                 // ISSUE: reference to a compiler-generated field
@@ -4882,15 +4919,15 @@ public partial class UnknownNPRClass2
         {
             foreach (RacialSystemSurvey gclass202 in this.gclass21_0.RacialSystemDictionary.Values)
             {
-                if (gclass202.gclass3_0.genum95_0 != GEnum95.const_0)
-                    gclass202.gclass3_0.genum95_0 = GEnum95.const_1;
+                if (gclass202.gclass3_0.genum95_0 != NPRSystemValue.const_0)
+                    gclass202.gclass3_0.genum95_0 = NPRSystemValue.const_1;
             }
 
             RacialSystemSurvey gclass202_1 = this.gclass21_0.method_190();
             if (gclass202_1 != null)
-                gclass202_1.gclass3_0.genum95_0 = GEnum95.const_6;
+                gclass202_1.gclass3_0.genum95_0 = NPRSystemValue.const_6;
             List<ShipData> list1 = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0).ToList<ShipData>();
+                .Where<ShipData>(gclass40_0 => gclass40_0.Race == this.gclass21_0).ToList<ShipData>();
             List<RacialSystemSurvey> list2 = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(gclass146_0 => gclass146_0.Race == this.gclass21_0)
                 .Select<PopulationData, RacialSystemSurvey>(gclass146_0 => gclass146_0.gclass202_0).Distinct<RacialSystemSurvey>()
@@ -4904,20 +4941,20 @@ public partial class UnknownNPRClass2
             foreach (RacialSystemSurvey gclass202_2 in list3)
                 gclass202_2.gclass3_0.method_24(list1);
             List<RacialSystemSurvey> list4 = list3
-                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 > GEnum95.const_1).ToList<RacialSystemSurvey>();
+                .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 > NPRSystemValue.const_1).ToList<RacialSystemSurvey>();
             foreach (RacialSystemSurvey gclass202_3 in list4.Where<RacialSystemSurvey>(gclass202_0 =>
-                         gclass202_0.gclass3_0.genum95_0 == GEnum95.const_5 ||
-                         gclass202_0.gclass3_0.genum95_0 == GEnum95.const_6).ToList<RacialSystemSurvey>())
-                gclass202_3.gclass3_0.method_26(GEnum95.const_3);
+                         gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_5 ||
+                         gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_6).ToList<RacialSystemSurvey>())
+                gclass202_3.gclass3_0.method_26(NPRSystemValue.const_3);
             foreach (RacialSystemSurvey gclass202_4 in list4
-                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_4)
+                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_4)
                          .ToList<RacialSystemSurvey>())
-                gclass202_4.gclass3_0.method_26(GEnum95.const_2);
+                gclass202_4.gclass3_0.method_26(NPRSystemValue.const_2);
             foreach (RacialSystemSurvey gclass202_5 in this.gclass21_0.RacialSystemDictionary.Values
-                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 > GEnum95.const_2)
+                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 > NPRSystemValue.const_2)
                          .ToList<RacialSystemSurvey>()
                          .SelectMany<RacialSystemSurvey, RacialSystemSurvey>(gclass202_0 => gclass202_0.method_37(true))
-                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == GEnum95.const_1)
+                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass3_0.genum95_0 == NPRSystemValue.const_1)
                          .ToList<RacialSystemSurvey>())
                 gclass202_5.gclass3_0.method_25(list1);
         }
@@ -5015,7 +5052,7 @@ public partial class UnknownNPRClass2
         {
             foreach (PopulationData gclass146 in list_3)
             {
-                if (gclass146.gclass202_0.gclass3_0.genum95_0 != GEnum95.const_0)
+                if (gclass146.gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_0)
                 {
                     if (gclass146.InstallationDemands.ContainsKey(AuroraInstallationType.TrackingStation))
                         gclass146.InstallationDemands.Remove(AuroraInstallationType.TrackingStation);
@@ -5057,7 +5094,7 @@ public partial class UnknownNPRClass2
         {
             foreach (PopulationData gclass146 in list_3)
             {
-                if (gclass146.gclass202_0.gclass3_0.genum95_0 != GEnum95.const_0)
+                if (gclass146.gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_0)
                 {
                     bool flag = false;
                     if (gclass146.InstallationDemands.ContainsKey(AuroraInstallationType.ConstructionFactory))
@@ -5103,7 +5140,7 @@ public partial class UnknownNPRClass2
         {
             foreach (PopulationData gclass146 in list_3)
             {
-                if (gclass146.gclass202_0.gclass3_0.genum95_0 != GEnum95.const_0)
+                if (gclass146.gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_0)
                 {
                     if (gclass146.InstallationDemands.ContainsKey(AuroraInstallationType.ResearchLab))
                         gclass146.InstallationDemands.Remove(AuroraInstallationType.ResearchLab);
@@ -5147,7 +5184,7 @@ public partial class UnknownNPRClass2
         {
             foreach (PopulationData gclass146 in list_3)
             {
-                if (gclass146.gclass202_0.gclass3_0.genum95_0 != GEnum95.const_0)
+                if (gclass146.gclass202_0.gclass3_0.genum95_0 != NPRSystemValue.const_0)
                 {
                     if (gclass146.InstallationDemands.ContainsKey(AuroraInstallationType.GFCC))
                         gclass146.InstallationDemands.Remove(AuroraInstallationType.GFCC);

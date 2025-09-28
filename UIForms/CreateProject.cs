@@ -20,7 +20,7 @@ public class CreateProject : Form
     private ResearchCategoryData gclass169_0;
     private bool bool_0;
     private bool bool_1;
-    private IContainer icontainer_0;
+    
     private ComboBox cboRaces;
     private FlowLayoutPanel flowLayoutPanel1;
     private ComboBox cboTech0;
@@ -418,8 +418,9 @@ public class CreateProject : Form
         {
             this.gclass0_0.gclass164_0.Name = this.txtProjectName.Text;
             if (this.txtCompanyName.Text != "")
-                this.gclass0_0.gclass164_0.Name = $"{this.txtCompanyName.Text} {this.gclass0_0.gclass164_0.Name}";
-            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                this.gclass0_0.gclass164_0.Name =
+                    string.Format("{0} {1}", this.txtCompanyName.Text, this.gclass0_0.gclass164_0.Name);
+            this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
             if (this.gclass0_0.gclass194_0 != null)
             {
                 this.gclass0_0.gclass194_0.SpeciesName = this.gclass0_0.gclass164_0.Name;
@@ -541,8 +542,8 @@ public class CreateProject : Form
             {
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text != "")
                     ? this.txtProjectName.Text
-                    : $"{this.txtCompanyName.Text} {this.txtProjectName.Text}";
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                    : string.Format("{0} {1}", this.txtCompanyName.Text, this.txtProjectName.Text);
+                this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 if (this.gclass0_0.gclass194_0 != null)
                 {
                     this.gclass0_0.gclass194_0.SpeciesName = this.gclass0_0.gclass164_0.Name;
@@ -610,8 +611,8 @@ public class CreateProject : Form
             {
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text != "")
                     ? this.txtProjectName.Text
-                    : $"{this.txtCompanyName.Text} {this.txtProjectName.Text}";
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                    : string.Format("{0} {1}", this.txtCompanyName.Text, this.txtProjectName.Text);
+                this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 if (this.gclass0_0.gclass194_0 != null)
                 {
                     this.gclass0_0.gclass194_0.SpeciesName = this.gclass0_0.gclass164_0.Name;
@@ -720,12 +721,7 @@ public class CreateProject : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

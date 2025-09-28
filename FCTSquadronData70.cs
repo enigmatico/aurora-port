@@ -146,19 +146,19 @@ public class FCTSquadronData70
         }
     }
 
-    public GClass55 method_7()
+    public Commander method_7()
     {
         try
         {
-            List<GClass55> list = this.gclass0_0.Ships.Values
+            List<Commander> list = this.gclass0_0.Ships.Values
                 .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this)
-                .Select<ShipData, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
-                .ToList<GClass55>();
+                .Select<ShipData, Commander>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
+                .ToList<Commander>();
             return list.Count == 0
                 ? null
-                : list.Where<GClass55>(gclass55_0 => gclass55_0 != null)
-                    .OrderBy<GClass55, int>(gclass55_0 => gclass55_0.gclass61_0.RankNum)
-                    .ThenBy<GClass55, int>(gclass55_0 => gclass55_0.int_4).FirstOrDefault<GClass55>();
+                : list.Where<Commander>(gclass55_0 => gclass55_0 != null)
+                    .OrderBy<Commander, int>(gclass55_0 => gclass55_0.RacialRank.RankNum)
+                    .ThenBy<Commander, int>(gclass55_0 => gclass55_0.Seniority).FirstOrDefault<Commander>();
         }
         catch (Exception ex)
         {
@@ -185,8 +185,8 @@ public class FCTSquadronData70
         try
         {
             return (int)this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this && !gclass40_1.gclass22_0.Commercial)
-                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size) * AuroraUtils.decimal_17;
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this && !gclass40_1.Class.Commercial)
+                .Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size) * AuroraUtils.decimal_17;
         }
         catch (Exception ex)
         {

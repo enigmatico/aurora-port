@@ -47,13 +47,14 @@ public class FCTMassDriverPacket126
                 graphics_0.FillEllipse(solidBrush, (float)x, (float)y, AuroraUtils.int_61, AuroraUtils.int_61);
             string str1 = "";
             if (gclass202_0.Race.chkMPC == CheckState.Checked)
-                str1 = $"   {this.MineralsValue.method_38()}";
-            string str2 = $"{AuroraUtils.smethod_39(this.Speed)} km/s";
+                str1 = string.Format((string)"   {0}", (object)this.MineralsValue.method_38());
+            string str2 = string.Format((string)"{0} km/s", (object)AuroraUtils.smethod_39(this.Speed));
             GClass221 gclass221_3 = new GClass221();
             gclass221_3.double_0 = x + AuroraUtils.int_61 + 5.0;
             gclass221_3.double_1 = y - 3.0 - int_1 * 15;
             graphics_0.DrawString(
-                $"Mineral Packet to {this.gclass146_0.PopName}   {AuroraUtils.FormatNumberToDigits(this.TotalSize, 0)} tons   {str2}{str1}",
+                string.Format((string)"Mineral Packet to {0}   {1} tons   {2}{3}", new[] { this.gclass146_0.PopName },
+                    AuroraUtils.FormatNumberToDigits(this.TotalSize, 0), str2, str1),
                 font_0, solidBrush, (float)gclass221_3.double_0, (float)gclass221_3.double_1);
         }
         catch (Exception ex)

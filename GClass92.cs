@@ -12,17 +12,17 @@ using System.Linq;
 #nullable disable
 public class GClass92
 {
-    public Dictionary<int, GClass91> dictionary_0 = new Dictionary<int, GClass91>();
+    public Dictionary<int, IncrementRecord> dictionary_0 = new Dictionary<int, IncrementRecord>();
     private GClass0 gclass0_0;
-    public GClass91 gclass91_0;
+    public IncrementRecord gclass91_0;
 
     public GClass92(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public GClass91 method_0()
+    public IncrementRecord method_0()
     {
         try
         {
-            GClass91 gclass91_1 = new GClass91();
+            IncrementRecord gclass91_1 = new IncrementRecord();
             gclass91_1.decimal_0 = this.gclass0_0.GameTime;
             gclass91_1.int_1 = this.gclass0_0.int_131;
             gclass91_1.int_0 = this.gclass0_0.method_26(GEnum0.const_6);
@@ -43,7 +43,7 @@ public class GClass92
         }
     }
 
-    public void method_1(GClass91 gclass91_1)
+    public void method_1(IncrementRecord gclass91_1)
     {
         this.gclass0_0.SubPulseLength = gclass91_1.int_1 >= 61
             ? (gclass91_1.int_1 >= 201
@@ -105,11 +105,11 @@ public class GClass92
     {
         try
         {
-            GClass87 gclass87 = new GClass87();
+            GameLogEntry gclass87 = new GameLogEntry();
             if (this.gclass91_0 == null)
                 this.gclass91_0 = this.dictionary_0.Values
-                    .OrderByDescending<GClass91, Decimal>(gclass91_0 => gclass91_0.decimal_0)
-                    .FirstOrDefault<GClass91>();
+                    .OrderByDescending<IncrementRecord, Decimal>(gclass91_0 => gclass91_0.decimal_0)
+                    .FirstOrDefault<IncrementRecord>();
             if (!this.gclass0_0.DIMEventTypeDictionary.ContainsKey(genum126_0))
                 return;
             gclass87.gclass91_0 = this.gclass91_0;

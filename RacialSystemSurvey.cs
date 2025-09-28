@@ -14,14 +14,14 @@ using System.Windows.Forms;
 #nullable disable
 public partial class RacialSystemSurvey
 {
-    public Dictionary<AlienRaceInfo, AlienRaceSystemStatus> dictionary_0 = new Dictionary<AlienRaceInfo, AlienRaceSystemStatus>();
+    public Dictionary<AlienRaceIntel, AlienRaceSystemStatus> dictionary_0 = new Dictionary<AlienRaceIntel, AlienRaceSystemStatus>();
     public List<ShipData> list_0 = new List<ShipData>();
     public StarSystem ActualSystem;
     public GameRace Race;
-    public AlienRaceInfo gclass110_0;
-    public GClass62 gclass62_0;
+    public AlienRaceIntel gclass110_0;
+    public Sector gclass62_0;
     public NamingTheme NamingTheme;
-    public GClass3 gclass3_0;
+    public NPRSurveyOperation gclass3_0;
     public AuroraSystemProtectionStatus AutoSystemProtectionStatus;
     private GClass0 gclass0_0;
     public int DangerRating;
@@ -177,7 +177,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public RacialSystemSurvey method_3(GameRace gclass21_1, List<AlienRaceInfo> list_9)
+    public RacialSystemSurvey method_3(GameRace gclass21_1, List<AlienRaceIntel> list_9)
     {
         try
         {
@@ -188,15 +188,15 @@ public partial class RacialSystemSurvey
             gclass202_1.SectorID = 0;
             gclass202_1.NamingTheme = null;
             if (this.gclass110_0 != null)
-                gclass202_1.gclass110_0 = list_9.FirstOrDefault<AlienRaceInfo>(gclass110_1 =>
+                gclass202_1.gclass110_0 = list_9.FirstOrDefault<AlienRaceIntel>(gclass110_1 =>
                     gclass110_1.ActualAlienRace == this.gclass110_0.ActualAlienRace);
             if (gclass21_1.NPR)
-                this.gclass3_0 = new GClass3(this.gclass0_0, gclass202_1);
+                this.gclass3_0 = new NPRSurveyOperation(this.gclass0_0, gclass202_1);
             gclass202_1.list_1 = new List<ShipData>();
             gclass202_1.list_2 = new List<PopulationData>();
             gclass202_1.list_3 = new List<MissileSalvo>();
-            gclass202_1.dictionary_0 = new Dictionary<AlienRaceInfo, AlienRaceSystemStatus>();
-            foreach (KeyValuePair<AlienRaceInfo, AlienRaceSystemStatus> keyValuePair in this.dictionary_0)
+            gclass202_1.dictionary_0 = new Dictionary<AlienRaceIntel, AlienRaceSystemStatus>();
+            foreach (KeyValuePair<AlienRaceIntel, AlienRaceSystemStatus> keyValuePair in this.dictionary_0)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -204,7 +204,7 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated field
                 class1183.keyValuePair_0 = keyValuePair;
                 // ISSUE: reference to a compiler-generated method
-                AlienRaceInfo key = list_9.FirstOrDefault<AlienRaceInfo>(class1183.method_0);
+                AlienRaceIntel key = list_9.FirstOrDefault<AlienRaceIntel>(class1183.method_0);
                 // ISSUE: reference to a compiler-generated field
                 gclass202_1.dictionary_0.Add(key, new AlienRaceSystemStatus()
                 {
@@ -297,8 +297,8 @@ public partial class RacialSystemSurvey
             {
                 if (this.gclass132_0 == null)
                     return;
-                this.gclass221_0.double_0 = this.gclass132_0.double_0;
-                this.gclass221_0.double_1 = this.gclass132_0.double_1;
+                this.gclass221_0.double_0 = this.gclass132_0.Xcor;
+                this.gclass221_0.double_1 = this.gclass132_0.Ycor;
             }
         }
         catch (Exception ex)
@@ -456,18 +456,18 @@ public partial class RacialSystemSurvey
         {
             if (!this.Race.NPR)
                 return true;
-            if (this.gclass3_0.genum95_0 == GEnum95.const_0 && !gclass85_1.NPRSomething.bool_3 &&
+            if (this.gclass3_0.genum95_0 == NPRSystemValue.const_0 && !gclass85_1.NPRSomething.bool_3 &&
                 gclass85_1.NPROperationGroup.genum104_0 != GEnum104.const_25)
                 return false;
             switch (genum98_0)
             {
                 case GEnum98.const_0:
                     if (gclass85_1.NPROperationGroup.genum104_0 == GEnum104.const_8 &&
-                        this.gclass3_0.genum95_0 < GEnum95.const_3)
+                        this.gclass3_0.genum95_0 < NPRSystemValue.const_3)
                         return false;
                     break;
                 case GEnum98.const_2:
-                    if (this.gclass3_0.genum95_0 < GEnum95.const_2)
+                    if (this.gclass3_0.genum95_0 < NPRSystemValue.const_2)
                         return false;
                     break;
             }
@@ -934,8 +934,8 @@ public partial class RacialSystemSurvey
             // ISSUE: variable of a compiler-generated type
             RacialSystemSurvey.Class1189 class1189 = new RacialSystemSurvey.Class1189()
             {
-                list_0 = this.Race.PerceivedAliens.Values.Where<AlienRaceInfo>(gclass110_0 => gclass110_0.bTradeTreaty)
-                    .Select<AlienRaceInfo, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace)
+                list_0 = this.Race.AlienRaceIntels.Values.Where<AlienRaceIntel>(gclass110_0 => gclass110_0.bTradeTreaty)
+                    .Select<AlienRaceIntel, GameRace>(gclass110_0 => gclass110_0.ActualAlienRace)
                     .ToList<GameRace>()
             };
             // ISSUE: reference to a compiler-generated field
@@ -963,7 +963,7 @@ public partial class RacialSystemSurvey
         {
             return this.gclass0_0.FleetDictionary.Values.Where<FleetData>(gclass85_1 => gclass85_1.System == this)
                 .SelectMany<FleetData, ShipData>(gclass85_0 => gclass85_0.method_176())
-                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ProtectionValue);
+                .Sum<ShipData>(gclass40_0 => gclass40_0.Class.ProtectionValue);
         }
         catch (Exception ex)
         {
@@ -991,11 +991,11 @@ public partial class RacialSystemSurvey
         try
         {
             return this.Race.NPR
-                ? this.gclass3_0.genum95_0 == GEnum95.const_0
+                ? this.gclass3_0.genum95_0 == NPRSystemValue.const_0
                 : this.gclass110_0 != null && this.gclass110_0.ActualAlienRace != null &&
                   this.gclass110_0.ActualAlienRace != this.Race &&
-                  (!this.Race.PerceivedAliens.ContainsKey(this.gclass110_0.ActualAlienRace.RaceID) ||
-                   !this.Race.PerceivedAliens[this.gclass110_0.ActualAlienRace.RaceID].bTradeTreaty);
+                  (!this.Race.AlienRaceIntels.ContainsKey(this.gclass110_0.ActualAlienRace.RaceID) ||
+                   !this.Race.AlienRaceIntels[this.gclass110_0.ActualAlienRace.RaceID].bTradeTreaty);
         }
         catch (Exception ex)
         {
@@ -1374,7 +1374,8 @@ public partial class RacialSystemSurvey
                 string str = "  Unexplored";
                 if (object_1.LinkedJumpPoint != null &&
                     this.Race.RacialSystemDictionary.ContainsKey(object_1.LinkedJumpPoint.SystemData.SystemID))
-                    str = $"  {this.Race.RacialSystemDictionary[object_1.LinkedJumpPoint.SystemData.SystemID].Name}";
+                    str = string.Format("  {0}",
+                        this.Race.RacialSystemDictionary[object_1.LinkedJumpPoint.SystemData.SystemID].Name);
                 if (object_1.JumpGateStrength > 0)
                     str += " (S)";
                 this.gclass0_0.method_602(listView_0, num1.ToString() + str,
@@ -1502,7 +1503,7 @@ public partial class RacialSystemSurvey
 
             if (this.Race.chkSectors == CheckState.Checked && this.gclass62_0 != null)
             {
-                pen1.Color = Color.FromArgb(255, this.gclass62_0.color_0);
+                pen1.Color = Color.FromArgb(255, this.gclass62_0.Colour);
                 pen1.Width = 5f;
                 graphics_0.DrawEllipse(pen1, (float)this.double_9, (float)this.double_10,
                     (float)this.Race.double_1, (float)this.Race.double_1);
@@ -1566,15 +1567,15 @@ public partial class RacialSystemSurvey
                 this.method_30(graphics_0, font_0, Color.DarkSeaGreen, float_0);
             }
 
-            if (this.gclass3_0 != null && this.gclass3_0.genum95_0 > GEnum95.const_1)
+            if (this.gclass3_0 != null && this.gclass3_0.genum95_0 > NPRSystemValue.const_1)
             {
                 float[] float_0 = new float[2] { 1f, 1f };
                 Color color_0 = Color.Red;
-                if (this.gclass3_0.genum95_0 == GEnum95.const_4)
+                if (this.gclass3_0.genum95_0 == NPRSystemValue.const_4)
                     color_0 = Color.DarkOrange;
-                else if (this.gclass3_0.genum95_0 == GEnum95.const_3)
+                else if (this.gclass3_0.genum95_0 == NPRSystemValue.const_3)
                     color_0 = Color.Orange;
-                else if (this.gclass3_0.genum95_0 == GEnum95.const_2)
+                else if (this.gclass3_0.genum95_0 == NPRSystemValue.const_2)
                     color_0 = Color.LightBlue;
                 this.method_30(graphics_0, font_0, color_0, float_0);
             }
@@ -1582,9 +1583,11 @@ public partial class RacialSystemSurvey
             string str1 = this.Name;
             if (this.Race.chkDistanceFromSelected == CheckState.Checked ||
                 this.Race.chkDistanceFromSelectedMR == CheckState.Checked)
-                str1 = $"{str1}  ({AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_7 / 1000000000.0, 1)})";
+                str1 = string.Format("{0}  ({1})", str1,
+                    AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_7 / 1000000000.0, 1));
             if (this.Race.chkDistanceRealSpace == CheckState.Checked)
-                str1 = $"{str1}  ({AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_7, 1)})";
+                str1 = string.Format("{0}  ({1})", str1,
+                    AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_7, 1));
             double num3 = font_0.Size / AuroraUtils.double_2;
             double num4 = AuroraUtils.double_3 * num3;
             double num5 = num4 * 2.0;
@@ -1634,16 +1637,20 @@ public partial class RacialSystemSurvey
                     string str2 = this.ActualSystem.double_5 <= 1000000.0
                         ? (this.ActualSystem.double_5 <= 1000.0
                             ? AuroraUtils.smethod_43(this.ActualSystem.double_5)
-                            : $"{AuroraUtils.smethod_43(this.ActualSystem.double_5 / 1000.0)}k")
-                        : $"{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_5 / 1000000.0, 1)}m";
+                            : string.Format("{0}k", AuroraUtils.smethod_43(this.ActualSystem.double_5 / 1000.0)))
+                        : string.Format("{0}m",
+                            AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_5 / 1000000.0, 1));
                     if (this.ActualSystem.double_4 > 1.0)
-                        string_10 = $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4, 1)}y - {str2}]";
+                        string_10 = string.Format("{0}[{1}y - {2}]", string_10,
+                            AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4, 1), str2);
                     else if (this.ActualSystem.double_4 > 0.1)
                         string_10 =
-                            $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4 * 12.0, 1)}m - {str2}]";
+                            string.Format("{0}[{1}m - {2}]", string_10,
+                                AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4 * 12.0, 1), str2);
                     else
                         string_10 =
-                            $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4 * 365.0, 1)}d - {str2}]";
+                            string.Format("{0}[{1}d - {2}]", string_10,
+                                AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4 * 365.0, 1), str2);
                 }
 
                 this.gclass0_0.method_528(graphics_0, font_0, AuroraUtils.color_16, this.double_9 - num4,
@@ -1659,14 +1666,14 @@ public partial class RacialSystemSurvey
                     color_0 = Color.Red;
                 this.gclass0_0.method_528(graphics_0, font_0, color_0, this.double_9,
                     this.double_10 + this.Race.double_1 + num8, this.Race.double_1, int_136_2,
-                    $"{this.DangerRating.ToString()}/{this.decimal_11.ToString()}", StringAlignment.Center,
+                    string.Format("{0}/{1}", this.DangerRating.ToString(), this.decimal_11.ToString()), StringAlignment.Center,
                     StringAlignment.Center);
             }
 
             if (this.Race.chkSurveyedSystemBodies == CheckState.Checked && this.list_6.Count > 0)
                 this.gclass0_0.method_528(graphics_0, font_0, AuroraUtils.color_16,
                     this.double_9 + this.Race.double_1 * 1.1, this.double_10 + this.Race.double_1 * 0.65,
-                    this.Race.double_1, int_136_2, $"{this.int_27}%", StringAlignment.Near,
+                    this.Race.double_1, int_136_2, string.Format("{0}%", this.int_27), StringAlignment.Near,
                     StringAlignment.Near);
             bool flag = false;
             if (this.Race.gclass112_0 == null)
@@ -1688,7 +1695,7 @@ public partial class RacialSystemSurvey
             }
             else if (this.Race.gclass112_0.int_0 == 0 && this.Race.gclass112_0.gclass110_0 != null)
             {
-                if (this.Race.gclass112_0.gclass110_0.dictionary_1.ContainsKey(this.ActualSystem.SystemID))
+                if (this.Race.gclass112_0.gclass110_0.SystemIntels.ContainsKey(this.ActualSystem.SystemID))
                     this.method_34(graphics_0, this.Race.gclass112_0.gclass110_0.ActualAlienRace);
                 flag = true;
             }
@@ -1698,7 +1705,7 @@ public partial class RacialSystemSurvey
                 if (this.Race.SelectedClass != null && this.Race.chkClassIcon == CheckState.Checked)
                 {
                     List<ShipData> list = this.list_0
-                        .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this.Race.SelectedClass)
+                        .Where<ShipData>(gclass40_0 => gclass40_0.Class == this.Race.SelectedClass)
                         .ToList<ShipData>();
                     if (this.Race.SelectedAdmin != null && this.Race.chkAdminIcon == CheckState.Checked)
                     {
@@ -1950,13 +1957,13 @@ public partial class RacialSystemSurvey
             RacialSystemSurvey.Class1201 class1201 = new RacialSystemSurvey.Class1201();
             // ISSUE: reference to a compiler-generated field
             class1201.gclass202_0 = this;
-            label_0.Text = $"{this.ActualSystem.Age} GY";
+            label_0.Text = string.Format("{0} GY", this.ActualSystem.Age);
             label_1.Text = this.Discovered;
             label_2.Text = this.ActualSystem.JumpPointSurveyPoints.ToString();
             int num1 = this.ActualSystem.SurveyLocationDictionary.Values
                 .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
                 .Count<SurveyLocation>();
-            label_3.Text = $"{AuroraUtils.smethod_38(num1 / 30M * 100M)}%";
+            label_3.Text = string.Format("{0}%", AuroraUtils.smethod_38(num1 / 30M * 100M));
             // ISSUE: reference to a compiler-generated field
             class1201.list_0 = this.gclass0_0.SystemBodyRecordDic.Values
                 .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.ActualSystem)
@@ -1971,7 +1978,8 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated method
                 int num2 = this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class1201.method_0).Count<RacialSystemBodySurvey>();
                 // ISSUE: reference to a compiler-generated field
-                label_4.Text = $"{AuroraUtils.smethod_38(num2 / (Decimal)class1201.list_0.Count * 100M)}%";
+                label_4.Text = string.Format("{0}%",
+                    AuroraUtils.smethod_38(num2 / (Decimal)class1201.list_0.Count * 100M));
             }
         }
         catch (Exception ex)
@@ -2003,7 +2011,7 @@ public partial class RacialSystemSurvey
                 class1202.gclass197_0 = gclass197;
                 string string_10 = this.Name;
                 if (this.ActualSystem.Stars > 1)
-                    string_10 = $"{string_10}-{char.ConvertFromUtf32(64 /*0x40*/ + num1)}";
+                    string_10 = string.Format("{0}-{1}", string_10, char.ConvertFromUtf32(64 /*0x40*/ + num1));
                 string string_15 = "-";
                 string string_16 = "-";
                 string string_17 = "-";
@@ -2074,11 +2082,12 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 this.gclass0_0.method_628(listView_0, string_10, class1202.gclass197_0.StellarType.StellarDescription,
-                    $"{AuroraUtils.smethod_50(class1202.gclass197_0.StellarType.method_1() / 1000000.0)}m",
+                    string.Format("{0}m",
+                        AuroraUtils.smethod_50(class1202.gclass197_0.StellarType.method_1() / 1000000.0)),
                     AuroraUtils.smethod_50(class1202.gclass197_0.StellarType.Mass),
                     AuroraUtils.smethod_50(class1202.gclass197_0.Luminosity), string_15, string_16, string_17,
                     string_18, string_19, num2.ToString(), num3.ToString(), num4.ToString(), num5.ToString(),
-                    num6.ToString(), $"{num7.ToString()} / {num8.ToString()}",
+                    num6.ToString(), string.Format("{0} / {1}", num7.ToString(), num8.ToString()),
                     AuroraUtils.smethod_50(class1202.gclass197_0.Eccentricity), class1202.gclass197_0);
                 ++num1;
             }
@@ -2097,7 +2106,8 @@ public partial class RacialSystemSurvey
                     .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
                     .Count<SurveyLocation>() != 30)
                 return false;
-            this.gclass0_0.gclass92_0.method_2(EventType.const_22, $"Gravitational survey completed in {this.Name}",
+            this.gclass0_0.gclass92_0.method_2(EventType.const_22,
+                string.Format("Gravitational survey completed in {0}", this.Name),
                 this.Race, this.ActualSystem, 0.0, 0.0, AuroraEventCategory.System);
             this.bSurveyComplete = true;
             return true;
@@ -2204,7 +2214,8 @@ public partial class RacialSystemSurvey
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             this.gclass0_0.gclass92_0.method_2(EventType.const_82,
-                                $"{gclass85_1.method_15()} discovered a new jump point in {this.Name}", this.Race,
+                                string.Format("{0} discovered a new jump point in {1}", gclass85_1.method_15(),
+                                    this.Name), this.Race,
                                 this.ActualSystem, class1205.gclass120_0.XCoord, class1205.gclass120_0.YCoord,
                                 AuroraEventCategory.JumpPoint);
                         }
@@ -2220,7 +2231,12 @@ public partial class RacialSystemSurvey
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         this.gclass0_0.gclass92_0.method_2(EventType.const_82,
-                            $"New jump point detected in {this.Name} as a result of survey data provided by {class1204.gclass21_0.PerceivedAliens.Values.Where<AlienRaceInfo>(class1204.func_0 ?? (class1204.func_0 = class1204.method_1)).Select<AlienRaceInfo, string>(gclass110_0 => gclass110_0.AlienRaceName).FirstOrDefault<string>()}",
+                            string.Format("New jump point detected in {0} as a result of survey data provided by {1}",
+                                this.Name,
+                                class1204.gclass21_0.AlienRaceIntels.Values
+                                    .Where<AlienRaceIntel>(class1204.func_0 ?? (class1204.func_0 = class1204.method_1))
+                                    .Select<AlienRaceIntel, string>(gclass110_0 => gclass110_0.AlienRaceName)
+                                    .FirstOrDefault<string>()),
                             this.Race, this.ActualSystem, class1205.gclass120_0.XCoord,
                             class1205.gclass120_0.YCoord, AuroraEventCategory.JumpPoint);
                     }

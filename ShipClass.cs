@@ -14,14 +14,14 @@ using System.Windows.Forms;
 #nullable disable
 public partial class ShipClass
 {
-    public Dictionary<int, GClass228> dictionary_0 = new Dictionary<int, GClass228>();
-    public List<PopOrdnanceStock> list_0 = new List<PopOrdnanceStock>();
-    public List<GClass74> list_1 = new List<GClass74>();
-    public List<GClass75> list_2 = new List<GClass75>();
+    public Dictionary<int, ClassComponent> ClassComponents = new Dictionary<int, ClassComponent>();
+    public List<ShipOrdnance> OrdnanceTemplate = new List<ShipOrdnance>();
+    public List<ClassFighterTemplate> FighterClassTemplates = new List<ClassFighterTemplate>();
+    public List<ClassGroundTemplate> GroundUnitTemplates = new List<ClassGroundTemplate>();
     public AllMineralsValue ClassMaterials;
     public GameRace Race;
     public ShipHull ShipHull;
-    public RankThemeEntry RankTheme;
+    public RacialRank RacialRankTheme;
     public AutomatedClassDesign AutomatedClassDesign;
     public ShippingLineData gclass187_0;
     public NamingTheme NameTheme;
@@ -154,7 +154,7 @@ public partial class ShipClass
         }
     }
 
-    public GClass228 method_1(int int_69, TechType genum122_0)
+    public ClassComponent method_1(int int_69, TechType genum122_0)
     {
         try
         {
@@ -368,7 +368,7 @@ public partial class ShipClass
                 TechSystem gclass164_2 = class787.gclass20_0.Race.method_387(TechType.MaxJumpSquadronSize);
                 // ISSUE: reference to a compiler-generated field
                 TechSystem gclass164_3 = class787.gclass20_0.Race.method_387(TechType.MaxSquadronJumpRadius);
-                TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[33303];
+                TechSystem gclass164_4 = this.gclass0_0.TechSystems[33303];
                 Decimal int36 = AuroraUtils.int_36;
                 int decimal_13 = (int)Math.Ceiling(num / int36) + 1;
                 if (gclass164_1 != null && gclass164_2 != null)
@@ -394,14 +394,14 @@ public partial class ShipClass
         try
         {
             TechSystem gclass164_1 = this.Race.method_387(TechType.JumpDriveEfficiency);
-            TechSystem gclass164_3 = this.gclass0_0.TechDataDictionary[827];
-            TechSystem gclass164_2 = this.gclass0_0.TechDataDictionary[819];
-            TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[33302];
+            TechSystem gclass164_3 = this.gclass0_0.TechSystems[827];
+            TechSystem gclass164_2 = this.gclass0_0.TechSystems[819];
+            TechSystem gclass164_4 = this.gclass0_0.TechSystems[33302];
             this.method_85(0, 0, "");
             Decimal decimal_13 = (int)Math.Ceiling(this.Size);
             if (!bool_11)
             {
-                gclass164_4 = this.gclass0_0.TechDataDictionary[33303];
+                gclass164_4 = this.gclass0_0.TechSystems[33303];
                 decimal_13 = (int)Math.Ceiling(this.Size / AuroraUtils.int_36);
             }
 
@@ -410,15 +410,15 @@ public partial class ShipClass
             {
                 gclass230 = this.gclass0_0.method_456(this.Race, decimal_13, gclass164_1, gclass164_2,
                     gclass164_3, gclass164_4, null, null, false);
-                this.dictionary_0.Add(gclass230.int_0, new GClass228()
+                this.ClassComponents.Add(gclass230.int_0, new ClassComponent()
                 {
-                    gclass230_0 = gclass230,
-                    decimal_0 = 1M
+                    Component = gclass230,
+                    NumComponent = 1M
                 });
                 this.method_85(0, 0, "");
                 if (!(this.Size <= gclass230.decimal_3))
                 {
-                    this.dictionary_0.Remove(gclass230.int_0);
+                    this.ClassComponents.Remove(gclass230.int_0);
                     ++decimal_13;
                 }
                 else
@@ -590,10 +590,10 @@ public partial class ShipClass
         {
             if (bool_11)
             {
-                foreach (GClass228 gclass228 in this.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                             gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                             AuroraComponentType.FuelStorage).ToList<GClass228>())
-                    this.dictionary_0.Remove(gclass228.int_0);
+                foreach (ClassComponent gclass228 in this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                             gclass228_0.Component.Data.ComponentTypeID ==
+                             AuroraComponentType.FuelStorage).ToList<ClassComponent>())
+                    this.ClassComponents.Remove(gclass228.ComponentID);
             }
 
             if (decimal_24 <= 0.1M && this.Race.method_394(GEnum118.const_51))
@@ -715,14 +715,14 @@ public partial class ShipClass
     {
         try
         {
-            GClass228 gclass228 = this.dictionary_0.Values.FirstOrDefault<GClass228>(gclass228_0 =>
-                gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Engine);
+            ClassComponent gclass228 = this.ClassComponents.Values.FirstOrDefault<ClassComponent>(gclass228_0 =>
+                gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.Engine);
             if (gclass228 == null)
                 return;
             do
             {
-                ++gclass228.decimal_0;
-                this.method_13(gclass228.gclass230_0, (int)gclass228.decimal_0, gclass14_1, decimal_24);
+                ++gclass228.NumComponent;
+                this.method_13(gclass228.Component, (int)gclass228.NumComponent, gclass14_1, decimal_24);
                 this.method_85(0, 0, "");
                 if (this.Size > decimal_24)
                     goto label_3;
@@ -730,8 +730,8 @@ public partial class ShipClass
 
             return;
             label_3:
-            --gclass228.decimal_0;
-            this.method_13(gclass228.gclass230_0, (int)gclass228.decimal_0, gclass14_1, decimal_24);
+            --gclass228.NumComponent;
+            this.method_13(gclass228.Component, (int)gclass228.NumComponent, gclass14_1, decimal_24);
             this.method_85(0, 0, "");
         }
         catch (Exception ex)
@@ -746,16 +746,16 @@ public partial class ShipClass
         {
             if (gclass20_0.CIWS == null)
                 return;
-            GClass228 gclass228 = this.dictionary_0.Values.FirstOrDefault<GClass228>(gclass228_0 =>
-                gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.CIWS);
+            ClassComponent gclass228 = this.ClassComponents.Values.FirstOrDefault<ClassComponent>(gclass228_0 =>
+                gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.CIWS);
             if (gclass228 == null)
                 gclass228 = this.method_51(gclass20_0.CIWS, 1);
             else
-                ++gclass228.decimal_0;
+                ++gclass228.NumComponent;
             this.method_85(0, 0, "");
             if (!(this.Size > decimal_24))
                 return;
-            this.method_52(gclass228.gclass230_0, 1);
+            this.method_52(gclass228.Component, 1);
             this.method_85(0, 0, "");
         }
         catch (Exception ex)
@@ -770,7 +770,7 @@ public partial class ShipClass
         {
             Decimal num = decimal_24 - this.Size;
             ShipComponent gclass230_0 = this.gclass0_0.ComponentDataDictionary[(int)genum118_0];
-            if (!(gclass230_0.decimal_1 < num) || this.dictionary_0.ContainsKey(gclass230_0.int_0))
+            if (!(gclass230_0.decimal_1 < num) || this.ClassComponents.ContainsKey(gclass230_0.int_0))
                 return;
             this.method_51(gclass230_0, 1);
             this.method_85(0, 0, "");
@@ -801,7 +801,7 @@ public partial class ShipClass
         {
             string str = "";
             foreach (ShipData gclass40 in this.method_36())
-                str = $"{str}{gclass40.ShipName}, ";
+                str = string.Format("{0}{1}, ", str, gclass40.ShipName);
             return str.Remove(str.Length - 2) + Environment.NewLine;
         }
         catch (Exception ex)
@@ -835,17 +835,17 @@ public partial class ShipClass
             gclass184.PDProtectionPriority = this.PDProtectionPriority;
             gclass184.CommanderPriority = this.CommanderPriority;
             gclass184.MaintPriority = this.MaintPriority;
-            foreach (GClass228 gclass228 in this.dictionary_0.Values)
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values)
             {
                 ClassComponentTemplate186 gclass186 = new ClassComponentTemplate186(this.gclass0_0);
                 gclass186.ShipClassTemplateID = gclass184.ShipClassTemplateID;
-                if (gclass228.gclass230_0.gclass164_0.gclass21_0 == null)
-                    gclass186.StandardComponentID = gclass228.gclass230_0.gclass164_0.TechSystemID;
+                if (gclass228.Component.gclass164_0.gclass21_0 == null)
+                    gclass186.StandardComponentID = gclass228.Component.gclass164_0.TechSystemID;
                 else
-                    gclass186.ShipComponentTemplateID = gclass228.gclass230_0.gclass185_0 == null
-                        ? this.Race.method_71(gclass228.gclass230_0)
-                        : gclass228.gclass230_0.gclass185_0.int_0;
-                gclass186.NumComponent = (int)gclass228.decimal_0;
+                    gclass186.ShipComponentTemplateID = gclass228.Component.gclass185_0 == null
+                        ? this.Race.method_71(gclass228.Component)
+                        : gclass228.Component.gclass185_0.int_0;
+                gclass186.NumComponent = (int)gclass228.NumComponent;
                 gclass184.ComponentTemplateList.Add(gclass186);
             }
 
@@ -958,7 +958,7 @@ public partial class ShipClass
     {
         try
         {
-            return this.dictionary_0.Values.Count<GClass228>(gclass228_0 => gclass228_0.gclass230_0.genum86_0 != 0) > 0;
+            return this.ClassComponents.Values.Count<ClassComponent>(gclass228_0 => gclass228_0.Component.genum86_0 != 0) > 0;
         }
         catch (Exception ex)
         {
@@ -971,12 +971,12 @@ public partial class ShipClass
     {
         try
         {
-            List<GClass228> list = this.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                    !gclass228_0.gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.Race.RaceID))
-                .ToList<GClass228>();
+            List<ClassComponent> list = this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                    !gclass228_0.Component.gclass164_0.dictionary_0.ContainsKey(this.Race.RaceID))
+                .ToList<ClassComponent>();
             if (list.Count == 0)
                 return true;
-            foreach (GClass228 gclass228 in list)
+            foreach (ClassComponent gclass228 in list)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -984,10 +984,10 @@ public partial class ShipClass
                 // ISSUE: reference to a compiler-generated field
                 class767.gclass228_0 = gclass228;
                 // ISSUE: reference to a compiler-generated method
-                Decimal num = gclass146_0.list_2.Where<TransportedComponent>(class767.method_0)
-                    .Sum<TransportedComponent>(gclass73_0 => gclass73_0.Amount);
+                Decimal num = gclass146_0.StoredComponents.Where<StoredComponent>(class767.method_0)
+                    .Sum<StoredComponent>(gclass73_0 => gclass73_0.Amount);
                 // ISSUE: reference to a compiler-generated field
-                if (class767.gclass228_0.decimal_0 > num)
+                if (class767.gclass228_0.NumComponent > num)
                     return false;
             }
 
@@ -1006,8 +1006,8 @@ public partial class ShipClass
         {
             if (gclass22_0 == null)
                 return true;
-            List<GClass228> gclass228List = new List<GClass228>();
-            foreach (GClass228 gclass228_1 in gclass22_0.dictionary_0.Values)
+            List<ClassComponent> gclass228List = new List<ClassComponent>();
+            foreach (ClassComponent gclass228_1 in gclass22_0.ClassComponents.Values)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -1015,30 +1015,30 @@ public partial class ShipClass
                 // ISSUE: reference to a compiler-generated field
                 class768.gclass228_0 = gclass228_1;
                 // ISSUE: reference to a compiler-generated method
-                GClass228 gclass228_2 = this.dictionary_0.Values.FirstOrDefault<GClass228>(class768.method_0);
+                ClassComponent gclass228_2 = this.ClassComponents.Values.FirstOrDefault<ClassComponent>(class768.method_0);
                 Decimal num1 = 0M;
                 if (gclass228_2 == null)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    num1 = class768.gclass228_0.decimal_0;
+                    num1 = class768.gclass228_0.NumComponent;
                 }
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (gclass228_2.decimal_0 < class768.gclass228_0.decimal_0)
+                    if (gclass228_2.NumComponent < class768.gclass228_0.NumComponent)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        num1 = class768.gclass228_0.decimal_0 - gclass228_2.decimal_0;
+                        num1 = class768.gclass228_0.NumComponent - gclass228_2.NumComponent;
                     }
                 }
 
                 // ISSUE: reference to a compiler-generated field
                 if (num1 > 0M &&
-                    !class768.gclass228_0.gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.Race.RaceID))
+                    !class768.gclass228_0.Component.gclass164_0.dictionary_0.ContainsKey(this.Race.RaceID))
                 {
                     // ISSUE: reference to a compiler-generated method
-                    Decimal num2 = gclass146_0.list_2.Where<TransportedComponent>(class768.method_1)
-                        .Sum<TransportedComponent>(gclass73_0 => gclass73_0.Amount);
+                    Decimal num2 = gclass146_0.StoredComponents.Where<StoredComponent>(class768.method_1)
+                        .Sum<StoredComponent>(gclass73_0 => gclass73_0.Amount);
                     if (num1 > num2)
                         return false;
                 }
@@ -1064,9 +1064,9 @@ public partial class ShipClass
             else if (this.method_73(AuroraComponentType.MissileFireControl) > 0M)
             {
                 if (this.method_74(AuroraComponentType.MissileFireControl)
-                        .Select<GClass228, ShipComponent>(gclass228_0 => gclass228_0.gclass230_0)
-                        .OrderByDescending<ShipComponent, Decimal>(gclass230_0 => gclass230_0.decimal_6)
-                        .FirstOrDefault<ShipComponent>().decimal_6 == 1M)
+                        .Select<ClassComponent, ShipComponent>(gclass228_0 => gclass228_0.Component)
+                        .OrderByDescending<ShipComponent, Decimal>(gclass230_0 => gclass230_0.Resolution)
+                        .FirstOrDefault<ShipComponent>().Resolution == 1M)
                 {
                     if (this.MaxSpeed < 10)
                         this.AutomatedClassDesign = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.MissileDefenceBase];
@@ -1091,7 +1091,7 @@ public partial class ShipClass
                 if (this.method_73(AuroraComponentType.HangarDeck) > 0M)
                     this.AutomatedClassDesign = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.CarrierBattle];
                 else if (this.method_74(AuroraComponentType.BeamFireControl)
-                             .Select<GClass228, ShipComponent>(gclass228_0 => gclass228_0.gclass230_0)
+                             .Select<ClassComponent, ShipComponent>(gclass228_0 => gclass228_0.Component)
                              .OrderByDescending<ShipComponent, GEnum87>(gclass230_0 => gclass230_0.genum87_0)
                              .FirstOrDefault<ShipComponent>().genum87_0 == GEnum87.const_1)
                 {
@@ -1122,15 +1122,15 @@ public partial class ShipClass
             }
             else if (this.method_73(AuroraComponentType.RefuellingSystem) > 0M && this.FuelCapacity > 2000000)
                 this.AutomatedClassDesign = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.Tanker];
-            else if (this.dictionary_0.Values
-                         .Where<GClass228>(gclass228_0 =>
-                             gclass228_0.gclass230_0.gclass164_0.gclass163_0.TechType ==
-                             TechType.SmallRefuellingSystem).Sum<GClass228>(gclass228_0 => gclass228_0.decimal_0) > 0M)
+            else if (this.ClassComponents.Values
+                         .Where<ClassComponent>(gclass228_0 =>
+                             gclass228_0.Component.gclass164_0.gclass163_0.TechType ==
+                             TechType.SmallRefuellingSystem).Sum<ClassComponent>(gclass228_0 => gclass228_0.NumComponent) > 0M)
                 this.AutomatedClassDesign = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.Tanker];
             else if (!this.Commercial)
             {
                 if (this.method_74(AuroraComponentType.ActiveSearchSensors)
-                        .Select<GClass228, ShipComponent>(gclass228_0 => gclass228_0.gclass230_0)
+                        .Select<ClassComponent, ShipComponent>(gclass228_0 => gclass228_0.Component)
                         .FirstOrDefault<ShipComponent>(gclass230_0 => gclass230_0.decimal_1 > 3M) != null)
                 {
                     this.AutomatedClassDesign = this.gclass0_0.AutomatedClassDesignDictionary[AutomatedClassDesignType.Scout];
@@ -1209,13 +1209,13 @@ public partial class ShipClass
         }
     }
 
-    public string method_34() => $"{this.ShipHull.Abbreviation} {this.ClassName}";
+    public string method_34() => string.Format("{0} {1}", this.ShipHull.Abbreviation, this.ClassName);
 
     public bool method_35(GEnum118 genum118_0)
     {
         try
         {
-            return this.dictionary_0.ContainsKey((int)genum118_0);
+            return this.ClassComponents.ContainsKey((int)genum118_0);
         }
         catch (Exception ex)
         {
@@ -1227,21 +1227,21 @@ public partial class ShipClass
     public List<ShipData> method_36()
     {
         return this.gclass0_0.Ships.Values
-            .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this).ToList<ShipData>();
+            .Where<ShipData>(gclass40_0 => gclass40_0.Class == this).ToList<ShipData>();
     }
 
     public int method_37()
     {
         return this.gclass0_0.Ships.Values.Count<ShipData>(gclass40_0 =>
-            gclass40_0.gclass22_0 == this);
+            gclass40_0.Class == this);
     }
 
     public ShipComponent method_38()
     {
         try
         {
-            List<ShipComponent> list = this.dictionary_0.Values
-                .Select<GClass228, ShipComponent>(gclass228_0 => gclass228_0.gclass230_0).ToList<ShipComponent>();
+            List<ShipComponent> list = this.ClassComponents.Values
+                .Select<ClassComponent, ShipComponent>(gclass228_0 => gclass228_0.Component).ToList<ShipComponent>();
             return list[AuroraUtils.GetRandomInteger(list.Count) - 1];
         }
         catch (Exception ex)
@@ -1267,7 +1267,10 @@ public partial class ShipClass
 
             if (str == "")
                 str =
-                    $"{this.ClassName} {AuroraUtils.smethod_33(this.TotalNumber + this.gclass0_0.dictionary_32.Values.Count<GClass192>(gclass192_0 => gclass192_0.gclass22_0 == this) + 1)}";
+                    string.Format("{0} {1}", this.ClassName,
+                        AuroraUtils.smethod_33(this.TotalNumber +
+                                               this.gclass0_0.dictionary_32.Values.Count<ShipyardTask>(gclass192_0 =>
+                                                   gclass192_0.gclass22_0 == this) + 1));
             return str;
         }
         catch (Exception ex)
@@ -1291,7 +1294,7 @@ public partial class ShipClass
 
             if (gclass22_0 == null)
                 return 0M;
-            foreach (GClass228 gclass228_1 in gclass22_0.dictionary_0.Values)
+            foreach (ClassComponent gclass228_1 in gclass22_0.ClassComponents.Values)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -1299,36 +1302,36 @@ public partial class ShipClass
                 // ISSUE: reference to a compiler-generated field
                 class769.gclass228_0 = gclass228_1;
                 // ISSUE: reference to a compiler-generated method
-                GClass228 gclass228_2 = this.dictionary_0.Values.FirstOrDefault<GClass228>(class769.method_0);
+                ClassComponent gclass228_2 = this.ClassComponents.Values.FirstOrDefault<ClassComponent>(class769.method_0);
                 Decimal num2 = 0M;
                 if (gclass228_2 == null)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    num2 = class769.gclass228_0.decimal_0;
+                    num2 = class769.gclass228_0.NumComponent;
                 }
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (gclass228_2.decimal_0 < class769.gclass228_0.decimal_0)
+                    if (gclass228_2.NumComponent < class769.gclass228_0.NumComponent)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        num2 = class769.gclass228_0.decimal_0 - gclass228_2.decimal_0;
+                        num2 = class769.gclass228_0.NumComponent - gclass228_2.NumComponent;
                     }
                 }
 
                 if (num2 > 0M)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    num1 += num2 * class769.gclass228_0.gclass230_0.decimal_2;
+                    num1 += num2 * class769.gclass228_0.Component.decimal_2;
                     // ISSUE: reference to a compiler-generated field
-                    gclass123_1?.method_35(class769.gclass228_0.gclass230_0, Math.Round(num2, 1));
+                    gclass123_1?.method_35(class769.gclass228_0.Component, Math.Round(num2, 1));
                     if (listView_0 != null)
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        this.gclass0_0.method_601(listView_0, class769.gclass228_0.gclass230_0.Name,
+                        this.gclass0_0.method_601(listView_0, class769.gclass228_0.Component.Name,
                             AuroraUtils.FormatNumberToDigits(num2, 1),
-                            AuroraUtils.FormatNumberToDigits(num2 * class769.gclass228_0.gclass230_0.decimal_2, 1).ToString());
+                            AuroraUtils.FormatNumberToDigits(num2 * class769.gclass228_0.Component.decimal_2, 1).ToString());
                     }
                 }
             }
@@ -1385,9 +1388,9 @@ public partial class ShipClass
     {
         try
         {
-            gclass40_0.list_10.Clear();
-            foreach (PopOrdnanceStock gclass130 in gclass40_0.gclass22_0.list_0)
-                gclass40_0.list_10.Add(new PopOrdnanceStock()
+            gclass40_0.Ordnances.Clear();
+            foreach (ShipOrdnance gclass130 in gclass40_0.Class.OrdnanceTemplate)
+                gclass40_0.Ordnances.Add(new ShipOrdnance()
                 {
                     RaceMissile = gclass130.RaceMissile,
                     Amount = gclass130.Amount
@@ -1408,18 +1411,18 @@ public partial class ShipClass
             ShipClass.Class770 class770 = new ShipClass.Class770();
             // ISSUE: reference to a compiler-generated field
             class770.gclass130_0 =
-                gclass40_0.gclass22_0.list_0.FirstOrDefault<PopOrdnanceStock>(gclass130_0 =>
+                gclass40_0.Class.OrdnanceTemplate.FirstOrDefault<ShipOrdnance>(gclass130_0 =>
                     gclass130_0.RaceMissile.ShipDecoy == 1);
             // ISSUE: reference to a compiler-generated field
             if (class770.gclass130_0 == null)
                 return;
             // ISSUE: reference to a compiler-generated method
-            PopOrdnanceStock gclass130 = gclass40_0.list_10.FirstOrDefault<PopOrdnanceStock>(class770.method_0);
+            ShipOrdnance gclass130 = gclass40_0.Ordnances.FirstOrDefault<ShipOrdnance>(class770.method_0);
             if (gclass130 == null)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                gclass40_0.list_10.Add(new PopOrdnanceStock()
+                gclass40_0.Ordnances.Add(new ShipOrdnance()
                 {
                     RaceMissile = class770.gclass130_0.RaceMissile,
                     Amount = class770.gclass130_0.Amount
@@ -1442,8 +1445,8 @@ public partial class ShipClass
         try
         {
             Decimal num = 0M;
-            foreach (PopOrdnanceStock gclass130 in this.list_0
-                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0).ToList<PopOrdnanceStock>())
+            foreach (ShipOrdnance gclass130 in this.OrdnanceTemplate
+                         .Where<ShipOrdnance>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0).ToList<ShipOrdnance>())
                 num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.MagazineCapacity - num;
         }
@@ -1459,8 +1462,8 @@ public partial class ShipClass
         try
         {
             Decimal num = 0M;
-            foreach (PopOrdnanceStock gclass130 in this.list_0
-                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 1).ToList<PopOrdnanceStock>())
+            foreach (ShipOrdnance gclass130 in this.OrdnanceTemplate
+                         .Where<ShipOrdnance>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 1).ToList<ShipOrdnance>())
                 num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.DecoyCapacity - num;
         }
@@ -1476,8 +1479,8 @@ public partial class ShipClass
         try
         {
             Decimal num = 0M;
-            foreach (GClass74 gclass74 in this.list_1)
-                num += gclass74.gclass22_0.Size * gclass74.int_0;
+            foreach (ClassFighterTemplate gclass74 in this.FighterClassTemplates)
+                num += gclass74.FighterClass.Size * gclass74.Number;
             return this.ParasiteCapacity - num;
         }
         catch (Exception ex)
@@ -1487,13 +1490,13 @@ public partial class ShipClass
         }
     }
 
-    public List<GClass228> method_48()
+    public List<ClassComponent> method_48()
     {
         try
         {
-            return this.dictionary_0.Values.Where<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_11)
-                .ToList<GClass228>().OrderBy<GClass228, string>(gclass228_0 => gclass228_0.gclass230_0.Name)
-                .ToList<GClass228>();
+            return this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 => gclass228_0.Component.bool_11)
+                .ToList<ClassComponent>().OrderBy<ClassComponent, string>(gclass228_0 => gclass228_0.Component.Name)
+                .ToList<ClassComponent>();
         }
         catch (Exception ex)
         {
@@ -1506,9 +1509,9 @@ public partial class ShipClass
     {
         try
         {
-            return this.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                gclass228_0.gclass230_0.bool_11 && gclass228_0.gclass230_0.gclass231_0.ComponentTypeID !=
-                AuroraComponentType.MissileLauncher).Count<GClass228>() > 0;
+            return this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                gclass228_0.Component.bool_11 && gclass228_0.Component.Data.ComponentTypeID !=
+                AuroraComponentType.MissileLauncher).Count<ClassComponent>() > 0;
         }
         catch (Exception ex)
         {
@@ -1523,10 +1526,10 @@ public partial class ShipClass
         {
             ShipClass gclass22_1 = new ShipClass(this.gclass0_0);
             ShipClass gclass22_2 = (ShipClass)this.MemberwiseClone();
-            string str = $"{this.ClassName} - Copy";
+            string str = string.Format("{0} - Copy", this.ClassName);
             if (bool_11)
             {
-                GClass115 gclass115 = gclass21_1.method_118(this);
+                AlienShipClassIntel gclass115 = gclass21_1.method_118(this);
                 if (gclass115 != null)
                     str = gclass115.ClassName;
             }
@@ -1539,41 +1542,41 @@ public partial class ShipClass
             if (gclass21_1 != null)
             {
                 gclass22_2.Race = gclass21_1;
-                gclass22_2.RankTheme = null;
+                gclass22_2.RacialRankTheme = null;
                 gclass22_2.gclass187_0 = null;
             }
 
             gclass22_2.ClassMaterials = this.ClassMaterials.method_25();
-            gclass22_2.dictionary_0 = new Dictionary<int, GClass228>();
-            foreach (GClass228 gclass228_1 in this.dictionary_0.Values)
+            gclass22_2.ClassComponents = new Dictionary<int, ClassComponent>();
+            foreach (ClassComponent gclass228_1 in this.ClassComponents.Values)
             {
-                GClass228 gclass228_2 = gclass228_1.method_1();
-                gclass228_2.int_1 = gclass22_2.ShipClassID;
-                gclass22_2.dictionary_0.Add(gclass228_2.int_0, gclass228_2);
+                ClassComponent gclass228_2 = gclass228_1.method_1();
+                gclass228_2.ClassID = gclass22_2.ShipClassID;
+                gclass22_2.ClassComponents.Add(gclass228_2.ComponentID, gclass228_2);
             }
 
-            gclass22_2.list_0 = new List<PopOrdnanceStock>();
-            gclass22_2.list_1 = new List<GClass74>();
-            gclass22_2.list_2 = new List<GClass75>();
+            gclass22_2.OrdnanceTemplate = new List<ShipOrdnance>();
+            gclass22_2.FighterClassTemplates = new List<ClassFighterTemplate>();
+            gclass22_2.GroundUnitTemplates = new List<ClassGroundTemplate>();
             if (gclass21_1 == null)
             {
-                foreach (PopOrdnanceStock gclass130 in this.list_0)
-                    gclass22_2.list_0.Add(new PopOrdnanceStock()
+                foreach (ShipOrdnance gclass130 in this.OrdnanceTemplate)
+                    gclass22_2.OrdnanceTemplate.Add(new ShipOrdnance()
                     {
                         RaceMissile = gclass130.RaceMissile,
                         Amount = gclass130.Amount
                     });
-                foreach (GClass74 gclass74 in this.list_1)
-                    gclass22_2.list_1.Add(new GClass74()
+                foreach (ClassFighterTemplate gclass74 in this.FighterClassTemplates)
+                    gclass22_2.FighterClassTemplates.Add(new ClassFighterTemplate()
                     {
-                        gclass22_0 = gclass74.gclass22_0,
-                        int_0 = gclass74.int_0
+                        FighterClass = gclass74.FighterClass,
+                        Number = gclass74.Number
                     });
-                foreach (GClass75 gclass75 in this.list_2)
-                    gclass22_2.list_2.Add(new GClass75()
+                foreach (ClassGroundTemplate gclass75 in this.GroundUnitTemplates)
+                    gclass22_2.GroundUnitTemplates.Add(new ClassGroundTemplate()
                     {
-                        gclass102_0 = gclass75.gclass102_0,
-                        int_0 = gclass75.int_0
+                        GroundUnitTemplate = gclass75.GroundUnitTemplate,
+                        Number = gclass75.Number
                     });
             }
 
@@ -1588,7 +1591,7 @@ public partial class ShipClass
         }
     }
 
-    public GClass228 method_51(ShipComponent gclass230_0, int int_69)
+    public ClassComponent method_51(ShipComponent gclass230_0, int int_69)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1605,38 +1608,38 @@ public partial class ShipClass
             if ((class771.gclass230_0.bool_12 || class771.gclass230_0.bool_13) && int_69 > 1)
                 int_69 = 1;
             // ISSUE: reference to a compiler-generated method
-            GClass228 gclass228 = this.dictionary_0.Values.Where<GClass228>(class771.method_0)
-                .FirstOrDefault<GClass228>();
+            ClassComponent gclass228 = this.ClassComponents.Values.Where<ClassComponent>(class771.method_0)
+                .FirstOrDefault<ClassComponent>();
             if (gclass228 != null)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if ((class771.gclass230_0.bool_12 || class771.gclass230_0.bool_13) && gclass228.decimal_0 > 0M)
+                if ((class771.gclass230_0.bool_12 || class771.gclass230_0.bool_13) && gclass228.NumComponent > 0M)
                 {
                     int num = (int)MessageBox.Show(
                         "Only a single component of this type can be added to a class design");
                     return null;
                 }
 
-                gclass228.decimal_0 += int_69;
+                gclass228.NumComponent += int_69;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Engine && this
-                        .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Engine)
-                        .Count<GClass228>() > 0)
+                if (class771.gclass230_0.Data.ComponentTypeID == AuroraComponentType.Engine && this
+                        .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.Engine)
+                        .Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of engine can be added to a class");
                     return null;
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.RefuellingSystem &&
-                    this.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                        AuroraComponentType.RefuellingSystem).Count<GClass228>() > 0)
+                if (class771.gclass230_0.Data.ComponentTypeID == AuroraComponentType.RefuellingSystem &&
+                    this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.Data.ComponentTypeID ==
+                        AuroraComponentType.RefuellingSystem).Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of Refuelling System can be added to a class");
                     return null;
@@ -1644,9 +1647,9 @@ public partial class ShipClass
 
                 // ISSUE: reference to a compiler-generated field
                 if (class771.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.SensorJammer && this
-                        .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.SensorJammer)
-                        .Count<GClass228>() > 0)
+                        .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.gclass164_0.gclass163_0.TechType == TechType.SensorJammer)
+                        .Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of Active Jammer can be added to a class");
                     return null;
@@ -1654,9 +1657,9 @@ public partial class ShipClass
 
                 // ISSUE: reference to a compiler-generated field
                 if (class771.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.FireControlJammer && this
-                        .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.FireControlJammer)
-                        .Count<GClass228>() > 0)
+                        .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.gclass164_0.gclass163_0.TechType == TechType.FireControlJammer)
+                        .Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of Fire Control Jammer can be added to a class");
                     return null;
@@ -1664,42 +1667,42 @@ public partial class ShipClass
 
                 // ISSUE: reference to a compiler-generated field
                 if (class771.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.MissileJammer && this
-                        .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.MissileJammer)
-                        .Count<GClass228>() > 0)
+                        .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.gclass164_0.gclass163_0.TechType == TechType.MissileJammer)
+                        .Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of Missile Jammer can be added to a class");
                     return null;
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.gclass231_0.ComponentTypeID ==
-                    AuroraComponentType.JumpPointStabilisation && this.dictionary_0.Values
-                        .Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                            AuroraComponentType.JumpPointStabilisation).Count<GClass228>() > 0)
+                if (class771.gclass230_0.Data.ComponentTypeID ==
+                    AuroraComponentType.JumpPointStabilisation && this.ClassComponents.Values
+                        .Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.Data.ComponentTypeID ==
+                            AuroraComponentType.JumpPointStabilisation).Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of stabilisation module can be added to a class");
                     return null;
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Shields && this
-                        .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Shields)
-                        .Count<GClass228>() > 0)
+                if (class771.gclass230_0.Data.ComponentTypeID == AuroraComponentType.Shields && this
+                        .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.Shields)
+                        .Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one type of shield generator can be added to a class");
                     return null;
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.CommercialHangarDeck)
+                if (class771.gclass230_0.Data.ComponentTypeID == AuroraComponentType.CommercialHangarDeck)
                 {
-                    if (this.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                                gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
+                    if (this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                                gclass228_0.Component.Data.ComponentTypeID ==
                                 AuroraComponentType.HangarDeck)
-                            .Count<GClass228>() > 0)
+                            .Count<ClassComponent>() > 0)
                     {
                         int num = (int)MessageBox.Show(
                             "Hangars and Commercial Hangars cannot both be added to the same ship");
@@ -1709,10 +1712,10 @@ public partial class ShipClass
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (class771.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.HangarDeck && this
-                            .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                                gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                                AuroraComponentType.CommercialHangarDeck).Count<GClass228>() > 0)
+                    if (class771.gclass230_0.Data.ComponentTypeID == AuroraComponentType.HangarDeck && this
+                            .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                                gclass228_0.Component.Data.ComponentTypeID ==
+                                AuroraComponentType.CommercialHangarDeck).Count<ClassComponent>() > 0)
                     {
                         int num = (int)MessageBox.Show(
                             "Hangars and Commercial Hangars cannot both be added to the same ship");
@@ -1721,10 +1724,10 @@ public partial class ShipClass
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                if (class771.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.JumpDrive && this
-                        .dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.JumpDrive)
-                        .Count<GClass228>() > 0)
+                if (class771.gclass230_0.Data.ComponentTypeID == AuroraComponentType.JumpDrive && this
+                        .ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.JumpDrive)
+                        .Count<ClassComponent>() > 0)
                 {
                     int num = (int)MessageBox.Show("Only one jump drive can be added to a class");
                     return null;
@@ -1732,20 +1735,20 @@ public partial class ShipClass
 
                 // ISSUE: reference to a compiler-generated field
                 if (class771.gclass230_0.bool_13 && !this.Race.NPR &&
-                    this.dictionary_0.Values.Count<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_13) > 0)
+                    this.ClassComponents.Values.Count<ClassComponent>(gclass228_0 => gclass228_0.Component.bool_13) > 0)
                 {
                     int num = (int)MessageBox.Show("Only a single spinal weapon can be added to a class design");
                     return null;
                 }
 
-                gclass228 = new GClass228();
+                gclass228 = new ClassComponent();
                 // ISSUE: reference to a compiler-generated field
-                gclass228.gclass230_0 = class771.gclass230_0;
+                gclass228.Component = class771.gclass230_0;
                 // ISSUE: reference to a compiler-generated field
-                gclass228.int_0 = class771.gclass230_0.int_0;
-                gclass228.int_1 = this.ShipClassID;
-                gclass228.decimal_0 = int_69;
-                this.dictionary_0.Add(gclass228.int_0, gclass228);
+                gclass228.ComponentID = class771.gclass230_0.int_0;
+                gclass228.ClassID = this.ShipClassID;
+                gclass228.NumComponent = int_69;
+                this.ClassComponents.Add(gclass228.ComponentID, gclass228);
             }
 
             return gclass228;
@@ -1770,13 +1773,13 @@ public partial class ShipClass
             if (int_69 == 0 || class772.gclass230_0 == null)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass228> list = this.dictionary_0.Values.Where<GClass228>(class772.method_0).ToList<GClass228>();
+            List<ClassComponent> list = this.ClassComponents.Values.Where<ClassComponent>(class772.method_0).ToList<ClassComponent>();
             if (list.Count != 1)
                 return;
-            if (list[0].decimal_0 > int_69)
-                list[0].decimal_0 -= int_69;
+            if (list[0].NumComponent > int_69)
+                list[0].NumComponent -= int_69;
             else
-                this.dictionary_0.Remove(list[0].gclass230_0.int_0);
+                this.ClassComponents.Remove(list[0].Component.int_0);
         }
         catch (Exception ex)
         {
@@ -1788,10 +1791,10 @@ public partial class ShipClass
     {
         try
         {
-            GClass228 gclass228 = this.method_76();
+            ClassComponent gclass228 = this.method_76();
             if (gclass228 == null)
                 return;
-            this.dictionary_0.Remove(gclass228.int_0);
+            this.ClassComponents.Remove(gclass228.ComponentID);
         }
         catch (Exception ex)
         {
@@ -1836,7 +1839,7 @@ public partial class ShipClass
             if (int_69 <= 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<PopOrdnanceStock> list = this.list_0.Where<PopOrdnanceStock>(class773.method_0).ToList<PopOrdnanceStock>();
+            List<ShipOrdnance> list = this.OrdnanceTemplate.Where<ShipOrdnance>(class773.method_0).ToList<ShipOrdnance>();
             if (list.Count == 1)
             {
                 list[0].Amount += int_69;
@@ -1844,7 +1847,7 @@ public partial class ShipClass
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_0.Add(new PopOrdnanceStock()
+                this.OrdnanceTemplate.Add(new ShipOrdnance()
                 {
                     RaceMissile = class773.gclass129_0,
                     Amount = int_69
@@ -1857,7 +1860,7 @@ public partial class ShipClass
         }
     }
 
-    public void method_55(PopOrdnanceStock gclass130_0, int int_69)
+    public void method_55(ShipOrdnance gclass130_0, int int_69)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1869,7 +1872,7 @@ public partial class ShipClass
             if (int_69 == 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<PopOrdnanceStock> list = this.list_0.Where<PopOrdnanceStock>(class774.method_0).ToList<PopOrdnanceStock>();
+            List<ShipOrdnance> list = this.OrdnanceTemplate.Where<ShipOrdnance>(class774.method_0).ToList<ShipOrdnance>();
             if (list.Count != 1)
                 return;
             if (list[0].Amount > int_69)
@@ -1879,7 +1882,7 @@ public partial class ShipClass
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_0.Remove(class774.gclass130_0);
+                this.OrdnanceTemplate.Remove(class774.gclass130_0);
             }
         }
         catch (Exception ex)
@@ -1909,18 +1912,18 @@ public partial class ShipClass
             }
 
             // ISSUE: reference to a compiler-generated method
-            List<GClass74> list = this.list_1.Where<GClass74>(class775.method_0).ToList<GClass74>();
+            List<ClassFighterTemplate> list = this.FighterClassTemplates.Where<ClassFighterTemplate>(class775.method_0).ToList<ClassFighterTemplate>();
             if (list.Count == 1)
             {
-                list[0].int_0 += int_69;
+                list[0].Number += int_69;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_1.Add(new GClass74()
+                this.FighterClassTemplates.Add(new ClassFighterTemplate()
                 {
-                    gclass22_0 = class775.gclass22_0,
-                    int_0 = int_69
+                    FighterClass = class775.gclass22_0,
+                    Number = int_69
                 });
             }
         }
@@ -1945,25 +1948,25 @@ public partial class ShipClass
             // ISSUE: reference to a compiler-generated field
             Decimal num1 = class776.gclass102_0.method_9();
             Decimal num2 = this.TroopCapacity -
-                           this.list_2.Sum<GClass75>(gclass75_0 =>
-                               gclass75_0.gclass102_0.method_9() * gclass75_0.int_0);
+                           this.GroundUnitTemplates.Sum<ClassGroundTemplate>(gclass75_0 =>
+                               gclass75_0.GroundUnitTemplate.method_9() * gclass75_0.Number);
             if (num1 * int_69 > num2)
                 int_69 = (int)(num2 / num1);
             if (int_69 == 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass75> list = this.list_2.Where<GClass75>(class776.method_0).ToList<GClass75>();
+            List<ClassGroundTemplate> list = this.GroundUnitTemplates.Where<ClassGroundTemplate>(class776.method_0).ToList<ClassGroundTemplate>();
             if (list.Count == 1)
             {
-                list[0].int_0 += int_69;
+                list[0].Number += int_69;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_2.Add(new GClass75()
+                this.GroundUnitTemplates.Add(new ClassGroundTemplate()
                 {
-                    gclass102_0 = class776.gclass102_0,
-                    int_0 = int_69
+                    GroundUnitTemplate = class776.gclass102_0,
+                    Number = int_69
                 });
             }
         }
@@ -1973,7 +1976,7 @@ public partial class ShipClass
         }
     }
 
-    public void method_58(GClass74 gclass74_0, int int_69)
+    public void method_58(ClassFighterTemplate gclass74_0, int int_69)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1985,17 +1988,17 @@ public partial class ShipClass
             if (int_69 == 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass74> list = this.list_1.Where<GClass74>(class777.method_0).ToList<GClass74>();
+            List<ClassFighterTemplate> list = this.FighterClassTemplates.Where<ClassFighterTemplate>(class777.method_0).ToList<ClassFighterTemplate>();
             if (list.Count != 1)
                 return;
-            if (list[0].int_0 > int_69)
+            if (list[0].Number > int_69)
             {
-                list[0].int_0 -= int_69;
+                list[0].Number -= int_69;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_1.Remove(class777.gclass74_0);
+                this.FighterClassTemplates.Remove(class777.gclass74_0);
             }
         }
         catch (Exception ex)
@@ -2004,7 +2007,7 @@ public partial class ShipClass
         }
     }
 
-    public void method_59(GClass75 gclass75_0, int int_69)
+    public void method_59(ClassGroundTemplate gclass75_0, int int_69)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -2016,17 +2019,17 @@ public partial class ShipClass
             if (int_69 == 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass75> list = this.list_2.Where<GClass75>(class778.method_0).ToList<GClass75>();
+            List<ClassGroundTemplate> list = this.GroundUnitTemplates.Where<ClassGroundTemplate>(class778.method_0).ToList<ClassGroundTemplate>();
             if (list.Count != 1)
                 return;
-            if (list[0].int_0 > int_69)
+            if (list[0].Number > int_69)
             {
-                list[0].int_0 -= int_69;
+                list[0].Number -= int_69;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_2.Remove(class778.gclass75_0);
+                this.GroundUnitTemplates.Remove(class778.gclass75_0);
             }
         }
         catch (Exception ex)
@@ -2040,18 +2043,18 @@ public partial class ShipClass
         try
         {
             Decimal decimal8 = this.ParasiteCapacity;
-            List<GClass74> list = this.list_1.OrderBy<GClass74, string>(gclass74_0 => gclass74_0.gclass22_0.ClassName)
-                .ToList<GClass74>();
-            foreach (GClass74 gclass74 in list)
+            List<ClassFighterTemplate> list = this.FighterClassTemplates.OrderBy<ClassFighterTemplate, string>(gclass74_0 => gclass74_0.FighterClass.ClassName)
+                .ToList<ClassFighterTemplate>();
+            foreach (ClassFighterTemplate gclass74 in list)
             {
-                gclass74.Combined = $"{gclass74.int_0.ToString()}x {gclass74.gclass22_0.ClassName}";
-                decimal8 -= gclass74.int_0 * gclass74.gclass22_0.Size;
+                gclass74.Combined = string.Format("{0}x {1}", gclass74.Number.ToString(), gclass74.FighterClass.ClassName);
+                decimal8 -= gclass74.Number * gclass74.FighterClass.Size;
             }
 
             listBox_0.DataSource = list;
             listBox_0.DisplayMember = "Combined";
             listBox_0.SelectedItem = null;
-            label_0.Text = $"Capacity Remaining: {AuroraUtils.smethod_39(decimal8 * 50M)} tons";
+            label_0.Text = string.Format("Capacity Remaining: {0} tons", AuroraUtils.smethod_39(decimal8 * 50M));
         }
         catch (Exception ex)
         {
@@ -2064,18 +2067,18 @@ public partial class ShipClass
         try
         {
             Decimal int57 = this.TroopCapacity;
-            List<GClass75> list = this.list_2.OrderBy<GClass75, string>(gclass75_0 => gclass75_0.gclass102_0.Name)
-                .ToList<GClass75>();
-            foreach (GClass75 gclass75 in list)
+            List<ClassGroundTemplate> list = this.GroundUnitTemplates.OrderBy<ClassGroundTemplate, string>(gclass75_0 => gclass75_0.GroundUnitTemplate.Name)
+                .ToList<ClassGroundTemplate>();
+            foreach (ClassGroundTemplate gclass75 in list)
             {
-                gclass75.Combined = $"{gclass75.int_0.ToString()}x {gclass75.gclass102_0.Name}";
-                int57 -= gclass75.int_0 * gclass75.gclass102_0.method_9();
+                gclass75.Combined = string.Format("{0}x {1}", gclass75.Number.ToString(), gclass75.GroundUnitTemplate.Name);
+                int57 -= gclass75.Number * gclass75.GroundUnitTemplate.method_9();
             }
 
             listBox_0.DataSource = list;
             listBox_0.DisplayMember = "Combined";
             listBox_0.SelectedItem = null;
-            label_0.Text = $"Capacity Remaining: {AuroraUtils.smethod_39(int57)} tons";
+            label_0.Text = string.Format("Capacity Remaining: {0} tons", AuroraUtils.smethod_39(int57));
         }
         catch (Exception ex)
         {
@@ -2088,18 +2091,18 @@ public partial class ShipClass
         try
         {
             Decimal decimal_73 = this.MagazineCapacity + this.DecoyCapacity;
-            List<PopOrdnanceStock> list = this.list_0.OrderBy<PopOrdnanceStock, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
-                .ToList<PopOrdnanceStock>();
-            foreach (PopOrdnanceStock gclass130 in list)
+            List<ShipOrdnance> list = this.OrdnanceTemplate.OrderBy<ShipOrdnance, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
+                .ToList<ShipOrdnance>();
+            foreach (ShipOrdnance gclass130 in list)
             {
-                gclass130.Combined = $"{gclass130.Amount.ToString()}x {gclass130.RaceMissile.Name}";
+                gclass130.Combined = string.Format("{0}x {1}", gclass130.Amount.ToString(), gclass130.RaceMissile.Name);
                 decimal_73 -= gclass130.Amount * gclass130.RaceMissile.Size;
             }
 
             listBox_0.DataSource = list;
             listBox_0.DisplayMember = "Combined";
             listBox_0.SelectedItem = null;
-            label_0.Text = $"Capacity Remaining: {AuroraUtils.smethod_39(decimal_73)} MSP";
+            label_0.Text = string.Format("Capacity Remaining: {0} MSP", AuroraUtils.smethod_39(decimal_73));
         }
         catch (Exception ex)
         {
@@ -2114,9 +2117,9 @@ public partial class ShipClass
             listView_0.Items.Clear();
             this.gclass0_0.method_601(listView_0, "Class Template Loadout", "Num", null);
             this.gclass0_0.method_594(listView_0, "");
-            List<PopOrdnanceStock> list = this.list_0.OrderBy<PopOrdnanceStock, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
-                .ToList<PopOrdnanceStock>();
-            foreach (PopOrdnanceStock object_1 in list)
+            List<ShipOrdnance> list = this.OrdnanceTemplate.OrderBy<ShipOrdnance, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
+                .ToList<ShipOrdnance>();
+            foreach (ShipOrdnance object_1 in list)
                 this.gclass0_0.method_598(listView_0, object_1.RaceMissile.Name, AuroraUtils.smethod_37(object_1.Amount),
                     object_1);
             Decimal decimal_73_1 = this.method_45();
@@ -2124,7 +2127,8 @@ public partial class ShipClass
             if (list.Count > 0)
                 this.gclass0_0.method_594(listView_0, "");
             this.gclass0_0.method_597(listView_0, "Available Space",
-                $"{AuroraUtils.FormatNumberToDigits(decimal_73_1, 2)} / {AuroraUtils.FormatNumberToDigits(decimal_73_2, 2)}");
+                string.Format("{0} / {1}", AuroraUtils.FormatNumberToDigits(decimal_73_1, 2),
+                    AuroraUtils.FormatNumberToDigits(decimal_73_2, 2)));
         }
         catch (Exception ex)
         {
@@ -2137,7 +2141,7 @@ public partial class ShipClass
         try
         {
             listView_0.Items.Clear();
-            List<GClass228> gclass228List = new List<GClass228>();
+            List<ClassComponent> gclass228List = new List<ClassComponent>();
             listView_0.Items.Add(new ListViewItem("Component Name")
             {
                 SubItems =
@@ -2160,71 +2164,71 @@ public partial class ShipClass
             Decimal num2 = 0M;
             Decimal num3 = 0M;
             Decimal num4 = 0M;
-            foreach (GClass228 gclass228 in this.dictionary_0.Values)
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values)
             {
-                gclass228.decimal_2 = gclass228.decimal_0 * gclass228.gclass230_0.decimal_2;
-                gclass228.decimal_3 = gclass228.decimal_0 * gclass228.gclass230_0.int_1;
-                gclass228.decimal_4 = gclass228.decimal_0 * gclass228.gclass230_0.decimal_1;
-                gclass228.decimal_5 = gclass228.decimal_0 * gclass228.gclass230_0.int_4;
+                gclass228.decimal_2 = gclass228.NumComponent * gclass228.Component.decimal_2;
+                gclass228.decimal_3 = gclass228.NumComponent * gclass228.Component.int_1;
+                gclass228.decimal_4 = gclass228.NumComponent * gclass228.Component.decimal_1;
+                gclass228.decimal_5 = gclass228.NumComponent * gclass228.Component.int_4;
                 num1 += gclass228.decimal_2;
                 num3 += gclass228.decimal_3;
                 num2 += gclass228.decimal_4;
                 num4 += gclass228.decimal_5;
             }
 
-            List<GClass228> list1 = this.dictionary_0.Values.OrderBy<GClass228, int>(gclass228_0 => gclass228_0.int_2)
-                .ToList<GClass228>();
+            List<ClassComponent> list1 = this.ClassComponents.Values.OrderBy<ClassComponent, int>(gclass228_0 => gclass228_0.ChanceToHit)
+                .ToList<ClassComponent>();
             int num5 = 0;
             int num6 = 0;
-            foreach (GClass228 gclass228 in list1)
+            foreach (ClassComponent gclass228 in list1)
             {
                 gclass228.decimal_6 = 0M;
                 gclass228.decimal_7 = 0M;
-                gclass228.decimal_6 = (gclass228.int_2 - num5) / (Decimal)this.MaxDACRoll;
-                num5 = gclass228.int_2;
-                if (gclass228.gclass230_0.bool_5)
+                gclass228.decimal_6 = (gclass228.ChanceToHit - num5) / (Decimal)this.MaxDACRoll;
+                num5 = gclass228.ChanceToHit;
+                if (gclass228.Component.bool_5)
                 {
-                    gclass228.decimal_7 = (gclass228.int_3 - num6) / (Decimal)this.ESMaxDACRoll;
-                    num6 = gclass228.int_3;
+                    gclass228.decimal_7 = (gclass228.ElectronicCTH - num6) / (Decimal)this.ESMaxDACRoll;
+                    num6 = gclass228.ElectronicCTH;
                 }
             }
 
             switch (genum18_0)
             {
                 case GEnum18.const_0:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_0)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.NumComponent)
+                        .ToList<ClassComponent>();
                     break;
                 case GEnum18.const_1:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_2)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_2)
+                        .ToList<ClassComponent>();
                     break;
                 case GEnum18.const_2:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_4)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_4)
+                        .ToList<ClassComponent>();
                     break;
                 case GEnum18.const_3:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_3)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_3)
+                        .ToList<ClassComponent>();
                     break;
                 case GEnum18.const_4:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_5)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_5)
+                        .ToList<ClassComponent>();
                     break;
                 case GEnum18.const_12:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_6)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_6)
+                        .ToList<ClassComponent>();
                     break;
                 case GEnum18.const_13:
-                    list1 = this.dictionary_0.Values
-                        .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_7)
-                        .ToList<GClass228>();
+                    list1 = this.ClassComponents.Values
+                        .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_7)
+                        .ToList<ClassComponent>();
                     break;
             }
 
@@ -2232,7 +2236,7 @@ public partial class ShipClass
             {
                 foreach (ClassSummaryType gclass232 in this.gclass0_0.ClassSummaryTypeDictionary.Values)
                     gclass232.method_0();
-                foreach (GClass228 gclass228 in list1)
+                foreach (ClassComponent gclass228 in list1)
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
@@ -2255,7 +2259,7 @@ public partial class ShipClass
                         // ISSUE: reference to a compiler-generated field
                         gclass232.decimal_3 += class779.gclass228_0.decimal_5;
                         // ISSUE: reference to a compiler-generated field
-                        gclass232.decimal_4 += class779.gclass228_0.decimal_0;
+                        gclass232.decimal_4 += class779.gclass228_0.NumComponent;
                         gclass232.bool_0 = true;
                     }
                 }
@@ -2288,17 +2292,19 @@ public partial class ShipClass
                     listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_2, 2).ToString());
                     listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass232.decimal_3, 2).ToString());
                     listViewItem.SubItems.Add(
-                        $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_0 / num2 * 100M, 1)}%");
+                        string.Format("{0}%", AuroraUtils.FormatNumberToDigits(gclass232.decimal_0 / num2 * 100M, 1)));
                     listViewItem.SubItems.Add(
-                        $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_1 / num1 * 100M, 1)}%");
+                        string.Format("{0}%", AuroraUtils.FormatNumberToDigits(gclass232.decimal_1 / num1 * 100M, 1)));
                     if (num3 > 0M)
                         listViewItem.SubItems.Add(
-                            $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_2 / num3 * 100M, 1)}%");
+                            string.Format("{0}%",
+                                AuroraUtils.FormatNumberToDigits(gclass232.decimal_2 / num3 * 100M, 1)));
                     else
                         listViewItem.SubItems.Add("-");
                     if (num4 > 0M)
                         listViewItem.SubItems.Add(
-                            $"{AuroraUtils.FormatNumberToDigits(gclass232.decimal_3 / num4 * 100M, 1)}%");
+                            string.Format("{0}%",
+                                AuroraUtils.FormatNumberToDigits(gclass232.decimal_3 / num4 * 100M, 1)));
                     else
                         listViewItem.SubItems.Add("-");
                     listViewItem.SubItems.Add("-");
@@ -2309,32 +2315,36 @@ public partial class ShipClass
                 this.gclass0_0.method_594(listView_0, "");
             }
 
-            foreach (GClass228 gclass228 in list1)
+            foreach (ClassComponent gclass228 in list1)
             {
-                ListViewItem listViewItem = new ListViewItem(gclass228.gclass230_0.Name);
-                listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_0, 2).ToString());
+                ListViewItem listViewItem = new ListViewItem(gclass228.Component.Name);
+                listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.NumComponent, 2).ToString());
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_4, 2).ToString());
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_2, 2).ToString());
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_3, 2).ToString());
                 listViewItem.SubItems.Add(AuroraUtils.FormatNumberToDigits(gclass228.decimal_5, 2).ToString());
-                listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_4 / num2 * 100M, 1)}%");
-                listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_2 / num1 * 100M, 1)}%");
+                listViewItem.SubItems.Add(string.Format("{0}%",
+                    AuroraUtils.FormatNumberToDigits(gclass228.decimal_4 / num2 * 100M, 1)));
+                listViewItem.SubItems.Add(string.Format("{0}%",
+                    AuroraUtils.FormatNumberToDigits(gclass228.decimal_2 / num1 * 100M, 1)));
                 if (num3 > 0M)
                     listViewItem.SubItems.Add(
-                        $"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_3 / num3 * 100M, 1)}%");
+                        string.Format("{0}%", AuroraUtils.FormatNumberToDigits(gclass228.decimal_3 / num3 * 100M, 1)));
                 else
                     listViewItem.SubItems.Add("-");
                 if (num4 > 0M)
                     listViewItem.SubItems.Add(
-                        $"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_5 / num4 * 100M, 1)}%");
+                        string.Format("{0}%", AuroraUtils.FormatNumberToDigits(gclass228.decimal_5 / num4 * 100M, 1)));
                 else
                     listViewItem.SubItems.Add("-");
                 if (gclass228.decimal_6 > 0M)
-                    listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_6 * 100M, 1)}%");
+                    listViewItem.SubItems.Add(string.Format("{0}%",
+                        AuroraUtils.FormatNumberToDigits(gclass228.decimal_6 * 100M, 1)));
                 else
                     listViewItem.SubItems.Add("-");
                 if (gclass228.decimal_7 > 0M)
-                    listViewItem.SubItems.Add($"{AuroraUtils.FormatNumberToDigits(gclass228.decimal_7 * 100M, 1)}%");
+                    listViewItem.SubItems.Add(string.Format("{0}%",
+                        AuroraUtils.FormatNumberToDigits(gclass228.decimal_7 * 100M, 1)));
                 else
                     listViewItem.SubItems.Add("-");
                 listView_0.Items.Add(listViewItem);
@@ -2348,7 +2358,7 @@ public partial class ShipClass
             Decimal int63 = this.FuelCapacity;
             Decimal decimal_73_1 = 0M;
             string string_14 = "-";
-            foreach (PopOrdnanceStock object_1 in this.list_0)
+            foreach (ShipOrdnance object_1 in this.OrdnanceTemplate)
             {
                 decimal_73_1 += object_1.RaceMissile.Cost * object_1.Amount;
                 this.gclass0_0.method_604(listView_0, object_1.RaceMissile.Name, AuroraUtils.smethod_37(object_1.Amount),
@@ -2358,7 +2368,7 @@ public partial class ShipClass
                 int63 += object_1.RaceMissile.FuelRequired * object_1.Amount;
             }
 
-            if (this.list_0.Count > 0)
+            if (this.OrdnanceTemplate.Count > 0)
                 this.gclass0_0.method_594(listView_0, "");
             gclass123_0_2.method_3(this.MaintSupplies);
             Decimal num7 = int63 / AuroraUtils.int_28;
@@ -2420,7 +2430,7 @@ public partial class ShipClass
         try
         {
             listView_0.Items.Clear();
-            List<GClass228> gclass228List = new List<GClass228>();
+            List<ClassComponent> gclass228List = new List<ClassComponent>();
             ListViewItem listViewItem1 = new ListViewItem("Component Name");
             listViewItem1.SubItems.Add("Amount");
             listViewItem1.SubItems.Add("Cost");
@@ -2429,27 +2439,27 @@ public partial class ShipClass
             listViewItem1.SubItems.Add("Damaged");
             listView_0.Items.Add(listViewItem1);
             this.gclass0_0.method_594(listView_0, "");
-            List<GClass228> list1 = this.dictionary_0.Values.OrderBy<GClass228, int>(gclass228_0 => gclass228_0.int_2)
-                .ToList<GClass228>();
+            List<ClassComponent> list1 = this.ClassComponents.Values.OrderBy<ClassComponent, int>(gclass228_0 => gclass228_0.ChanceToHit)
+                .ToList<ClassComponent>();
             int num1 = 0;
             int num2 = 0;
-            foreach (GClass228 gclass228 in list1)
+            foreach (ClassComponent gclass228 in list1)
             {
                 gclass228.decimal_6 = 0M;
                 gclass228.decimal_7 = 0M;
-                gclass228.decimal_6 = (gclass228.int_2 - num1) / (Decimal)this.MaxDACRoll;
-                num1 = gclass228.int_2;
-                if (gclass228.gclass230_0.bool_5)
+                gclass228.decimal_6 = (gclass228.ChanceToHit - num1) / (Decimal)this.MaxDACRoll;
+                num1 = gclass228.ChanceToHit;
+                if (gclass228.Component.bool_5)
                 {
-                    gclass228.decimal_7 = (gclass228.int_3 - num2) / (Decimal)this.ESMaxDACRoll;
-                    num2 = gclass228.int_3;
+                    gclass228.decimal_7 = (gclass228.ElectronicCTH - num2) / (Decimal)this.ESMaxDACRoll;
+                    num2 = gclass228.ElectronicCTH;
                 }
             }
 
-            List<GClass228> list2 = this.dictionary_0.Values
-                .OrderByDescending<GClass228, Decimal>(gclass228_0 => gclass228_0.decimal_6).ToList<GClass228>();
+            List<ClassComponent> list2 = this.ClassComponents.Values
+                .OrderByDescending<ClassComponent, Decimal>(gclass228_0 => gclass228_0.decimal_6).ToList<ClassComponent>();
             listViewItem1.UseItemStyleForSubItems = false;
-            foreach (GClass228 gclass228 in list2)
+            foreach (ClassComponent gclass228 in list2)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -2457,18 +2467,19 @@ public partial class ShipClass
                 // ISSUE: reference to a compiler-generated field
                 class780.gclass228_0 = gclass228;
                 // ISSUE: reference to a compiler-generated field
-                ListViewItem listViewItem2 = new ListViewItem(class780.gclass228_0.gclass230_0.Name);
+                ListViewItem listViewItem2 = new ListViewItem(class780.gclass228_0.Component.Name);
                 // ISSUE: reference to a compiler-generated field
-                listViewItem2.SubItems.Add(AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_0, 2).ToString());
+                listViewItem2.SubItems.Add(AuroraUtils.FormatNumberToDigits(class780.gclass228_0.NumComponent, 2).ToString());
                 // ISSUE: reference to a compiler-generated field
-                listViewItem2.SubItems.Add(AuroraUtils.FormatNumberToDigits(class780.gclass228_0.gclass230_0.decimal_2, 2)
+                listViewItem2.SubItems.Add(AuroraUtils.FormatNumberToDigits(class780.gclass228_0.Component.decimal_2, 2)
                     .ToString());
                 // ISSUE: reference to a compiler-generated field
                 if (class780.gclass228_0.decimal_6 > 0M)
                 {
                     // ISSUE: reference to a compiler-generated field
                     listViewItem2.SubItems.Add(
-                        $"{AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_6 * 100M, 1)}%");
+                        string.Format("{0}%",
+                            AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_6 * 100M, 1)));
                 }
                 else
                     listViewItem2.SubItems.Add("-");
@@ -2478,14 +2489,15 @@ public partial class ShipClass
                 {
                     // ISSUE: reference to a compiler-generated field
                     listViewItem2.SubItems.Add(
-                        $"{AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_7 * 100M, 1)}%");
+                        string.Format("{0}%",
+                            AuroraUtils.FormatNumberToDigits(class780.gclass228_0.decimal_7 * 100M, 1)));
                 }
                 else
                     listViewItem2.SubItems.Add("-");
 
                 // ISSUE: reference to a compiler-generated method
-                int num3 = gclass40_0.list_12.Where<GClass178>(class780.method_0)
-                    .Select<GClass178, int>(gclass178_0 => gclass178_0.int_0).FirstOrDefault<int>();
+                int num3 = gclass40_0.ComponentDamages.Where<ComponentDamage>(class780.method_0)
+                    .Select<ComponentDamage, int>(gclass178_0 => gclass178_0.Number).FirstOrDefault<int>();
                 if (num3 > 0)
                 {
                     listViewItem2.SubItems.Add(num3.ToString());
@@ -2510,7 +2522,7 @@ public partial class ShipClass
         try
         {
             List<ShipData> list = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Class == this)
                 .OrderBy<ShipData, string>(gclass40_0 => gclass40_0.ShipName).ToList<ShipData>();
             listBox_0.DataSource = list;
             listBox_0.DisplayMember = "ShipName";
@@ -2526,9 +2538,9 @@ public partial class ShipClass
         try
         {
             List<ShipClass> list = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ParasiteCapacity > this.Size)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Class.ParasiteCapacity > this.Size)
                 .Where<ShipData>(gclass40_0 => gclass40_0.method_125() > this.Size)
-                .Select<ShipData, ShipClass>(gclass40_0 => gclass40_0.gclass22_0).Distinct<ShipClass>()
+                .Select<ShipData, ShipClass>(gclass40_0 => gclass40_0.Class).Distinct<ShipClass>()
                 .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>();
             comboBox_0.DataSource = list;
             comboBox_0.DisplayMember = "ClassName";
@@ -2618,16 +2630,16 @@ public partial class ShipClass
                 listViewItem.SubItems.Add(this.gclass0_0.method_583((double)gclass40.decimal_1));
                 if (this.FuelCapacity > 0)
                     listViewItem.SubItems.Add(
-                        $"{AuroraUtils.smethod_39(gclass40.decimal_14 / this.FuelCapacity * 100M)}%");
+                        string.Format("{0}%", AuroraUtils.smethod_39(gclass40.decimal_14 / this.FuelCapacity * 100M)));
                 else
                     listViewItem.SubItems.Add("N/A");
                 if (this.MagazineCapacity + this.DecoyCapacity > 0M)
-                    listViewItem.SubItems.Add($"{AuroraUtils.smethod_38(gclass40.method_212())}%");
+                    listViewItem.SubItems.Add(string.Format("{0}%", AuroraUtils.smethod_38(gclass40.method_212())));
                 else
                     listViewItem.SubItems.Add("N/A");
                 if (this.MaintSupplies > 0)
                     listViewItem.SubItems.Add(
-                        $"{AuroraUtils.smethod_38(gclass40.decimal_4 / this.MaintSupplies * 100M)}%");
+                        string.Format("{0}%", AuroraUtils.smethod_38(gclass40.decimal_4 / this.MaintSupplies * 100M)));
                 else
                     listViewItem.SubItems.Add("NA");
                 listViewItem.SubItems.Add(AuroraUtils
@@ -2650,11 +2662,12 @@ public partial class ShipClass
     {
         try
         {
-            List<GClass228> list = this.dictionary_0.Values
-                .OrderBy<GClass228, string>(gclass228_0 => gclass228_0.gclass230_0.Name).ToList<GClass228>();
-            foreach (GClass228 gclass228 in list)
+            List<ClassComponent> list = this.ClassComponents.Values
+                .OrderBy<ClassComponent, string>(gclass228_0 => gclass228_0.Component.Name).ToList<ClassComponent>();
+            foreach (ClassComponent gclass228 in list)
                 gclass228.Description =
-                    $"{Math.Round(gclass228.decimal_0, 1).ToString()}x {gclass228.gclass230_0.Name}";
+                    string.Format("{0}x {1}", Math.Round(gclass228.NumComponent, 1).ToString(),
+                        gclass228.Component.Name);
             listBox_0.DataSource = list;
             listBox_0.DisplayMember = "Description";
         }
@@ -2669,8 +2682,8 @@ public partial class ShipClass
         try
         {
             treeView_0.Nodes.Clear();
-            foreach (ClassSummaryType gclass232 in this.dictionary_0.Values
-                         .Select<GClass228, ComponentTypeData>(gclass228_0 => gclass228_0.gclass230_0.gclass231_0)
+            foreach (ClassSummaryType gclass232 in this.ClassComponents.Values
+                         .Select<ClassComponent, ComponentTypeData>(gclass228_0 => gclass228_0.Component.Data)
                          .Distinct<ComponentTypeData>().ToList<ComponentTypeData>()
                          .Select<ComponentTypeData, ClassSummaryType>(gclass231_0 => gclass231_0.ClassSummaryType).Distinct<ClassSummaryType>()
                          .OrderBy<ClassSummaryType, string>(gclass232_0 => gclass232_0.string_0).ToList<ClassSummaryType>())
@@ -2686,23 +2699,24 @@ public partial class ShipClass
                 // ISSUE: reference to a compiler-generated field
                 node1.Tag = class781.gclass232_0;
                 // ISSUE: reference to a compiler-generated method
-                foreach (GClass228 gclass228 in this.dictionary_0.Values.Where<GClass228>(class781.method_0)
-                             .ToList<GClass228>()
-                             .OrderBy<GClass228, string>(gclass228_0 => gclass228_0.gclass230_0.Name)
-                             .ToList<GClass228>())
+                foreach (ClassComponent gclass228 in this.ClassComponents.Values.Where<ClassComponent>(class781.method_0)
+                             .ToList<ClassComponent>()
+                             .OrderBy<ClassComponent, string>(gclass228_0 => gclass228_0.Component.Name)
+                             .ToList<ClassComponent>())
                 {
                     TreeNode node2 = new TreeNode();
                     gclass228.Description =
-                        $"{Math.Round(gclass228.decimal_0, 1).ToString()}x {gclass228.gclass230_0.method_0()}";
+                        string.Format("{0}x {1}", Math.Round(gclass228.NumComponent, 1).ToString(),
+                            gclass228.Component.method_0());
                     node2.Text = gclass228.Description;
                     node2.Tag = gclass228;
-                    if (!gclass228.gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.Race.RaceID))
+                    if (!gclass228.Component.gclass164_0.dictionary_0.ContainsKey(this.Race.RaceID))
                         node2.ForeColor = Color.Red;
-                    else if (gclass228.gclass230_0.gclass164_0.dictionary_0[this.Race.RaceID].bool_0)
+                    else if (gclass228.Component.gclass164_0.dictionary_0[this.Race.RaceID].Obsolete)
                         node2.ForeColor = Color.Orange;
-                    else if (gclass228.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Armour &&
-                             gclass228.gclass230_0.int_0 != 65275 && this.Race.method_387(TechType.Armour) !=
-                             gclass228.gclass230_0.gclass164_0)
+                    else if (gclass228.Component.Data.ComponentTypeID == AuroraComponentType.Armour &&
+                             gclass228.Component.int_0 != 65275 && this.Race.method_387(TechType.Armour) !=
+                             gclass228.Component.gclass164_0)
                         node2.ForeColor = Color.Orange;
                     node1.Nodes.Add(node2);
                 }
@@ -2729,8 +2743,8 @@ public partial class ShipClass
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.dictionary_0.Values.Where<GClass228>(class782.method_0).Sum<GClass228>(gclass228_0 =>
-                gclass228_0.gclass230_0.decimal_3 * gclass228_0.decimal_0);
+            return this.ClassComponents.Values.Where<ClassComponent>(class782.method_0).Sum<ClassComponent>(gclass228_0 =>
+                gclass228_0.Component.decimal_3 * gclass228_0.NumComponent);
         }
         catch (Exception ex)
         {
@@ -2749,8 +2763,8 @@ public partial class ShipClass
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.dictionary_0.Values.Where<GClass228>(class783.method_0)
-                .Sum<GClass228>(gclass228_0 => gclass228_0.decimal_0);
+            return this.ClassComponents.Values.Where<ClassComponent>(class783.method_0)
+                .Sum<ClassComponent>(gclass228_0 => gclass228_0.NumComponent);
         }
         catch (Exception ex)
         {
@@ -2759,7 +2773,7 @@ public partial class ShipClass
         }
     }
 
-    public List<GClass228> method_74(AuroraComponentType auroraComponentType_0)
+    public List<ClassComponent> method_74(AuroraComponentType auroraComponentType_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -2769,7 +2783,7 @@ public partial class ShipClass
         try
         {
             // ISSUE: reference to a compiler-generated method
-            return this.dictionary_0.Values.Where<GClass228>(class784.method_0).ToList<GClass228>();
+            return this.ClassComponents.Values.Where<ClassComponent>(class784.method_0).ToList<ClassComponent>();
         }
         catch (Exception ex)
         {
@@ -2788,9 +2802,9 @@ public partial class ShipClass
         try
         {
             // ISSUE: reference to a compiler-generated method
-            foreach (int key in this.dictionary_0.Where<KeyValuePair<int, GClass228>>(class785.method_0)
-                         .Select<KeyValuePair<int, GClass228>, int>(keyValuePair_0 => keyValuePair_0.Key).ToList<int>())
-                this.dictionary_0.Remove(key);
+            foreach (int key in this.ClassComponents.Where<KeyValuePair<int, ClassComponent>>(class785.method_0)
+                         .Select<KeyValuePair<int, ClassComponent>, int>(keyValuePair_0 => keyValuePair_0.Key).ToList<int>())
+                this.ClassComponents.Remove(key);
         }
         catch (Exception ex)
         {
@@ -2798,11 +2812,11 @@ public partial class ShipClass
         }
     }
 
-    public GClass228 method_76()
+    public ClassComponent method_76()
     {
         try
         {
-            List<GClass228> gclass228List = this.method_74(AuroraComponentType.Armour);
+            List<ClassComponent> gclass228List = this.method_74(AuroraComponentType.Armour);
             return gclass228List.Count > 0 ? gclass228List[0] : null;
         }
         catch (Exception ex)
@@ -2812,11 +2826,11 @@ public partial class ShipClass
         }
     }
 
-    public GClass228 method_77()
+    public ClassComponent method_77()
     {
         try
         {
-            List<GClass228> gclass228List = this.method_74(AuroraComponentType.Shields);
+            List<ClassComponent> gclass228List = this.method_74(AuroraComponentType.Shields);
             return gclass228List.Count > 0 ? gclass228List[0] : null;
         }
         catch (Exception ex)
@@ -2831,11 +2845,11 @@ public partial class ShipClass
         try
         {
             int num = 0;
-            foreach (ShipComponent gclass230 in this.dictionary_0.Values
-                         .Where<GClass228>(gclass228_0 =>
-                             gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
+            foreach (ShipComponent gclass230 in this.ClassComponents.Values
+                         .Where<ClassComponent>(gclass228_0 =>
+                             gclass228_0.Component.Data.ComponentTypeID ==
                              AuroraComponentType.CrewQuarters)
-                         .Select<GClass228, ShipComponent>(gclass228_0 => gclass228_0.gclass230_0).ToList<ShipComponent>())
+                         .Select<ClassComponent, ShipComponent>(gclass228_0 => gclass228_0.Component).ToList<ShipComponent>())
                 num += (int)gclass230.decimal_3;
             return num;
         }
@@ -2858,18 +2872,18 @@ public partial class ShipClass
             Decimal decimal_73_3 = this.Crew / decimal_73_2;
             Decimal decimal_73_4 = this.int_59 / AuroraUtils.decimal_17;
             Decimal decimal_73_5 = Math.Floor((decimal_73_4 - decimal_73_3) * AuroraUtils.decimal_17 / decimal_73_1);
-            Decimal decimal_73_6 = this.dictionary_0.Values
-                .Where<GClass228>(gclass228_0 =>
-                    gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                    AuroraComponentType.ColonistTransport && gclass228_0.gclass230_0.genum87_0 == GEnum87.const_0)
-                .Sum<GClass228>(gclass228_0 => gclass228_0.gclass230_0.decimal_3 * gclass228_0.decimal_0);
-            Decimal decimal_73_7 = this.dictionary_0.Values
-                .Where<GClass228>(gclass228_0 =>
-                    gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                    AuroraComponentType.ColonistTransport && gclass228_0.gclass230_0.genum87_0 == GEnum87.const_7)
-                .Sum<GClass228>(gclass228_0 => gclass228_0.gclass230_0.decimal_3 * gclass228_0.decimal_0);
+            Decimal decimal_73_6 = this.ClassComponents.Values
+                .Where<ClassComponent>(gclass228_0 =>
+                    gclass228_0.Component.Data.ComponentTypeID ==
+                    AuroraComponentType.ColonistTransport && gclass228_0.Component.genum87_0 == GEnum87.const_0)
+                .Sum<ClassComponent>(gclass228_0 => gclass228_0.Component.decimal_3 * gclass228_0.NumComponent);
+            Decimal decimal_73_7 = this.ClassComponents.Values
+                .Where<ClassComponent>(gclass228_0 =>
+                    gclass228_0.Component.Data.ComponentTypeID ==
+                    AuroraComponentType.ColonistTransport && gclass228_0.Component.genum87_0 == GEnum87.const_7)
+                .Sum<ClassComponent>(gclass228_0 => gclass228_0.Component.decimal_3 * gclass228_0.NumComponent);
             this.gclass0_0.method_597(listView_0, "Crew Quarter Design Efficiency",
-                $"{AuroraUtils.FormatNumberToDigits((1M - this.CrewDesignEfficiency) * 100M, 0)}%");
+                string.Format("{0}%", AuroraUtils.FormatNumberToDigits((1M - this.CrewDesignEfficiency) * 100M, 0)));
             this.gclass0_0.method_597(listView_0, "Crew Quarter Tons per Man", AuroraUtils.FormatNumberToDigits(decimal_73_1, 2));
             this.gclass0_0.method_597(listView_0, "Crew Capacity per Crew Quarter HS",
                 AuroraUtils.FormatNumberToDigits(decimal_73_2, 2));
@@ -2909,11 +2923,11 @@ public partial class ShipClass
             this.int_59 = 0;
             if (this.Crew == 0)
                 this.Crew = 1;
-            this.int_60 = (int)this.dictionary_0.Values.Where<GClass228>(gclass228_0 =>
-                    gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.HangarDeck ||
-                    gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
+            this.int_60 = (int)this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                    gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.HangarDeck ||
+                    gclass228_0.Component.Data.ComponentTypeID ==
                     AuroraComponentType.CommercialHangarDeck)
-                .Sum<GClass228>(gclass228_0 => gclass228_0.gclass230_0.decimal_3 * gclass228_0.decimal_0);
+                .Sum<ClassComponent>(gclass228_0 => gclass228_0.Component.decimal_3 * gclass228_0.NumComponent);
             int int_69 = this.Crew + this.int_60;
             Decimal num1 = this.method_80(int_69);
             if (num1 < 1M)
@@ -2942,12 +2956,12 @@ public partial class ShipClass
                     ++num3;
                 if (num3 > 0)
                 {
-                    GClass228 gclass228 = new GClass228();
-                    gclass228.gclass230_0 = gclass230;
-                    gclass228.decimal_0 = num3;
-                    gclass228.int_0 = gclass230.int_0;
-                    gclass228.int_1 = this.ShipClassID;
-                    this.dictionary_0.Add(gclass228.int_0, gclass228);
+                    ClassComponent gclass228 = new ClassComponent();
+                    gclass228.Component = gclass230;
+                    gclass228.NumComponent = num3;
+                    gclass228.ComponentID = gclass230.int_0;
+                    gclass228.ClassID = this.ShipClassID;
+                    this.ClassComponents.Add(gclass228.ComponentID, gclass228);
                     this.int_59 += (int)(num3 * gclass230.decimal_3);
                     num1 -= (int)(num3 * gclass230.decimal_3);
                     if (num1 == 0M)
@@ -2969,15 +2983,15 @@ public partial class ShipClass
             this.Size = 0M;
             this.Cost = 0M;
             this.int_26 = 0;
-            foreach (GClass228 gclass228 in this.dictionary_0.Values)
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values)
             {
-                this.Size += gclass228.gclass230_0.decimal_1 * gclass228.decimal_0;
-                this.Cost += gclass228.gclass230_0.decimal_2 * gclass228.decimal_0;
-                this.Crew += (int)(gclass228.gclass230_0.int_1 * gclass228.decimal_0);
-                this.int_26 += (int)(gclass228.gclass230_0.int_4 * gclass228.decimal_0);
-                if (gclass228.gclass230_0.decimal_2 > this.decimal_7 &&
-                    gclass228.gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.Armour)
-                    this.decimal_7 = gclass228.gclass230_0.decimal_2;
+                this.Size += gclass228.Component.decimal_1 * gclass228.NumComponent;
+                this.Cost += gclass228.Component.decimal_2 * gclass228.NumComponent;
+                this.Crew += (int)(gclass228.Component.int_1 * gclass228.NumComponent);
+                this.int_26 += (int)(gclass228.Component.int_4 * gclass228.NumComponent);
+                if (gclass228.Component.decimal_2 > this.decimal_7 &&
+                    gclass228.Component.Data.ComponentTypeID != AuroraComponentType.Armour)
+                    this.decimal_7 = gclass228.Component.decimal_2;
             }
 
             if (this.PlannedDeployment < 3M)
@@ -2999,21 +3013,21 @@ public partial class ShipClass
         {
             if (this.NoArmour == 1)
             {
-                foreach (GClass228 gclass228 in this.method_74(AuroraComponentType.Armour))
-                    this.dictionary_0.Remove(gclass228.int_0);
-                foreach (GClass228 gclass228 in this.method_74(AuroraComponentType.Engine))
-                    this.dictionary_0.Remove(gclass228.int_0);
-                foreach (GClass228 gclass228 in this.dictionary_0.Values
-                             .Where<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_1).ToList<GClass228>())
-                    this.dictionary_0.Remove(gclass228.int_0);
+                foreach (ClassComponent gclass228 in this.method_74(AuroraComponentType.Armour))
+                    this.ClassComponents.Remove(gclass228.ComponentID);
+                foreach (ClassComponent gclass228 in this.method_74(AuroraComponentType.Engine))
+                    this.ClassComponents.Remove(gclass228.ComponentID);
+                foreach (ClassComponent gclass228 in this.ClassComponents.Values
+                             .Where<ClassComponent>(gclass228_0 => gclass228_0.Component.bool_1).ToList<ClassComponent>())
+                    this.ClassComponents.Remove(gclass228.ComponentID);
                 this.ArmourThickness = 1;
             }
             else
             {
-                foreach (GClass228 gclass228 in this.dictionary_0.Values
-                             .Where<GClass228>(gclass228_0 => gclass228_0.gclass230_0.int_0 == 65275)
-                             .ToList<GClass228>())
-                    this.dictionary_0.Remove(gclass228.int_0);
+                foreach (ClassComponent gclass228 in this.ClassComponents.Values
+                             .Where<ClassComponent>(gclass228_0 => gclass228_0.Component.int_0 == 65275)
+                             .ToList<ClassComponent>())
+                    this.ClassComponents.Remove(gclass228.ComponentID);
             }
         }
         catch (Exception ex)
@@ -3033,11 +3047,11 @@ public partial class ShipClass
             this.ArmourWidth = (int)(num / this.ArmourThickness);
             if (this.ArmourWidth < 1)
                 this.ArmourWidth = 1;
-            GClass228 gclass228 = this.method_76();
+            ClassComponent gclass228 = this.method_76();
             int decimal3;
             if (gclass228 != null)
             {
-                decimal3 = (int)gclass228.gclass230_0.decimal_3;
+                decimal3 = (int)gclass228.Component.decimal_3;
             }
             else
             {
@@ -3045,14 +3059,14 @@ public partial class ShipClass
                     ? this.Race.method_386()
                     : this.gclass0_0.method_717(GEnum118.const_56);
                 decimal3 = (int)gclass230.decimal_3;
-                gclass228 = new GClass228();
-                gclass228.gclass230_0 = gclass230;
-                gclass228.int_0 = gclass230.int_0;
-                gclass228.int_1 = this.ShipClassID;
-                this.dictionary_0.Add(gclass228.int_0, gclass228);
+                gclass228 = new ClassComponent();
+                gclass228.Component = gclass230;
+                gclass228.ComponentID = gclass230.int_0;
+                gclass228.ClassID = this.ShipClassID;
+                this.ClassComponents.Add(gclass228.ComponentID, gclass228);
             }
 
-            gclass228.decimal_0 = (Decimal)(num / decimal3);
+            gclass228.NumComponent = (Decimal)(num / decimal3);
         }
         catch (Exception ex)
         {
@@ -3108,7 +3122,7 @@ public partial class ShipClass
             int num3 = 0;
             int num4 = 0;
             this.gclass163_0 = null;
-            this.RankTheme = this.Race.GetHighestRankThemeForCommanderType(AuroraCommanderType.Naval);
+            this.RacialRankTheme = this.Race.GetHighestRankThemeForCommanderType(AuroraCommanderType.Naval);
             this.FighterClass = false;
             this.Commercial = true;
             this.MilitaryEngines = false;
@@ -3174,8 +3188,8 @@ public partial class ShipClass
             this.method_82();
             if (this.PlannedDeployment < 3M)
                 this.Commercial = false;
-            if (this.dictionary_0.Values.Where<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_1)
-                    .ToList<GClass228>().Count > 0)
+            if (this.ClassComponents.Values.Where<ClassComponent>(gclass228_0 => gclass228_0.Component.bool_1)
+                    .ToList<ClassComponent>().Count > 0)
             {
                 this.Commercial = false;
                 this.MoraleCheckRequired = true;
@@ -3183,7 +3197,7 @@ public partial class ShipClass
 
             if (this.Race.SpecialNPRID != SpecialNPRIDs.StarSwarm)
                 this.method_81();
-            if (this.Size > 22M && !this.dictionary_0.ContainsKey(18))
+            if (this.Size > 22M && !this.ClassComponents.ContainsKey(18))
                 this.method_51(this.gclass0_0.ComponentDataDictionary[18], 1);
             this.method_82();
             int num5 = this.ArmourThickness * 3;
@@ -3199,22 +3213,23 @@ public partial class ShipClass
                 this.FighterClass = true;
             this.BaseFailureChance = this.Size * 10M;
             string str19 =
-                $"MSP 0    AFR {((int)this.BaseFailureChance).ToString()}%    IFR {Math.Round(this.BaseFailureChance / 72M, 1).ToString()}%";
-            foreach (GClass228 gclass228 in this.dictionary_0.Values)
+                string.Format("MSP 0    AFR {0}%    IFR {1}%", ((int)this.BaseFailureChance).ToString(),
+                    Math.Round(this.BaseFailureChance / 72M, 1).ToString());
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values)
             {
-                this.ClassMaterials.method_35(gclass228.gclass230_0, gclass228.decimal_0);
-                Decimal num6;
-                switch (gclass228.gclass230_0.gclass231_0.ComponentTypeID)
+                this.ClassMaterials.method_35(gclass228.Component, gclass228.NumComponent);
+                // Decimal num6; //unused, IDK why
+                switch (gclass228.Component.Data.ComponentTypeID)
                 {
                     case AuroraComponentType.Engine:
                         this.EnginePower += gclass228.method_0();
                         this.MaxSpeed = (int)(this.EnginePower / this.Size * 1000M);
                         if (this.MaxSpeed > 270000)
                             this.MaxSpeed = 270000;
-                        this.ClassThermal = this.EnginePower * gclass228.gclass230_0.decimal_9;
-                        this.FuelEfficiency = gclass228.gclass230_0.decimal_8;
-                        this.MilitaryEngines = gclass228.gclass230_0.bool_1;
-                        str1 = gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        this.ClassThermal = this.EnginePower * gclass228.Component.decimal_9;
+                        this.FuelEfficiency = gclass228.Component.decimal_8;
+                        this.MilitaryEngines = gclass228.Component.bool_1;
+                        str1 = gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.FuelStorage:
                         this.FuelCapacity += (int)gclass228.method_0();
@@ -3229,31 +3244,31 @@ public partial class ShipClass
                         this.GravSurvey += (int)gclass228.method_0();
                         if (genum15_0 < CommanderLevel.LVL2)
                             genum15_0 = CommanderLevel.LVL2;
-                        str2 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str2 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         this.MoraleCheckRequired = true;
                         continue;
                     case AuroraComponentType.GeologicalSurveySensors:
                         this.GeoSurvey += gclass228.method_0();
                         if (genum15_0 < CommanderLevel.LVL2)
                             genum15_0 = CommanderLevel.LVL2;
-                        str2 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str2 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         this.MoraleCheckRequired = true;
                         continue;
                     case AuroraComponentType.ThermalSensors:
-                        if (gclass228.gclass230_0.decimal_3 > this.PassiveSensorStrength)
-                            this.PassiveSensorStrength = (int)gclass228.gclass230_0.decimal_3;
-                        this.int_67 += (int)gclass228.gclass230_0.decimal_1;
-                        if (gclass228.gclass230_0.decimal_1 > 1M)
+                        if (gclass228.Component.decimal_3 > this.PassiveSensorStrength)
+                            this.PassiveSensorStrength = (int)gclass228.Component.decimal_3;
+                        this.int_67 += (int)gclass228.Component.decimal_1;
+                        if (gclass228.Component.decimal_1 > 1M)
                             this.Commercial = false;
-                        str3 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str3 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.CommandAndControl:
-                        this.ControlRating += (int)gclass228.gclass230_0.decimal_3;
+                        this.ControlRating += (int)gclass228.Component.decimal_3;
                         continue;
                     case AuroraComponentType.Shields:
                         this.ShieldStrength = (int)gclass228.method_0();
-                        str5 = gclass228.gclass230_0.method_13(gclass228.decimal_0);
-                        int num7 = (int)(gclass228.gclass230_0.decimal_7 * gclass228.decimal_0);
+                        str5 = gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
+                        int num7 = (int)(gclass228.Component.decimal_7 * gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.CargoShuttleBay:
                         this.CargoShuttleStrength += (int)gclass228.method_0() * this.Race.CargoShuttleLoadModifier;
@@ -3265,10 +3280,10 @@ public partial class ShipClass
                     case AuroraComponentType.Carronade:
                     case AuroraComponentType.HighPowerMicrowave:
                     case AuroraComponentType.GaussCannon:
-                        this.RequiredPower += gclass228.gclass230_0.decimal_4 * gclass228.decimal_0;
-                        this.ProtectionValue += gclass228.gclass230_0.decimal_1 * gclass228.decimal_0;
+                        this.RequiredPower += gclass228.Component.decimal_4 * gclass228.NumComponent;
+                        this.ProtectionValue += gclass228.Component.decimal_1 * gclass228.NumComponent;
                         flag1 = true;
-                        if (gclass228.gclass230_0.decimal_0 > gclass228.gclass230_0.decimal_4 * 2M)
+                        if (gclass228.Component.decimal_0 > gclass228.Component.decimal_4 * 2M)
                         {
                             flag2 = false;
                             continue;
@@ -3278,29 +3293,30 @@ public partial class ShipClass
                     case AuroraComponentType.JumpDrive:
                         if (genum15_0 < CommanderLevel.LVL2)
                             genum15_0 = CommanderLevel.LVL2;
-                        this.JumpRating = gclass228.gclass230_0.int_10;
-                        this.JumpDistance = gclass228.gclass230_0.int_9;
-                        if (gclass228.gclass230_0.genum87_0 == GEnum87.const_2)
+                        this.JumpRating = gclass228.Component.int_10;
+                        this.JumpDistance = gclass228.Component.int_9;
+                        if (gclass228.Component.genum87_0 == GEnum87.const_2)
                             this.CommercialJumpDrive = 1;
-                        if (gclass228.gclass230_0.decimal_3 < this.Size)
+                        if (gclass228.Component.decimal_3 < this.Size)
                             this.string_2 =
-                                $"{this.string_2}Jump engine is too small for this design{Environment.NewLine}";
-                        str6 = gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                                string.Format("{0}Jump engine is too small for this design{1}", this.string_2,
+                                    Environment.NewLine);
+                        str6 = gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.ColonistTransport:
                         this.ColonistCapacity += (int)gclass228.method_0();
                         continue;
                     case AuroraComponentType.PowerPlant:
                         this.ReactorPower += gclass228.method_0();
-                        str7 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str7 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.BeamFireControl:
-                        str8 += gclass228.gclass230_0.method_17(int_70, int_69, gclass228.decimal_0);
-                        int decimal3 = (int)gclass228.gclass230_0.decimal_3;
+                        str8 += gclass228.Component.method_17(int_70, int_69, gclass228.NumComponent);
+                        int decimal3 = (int)gclass228.Component.decimal_3;
                         if (decimal3 > this.int_66)
                             this.int_66 = decimal3;
                         flag3 = true;
-                        if (gclass228.gclass230_0.genum87_0 == GEnum87.const_0)
+                        if (gclass228.Component.genum87_0 == GEnum87.const_0)
                         {
                             flag4 = false;
                             continue;
@@ -3308,19 +3324,19 @@ public partial class ShipClass
 
                         continue;
                     case AuroraComponentType.ElectronicWarfareSystems:
-                        if (gclass228.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.SensorJammer)
+                        if (gclass228.Component.gclass164_0.gclass163_0.TechType == TechType.SensorJammer)
                         {
-                            if (this.ActiveJammerStrength < gclass228.gclass230_0.decimal_3)
-                                this.ActiveJammerStrength = (int)gclass228.gclass230_0.decimal_3;
+                            if (this.ActiveJammerStrength < gclass228.Component.decimal_3)
+                                this.ActiveJammerStrength = (int)gclass228.Component.decimal_3;
                         }
-                        else if (gclass228.gclass230_0.gclass164_0.gclass163_0.TechType ==
-                                 TechType.FireControlJammer && this.FireControlJammerStrength < gclass228.gclass230_0.decimal_3)
-                            this.FireControlJammerStrength = (int)gclass228.gclass230_0.decimal_3;
+                        else if (gclass228.Component.gclass164_0.gclass163_0.TechType ==
+                                 TechType.FireControlJammer && this.FireControlJammerStrength < gclass228.Component.decimal_3)
+                            this.FireControlJammerStrength = (int)gclass228.Component.decimal_3;
 
-                        if (gclass228.gclass230_0.gclass164_0.gclass163_0.TechType == TechType.MissileJammer &&
-                            this.MissileJammerStrength < gclass228.gclass230_0.decimal_3)
+                        if (gclass228.Component.gclass164_0.gclass163_0.TechType == TechType.MissileJammer &&
+                            this.MissileJammerStrength < gclass228.Component.decimal_3)
                         {
-                            this.MissileJammerStrength = (int)gclass228.gclass230_0.decimal_3;
+                            this.MissileJammerStrength = (int)gclass228.Component.decimal_3;
                             continue;
                         }
 
@@ -3328,11 +3344,11 @@ public partial class ShipClass
                     case AuroraComponentType.MissileLauncher:
                     case AuroraComponentType.FighterPodBay:
                         this.MagazineCapacity += gclass228.method_0();
-                        this.ProtectionValue += gclass228.gclass230_0.decimal_1 * gclass228.decimal_0;
-                        if (gclass228.gclass230_0.decimal_1 > 1M)
+                        this.ProtectionValue += gclass228.Component.decimal_1 * gclass228.NumComponent;
+                        if (gclass228.Component.decimal_1 > 1M)
                             flag2 = false;
-                        str10 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
-                        if (gclass228.gclass230_0.gclass231_0.ComponentTypeID ==
+                        str10 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
+                        if (gclass228.Component.Data.ComponentTypeID ==
                             AuroraComponentType.MissileLauncher)
                         {
                             flag5 = true;
@@ -3341,36 +3357,38 @@ public partial class ShipClass
 
                         continue;
                     case AuroraComponentType.ActiveSearchSensors:
-                        if (this.ActiveSensorStrength < gclass228.gclass230_0.decimal_3)
-                            this.ActiveSensorStrength = (int)gclass228.gclass230_0.decimal_3;
-                        this.int_67 += (int)gclass228.gclass230_0.decimal_1;
-                        if (gclass228.gclass230_0.decimal_1 > 1M)
+                        if (this.ActiveSensorStrength < gclass228.Component.decimal_3)
+                            this.ActiveSensorStrength = (int)gclass228.Component.decimal_3;
+                        this.int_67 += (int)gclass228.Component.decimal_1;
+                        if (gclass228.Component.decimal_1 > 1M)
                             this.Commercial = false;
-                        str11 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str11 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.MissileFireControl:
-                        if (gclass228.gclass230_0.decimal_6 > 1M)
+                        if (gclass228.Component.Resolution > 1M)
                             flag4 = false;
                         flag6 = true;
-                        str13 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str13 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.DamageControl:
                         this.DCRating += (int)gclass228.method_0();
                         continue;
                     case AuroraComponentType.TroopTransport:
-                        if (this.gclass163_0 != gclass228.gclass230_0.gclass164_0.gclass163_0 &&
+                        if (this.gclass163_0 != gclass228.Component.gclass164_0.gclass163_0 &&
                             this.gclass163_0 != null)
                         {
                             this.string_2 =
-                                $"{this.string_2}Different types of troop transport modules cannot be added to the same ship class{Environment.NewLine}";
+                                string.Format(
+                                    "{0}Different types of troop transport modules cannot be added to the same ship class{1}",
+                                    this.string_2, Environment.NewLine);
                             continue;
                         }
 
                         this.TroopCapacity += (int)gclass228.method_0();
-                        this.gclass163_0 = gclass228.gclass230_0.gclass164_0.gclass163_0;
+                        this.gclass163_0 = gclass228.Component.gclass164_0.gclass163_0;
                         continue;
                     case AuroraComponentType.JumpPointStabilisation:
-                        this.JGConstructionTime = (int)gclass228.gclass230_0.decimal_3;
+                        this.JGConstructionTime = (int)gclass228.Component.decimal_3;
                         continue;
                     case AuroraComponentType.Engineering:
                         num1 += gclass228.method_0();
@@ -3381,54 +3399,42 @@ public partial class ShipClass
                         this.MaintSupplies = num4 + num3;
                         if (this.Commercial && num1 > 0M)
                         {
-                            str19 = $"MSP {AuroraUtils.smethod_37(this.MaintSupplies)}";
+                            str19 = string.Format("MSP {0}", AuroraUtils.smethod_37(this.MaintSupplies));
                             continue;
                         }
 
-                        string[] strArray1 = new string[7]
-                        {
-                            "MSP ",
-                            AuroraUtils.smethod_37(this.MaintSupplies),
-                            "    AFR ",
-                            null,
-                            null,
-                            null,
-                            null
-                        };
-                        num6 = Math.Round(this.BaseFailureChance);
-                        strArray1[3] = num6.ToString();
-                        strArray1[4] = "%    IFR ";
-                        num6 = Math.Round(this.BaseFailureChance / 72M, 1);
-                        strArray1[5] = num6.ToString();
-                        strArray1[6] = "%";
-                        str19 = string.Concat(strArray1);
+                        var out1 = Math.Round(this.BaseFailureChance);
+                        var out2 = Math.Round(this.BaseFailureChance / 72M, 1);
+                        str19 = string.Format("MSP {0}   AFR {1}%   AFR {2}%", AuroraUtils.smethod_37(MaintSupplies),
+                            out1, out2);
                         continue;
                     case AuroraComponentType.SoriumHarvester:
-                        this.Harvesters = (int)gclass228.decimal_0;
+                        this.Harvesters = (int)gclass228.NumComponent;
                         continue;
                     case AuroraComponentType.TerraformingModule:
-                        this.Terraformers = (int)gclass228.decimal_0;
+                        this.Terraformers = (int)gclass228.NumComponent;
                         continue;
                     case AuroraComponentType.TractorBeam:
-                        if (gclass228.decimal_0 > 1M)
+                        if (gclass228.NumComponent > 1M)
                             this.string_2 =
-                                $"{this.string_2}Only one tractor beam per ship is allowed{Environment.NewLine}";
+                                string.Format("{0}Only one tractor beam per ship is allowed{1}", this.string_2,
+                                    Environment.NewLine);
                         this.STSTractor = 1;
                         continue;
                     case AuroraComponentType.OrbitalMiningModule:
-                        this.MiningModules = (int)gclass228.decimal_0;
+                        this.MiningModules = (int)gclass228.NumComponent;
                         continue;
                     case AuroraComponentType.SalvageModule:
-                        num2 = (int)gclass228.decimal_0;
+                        num2 = (int)gclass228.NumComponent;
                         this.SalvageRate = (int)gclass228.method_0();
                         continue;
                     case AuroraComponentType.EMSensors:
-                        if (gclass228.gclass230_0.decimal_3 > this.EMSensorStrength)
-                            this.EMSensorStrength = (int)gclass228.gclass230_0.decimal_3;
-                        this.int_67 += (int)gclass228.gclass230_0.decimal_1;
-                        if (gclass228.gclass230_0.decimal_1 > 1M)
+                        if (gclass228.Component.decimal_3 > this.EMSensorStrength)
+                            this.EMSensorStrength = (int)gclass228.Component.decimal_3;
+                        this.int_67 += (int)gclass228.Component.decimal_1;
+                        if (gclass228.Component.decimal_1 > 1M)
                             this.Commercial = false;
-                        str3 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str3 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.HangarDeck:
                         this.ParasiteCapacity += gclass228.method_0();
@@ -3440,44 +3446,30 @@ public partial class ShipClass
 
                         continue;
                     case AuroraComponentType.CloakingDevice:
-                        if (gclass228.gclass230_0.decimal_3 >= this.Size)
+                        if (gclass228.Component.decimal_3 >= this.Size)
                         {
-                            this.SensorReduction = gclass228.gclass230_0.decimal_10;
+                            this.SensorReduction = gclass228.Component.decimal_10;
                             continue;
                         }
 
                         this.string_2 =
-                            $"{this.string_2}Cloaking Device Ship Size is too small for this design{Environment.NewLine}";
+                            string.Format("{0}Cloaking Device Ship Size is too small for this design{1}", this.string_2,
+                                Environment.NewLine);
                         continue;
                     case AuroraComponentType.MaintenanceStorage:
                         num3 += (int)gclass228.method_0();
                         this.MaintSupplies = num4 + num3;
                         if (this.Commercial && num1 > 0M)
                         {
-                            str19 = $"MSP {AuroraUtils.smethod_37(this.MaintSupplies)}";
+                            str19 = string.Format("MSP {0}", AuroraUtils.smethod_37(this.MaintSupplies));
                             continue;
                         }
 
-                        string[] strArray2 = new string[7]
-                        {
-                            "MSP ",
-                            AuroraUtils.smethod_37(this.MaintSupplies),
-                            "    AFR ",
-                            null,
-                            null,
-                            null,
-                            null
-                        };
-                        num6 = Math.Round(this.BaseFailureChance);
-                        strArray2[3] = num6.ToString();
-                        strArray2[4] = "%    IFR ";
-                        num6 = Math.Round(this.BaseFailureChance / 72M, 1);
-                        strArray2[5] = num6.ToString();
-                        strArray2[6] = "%";
-                        str19 = string.Concat(strArray2);
+                        str19 = string.Format("MSP {0}   AFR {1}%   AFR {2}%", AuroraUtils.smethod_37(MaintSupplies),
+                            Math.Round(this.BaseFailureChance), Math.Round(this.BaseFailureChance / 72M, 1));
                         continue;
                     case AuroraComponentType.MaintenanceModule:
-                        this.MaintModules = (int)gclass228.decimal_0;
+                        this.MaintModules = (int)gclass228.NumComponent;
                         continue;
                     case AuroraComponentType.PassengerModule:
                         this.int_61 += (int)gclass228.method_0();
@@ -3496,10 +3488,10 @@ public partial class ShipClass
                         this.RefuellingRate = (int)gclass228.method_0();
                         continue;
                     case AuroraComponentType.OrdnanceTransferSystem:
-                        this.OrdnanceTransferRate = (int)gclass228.gclass230_0.decimal_3;
+                        this.OrdnanceTransferRate = (int)gclass228.Component.decimal_3;
                         continue;
                     case AuroraComponentType.OrdnanceTransferHub:
-                        this.OrdnanceTransferHub = (int)gclass228.decimal_0;
+                        this.OrdnanceTransferHub = (int)gclass228.NumComponent;
                         if (this.OrdnanceTransferHub > 1)
                         {
                             this.OrdnanceTransferHub = 1;
@@ -3509,29 +3501,30 @@ public partial class ShipClass
                         continue;
                     case AuroraComponentType.ELINTModule:
                         this.ELINTRating = (int)gclass228.method_0();
-                        str4 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str4 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     case AuroraComponentType.DiplomacyModule:
-                        this.DiplomacyRating = (int)gclass228.gclass230_0.decimal_3;
+                        this.DiplomacyRating = (int)gclass228.Component.decimal_3;
                         continue;
                     case AuroraComponentType.BioEnergyStorage:
                         this.BioEnergyCapacity += (int)gclass228.method_0();
                         continue;
                     case AuroraComponentType.MiscellaneousComponent:
-                        if (gclass228.decimal_0 > 1M)
+                        if (gclass228.NumComponent > 1M)
                         {
-                            str12 = $"{str12}{gclass228.decimal_0.ToString()}x {gclass228.gclass230_0.Name}    ";
+                            str12 = string.Format("{0}{1}x {2}    ", str12, gclass228.NumComponent.ToString(),
+                                gclass228.Component.Name);
                             continue;
                         }
 
-                        str12 = $"{str12}{gclass228.gclass230_0.Name}    ";
+                        str12 = string.Format("{0}{1}    ", str12, gclass228.Component.Name);
                         continue;
                     case AuroraComponentType.MobileRepairBay:
                         this.RepairYardCapacity += (int)gclass228.method_0();
                         continue;
                     case AuroraComponentType.DecoyMissileLauncher:
                         this.DecoyCapacity += gclass228.method_0();
-                        str10 += gclass228.gclass230_0.method_13(gclass228.decimal_0);
+                        str10 += gclass228.Component.GetComponentSpecLine(gclass228.NumComponent);
                         continue;
                     default:
                         continue;
@@ -3543,20 +3536,22 @@ public partial class ShipClass
                 this.ClassCrossSection = (Decimal)AuroraUtils.double_20;
             if (this.RequiredPower > this.ReactorPower)
                 this.string_2 =
-                    $"{this.string_2}Reactors are generating insufficient power for the weapons ({this.ReactorPower.ToString()}/{this.RequiredPower.ToString()}){Environment.NewLine}";
+                    string.Format("{0}Reactors are generating insufficient power for the weapons ({1}/{2}){3}",
+                        this.string_2, this.ReactorPower.ToString(), this.RequiredPower.ToString(),
+                        Environment.NewLine);
             if (flag2 && flag4)
                 this.bool_6 = true;
             int int_25 = (int)this.Race.method_388(this.gclass0_0.TechTypeDataDictionary[TechType.FireControlSpeedRating])
                 .decimal_0;
             if (this.MaxSpeed > int_25)
                 int_25 = this.MaxSpeed;
-            foreach (GClass228 gclass228 in this.dictionary_0.Values
-                         .Where<GClass228>(gclass228_0 =>
-                             gclass228_0.gclass230_0.bool_4 ||
-                             gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.CIWS)
-                         .OrderByDescending<GClass228, int>(gclass228_0 => gclass228_0.gclass230_0.method_5(1000))
-                         .ToList<GClass228>())
-                str9 += gclass228.gclass230_0.method_8(gclass228.decimal_0, this.int_66, int_25, int_70, this.int_49);
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values
+                         .Where<ClassComponent>(gclass228_0 =>
+                             gclass228_0.Component.bool_4 ||
+                             gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.CIWS)
+                         .OrderByDescending<ClassComponent, int>(gclass228_0 => gclass228_0.Component.method_5(1000))
+                         .ToList<ClassComponent>())
+                str9 += gclass228.Component.method_8(gclass228.NumComponent, this.int_66, int_25, int_70, this.int_49);
             this.method_90();
             this.method_91();
             if (!this.Commercial)
@@ -3564,33 +3559,39 @@ public partial class ShipClass
             if (this.Commercial && num1 < 1M)
             {
                 this.string_2 =
-                    $"{this.string_2}Commercial designs require at least one HS (50 tons) of Engineering{Environment.NewLine}";
+                    string.Format("{0}Commercial designs require at least one HS (50 tons) of Engineering{1}",
+                        this.string_2, Environment.NewLine);
                 this.Commercial = false;
             }
 
             if (flag3 && !flag1)
-                this.string_2 = $"{this.string_2}Ship has beam fire control but no beam weapons{Environment.NewLine}";
+                this.string_2 = string.Format("{0}Ship has beam fire control but no beam weapons{1}", this.string_2,
+                    Environment.NewLine);
             if (!flag3 && flag1)
-                this.string_2 = $"{this.string_2}Ship has beam weapons but no beam fire control{Environment.NewLine}";
+                this.string_2 = string.Format("{0}Ship has beam weapons but no beam fire control{1}", this.string_2,
+                    Environment.NewLine);
             if (flag6 && !flag5)
                 this.string_2 =
-                    $"{this.string_2}Ship has missile fire control weapons but no missile launchers{Environment.NewLine}";
+                    string.Format("{0}Ship has missile fire control weapons but no missile launchers{1}", this.string_2,
+                        Environment.NewLine);
             if (!flag6 && flag5)
                 this.string_2 =
-                    $"{this.string_2}Ship has missile launchers but no missile fire control{Environment.NewLine}";
-            if (!this.dictionary_0.ContainsKey(18) && this.Size > 20M)
-                this.string_2 = $"{this.string_2}Ship has no bridge{Environment.NewLine}";
+                    string.Format("{0}Ship has missile launchers but no missile fire control{1}", this.string_2,
+                        Environment.NewLine);
+            if (!this.ClassComponents.ContainsKey(18) && this.Size > 20M)
+                this.string_2 = string.Format("{0}Ship has no bridge{1}", this.string_2, Environment.NewLine);
             if (this.FuelTanker == 1 && this.MinimumFuel == 0 && this.EnginePower > 0M)
-                this.string_2 = $"{this.string_2}Minimum fuel set to zero{Environment.NewLine}";
+                this.string_2 = string.Format("{0}Minimum fuel set to zero{1}", this.string_2, Environment.NewLine);
             if (this.RefuellingRate > 0 && this.RefuellingRate < 20000 && this.Size > 20M)
             {
                 this.RefuellingRate = 0;
                 this.string_2 =
-                    $"{this.string_2}Small Craft Refuelling System can only be used on ships of 1000 tons or less{Environment.NewLine}";
+                    string.Format("{0}Small Craft Refuelling System can only be used on ships of 1000 tons or less{1}",
+                        this.string_2, Environment.NewLine);
             }
 
             Decimal num9 = 0M;
-            foreach (PopOrdnanceStock gclass130 in this.list_0)
+            foreach (ShipOrdnance gclass130 in this.OrdnanceTemplate)
             {
                 str14 += gclass130.method_1();
                 if (gclass130.RaceMissile.ShipDecoy == 0)
@@ -3599,71 +3600,75 @@ public partial class ShipClass
 
             if (num9 > this.MagazineCapacity)
                 this.string_2 += "Total ordnance exceeds magazine capacity";
-            foreach (GClass74 gclass74 in this.list_1)
+            foreach (ClassFighterTemplate gclass74 in this.FighterClassTemplates)
                 str15 += gclass74.method_0();
             if (str15 != "")
                 flag7 = true;
-            List<GClass75> list = this.list_2.OrderBy<GClass75, string>(gclass75_0 => gclass75_0.gclass102_0.Name)
-                .ToList<GClass75>();
+            List<ClassGroundTemplate> list = this.GroundUnitTemplates.OrderBy<ClassGroundTemplate, string>(gclass75_0 => gclass75_0.GroundUnitTemplate.Name)
+                .ToList<ClassGroundTemplate>();
             if (list.Count > 0)
                 flag8 = true;
-            foreach (GClass75 gclass75 in list)
-                str15 = $"{str15}{gclass75.int_0.ToString()}x {gclass75.gclass102_0.Name}{Environment.NewLine}";
+            foreach (ClassGroundTemplate gclass75 in list)
+                str15 = string.Format("{0}{1}x {2}{3}", str15, gclass75.Number.ToString(), gclass75.GroundUnitTemplate.Name,
+                    Environment.NewLine);
             string str20;
             if (this.Race.BioShips)
             {
                 this.Crew = 0;
-                str20 = $"{str16}Biological Organism - No Crew, Maintenance or Fuel Required    ";
+                str20 = string.Format("{0}Biological Organism - No Crew, Maintenance or Fuel Required    ", str16);
             }
             else
                 str20 = !(this.PlannedDeployment >= 1M)
-                    ? $"{str16}Intended Deployment Time: {AuroraUtils.FormatNumberToDigits(this.PlannedDeployment * 30M, 1)} days    "
-                    : $"{str16}Intended Deployment Time: {this.PlannedDeployment.ToString()} months    ";
+                    ? string.Format("{0}Intended Deployment Time: {1} days    ", str16,
+                        AuroraUtils.FormatNumberToDigits(this.PlannedDeployment * 30M, 1))
+                    : string.Format("{0}Intended Deployment Time: {1} months    ", str16,
+                        this.PlannedDeployment.ToString());
 
             if (this.int_60 > 0)
-                str20 = $"{str20}Flight Crew Berths {AuroraUtils.smethod_37(this.int_60)}    ";
+                str20 = string.Format("{0}Flight Crew Berths {1}    ", str20, AuroraUtils.smethod_37(this.int_60));
             if (this.CrewDesignEfficiency < 1M)
-                str20 = $"{str20}CDE {AuroraUtils.FormatNumberToDigits((1M - this.CrewDesignEfficiency) * 100M, 0)}%    ";
+                str20 = string.Format("{0}CDE {1}%    ", str20,
+                    AuroraUtils.FormatNumberToDigits((1M - this.CrewDesignEfficiency) * 100M, 0));
             if (this.MoraleCheckRequired && this.Race.SpecialNPRID != SpecialNPRIDs.StarSwarm)
                 str20 += "Morale Check Required    ";
             if (this.Size <= 20M && this.ControlRating == 0)
                 this.ControlRating = 1;
-            string str21 = $"Control Rating {this.ControlRating.ToString()}   ";
-            if (this.dictionary_0.ContainsKey(18))
+            string str21 = string.Format("Control Rating {0}   ", this.ControlRating.ToString());
+            if (this.ClassComponents.ContainsKey(18))
                 str21 += "BRG   ";
             if (this.ProtectionValue > 0M)
                 genum15_0 = CommanderLevel.LVL2;
             if (this.Size <= 20M)
                 genum15_0 = CommanderLevel.LVL1;
-            if (this.dictionary_0.ContainsKey(65736))
+            if (this.ClassComponents.ContainsKey(65736))
             {
                 str21 += "AUX   ";
                 if (genum15_0 < CommanderLevel.LVL2)
                     genum15_0 = CommanderLevel.LVL2;
             }
 
-            if (this.dictionary_0.ContainsKey(65737))
+            if (this.ClassComponents.ContainsKey(65737))
             {
                 str21 += "ENG   ";
                 if (genum15_0 < CommanderLevel.LVL3)
                     genum15_0 = CommanderLevel.LVL3;
             }
 
-            if (this.dictionary_0.ContainsKey(65738))
+            if (this.ClassComponents.ContainsKey(65738))
             {
                 str21 += "CIC   ";
                 if (genum15_0 < CommanderLevel.LVL3)
                     genum15_0 = CommanderLevel.LVL3;
             }
 
-            if (this.dictionary_0.ContainsKey(65739))
+            if (this.ClassComponents.ContainsKey(65739))
             {
                 str21 += "SCI   ";
                 if (genum15_0 < CommanderLevel.LVL2)
                     genum15_0 = CommanderLevel.LVL2;
             }
 
-            if (this.dictionary_0.ContainsKey(225))
+            if (this.ClassComponents.ContainsKey(225))
             {
                 str21 += "FLG   ";
                 this.FlagBridge = true;
@@ -3671,14 +3676,14 @@ public partial class ShipClass
                     genum15_0 = CommanderLevel.LVL3;
             }
 
-            if (this.dictionary_0.ContainsKey(65740))
+            if (this.ClassComponents.ContainsKey(65740))
             {
                 str21 += "PFC   ";
                 if (genum15_0 < CommanderLevel.LVL2)
                     genum15_0 = CommanderLevel.LVL2;
             }
 
-            if (this.dictionary_0.ContainsKey(65902))
+            if (this.ClassComponents.ContainsKey(65902))
             {
                 str21 += "DIP   ";
                 if (genum15_0 < CommanderLevel.LVL3)
@@ -3687,12 +3692,14 @@ public partial class ShipClass
 
             if (this.SeniorCO == 1)
                 ++genum15_0;
-            this.RankTheme = this.Race.GetRankThemeForCommanderLevel(genum15_0, AuroraCommanderType.Naval);
-            string str22 = $"{this.RankTheme.RankName}    {str21}";
+            this.RacialRankTheme = this.Race.GetRankThemeForCommanderLevel(genum15_0, AuroraCommanderType.Naval);
+            string str22 = string.Format("{0}    {1}", this.RacialRankTheme.RankName, str21);
             if (this.ParasiteCapacity > 0M)
-                str17 = $"{str17}Hangar Deck Capacity {AuroraUtils.smethod_38(this.ParasiteCapacity * 50M)} tons     ";
+                str17 = string.Format("{0}Hangar Deck Capacity {1} tons     ", str17,
+                    AuroraUtils.smethod_38(this.ParasiteCapacity * 50M));
             if (this.TroopCapacity > 0)
-                str17 = $"{str17}Troop Capacity {AuroraUtils.smethod_37(this.TroopCapacity)} tons     ";
+                str17 = string.Format("{0}Troop Capacity {1} tons     ", str17,
+                    AuroraUtils.smethod_37(this.TroopCapacity));
             if (this.gclass163_0 != null)
             {
                 if (this.gclass163_0.TechType == TechType.TroopTransportDropshipEquipped)
@@ -3703,31 +3710,39 @@ public partial class ShipClass
 
             if (this.MagazineCapacity > 0M || this.DecoyCapacity > 0M)
                 str17 =
-                    $"{str17}Magazine {AuroraUtils.FormatNumberToDigits(this.MagazineCapacity, 2)} / {AuroraUtils.FormatNumberToDigits(this.DecoyCapacity, 2)}    ";
+                    string.Format("{0}Magazine {1} / {2}    ", str17,
+                        AuroraUtils.FormatNumberToDigits(this.MagazineCapacity, 2),
+                        AuroraUtils.FormatNumberToDigits(this.DecoyCapacity, 2));
             if (this.CargoCapacity > 0)
-                str17 = $"{str17}Cargo {AuroraUtils.smethod_37(this.CargoCapacity)}    ";
+                str17 = string.Format("{0}Cargo {1}    ", str17, AuroraUtils.smethod_37(this.CargoCapacity));
             if (this.ColonistCapacity > 0)
             {
-                Decimal decimal_73 = this.dictionary_0.Values
-                    .Where<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                        AuroraComponentType.ColonistTransport && gclass228_0.gclass230_0.genum87_0 == GEnum87.const_7)
-                    .Sum<GClass228>(gclass228_0 => gclass228_0.gclass230_0.decimal_3 * gclass228_0.decimal_0);
+                Decimal decimal_73 = this.ClassComponents.Values
+                    .Where<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.Data.ComponentTypeID ==
+                        AuroraComponentType.ColonistTransport && gclass228_0.Component.genum87_0 == GEnum87.const_7)
+                    .Sum<ClassComponent>(gclass228_0 => gclass228_0.Component.decimal_3 * gclass228_0.NumComponent);
                 if (decimal_73 > 0M)
                     this.ArkShip = true;
                 str17 = !(decimal_73 == 0M)
                     ? (!(decimal_73 == this.ColonistCapacity)
-                        ? $"{$"{str17}Colonist Berths {AuroraUtils.smethod_38(decimal_73)}    "}Cryogenic Berths {AuroraUtils.smethod_38(this.ColonistCapacity - decimal_73)}    "
-                        : $"{str17}Colonist Berths {AuroraUtils.smethod_37(this.ColonistCapacity)}    ")
-                    : $"{str17}Cryogenic Berths {AuroraUtils.smethod_37(this.ColonistCapacity)}    ";
+                        ? string.Format("{0}Cryogenic Berths {1}    ",
+                            string.Format("{0}Colonist Berths {1}    ", str17, AuroraUtils.smethod_38(decimal_73)),
+                            AuroraUtils.smethod_38(this.ColonistCapacity - decimal_73))
+                        : string.Format("{0}Colonist Berths {1}    ", str17,
+                            AuroraUtils.smethod_37(this.ColonistCapacity)))
+                    : string.Format("{0}Cryogenic Berths {1}    ", str17,
+                        AuroraUtils.smethod_37(this.ColonistCapacity));
             }
 
             if (this.WorkerCapacity > 0)
-                str17 = $"{str17}Habitation Capacity {AuroraUtils.smethod_37(this.WorkerCapacity)}    ";
+                str17 = string.Format("{0}Habitation Capacity {1}    ", str17,
+                    AuroraUtils.smethod_37(this.WorkerCapacity));
             if (this.int_61 > 0)
-                str17 = $"{str17}Passengers {this.int_61.ToString()}    ";
+                str17 = string.Format("{0}Passengers {1}    ", str17, this.int_61.ToString());
             if (this.CargoShuttleStrength > 0)
-                str17 = $"{str17}Cargo Shuttle Multiplier {this.CargoShuttleStrength.ToString()}    ";
+                str17 = string.Format("{0}Cargo Shuttle Multiplier {1}    ", str17,
+                    this.CargoShuttleStrength.ToString());
             if (this.STSTractor > 0)
                 str17 += "Tractor Beam     ";
             if (str17 != "")
@@ -3738,57 +3753,76 @@ public partial class ShipClass
             string str24;
             if (string_8 == "")
             {
-                string str25 = $"{this.ClassName} class {this.ShipHull.Description}";
+                string str25 = string.Format("{0} class {1}", this.ClassName, this.ShipHull.Description);
                 if (this.method_28())
                 {
                     str25 += " (P)";
                     if (treeNode_0 != null)
-                        treeNode_0.Text = $"{this.ClassName} (P)";
+                        treeNode_0.Text = string.Format("{0} (P)", this.ClassName);
                 }
                 else if (treeNode_0 != null)
                     treeNode_0.Text = this.ClassName;
 
                 str24 =
-                    $"{str25}      {str23} tons       {AuroraUtils.smethod_37(this.Crew)} Crew       {AuroraUtils.FormatNumberToDigits(this.Cost, 1)} BP       TCS {AuroraUtils.smethod_38(this.ClassCrossSection)}    TH {AuroraUtils.smethod_38(this.ClassThermal)}    EM {AuroraUtils.smethod_38(this.ShieldStrength * AuroraUtils.decimal_27)}{Environment.NewLine}";
+                    string.Format("{0}      {1} tons       {2} Crew       {3} BP       TCS {4}    TH {5}    EM {6}{7}",
+                        str25, str23, AuroraUtils.smethod_37(this.Crew), AuroraUtils.FormatNumberToDigits(this.Cost, 1),
+                        AuroraUtils.smethod_38(this.ClassCrossSection), AuroraUtils.smethod_38(this.ClassThermal),
+                        AuroraUtils.smethod_38(this.ShieldStrength * AuroraUtils.decimal_27), Environment.NewLine);
             }
             else
                 str24 =
-                    $"{string_8}  ({this.ClassName} class {this.ShipHull.Description})      {str23} tons       {AuroraUtils.smethod_37(this.Crew)} Crew       {AuroraUtils.FormatNumberToDigits(this.Cost, 1)} BP       TCS {AuroraUtils.smethod_38(this.ClassCrossSection)}    TH {AuroraUtils.smethod_38(this.ClassThermal)}    EM {AuroraUtils.smethod_38(this.ShieldStrength * AuroraUtils.decimal_27)}{Environment.NewLine}";
+                    string.Format(
+                        "{0}  ({1} class {2})      {3} tons       {4} Crew       {5} BP       TCS {6}    TH {7}    EM {8}{9}",
+                        string_8, this.ClassName, this.ShipHull.Description, str23, AuroraUtils.smethod_37(this.Crew),
+                        AuroraUtils.FormatNumberToDigits(this.Cost, 1), AuroraUtils.smethod_38(this.ClassCrossSection),
+                        AuroraUtils.smethod_38(this.ClassThermal),
+                        AuroraUtils.smethod_38(this.ShieldStrength * AuroraUtils.decimal_27), Environment.NewLine);
 
-            string str26 = $"{str24}{this.MaxSpeed.ToString()} km/s";
+            string str26 = string.Format("{0}{1} km/s", str24, this.MaxSpeed.ToString());
             if (this.JumpRating > 0)
-                str26 = $"{str26}    JR {this.JumpRating.ToString()}-{this.JumpDistance.ToString()}";
+                str26 = string.Format("{0}    JR {1}-{2}", str26, this.JumpRating.ToString(),
+                    this.JumpDistance.ToString());
             if (this.CommercialJumpDrive == 1)
                 str26 += "(C)";
             Decimal num10 = 0M;
-            GClass228 gclass228_1 = this.method_77();
+            ClassComponent gclass228_1 = this.method_77();
             if (gclass228_1 != null)
-                num10 = gclass228_1.gclass230_0.decimal_4;
+                num10 = gclass228_1.Component.decimal_4;
             string str27;
             if (this.NoArmour == 1)
-                str27 = $"{str26}      No Armour       Shields {this.ShieldStrength.ToString()}-{num10.ToString()}     ";
+                str27 = string.Format("{0}      No Armour       Shields {1}-{2}     ", str26,
+                    this.ShieldStrength.ToString(), num10.ToString());
             else
                 str27 =
-                    $"{str26}      Armour {this.ArmourThickness.ToString()}-{this.ArmourWidth.ToString()}       Shields {this.ShieldStrength.ToString()}-{num10.ToString()}       ";
+                    string.Format("{0}      Armour {1}-{2}       Shields {3}-{4}       ", str26,
+                        this.ArmourThickness.ToString(), this.ArmourWidth.ToString(), this.ShieldStrength.ToString(),
+                        num10.ToString());
             if (this.ELINTRating > this.EMSensorStrength)
                 this.EMSensorStrength = this.ELINTRating;
             string str28 =
-                $"{str27}HTK {this.int_26.ToString()}      Sensors {this.PassiveSensorStrength.ToString()}/{this.EMSensorStrength.ToString()}/{this.GravSurvey.ToString()}/{this.GeoSurvey.ToString()}";
+                string.Format("{0}HTK {1}      Sensors {2}/{3}/{4}/{5}", str27, this.int_26.ToString(),
+                    this.PassiveSensorStrength.ToString(), this.EMSensorStrength.ToString(), this.GravSurvey.ToString(),
+                    this.GeoSurvey.ToString());
             int num11 = this.method_27();
             string str29 =
-                $"{str28}      DCR {this.DCRating.ToString()}-{num11.ToString()}      PPV {AuroraUtils.FormatNumberToDigits(this.ProtectionValue, 2)}{Environment.NewLine}";
+                string.Format("{0}      DCR {1}-{2}      PPV {3}{4}", str28, this.DCRating.ToString(), num11.ToString(),
+                    AuroraUtils.FormatNumberToDigits(this.ProtectionValue, 2), Environment.NewLine);
             if (this.Race.SpecialNPRID != SpecialNPRIDs.StarSwarm)
             {
                 if (this.Commercial)
                 {
                     str29 =
-                        $"{str29}{str19}    Max Repair {AuroraUtils.FormatNumberToDigits(this.decimal_7, 1)} MSP{Environment.NewLine}";
+                        string.Format("{0}{1}    Max Repair {2} MSP{3}", str29, str19,
+                            AuroraUtils.FormatNumberToDigits(this.decimal_7, 1), Environment.NewLine);
                 }
                 else
                 {
                     Decimal decimal_73 = this.BaseFailureChance / 100M * this.decimal_23;
                     str29 =
-                        $"{str29}Maint Life {this.decimal_22.ToString()} Years     {str19}    1YR {AuroraUtils.smethod_38(decimal_73)}    5YR {AuroraUtils.smethod_38(decimal_73 * 15M)}    Max Repair {AuroraUtils.FormatNumberToDigits(this.decimal_7, 1)} MSP{Environment.NewLine}";
+                        string.Format("{0}Maint Life {1} Years     {2}    1YR {3}    5YR {4}    Max Repair {5} MSP{6}",
+                            str29, this.decimal_22.ToString(), str19, AuroraUtils.smethod_38(decimal_73),
+                            AuroraUtils.smethod_38(decimal_73 * 15M),
+                            AuroraUtils.FormatNumberToDigits(this.decimal_7, 1), Environment.NewLine);
                 }
             }
 
@@ -3797,32 +3831,47 @@ public partial class ShipClass
                 str30 = str30 + str22 + Environment.NewLine;
             string str31 = str30 + str20 + Environment.NewLine;
             if (this.JGConstructionTime > 0)
-                str31 = $"{str31}Jump Point Stabilisation: {this.JGConstructionTime.ToString()} days{Environment.NewLine}";
+                str31 = string.Format("{0}Jump Point Stabilisation: {1} days{2}", str31,
+                    this.JGConstructionTime.ToString(), Environment.NewLine);
             if (this.RepairYardCapacity > 0)
-                str31 = $"{str31}Repair Capacity: {this.RepairYardCapacity.ToString()} tons{Environment.NewLine}";
+                str31 = string.Format("{0}Repair Capacity: {1} tons{2}", str31, this.RepairYardCapacity.ToString(),
+                    Environment.NewLine);
             if (this.RecreationalModule)
-                str31 = $"{str31}Recreational Facilities{Environment.NewLine}";
+                str31 = string.Format("{0}Recreational Facilities{1}", str31, Environment.NewLine);
             if (this.Harvesters > 0)
                 str31 =
-                    $"{str31}Fuel Harvester: {this.Harvesters.ToString()} modules producing {AuroraUtils.smethod_38(this.Race.FuelProduction * this.Harvesters)} litres per annum{Environment.NewLine}";
+                    string.Format("{0}Fuel Harvester: {1} modules producing {2} litres per annum{3}", str31,
+                        this.Harvesters.ToString(), AuroraUtils.smethod_38(this.Race.FuelProduction * this.Harvesters),
+                        Environment.NewLine);
             if (this.Terraformers > 0)
                 str31 =
-                    $"{str31}Terraformer: {this.Terraformers.ToString()} modules producing {AuroraUtils.FormatNumberToDigits(this.Race.TerraformingRate * this.Terraformers, 4)} atm per annum{Environment.NewLine}";
+                    string.Format("{0}Terraformer: {1} modules producing {2} atm per annum{3}", str31,
+                        this.Terraformers.ToString(),
+                        AuroraUtils.FormatNumberToDigits(this.Race.TerraformingRate * this.Terraformers, 4),
+                        Environment.NewLine);
             if (this.MiningModules > 0)
                 str31 =
-                    $"{str31}Orbital Miner: {this.MiningModules.ToString()} modules producing {AuroraUtils.smethod_38(this.Race.MineProduction * this.MiningModules)} tons per mineral per annum{Environment.NewLine}";
+                    string.Format("{0}Orbital Miner: {1} modules producing {2} tons per mineral per annum{3}", str31,
+                        this.MiningModules.ToString(),
+                        AuroraUtils.smethod_38(this.Race.MineProduction * this.MiningModules), Environment.NewLine);
             if (this.MaintModules > 0)
                 str31 =
-                    $"{str31}Maintenance Modules: {this.MaintModules.ToString()} module(s) capable of supporting ships of {AuroraUtils.smethod_38(this.Race.MaintenanceCapacity * this.MaintModules)} tons{Environment.NewLine}";
+                    string.Format("{0}Maintenance Modules: {1} module(s) capable of supporting ships of {2} tons{3}",
+                        str31, this.MaintModules.ToString(),
+                        AuroraUtils.smethod_38(this.Race.MaintenanceCapacity * this.MaintModules), Environment.NewLine);
             if (num2 > 0)
                 str31 =
-                    $"{str31}Salvager: {num2.ToString()} module(s) capable of salvaging {this.SalvageRate.ToString()} tons per day{Environment.NewLine}";
+                    string.Format("{0}Salvager: {1} module(s) capable of salvaging {2} tons per day{3}", str31,
+                        num2.ToString(), this.SalvageRate.ToString(), Environment.NewLine);
             if (this.OrdnanceTransferHub > 0)
                 str31 =
-                    $"{str31}Ordnance Transfer Hub - Capable of transferring ordnance to multiple ships simultaneously{Environment.NewLine}";
+                    string.Format(
+                        "{0}Ordnance Transfer Hub - Capable of transferring ordnance to multiple ships simultaneously{1}",
+                        str31, Environment.NewLine);
             if (this.BioEnergyCapacity > 0)
                 str31 =
-                    $"{str31}Bio-Energy Capacity {AuroraUtils.smethod_37(this.BioEnergyCapacity)} Bio-Joules{Environment.NewLine}";
+                    string.Format("{0}Bio-Energy Capacity {1} Bio-Joules{2}", str31,
+                        AuroraUtils.smethod_37(this.BioEnergyCapacity), Environment.NewLine);
             if (str12 != "")
                 str31 = str31 + str12 + Environment.NewLine;
             string str32 = str31 + Environment.NewLine;
@@ -3833,9 +3882,11 @@ public partial class ShipClass
                 str33 += this.method_88();
             if (this.RefuellingRate > 1000)
             {
-                string str34 = $"{str33}Refuelling Capability: {AuroraUtils.smethod_37(this.RefuellingRate)} litres per hour";
+                string str34 = string.Format("{0}Refuelling Capability: {1} litres per hour", str33,
+                    AuroraUtils.smethod_37(this.RefuellingRate));
                 if (this.FuelCapacity > 0)
-                    str34 = $"{str34}     Complete Refuel {AuroraUtils.FormatNumberToDigits(this.FuelCapacity / this.RefuellingRate, 1)} hours";
+                    str34 = string.Format("{0}     Complete Refuel {1} hours", str34,
+                        AuroraUtils.FormatNumberToDigits(this.FuelCapacity / this.RefuellingRate, 1));
                 str33 = str34 + Environment.NewLine;
             }
 
@@ -3845,10 +3896,12 @@ public partial class ShipClass
             string str36 = str35 + str10 + str13 + str14;
             if (this.OrdnanceTransferRate > 10)
             {
-                string str37 = $"{str36}Ordnance Transfer Rate: {AuroraUtils.smethod_37(this.OrdnanceTransferRate)} MSP per hour";
+                string str37 = string.Format("{0}Ordnance Transfer Rate: {1} MSP per hour", str36,
+                    AuroraUtils.smethod_37(this.OrdnanceTransferRate));
                 if (this.MagazineCapacity > 0M)
                     str37 =
-                        $"{str37}     Complete Transfer {AuroraUtils.FormatNumberToDigits(this.MagazineCapacity / this.OrdnanceTransferRate, 1)} hours";
+                        string.Format("{0}     Complete Transfer {1} hours", str37,
+                            AuroraUtils.FormatNumberToDigits(this.MagazineCapacity / this.OrdnanceTransferRate, 1));
                 str36 = str37 + Environment.NewLine;
             }
 
@@ -3857,27 +3910,34 @@ public partial class ShipClass
             string str38 = str36 + str11 + str3 + str2 + str4;
             if (this.SensorReduction < 1M)
                 str38 =
-                    $"{str38}Cloaking Device: Class cross-section reduced to {(this.SensorReduction * 100M).ToString()}% of normal{Environment.NewLine}";
+                    string.Format("{0}Cloaking Device: Class cross-section reduced to {1}% of normal{2}", str38,
+                        (this.SensorReduction * 100M).ToString(), Environment.NewLine);
             if (str3 != "" || str11 != "" || str2 != "" || str4 != "")
                 str38 += Environment.NewLine;
             string str39 = "";
             if (this.ActiveJammerStrength > 0M)
-                str39 = $"{str39}Sensor {this.ActiveJammerStrength.ToString()}    ";
+                str39 = string.Format("{0}Sensor {1}    ", str39, this.ActiveJammerStrength.ToString());
             if (this.FireControlJammerStrength > 0M)
-                str39 = $"{str39}Fire Control {this.FireControlJammerStrength.ToString()}    ";
+                str39 = string.Format("{0}Fire Control {1}    ", str39, this.FireControlJammerStrength.ToString());
             if (this.MissileJammerStrength > 0M)
-                str39 = $"{str39}Missile {this.MissileJammerStrength.ToString()}    ";
+                str39 = string.Format("{0}Missile {1}    ", str39, this.MissileJammerStrength.ToString());
             if (str39 != "")
-                str38 = $"{str38}Electronic Warfare Jammers:   {str39}{Environment.NewLine}{Environment.NewLine}";
+                str38 = string.Format("{0}Electronic Warfare Jammers:   {1}{2}{3}", str38, str39, Environment.NewLine,
+                    Environment.NewLine);
             if (flag7 && flag8)
-                str38 = $"{str38}Strike Group / Ground Forces{Environment.NewLine}{str15}{Environment.NewLine}";
+                str38 = string.Format("{0}Strike Group / Ground Forces{1}{2}{3}", str38, Environment.NewLine, str15,
+                    Environment.NewLine);
             else if (flag7)
-                str38 = $"{str38}Strike Group{Environment.NewLine}{str15}{Environment.NewLine}";
+                str38 = string.Format("{0}Strike Group{1}{2}{3}", str38, Environment.NewLine, str15,
+                    Environment.NewLine);
             else if (flag8)
-                str38 = $"{str38}Ground Forces{Environment.NewLine}{str15}{Environment.NewLine}";
+                str38 = string.Format("{0}Ground Forces{1}{2}{3}", str38, Environment.NewLine, str15,
+                    Environment.NewLine);
             if (str14 != "")
                 str38 =
-                    $"{str38}Missile to hit values are target speeds in km/s for 100% / 50% / 25% chance to hit{Environment.NewLine}{Environment.NewLine}";
+                    string.Format(
+                        "{0}Missile to hit values are target speeds in km/s for 100% / 50% / 25% chance to hit{1}{2}",
+                        str38, Environment.NewLine, Environment.NewLine);
             this.string_0 = str38 + this.method_87();
             this.ColonistCapacity += this.int_61;
         }
@@ -3894,18 +3954,24 @@ public partial class ShipClass
             string str;
             if (this.Commercial)
             {
-                str = $"This design is classed as a Commercial Vessel for maintenance purposes{Environment.NewLine}";
+                str = string.Format("This design is classed as a Commercial Vessel for maintenance purposes{0}",
+                    Environment.NewLine);
                 if (this.NoArmour == 1)
                     str =
-                        $"{str}This design is classed as a Space Station for construction purposes{Environment.NewLine}";
+                        string.Format("{0}This design is classed as a Space Station for construction purposes{1}", str,
+                            Environment.NewLine);
             }
             else
                 str = !this.FighterClass
-                    ? $"This design is classed as a Military Vessel for maintenance purposes{Environment.NewLine}"
-                    : $"This design is classed as a Fighter for production, combat and planetary interaction{Environment.NewLine}";
+                    ? string.Format("This design is classed as a Military Vessel for maintenance purposes{0}",
+                        Environment.NewLine)
+                    : string.Format(
+                        "This design is classed as a Fighter for production, combat and planetary interaction{0}",
+                        Environment.NewLine);
 
             return
-                $"{str}This design is classed as a {AuroraUtils.smethod_82(this.MainFunction)} for auto-assignment purposes{Environment.NewLine}";
+                string.Format("{0}This design is classed as a {1} for auto-assignment purposes{2}", str,
+                    AuroraUtils.smethod_82(this.MainFunction), Environment.NewLine);
         }
         catch (Exception ex)
         {
@@ -3919,12 +3985,17 @@ public partial class ShipClass
         try
         {
             if (!(this.EnginePower > 0M))
-                return $"Fuel Capacity {AuroraUtils.smethod_37(this.FuelCapacity)} Litres    Range N/A{Environment.NewLine}";
+                return string.Format("Fuel Capacity {0} Litres    Range N/A{1}",
+                    AuroraUtils.smethod_37(this.FuelCapacity), Environment.NewLine);
             Decimal num = this.FuelCapacity / (this.EnginePower * this.FuelEfficiency);
             Decimal decimal_73 = num * (this.MaxSpeed * 3600) / 1000000000M;
             return (int)(num / 24M) < 3
-                ? $"Fuel Capacity {AuroraUtils.smethod_37(this.FuelCapacity)} Litres    Range {AuroraUtils.FormatNumberToDigits(decimal_73, 2)} billion km ({((int)num).ToString()} hours at full power){Environment.NewLine}"
-                : $"Fuel Capacity {AuroraUtils.smethod_37(this.FuelCapacity)} Litres    Range {AuroraUtils.FormatNumberToDigits(decimal_73, 1)} billion km ({((int)(num / 24M)).ToString()} days at full power){Environment.NewLine}";
+                ? string.Format("Fuel Capacity {0} Litres    Range {1} billion km ({2} hours at full power){3}",
+                    AuroraUtils.smethod_37(this.FuelCapacity), AuroraUtils.FormatNumberToDigits(decimal_73, 2),
+                    ((int)num).ToString(), Environment.NewLine)
+                : string.Format("Fuel Capacity {0} Litres    Range {1} billion km ({2} days at full power){3}",
+                    AuroraUtils.smethod_37(this.FuelCapacity), AuroraUtils.FormatNumberToDigits(decimal_73, 1),
+                    ((int)(num / 24M)).ToString(), Environment.NewLine);
         }
         catch (Exception ex)
         {
@@ -3941,12 +4012,12 @@ public partial class ShipClass
             Decimal num2 = 0M;
             this.decimal_22 = 0M;
             this.decimal_23 = 0M;
-            foreach (GClass228 gclass228 in this.dictionary_0.Values
-                         .OrderBy<GClass228, int>(gclass228_0 => gclass228_0.int_2).ToList<GClass228>())
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values
+                         .OrderBy<ClassComponent, int>(gclass228_0 => gclass228_0.ChanceToHit).ToList<ClassComponent>())
             {
-                int num3 = gclass228.int_2 - num1;
-                num1 = gclass228.int_2;
-                this.decimal_23 += gclass228.gclass230_0.decimal_2 * (num3 / (Decimal)this.MaxDACRoll);
+                int num3 = gclass228.ChanceToHit - num1;
+                num1 = gclass228.ChanceToHit;
+                this.decimal_23 += gclass228.Component.decimal_2 * (num3 / (Decimal)this.MaxDACRoll);
             }
 
             for (int index = 1; index < 201; ++index)
@@ -3980,20 +4051,20 @@ public partial class ShipClass
             this.MainFunction = AuroraClassMainFunction.None;
             if (this.ProtectionValue > 0M)
             {
-                Decimal num1 = this.dictionary_0.Values
-                    .Where<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.HangarDeck)
-                    .Sum<GClass228>(gclass228_0 => gclass228_0.gclass230_0.decimal_1 * gclass228_0.decimal_0);
-                Decimal num2 = this.dictionary_0.Values
-                    .Where<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                        AuroraComponentType.GeologicalSurveySensors).Sum<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.decimal_1 * gclass228_0.decimal_0);
-                Decimal num3 = this.dictionary_0.Values
-                    .Where<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                        AuroraComponentType.GravitationalSurveySensors).Sum<GClass228>(gclass228_0 =>
-                        gclass228_0.gclass230_0.decimal_1 * gclass228_0.decimal_0);
+                Decimal num1 = this.ClassComponents.Values
+                    .Where<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.Data.ComponentTypeID == AuroraComponentType.HangarDeck)
+                    .Sum<ClassComponent>(gclass228_0 => gclass228_0.Component.decimal_1 * gclass228_0.NumComponent);
+                Decimal num2 = this.ClassComponents.Values
+                    .Where<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.Data.ComponentTypeID ==
+                        AuroraComponentType.GeologicalSurveySensors).Sum<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.decimal_1 * gclass228_0.NumComponent);
+                Decimal num3 = this.ClassComponents.Values
+                    .Where<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.Data.ComponentTypeID ==
+                        AuroraComponentType.GravitationalSurveySensors).Sum<ClassComponent>(gclass228_0 =>
+                        gclass228_0.Component.decimal_1 * gclass228_0.NumComponent);
                 if (num3 > this.ProtectionValue && num3 >= num2)
                     this.MainFunction = AuroraClassMainFunction.GravSurvey;
                 else if (num2 > this.ProtectionValue)
@@ -4008,19 +4079,19 @@ public partial class ShipClass
                 }
                 else
                 {
-                    Decimal num4 = this.dictionary_0.Values
-                        .Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                            AuroraComponentType.MissileLauncher).Sum<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.decimal_1 * gclass228_0.decimal_0);
-                    Decimal num5 = this.dictionary_0.Values
-                        .Where<GClass228>(gclass228_0 => gclass228_0.gclass230_0.bool_4).Sum<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.decimal_1 * gclass228_0.decimal_0);
-                    Decimal num6 = this.dictionary_0.Values
-                        .Where<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
-                            AuroraComponentType.FighterPodBay).Sum<GClass228>(gclass228_0 =>
-                            gclass228_0.gclass230_0.decimal_1 * gclass228_0.decimal_0);
+                    Decimal num4 = this.ClassComponents.Values
+                        .Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.Data.ComponentTypeID ==
+                            AuroraComponentType.MissileLauncher).Sum<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.decimal_1 * gclass228_0.NumComponent);
+                    Decimal num5 = this.ClassComponents.Values
+                        .Where<ClassComponent>(gclass228_0 => gclass228_0.Component.bool_4).Sum<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.decimal_1 * gclass228_0.NumComponent);
+                    Decimal num6 = this.ClassComponents.Values
+                        .Where<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.Data.ComponentTypeID ==
+                            AuroraComponentType.FighterPodBay).Sum<ClassComponent>(gclass228_0 =>
+                            gclass228_0.Component.decimal_1 * gclass228_0.NumComponent);
                     if (num6 > num4 && num6 > num5)
                         this.MainFunction = AuroraClassMainFunction.GroundSupportFighter;
                     else
@@ -4086,16 +4157,16 @@ public partial class ShipClass
         {
             int num1 = 0;
             int num2 = 0;
-            foreach (GClass228 gclass228 in this.dictionary_0.Values)
+            foreach (ClassComponent gclass228 in this.ClassComponents.Values)
             {
-                if (gclass228.gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.Armour)
+                if (gclass228.Component.Data.ComponentTypeID != AuroraComponentType.Armour)
                 {
-                    num1 += (int)Math.Ceiling(gclass228.gclass230_0.decimal_1 * gclass228.decimal_0);
-                    gclass228.int_2 = num1;
-                    if (gclass228.gclass230_0.bool_5)
+                    num1 += (int)Math.Ceiling(gclass228.Component.decimal_1 * gclass228.NumComponent);
+                    gclass228.ChanceToHit = num1;
+                    if (gclass228.Component.bool_5)
                     {
-                        num2 += (int)Math.Ceiling(gclass228.gclass230_0.decimal_1 * gclass228.decimal_0);
-                        gclass228.int_3 = num2;
+                        num2 += (int)Math.Ceiling(gclass228.Component.decimal_1 * gclass228.NumComponent);
+                        gclass228.ElectronicCTH = num2;
                     }
                 }
             }

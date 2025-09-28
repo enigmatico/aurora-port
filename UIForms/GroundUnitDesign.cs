@@ -29,7 +29,7 @@ public partial class GroundUnitDesign : Form
     private ShipComponent gclass230_0;
     private PopulationData gclass146_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private ComboBox cboRaces;
     private Label label8;
     private TextBox txtBaseArmour;
@@ -455,8 +455,8 @@ public partial class GroundUnitDesign : Form
                         .Where<FleetData>(class1053.method_1)
                         .SelectMany<FleetData, ShipData>(gclass85_0 => gclass85_0.method_176())
                         .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 == null)
-                        .OrderByDescending<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
-                        .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
+                        .OrderByDescending<ShipData, Decimal>(gclass40_0 => gclass40_0.Class.Size)
+                        .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.Class.ClassName)
                         .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.ShipName).ToList<ShipData>();
                     // ISSUE: reference to a compiler-generated method
                     List<GroundUnitFormationData> list2 = this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(class1053.method_2)
@@ -486,7 +486,7 @@ public partial class GroundUnitDesign : Form
                             return;
                         foreach (ShipData gclass40 in list1)
                             gclass40.ShipNameWithHullAndClass =
-                                $"{gclass40.method_187()}  ({gclass40.gclass22_0.ClassName})";
+                                string.Format("{0}  ({1})", gclass40.method_187(), gclass40.Class.ClassName);
                         this.tvFormations.Height = 675;
                         this.flpAssign.Visible = true;
                         // ISSUE: reference to a compiler-generated field
@@ -583,7 +583,7 @@ public partial class GroundUnitDesign : Form
             this.gclass0_0.method_448(this.gclass21_0, this.gclass96_0, this.gclass97_0, this.gclass100_0,
                 this.gclass100_1, this.gclass100_2, this.gclass100_3, this.gclass230_0, this.dictionary_0,
                 this.txtUnitName.Text, false, this.chkPointDefence.CheckState, this.chkECCM.CheckState,
-                this.chkNonCombatUnit.CheckState, int_136).method_9(this.txtUnitClass, false, true);
+                this.chkNonCombatUnit.CheckState, int_136).PrintOutGroundUnitDesignedSpec(this.txtUnitClass, false, true);
         }
         catch (Exception ex)
         {
@@ -641,7 +641,7 @@ public partial class GroundUnitDesign : Form
                 this.gclass0_0.gclass101_0.ClassName = this.txtUnitName.Text;
             }
 
-            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+            this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
             this.gclass0_0.GroundUnitClassDictionary.Add(this.gclass0_0.gclass101_0.ClassID, this.gclass0_0.gclass101_0);
             int num = (int)MessageBox.Show(
                 "Ground Unit Class Created. Research the new class on the Research tab of the economics window");
@@ -727,7 +727,7 @@ public partial class GroundUnitDesign : Form
         {
             if (this.lstvUnitClass.SelectedItems.Count == 0)
                 return;
-            ((GroundUnitClass101)this.lstvUnitClass.SelectedItems[0].Tag)?.method_9(this.txtSelectedClass, true, true);
+            ((GroundUnitClass101)this.lstvUnitClass.SelectedItems[0].Tag)?.PrintOutGroundUnitDesignedSpec(this.txtSelectedClass, true, true);
         }
         catch (Exception ex)
         {
@@ -1007,7 +1007,8 @@ public partial class GroundUnitDesign : Form
             else
             {
                 if (MessageBox.Show(
-                        $"Are you sure you want to delete the template element '{tag.UnitCount.ToString()}x {tag.GroundUnitClass.ClassName}'?",
+                        string.Format("Are you sure you want to delete the template element '{0}x {1}'?",
+                            tag.UnitCount.ToString(), tag.GroundUnitClass.ClassName),
                         "Confirm Delete", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 tag.FormationTemplate.FormationElementList.Remove(tag);
@@ -1047,7 +1048,7 @@ public partial class GroundUnitDesign : Form
             else if (this.lstvFormationUnitList.SelectedItems[0].Tag.GetType() != typeof(GroundUnitFormationElement))
                 this.txtElementClass.Text = "No Element Selected";
             else
-                ((GroundUnitFormationElement)this.lstvFormationUnitList.SelectedItems[0].Tag)?.GroundUnitClass.method_9(this.txtElementClass,
+                ((GroundUnitFormationElement)this.lstvFormationUnitList.SelectedItems[0].Tag)?.GroundUnitClass.PrintOutGroundUnitDesignedSpec(this.txtElementClass,
                     true, false);
         }
         catch (Exception ex)
@@ -1276,7 +1277,8 @@ public partial class GroundUnitDesign : Form
                     nodeAt.Nodes.Add(node);
                     node.Nodes.Add(new TreeNode()
                     {
-                        Text = $"{gclass39.UnitCount.ToString()}x {gclass39.GroundUnitClass.ClassName}",
+                        Text = string.Format("{0}x {1}", gclass39.UnitCount.ToString(),
+                            gclass39.GroundUnitClass.ClassName),
                         Tag = gclass39
                     });
                     if (num12 == tag5.UnitCount)
@@ -1287,7 +1289,8 @@ public partial class GroundUnitDesign : Form
                     else
                     {
                         tag5.UnitCount -= num12;
-                        data.Text = $"{tag5.UnitCount.ToString()}x {tag5.GroundUnitClass.ClassName}";
+                        data.Text = string.Format("{0}x {1}", tag5.UnitCount.ToString(),
+                            tag5.GroundUnitClass.ClassName);
                     }
                 }
 
@@ -1342,7 +1345,8 @@ public partial class GroundUnitDesign : Form
                         {
                             if (node.Tag == gclass39_1)
                             {
-                                node.Text = $"{gclass39_1.UnitCount.ToString()}x {gclass39_1.GroundUnitClass.ClassName}";
+                                node.Text = string.Format("{0}x {1}", gclass39_1.UnitCount.ToString(),
+                                    gclass39_1.GroundUnitClass.ClassName);
                                 break;
                             }
                         }
@@ -1366,7 +1370,8 @@ public partial class GroundUnitDesign : Form
                         tag.ElementList.Add(gclass39_2);
                         nodeAt.Nodes.Add(new TreeNode()
                         {
-                            Text = $"{gclass39_2.UnitCount.ToString()}x {gclass39_2.GroundUnitClass.ClassName}",
+                            Text = string.Format("{0}x {1}", gclass39_2.UnitCount.ToString(),
+                                gclass39_2.GroundUnitClass.ClassName),
                             Tag = gclass39_2
                         });
                     }
@@ -1386,7 +1391,8 @@ public partial class GroundUnitDesign : Form
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         data.Text =
-                            $"{class1056.gclass39_0.UnitCount.ToString()}x {class1056.gclass39_0.GroundUnitClass.ClassName}";
+                            string.Format("{0}x {1}", class1056.gclass39_0.UnitCount.ToString(),
+                                class1056.gclass39_0.GroundUnitClass.ClassName);
                     }
 
                     foreach (GroundUnitFormationData gclass103 in this.gclass0_0.FormationDictionary.Values)
@@ -1545,17 +1551,17 @@ public partial class GroundUnitDesign : Form
             this.gclass0_0.string_8 = "";
             this.gclass0_0.string_9 = "";
             this.gclass0_0.list_32 = new List<string>();
-            List<RankThemeEntry> list = this.gclass21_0.RacialRankDictionary.Values
-                .Where<RankThemeEntry>(gclass61_0 => gclass61_0.CommanderType == AuroraCommanderType.GroundForce)
-                .OrderBy<RankThemeEntry, int>(gclass61_0 => gclass61_0.RankNum).ToList<RankThemeEntry>();
-            foreach (RankThemeEntry gclass61 in list)
+            List<RacialRank> list = this.gclass21_0.RacialRankDictionary.Values
+                .Where<RacialRank>(gclass61_0 => gclass61_0.CommanderType == AuroraCommanderType.GroundForce)
+                .OrderBy<RacialRank, int>(gclass61_0 => gclass61_0.RankNum).ToList<RacialRank>();
+            foreach (RacialRank gclass61 in list)
                 this.gclass0_0.list_32.Add(gclass61.RankName);
             int num = (int)new UserSelection(this.gclass0_0).ShowDialog();
             if (this.gclass0_0.bool_21)
                 return;
-            this.gclass102_0.RequiredRankData =
-                list.FirstOrDefault<RankThemeEntry>(gclass61_0 => gclass61_0.RankName == this.gclass0_0.string_4);
-            selectedItem.SubItems[8].Text = this.gclass102_0.RequiredRankData.method_0();
+            this.gclass102_0.RequiredRacialRankData =
+                list.FirstOrDefault<RacialRank>(gclass61_0 => gclass61_0.RankName == this.gclass0_0.string_4);
+            selectedItem.SubItems[8].Text = this.gclass102_0.RequiredRacialRankData.method_0();
         }
         catch (Exception ex)
         {
@@ -1577,16 +1583,16 @@ public partial class GroundUnitDesign : Form
             this.gclass0_0.string_8 = "";
             this.gclass0_0.string_9 = "";
             this.gclass0_0.list_32 = new List<string>();
-            List<RankThemeEntry> list = this.gclass21_0.RacialRankDictionary.Values
-                .Where<RankThemeEntry>(gclass61_0 => gclass61_0.CommanderType == AuroraCommanderType.GroundForce)
-                .OrderBy<RankThemeEntry, int>(gclass61_0 => gclass61_0.RankNum).ToList<RankThemeEntry>();
-            foreach (RankThemeEntry gclass61 in list)
+            List<RacialRank> list = this.gclass21_0.RacialRankDictionary.Values
+                .Where<RacialRank>(gclass61_0 => gclass61_0.CommanderType == AuroraCommanderType.GroundForce)
+                .OrderBy<RacialRank, int>(gclass61_0 => gclass61_0.RankNum).ToList<RacialRank>();
+            foreach (RacialRank gclass61 in list)
                 this.gclass0_0.list_32.Add(gclass61.RankName);
             int num = (int)new UserSelection(this.gclass0_0).ShowDialog();
             if (this.gclass0_0.bool_21)
                 return;
-            tag.RequiredRankData =
-                list.FirstOrDefault<RankThemeEntry>(gclass61_0 => gclass61_0.RankName == this.gclass0_0.string_4);
+            tag.RequiredRacialRankData =
+                list.FirstOrDefault<RacialRank>(gclass61_0 => gclass61_0.RankName == this.gclass0_0.string_4);
             bool bool_7 = false;
             if (this.chkLocation.CheckState == CheckState.Checked)
                 bool_7 = true;
@@ -1647,7 +1653,7 @@ public partial class GroundUnitDesign : Form
                         // ISSUE: reference to a compiler-generated field
                         class1057.gclass146_0 = source.FirstOrDefault<PopulationData>(gclass146_1 =>
                             gclass146_1.ContactDropdownName == this.gclass0_0.string_4);
-                        List<RankThemeEntry> list1 = tag.RaceData.RacialRankDictionary.Values.ToList<RankThemeEntry>();
+                        List<RacialRank> list1 = tag.RaceData.RacialRankDictionary.Values.ToList<RacialRank>();
                         bool bool_7 = AuroraUtils.smethod_27(this.gclass0_0.checkState_0);
                         // ISSUE: reference to a compiler-generated field
                         tag.method_4(class1057.gclass146_0, list1, bool_7);
@@ -1703,7 +1709,7 @@ public partial class GroundUnitDesign : Form
                     num5 += gclass39.GroundUnitClass.decimal_3 * gclass39.UnitCount;
                 if (gclass39.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.LogisticsPoint) > 0M)
                     num7 += gclass39.GroundUnitClass.decimal_3 * gclass39.UnitCount;
-                if (gclass39.GroundUnitClass.gclass230_0 != null)
+                if (gclass39.GroundUnitClass.SurfaceToOrbitWeapon != null)
                     num6 += gclass39.GroundUnitClass.decimal_3 * gclass39.UnitCount;
                 if (gclass39.GroundUnitClass.GroundUnitBaseTypeData.genum112_0 == GroundUnitBaseType.const_1 ||
                     gclass39.GroundUnitClass.GroundUnitBaseTypeData.genum112_0 == GroundUnitBaseType.const_2 ||
@@ -1842,9 +1848,9 @@ public partial class GroundUnitDesign : Form
             if (this.lstvSTO.SelectedItems.Count > 0 && this.lstvSTO.SelectedItems[0].Tag is ShipComponent)
             {
                 this.gclass230_0 = (ShipComponent)this.lstvSTO.SelectedItems[0].Tag;
-                if (this.gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.Laser &&
-                    this.gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.MesonCannon &&
-                    this.gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.GaussCannon)
+                if (this.gclass230_0.Data.ComponentTypeID != AuroraComponentType.Laser &&
+                    this.gclass230_0.Data.ComponentTypeID != AuroraComponentType.MesonCannon &&
+                    this.gclass230_0.Data.ComponentTypeID != AuroraComponentType.GaussCannon)
                     this.chkPointDefence.CheckState = CheckState.Unchecked;
                 else
                     this.chkPointDefence.Visible = true;
@@ -2022,14 +2028,16 @@ public partial class GroundUnitDesign : Form
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 if (class1059.gclass103_0 == null ||
-                    MessageBox.Show($"Are you sure you want to delete the formation '{class1059.gclass103_0.Name}'?",
+                    MessageBox.Show(
+                        string.Format("Are you sure you want to delete the formation '{0}'?",
+                            class1059.gclass103_0.Name),
                         "Confirm Delete", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 // ISSUE: reference to a compiler-generated field
-                if (class1059.gclass103_0.gclass55_0 != null)
+                if (class1059.gclass103_0.Commander != null)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    class1059.gclass103_0.gclass55_0.method_40(true);
+                    class1059.gclass103_0.Commander.method_40(true);
                 }
 
                 // ISSUE: reference to a compiler-generated method
@@ -2086,8 +2094,8 @@ public partial class GroundUnitDesign : Form
                 if (tag == null)
                     return;
                 if (tag.TechData.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
-                    tag.TechData.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                        !tag.TechData.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                    tag.TechData.dictionary_0[this.gclass21_0.RaceID].Obsolete =
+                        !tag.TechData.dictionary_0[this.gclass21_0.RaceID].Obsolete;
                 this.gclass21_0.method_212(this.lstvUnitClass, this.chkShowObsolete.CheckState,
                     this.chkShowCivilian.CheckState);
             }
@@ -2146,7 +2154,7 @@ public partial class GroundUnitDesign : Form
                     if (!this.gclass0_0.bool_21)
                         string_4 = this.gclass0_0.string_4;
                     // ISSUE: reference to a compiler-generated method
-                    this.gclass0_0.dictionary_42.Values.FirstOrDefault<GClass55>(class1060.method_0)
+                    this.gclass0_0.ActiveCommanders.Values.FirstOrDefault<Commander>(class1060.method_0)
                         ?.method_2(this.gclass0_0.gclass42_0, null, string_4);
                 }
             }
@@ -2184,7 +2192,7 @@ public partial class GroundUnitDesign : Form
 
                     // ISSUE: reference to a compiler-generated field
                     class1061.list_0 = tag.method_22(null, null);
-                    str = $" to all officers in the hierarchy of {tag.Name}";
+                    str = string.Format(" to all officers in the hierarchy of {0}", tag.Name);
                 }
                 else if (this.tvFormations.SelectedNode.Tag is PopulationData)
                 {
@@ -2205,19 +2213,21 @@ public partial class GroundUnitDesign : Form
                     class1061.list_0 = this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(class1062.method_0)
                         .ToList<GroundUnitFormationData>();
                     // ISSUE: reference to a compiler-generated field
-                    str = $" to all officers in formations based on {class1062.gclass146_0.PopName}";
+                    str = string.Format(" to all officers in formations based on {0}", class1062.gclass146_0.PopName);
                 }
 
                 this.gclass0_0.gclass42_0 = null;
                 int num4 = (int)new frmMedalAward(this.gclass0_0, this.gclass21_0).ShowDialog();
                 if (this.gclass0_0.gclass42_0 == null ||
-                    MessageBox.Show($" Are you sure you want to award the {this.gclass0_0.gclass42_0.MedalName}{str}?",
+                    MessageBox.Show(
+                        string.Format(" Are you sure you want to award the {0}{1}?",
+                            this.gclass0_0.gclass42_0.MedalName, str),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 // ISSUE: reference to a compiler-generated method
                 this.gclass21_0.method_109(
-                    this.gclass0_0.dictionary_42.Values.Where<GClass55>(gclass55_0 => gclass55_0.gclass103_0 != null)
-                        .Where<GClass55>(class1061.method_0).ToList<GClass55>(), this.gclass0_0.gclass42_0);
+                    this.gclass0_0.ActiveCommanders.Values.Where<Commander>(gclass55_0 => gclass55_0.CommandingFormation != null)
+                        .Where<Commander>(class1061.method_0).ToList<Commander>(), this.gclass0_0.gclass42_0);
             }
         }
         catch (Exception ex)
@@ -2700,7 +2710,7 @@ public partial class GroundUnitDesign : Form
             if (this.gclass0_0.bool_9 || this.tvUnassigned.SelectedNode == null ||
                 this.tvUnassigned.SelectedNode.Tag == null || !(this.tvUnassigned.SelectedNode.Tag is GroundUnitClass101))
                 return;
-            ((GroundUnitClass101)this.tvUnassigned.SelectedNode.Tag)?.method_9(this.txtClassDisplay, true, true);
+            ((GroundUnitClass101)this.tvUnassigned.SelectedNode.Tag)?.PrintOutGroundUnitDesignedSpec(this.txtClassDisplay, true, true);
         }
         catch (Exception ex)
         {
@@ -2779,7 +2789,8 @@ public partial class GroundUnitDesign : Form
                 // ISSUE: reference to a compiler-generated field
                 if (class1049.gclass94_0 == null ||
                     MessageBox.Show(
-                        $"Are you sure you want to delete the ground unit series '{class1049.gclass94_0.Description}'?",
+                        string.Format("Are you sure you want to delete the ground unit series '{0}'?",
+                            class1049.gclass94_0.Description),
                         "Confirm Delete", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 // ISSUE: reference to a compiler-generated method
@@ -2930,7 +2941,9 @@ public partial class GroundUnitDesign : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (MessageBox.Show($"Are you sure you want to scrap the formation '{class1051.gclass103_0.Name}'?",
+                    if (MessageBox.Show(
+                            string.Format("Are you sure you want to scrap the formation '{0}'?",
+                                class1051.gclass103_0.Name),
                             "Confirm Delete", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     // ISSUE: reference to a compiler-generated field
@@ -2941,10 +2954,10 @@ public partial class GroundUnitDesign : Form
                     }
 
                     // ISSUE: reference to a compiler-generated field
-                    if (class1051.gclass103_0.gclass55_0 != null)
+                    if (class1051.gclass103_0.Commander != null)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        class1051.gclass103_0.gclass55_0.method_40(true);
+                        class1051.gclass103_0.Commander.method_40(true);
                     }
 
                     // ISSUE: reference to a compiler-generated method
@@ -2972,7 +2985,7 @@ public partial class GroundUnitDesign : Form
             if (this.gclass0_0.bool_9 || this.tvUnitSeries.SelectedNode == null ||
                 this.tvUnitSeries.SelectedNode.Tag == null || !(this.tvUnitSeries.SelectedNode.Tag is GroundUnitSeriesClassData))
                 return;
-            ((GroundUnitSeriesClassData)this.tvUnitSeries.SelectedNode.Tag)?.UnitClass.method_9(this.txtClassDisplay, true, true);
+            ((GroundUnitSeriesClassData)this.tvUnitSeries.SelectedNode.Tag)?.UnitClass.PrintOutGroundUnitDesignedSpec(this.txtClassDisplay, true, true);
         }
         catch (Exception ex)
         {
@@ -3362,7 +3375,8 @@ public partial class GroundUnitDesign : Form
                 }
                 else
                 {
-                    if (MessageBox.Show($"Are you sure you want to instantly create a {tag.OrganizationName}'?",
+                    if (MessageBox.Show(
+                            string.Format("Are you sure you want to instantly create a {0}'?", tag.OrganizationName),
                             "Confirm Creation", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     this.gclass21_0.method_363(tag, selectedValue, null, this.chkEnterNames.CheckState);
@@ -3401,7 +3415,7 @@ public partial class GroundUnitDesign : Form
                 GroundUnitFormationTemplateData gclass102_0 = this.gclass21_0.method_204();
                 if (gclass102_0 == null)
                     return;
-                gclass102_0.RequiredRankData = this.gclass102_0.RequiredRankData;
+                gclass102_0.RequiredRacialRankData = this.gclass102_0.RequiredRacialRankData;
                 foreach (GroundUnitFormationElement gclass39 in this.gclass102_0.FormationElementList)
                     gclass102_0.method_12(gclass39.GroundUnitClass, gclass39.UnitCount);
                 this.gclass21_0.method_214(this.lstvTemplate, null, this.chkShowCivilian.CheckState, gclass102_0,
@@ -3567,12 +3581,7 @@ public partial class GroundUnitDesign : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

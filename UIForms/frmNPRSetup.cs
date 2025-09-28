@@ -17,7 +17,7 @@ public class frmNPRSetup : Form
 {
     private GClass0 gclass0_0;
     private GClass143 gclass143_0;
-    private IContainer icontainer_0;
+    
     private FlowLayoutPanel flowLayoutPanel10;
     private Panel panel6;
     private TextBox txtTitle;
@@ -199,7 +199,8 @@ public class frmNPRSetup : Form
                 this.gclass143_0.string_4 = str.Substring(num + 1);
             }
 
-            this.pbFlag.Image = Image.FromFile($"{Application.StartupPath}\\Flags\\{this.gclass143_0.string_4}");
+            this.pbFlag.Image = Image.FromFile(string.Format("{0}\\Flags\\{1}", Application.StartupPath,
+                this.gclass143_0.string_4));
         }
         catch (Exception ex)
         {
@@ -218,7 +219,8 @@ public class frmNPRSetup : Form
                 this.gclass143_0.string_3 = str.Substring(num + 1);
             }
 
-            this.pbRace.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass143_0.string_3}");
+            this.pbRace.Image = Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                this.gclass143_0.string_3));
         }
         catch (Exception ex)
         {
@@ -237,7 +239,8 @@ public class frmNPRSetup : Form
                 this.gclass143_0.string_5 = str.Substring(num + 1);
             }
 
-            this.pbShip.Image = Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass143_0.string_5}");
+            this.pbShip.Image = Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath,
+                this.gclass143_0.string_5));
         }
         catch (Exception ex)
         {
@@ -257,7 +260,8 @@ public class frmNPRSetup : Form
             }
 
             this.pbStation.Image =
-                Image.FromFile($"{Application.StartupPath}\\StationIcons\\{this.gclass143_0.string_6}");
+                Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                    this.gclass143_0.string_6));
         }
         catch (Exception ex)
         {
@@ -368,11 +372,15 @@ public class frmNPRSetup : Form
             this.txtTitle.Text = this.gclass143_0.string_1;
             this.txtShortName.Text = this.gclass143_0.string_0;
             this.txtHomeworld.Text = this.gclass143_0.string_2;
-            this.pbRace.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass143_0.string_3}");
-            this.pbShip.Image = Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass143_0.string_5}");
+            this.pbRace.Image = Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                this.gclass143_0.string_3));
+            this.pbShip.Image = Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath,
+                this.gclass143_0.string_5));
             this.pbStation.Image =
-                Image.FromFile($"{Application.StartupPath}\\StationIcons\\{this.gclass143_0.string_6}");
-            this.pbFlag.Image = Image.FromFile($"{Application.StartupPath}\\Flags\\{this.gclass143_0.string_4}");
+                Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                    this.gclass143_0.string_6));
+            this.pbFlag.Image = Image.FromFile(string.Format("{0}\\Flags\\{1}", Application.StartupPath,
+                this.gclass143_0.string_4));
             this.gclass0_0.method_552(this.cboClassTheme);
             this.gclass0_0.method_552(this.cboSystemTheme);
             this.gclass0_0.method_552(this.cboGroundTheme);
@@ -457,12 +465,7 @@ public class frmNPRSetup : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

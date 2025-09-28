@@ -15,7 +15,7 @@ using System.Windows.Forms;
 public class cmdSelect : Form
 {
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
+    
     private ListBox lstThemes;
     private ListBox lstNames;
     private Button cmdSelectName;
@@ -98,12 +98,7 @@ public class cmdSelect : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

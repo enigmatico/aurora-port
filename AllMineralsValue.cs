@@ -309,7 +309,7 @@ public class AllMineralsValue
         this.Gallicite += gclass156_0.MineralCost.Gallicite * gclass156_0.Amount;
     }
 
-    public void method_9(GClass192 gclass192_0)
+    public void method_9(ShipyardTask gclass192_0)
     {
         try
         {
@@ -635,7 +635,8 @@ public class AllMineralsValue
 
             if (str != "")
                 this.gclass0_0.gclass92_0.method_3(EventType.const_41,
-                    $"Shortage of {str} in Production of {gclass156_0.Description} at {gclass156_0.Population.PopName}",
+                    string.Format("Shortage of {0} in Production of {1} at {2}", str, gclass156_0.Description,
+                        gclass156_0.Population.PopName),
                     gclass156_0.Race, gclass156_0.Population.SystemBodyData.SystemData, gclass156_0.Population,
                     gclass156_0.Population.method_87(), gclass156_0.Population.method_88(),
                     AuroraEventCategory.PopProduction);
@@ -648,7 +649,7 @@ public class AllMineralsValue
         }
     }
 
-    public Decimal method_18(GClass192 gclass192_0, Decimal decimal_11)
+    public Decimal method_18(ShipyardTask gclass192_0, Decimal decimal_11)
     {
         try
         {
@@ -734,7 +735,8 @@ public class AllMineralsValue
 
             if (str != "")
                 this.gclass0_0.gclass92_0.method_3(EventType.const_41,
-                    $"Shortage of {str} in shipyard task: {gclass192_0.method_0()} at {gclass192_0.gclass146_0.PopName}",
+                    string.Format("Shortage of {0} in shipyard task: {1} at {2}", str, gclass192_0.method_0(),
+                        gclass192_0.gclass146_0.PopName),
                     gclass192_0.gclass21_0, gclass192_0.gclass146_0.SystemBodyData.SystemData, gclass192_0.gclass146_0,
                     gclass192_0.gclass146_0.method_87(), gclass192_0.gclass146_0.method_88(),
                     AuroraEventCategory.PopShipbuiding);
@@ -747,7 +749,7 @@ public class AllMineralsValue
         }
     }
 
-    public Decimal method_19(GClass106 gclass106_0, AllMineralsValue gclass123_0, Decimal decimal_11)
+    public Decimal method_19(GroundUnitTraining gclass106_0, AllMineralsValue gclass123_0, Decimal decimal_11)
     {
         try
         {
@@ -820,7 +822,8 @@ public class AllMineralsValue
 
             if (str != "")
                 this.gclass0_0.gclass92_0.method_3(EventType.const_41,
-                    $"Shortage of {str} in ground formation training task for {gclass106_0.string_0} at {gclass106_0.gclass146_0.PopName}",
+                    string.Format("Shortage of {0} in ground formation training task for {1} at {2}", str,
+                        gclass106_0.string_0, gclass106_0.gclass146_0.PopName),
                     gclass106_0.gclass21_0, gclass106_0.gclass146_0.SystemBodyData.SystemData, gclass106_0.gclass146_0,
                     gclass106_0.gclass146_0.method_87(), gclass106_0.gclass146_0.method_88(),
                     AuroraEventCategory.PopGroundUnits);
@@ -855,7 +858,7 @@ public class AllMineralsValue
         }
     }
 
-    public void method_21(GClass192 gclass192_0, Decimal decimal_11)
+    public void method_21(ShipyardTask gclass192_0, Decimal decimal_11)
     {
         try
         {
@@ -901,7 +904,7 @@ public class AllMineralsValue
         }
     }
 
-    public void method_23(PopulationData gclass146_0, MineralUsage genum85_0, Decimal decimal_11)
+    public void method_23(PopulationData gclass146_0, MineralUsageType genum85_0, Decimal decimal_11)
     {
         try
         {
@@ -923,7 +926,7 @@ public class AllMineralsValue
         }
     }
 
-    public void method_24(PopulationData gclass146_0, MineralUsage genum85_0)
+    public void method_24(PopulationData gclass146_0, MineralUsageType genum85_0)
     {
         try
         {
@@ -995,7 +998,7 @@ public class AllMineralsValue
             {
                 List<string> stringList2 = stringList1;
                 num = Math.Round(this.Duranium, 1);
-                string str = $"{num}x Duranium";
+                string str = string.Format("{0}x Duranium", num);
                 stringList2.Add(str);
             }
 
@@ -1003,7 +1006,7 @@ public class AllMineralsValue
             {
                 List<string> stringList3 = stringList1;
                 num = Math.Round(this.Neutronium, 1);
-                string str = $"{num}x Neutronium";
+                string str = string.Format("{0}x Neutronium", num);
                 stringList3.Add(str);
             }
 
@@ -1011,7 +1014,7 @@ public class AllMineralsValue
             {
                 List<string> stringList4 = stringList1;
                 num = Math.Round(this.Corbomite, 1);
-                string str = $"{num}x Corbomite";
+                string str = string.Format("{0}x Corbomite", num);
                 stringList4.Add(str);
             }
 
@@ -1019,7 +1022,7 @@ public class AllMineralsValue
             {
                 List<string> stringList5 = stringList1;
                 num = Math.Round(this.Tritanium, 1);
-                string str = $"{num}x Tritanium";
+                string str = string.Format("{0}x Tritanium", num);
                 stringList5.Add(str);
             }
 
@@ -1027,7 +1030,7 @@ public class AllMineralsValue
             {
                 List<string> stringList6 = stringList1;
                 num = Math.Round(this.Boronide, 1);
-                string str = $"{num}x Boronide";
+                string str = string.Format("{0}x Boronide", num);
                 stringList6.Add(str);
             }
 
@@ -1035,7 +1038,7 @@ public class AllMineralsValue
             {
                 List<string> stringList7 = stringList1;
                 num = Math.Round(this.Mercassium, 1);
-                string str = $"{num}x Mercassium";
+                string str = string.Format("{0}x Mercassium", num);
                 stringList7.Add(str);
             }
 
@@ -1043,7 +1046,7 @@ public class AllMineralsValue
             {
                 List<string> stringList8 = stringList1;
                 num = Math.Round(this.Vendarite, 1);
-                string str = $"{num}x Vendarite";
+                string str = string.Format("{0}x Vendarite", num);
                 stringList8.Add(str);
             }
 
@@ -1051,7 +1054,7 @@ public class AllMineralsValue
             {
                 List<string> stringList9 = stringList1;
                 num = Math.Round(this.Sorium, 1);
-                string str = $"{num}x Sorium";
+                string str = string.Format("{0}x Sorium", num);
                 stringList9.Add(str);
             }
 
@@ -1059,7 +1062,7 @@ public class AllMineralsValue
             {
                 List<string> stringList10 = stringList1;
                 num = Math.Round(this.Uridium, 1);
-                string str = $"{num}x Uridium";
+                string str = string.Format("{0}x Uridium", num);
                 stringList10.Add(str);
             }
 
@@ -1067,7 +1070,7 @@ public class AllMineralsValue
             {
                 List<string> stringList11 = stringList1;
                 num = Math.Round(this.Corundium, 1);
-                string str = $"{num}x Corundium";
+                string str = string.Format("{0}x Corundium", num);
                 stringList11.Add(str);
             }
 
@@ -1075,7 +1078,7 @@ public class AllMineralsValue
             {
                 List<string> stringList12 = stringList1;
                 num = Math.Round(this.Gallicite, 1);
-                string str = $"{num}x Gallicite";
+                string str = string.Format("{0}x Gallicite", num);
                 stringList12.Add(str);
             }
 
@@ -1316,27 +1319,29 @@ public class AllMineralsValue
         {
             string str = "";
             if (this.Duranium > 0M)
-                str = $"{str}Duranium  {AuroraUtils.FormatNumberToDigits(this.Duranium, 2)}    ";
+                str = string.Format("{0}Duranium  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Duranium, 2));
             if (this.Neutronium > 0M)
-                str = $"{str}Neutronium  {AuroraUtils.FormatNumberToDigits(this.Neutronium, 2)}    ";
+                str = string.Format("{0}Neutronium  {1}    ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Neutronium, 2));
             if (this.Corbomite > 0M)
-                str = $"{str}Corbomite  {AuroraUtils.FormatNumberToDigits(this.Corbomite, 2)}    ";
+                str = string.Format("{0}Corbomite  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Corbomite, 2));
             if (this.Tritanium > 0M)
-                str = $"{str}Tritanium  {AuroraUtils.FormatNumberToDigits(this.Tritanium, 2)}    ";
+                str = string.Format("{0}Tritanium  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Tritanium, 2));
             if (this.Boronide > 0M)
-                str = $"{str}Boronide  {AuroraUtils.FormatNumberToDigits(this.Boronide, 2)}    ";
+                str = string.Format("{0}Boronide  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Boronide, 2));
             if (this.Mercassium > 0M)
-                str = $"{str}Mercassium  {AuroraUtils.FormatNumberToDigits(this.Mercassium, 2)}    ";
+                str = string.Format("{0}Mercassium  {1}    ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Mercassium, 2));
             if (this.Vendarite > 0M)
-                str = $"{str}Vendarite  {AuroraUtils.FormatNumberToDigits(this.Vendarite, 2)}    ";
+                str = string.Format("{0}Vendarite  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Vendarite, 2));
             if (this.Sorium > 0M)
-                str = $"{str}Sorium  {AuroraUtils.FormatNumberToDigits(this.Sorium, 2)}    ";
+                str = string.Format("{0}Sorium  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Sorium, 2));
             if (this.Uridium > 0M)
-                str = $"{str}Uridium  {AuroraUtils.FormatNumberToDigits(this.Uridium, 2)}    ";
+                str = string.Format("{0}Uridium  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Uridium, 2));
             if (this.Corundium > 0M)
-                str = $"{str}Corundium  {AuroraUtils.FormatNumberToDigits(this.Corundium, 2)}    ";
+                str = string.Format("{0}Corundium  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Corundium, 2));
             if (this.Gallicite > 0M)
-                str = $"{str}Gallicite  {AuroraUtils.FormatNumberToDigits(this.Gallicite, 2)}    ";
+                str = string.Format("{0}Gallicite  {1}    ", str, AuroraUtils.FormatNumberToDigits(this.Gallicite, 2));
             return str;
         }
         catch (Exception ex)
@@ -1352,27 +1357,34 @@ public class AllMineralsValue
         {
             string str = "";
             if (this.Duranium > 0M)
-                str = $"{str}Duranium  {AuroraUtils.FormatNumberToDigits(this.Duranium, int_0)}   ";
+                str = string.Format("{0}Duranium  {1}   ", str, AuroraUtils.FormatNumberToDigits(this.Duranium, int_0));
             if (this.Neutronium > 0M)
-                str = $"{str}Neutronium  {AuroraUtils.FormatNumberToDigits(this.Neutronium, int_0)}   ";
+                str = string.Format("{0}Neutronium  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Neutronium, int_0));
             if (this.Corbomite > 0M)
-                str = $"{str}Corbomite  {AuroraUtils.FormatNumberToDigits(this.Corbomite, int_0)}   ";
+                str = string.Format("{0}Corbomite  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Corbomite, int_0));
             if (this.Tritanium > 0M)
-                str = $"{str}Tritanium  {AuroraUtils.FormatNumberToDigits(this.Tritanium, int_0)}   ";
+                str = string.Format("{0}Tritanium  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Tritanium, int_0));
             if (this.Boronide > 0M)
-                str = $"{str}Boronide  {AuroraUtils.FormatNumberToDigits(this.Boronide, int_0)}   ";
+                str = string.Format("{0}Boronide  {1}   ", str, AuroraUtils.FormatNumberToDigits(this.Boronide, int_0));
             if (this.Mercassium > 0M)
-                str = $"{str}Mercassium  {AuroraUtils.FormatNumberToDigits(this.Mercassium, int_0)}   ";
+                str = string.Format("{0}Mercassium  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Mercassium, int_0));
             if (this.Vendarite > 0M)
-                str = $"{str}Vendarite  {AuroraUtils.FormatNumberToDigits(this.Vendarite, int_0)}   ";
+                str = string.Format("{0}Vendarite  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Vendarite, int_0));
             if (this.Sorium > 0M)
-                str = $"{str}Sorium  {AuroraUtils.FormatNumberToDigits(this.Sorium, int_0)}   ";
+                str = string.Format("{0}Sorium  {1}   ", str, AuroraUtils.FormatNumberToDigits(this.Sorium, int_0));
             if (this.Uridium > 0M)
-                str = $"{str}Uridium  {AuroraUtils.FormatNumberToDigits(this.Uridium, int_0)}   ";
+                str = string.Format("{0}Uridium  {1}   ", str, AuroraUtils.FormatNumberToDigits(this.Uridium, int_0));
             if (this.Corundium > 0M)
-                str = $"{str}Corundium  {AuroraUtils.FormatNumberToDigits(this.Corundium, int_0)}   ";
+                str = string.Format("{0}Corundium  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Corundium, int_0));
             if (this.Gallicite > 0M)
-                str = $"{str}Gallicite  {AuroraUtils.FormatNumberToDigits(this.Gallicite, int_0)}   ";
+                str = string.Format("{0}Gallicite  {1}   ", str,
+                    AuroraUtils.FormatNumberToDigits(this.Gallicite, int_0));
             return str;
         }
         catch (Exception ex)
@@ -1388,27 +1400,27 @@ public class AllMineralsValue
         {
             string str = "";
             if (this.Duranium > 0M)
-                str = $"{str}D{AuroraUtils.FormatNumberToDigits(this.Duranium, 0)}  ";
+                str = string.Format("{0}D{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Duranium, 0));
             if (this.Neutronium > 0M)
-                str = $"{str}N{AuroraUtils.FormatNumberToDigits(this.Neutronium, 0)}  ";
+                str = string.Format("{0}N{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Neutronium, 0));
             if (this.Corbomite > 0M)
-                str = $"{str}CB{AuroraUtils.FormatNumberToDigits(this.Corbomite, 0)}  ";
+                str = string.Format("{0}CB{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Corbomite, 0));
             if (this.Tritanium > 0M)
-                str = $"{str}T{AuroraUtils.FormatNumberToDigits(this.Tritanium, 0)}  ";
+                str = string.Format("{0}T{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Tritanium, 0));
             if (this.Boronide > 0M)
-                str = $"{str}B{AuroraUtils.FormatNumberToDigits(this.Boronide, 0)}  ";
+                str = string.Format("{0}B{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Boronide, 0));
             if (this.Mercassium > 0M)
-                str = $"{str}M{AuroraUtils.FormatNumberToDigits(this.Mercassium, 0)}  ";
+                str = string.Format("{0}M{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Mercassium, 0));
             if (this.Vendarite > 0M)
-                str = $"{str}V{AuroraUtils.FormatNumberToDigits(this.Vendarite, 0)}  ";
+                str = string.Format("{0}V{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Vendarite, 0));
             if (this.Sorium > 0M)
-                str = $"{str}S{AuroraUtils.FormatNumberToDigits(this.Sorium, 0)}  ";
+                str = string.Format("{0}S{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Sorium, 0));
             if (this.Uridium > 0M)
-                str = $"{str}U{AuroraUtils.FormatNumberToDigits(this.Uridium, 0)}  ";
+                str = string.Format("{0}U{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Uridium, 0));
             if (this.Corundium > 0M)
-                str = $"{str}CR{AuroraUtils.FormatNumberToDigits(this.Corundium, 0)}  ";
+                str = string.Format("{0}CR{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Corundium, 0));
             if (this.Gallicite > 0M)
-                str = $"{str}G{AuroraUtils.FormatNumberToDigits(this.Gallicite, 0)}  ";
+                str = string.Format("{0}G{1}  ", str, AuroraUtils.FormatNumberToDigits(this.Gallicite, 0));
             return str;
         }
         catch (Exception ex)

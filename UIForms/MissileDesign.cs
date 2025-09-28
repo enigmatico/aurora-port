@@ -22,7 +22,7 @@ public class MissileDesign : Form
     private RaceMissile gclass129_0;
     private bool bool_0;
     private bool bool_1;
-    private IContainer icontainer_0;
+    
     private ComboBox cboRaces;
     private FlowLayoutPanel flowLayoutPanel1;
     private TextBox txtWHSize;
@@ -540,14 +540,14 @@ public class MissileDesign : Form
     {
         try
         {
-            int num = this.gclass0_0.TechDataDictionary.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) + 1;
+            int num = this.gclass0_0.TechSystems.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) + 1;
             if (num > this.gclass230_0.gclass164_0.TechSystemID)
             {
                 this.gclass230_0.gclass164_0.TechSystemID = num;
                 this.gclass230_0.int_0 = num;
             }
 
-            this.gclass0_0.TechDataDictionary.Add(this.gclass230_0.gclass164_0.TechSystemID, this.gclass230_0.gclass164_0);
+            this.gclass0_0.TechSystems.Add(this.gclass230_0.gclass164_0.TechSystemID, this.gclass230_0.gclass164_0);
             this.gclass0_0.ComponentDataDictionary.Add(this.gclass230_0.int_0, this.gclass230_0);
             if (this.gclass21_0 == null)
                 return;
@@ -570,15 +570,15 @@ public class MissileDesign : Form
             else
             {
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text == "")
-                    ? $"{this.txtCompanyName.Text} {this.txtMissileName.Text}"
+                    ? string.Format("{0} {1}", this.txtCompanyName.Text, this.txtMissileName.Text)
                     : this.txtMissileName.Text;
                 if (this.chkNoEngine.CheckState == CheckState.Unchecked)
-                    this.method_9($"{this.gclass0_0.gclass164_0.Name} Engine");
-                int num2 = this.gclass0_0.TechDataDictionary.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) +
+                    this.method_9(string.Format("{0} Engine", this.gclass0_0.gclass164_0.Name));
+                int num2 = this.gclass0_0.TechSystems.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) +
                            1;
                 this.gclass0_0.gclass164_0.TechSystemID = num2;
                 this.gclass0_0.gclass129_0.MissileID = num2;
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 this.gclass0_0.gclass129_0.Name = this.gclass0_0.gclass164_0.Name;
                 this.gclass0_0.RaceMissileDictionary.Add(this.gclass0_0.gclass129_0.MissileID, this.gclass0_0.gclass129_0);
                 this.gclass21_0.method_282(this.gclass0_0.gclass164_0, null, null, null, false, false);
@@ -607,18 +607,18 @@ public class MissileDesign : Form
             }
 
             this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text == "")
-                ? $"{this.txtCompanyName.Text} {this.txtMissileName.Text}"
+                ? string.Format("{0} {1}", this.txtCompanyName.Text, this.txtMissileName.Text)
                 : this.txtMissileName.Text;
             if (this.chkNoEngine.CheckState == CheckState.Unchecked)
-                this.method_9($"{this.gclass0_0.gclass164_0.Name} Engine");
-            int num1 = this.gclass0_0.TechDataDictionary.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) + 1;
+                this.method_9(string.Format("{0} Engine", this.gclass0_0.gclass164_0.Name));
+            int num1 = this.gclass0_0.TechSystems.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) + 1;
             if (num1 > this.gclass0_0.gclass164_0.TechSystemID)
             {
                 this.gclass0_0.gclass164_0.TechSystemID = num1;
                 this.gclass0_0.gclass129_0.MissileID = num1;
             }
 
-            this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+            this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
             this.gclass0_0.gclass129_0.Name = this.gclass0_0.gclass164_0.Name;
             this.gclass0_0.RaceMissileDictionary.Add(this.gclass0_0.gclass129_0.MissileID, this.gclass0_0.gclass129_0);
             int num2 = (int)MessageBox.Show(
@@ -829,12 +829,7 @@ public class MissileDesign : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

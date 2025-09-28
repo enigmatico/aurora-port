@@ -165,8 +165,8 @@ public class GroundUnitFormationElement
                 return 0.0;
             if (!bool_6)
                 return num3;
-            if (this.Formation.gclass55_0 != null)
-                num3 *= (double)this.Formation.gclass55_0.method_5(CommanderBonusType.GroundCombatOffence);
+            if (this.Formation.Commander != null)
+                num3 *= (double)this.Formation.Commander.method_5(CommanderBonusType.GroundCombatOffence);
             return num3 * (double)(this.Morale / 100M);
         }
         catch (Exception ex)
@@ -273,23 +273,23 @@ public class GroundUnitFormationElement
                 double num2 = this.gclass0_0.GetDistanceBetween(gclass146.method_87(), gclass146.method_88(),
                     this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88());
                 double double_9 = this.method_1(num2, 0.0, 1.0, true, 1M);
-                int decimal_13 = this.GroundUnitClass.gclass230_0.method_5((int)num2);
+                int decimal_13 = this.GroundUnitClass.SurfaceToOrbitWeapon.method_5((int)num2);
                 int num3 = 0;
                 int int_137 = 0;
                 for (int index1 = 1; index1 <= num1; ++index1)
                 {
                     this.list_0.Add(this.GroundUnitClass.int_5);
-                    for (int index2 = 1; index2 <= this.GroundUnitClass.gclass230_0.int_7; ++index2)
+                    for (int index2 = 1; index2 <= this.GroundUnitClass.SurfaceToOrbitWeapon.int_7; ++index2)
                     {
                         if (AuroraUtils.GetRandomInteger(100) <= double_9)
                             ++num3;
                     }
 
-                    int_137 += this.GroundUnitClass.gclass230_0.int_7;
+                    int_137 += this.GroundUnitClass.SurfaceToOrbitWeapon.int_7;
                 }
 
-                string string0 = this.Formation.RaceData.dictionary_13[gclass146.PopulationID].string_0;
-                this.gclass0_0.method_1(this.Formation.RaceData, null, this.GroundUnitClass.gclass230_0, null, this,
+                string string0 = this.Formation.RaceData.AlienPopulationIntels[gclass146.PopulationID].PopulationName;
+                this.gclass0_0.method_1(this.Formation.RaceData, null, this.GroundUnitClass.SurfaceToOrbitWeapon, null, this,
                     auroraContactType_0, gclass146.PopulationID, int_137, num3, 0, 0, 0, decimal_13, 0M, num2, double_9,
                     string0, gclass146.Race, false, false, false, false, false, GEnum62.const_0);
                 this.gclass0_0.method_19(AuroraContactType.EWImpact, decimal_13, num3,
@@ -327,10 +327,10 @@ public class GroundUnitFormationElement
                         if (this.TargetSelectionType == AuroraTargetSelection.LargestShip)
                             list2 = list2
                                 .OrderByDescending<ShipData, Decimal>(gclass40_0 =>
-                                    gclass40_0.gclass22_0.Size).ToList<ShipData>();
+                                    gclass40_0.Class.Size).ToList<ShipData>();
                         else if (this.TargetSelectionType == AuroraTargetSelection.SmallestShip)
                             list2 = list2
-                                .OrderBy<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                                .OrderBy<ShipData, Decimal>(gclass40_0 => gclass40_0.Class.Size)
                                 .ToList<ShipData>();
                         else if (this.TargetSelectionType == AuroraTargetSelection.Fastest)
                             list2 = list2.OrderByDescending<ShipData, int>(gclass40_0 => gclass40_0.int_35)
@@ -384,9 +384,9 @@ public class GroundUnitFormationElement
                     num5 = num1;
                 if (this.Formation.RaceData.NPR)
                 {
-                    if (list2[0].gclass22_0.Size < 10M)
+                    if (list2[0].Class.Size < 10M)
                         num5 = 1;
-                    else if (list2[0].gclass22_0.Size < 20M)
+                    else if (list2[0].Class.Size < 20M)
                         num5 = 2;
                 }
 
@@ -403,28 +403,28 @@ public class GroundUnitFormationElement
                             return;
                         double double_2 = this.method_0((int)current.method_156(AuroraJammerType.FireControl));
                         double double_9 = this.method_1(num7, current.gclass85_0.Speed, double_2, true, 1M);
-                        int decimal_13 = this.GroundUnitClass.gclass230_0.method_5((int)num7);
+                        int decimal_13 = this.GroundUnitClass.SurfaceToOrbitWeapon.method_5((int)num7);
                         int num8 = 0;
                         int int_137 = 0;
                         for (int index3 = 1; index3 <= num5; ++index3)
                         {
                             this.list_0.Add(this.GroundUnitClass.int_5);
-                            for (int index4 = 1; index4 <= this.GroundUnitClass.gclass230_0.int_7; ++index4)
+                            for (int index4 = 1; index4 <= this.GroundUnitClass.SurfaceToOrbitWeapon.int_7; ++index4)
                             {
                                 if (AuroraUtils.GetRandomInteger(100) <= double_9)
                                     ++num8;
                             }
 
-                            int_137 += this.GroundUnitClass.gclass230_0.int_7;
+                            int_137 += this.GroundUnitClass.SurfaceToOrbitWeapon.int_7;
                             ++num6;
                             if (num6 >= num1)
                                 break;
                         }
 
                         string string_10 = this.Formation.RaceData.dictionary_12[current.int_8].method_11();
-                        this.gclass0_0.method_1(this.Formation.RaceData, null, this.GroundUnitClass.gclass230_0, null,
+                        this.gclass0_0.method_1(this.Formation.RaceData, null, this.GroundUnitClass.SurfaceToOrbitWeapon, null,
                             this, AuroraContactType.Ship, current.int_8, int_137, num8, 0, 0, 0, decimal_13, 0M, num7,
-                            double_9, string_10, current.gclass21_0, false, false, false, false, false,
+                            double_9, string_10, current.Race, false, false, false, false, false,
                             GEnum62.const_0);
                         this.gclass0_0.method_19(AuroraContactType.EWImpact, decimal_13, num8,
                             this.Formation.PopulationData.gclass202_0.ActualSystem, current.gclass85_0.XCoord,
@@ -578,7 +578,7 @@ public class GroundUnitFormationElement
             int num6 = this.GroundUnitClass.method_6();
             if (num6 > 0)
             {
-                GClass55 gclass550 = this.Formation.gclass55_0;
+                Commander gclass550 = this.Formation.Commander;
                 if (gclass550 != null)
                 {
                     double num7 = this.Formation.ElementList.Sum<GroundUnitFormationElement>(gclass39_0_2 =>
@@ -589,28 +589,35 @@ public class GroundUnitFormationElement
                         if (this.Formation.PopulationData != null)
                         {
                             this.gclass0_0.gclass92_0.method_2(EventType.const_63,
-                                $"{gclass550.method_17(false)} has been killed due to the destruction of {this.GroundUnitClass.ClassName} on {this.Formation.PopulationData.PopName}",
+                                string.Format("{0} has been killed due to the destruction of {1} on {2}",
+                                    gclass550.method_17(false), this.GroundUnitClass.ClassName,
+                                    this.Formation.PopulationData.PopName),
                                 this.Formation.RaceData, this.Formation.PopulationData.gclass202_0.ActualSystem,
                                 this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88(),
                                 AuroraEventCategory.Combat);
-                            gclass550.method_46(
-                                $"Killed due to the destruction of {this.GroundUnitClass.ClassName} on {this.Formation.PopulationData.PopName}",
-                                GEnum28.const_0);
+                            gclass550.AddHistory(
+                                string.Format("Killed due to the destruction of {0} on {1}",
+                                    this.GroundUnitClass.ClassName, this.Formation.PopulationData.PopName),
+                                HistoryType.Personal);
                         }
                         else if (this.Formation.ShipData != null)
                         {
                             this.gclass0_0.gclass92_0.method_2(EventType.const_63,
-                                $"{gclass550.method_17(false)} has been killed due to the destruction of {this.GroundUnitClass.ClassName} on {gclass550.gclass21_0.method_267(this.Formation.ShipData).string_0}",
+                                string.Format("{0} has been killed due to the destruction of {1} on {2}",
+                                    gclass550.method_17(false), this.GroundUnitClass.ClassName,
+                                    gclass550.Race.method_267(this.Formation.ShipData).string_0),
                                 this.Formation.RaceData,
                                 this.Formation.ShipData.gclass85_0.System.ActualSystem,
                                 this.Formation.ShipData.gclass85_0.XCoord,
                                 this.Formation.ShipData.gclass85_0.YCoord, AuroraEventCategory.Combat);
-                            gclass550.method_46(
-                                $"Killed due to the destruction of {this.GroundUnitClass.ClassName} on {gclass550.gclass21_0.method_267(this.Formation.ShipData).string_0}",
-                                GEnum28.const_0);
+                            gclass550.AddHistory(
+                                string.Format("Killed due to the destruction of {0} on {1}",
+                                    this.GroundUnitClass.ClassName,
+                                    gclass550.Race.method_267(this.Formation.ShipData).string_0),
+                                HistoryType.Personal);
                         }
 
-                        gclass550.method_42(AuroraRetirementStatus.KilledGround);
+                        gclass550.SetToRetired(AuroraRetirementStatus.KilledGround);
                     }
                 }
             }
@@ -707,9 +714,9 @@ public class GroundUnitFormationElement
                 return true;
             bool flag = false;
             Decimal decimal_26 = this.GroundUnitClass.decimal_4 * this.UnitCount * ((10 - this.CurrentSupply) * 0.1M);
-            if (this.Formation.gclass55_0 != null)
+            if (this.Formation.Commander != null)
             {
-                Decimal num = this.Formation.gclass55_0.method_5(CommanderBonusType.Logistics) - 2M;
+                Decimal num = this.Formation.Commander.method_5(CommanderBonusType.Logistics) - 2M;
                 decimal_26 = Math.Round(decimal_26 * num, 1);
             }
 
@@ -999,8 +1006,8 @@ public class GroundUnitFormationElement
         try
         {
             this.decimal_2 = this.UnitCount * this.GroundUnitClass.decimal_6;
-            if (this.Formation.gclass55_0 != null)
-                this.decimal_2 *= this.Formation.gclass55_0.method_5(CommanderBonusType.Production);
+            if (this.Formation.Commander != null)
+                this.decimal_2 *= this.Formation.Commander.method_5(CommanderBonusType.Production);
             return this.decimal_2;
         }
         catch (Exception ex)
@@ -1028,27 +1035,27 @@ public class GroundUnitFormationElement
             Decimal num4 = this.UnitCount * this.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.LogisticsPoint);
             string string_20 = "";
             if (str != "-")
-                string_20 = $"{string_20}HQ{str}  ";
+                string_20 = string.Format("{0}HQ{1}  ", string_20, str);
             if (this.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.STO) > 0)
                 string_20 += "ST  ";
             if (this.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.int_1) > 0)
                 string_20 += "CW  ";
             if (num1 > 0)
-                string_20 = $"{string_20}FD{num1.ToString()}  ";
+                string_20 = string.Format("{0}FD{1}  ", string_20, num1.ToString());
             if (num2 > 0M)
             {
                 Decimal d = num2 * this.Formation.RaceData.ConstructionProduction * 100M;
-                if (this.Formation.gclass55_0 != null)
-                    d *= this.Formation.gclass55_0.method_5(CommanderBonusType.Production);
-                string_20 = $"{string_20}CN{num2.ToString()}  FC{Math.Round(d).ToString()}";
+                if (this.Formation.Commander != null)
+                    d *= this.Formation.Commander.method_5(CommanderBonusType.Production);
+                string_20 = string.Format("{0}CN{1}  FC{2}", string_20, num2.ToString(), Math.Round(d).ToString());
             }
 
             if (num3 > 0M)
-                string_20 = $"{string_20}GE{num3.ToString()}  ";
+                string_20 = string.Format("{0}GE{1}  ", string_20, num3.ToString());
             if (num4 > 0M)
-                string_20 = $"{string_20}LG{Math.Round(num4 / 1000M).ToString()}  ";
+                string_20 = string.Format("{0}LG{1}  ", string_20, Math.Round(num4 / 1000M).ToString());
             if (this.GroundUnitClass.decimal_4 > 0M)
-                string_13 = $"{AuroraUtils.smethod_37(this.CurrentSupply * 10)}%";
+                string_13 = string.Format("{0}%", AuroraUtils.smethod_37(this.CurrentSupply * 10));
             this.gclass0_0.method_620(listView_0, this.GroundUnitClass.GroundUnitBaseTypeData.string_0, this.GroundUnitClass.ClassName,
                 AuroraUtils.smethod_37(this.UnitCount), string_13, AuroraUtils.smethod_38(this.Morale),
                 AuroraUtils.FormatNumberToDigits(this.FortificationLevel, 2),

@@ -39,7 +39,7 @@ public class Contact
     public double IncrementStartY;
     public string ContactName;
     public bool Msg;
-    public AlienRaceInfo gclass110_0;
+    public AlienRaceIntel gclass110_0;
     public string string_1 = "";
 
     public Contact(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
@@ -53,7 +53,7 @@ public class Contact
             {
                 if (this.gclass0_0.method_520(this.Xcor, gclass146.method_87(), this.Ycor,
                         gclass146.method_88()))
-                    return $"Orbiting {gclass146.PopName}";
+                    return string.Format((string)"Orbiting {0}", (object)gclass146.PopName);
             }
 
             foreach (JumpPoint gclass120 in this.System.method_27())
@@ -61,19 +61,19 @@ public class Contact
                 if (gclass120.RacialJumpPointSurveys.ContainsKey(this.DetectRace.RaceID) &&
                     gclass120.RacialJumpPointSurveys[this.DetectRace.RaceID].Charted == 1 &&
                     this.gclass0_0.method_520(this.Xcor, gclass120.XCoord, this.Ycor, gclass120.YCoord))
-                    return $"Stationed at {gclass120.method_8(gclass202_0)}";
+                    return string.Format((string)"Stationed at {0}", (object)gclass120.method_8(gclass202_0));
             }
 
             foreach (SurveyLocation gclass213 in this.System.SurveyLocationDictionary.Values)
             {
                 if (this.gclass0_0.method_520(this.Xcor, gclass213.XCoord, this.Ycor, gclass213.YCoord))
-                    return $"Stationed at Survey Location #{gclass213.LocationNumber}";
+                    return string.Format((string)"Stationed at Survey Location #{0}", (object)gclass213.LocationNumber);
             }
 
             foreach (SystemBodyData gclass1 in this.System.method_20())
             {
                 if (this.gclass0_0.method_520(this.Xcor, gclass1.XCoordinate, this.Ycor, gclass1.YCoordinate))
-                    return $"Orbiting {gclass1.method_78(this.DetectRace)}";
+                    return string.Format((string)"Orbiting {0}", (object)gclass1.method_78(this.DetectRace));
             }
 
             return this.System.method_22(this.Xcor, this.Ycor, gclass202_0);
@@ -108,10 +108,10 @@ public class Contact
                    this.ContactType == AuroraContactType.STOGroundUnit ||
                    this.ContactType == AuroraContactType.Shipyard ||
                    this.ContactType == AuroraContactType.Ship && (this.TargetShip.gclass187_0 == null ||
-                                                                          !this.DetectRace.PerceivedAliens.ContainsKey(
+                                                                          !this.DetectRace.AlienRaceIntels.ContainsKey(
                                                                               this.ContactRace.RaceID) ||
                                                                           !this.DetectRace
-                                                                              .PerceivedAliens[this.ContactRace.RaceID]
+                                                                              .AlienRaceIntels[this.ContactRace.RaceID]
                                                                               .bTradeTreaty);
         }
         catch (Exception ex)
@@ -140,7 +140,8 @@ public class Contact
         {
             string str1 = "";
             if (this.ContactRace != null)
-                str1 = $"[{this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].Abbreviation}]  ";
+                str1 = string.Format((string)"[{0}]  ",
+                    (object)this.DetectRace.AlienRaceIntels[this.ContactRace.RaceID].Abbreviation);
             string str2;
             if (this.ContactType == AuroraContactType.Ship)
                 str2 = str1 + this.TargetShip.method_226(this.DetectRace, false, 0);
@@ -151,23 +152,27 @@ public class Contact
             else if (this.ContactType == AuroraContactType.GroundUnit)
             {
                 string str3 = this.DetectRace.method_42(this.TargetPopulation);
-                str2 = $"{str1}{str3} - Ground Forces Signature: {AuroraUtils.smethod_39(this.ContactStrength * 100M)} tons";
+                str2 = string.Format((string)"{0}{1} - Ground Forces Signature: {2} tons", (object)str1, (object)str3,
+                    (object)AuroraUtils.smethod_39(this.ContactStrength * 100M));
             }
             else if (this.ContactType == AuroraContactType.STOGroundUnit)
             {
                 string str4 = this.DetectRace.method_42(this.TargetPopulation);
                 str2 =
-                    $"{str1}{str4} - STO Ground Forces Signature {AuroraUtils.smethod_39(this.ContactStrength * 100M)} tons";
+                    string.Format((string)"{0}{1} - STO Ground Forces Signature {2} tons", (object)str1, (object)str4,
+                        (object)AuroraUtils.smethod_39(this.ContactStrength * 100M));
             }
             else if (this.ContactType == AuroraContactType.Shipyard)
             {
                 string str5 = this.DetectRace.method_42(this.TargetPopulation);
-                str2 = $"{str1}{str5} - Shipyard Complex Signature {this.ContactStrength.ToString()}";
+                str2 = string.Format((string)"{0}{1} - Shipyard Complex Signature {2}", (object)str1, (object)str5,
+                    (object)this.ContactStrength.ToString());
             }
             else
                 str2 = this.ContactType == AuroraContactType.Explosion ||
                        this.ContactType == AuroraContactType.EWImpact
-                    ? $"{AuroraUtils.smethod_37(this.ContactNumber)}x {this.ContactName}"
+                    ? string.Format((string)"{0}x {1}", (object)AuroraUtils.smethod_37(this.ContactNumber),
+                        (object)this.ContactName)
                     : this.ContactName;
 
             return str2;
@@ -183,9 +188,9 @@ public class Contact
     {
         try
         {
-            return this.ContactRace == null || !this.DetectRace.PerceivedAliens.ContainsKey(this.ContactRace.RaceID)
+            return this.ContactRace == null || !this.DetectRace.AlienRaceIntels.ContainsKey(this.ContactRace.RaceID)
                 ? AuroraContactStatus.None
-                : this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].ContactStatus;
+                : this.DetectRace.AlienRaceIntels[this.ContactRace.RaceID].ContactStatus;
         }
         catch (Exception ex)
         {
@@ -198,9 +203,9 @@ public class Contact
     {
         try
         {
-            return this.ContactRace == null || !this.DetectRace.PerceivedAliens.ContainsKey(this.ContactRace.RaceID)
+            return this.ContactRace == null || !this.DetectRace.AlienRaceIntels.ContainsKey(this.ContactRace.RaceID)
                 ? AuroraCommStatus.CommunicationImpossible
-                : this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].CommStatus;
+                : this.DetectRace.AlienRaceIntels[this.ContactRace.RaceID].CommStatus;
         }
         catch (Exception ex)
         {
@@ -224,8 +229,9 @@ public class Contact
             string str1 = "";
             if (this.ContactRace != null)
             {
-                auroraContactStatus_0 = this.DetectRace.PerceivedAliens[this.ContactRace.RaceID].ContactStatus;
-                str1 = $"[{gclass202_0.Race.PerceivedAliens[this.ContactRace.RaceID].Abbreviation}]  ";
+                auroraContactStatus_0 = this.DetectRace.AlienRaceIntels[this.ContactRace.RaceID].ContactStatus;
+                str1 = string.Format((string)"[{0}]  ",
+                    (object)gclass202_0.Race.AlienRaceIntels[this.ContactRace.RaceID].Abbreviation);
             }
 
             if (!gclass202_0.Race.method_319(auroraContactStatus_0))
@@ -252,7 +258,8 @@ public class Contact
             {
                 double num = this.gclass0_0.GetDistanceBetween(gclass202_0.gclass221_0.double_0,
                     gclass202_0.gclass221_0.double_1, gclass222_0.double_0, gclass222_0.double_1);
-                str2 = $"{str2}  {AuroraUtils.smethod_50(num / 1000000.0)}m";
+                str2 = string.Format((string)"{0}  {1}m", (object)str2,
+                    (object)AuroraUtils.smethod_50(num / 1000000.0));
             }
 
             GClass221 gclass221 = new GClass221();
@@ -289,7 +296,9 @@ public class Contact
             GClass221 gclass221 = new GClass221();
             gclass221.double_0 = num1 + AuroraUtils.int_61 + 5.0;
             gclass221.double_1 = num2 - 3.0 - int_6 * 15;
-            graphics_0.DrawString($"{AuroraUtils.smethod_37(this.ContactNumber)}x {this.ContactName}", font_0, solidBrush,
+            graphics_0.DrawString(
+                string.Format((string)"{0}x {1}", (object)AuroraUtils.smethod_37(this.ContactNumber),
+                    (object)this.ContactName), font_0, solidBrush,
                 (float)gclass221.double_0, (float)gclass221.double_1);
             return true;
         }

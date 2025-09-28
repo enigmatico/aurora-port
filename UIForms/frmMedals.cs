@@ -20,7 +20,7 @@ public class frmMedals : Form
     private FCTRaceMedalRecord gclass42_0;
     private string string_0 = "";
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private ListView lstvMedals;
     private ColumnHeader columnHeader_0;
     private ColumnHeader columnHeader_1;
@@ -228,7 +228,8 @@ public class frmMedals : Form
             this.chkMultipleAwards.CheckState =
                 !this.gclass42_0.AllowMultipleAward ? CheckState.Unchecked : CheckState.Checked;
             this.string_0 = this.gclass42_0.MedalFileName;
-            this.pbMedalImage.Image = Image.FromFile($"{Application.StartupPath}\\Medals\\{this.string_0}");
+            this.pbMedalImage.Image = Image.FromFile(string.Format("{0}\\Medals\\{1}", Application.StartupPath,
+                this.string_0));
             this.gclass42_0.method_0(this.lstAssignedConditions);
             this.lstAssignedConditions.ClearSelected();
         }
@@ -251,14 +252,14 @@ public class frmMedals : Form
                 // ISSUE: reference to a compiler-generated field
                 var cgc43 = (MedalCondition)this.cboConditions.SelectedValue;
                 // ISSUE: reference to a compiler-generated method
-                if (this.gclass0_0.list_1.FirstOrDefault<GClass44>(gc44 =>
-                        gc44.gclass42_0 == this.gclass42_0 && gc44.gclass43_0 == cgc43) == null)
+                if (this.gclass0_0.ConditionForMedals.FirstOrDefault<ConditionForMedal>(gc44 =>
+                        gc44.Medal == this.gclass42_0 && gc44.Condition == cgc43) == null)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    this.gclass0_0.list_1.Add(new GClass44()
+                    this.gclass0_0.ConditionForMedals.Add(new ConditionForMedal()
                     {
-                        gclass43_0 = cgc43,
-                        gclass42_0 = this.gclass42_0
+                        Condition = cgc43,
+                        Medal = this.gclass42_0
                     });
                 }
 
@@ -289,11 +290,11 @@ public class frmMedals : Form
                 }
                 else
                 {
-                    GClass44 gclass44 = this.gclass0_0.list_1.FirstOrDefault<GClass44>(cgc44 =>
-                        cgc44.gclass42_0 == this.gclass42_0 && cgc44.gclass43_0 == cgc43);
+                    ConditionForMedal gclass44 = this.gclass0_0.ConditionForMedals.FirstOrDefault<ConditionForMedal>(cgc44 =>
+                        cgc44.Medal == this.gclass42_0 && cgc44.Condition == cgc43);
                     ;
                     if (gclass44 != null)
-                        this.gclass0_0.list_1.Remove(gclass44);
+                        this.gclass0_0.ConditionForMedals.Remove(gclass44);
                     this.gclass42_0.method_0(this.lstAssignedConditions);
                     this.gclass21_0.method_314(this.lstvConditions, this.cboConditions);
                 }
@@ -315,13 +316,13 @@ public class frmMedals : Form
             }
             else
             {
-                if (MessageBox.Show($" Are you sure you want to delete {this.gclass42_0.MedalName}?",
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", this.gclass42_0.MedalName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                foreach (GClass44 gclass44 in this.gclass0_0.list_1
-                             .Where<GClass44>(gclass44_0 => gclass44_0.gclass42_0 == this.gclass42_0)
-                             .ToList<GClass44>())
-                    this.gclass0_0.list_1.Remove(gclass44);
+                foreach (ConditionForMedal gclass44 in this.gclass0_0.ConditionForMedals
+                             .Where<ConditionForMedal>(gclass44_0 => gclass44_0.Medal == this.gclass42_0)
+                             .ToList<ConditionForMedal>())
+                    this.gclass0_0.ConditionForMedals.Remove(gclass44);
                 this.gclass0_0.RaceMedalDictionary.Remove(this.gclass42_0.MedalID);
                 this.gclass21_0.method_312(this.lstvMedals);
             }
@@ -383,7 +384,8 @@ public class frmMedals : Form
                                 MedalFileName = source[5]
                             };
                             gclass42.MedalImageLoaded =
-                                Image.FromFile($"{Application.StartupPath}\\Medals\\{gclass42.MedalFileName}");
+                                Image.FromFile(string.Format("{0}\\Medals\\{1}", Application.StartupPath,
+                                    gclass42.MedalFileName));
                             int index = 6;
                             while (true)
                             {
@@ -397,13 +399,13 @@ public class frmMedals : Form
                                 } while (!this.gclass0_0.MedalConditionDictionary.ContainsKey(int32));
 
                                 var cgc43 = this.gclass0_0.MedalConditionDictionary[int32];
-                                if (this.gclass0_0.list_1.FirstOrDefault<GClass44>(gc44 =>
-                                        gc44.gclass42_0 == this.gclass42_0 && gc44.gclass43_0 == cgc43) == null)
+                                if (this.gclass0_0.ConditionForMedals.FirstOrDefault<ConditionForMedal>(gc44 =>
+                                        gc44.Medal == this.gclass42_0 && gc44.Condition == cgc43) == null)
                                 {
-                                    this.gclass0_0.list_1.Add(new GClass44()
+                                    this.gclass0_0.ConditionForMedals.Add(new ConditionForMedal()
                                     {
-                                        gclass43_0 = cgc43,
-                                        gclass42_0 = gclass42
+                                        Condition = cgc43,
+                                        Medal = gclass42
                                     });
                                 }
 
@@ -446,18 +448,18 @@ public class frmMedals : Form
                              .ToList<FCTRaceMedalRecord>())
                 {
                     var cgc42 = gclass42;
-                    streamWriter.Write($"{cgc42.MedalName},");
-                    streamWriter.Write($"{cgc42.MedalDescription},");
-                    streamWriter.Write($"{cgc42.Abbreviation},");
-                    streamWriter.Write($"{cgc42.MedalPoints},");
+                    streamWriter.Write(string.Format("{0},", cgc42.MedalName));
+                    streamWriter.Write(string.Format("{0},", cgc42.MedalDescription));
+                    streamWriter.Write(string.Format("{0},", cgc42.Abbreviation));
+                    streamWriter.Write(string.Format("{0},", cgc42.MedalPoints));
                     if (cgc42.AllowMultipleAward)
                         streamWriter.Write("Y,");
                     else
                         streamWriter.Write("N,");
                     streamWriter.Write(cgc42.MedalFileName);
-                    foreach (GClass44 gclass44 in this.gclass0_0.list_1
-                                 .Where<GClass44>(gc44 => gc44.gclass42_0 == cgc42).ToList<GClass44>())
-                        streamWriter.Write($",{gclass44.gclass43_0.MedalConditionID}");
+                    foreach (ConditionForMedal gclass44 in this.gclass0_0.ConditionForMedals
+                                 .Where<ConditionForMedal>(gc44 => gc44.Medal == cgc42).ToList<ConditionForMedal>())
+                        streamWriter.Write(string.Format(",{0}", gclass44.Condition.MedalConditionID));
                     streamWriter.Write(streamWriter.NewLine);
                 }
 
@@ -470,12 +472,7 @@ public class frmMedals : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

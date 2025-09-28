@@ -29,7 +29,7 @@ public enum GroundUnitComponent
     const_19 = 25, // 0x00000019
     const_20 = 26, // 0x0000001A
     const_21 = 27, // 0x0000001B
-    const_22 = 41, // 0x00000029
+    SurfaceToOrbit = 41, // 0x00000029
     const_23 = 57, // 0x00000039
     const_24 = 58, // 0x0000003A
     const_25 = 59, // 0x0000003B

@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 #nullable disable
@@ -48,7 +49,7 @@ public class GroundUnitClass101
     public TechSystem TechData;
     public GroundUnitBaseTypeData GroundUnitBaseTypeData;
     public ArmourTypeData ArmourType;
-    public ShipComponent gclass230_0;
+    public ShipComponent SurfaceToOrbitWeapon;
     public AllMineralsValue gclass123_0;
     public List<GroundComponentTypeDefinition> GroundUnitComponentList = new List<GroundComponentTypeDefinition>();
     public Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition> dictionary_0 = new Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition>();
@@ -117,18 +118,18 @@ public class GroundUnitClass101
             if (this.bool_0)
                 checkState_5 = CheckState.Checked;
             GroundUnitClass101 gclass101_0 = this.gclass0_0.method_448(gclass21_0, this.GroundUnitBaseTypeData, this.ArmourType, gclass100_0,
-                gclass100_1, gclass100_2, gclass100_3, this.gclass230_0, this.dictionary_0,
+                gclass100_1, gclass100_2, gclass100_3, this.SurfaceToOrbitWeapon, this.dictionary_0,
                 this.gclass0_0.method_588(this.ClassName), false, checkState_3, CheckState.Checked, checkState_5,
                 this.int_6);
             GroundUnitClass101 gclass101_1 = gclass21_0.method_210(gclass101_0);
             if (gclass101_1 == null)
             {
                 gclass101_1 = this.gclass0_0.method_448(gclass21_0, this.GroundUnitBaseTypeData, this.ArmourType, gclass100_0,
-                    gclass100_1, gclass100_2, gclass100_3, this.gclass230_0, this.dictionary_0,
+                    gclass100_1, gclass100_2, gclass100_3, this.SurfaceToOrbitWeapon, this.dictionary_0,
                     this.gclass0_0.method_588(this.ClassName), true, checkState_3, CheckState.Checked, checkState_5,
                     this.int_6);
                 if (this.TechData.dictionary_0.ContainsKey(gclass21_0.RaceID))
-                    this.TechData.dictionary_0[gclass21_0.RaceID].bool_0 = true;
+                    this.TechData.dictionary_0[gclass21_0.RaceID].Obsolete = true;
                 if (this.gclass95_0 != null)
                 {
                     int int_1 = 1;
@@ -144,7 +145,7 @@ public class GroundUnitClass101
                 {
                     GroundUnitSeriesData gclass94_1 = new GroundUnitSeriesData();
                     gclass94_1.GroundUnitSeriesID = this.gclass0_0.method_26(GEnum0.const_50);
-                    gclass94_1.Description = $"{this.ClassName} Series";
+                    gclass94_1.Description = string.Format("{0} Series", this.ClassName);
                     gclass21_0.GroundUnitSeriesDictionary.Add(gclass94_1.GroundUnitSeriesID, gclass94_1);
                     GroundUnitSeriesClassData gclass95_1 = new GroundUnitSeriesClassData(gclass94_1, this, 1);
                     gclass21_0.GroundUnitSeriesClassList.Add(gclass95_1);
@@ -289,94 +290,97 @@ public class GroundUnitClass101
         }
     }
 
-    public void method_9(TextBox textBox_0, bool bool_3, bool bool_4)
+    public void PrintOutGroundUnitDesignedSpec(TextBox textBox_0, bool bool_3, bool bool_4)
     {
         try
         {
-            string str1 = "";
+            var sb = new StringBuilder();
+
+            // Conditionally add the class name header
             if (bool_3)
-                str1 = str1 + this.ClassName + Environment.NewLine;
-            string[] strArray1 = new string[10]
             {
-                str1,
-                "Transport Size (tons) ",
+                sb.AppendLine(this.ClassName);
+            }
+
+            // First block of stats
+            Decimal armorValue = this.method_7();
+            Decimal hitPoints = this.method_8();
+            
+            sb.AppendLine(string.Format("Transport Size (tons) {0}     Cost {1}     Armour {2}     Hit Points {3}",
                 AuroraUtils.FormatNumberToDigits(this.decimal_2, 1),
-                "     Cost ",
-                AuroraUtils.FormatNumberToDigits(this.decimal_3, 3),
-                "     Armour ",
-                null,
-                null,
-                null,
-                null
-            };
-            Decimal num1 = this.method_7();
-            strArray1[6] = num1.ToString();
-            strArray1[7] = "     Hit Points ";
-            num1 = this.method_8();
-            strArray1[8] = num1.ToString();
-            strArray1[9] = Environment.NewLine;
-            string str2 =
-                $"{string.Concat(strArray1)}Annual Maintenance Cost {AuroraUtils.smethod_47(this.decimal_3 * AuroraUtils.decimal_47)}     Resupply Cost {AuroraUtils.smethod_47(this.decimal_4)}{Environment.NewLine}";
+                AuroraUtils.FormatNumberToDigits(this.decimal_3, 3), armorValue, hitPoints));
+            sb.AppendLine(string.Format("Annual Maintenance Cost {0}     Resupply Cost {1}",
+                AuroraUtils.smethod_47(this.decimal_3 * AuroraUtils.decimal_47),
+                AuroraUtils.smethod_47(this.decimal_4)));
+
+            // Loop through each component and add its specific details
             foreach (GroundComponentTypeDefinition gclass100 in this.GroundUnitComponentList)
             {
-                if (gclass100.GroundUnitComponentType == GroundUnitComponent.const_22 && this.gclass230_0 != null)
+                if (gclass100.GroundUnitComponentType == GroundUnitComponent.SurfaceToOrbit && this.SurfaceToOrbitWeapon != null)
                 {
-                    Decimal num2 = 1M - this.int_1 / (Decimal)this.int_2;
-                    string[] strArray2 = new string[17]
-                    {
-                        str2,
-                        Environment.NewLine,
-                        this.gclass230_0.Name,
-                        Environment.NewLine,
-                        "Range ",
-                        AuroraUtils.smethod_37(this.int_1),
-                        " km      Tracking ",
-                        AuroraUtils.smethod_37(this.int_4),
-                        " km/s      Damage ",
-                        this.gclass230_0.int_6.ToString(),
-                        " / ",
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null
-                    };
-                    int num3 = this.gclass230_0.method_5(this.int_1);
-                    strArray2[11] = num3.ToString();
-                    strArray2[12] = "     Shots ";
-                    strArray2[13] = this.gclass230_0.int_7.ToString();
-                    strArray2[14] = "     Rate of Fire ";
-                    num3 = this.gclass230_0.method_3();
-                    strArray2[15] = num3.ToString();
-                    strArray2[16 /*0x10*/] = Environment.NewLine;
-                    str2 = string.Concat(strArray2);
-                    str2 =
-                        $"{str2}Maximum Fire Control Range {AuroraUtils.smethod_37(this.int_2)}km      Chance to Hit at Max Range {AuroraUtils.smethod_39(num2 * 100M)}%{Environment.NewLine}";
-                    str2 =
-                        $"{str2}Maximum Sensor Range {AuroraUtils.smethod_37(this.int_3)}km      Max Range vs Missile {AuroraUtils.smethod_43(Math.Pow(AuroraUtils.double_20, 2.0) * this.int_3)} km{Environment.NewLine}";
+                    // Handle the complex 'const_22' type component
+                    sb.AppendLine(); // Add a blank line separator
+                    sb.AppendLine(this.SurfaceToOrbitWeapon.Name);
+
+                    int damagePerShot = this.SurfaceToOrbitWeapon.method_5(this.int_1);
+                    int rateOfFire = this.SurfaceToOrbitWeapon.method_3();
+                    
+                    sb.AppendLine(string.Format(
+                        "Range {0} km      Tracking {1} km/s      Damage {2} / {3}     Shots {4}     Rate of Fire {5}",
+                        AuroraUtils.smethod_37(this.int_1), AuroraUtils.smethod_37(this.int_4),
+                        this.SurfaceToOrbitWeapon.int_6, damagePerShot, this.SurfaceToOrbitWeapon.int_7,
+                        rateOfFire));
+
+                    Decimal accuracyFactor = 1M - this.int_1 / (Decimal)this.int_2;
+
+                    sb.AppendLine(string.Format("Maximum Fire Control Range {0}km      Chance to Hit at Max Range {1}%",
+                        AuroraUtils.smethod_37(this.int_2), AuroraUtils.smethod_39(accuracyFactor * 100M)));
+                    sb.AppendLine(string.Format("Maximum Sensor Range {0}km      Max Range vs Missile {1} km",
+                        AuroraUtils.smethod_37(this.int_3),
+                        AuroraUtils.smethod_43(Math.Pow(AuroraUtils.double_20, 2.0) * this.int_3)));
+
                     if (this.int_7 > 0)
-                        str2 = $"{str2}ECCM-{AuroraUtils.smethod_37(this.int_7)}{Environment.NewLine}";
+                    {
+                        sb.AppendLine(string.Format("ECCM-{0}", AuroraUtils.smethod_37(this.int_7)));
+                    }
+                }
+                else if (gclass100.GroundUnitComponentType == GroundUnitComponent.const_26)
+                {
+                    // Handle the 'const_26' type (Headquarters)
+                    sb.AppendLine(string.Format("Headquarters:    Capacity {0}", AuroraUtils.smethod_37(this.int_6)));
                 }
                 else
-                    str2 = gclass100.GroundUnitComponentType != GroundUnitComponent.const_26
-                        ? str2 + gclass100.method_3(this.decimal_1) + Environment.NewLine
-                        : $"{str2}Headquarters:    Capacity {AuroraUtils.smethod_37(this.int_6)}{Environment.NewLine}";
+                {
+                    // Handle all other component types
+                    sb.AppendLine(gclass100.method_3(this.decimal_1));
+                }
             }
 
-            if (this.dictionary_0.Values.Count > 0)
+            // Append capabilities if any exist
+            if (this.dictionary_0.Values.Any())
             {
-                str2 += Environment.NewLine;
+                sb.AppendLine(); // Add a blank line separator
                 foreach (GroundUnitCapabilityDefinition gclass98 in this.dictionary_0.Values)
-                    str2 = str2 + gclass98.CapabilityName + Environment.NewLine;
+                {
+                    sb.AppendLine(gclass98.CapabilityName);
+                }
             }
 
+            // Append final flag-based info
             if (this.bool_0)
-                str2 = $"{str2}Non-Combat Class{Environment.NewLine}";
+            {
+                sb.AppendLine("Non-Combat Class");
+            }
+
             if (bool_4)
-                str2 =
-                    $"{str2 + Environment.NewLine + this.gclass123_0.method_36() + Environment.NewLine}Development Cost  {AuroraUtils.smethod_37(this.TechData.int_4)}";
-            textBox_0.Text = str2;
+            {
+                sb.AppendLine();
+                sb.AppendLine(this.gclass123_0.method_36());
+                sb.Append(string.Format("Development Cost  {0}", AuroraUtils.smethod_37(this.TechData.int_4))); // Use Append for the last line as original had no final NewLine
+            }
+
+            // Assign the completed string to the UI element
+            textBox_0.Text = sb.ToString();
         }
         catch (Exception ex)
         {

@@ -19,7 +19,7 @@ public class GClass222
     public List<FleetData> list_4 = new List<FleetData>();
     public List<MissileSalvo> list_5 = new List<MissileSalvo>();
     public List<Wreck> list_6 = new List<Wreck>();
-    public List<GClass59> list_7 = new List<GClass59>();
+    public List<LifePod> list_7 = new List<LifePod>();
     public List<Contact> list_8 = new List<Contact>();
     public List<ShipData> list_9 = new List<ShipData>();
     public List<MissileSalvo> list_10 = new List<MissileSalvo>();
@@ -28,7 +28,7 @@ public class GClass222
     public List<SurveyLocation> list_13 = new List<SurveyLocation>();
     public List<FCTMassDriverPacket126> list_14 = new List<FCTMassDriverPacket126>();
     public List<PopulationData> list_15 = new List<PopulationData>();
-    public GClass211 gclass211_0;
+    public AetherRift gclass211_0;
     public double double_0;
     public double double_1;
     public double double_2;
@@ -44,7 +44,7 @@ public class GClass222
         {
             if (this.list_4.Count > 0)
                 return this.list_4.OrderByDescending<FleetData, Decimal>(gclass85_0 =>
-                        gclass85_0.method_176().Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size))
+                        gclass85_0.method_176().Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size))
                     .FirstOrDefault<FleetData>();
             if (this.list_1.Count > 0)
                 return this.list_1.OrderByDescending<SystemBodyData, double>(gclass1_0 => gclass1_0.Mass)

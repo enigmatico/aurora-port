@@ -17,7 +17,7 @@ public class StarSetup : Form
     private GClass0 gclass0_0;
     private Star197 gclass197_0;
     private StarSystem gclass200_0;
-    private IContainer icontainer_0;
+    
     private ComboBox cboStellarType;
     private Button cmdCancel;
     private Button cmdOK;
@@ -208,7 +208,7 @@ public class StarSetup : Form
             this.gclass0_0.method_601(this.lstvStellarType, "Temperature",
                 AuroraUtils.FormatNumberToDigits(selectedValue.Temperature, 4), null);
             this.gclass0_0.method_601(this.lstvStellarType, "Diameter (km)",
-                $"{AuroraUtils.smethod_50(selectedValue.method_1() / 1000000.0)}m", null);
+                string.Format("{0}m", AuroraUtils.smethod_50(selectedValue.method_1() / 1000000.0)), null);
         }
         catch (Exception ex)
         {
@@ -275,12 +275,7 @@ public class StarSetup : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

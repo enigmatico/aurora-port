@@ -23,7 +23,7 @@ public class MissileSalvo
 
         internal bool method_0(ShipData gclass40_0)
         {
-            return this.gclass132_0.gclass0_0.GetDistanceBetween(this.gclass132_0.double_0, this.gclass132_0.double_1,
+            return this.gclass132_0.gclass0_0.GetDistanceBetween(this.gclass132_0.Xcor, this.gclass132_0.Ycor,
                 gclass40_0.gclass85_0.XCoord, gclass40_0.gclass85_0.YCoord) < (double)this.decimal_0;
         }
 
@@ -40,8 +40,8 @@ public class MissileSalvo
         internal bool method_0(SystemBodyData gclass1_0)
         {
             return gclass1_0.SystemData == this.gclass132_0.System &&
-                   gclass1_0.XCoordinate == this.gclass132_0.double_0 &&
-                   gclass1_0.YCoordinate == this.gclass132_0.double_1;
+                   gclass1_0.XCoordinate == this.gclass132_0.Xcor &&
+                   gclass1_0.YCoordinate == this.gclass132_0.Ycor;
         }
     }
 
@@ -57,30 +57,30 @@ public class MissileSalvo
     public GameRace Race;
     public StarSystem System;
     public RaceMissile RaceMissile;
-    public ShipComponent gclass230_0;
-    public SystemBodyData gclass1_0;
-    public ShipData gclass40_1;
-    public MissileSalvo gclass132_0;
-    public PopulationData gclass146_0;
-    public Waypoint gclass214_0;
-    public AuroraContactType auroraContactType_0;
-    public GEnum58 genum58_0;
-    public int int_0;
-    public int int_1;
-    public int int_2;
-    public Decimal decimal_0;
-    public Decimal decimal_1;
-    public Decimal decimal_2;
-    public double double_0;
-    public double double_1;
-    public double double_2;
-    public double double_3;
-    public double double_4;
-    public double double_5;
-    public double double_6;
-    public double double_7;
-    public double double_8;
-    public double double_9;
+    public ShipComponent FireControl;
+    public SystemBodyData OrbitBody;
+    public ShipData TargetShip;
+    public MissileSalvo TargetSalvo;
+    public PopulationData TargetPopulation;
+    public Waypoint TargetWaypoint;
+    public AuroraContactType TargetType;
+    public HomingMethod HomingMethod;
+    public int TargetID;
+    public int MissileSalvoID;
+    public int FCNum;
+    public Decimal LaunchTime;
+    public Decimal Endurance;
+    public Decimal CurrentDetonationRange;
+    public double Xcor;
+    public double Ycor;
+    public double LastXcor;
+    public double LastYcor;
+    public double LastTargetX;
+    public double LastTargetY;
+    public double IncrementStartX;
+    public double IncrementStartY;
+    public double ModifierToHit;
+    public double MissileSpeed;
     public string string_0;
     public string string_1 = "";
     public int int_3;
@@ -106,15 +106,15 @@ public class MissileSalvo
         try
         {
             GClass221 gclass221 = new GClass221(gclass221_2.double_0, gclass221_2.double_1);
-            double num1 = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass221_2.double_0,
+            double num1 = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass221_2.double_0,
                 gclass221_2.double_1);
             double num2 = double_12 / num1;
-            double num3 = Math.Abs(gclass221_2.double_0 - this.double_0) * num2;
-            double num4 = Math.Abs(gclass221_2.double_1 - this.double_1) * num2;
-            gclass221.double_0 = gclass221_2.double_0 >= this.double_0
+            double num3 = Math.Abs(gclass221_2.double_0 - this.Xcor) * num2;
+            double num4 = Math.Abs(gclass221_2.double_1 - this.Ycor) * num2;
+            gclass221.double_0 = gclass221_2.double_0 >= this.Xcor
                 ? gclass221_2.double_0 - num3
                 : gclass221_2.double_0 + num3;
-            gclass221.double_1 = gclass221_2.double_1 >= this.double_1
+            gclass221.double_1 = gclass221_2.double_1 >= this.Ycor
                 ? gclass221_2.double_1 - num4
                 : gclass221_2.double_1 + num4;
             return gclass221;
@@ -132,7 +132,7 @@ public class MissileSalvo
         {
             foreach (PopulationData gclass146 in this.System.method_33(this.Race))
             {
-                if (this.gclass0_0.method_520(this.double_0, gclass146.method_87(), this.double_1,
+                if (this.gclass0_0.method_520(this.Xcor, gclass146.method_87(), this.Ycor,
                         gclass146.method_88()))
                     return gclass146.PopName;
             }
@@ -141,7 +141,7 @@ public class MissileSalvo
             {
                 if (gclass120.RacialJumpPointSurveys.ContainsKey(this.Race.RaceID) &&
                     gclass120.RacialJumpPointSurveys[this.Race.RaceID].Charted == 1 &&
-                    this.gclass0_0.method_520(this.double_0, gclass120.XCoord, this.double_1, gclass120.YCoord))
+                    this.gclass0_0.method_520(this.Xcor, gclass120.XCoord, this.Ycor, gclass120.YCoord))
                 {
                     RacialSystemSurvey gclass202_0 = this.Race.method_128(this.System);
                     return gclass120.method_8(gclass202_0);
@@ -150,17 +150,17 @@ public class MissileSalvo
 
             foreach (SurveyLocation gclass213 in this.System.SurveyLocationDictionary.Values)
             {
-                if (this.gclass0_0.method_520(this.double_0, gclass213.XCoord, this.double_1, gclass213.YCoord))
-                    return $"Survey Location #{gclass213.LocationNumber}";
+                if (this.gclass0_0.method_520(this.Xcor, gclass213.XCoord, this.Ycor, gclass213.YCoord))
+                    return string.Format((string)"Survey Location #{0}", (object)gclass213.LocationNumber);
             }
 
             foreach (SystemBodyData gclass1 in this.System.method_20())
             {
-                if (this.gclass0_0.method_520(this.double_0, gclass1.XCoordinate, this.double_1, gclass1.YCoordinate))
+                if (this.gclass0_0.method_520(this.Xcor, gclass1.XCoordinate, this.Ycor, gclass1.YCoordinate))
                     return gclass1.method_78(this.Race);
             }
 
-            return this.System.method_22(this.double_0, this.double_1,
+            return this.System.method_22(this.Xcor, this.Ycor,
                 this.Race.method_128(this.System));
         }
         catch (Exception ex)
@@ -175,22 +175,23 @@ public class MissileSalvo
         try
         {
             string str = "";
-            if (this.gclass40_1 != null)
-                str = $"  {this.Race.method_32(this.gclass40_1)}";
-            else if (this.gclass132_0 != null)
-                str = $"  SalvoID {this.gclass132_0.int_1}";
-            else if (this.gclass214_0 != null)
-                str = $"  {this.gclass214_0.method_2(true)}";
-            else if (this.gclass146_0 != null)
+            if (this.TargetShip != null)
+                str = string.Format((string)"  {0}", (object)this.Race.method_32(this.TargetShip));
+            else if (this.TargetSalvo != null)
+                str = string.Format((string)"  SalvoID {0}", (object)this.TargetSalvo.MissileSalvoID);
+            else if (this.TargetWaypoint != null)
+                str = string.Format((string)"  {0}", (object)this.TargetWaypoint.method_2(true));
+            else if (this.TargetPopulation != null)
             {
-                if (this.auroraContactType_0 == AuroraContactType.Population)
-                    str = $"  {this.Race.method_42(this.gclass146_0)}";
-                else if (this.auroraContactType_0 == AuroraContactType.GroundUnit)
-                    str = $"  {this.Race.method_42(this.gclass146_0)} Ground Forces";
-                else if (this.auroraContactType_0 == AuroraContactType.STOGroundUnit)
-                    str = $"  {this.Race.method_42(this.gclass146_0)} STO Ground Forces";
-                else if (this.auroraContactType_0 == AuroraContactType.Shipyard)
-                    str = $"  {this.Race.method_42(this.gclass146_0)} Shipyards";
+                if (this.TargetType == AuroraContactType.Population)
+                    str = string.Format((string)"  {0}", (object)this.Race.method_42(this.TargetPopulation));
+                else if (this.TargetType == AuroraContactType.GroundUnit)
+                    str = string.Format((string)"  {0} Ground Forces", (object)this.Race.method_42(this.TargetPopulation));
+                else if (this.TargetType == AuroraContactType.STOGroundUnit)
+                    str = string.Format((string)"  {0} STO Ground Forces",
+                        (object)this.Race.method_42(this.TargetPopulation));
+                else if (this.TargetType == AuroraContactType.Shipyard)
+                    str = string.Format((string)"  {0} Shipyards", (object)this.Race.method_42(this.TargetPopulation));
             }
 
             return str;
@@ -301,7 +302,7 @@ public class MissileSalvo
             if (source.Count == 0)
                 return;
             // ISSUE: reference to a compiler-generated field
-            class1085.decimal_0 = this.RaceMissile.Speed * this.decimal_1;
+            class1085.decimal_0 = this.RaceMissile.Speed * this.Endurance;
             // ISSUE: reference to a compiler-generated field
             if (class1085.decimal_0 == 0M)
                 return;
@@ -310,10 +311,10 @@ public class MissileSalvo
             List<ShipData> list1 = source.Where<ShipData>(class1085.method_0).ToList<ShipData>();
             foreach (ShipData gclass40_1 in list1)
             {
-                Decimal num1 = gclass40_1.gclass22_0.MaxSpeed * this.decimal_1;
+                Decimal num1 = gclass40_1.Class.MaxSpeed * this.Endurance;
                 // ISSUE: reference to a compiler-generated field
                 Decimal num2 = class1085.decimal_0 - num1;
-                Decimal num3 = (Decimal)this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1,
+                Decimal num3 = (Decimal)this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor,
                     gclass40_1.gclass85_0.XCoord, gclass40_1.gclass85_0.YCoord);
                 Decimal num4 = num3;
                 if (num2 > num4)
@@ -321,10 +322,10 @@ public class MissileSalvo
                     if (num3 < 10000M)
                         num3 = 10000M;
                     Decimal num5 = 1M;
-                    GClass117 gclass117 = this.Race.method_267(gclass40_1);
+                    AlienShipIntel gclass117 = this.Race.method_267(gclass40_1);
                     if (gclass117 != null && gclass117.gclass115_0.genum70_0 == EngineDesignType.const_2)
                         num5 = 0.1M;
-                    gclass40_1.int_37 = (int)Math.Floor(gclass40_1.gclass22_0.Size / num3 * 10000000M * num5);
+                    gclass40_1.int_37 = (int)Math.Floor(gclass40_1.Class.Size / num3 * 10000000M * num5);
                     if (gclass40_1.int_37 < 1)
                         gclass40_1.int_37 = 1;
                 }
@@ -340,9 +341,9 @@ public class MissileSalvo
             // ISSUE: reference to a compiler-generated field
             class1085.int_0 = AuroraUtils.GetRandomInteger(int_72);
             // ISSUE: reference to a compiler-generated method
-            this.int_0 = list2.Where<ShipData>(class1085.method_1)
+            this.TargetID = list2.Where<ShipData>(class1085.method_1)
                 .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_38).FirstOrDefault<ShipData>().int_8;
-            this.auroraContactType_0 = AuroraContactType.Ship;
+            this.TargetType = AuroraContactType.Ship;
         }
         catch (Exception ex)
         {
@@ -388,7 +389,8 @@ public class MissileSalvo
             string str1 = num1 <= 10000000.0
                 ? AuroraUtils.FormatDoubleToPrecision(num1 / 1000000.0, 1)
                 : AuroraUtils.FormatDoubleToPrecision(num1 / 1000000.0, 0);
-            string str2 = $"{this.string_0} vs {string_3} Signature-{int_6.ToString()}   {str1}m";
+            string str2 = string.Format((string)"{0} vs {1} Signature-{2}   {3}m", new[] { this.string_0 }, string_3,
+                int_6.ToString(), str1);
             float num2 = graphics_0.MeasureString(str2, font_0).Width / 2f;
             if (gclass222_0.dictionary_0.ContainsKey(key))
                 gclass222_0.dictionary_0[key]++;
@@ -408,39 +410,39 @@ public class MissileSalvo
         try
         {
             this.gclass221_0 = new GClass221(0.0, 0.0);
-            if (this.int_0 == 0)
+            if (this.TargetID == 0)
                 return this.gclass221_0;
-            if (this.auroraContactType_0 == AuroraContactType.Ship)
+            if (this.TargetType == AuroraContactType.Ship)
             {
-                if (this.gclass40_1 != null)
+                if (this.TargetShip != null)
                 {
-                    this.gclass221_0.double_0 = this.gclass40_1.gclass85_0.XCoord;
-                    this.gclass221_0.double_1 = this.gclass40_1.gclass85_0.YCoord;
+                    this.gclass221_0.double_0 = this.TargetShip.gclass85_0.XCoord;
+                    this.gclass221_0.double_1 = this.TargetShip.gclass85_0.YCoord;
                 }
             }
-            else if (this.auroraContactType_0 == AuroraContactType.Salvo)
+            else if (this.TargetType == AuroraContactType.Salvo)
             {
-                if (this.gclass132_0 != null)
+                if (this.TargetSalvo != null)
                 {
-                    this.gclass221_0.double_0 = this.gclass132_0.double_0;
-                    this.gclass221_0.double_1 = this.gclass132_0.double_1;
+                    this.gclass221_0.double_0 = this.TargetSalvo.Xcor;
+                    this.gclass221_0.double_1 = this.TargetSalvo.Ycor;
                 }
             }
-            else if (this.auroraContactType_0 != AuroraContactType.Population &&
-                     this.auroraContactType_0 != AuroraContactType.Shipyard &&
-                     this.auroraContactType_0 != AuroraContactType.GroundUnit &&
-                     this.auroraContactType_0 != AuroraContactType.STOGroundUnit)
+            else if (this.TargetType != AuroraContactType.Population &&
+                     this.TargetType != AuroraContactType.Shipyard &&
+                     this.TargetType != AuroraContactType.GroundUnit &&
+                     this.TargetType != AuroraContactType.STOGroundUnit)
             {
-                if (this.auroraContactType_0 == AuroraContactType.WayPoint && this.gclass214_0 != null)
+                if (this.TargetType == AuroraContactType.WayPoint && this.TargetWaypoint != null)
                 {
-                    this.gclass221_0.double_0 = this.gclass214_0.Xcor;
-                    this.gclass221_0.double_1 = this.gclass214_0.Ycor;
+                    this.gclass221_0.double_0 = this.TargetWaypoint.Xcor;
+                    this.gclass221_0.double_1 = this.TargetWaypoint.Ycor;
                 }
             }
-            else if (this.gclass146_0 != null)
+            else if (this.TargetPopulation != null)
             {
-                this.gclass221_0.double_0 = this.gclass146_0.method_87();
-                this.gclass221_0.double_1 = this.gclass146_0.method_88();
+                this.gclass221_0.double_0 = this.TargetPopulation.method_87();
+                this.gclass221_0.double_1 = this.TargetPopulation.method_88();
             }
 
             return this.gclass221_0;
@@ -456,14 +458,14 @@ public class MissileSalvo
     {
         try
         {
-            if (this.genum58_0 != GEnum58.const_0 && this.genum58_0 != GEnum58.const_1)
+            if (this.HomingMethod != HomingMethod.const_0 && this.HomingMethod != HomingMethod.const_1)
             {
-                if (this.genum58_0 == GEnum58.const_2)
+                if (this.HomingMethod == HomingMethod.const_2)
                 {
                     if (list_1.Count<Contact>(gclass65_0 => gclass65_0.ContactMethod == ContactDetectMethod.const_1) > 0)
                         return true;
                 }
-                else if (this.genum58_0 == GEnum58.const_3 && list_1.Count<Contact>(gclass65_0 =>
+                else if (this.HomingMethod == HomingMethod.const_3 && list_1.Count<Contact>(gclass65_0 =>
                              gclass65_0.ContactMethod == ContactDetectMethod.const_3 || gclass65_0.ContactMethod == ContactDetectMethod.const_2) > 0)
                     return true;
             }
@@ -491,34 +493,34 @@ public class MissileSalvo
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0 = (MissileSalvo)this.MemberwiseClone();
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.int_1 = this.gclass0_0.method_26(GEnum0.const_38);
+            class1086.gclass132_0.MissileSalvoID = this.gclass0_0.method_26(GEnum0.const_38);
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.RaceMissile = this.RaceMissile.SecondStageMissile;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.decimal_0 = this.gclass0_0.GameTime;
+            class1086.gclass132_0.LaunchTime = this.gclass0_0.GameTime;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.string_0 = class1086.gclass132_0.RaceMissile.Name;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_9 = (double)class1086.gclass132_0.RaceMissile.Speed;
+            class1086.gclass132_0.MissileSpeed = (double)class1086.gclass132_0.RaceMissile.Speed;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.decimal_1 = class1086.gclass132_0.RaceMissile.Endurance;
+            class1086.gclass132_0.Endurance = class1086.gclass132_0.RaceMissile.Endurance;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_0 = this.double_0;
+            class1086.gclass132_0.Xcor = this.Xcor;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_1 = this.double_1;
+            class1086.gclass132_0.Ycor = this.Ycor;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_2 = this.double_0;
+            class1086.gclass132_0.LastXcor = this.Xcor;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_3 = this.double_1;
+            class1086.gclass132_0.LastYcor = this.Ycor;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_8 = this.double_8;
+            class1086.gclass132_0.ModifierToHit = this.ModifierToHit;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.gclass230_0 = this.gclass230_0;
+            class1086.gclass132_0.FireControl = this.FireControl;
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.int_2 = this.int_2;
+            class1086.gclass132_0.FCNum = this.FCNum;
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.RemainingDecoys = new Dictionary<int, int>();
             int num = this.RemainingDecoys.Count * this.RaceMissile.NumSS;
@@ -529,12 +531,12 @@ public class MissileSalvo
                 class1086.gclass132_0.RemainingDecoys.Add(key, class1086.gclass132_0.RaceMissile.NumDecoys);
             }
 
-            if (this.gclass230_0 != null)
+            if (this.FireControl != null)
             {
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.int_0 = this.int_0;
+                class1086.gclass132_0.TargetID = this.TargetID;
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.auroraContactType_0 = this.auroraContactType_0;
+                class1086.gclass132_0.TargetType = this.TargetType;
             }
             else
             {
@@ -546,27 +548,27 @@ public class MissileSalvo
             if (class1086.gclass132_0.RaceMissile.Speed == 0M)
             {
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.int_0 = 0;
+                class1086.gclass132_0.TargetID = 0;
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.auroraContactType_0 = AuroraContactType.None;
+                class1086.gclass132_0.TargetType = AuroraContactType.None;
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.gclass40_1 = null;
+                class1086.gclass132_0.TargetShip = null;
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.gclass146_0 = null;
+                class1086.gclass132_0.TargetPopulation = null;
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.gclass132_0 = null;
+                class1086.gclass132_0.TargetSalvo = null;
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.gclass214_0 = null;
+                class1086.gclass132_0.TargetWaypoint = null;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                class1086.gclass132_0.gclass1_0 =
+                class1086.gclass132_0.OrbitBody =
                     this.gclass0_0.SystemBodyRecordDic.Values
                         .FirstOrDefault<SystemBodyData>(class1086.method_0);
             }
 
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            this.gclass0_0.MissileSalvoes.Add(class1086.gclass132_0.int_1, class1086.gclass132_0);
+            this.gclass0_0.MissileSalvoes.Add(class1086.gclass132_0.MissileSalvoID, class1086.gclass132_0);
         }
         catch (Exception ex)
         {
@@ -601,10 +603,10 @@ public class MissileSalvo
                                  gclass65_0.System == this.System &&
                                  gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
                                  gclass65_0.ContactType == AuroraContactType.Ship)
-                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.double_0,
-                                 this.double_1, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
+                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.Xcor,
+                                 this.Ycor, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
                 {
-                    double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
+                    double num = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass65.Xcor,
                         gclass65.Ycor);
                     double int6 = this.RaceMissile.SensorRange;
                     if (num <= int6)
@@ -628,10 +630,10 @@ public class MissileSalvo
                                  gclass65_0.System == this.System &&
                                  gclass65_0.ContactMethod == ContactDetectMethod.const_1 &&
                                  gclass65_0.ContactType == AuroraContactType.Ship)
-                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.double_0,
-                                 this.double_1, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
+                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.Xcor,
+                                 this.Ycor, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
                 {
-                    double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
+                    double num = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass65.Xcor,
                         gclass65.Ycor);
                     if (Math.Sqrt(this.RaceMissile.ThermalStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
@@ -647,10 +649,10 @@ public class MissileSalvo
                                                             (gclass65_0.ContactMethod == ContactDetectMethod.const_3 ||
                                                              gclass65_0.ContactMethod == ContactDetectMethod.const_2) &&
                                                             gclass65_0.ContactType == AuroraContactType.Ship)
-                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.double_0,
-                                 this.double_1, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
+                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.Xcor,
+                                 this.Ycor, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
                 {
-                    double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
+                    double num = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass65.Xcor,
                         gclass65.Ycor);
                     if (Math.Sqrt(this.RaceMissile.EMStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
@@ -662,7 +664,7 @@ public class MissileSalvo
                 .FormationDictionary.Values
                 .Where<GroundUnitFormationData>(gclass103_0 =>
                     gclass103_0.RaceData == this.Race && gclass103_0.ShipData != null)
-                .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.ShipData.gclass21_0 != this.Race)
+                .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.ShipData.Race != this.Race)
                 .Select<GroundUnitFormationData, ShipData>(gclass103_0 => gclass103_0.ShipData).Distinct<ShipData>()
                 .ToList<ShipData>()).ToList<ShipData>();
         }
@@ -685,10 +687,10 @@ public class MissileSalvo
                                  gclass65_0.System == this.System &&
                                  gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
                                  gclass65_0.ContactType == AuroraContactType.Ship)
-                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.double_0,
-                                 this.double_1, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
+                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.Xcor,
+                                 this.Ycor, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
                 {
-                    double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
+                    double num = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass65.Xcor,
                         gclass65.Ycor);
                     double int6 = this.RaceMissile.SensorRange;
                     if (num <= int6)
@@ -698,10 +700,10 @@ public class MissileSalvo
                                 gclass65.TargetShip.method_51() / this.RaceMissile.SensorResolution, 2);
                         if (num <= int6)
                         {
-                            this.auroraContactType_0 = AuroraContactType.Ship;
-                            this.int_0 = gclass65.ContactID;
-                            this.gclass40_1 = gclass65.TargetShip;
-                            this.genum58_0 = GEnum58.const_1;
+                            this.TargetType = AuroraContactType.Ship;
+                            this.TargetID = gclass65.ContactID;
+                            this.TargetShip = gclass65.TargetShip;
+                            this.HomingMethod = HomingMethod.const_1;
                             return true;
                         }
                     }
@@ -718,18 +720,18 @@ public class MissileSalvo
                                  gclass65_0.System == this.System &&
                                  gclass65_0.ContactMethod == ContactDetectMethod.const_1 &&
                                  gclass65_0.ContactType == AuroraContactType.Ship)
-                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.double_0,
-                                 this.double_1, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
+                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.Xcor,
+                                 this.Ycor, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
                 {
-                    double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
+                    double num = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass65.Xcor,
                         gclass65.Ycor);
                     if (Math.Sqrt(this.RaceMissile.ThermalStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
                     {
-                        this.auroraContactType_0 = AuroraContactType.Ship;
-                        this.int_0 = gclass65.ContactID;
-                        this.gclass40_1 = gclass65.TargetShip;
-                        this.genum58_0 = GEnum58.const_2;
+                        this.TargetType = AuroraContactType.Ship;
+                        this.TargetID = gclass65.ContactID;
+                        this.TargetShip = gclass65.TargetShip;
+                        this.HomingMethod = HomingMethod.const_2;
                         return true;
                     }
                 }
@@ -743,18 +745,18 @@ public class MissileSalvo
                                                             (gclass65_0.ContactMethod == ContactDetectMethod.const_3 ||
                                                              gclass65_0.ContactMethod == ContactDetectMethod.const_2) &&
                                                             gclass65_0.ContactType == AuroraContactType.Ship)
-                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.double_0,
-                                 this.double_1, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
+                             .OrderBy<Contact, double>(gclass65_0 => this.gclass0_0.GetDistanceBetween(this.Xcor,
+                                 this.Ycor, gclass65_0.Xcor, gclass65_0.Ycor)).ToList<Contact>())
                 {
-                    double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
+                    double num = this.gclass0_0.GetDistanceBetween(this.Xcor, this.Ycor, gclass65.Xcor,
                         gclass65.Ycor);
                     if (Math.Sqrt(this.RaceMissile.EMStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
                     {
-                        this.auroraContactType_0 = AuroraContactType.Ship;
-                        this.int_0 = gclass65.ContactID;
-                        this.gclass40_1 = gclass65.TargetShip;
-                        this.genum58_0 = GEnum58.const_3;
+                        this.TargetType = AuroraContactType.Ship;
+                        this.TargetID = gclass65.ContactID;
+                        this.TargetShip = gclass65.TargetShip;
+                        this.HomingMethod = HomingMethod.const_3;
                         return true;
                     }
                 }
@@ -775,7 +777,7 @@ public class MissileSalvo
         {
             foreach (Contact gclass65 in this.gclass0_0.Contacts.Values.Where<Contact>(gclass65_0 =>
                              gclass65_0.ContactType == AuroraContactType.Salvo &&
-                             gclass65_0.ContactID == this.int_1)
+                             gclass65_0.ContactID == this.MissileSalvoID)
                          .ToList<Contact>())
                 this.gclass0_0.Contacts.Remove(gclass65.UniqueID);
         }
@@ -792,17 +794,17 @@ public class MissileSalvo
             if (this.RaceMissile.EMStrength == 0.0 && this.RaceMissile.ThermalStrength == 0.0 &&
                 this.RaceMissile.SensorStrength == 0.0)
             {
-                this.gclass0_0.MissileSalvoes.Remove(this.int_1);
+                this.gclass0_0.MissileSalvoes.Remove(this.MissileSalvoID);
             }
             else
             {
-                this.gclass230_0 = null;
-                this.int_2 = 0;
-                this.int_0 = 0;
-                this.auroraContactType_0 = AuroraContactType.None;
-                this.gclass40_1 = null;
-                this.gclass146_0 = null;
-                this.gclass132_0 = null;
+                this.FireControl = null;
+                this.FCNum = 0;
+                this.TargetID = 0;
+                this.TargetType = AuroraContactType.None;
+                this.TargetShip = null;
+                this.TargetPopulation = null;
+                this.TargetSalvo = null;
                 this.Ship = null;
             }
         }
@@ -820,29 +822,35 @@ public class MissileSalvo
             this.int_3 = 0;
             string str1 = "";
             Contact gclass65_1 =
-                this.gclass0_0.method_556(gclass21_2, ContactDetectMethod.const_0, AuroraContactType.Salvo, this.int_1, 0);
+                this.gclass0_0.method_556(gclass21_2, ContactDetectMethod.const_0, AuroraContactType.Salvo, this.MissileSalvoID, 0);
             if (gclass65_1 != null && gclass65_1.ContactStrength > 0M)
             {
                 if (bool_4)
                     str1 =
-                        $"Size {AuroraUtils.smethod_38(gclass65_1.ContactStrength)} Missile x{gclass65_1.ContactNumber.ToString()}  ({gclass65_1.ContactName})";
+                        string.Format((string)"Size {0} Missile x{1}  ({2})",
+                            (object)AuroraUtils.smethod_38(gclass65_1.ContactStrength),
+                            (object)gclass65_1.ContactNumber.ToString(), (object)gclass65_1.ContactName);
                 else
-                    str1 = $"Size {AuroraUtils.smethod_38(gclass65_1.ContactStrength)} Missile";
+                    str1 = string.Format((string)"Size {0} Missile",
+                        (object)AuroraUtils.smethod_38(gclass65_1.ContactStrength));
                 this.int_3 = gclass65_1.UniqueID;
                 flag = true;
             }
 
             Contact gclass65_2 =
-                this.gclass0_0.method_556(gclass21_2, ContactDetectMethod.const_1, AuroraContactType.Salvo, this.int_1, 0);
+                this.gclass0_0.method_556(gclass21_2, ContactDetectMethod.const_1, AuroraContactType.Salvo, this.MissileSalvoID, 0);
             if (gclass65_2 != null)
             {
                 if (gclass65_2.ContactStrength > 0M)
                 {
                     str1 = flag
-                        ? $"{str1}  Thermal {AuroraUtils.smethod_38(gclass65_2.ContactStrength)}"
+                        ? string.Format((string)"{0}  Thermal {1}", (object)str1,
+                            (object)AuroraUtils.smethod_38(gclass65_2.ContactStrength))
                         : (!bool_4
-                            ? $" Thermal {AuroraUtils.smethod_38(gclass65_2.ContactStrength)}"
-                            : $"{gclass65_2.ContactNumber.ToString()}x Thermal {AuroraUtils.smethod_38(gclass65_2.ContactStrength)}");
+                            ? string.Format((string)" Thermal {0}",
+                                (object)AuroraUtils.smethod_38(gclass65_2.ContactStrength))
+                            : string.Format((string)"{0}x Thermal {1}", (object)gclass65_2.ContactNumber.ToString(),
+                                (object)AuroraUtils.smethod_38(gclass65_2.ContactStrength)));
                     flag = true;
                 }
 
@@ -851,21 +859,25 @@ public class MissileSalvo
             }
 
             Contact gclass65_3 =
-                this.gclass0_0.method_556(gclass21_2, ContactDetectMethod.const_2, AuroraContactType.Salvo, this.int_1, 0);
+                this.gclass0_0.method_556(gclass21_2, ContactDetectMethod.const_2, AuroraContactType.Salvo, this.MissileSalvoID, 0);
             if (gclass65_3 != null)
             {
                 if (gclass65_3.ContactStrength > 0M)
                     str1 = flag
-                        ? $"{str1}  {gclass65_3.ContactName}"
+                        ? string.Format((string)"{0}  {1}", (object)str1, (object)gclass65_3.ContactName)
                         : (!bool_4
-                            ? $" {gclass65_3.ContactName}"
-                            : $"{gclass65_3.ContactNumber.ToString()}x {gclass65_3.ContactName}");
+                            ? string.Format((string)" {0}", (object)gclass65_3.ContactName)
+                            : string.Format((string)"{0}x {1}", (object)gclass65_3.ContactNumber.ToString(),
+                                (object)gclass65_3.ContactName));
                 if (this.int_3 == 0)
                     this.int_3 = gclass65_3.UniqueID;
             }
 
             string str2 =
-                $"{$"[{gclass21_2.PerceivedAliens[this.Race.RaceID].Abbreviation}] {str1}"}  {AuroraUtils.smethod_43(this.double_9)} km/s";
+                string.Format((string)"{0}  {1} km/s",
+                    (object)string.Format((string)"[{0}] {1}",
+                        (object)gclass21_2.AlienRaceIntels[this.Race.RaceID].Abbreviation, (object)str1),
+                    (object)AuroraUtils.smethod_43(this.MissileSpeed));
             this.string_1 = str2;
             return str2;
         }
@@ -886,7 +898,7 @@ public class MissileSalvo
         try
         {
             AuroraContactStatus auroraContactStatus0 =
-                gclass202_0.Race.PerceivedAliens[this.Race.RaceID].ContactStatus;
+                gclass202_0.Race.AlienRaceIntels[this.Race.RaceID].ContactStatus;
             if (!gclass202_0.Race.method_319(auroraContactStatus0))
                 return false;
             Decimal num1 = this.method_24(gclass202_0.Race, ContactDetectMethod.const_0);
@@ -896,15 +908,16 @@ public class MissileSalvo
             if (gclass202_0.Race.chkTracking == CheckState.Checked)
             {
                 Decimal num2 = gclass202_0.Race.method_107(this);
-                s = $"{s}  TB {AuroraUtils.FormatNumberToDigits((num2 - 1M) * 100M, 1)}%";
+                s = string.Format((string)"{0}  TB {1}%", (object)s,
+                    (object)AuroraUtils.FormatNumberToDigits((num2 - 1M) * 100M, 1));
             }
 
             if (gclass202_0.Race.chkShowDist == CheckState.Checked && (gclass202_0.gclass221_0.double_0 != 0.0 ||
                                                                              gclass202_0.gclass221_0.double_1 != 0.0))
             {
                 double num3 = this.gclass0_0.GetDistanceBetween(gclass202_0.gclass221_0.double_0,
-                    gclass202_0.gclass221_0.double_1, this.double_0, this.double_1);
-                s = $"{s}  {AuroraUtils.smethod_50(num3 / 1000000.0)}m";
+                    gclass202_0.gclass221_0.double_1, this.Xcor, this.Ycor);
+                s = string.Format((string)"{0}  {1}m", (object)s, (object)AuroraUtils.smethod_50(num3 / 1000000.0));
             }
 
             SolidBrush solidBrush = new SolidBrush(AuroraUtils.color_6);
@@ -944,25 +957,25 @@ public class MissileSalvo
     {
         try
         {
-            if (!gclass202_0.Race.PerceivedAliens.ContainsKey(this.Race.RaceID))
+            if (!gclass202_0.Race.AlienRaceIntels.ContainsKey(this.Race.RaceID))
                 return "";
             AuroraContactStatus auroraContactStatus0 =
-                gclass202_0.Race.PerceivedAliens[this.Race.RaceID].ContactStatus;
+                gclass202_0.Race.AlienRaceIntels[this.Race.RaceID].ContactStatus;
             if (!gclass202_0.Race.method_319(auroraContactStatus0) ||
                 this.method_24(gclass202_0.Race, ContactDetectMethod.const_0) == 0M &&
                 gclass202_0.Race.chkActiveOnly == CheckState.Checked)
                 return "";
             string str = this.method_18(gclass202_0.Race, bool_4);
-            string string0 = gclass202_0.Race.PerceivedAliens[this.Race.RaceID].Abbreviation;
+            string string0 = gclass202_0.Race.AlienRaceIntels[this.Race.RaceID].Abbreviation;
             if (gclass202_0.Race.chkShowDist == CheckState.Checked && (gclass202_0.gclass221_0.double_0 != 0.0 ||
                                                                              gclass202_0.gclass221_0.double_1 != 0.0))
             {
                 double num = this.gclass0_0.GetDistanceBetween(gclass202_0.gclass221_0.double_0,
-                    gclass202_0.gclass221_0.double_1, this.double_0, this.double_1);
-                str = $"{str}  {AuroraUtils.smethod_50(num / 1000000.0)}m";
+                    gclass202_0.gclass221_0.double_1, this.Xcor, this.Ycor);
+                str = string.Format((string)"{0}  {1}m", (object)str, (object)AuroraUtils.smethod_50(num / 1000000.0));
             }
 
-            return $"[{string0}]  {str}";
+            return string.Format((string)"[{0}]  {1}", (object)string0, (object)str);
         }
         catch (Exception ex)
         {
@@ -980,13 +993,15 @@ public class MissileSalvo
     {
         try
         {
-            this.string_0 = $"{this.RemainingDecoys.Count.ToString()}x {this.RaceMissile.Name}";
+            this.string_0 = string.Format((string)"{0}x {1}", (object)this.RemainingDecoys.Count.ToString(),
+                (object)this.RaceMissile.Name);
             if (this.RaceMissile.NumDecoys > 0)
                 this.string_0 =
-                    $"{this.string_0} ({this.RemainingDecoys.Values.Sum<int>(int_0 => int_0).ToString()} Decoys)";
+                    string.Format((string)"{0} ({1} Decoys)", (object)this.string_0,
+                        (object)this.RemainingDecoys.Values.Sum<int>(int_0 => int_0).ToString());
             string str1 = "";
             if (this.RaceMissile.Speed > 0M)
-                str1 = $"  {this.RaceMissile.Speed.ToString()} km/s";
+                str1 = string.Format((string)"  {0} km/s", (object)this.RaceMissile.Speed.ToString());
             string str2 = "";
             string str3 = "";
             SolidBrush solidBrush_0 = new SolidBrush(AuroraUtils.color_12);
@@ -994,13 +1009,13 @@ public class MissileSalvo
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2;
             GClass221 gclass221_1 = new GClass221();
-            GClass221 gclass221_2 = gclass202_0.method_47(this.double_6, this.double_7);
+            GClass221 gclass221_2 = gclass202_0.method_47(this.IncrementStartX, this.IncrementStartY);
             graphics_0.DrawLine(pen, (float)gclass222_0.double_2, (float)gclass222_0.double_3,
                 (float)gclass221_2.double_0, (float)gclass221_2.double_1);
             if (int_6 == 0)
                 graphics_0.FillEllipse(solidBrush_0, (float)x, (float)y, AuroraUtils.int_61, AuroraUtils.int_61);
             if (gclass202_0.Race.chkSalvoOrigin == CheckState.Checked && this.Ship != null)
-                str2 = $" ({this.Ship.method_187()})";
+                str2 = string.Format((string)" ({0})", (object)this.Ship.method_187());
             if (gclass202_0.Race.chkSalvoTarget == CheckState.Checked)
                 str3 = this.method_2();
             GClass221 gclass221_3 = new GClass221();
@@ -1019,7 +1034,11 @@ public class MissileSalvo
                     graphics_0.DrawEllipse(pen, (float)(gclass222_0.double_2 - num1),
                         (float)(gclass222_0.double_3 - num1), (float)num1 * 2f, (float)num1 * 2f);
                 string str4 =
-                    $"Active: {(this.RaceMissile.SensorRange <= 10000000 ? AuroraUtils.FormatDoubleToPrecision(this.RaceMissile.SensorRange / 1000000, 1) : AuroraUtils.FormatDoubleToPrecision(this.RaceMissile.SensorRange / 1000000, 0))}m  R{this.RaceMissile.SensorResolution.ToString()}";
+                    string.Format((string)"Active: {0}m  R{1}",
+                        (object)(this.RaceMissile.SensorRange <= 10000000
+                            ? AuroraUtils.FormatDoubleToPrecision(this.RaceMissile.SensorRange / 1000000, 1)
+                            : AuroraUtils.FormatDoubleToPrecision(this.RaceMissile.SensorRange / 1000000, 0)),
+                        (object)this.RaceMissile.SensorResolution.ToString());
                 int num2 = (int)graphics_0.MeasureString(str4, font_0).Width / 2;
                 graphics_0.DrawString(str4, font_0, solidBrush_0, (float)gclass222_0.double_2 - num2,
                     (float)(gclass222_0.double_3 - num1 - 20.0));
@@ -1074,7 +1093,7 @@ public class MissileSalvo
     public List<Contact> method_22()
     {
         return this.gclass0_0.Contacts.Values.Where<Contact>(gclass65_0 =>
-                gclass65_0.ContactType == AuroraContactType.Salvo && gclass65_0.ContactID == this.int_1)
+                gclass65_0.ContactType == AuroraContactType.Salvo && gclass65_0.ContactID == this.MissileSalvoID)
             .ToList<Contact>();
     }
 

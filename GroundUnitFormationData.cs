@@ -28,7 +28,7 @@ public class GroundUnitFormationData
     {
         public int int_0;
 
-        internal bool method_0(RankThemeEntry gclass61_0)
+        internal bool method_0(RacialRank gclass61_0)
         {
             return gclass61_0.CommanderType == AuroraCommanderType.GroundForce &&
                    gclass61_0.RankNum == this.int_0;
@@ -62,7 +62,7 @@ public class GroundUnitFormationData
     {
         public ShipData gclass40_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass40_0 == this.gclass40_0;
         }
@@ -140,10 +140,10 @@ public class GroundUnitFormationData
 
     private GClass0 gclass0_0;
     public GameRace RaceData;
-    public RankThemeEntry RequiredRankData;
+    public RacialRank RequiredRacialRankData;
     public PopulationData PopulationData;
     public ShipData ShipData;
-    public GClass55 gclass55_0;
+    public Commander Commander;
     public GroundUnitFormationData ParentFormationData;
     public GroundUnitFormationData AssignedFormationData;
     public GroundUnitFormationData gclass103_2;
@@ -217,10 +217,10 @@ public class GroundUnitFormationData
         try
         {
             return this.ParentFormationData == null || this.ParentFormationData.PopulationData == null ||
-                   this.ParentFormationData.PopulationData != this.PopulationData || this.ParentFormationData.gclass55_0 == null
+                   this.ParentFormationData.PopulationData != this.PopulationData || this.ParentFormationData.Commander == null
                 ? 1M
-                : (1M + (this.ParentFormationData.gclass55_0.method_5(genum121_0) - 1M) * AuroraUtils.decimal_7 *
-                    this.ParentFormationData.gclass55_0.decimal_3) * this.ParentFormationData.method_0(genum121_0);
+                : (1M + (this.ParentFormationData.Commander.method_5(genum121_0) - 1M) * AuroraUtils.decimal_7 *
+                    this.ParentFormationData.Commander.decimal_3) * this.ParentFormationData.method_0(genum121_0);
         }
         catch (Exception ex)
         {
@@ -330,15 +330,15 @@ public class GroundUnitFormationData
         }
     }
 
-    public void method_4(PopulationData gclass146_1, List<RankThemeEntry> list_3, bool bool_7)
+    public void method_4(PopulationData gclass146_1, List<RacialRank> list_3, bool bool_7)
     {
         try
         {
-            if (this.gclass55_0 != null)
-                this.gclass55_0.method_40(true);
+            if (this.Commander != null)
+                this.Commander.method_40(true);
             this.RaceData = gclass146_1.Race;
             this.PopulationData = gclass146_1;
-            this.RequiredRankData = list_3.FirstOrDefault<RankThemeEntry>(gclass61_1 => gclass61_1.RankNum == this.RequiredRankData.RankNum);
+            this.RequiredRacialRankData = list_3.FirstOrDefault<RacialRank>(gclass61_1 => gclass61_1.RankNum == this.RequiredRacialRankData.RankNum);
             this.AssignedFormationData = null;
             this.gclass103_2 = null;
             this.OriginalTemplateData = null;
@@ -368,7 +368,8 @@ public class GroundUnitFormationData
                 {
                     gclass39.UnitCount -= num;
                     this.gclass0_0.gclass92_0.method_2(EventType.const_61,
-                        $"Due to external damage during boarding combat, {num.ToString()}x {gclass39.GroundUnitClass.ClassName} from {this.Name} have been lost",
+                        string.Format("Due to external damage during boarding combat, {0}x {1} from {2} have been lost",
+                            num.ToString(), gclass39.GroundUnitClass.ClassName, this.Name),
                         this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                         this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                         AuroraEventCategory.Ship);
@@ -480,9 +481,9 @@ public class GroundUnitFormationData
     {
         try
         {
-            if (this.gclass55_0 == null)
+            if (this.Commander == null)
                 return;
-            this.gclass55_0.method_1(auroraMeasurementType_0, decimal_26);
+            this.Commander.method_1(auroraMeasurementType_0, decimal_26);
         }
         catch (Exception ex)
         {
@@ -497,7 +498,9 @@ public class GroundUnitFormationData
             if (!this.gclass0_0.Contacts.ContainsKey(gclass139_0.DestinationID))
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_120,
-                    $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as the target ship does not exist",
+                    string.Format(
+                        "{0} (FLT: {1}) was unable to launch a boarding attempt as the target ship does not exist",
+                        this.Name, this.ShipData.gclass85_0.FleetName),
                     this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 return false;
@@ -507,7 +510,9 @@ public class GroundUnitFormationData
             if (gclass400 != null)
                 return this.method_11(gclass400);
             this.gclass0_0.gclass92_0.method_2(EventType.const_120,
-                $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as the target contact is not a ship",
+                string.Format(
+                    "{0} (FLT: {1}) was unable to launch a boarding attempt as the target contact is not a ship",
+                    this.Name, this.ShipData.gclass85_0.FleetName),
                 this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                 this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
             return false;
@@ -532,7 +537,9 @@ public class GroundUnitFormationData
             if (class1045.gclass40_0.gclass85_0.Speed > this.ShipData.gclass85_0.Speed)
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_120,
-                    $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as the target ship is moving faster than the ship from which the formation is making the boarding attempt",
+                    string.Format(
+                        "{0} (FLT: {1}) was unable to launch a boarding attempt as the target ship is moving faster than the ship from which the formation is making the boarding attempt",
+                        this.Name, this.ShipData.gclass85_0.FleetName),
                     this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 return false;
@@ -541,14 +548,16 @@ public class GroundUnitFormationData
             if (this.ElementList.Count<GroundUnitFormationElement>(gclass39_0 => gclass39_0.GroundUnitClass.GroundUnitBaseTypeData.genum112_0 != 0) > 0)
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_120,
-                    $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as it contains non-infantry elements",
+                    string.Format(
+                        "{0} (FLT: {1}) was unable to launch a boarding attempt as it contains non-infantry elements",
+                        this.Name, this.ShipData.gclass85_0.FleetName),
                     this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 return false;
             }
 
             // ISSUE: reference to a compiler-generated method
-            GClass117 gclass117 = this.RaceData.dictionary_12.Values.FirstOrDefault<GClass117>(class1045.method_0);
+            AlienShipIntel gclass117 = this.RaceData.dictionary_12.Values.FirstOrDefault<AlienShipIntel>(class1045.method_0);
             // ISSUE: reference to a compiler-generated field
             double num1 = 100.0 * (this.ShipData.gclass85_0.Speed / (double)class1045.gclass40_0.gclass85_0.Speed);
             foreach (GroundUnitFormationElement gclass39 in this.ElementList.ToList<GroundUnitFormationElement>())
@@ -569,17 +578,19 @@ public class GroundUnitFormationData
                     {
                         if (gclass39.GroundUnitClass.int_6 > 0)
                         {
-                            GClass55 gclass550 = this.gclass55_0;
+                            Commander gclass550 = this.Commander;
                             if (gclass550 != null && AuroraUtils.GetRandomInteger(gclass39.UnitCount) <= num2)
                             {
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_63,
-                                    $"{gclass550.string_0}( {gclass550.method_17(false)}) has been killed during a boarding attempt on {gclass117.method_11()}",
+                                    string.Format("{0}( {1}) has been killed during a boarding attempt on {2}",
+                                        gclass550.Name, gclass550.method_17(false), gclass117.method_11()),
                                     this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                     AuroraEventCategory.Ship);
-                                gclass550.method_46($"Killed during a boarding attempt on {gclass117.method_11()}",
-                                    GEnum28.const_0);
-                                gclass550.method_42(AuroraRetirementStatus.KilledBoarding);
+                                gclass550.AddHistory(
+                                    string.Format("Killed during a boarding attempt on {0}", gclass117.method_11()),
+                                    HistoryType.Personal);
+                                gclass550.SetToRetired(AuroraRetirementStatus.KilledBoarding);
                             }
                         }
 
@@ -587,7 +598,10 @@ public class GroundUnitFormationData
                         {
                             this.ElementList.Remove(gclass39);
                             this.gclass0_0.gclass92_0.method_2(EventType.const_120,
-                                $"{num2.ToString()}x {gclass39.GroundUnitClass.ClassName} were lost in the boarding attempt by {this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}). No more units of this type remain within the formation",
+                                string.Format(
+                                    "{0}x {1} were lost in the boarding attempt by {2} (FLT: {3}). No more units of this type remain within the formation",
+                                    num2.ToString(), gclass39.GroundUnitClass.ClassName, this.Name,
+                                    this.ShipData.gclass85_0.FleetName),
                                 this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                 this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                 AuroraEventCategory.Ship);
@@ -597,7 +611,10 @@ public class GroundUnitFormationData
                         {
                             gclass39.UnitCount -= num2;
                             this.gclass0_0.gclass92_0.method_2(EventType.const_120,
-                                $"{num2.ToString()}x {gclass39.GroundUnitClass.ClassName} were lost in the boarding attempt by {this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}). {gclass39.UnitCount.ToString()} of this type remain within the formation",
+                                string.Format(
+                                    "{0}x {1} were lost in the boarding attempt by {2} (FLT: {3}). {4} of this type remain within the formation",
+                                    num2.ToString(), gclass39.GroundUnitClass.ClassName, this.Name,
+                                    this.ShipData.gclass85_0.FleetName, gclass39.UnitCount.ToString()),
                                 this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                 this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                 AuroraEventCategory.Ship);
@@ -779,7 +796,7 @@ public class GroundUnitFormationData
             foreach (GroundUnitFormationElement gclass39 in this.ElementList)
                 treeNode_0.Nodes.Add(new TreeNode()
                 {
-                    Text = $"{gclass39.UnitCount.ToString()}x {gclass39.GroundUnitClass.ClassName}",
+                    Text = string.Format("{0}x {1}", gclass39.UnitCount.ToString(), gclass39.GroundUnitClass.ClassName),
                     Tag = gclass39
                 });
         }
@@ -969,8 +986,8 @@ public class GroundUnitFormationData
             {
                 d += AuroraUtils.smethod_35(gclass39.GroundUnitClass.decimal_2) * gclass39.UnitCount * gclass39.Morale /
                      10000M;
-                if (this.gclass55_0 != null)
-                    d *= this.gclass55_0.method_5(CommanderBonusType.GroundCombatOccupation);
+                if (this.Commander != null)
+                    d *= this.Commander.method_5(CommanderBonusType.GroundCombatOccupation);
             }
 
             return (int)Math.Round(d);
@@ -1034,21 +1051,22 @@ public class GroundUnitFormationData
             string str =
                 checkState_0 == CheckState.Unchecked || this.FieldPosition ==
                 AuroraGroundFormationFieldPosition.FrontlineDefence
-                    ? $"{this.Abbreviation} {this.Name}"
+                    ? string.Format("{0} {1}", this.Abbreviation, this.Name)
                     : (this.FieldPosition != AuroraGroundFormationFieldPosition.FrontlineAttack
                         ? (this.FieldPosition != AuroraGroundFormationFieldPosition.Support
                             ? (this.FieldPosition !=
                                AuroraGroundFormationFieldPosition.RearEchelon
-                                ? $"{this.Abbreviation} {this.Name}"
-                                : $"{this.Abbreviation} {this.Name}  (RE)")
-                            : $"{this.Abbreviation} {this.Name}  (SP)")
-                        : $"{this.Abbreviation} {this.Name}  (FA)");
+                                ? string.Format("{0} {1}", this.Abbreviation, this.Name)
+                                : string.Format("{0} {1}  (RE)", this.Abbreviation, this.Name))
+                            : string.Format("{0} {1}  (SP)", this.Abbreviation, this.Name))
+                        : string.Format("{0} {1}  (FA)", this.Abbreviation, this.Name));
             if (this.bActiveSensorsOn)
                 str += " (A)";
             if (this.bDoNotRecover == 1)
                 str += " (DNR)";
             if (checkState_1 == CheckState.Checked && this.AssignedFormationData != null)
-                str = $"{str} ---> {this.AssignedFormationData.Abbreviation} {this.AssignedFormationData.Name}";
+                str = string.Format("{0} ---> {1} {2}", str, this.AssignedFormationData.Abbreviation,
+                    this.AssignedFormationData.Name);
             return str;
         }
         catch (Exception ex)
@@ -1154,24 +1172,24 @@ public class GroundUnitFormationData
                 this.decimal_14 = num2 / num1;
             string str = AuroraUtils.smethod_10(this.int_1);
             if (str != "-")
-                this.string_2 = $"{this.string_2}HQ{str}  ";
+                this.string_2 = string.Format("{0}HQ{1}  ", this.string_2, str);
             if (this.decimal_6 > 0M)
-                this.string_2 = $"{this.string_2}ST{this.decimal_6.ToString()}  ";
+                this.string_2 = string.Format("{0}ST{1}  ", this.string_2, this.decimal_6.ToString());
             if (this.decimal_5 > 0M)
-                this.string_2 = $"{this.string_2}CW{this.decimal_5.ToString()}  ";
+                this.string_2 = string.Format("{0}CW{1}  ", this.string_2, this.decimal_5.ToString());
             if (this.decimal_9 > 0M)
-                this.string_2 = $"{this.string_2}FD{this.decimal_9.ToString()}  ";
+                this.string_2 = string.Format("{0}FD{1}  ", this.string_2, this.decimal_9.ToString());
             if (this.decimal_7 > 0M)
-                this.string_2 = $"{this.string_2}CN{this.decimal_7.ToString()}  ";
+                this.string_2 = string.Format("{0}CN{1}  ", this.string_2, this.decimal_7.ToString());
             if (this.decimal_10 > 0M)
-                this.string_2 = $"{this.string_2}GE{this.decimal_10.ToString()}  ";
+                this.string_2 = string.Format("{0}GE{1}  ", this.string_2, this.decimal_10.ToString());
             if (this.decimal_11 > 0M)
-                this.string_2 = $"{this.string_2}XN{this.decimal_11.ToString()}  ";
+                this.string_2 = string.Format("{0}XN{1}  ", this.string_2, this.decimal_11.ToString());
             if (this.decimal_12 > 0M)
-                this.string_2 = $"{this.string_2}DC{this.decimal_12.ToString()}  ";
+                this.string_2 = string.Format("{0}DC{1}  ", this.string_2, this.decimal_12.ToString());
             if (!(this.decimal_17 > 0M))
                 return;
-            this.string_2 = $"{this.string_2}LG{Math.Round(this.decimal_17 / 1000M).ToString()}  ";
+            this.string_2 = string.Format("{0}LG{1}  ", this.string_2, Math.Round(this.decimal_17 / 1000M).ToString());
         }
         catch (Exception ex)
         {
@@ -1277,20 +1295,22 @@ public class GroundUnitFormationData
         try
         {
             string string_21_1 = "-";
-            if (this.gclass55_0 == null)
+            if (this.Commander == null)
             {
                 textBox_0.Text = "No commander assigned";
             }
             else
             {
-                textBox_0.Text = $"{this.gclass55_0.method_36()}    {this.gclass55_0.method_29(true)}";
-                string_21_1 = this.gclass55_0.gclass61_0.method_0();
+                textBox_0.Text = string.Format("{0}    {1}", this.Commander.method_36(),
+                    this.Commander.method_29(true));
+                string_21_1 = this.Commander.RacialRank.method_0();
             }
 
             if (this.ShipData != null)
                 textBox_1.Text = this.ShipData.method_187();
             else if (this.PopulationData != null)
-                textBox_1.Text = $"{this.PopulationData.PopName}  ({this.PopulationData.gclass202_0.Name})";
+                textBox_1.Text = string.Format("{0}  ({1})", this.PopulationData.PopName,
+                    this.PopulationData.gclass202_0.Name);
             else
                 textBox_1.Text = "Location Unknown";
             textBox_2.Text = "None";
@@ -1316,7 +1336,7 @@ public class GroundUnitFormationData
             this.method_26(false, false);
             string string_13_1 = "-";
             if (this.decimal_13 > 0M)
-                string_13_1 = $"{AuroraUtils.smethod_39(this.decimal_14 * 100M)}%";
+                string_13_1 = string.Format("{0}%", AuroraUtils.smethod_39(this.decimal_14 * 100M));
             this.gclass0_0.method_624(listView_0, this.Abbreviation, this.Name, AuroraUtils.smethod_38(this.decimal_3),
                 string_13_1, AuroraUtils.smethod_38(this.decimal_15), AuroraUtils.FormatNumberToDigits(this.decimal_16, 2),
                 AuroraUtils.smethod_38(this.decimal_0), AuroraUtils.smethod_38(this.decimal_1),
@@ -1326,12 +1346,13 @@ public class GroundUnitFormationData
             {
                 foreach (GroundUnitFormationData object_1 in list)
                 {
-                    string string_21_2 = object_1.gclass55_0 != null ? object_1.gclass55_0.gclass61_0.method_0() : "-";
+                    string string_21_2 = object_1.Commander != null ? object_1.Commander.RacialRank.method_0() : "-";
                     object_1.method_26(true, bool_7);
                     string string_13_2 = "-";
                     if (object_1.decimal_13 > 0M)
-                        string_13_2 = $"{AuroraUtils.smethod_39(object_1.decimal_14 * 100M)}%";
-                    this.gclass0_0.method_624(listView_0, object_1.Abbreviation, $"      {object_1.Name}",
+                        string_13_2 = string.Format("{0}%", AuroraUtils.smethod_39(object_1.decimal_14 * 100M));
+                    this.gclass0_0.method_624(listView_0, object_1.Abbreviation,
+                        string.Format("      {0}", object_1.Name),
                         AuroraUtils.smethod_38(object_1.decimal_3), string_13_2,
                         AuroraUtils.smethod_38(object_1.decimal_15), AuroraUtils.FormatNumberToDigits(object_1.decimal_16, 2),
                         AuroraUtils.smethod_38(object_1.decimal_0), AuroraUtils.smethod_38(object_1.decimal_1),
@@ -1342,7 +1363,7 @@ public class GroundUnitFormationData
                 this.method_26(true, bool_7);
                 string string_13_3 = "-";
                 if (this.decimal_13 > 0M)
-                    string_13_3 = $"{AuroraUtils.smethod_39(this.decimal_14 * 100M)}%";
+                    string_13_3 = string.Format("{0}%", AuroraUtils.smethod_39(this.decimal_14 * 100M));
                 this.gclass0_0.method_594(listView_0, "");
                 this.gclass0_0.method_620(listView_0, "", "Total Organization", AuroraUtils.smethod_38(this.decimal_3),
                     string_13_3, AuroraUtils.smethod_38(this.decimal_15), AuroraUtils.FormatNumberToDigits(this.decimal_16, 2),
@@ -1375,16 +1396,16 @@ public class GroundUnitFormationData
     {
         try
         {
-            if (this.RequiredRankData != null)
-                return this.RequiredRankData.RankNum;
+            if (this.RequiredRacialRankData != null)
+                return this.RequiredRacialRankData.RankNum;
             int int_57 = this.method_33();
             this.decimal_0 = this.method_34();
-            RankThemeEntry gclass61 = this.RaceData.method_156((int)this.decimal_0, int_57);
+            RacialRank gclass61 = this.RaceData.method_156((int)this.decimal_0, int_57);
             foreach (GroundUnitFormationData gclass103 in this.gclass0_0.FormationDictionary.Values
                          .Where<GroundUnitFormationData>(gclass103_3 => gclass103_3.ParentFormationData == this).ToList<GroundUnitFormationData>())
             {
-                if (gclass103.gclass55_0 != null && gclass103.gclass55_0.gclass61_0.RankNum <= gclass61.RankNum)
-                    gclass61 = gclass103.gclass55_0.gclass61_0.method_1();
+                if (gclass103.Commander != null && gclass103.Commander.RacialRank.RankNum <= gclass61.RankNum)
+                    gclass61 = gclass103.Commander.RacialRank.method_1();
             }
 
             return gclass61 != null ? gclass61.RankNum : 1;
@@ -1396,16 +1417,16 @@ public class GroundUnitFormationData
         }
     }
 
-    public RankThemeEntry method_32()
+    public RacialRank method_32()
     {
         try
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: reference to a compiler-generated method
-            return this.RaceData.RacialRankDictionary.Values.Where<RankThemeEntry>(new GroundUnitFormationData.Class1042()
+            return this.RaceData.RacialRankDictionary.Values.Where<RacialRank>(new GroundUnitFormationData.Class1042()
             {
                 int_0 = this.method_31()
-            }.method_0).FirstOrDefault<RankThemeEntry>();
+            }.method_0).FirstOrDefault<RacialRank>();
         }
         catch (Exception ex)
         {
@@ -1566,8 +1587,8 @@ public class GroundUnitFormationData
 
             if (this.decimal_7 == 0M)
                 return 0M;
-            if (this.gclass55_0 != null)
-                this.decimal_7 *= this.gclass55_0.method_3(CommanderBonusType.Production);
+            if (this.Commander != null)
+                this.decimal_7 *= this.Commander.method_3(CommanderBonusType.Production);
             return this.decimal_7;
         }
         catch (Exception ex)
@@ -1585,8 +1606,8 @@ public class GroundUnitFormationData
             foreach (GroundUnitFormationElement gclass39 in this.ElementList)
                 this.decimal_10 += gclass39.UnitCount *
                                    gclass39.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.GeoSurvey);
-            if (this.gclass55_0 != null)
-                this.decimal_10 *= this.gclass55_0.method_3(CommanderBonusType.Survey);
+            if (this.Commander != null)
+                this.decimal_10 *= this.Commander.method_3(CommanderBonusType.Survey);
             return this.decimal_10;
         }
         catch (Exception ex)
@@ -1604,8 +1625,8 @@ public class GroundUnitFormationData
             foreach (GroundUnitFormationElement gclass39 in this.ElementList)
                 this.decimal_11 += gclass39.UnitCount *
                                    gclass39.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.Xenoarchaeology);
-            if (this.gclass55_0 != null)
-                this.decimal_11 *= this.gclass55_0.method_3(CommanderBonusType.Xenoarchaeology);
+            if (this.Commander != null)
+                this.decimal_11 *= this.Commander.method_3(CommanderBonusType.Xenoarchaeology);
             return this.decimal_11;
         }
         catch (Exception ex)
@@ -1623,8 +1644,8 @@ public class GroundUnitFormationData
             foreach (GroundUnitFormationElement gclass39 in this.ElementList)
                 this.decimal_12 += gclass39.UnitCount *
                                    gclass39.GroundUnitClass.GroundUnitComponentList.Sum<GroundComponentTypeDefinition>(gclass100_0 => gclass100_0.Decontamination);
-            if (this.gclass55_0 != null)
-                this.decimal_12 *= this.gclass55_0.method_3(CommanderBonusType.Decontamination);
+            if (this.Commander != null)
+                this.decimal_12 *= this.Commander.method_3(CommanderBonusType.Decontamination);
             return this.decimal_12;
         }
         catch (Exception ex)
@@ -1654,7 +1675,7 @@ public class GroundUnitFormationData
     {
         try
         {
-            return $"{this.Abbreviation} {this.Name}";
+            return string.Format("{0} {1}", this.Abbreviation, this.Name);
         }
         catch (Exception ex)
         {
@@ -1683,9 +1704,10 @@ public class GroundUnitFormationData
         try
         {
             this.string_3 = "";
-            if (this.gclass55_0 != null)
+            if (this.Commander != null)
                 this.string_3 =
-                    $"{this.gclass55_0.gclass61_0.RankAbbreviation} {this.gclass55_0.string_0}   {this.gclass55_0.method_29(true)}";
+                    string.Format("{0} {1}   {2}", this.Commander.RacialRank.RankAbbreviation,
+                        this.Commander.Name, this.Commander.method_29(true));
             this.string_4 = "Unknown";
             if (this.PopulationData != null)
                 this.string_4 = this.PopulationData.PopName;

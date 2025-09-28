@@ -19,7 +19,7 @@ public class GameDetails : Form
     private List<GClass170> list_0 = new List<GClass170>();
     private TacticalMap tacticalMap_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private FlowLayoutPanel flowLayoutPanel1;
     private CheckBox chkOrb;
     private CheckBox chkOrbAst;
@@ -1225,7 +1225,8 @@ public class GameDetails : Form
             {
                 int int66 = this.tacticalMap_0.gclass0_1.GameID;
                 if (MessageBox.Show(
-                        $" Are you sure you want to delete the game {this.tacticalMap_0.gclass0_1.GameName}?",
+                        string.Format(" Are you sure you want to delete the game {0}?",
+                            this.tacticalMap_0.gclass0_1.GameName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                     MessageBox.Show(" Are you really, really sure?", "Confirmation Required",
                         MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -1246,7 +1247,7 @@ public class GameDetails : Form
                 SQLiteConnection connection = new SQLiteConnection(AuroraUtils.string_1);
                 connection.Open();
                 foreach (string str in stringList)
-                    new SQLiteCommand($"DELETE FROM {str} WHERE GameID = {int66.ToString()}", connection)
+                    new SQLiteCommand(string.Format("DELETE FROM {0} WHERE GameID = {1}", str, int66.ToString()), connection)
                         .ExecuteNonQuery();
                 this.cboGame.DataSource = null;
                 this.method_0();
@@ -1359,12 +1360,7 @@ public class GameDetails : Form
     {
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

@@ -21,7 +21,7 @@ public class TechnologyView : Form
     private ShipComponent gclass230_0;
     private RaceMissile gclass129_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private ComboBox cboRaces;
     private FlowLayoutPanel flowLayoutPanel1;
     private ComboBox cboCategory;
@@ -228,11 +228,11 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(
                              gc230 => gc230.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                                      gc230.gclass231_0.ComponentTypeID == auroraComponentType_0)
+                                      gc230.Data.ComponentTypeID == auroraComponentType_0)
                          .Where<ShipComponent>(
                              gc230 => !gc230.bool_3 && this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(
-                             gc230 => !gc230.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 &&
+                             gc230 => !gc230.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete &&
                                       this.chkObsolete.CheckState == CheckState.Checked
                          ).OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
@@ -245,22 +245,24 @@ public class TechnologyView : Form
                     : object_1.int_8;
                 string string_22 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_22 = "Yes";
                 string string_11 = object_1.int_6.ToString();
                 if (object_1.int_7 > 1)
-                    string_11 = $"{string_11} x {object_1.int_7.ToString()}";
+                    string_11 = string.Format("{0} x {1}", string_11, object_1.int_7.ToString());
                 string string_13 = "-";
                 if (object_1.int_3 > 0)
-                    string_13 = $"{AuroraUtils.smethod_37(object_1.int_3)} km/s";
+                    string_13 = string.Format("{0} km/s", AuroraUtils.smethod_37(object_1.int_3));
                 string name = object_1.Name;
                 if (object_1.genum86_0 != GEnum86.const_0)
                     name += " (P)";
                 this.gclass0_0.method_624(this.lstvDisplayTech, name, string_11,
-                    $"{AuroraUtils.smethod_39(decimal_73)} km", string_13, $"{num} secs",
+                    string.Format("{0} km", AuroraUtils.smethod_39(decimal_73)), string_13,
+                    string.Format("{0} secs", num),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_39(object_1.decimal_0),
-                    AuroraUtils.smethod_39(object_1.decimal_4), $"{AuroraUtils.smethod_39(object_1.decimal_17)} km",
+                    AuroraUtils.smethod_39(object_1.decimal_4),
+                    string.Format("{0} km", AuroraUtils.smethod_39(object_1.decimal_17)),
                     AuroraUtils.smethod_37(object_1.int_1), AuroraUtils.smethod_37(object_1.int_4), string_22,
                     object_1);
             }
@@ -291,22 +293,22 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.Engine)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.Engine)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_19 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_19 = "Yes";
                 this.gclass0_0.method_617(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.smethod_39(object_1.decimal_3), AuroraUtils.FormatNumberToDigits(object_1.decimal_8, 3),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
-                    AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_39(object_1.decimal_11),
+                    AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_39(object_1.ExplosionChance),
                     AuroraUtils.smethod_39(object_1.int_5), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_19, object_1);
             }
@@ -337,23 +339,23 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.PowerPlant)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.PowerPlant)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_19 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_19 = "Yes";
                 this.gclass0_0.method_617(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.smethod_39(object_1.decimal_3),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_3 / object_1.decimal_1, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
-                    AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_39(object_1.decimal_11),
+                    AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_39(object_1.ExplosionChance),
                     AuroraUtils.smethod_39(object_1.int_5), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_19, object_1);
             }
@@ -382,15 +384,15 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.CloakingDevice)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.CloakingDevice)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_17 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_17 = "Yes";
                 this.gclass0_0.method_614(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
@@ -423,20 +425,21 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.Shields)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.Shields)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_17 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_17 = "Yes";
                 this.gclass0_0.method_614(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.smethod_38(object_1.decimal_3), $"{AuroraUtils.smethod_38(object_1.decimal_4)} secs",
+                    AuroraUtils.smethod_38(object_1.decimal_3),
+                    string.Format("{0} secs", AuroraUtils.smethod_38(object_1.decimal_4)),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_17, object_1);
@@ -468,19 +471,19 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.JumpDrive)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.JumpDrive)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderByDescending<ShipComponent, AuroraComponentType>(gclass230_0 =>
-                             gclass230_0.gclass231_0.ComponentTypeID)
+                             gclass230_0.Data.ComponentTypeID)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_19 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_19 = "Yes";
                 string string_14 = "No";
                 if (object_1.genum87_0 == GEnum87.const_2)
@@ -519,18 +522,18 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.Magazine)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.Magazine)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, bool>(gclass230_0 => gclass230_0.bool_1)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_19 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_19 = "Yes";
                 string string_14 = "No";
                 if (!object_1.bool_1)
@@ -538,7 +541,7 @@ public class TechnologyView : Form
                 this.gclass0_0.method_617(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.smethod_39(object_1.decimal_3),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_3 / object_1.decimal_1, 2),
-                    $"{AuroraUtils.FormatNumberToDigits(object_1.decimal_11, 1)}%", string_14,
+                    string.Format("{0}%", AuroraUtils.FormatNumberToDigits(object_1.ExplosionChance, 1)), string_14,
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_19, object_1);
@@ -568,20 +571,21 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.MissileLauncher)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.MissileLauncher)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_17 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_17 = "Yes";
                 this.gclass0_0.method_614(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.smethod_39(object_1.decimal_3), $"{AuroraUtils.smethod_39(object_1.int_11)} secs",
+                    AuroraUtils.smethod_39(object_1.decimal_3),
+                    string.Format("{0} secs", AuroraUtils.smethod_39(object_1.int_11)),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_17, object_1);
@@ -625,7 +629,7 @@ public class TechnologyView : Form
                          .Where<RaceMissile>(gclass129_1 =>
                              gclass129_1.TechSystem.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                          .Where<RaceMissile>(gclass129_1 =>
-                             !gclass129_1.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass129_1.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<RaceMissile, string>(gclass129_0 => gclass129_0.Name).ToList<RaceMissile>())
             {
@@ -633,26 +637,31 @@ public class TechnologyView : Form
                 string string_15 = "-";
                 string string_20 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_26 = "Yes";
                 string string_27 = "";
                 if (object_1.SecondStageMissile != null)
-                    string_27 = $"{object_1.NumSS.ToString()}x {object_1.SecondStageMissile.Name}";
+                    string_27 = string.Format("{0}x {1}", object_1.NumSS.ToString(), object_1.SecondStageMissile.Name);
                 if (object_1.WarheadStrength > 0M)
                 {
                     if (object_1.LaserWarhead > 0M)
                         string_15 =
-                            $"L{AuroraUtils.FormatNumberToDigits(object_1.method_2(object_1.MaxDetonationRange), 1)} {AuroraUtils.FormatNumberToDigits(object_1.MaxDetonationRange / 1000M, 0)}k";
+                            string.Format("L{0} {1}k",
+                                AuroraUtils.FormatNumberToDigits(object_1.method_2(object_1.MaxDetonationRange), 1),
+                                AuroraUtils.FormatNumberToDigits(object_1.MaxDetonationRange / 1000M, 0));
                     else
                         string_15 = object_1.MultipleWarheads <= 1
                             ? AuroraUtils.FormatNumberToDigits(object_1.WarheadStrength, 3)
-                            : $"{AuroraUtils.FormatNumberToDigits(object_1.WarheadStrength / object_1.MultipleWarheads, 3)}x{object_1.MultipleWarheads.ToString()}";
+                            : string.Format("{0}x{1}",
+                                AuroraUtils.FormatNumberToDigits(object_1.WarheadStrength / object_1.MultipleWarheads,
+                                    3), object_1.MultipleWarheads.ToString());
                 }
 
                 if (object_1.ShipDecoy == 1)
                     string_20 = "SHIP";
                 else if (object_1.NumDecoys > 0)
-                    string_20 = $"{AuroraUtils.smethod_37(object_1.NumDecoys).ToString()}-{object_1.MissileECM.ToString()}";
+                    string_20 = string.Format("{0}-{1}", AuroraUtils.smethod_37(object_1.NumDecoys).ToString(),
+                        object_1.MissileECM.ToString());
                 string string_12 = "-";
                 if (object_1.Speed > 0M)
                     string_12 = AuroraUtils.smethod_38(object_1.Speed);
@@ -679,7 +688,7 @@ public class TechnologyView : Form
                     string_19 = AuroraUtils.FormatNumberToDigits(object_1.GeoStrength, 3);
                 string string_22 = "-";
                 if (object_1.ATG > 1M)
-                    string_22 = $"{AuroraUtils.FormatNumberToDigits((object_1.ATG - 1M) * 100M, 3)}%";
+                    string_22 = string.Format("{0}%", AuroraUtils.FormatNumberToDigits((object_1.ATG - 1M) * 100M, 3));
                 string string_23 = "-";
                 if (object_1.Retargeting == 1)
                     string_23 = "Yes";
@@ -718,23 +727,23 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gc230 =>
                              gc230.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gc230.gclass231_0.ComponentTypeID == auroraComponentType_0)
+                             gc230.Data.ComponentTypeID == auroraComponentType_0)
                          .Where<ShipComponent>(gc230 =>
                              !gc230.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gc230 =>
-                             !gc230.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gc230.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, AuroraComponentType>(gclass230_0 =>
-                             gclass230_0.gclass231_0.ComponentTypeID)
+                             gclass230_0.Data.ComponentTypeID)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_18 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_18 = "Yes";
                 this.gclass0_0.method_615(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.FormatDoubleToPrecision(object_1.double_0 / 1000000.0, 1),
-                    AuroraUtils.smethod_39(object_1.decimal_6), AuroraUtils.smethod_39(object_1.decimal_3),
+                    AuroraUtils.smethod_39(object_1.Resolution), AuroraUtils.smethod_39(object_1.decimal_3),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_18, object_1);
@@ -764,19 +773,19 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.BeamFireControl)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, AuroraComponentType>(gclass230_0 =>
-                             gclass230_0.gclass231_0.ComponentTypeID)
+                             gclass230_0.Data.ComponentTypeID)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_17 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_17 = "Yes";
                 this.gclass0_0.method_614(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.smethod_39(object_1.decimal_3), AuroraUtils.smethod_39(object_1.int_3),
@@ -811,19 +820,19 @@ public class TechnologyView : Form
 
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gc230 => gc230.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID)
-                                                    && gc230.gclass231_0.ComponentTypeID == auroraComponentType_0)
+                                                    && gc230.Data.ComponentTypeID == auroraComponentType_0)
                          .Where<ShipComponent>(gc230 =>
                              !gc230.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gc230 =>
-                             !gc230.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gc230.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, AuroraComponentType>(gclass230_0 =>
-                             gclass230_0.gclass231_0.ComponentTypeID)
+                             gclass230_0.Data.ComponentTypeID)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_19 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_19 = "Yes";
                 double num1 = Math.Sqrt((double)object_1.decimal_3 * 100.0) * AuroraUtils.double_18;
                 double num2 = Math.Sqrt((double)object_1.decimal_3 * 1000.0) * AuroraUtils.double_18;
@@ -859,20 +868,20 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID ==
+                             gclass230_1.Data.ComponentTypeID ==
                              AuroraComponentType.ElectronicWarfareSystems)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, AuroraComponentType>(gclass230_0 =>
-                             gclass230_0.gclass231_0.ComponentTypeID)
+                             gclass230_0.Data.ComponentTypeID)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_16 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_16 = "Yes";
                 this.gclass0_0.method_613(this.lstvDisplayTech, object_1.Name,
                     AuroraUtils.smethod_39(object_1.decimal_3), AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
@@ -905,19 +914,19 @@ public class TechnologyView : Form
             foreach (ShipComponent object_1 in this.gclass0_0.ComponentDataDictionary.Values
                          .Where<ShipComponent>(gclass230_1 =>
                              gclass230_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID) &&
-                             gclass230_1.gclass231_0.ComponentTypeID == AuroraComponentType.CIWS)
+                             gclass230_1.Data.ComponentTypeID == AuroraComponentType.CIWS)
                          .Where<ShipComponent>(gclass230_1 =>
                              !gclass230_1.bool_3 || this.chkShowCivilian.CheckState == CheckState.Checked)
                          .Where<ShipComponent>(gclass230_1 =>
-                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass230_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<ShipComponent, AuroraComponentType>(gclass230_0 =>
-                             gclass230_0.gclass231_0.ComponentTypeID)
+                             gclass230_0.Data.ComponentTypeID)
                          .ThenBy<ShipComponent, string>(gclass230_0 => gclass230_0.Name).ToList<ShipComponent>())
             {
                 string string_18 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                     string_18 = "Yes";
                 this.gclass0_0.method_615(this.lstvDisplayTech, object_1.Name, AuroraUtils.smethod_39(object_1.int_7),
                     AuroraUtils.smethod_39(object_1.int_3), AuroraUtils.smethod_39(object_1.decimal_13),
@@ -1035,16 +1044,16 @@ public class TechnologyView : Form
             if (this.gclass230_0 != null)
             {
                 if (this.gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
-                    this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                        !this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                    this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete =
+                        !this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete;
             }
             else
             {
                 if (this.gclass129_0 == null)
                     return;
                 if (this.gclass129_0.TechSystem.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
-                    this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                        !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                    this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete =
+                        !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete;
             }
 
             this.method_3();
@@ -1088,12 +1097,7 @@ public class TechnologyView : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

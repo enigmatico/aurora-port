@@ -102,7 +102,7 @@ public partial class GroundUnitDesign
         internal bool method_1(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.OrbitingBody == this.gclass103_0.PopulationData.SystemBodyData &&
-                   gclass40_0.gclass21_0 == this.gclass103_0.RaceData &&
+                   gclass40_0.Race == this.gclass103_0.RaceData &&
                    gclass40_0.gclass85_0.method_42(MoveActionType.ProvideGroundSupport);
         }
 
@@ -114,7 +114,7 @@ public partial class GroundUnitDesign
         internal bool method_3(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.OrbitingBody == this.gclass103_0.PopulationData.SystemBodyData &&
-                   gclass40_0.gclass21_0 == this.gclass103_0.RaceData &&
+                   gclass40_0.Race == this.gclass103_0.RaceData &&
                    gclass40_0.gclass85_0.method_42(MoveActionType.ProvideOrbitalBombardmentSupport);
         }
     }
@@ -174,9 +174,9 @@ public partial class GroundUnitDesign
     {
         public GroundUnitFormationData gclass103_0;
 
-        internal bool method_0(GClass55 gclass55_0)
+        internal bool method_0(Commander gclass55_0)
         {
-            return gclass55_0.gclass103_0 == this.gclass103_0;
+            return gclass55_0.CommandingFormation == this.gclass103_0;
         }
     }
 
@@ -185,9 +185,9 @@ public partial class GroundUnitDesign
     {
         public List<GroundUnitFormationData> list_0;
 
-        internal bool method_0(GClass55 gclass55_0)
+        internal bool method_0(Commander gclass55_0)
         {
-            return this.list_0.Contains(gclass55_0.gclass103_0);
+            return this.list_0.Contains(gclass55_0.CommandingFormation);
         }
     }
 
@@ -215,7 +215,7 @@ public partial class GroundUnitDesign
         internal bool method_1(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.OrbitingBody == this.gclass103_0.PopulationData.SystemBodyData &&
-                   gclass40_0.gclass21_0 == this.gclass103_0.RaceData &&
+                   gclass40_0.Race == this.gclass103_0.RaceData &&
                    gclass40_0.gclass85_0.method_42(MoveActionType.ProvideGroundSupport);
         }
 
@@ -227,7 +227,7 @@ public partial class GroundUnitDesign
         internal bool method_3(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.OrbitingBody == this.gclass103_0.PopulationData.SystemBodyData &&
-                   gclass40_0.gclass21_0 == this.gclass103_0.RaceData &&
+                   gclass40_0.Race == this.gclass103_0.RaceData &&
                    gclass40_0.gclass85_0.method_42(MoveActionType.ProvideOrbitalBombardmentSupport);
         }
     }

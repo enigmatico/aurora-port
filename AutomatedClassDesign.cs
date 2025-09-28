@@ -29,7 +29,7 @@ public class AutomatedClassDesign
     public BFCDesignType BeamFireControl;
     public SpinalLaserDesignType SpinalLaser;
     public HullSizeDesignType HullSizeType;
-    public SurrenderStatusDesignType SurrenderStatus;
+    public SurrenderStatus SurrenderStatus;
     public int HullSize;
     public int EngineNumber;
     public int RandomEngineElement;

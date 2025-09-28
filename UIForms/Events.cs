@@ -18,10 +18,10 @@ public class Events : Form
 {
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
-    private GClass87 gclass87_0 = new GClass87();
+    private GameLogEntry gclass87_0 = new GameLogEntry();
     private GClass86 gclass86_0 = new GClass86();
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private ListView lstvEvents;
     private ColumnHeader columnHeader_0;
     private ColumnHeader columnHeader_1;
@@ -182,7 +182,7 @@ public class Events : Form
             }
             else
             {
-                GClass87 tag = (GClass87)this.lstvEvents.SelectedItems[0].Tag;
+                GameLogEntry tag = (GameLogEntry)this.lstvEvents.SelectedItems[0].Tag;
                 ColorDialog colorDialog = this.gclass0_0.method_563(new ColorDialog()
                 {
                     FullOpen = true
@@ -222,7 +222,7 @@ public class Events : Form
             }
             else
             {
-                GClass87 tag = (GClass87)this.lstvEvents.SelectedItems[0].Tag;
+                GameLogEntry tag = (GameLogEntry)this.lstvEvents.SelectedItems[0].Tag;
                 ColorDialog colorDialog = this.gclass0_0.method_563(new ColorDialog()
                 {
                     FullOpen = true
@@ -262,7 +262,7 @@ public class Events : Form
             }
             else
             {
-                GClass87 tag = (GClass87)this.lstvEvents.SelectedItems[0].Tag;
+                GameLogEntry tag = (GameLogEntry)this.lstvEvents.SelectedItems[0].Tag;
                 tag?.gclass21_0.method_266(tag.gclass88_0.EventTypeId);
                 this.method_0();
             }
@@ -351,7 +351,7 @@ public class Events : Form
             }
             else
             {
-                GClass87 tag = (GClass87)this.lstvEvents.SelectedItems[0].Tag;
+                GameLogEntry tag = (GameLogEntry)this.lstvEvents.SelectedItems[0].Tag;
                 if (!tag.gclass21_0.EventColourSettings.ContainsKey(tag.gclass88_0.EventTypeId))
                 {
                     int num3 = (int)MessageBox.Show("The current race has no colours set for this event");
@@ -423,7 +423,7 @@ public class Events : Form
         {
             if (this.gclass0_0.bool_9 || this.lstvEvents.SelectedItems.Count == 0)
                 return;
-            this.gclass87_0 = (GClass87)this.lstvEvents.SelectedItems[0].Tag;
+            this.gclass87_0 = (GameLogEntry)this.lstvEvents.SelectedItems[0].Tag;
             if (this.gclass87_0 == null)
                 return;
             this.gclass0_0.method_567(this.gclass87_0);
@@ -538,12 +538,7 @@ public class Events : Form
     {
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

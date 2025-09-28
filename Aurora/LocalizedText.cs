@@ -89,15 +89,6 @@ public enum LocalizedText
     GreenhouseFactor,
     AntiGHFactor, // 여기까지 했음
     Albedo,
-    __tons,
-    __Acc,
-    NoSurvey,
-    SurveyReportFormat,
-    GasLiteral,
-    GreenHouseGasPressure,
-    AntiGreenHouseGasPressure,
-    DustEffectiveAtm,
-    AlbedoFactor,
     None,
 }
 

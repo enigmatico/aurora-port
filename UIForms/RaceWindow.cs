@@ -17,7 +17,7 @@ public class RaceWindow : Form
     public GClass0 gclass0_0;
     public GameRace gclass21_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private PictureBox pbShipImage;
     private PictureBox pbFlagImage;
     private PictureBox pbRaceImage;
@@ -208,7 +208,8 @@ public class RaceWindow : Form
             this.gclass21_0.method_298();
             try
             {
-                this.pbRaceImage.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{gclass194.RaceImageFileName}");
+                this.pbRaceImage.Image = Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                    gclass194.RaceImageFileName));
             }
             catch
             {
@@ -291,21 +292,23 @@ public class RaceWindow : Form
                 v.Race == capturedthis.gclass21_0 && v.Species == capturedSboSpeciesSelectedValue
             ).Sum<PopulationData>(gclass146_0 => gclass146_0.Population);
             Decimal num3 = num1 + this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Race == this.gclass21_0)
                 .SelectMany<ShipData, TransportedColonist>(gclass40_0 => gclass40_0.TransportedColonists)
                 .Sum<TransportedColonist>(gclass181_0 => gclass181_0.Amount) / 1000000M;
             Decimal decimal_73 = num2 + this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Race == this.gclass21_0)
                 .SelectMany<ShipData, TransportedColonist>(gclass40_0 => gclass40_0.TransportedColonists)
                 .Where<TransportedColonist>(v181 => v181.Species == capturedSboSpeciesSelectedValue)
                 .Sum<TransportedColonist>(gclass181_0 => gclass181_0.Amount) / 1000000M;
             this.txtSpeciesTotalPop.Text = AuroraUtils.smethod_39(decimal_73);
             if (num3 > 0M)
-                this.txtPercentPop.Text = $"{AuroraUtils.FormatNumberToDigits(decimal_73 / num3 * 100M, 1)}%";
+                this.txtPercentPop.Text =
+                    string.Format("{0}%", AuroraUtils.FormatNumberToDigits(decimal_73 / num3 * 100M, 1));
             else
                 this.txtPercentPop.Text = "N/A";
             this.pbSpecies.Image =
-                Image.FromFile($"{Application.StartupPath}\\Races\\{capturedSboSpeciesSelectedValue.RaceImageFileName}");
+                Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                    capturedSboSpeciesSelectedValue.RaceImageFileName));
             this.txtSpeciesName.Text = capturedSboSpeciesSelectedValue.SpeciesName;
             this.txtGravity.Text = AuroraUtils.smethod_46(capturedSboSpeciesSelectedValue.double_5, 2);
             this.txtGravityDev.Text = AuroraUtils.smethod_46(capturedSboSpeciesSelectedValue.double_6, 2);
@@ -452,7 +455,7 @@ public class RaceWindow : Form
             }
 
             this.gclass21_0.FlagPicLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\Flags\\{this.gclass21_0.FlagPic}");
+                Image.FromFile(string.Format("{0}\\Flags\\{1}", Application.StartupPath, this.gclass21_0.FlagPic));
             this.pbFlagImage.Image = this.gclass21_0.FlagPicLoadedImg;
         }
         catch (Exception ex)
@@ -475,7 +478,8 @@ public class RaceWindow : Form
                 selectedValue.RaceImageFileName = str.Substring(num + 1);
             }
 
-            this.pbRaceImage.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{selectedValue.RaceImageFileName}");
+            this.pbRaceImage.Image = Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                selectedValue.RaceImageFileName));
         }
         catch (Exception ex)
         {
@@ -497,7 +501,7 @@ public class RaceWindow : Form
             }
 
             this.gclass21_0.ShipIconLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass21_0.HullPic}");
+                Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath, this.gclass21_0.HullPic));
             this.pbShipImage.Image = this.gclass21_0.ShipIconLoadedImg;
         }
         catch (Exception ex)
@@ -520,7 +524,8 @@ public class RaceWindow : Form
             }
 
             this.gclass21_0.SpaceStationPicLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\StationIcons\\{this.gclass21_0.SpaceStationPic}");
+                Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                    this.gclass21_0.SpaceStationPic));
             this.pbStationImage.Image = this.gclass21_0.SpaceStationPicLoadedImg;
         }
         catch (Exception ex)
@@ -684,12 +689,7 @@ public class RaceWindow : Form
     {
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

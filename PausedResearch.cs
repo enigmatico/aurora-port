@@ -7,6 +7,6 @@
 #nullable disable
 public class PausedResearch
 {
-    public TechSystem gclass164_0;
+    public TechSystem TechSystem;
     public int PointsAccumulated;
 }

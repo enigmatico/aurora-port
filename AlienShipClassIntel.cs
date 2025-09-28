@@ -1,0 +1,541 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: GClass115
+// Assembly: Aurora, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: DAB8E3AD-3A24-426F-849E-98EC2E2DD9EB
+// Assembly location: C:\Users\jinhoon.kim\Desktop\Aurora250Full\Dedot\aurora-deop.exe
+
+using Aurora;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+#nullable disable
+public class AlienShipClassIntel
+{
+    private sealed class Class1068
+    {
+        public List<int> list_0;
+
+        internal bool method_0(TechSystem gclass164_0)
+        {
+            return this.list_0.Contains(gclass164_0.TechSystemID);
+        }
+    }
+
+
+    private sealed class Class1069
+    {
+        public ShipComponent gclass230_0;
+
+        internal bool method_0(AlienSensorIntel gclass118_0)
+        {
+            return gclass118_0.ActualSensor == this.gclass230_0;
+        }
+    }
+
+
+    private sealed class Class1070
+    {
+        public ShipComponent gclass230_0;
+
+        internal bool method_0(AlienShipWeaponIntel gclass119_0)
+        {
+            return gclass119_0.gclass230_0 == this.gclass230_0;
+        }
+    }
+
+    private GClass0 gclass0_0;
+    public List<AlienSensorIntel> list_0 = new List<AlienSensorIntel>();
+    public List<AlienShipWeaponIntel> list_1 = new List<AlienShipWeaponIntel>();
+    public List<TechSystem> list_2 = new List<TechSystem>();
+    public AlienRaceIntel gclass110_0;
+    public ShipClass gclass22_0;
+    public GameRace gclass21_0;
+    public GameRace gclass21_1;
+    public ShipHull gclass76_0;
+    public GEnum57 genum57_0;
+    public EngineDesignType genum70_0;
+    public int int_0;
+    public int int_1;
+    public int int_2;
+    public int int_3;
+    public int int_4;
+    public Decimal decimal_0;
+    public Decimal decimal_1;
+    public Decimal decimal_2;
+    public Decimal decimal_3;
+    public Decimal decimal_4;
+    public Decimal decimal_5;
+    public Decimal decimal_6;
+    public Decimal decimal_7;
+    public bool bool_0;
+    public bool bool_1;
+    public string string_0;
+    public string string_1 = "No Class Summary Available";
+    public int int_5;
+    public int int_6;
+    public int int_7;
+
+    public string ClassName { get; set; }
+
+    public AlienShipClassIntel(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
+
+    public void method_0(WreckComponents gclass235_0)
+    {
+        try
+        {
+            if (gclass235_0.Component.bool_11)
+                this.method_11(null, gclass235_0.Component, 0.0, gclass235_0.Amount);
+            else if (gclass235_0.Component.Data.ComponentTypeID ==
+                     AuroraComponentType.ActiveSearchSensors ||
+                     gclass235_0.Component.Data.ComponentTypeID == AuroraComponentType.EMSensors ||
+                     gclass235_0.Component.Data.ComponentTypeID == AuroraComponentType.ThermalSensors)
+                this.list_0.Add(this.gclass21_1.method_41(gclass235_0.Component, this.gclass110_0));
+            this.method_1(gclass235_0.Component.int_16);
+            this.method_1(gclass235_0.Component.int_17);
+            this.method_1(gclass235_0.Component.int_18);
+            this.method_1(gclass235_0.Component.int_19);
+            this.method_1(gclass235_0.Component.int_20);
+            this.method_1(gclass235_0.Component.int_21);
+            this.method_1(gclass235_0.Component.int_22);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 3708);
+        }
+    }
+
+    public void method_1(int int_8)
+    {
+        try
+        {
+            if (int_8 <= 0 || !this.gclass0_0.TechSystems.ContainsKey(int_8) ||
+                this.list_2.Contains(this.gclass0_0.TechSystems[int_8]))
+                return;
+            this.list_2.Add(this.gclass0_0.TechSystems[int_8]);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 3709);
+        }
+    }
+
+    public Decimal method_2(RacialSystemSurvey gclass202_0)
+    {
+        try
+        {
+            Decimal num = this.decimal_3 * AuroraUtils.decimal_17;
+            if (this.bool_1 && this.list_1.Count == 0 && gclass202_0.gclass3_0.int_3 < 1 &&
+                (gclass202_0.gclass3_0.genum95_0 < NPRSystemValue.const_5 || this.gclass21_1.RacialSystemDictionary.Count == 1))
+            {
+                num -= 10000M;
+                ++gclass202_0.gclass3_0.int_3;
+            }
+
+            if (num < 0M)
+                return 0M;
+            return this.genum70_0 == EngineDesignType.const_1 || this.list_1.Count > 0 ? num : num * 0.1M;
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1899);
+            return 0M;
+        }
+    }
+
+    public string method_3()
+    {
+        try
+        {
+            if (this.genum70_0 == EngineDesignType.const_1)
+                return "Military";
+            return this.genum70_0 == EngineDesignType.const_2 ? "Commercial" : "Unknown";
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1900);
+            return "";
+        }
+    }
+
+    public string method_4()
+    {
+        try
+        {
+            if (this.genum70_0 == EngineDesignType.const_1)
+                return "M";
+            return this.genum70_0 == EngineDesignType.const_2 ? "C" : "";
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1901);
+            return "";
+        }
+    }
+
+    public int method_5()
+    {
+        try
+        {
+            return this.gclass21_1.dictionary_12.Values.Count<AlienShipIntel>(gclass117_0 =>
+                gclass117_0.gclass115_0 == this && !gclass117_0.bool_0);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1902);
+            return 0;
+        }
+    }
+
+    public AlienShipClassIntel method_6(GameRace gclass21_2, List<AlienRaceIntel> list_3)
+    {
+        try
+        {
+            AlienShipClassIntel gclass115_1 = new AlienShipClassIntel(this.gclass0_0);
+            AlienShipClassIntel gclass115_2 = (AlienShipClassIntel)this.MemberwiseClone();
+            gclass115_2.int_0 = this.gclass0_0.method_26(GEnum0.const_39);
+            gclass115_2.gclass21_1 = gclass21_2;
+            gclass115_2.gclass110_0 =
+                list_3.FirstOrDefault<AlienRaceIntel>(gclass110_1 => gclass110_1.ActualAlienRace == this.gclass21_0);
+            gclass115_2.list_2 = new List<TechSystem>();
+            gclass115_2.list_1 = new List<AlienShipWeaponIntel>();
+            gclass115_2.list_0 = new List<AlienSensorIntel>();
+            foreach (TechSystem gclass164 in this.list_2)
+                gclass115_2.list_2.Add(gclass164);
+            foreach (AlienShipWeaponIntel gclass119_1 in this.list_1)
+            {
+                AlienShipWeaponIntel gclass119_2 = gclass119_1.method_0();
+                gclass115_2.list_1.Add(gclass119_2);
+            }
+
+            foreach (AlienSensorIntel gclass118_1 in this.list_0)
+            {
+                AlienSensorIntel gclass118_2 = gclass118_1.method_2(gclass21_2);
+                gclass115_2.list_0.Add(gclass118_2);
+            }
+
+            return gclass115_2;
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1903);
+            return null;
+        }
+    }
+
+    public double method_7()
+    {
+        try
+        {
+            List<AlienShipWeaponIntel> list = this.list_1.Where<AlienShipWeaponIntel>(gclass119_0 => gclass119_0.gclass230_0.bool_4)
+                .ToList<AlienShipWeaponIntel>();
+            return list.Count == 0 ? 0.0 : list.Max<AlienShipWeaponIntel>(gclass119_0 => gclass119_0.double_0);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1904);
+            return 0.0;
+        }
+    }
+
+    public void method_8()
+    {
+        try
+        {
+            // ISSUE: object of a compiler-generated type is created
+            // ISSUE: variable of a compiler-generated type
+            AlienShipClassIntel.Class1068 class1068 = new AlienShipClassIntel.Class1068();
+            if (!this.gclass21_1.NPR && this.gclass21_0.NPR)
+                this.gclass22_0.ClassName = this.ClassName;
+            this.int_1 = this.gclass22_0.ArmourThickness;
+            this.int_2 = this.gclass22_0.MaxSpeed;
+            this.int_3 = this.gclass22_0.JumpDistance;
+            this.decimal_5 = this.gclass22_0.ActiveJammerStrength;
+            this.decimal_6 = this.gclass22_0.FireControlJammerStrength;
+            this.decimal_7 = this.gclass22_0.MissileJammerStrength;
+            this.decimal_4 = this.gclass22_0.ShieldStrength;
+            this.decimal_0 = this.gclass22_0.PassiveSensorStrength;
+            this.ClassName = this.gclass22_0.ClassName;
+            this.list_0.Clear();
+            foreach (ShipComponent gclass230 in this.gclass22_0.ClassComponents.Values
+                         .Where<ClassComponent>(gclass228_0 =>
+                             gclass228_0.Component.Data.ComponentTypeID ==
+                             AuroraComponentType.ActiveSearchSensors)
+                         .Select<ClassComponent, ShipComponent>(gclass228_0 => gclass228_0.Component).Distinct<ShipComponent>()
+                         .ToList<ShipComponent>())
+            {
+                // ISSUE: object of a compiler-generated type is created
+                // ISSUE: variable of a compiler-generated type
+                AlienShipClassIntel.Class1069 class1069 = new AlienShipClassIntel.Class1069();
+                // ISSUE: reference to a compiler-generated field
+                class1069.gclass230_0 = gclass230;
+                // ISSUE: reference to a compiler-generated method
+                AlienSensorIntel gclass118 =
+                    this.gclass110_0.dictionary_2.Values.FirstOrDefault<AlienSensorIntel>(class1069.method_0);
+                if (gclass118 == null)
+                {
+                    // ISSUE: reference to a compiler-generated field
+                    // ISSUE: reference to a compiler-generated field
+                    // ISSUE: reference to a compiler-generated field
+                    // ISSUE: reference to a compiler-generated field
+                    gclass118 = new AlienSensorIntel()
+                    {
+                        AlienSensorID = this.gclass0_0.method_26(GEnum0.const_43),
+                        Strength = class1069.gclass230_0.decimal_3,
+                        Resolution = (int)class1069.gclass230_0.Resolution,
+                        Range = class1069.gclass230_0.double_0,
+                        IntelligencePoints = 500.0,
+                        ActualSensor = class1069.gclass230_0,
+                        AlienRace = this.gclass22_0.Race,
+                        Race = this.gclass21_1
+                    };
+                    gclass118.Name = string.Format("AS {0}", gclass118.AlienSensorID);
+                    this.gclass110_0.dictionary_2.Add(gclass118.AlienSensorID, gclass118);
+                }
+                else
+                {
+                    // ISSUE: reference to a compiler-generated field
+                    gclass118.Strength = class1069.gclass230_0.decimal_3;
+                    // ISSUE: reference to a compiler-generated field
+                    gclass118.Resolution = (int)class1069.gclass230_0.Resolution;
+                    // ISSUE: reference to a compiler-generated field
+                    gclass118.Range = class1069.gclass230_0.double_0;
+                    gclass118.IntelligencePoints = 500.0;
+                }
+
+                if (!this.list_0.Contains(gclass118))
+                    this.list_0.Add(gclass118);
+            }
+
+            this.list_1.Clear();
+            foreach (ClassComponent gclass228 in this.gclass22_0.ClassComponents.Values.Where<ClassComponent>(gclass228_0 =>
+                         gclass228_0.Component.bool_4 || gclass228_0.Component.Data.ComponentTypeID ==
+                         AuroraComponentType.MissileLauncher).ToList<ClassComponent>())
+                this.list_1.Add(new AlienShipWeaponIntel()
+                {
+                    gclass230_0 = gclass228.Component,
+                    double_0 = gclass228.Component.method_4(),
+                    int_1 = (int)gclass228.NumComponent,
+                    decimal_0 = this.gclass0_0.GameTime,
+                    int_0 = 0
+                });
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0 = this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_16).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>();
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0.AddRange(this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_17).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>());
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0.AddRange(this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_18).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>());
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0.AddRange(this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_19).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>());
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0.AddRange(this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_20).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>());
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0.AddRange(this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_21).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>());
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0.AddRange(this.gclass22_0.ClassComponents.Values
+                .Select<ClassComponent, int>(gclass228_0 => gclass228_0.Component.int_22).Where<int>(int_0 => int_0 > 0)
+                .ToList<int>());
+            // ISSUE: reference to a compiler-generated field
+            // ISSUE: reference to a compiler-generated field
+            class1068.list_0 = class1068.list_0.Distinct<int>().ToList<int>();
+            // ISSUE: reference to a compiler-generated method
+            List<TechSystem> list = this.gclass0_0.TechSystems.Values.Where<TechSystem>(class1068.method_0)
+                .ToList<TechSystem>();
+            this.list_2.Clear();
+            foreach (TechSystem gclass164 in list)
+                this.list_2.Add(gclass164);
+            this.gclass22_0.method_85(0, 0, "");
+            this.string_1 = this.gclass22_0.string_0;
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1905);
+        }
+    }
+
+    public int method_9()
+    {
+        try
+        {
+            List<AlienShipIntel> list = this.gclass21_1.dictionary_12.Values
+                .Where<AlienShipIntel>(gclass117_0 => gclass117_0.gclass115_0 == this).ToList<AlienShipIntel>();
+            return list.Count == 0 ? 0 : (int)(list.Sum<AlienShipIntel>(gclass117_0 => gclass117_0.decimal_6) / list.Count);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1906);
+            return 0;
+        }
+    }
+
+    public double method_10()
+    {
+        try
+        {
+            List<AlienShipIntel> list = this.gclass21_1.dictionary_12.Values
+                .Where<AlienShipIntel>(gclass117_0 => gclass117_0.gclass115_0 == this).ToList<AlienShipIntel>();
+            return list.Count == 0
+                ? 0.0
+                : list.Sum<AlienShipIntel>(gclass117_0 => gclass117_0.int_3) /
+                  (double)list.Sum<AlienShipIntel>(gclass117_0 => gclass117_0.decimal_6);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1907);
+            return 0.0;
+        }
+    }
+
+    public void method_11(AlienShipIntel gclass117_0, ShipComponent gclass230_0, double double_0, int int_8)
+    {
+        // ISSUE: object of a compiler-generated type is created
+        // ISSUE: variable of a compiler-generated type
+        AlienShipClassIntel.Class1070 class1070 = new AlienShipClassIntel.Class1070();
+        // ISSUE: reference to a compiler-generated field
+        class1070.gclass230_0 = gclass230_0;
+        try
+        {
+            bool flag = false;
+            // ISSUE: reference to a compiler-generated method
+            AlienShipWeaponIntel gclass119 = this.list_1.FirstOrDefault<AlienShipWeaponIntel>(class1070.method_0);
+            if (gclass119 == null)
+            {
+                // ISSUE: reference to a compiler-generated field
+                this.list_1.Add(new AlienShipWeaponIntel()
+                {
+                    gclass230_0 = class1070.gclass230_0,
+                    double_0 = double_0,
+                    int_1 = int_8,
+                    decimal_0 = this.gclass0_0.GameTime,
+                    int_0 = 0
+                });
+                flag = true;
+                // ISSUE: reference to a compiler-generated field
+                if (class1070.gclass230_0.Data.ComponentTypeID == AuroraComponentType.MissileLauncher)
+                {
+                    // ISSUE: reference to a compiler-generated field
+                    if (class1070.gclass230_0.decimal_1 >= AuroraUtils.int_53)
+                        this.genum57_0 = GEnum57.const_1;
+                    else if (this.genum57_0 == GEnum57.const_0)
+                        this.genum57_0 = GEnum57.const_2;
+                }
+                else
+                {
+                    // ISSUE: reference to a compiler-generated field
+                    if (class1070.gclass230_0.bool_4)
+                    {
+                        // ISSUE: reference to a compiler-generated field
+                        // ISSUE: reference to a compiler-generated field
+                        if (class1070.gclass230_0.decimal_0 > class1070.gclass230_0.decimal_4 * 2M)
+                            this.genum57_0 = GEnum57.const_3;
+                        else if (this.genum57_0 == GEnum57.const_0)
+                            this.genum57_0 = GEnum57.const_4;
+                    }
+                }
+            }
+            else
+            {
+                if (double_0 > gclass119.double_0)
+                {
+                    gclass119.double_0 = double_0;
+                    flag = true;
+                }
+
+                if (int_8 > gclass119.int_1)
+                {
+                    gclass119.int_1 = int_8;
+                    flag = true;
+                }
+
+                if ((this.gclass0_0.GameTime - gclass119.decimal_0 < gclass119.int_0 || gclass119.int_0 == 0) &&
+                    this.gclass0_0.GameTime != gclass119.decimal_0)
+                {
+                    gclass119.int_0 = (int)(this.gclass0_0.GameTime - gclass119.decimal_0);
+                    flag = true;
+                }
+            }
+
+            if (!flag || gclass117_0 == null || gclass117_0.gclass40_0 == null)
+                return;
+            this.gclass0_0.gclass92_0.method_2(EventType.const_66,
+                string.Format(
+                    "Based on observation of {0}, intelligence on the weapons of the {1} class has been updated: ",
+                    gclass117_0.string_0, this.method_13()),
+                this.gclass21_1, gclass117_0.gclass40_0.gclass85_0.System.ActualSystem,
+                gclass117_0.gclass40_0.gclass85_0.XCoord, gclass117_0.gclass40_0.gclass85_0.YCoord,
+                AuroraEventCategory.Intelligence);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1908);
+        }
+    }
+
+    public void method_12(int int_8)
+    {
+        try
+        {
+            if (this.int_1 >= int_8)
+                return;
+            this.int_1 = int_8;
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1909);
+        }
+    }
+
+    public string method_13()
+    {
+        try
+        {
+            return string.Format("{0} {1}", this.gclass76_0.Abbreviation, this.ClassName);
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1910);
+            return "error";
+        }
+    }
+
+    public void method_14(Contact gclass65_0)
+    {
+        try
+        {
+            if (gclass65_0.ContactMethod == ContactDetectMethod.const_0)
+            {
+                if (gclass65_0.ContactStrength > this.decimal_3)
+                    this.decimal_3 = gclass65_0.ContactStrength;
+            }
+            else if (gclass65_0.ContactMethod == ContactDetectMethod.const_1)
+            {
+                if (gclass65_0.ContactStrength > this.decimal_0)
+                    this.decimal_0 = gclass65_0.ContactStrength;
+                if (gclass65_0.Speed > 1 && this.genum70_0 == EngineDesignType.const_0)
+                    this.genum70_0 = !gclass65_0.TargetShip.Class.MilitaryEngines ? EngineDesignType.const_2 : EngineDesignType.const_1;
+            }
+            else if (gclass65_0.ContactMethod == ContactDetectMethod.const_3 && gclass65_0.ContactStrength > this.decimal_4 * 30M)
+                this.decimal_4 = gclass65_0.ContactStrength / 30M;
+
+            if (gclass65_0.Speed <= this.int_2)
+                return;
+            this.int_2 = gclass65_0.Speed;
+        }
+        catch (Exception ex)
+        {
+            AuroraUtils.ShowExceptionPopup(ex, 1911);
+        }
+    }
+}

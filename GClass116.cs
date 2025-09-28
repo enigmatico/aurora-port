@@ -9,7 +9,7 @@ using System.Collections.Generic;
 #nullable disable
 public class GClass116
 {
-    public List<GClass117> list_0 = new List<GClass117>();
+    public List<AlienShipIntel> list_0 = new List<AlienShipIntel>();
     public double double_0;
     public double double_1;
     public int int_0;

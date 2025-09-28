@@ -17,13 +17,12 @@ public class PopulationText : Form
     private ShipClass gclass22_0;
     private GroundUnitFormationTemplateData gclass102_0;
     private GameRace gclass21_0;
-    private AlienRaceInfo gclass110_0;
+    private AlienRaceIntel gclass110_0;
     private TreeView treeView_0;
     private GEnum127 genum127_0;
     private CheckState checkState_0;
     private CheckState checkState_1;
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
     private TextBox txtDetails;
 
     public PopulationText(PopulationData gclass146_1, TreeView treeView_1, GClass0 gclass0_1)
@@ -54,7 +53,7 @@ public class PopulationText : Form
         this.gclass0_0 = gclass0_1;
     }
 
-    public PopulationText(AlienRaceInfo gclass110_1, GClass0 gclass0_1)
+    public PopulationText(AlienRaceIntel gclass110_1, GClass0 gclass0_1)
     {
         this.InitializeComponent();
         this.gclass110_0 = gclass110_1;
@@ -121,7 +120,7 @@ public class PopulationText : Form
             else if (this.gclass110_0 != null)
             {
                 this.Width = 1000;
-                this.Text = $"Alien Class Intelligence - {this.gclass110_0.AlienRaceName}";
+                this.Text = string.Format("Alien Class Intelligence - {0}", this.gclass110_0.AlienRaceName);
                 this.txtDetails.Text = this.gclass110_0.ViewingRace.method_21(this.gclass110_0);
             }
             else if (this.gclass21_0 != null)
@@ -196,13 +195,6 @@ public class PopulationText : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 2266);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

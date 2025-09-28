@@ -15,7 +15,7 @@ public class TechSystem
     public TechSystem gclass164_0;
     public TechSystem gclass164_1;
     public ResearchCategoryType genum119_0;
-    public Dictionary<int, GClass165> dictionary_0 = new Dictionary<int, GClass165>();
+    public Dictionary<int, RacialTech> dictionary_0 = new Dictionary<int, RacialTech>();
     public int TechSystemID;
     public int int_1;
     public int int_2;
@@ -41,9 +41,9 @@ public class TechSystem
     {
         try
         {
-            foreach (GClass165 gclass165 in this.dictionary_0.Values)
+            foreach (RacialTech gclass165 in this.dictionary_0.Values)
             {
-                if (gclass165.gclass21_0 == gclass21_1 && !gclass165.bool_0)
+                if (gclass165.Race == gclass21_1 && !gclass165.Obsolete)
                     return true;
             }
 

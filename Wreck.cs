@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 public class Wreck
 {
     [CompilerGenerated]
-    private bool method_3(GClass115 gclass115_0)
+    private bool method_3(AlienShipClassIntel gclass115_0)
     {
         return gclass115_0.gclass22_0.ShipClassID == this.ShipClass.ShipClassID;
     }
@@ -75,7 +75,7 @@ public class Wreck
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated method
                     class1215.gclass164_0 =
-                        this.gclass0_0.TechDataDictionary.Values.FirstOrDefault<TechSystem>(class1215.method_0);
+                        this.gclass0_0.TechSystems.Values.FirstOrDefault<TechSystem>(class1215.method_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -110,20 +110,23 @@ public class Wreck
             }
             else
             {
-                GClass115 gclass115 = gclass21_1.dictionary_11.Values.FirstOrDefault<GClass115>(gclass115_0 =>
+                AlienShipClassIntel gclass115 = gclass21_1.dictionary_11.Values.FirstOrDefault<AlienShipClassIntel>(gclass115_0 =>
                     gclass115_0.gclass22_0.ShipClassID == this.ShipClass.ShipClassID);
                 if (gclass115 != null)
                 {
                     str2 = gclass115.ClassName;
-                    str1 = $"[{gclass21_1.PerceivedAliens[this.Race.RaceID].Abbreviation}]";
+                    str1 = string.Format((string)"[{0}]",
+                        (object)gclass21_1.AlienRaceIntels[this.Race.RaceID].Abbreviation);
                 }
                 else
                     str2 = "Unknown";
             }
 
             return bool_0
-                ? $"Wreck of {str2} class {str1} #{this.WreckID.ToString()}: {AuroraUtils.smethod_39(this.Size * 50M)} tons)"
-                : $"Wreck of {str2} class {str1}: {AuroraUtils.smethod_39(this.Size * 50M)} tons)";
+                ? string.Format((string)"Wreck of {0} class {1} #{2}: {3} tons)", new[] { str2 }, str1,
+                    this.WreckID.ToString(), AuroraUtils.smethod_39(this.Size * 50M))
+                : string.Format((string)"Wreck of {0} class {1}: {2} tons)", (object)str2, (object)str1,
+                    (object)AuroraUtils.smethod_39(this.Size * 50M));
         }
         catch (Exception ex)
         {
@@ -158,7 +161,7 @@ public class Wreck
             if (int_6 > 1)
             {
                 string str = this.method_1(gclass202_0.Race, false);
-                s = $"{AuroraUtils.smethod_37(int_6)}x {str}";
+                s = string.Format((string)"{0}x {1}", (object)AuroraUtils.smethod_37(int_6), (object)str);
             }
             else
                 s = this.method_1(gclass202_0.Race, true);

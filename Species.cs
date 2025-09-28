@@ -13,7 +13,7 @@ using System.Windows.Forms;
 public class Species
 {
     private GClass0 gclass0_0;
-    public Dictionary<int, GClass195> dictionary_0;
+    public Dictionary<int, KnownSpecies> KnownSpecies;
     public SystemBodyData gclass1_0;
     public TechSystem gclass164_0;
     public Species gclass194_0;
@@ -65,23 +65,23 @@ public class Species
             string str1 = num1.ToString();
             num1 = Math.Round(this.double_8, 3);
             string str2 = num1.ToString();
-            string str3 = $"{str1}  to  {str2}";
+            string str3 = string.Format("{0}  to  {1}", str1, str2);
             label1.Text = str3;
             Label label2 = label_2;
             double num2 = Math.Round(this.double_12 - AuroraUtils.int_17, 2);
             string str4 = num2.ToString();
             num2 = Math.Round(this.double_11 - AuroraUtils.int_17, 2);
             string str5 = num2.ToString();
-            string str6 = $"{str4}  to  {str5}";
+            string str6 = string.Format("{0}  to  {1}", str4, str5);
             label2.Text = str6;
             Label label3 = label_1;
             double num3 = Math.Round(this.double_9, 3);
             string str7 = num3.ToString();
             num3 = Math.Round(this.double_10, 3);
             string str8 = num3.ToString();
-            string str9 = $"{str7}  to  {str8}";
+            string str9 = string.Format("{0}  to  {1}", str7, str8);
             label3.Text = str9;
-            label_4.Text = $"{Math.Round(this.double_2, 2)} atm";
+            label_4.Text = string.Format("{0} atm", Math.Round(this.double_2, 2));
             label_3.Text = this.gclass223_0.Name;
         }
         catch (Exception ex)

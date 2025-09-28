@@ -13,7 +13,9 @@ using System.Windows.Forms;
 public class RaceComparison : Form
 {
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+    
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     private ListView lstvCompare;
     private ColumnHeader columnHeader_0;
     private Label label1;
@@ -43,7 +45,7 @@ public class RaceComparison : Form
             WindowPosition207 gclass207 = this.gclass0_0.method_513(this.Name);
             this.Left = gclass207.Left;
             this.Top = gclass207.Top;
-            this.Text = $"Race Comparison   {this.gclass0_0.method_586(true)}";
+            this.Text = string.Format("Race Comparison   {0}", this.gclass0_0.method_586(true));
             this.Width = this.gclass0_0.method_514(this.lstvCompare) + 40;
             this.ActiveControl = this.label1;
         }
@@ -74,12 +76,7 @@ public class RaceComparison : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

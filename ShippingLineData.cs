@@ -21,7 +21,7 @@ public class ShippingLineData
         internal bool method_0(PopulationData gclass146_0)
         {
             return gclass146_0.SystemBodyData == this.gclass40_0.gclass85_0.OrbitingBody &&
-                   gclass146_0.Race == this.gclass187_0.gclass21_0;
+                   gclass146_0.Race == this.gclass187_0.Race;
         }
     }
 
@@ -30,9 +30,9 @@ public class ShippingLineData
     {
         public List<PopulationData> list_0;
 
-        internal bool method_0(GClass193 gclass193_0)
+        internal bool method_0(Shipyard gclass193_0)
         {
-            return this.list_0.Contains(gclass193_0.gclass146_0);
+            return this.list_0.Contains(gclass193_0.Population);
         }
     }
 
@@ -69,7 +69,7 @@ public class ShippingLineData
         internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass187_0 == this.gclass187_0 &&
-                   gclass40_0.gclass22_0.MainFunction == this.gclass22_0.MainFunction &&
+                   gclass40_0.Class.MainFunction == this.gclass22_0.MainFunction &&
                    gclass40_0.decimal_1 < this.gclass187_0.gclass0_0.GameTime - AuroraUtils.decimal_29 * 10M;
         }
     }
@@ -87,17 +87,17 @@ public class ShippingLineData
 
     public List<ShippingWealthData> WealthDataList = new List<ShippingWealthData>();
     private GClass0 gclass0_0;
-    public GameRace gclass21_0;
-    public ShipComponent gclass230_0;
-    public int int_0;
-    public int int_1;
-    public int int_2;
-    public Decimal decimal_0;
-    public Decimal decimal_1;
-    public Decimal decimal_2;
-    public bool bool_0;
-    public string string_0;
-    public string string_1;
+    public GameRace Race;
+    public ShipComponent EngineComponent;
+    public int ShippingLineID;
+    public int ShipNum;
+    public int CommercialEngines;
+    public Decimal WealthBalance;
+    public Decimal LastDividendPaid;
+    public Decimal LastDividendTime;
+    public bool NPRace;
+    public string LineName;
+    public string ShortName;
     public int int_3;
     public int int_4;
     public int int_5;
@@ -116,7 +116,7 @@ public class ShippingLineData
             foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
                          .Where<ShipData>(gclass40_0 => gclass40_0.gclass187_0 == this)
                          .Where<ShipData>(gclass40_0 =>
-                             gclass40_0.dictionary_5.Count > 0 || gclass40_0.list_12.Count > 0).ToList<ShipData>())
+                             gclass40_0.ArmorDamages.Count > 0 || gclass40_0.ComponentDamages.Count > 0).ToList<ShipData>())
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -131,16 +131,16 @@ public class ShippingLineData
                     // ISSUE: reference to a compiler-generated method
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: reference to a compiler-generated method
-                    if (this.gclass0_0.dictionary_31.Values.Count<GClass193>(new ShippingLineData.Class1157()
+                    if (this.gclass0_0.Shipyards.Values.Count<Shipyard>(new ShippingLineData.Class1157()
                         {
                             list_0 = this.gclass0_0.Populations.Values.Where<PopulationData>(class1156.method_0)
                                 .ToList<PopulationData>()
                         }.method_0) > 0)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        class1156.gclass40_0.list_12.Clear();
+                        class1156.gclass40_0.ComponentDamages.Clear();
                         // ISSUE: reference to a compiler-generated field
-                        class1156.gclass40_0.dictionary_5.Clear();
+                        class1156.gclass40_0.ArmorDamages.Clear();
                         continue;
                     }
                 }
@@ -157,8 +157,9 @@ public class ShippingLineData
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     this.gclass0_0.gclass92_0.method_2(EventType.const_83,
-                        $"{this.string_0} is unable to repair {class1156.gclass40_0.method_187()} so they have transferred it to our control.",
-                        this.gclass21_0, class1156.gclass40_0.gclass85_0.System.ActualSystem,
+                        string.Format("{0} is unable to repair {1} so they have transferred it to our control.",
+                            this.LineName, class1156.gclass40_0.method_187()),
+                        this.Race, class1156.gclass40_0.gclass85_0.System.ActualSystem,
                         class1156.gclass40_0.gclass85_0.XCoord, class1156.gclass40_0.gclass85_0.YCoord,
                         AuroraEventCategory.Ship);
                 }
@@ -178,24 +179,24 @@ public class ShippingLineData
             listView_1.Items.Clear();
             List<ShipData> list = this.gclass0_0.Ships.Values
                 .Where<ShipData>(gclass40_0 => gclass40_0.gclass187_0 == this).ToList<ShipData>();
-            Decimal decimal_73_1 = list.Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size) *
+            Decimal decimal_73_1 = list.Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size) *
                                    AuroraUtils.decimal_17;
             Decimal decimal_73_2 = this.WealthDataList
                 .Where<ShippingWealthData>(gclass188_0 =>
                     gclass188_0.TradeTime > this.gclass0_0.GameTime - AuroraUtils.decimal_29)
                 .Sum<ShippingWealthData>(gclass188_0 => gclass188_0.Amount);
             string string_11 = "No Dividend Paid";
-            if (this.decimal_2 > 0M)
-                string_11 = this.gclass0_0.method_584(this.decimal_2);
+            if (this.LastDividendTime > 0M)
+                string_11 = this.gclass0_0.method_584(this.LastDividendTime);
             this.gclass0_0.method_601(listView_0, "Total Ships", AuroraUtils.smethod_37(list.Count), null);
             this.gclass0_0.method_601(listView_0, "Total Tonnage", AuroraUtils.smethod_39(decimal_73_1), null);
             this.gclass0_0.method_601(listView_0, "Last Year Income", AuroraUtils.smethod_39(decimal_73_2), null);
             this.gclass0_0.method_601(listView_0, "Last Dividend Time", string_11, null);
-            this.gclass0_0.method_601(listView_0, "Last Dividend Amount", AuroraUtils.smethod_39(this.decimal_1), null);
-            this.gclass0_0.method_601(listView_0, "Current Wealth", AuroraUtils.smethod_39(this.decimal_0), null);
+            this.gclass0_0.method_601(listView_0, "Last Dividend Amount", AuroraUtils.smethod_39(this.LastDividendPaid), null);
+            this.gclass0_0.method_601(listView_0, "Current Wealth", AuroraUtils.smethod_39(this.WealthBalance), null);
             this.gclass0_0.method_594(listView_0, "");
             foreach (IGrouping<ShipClass, ShipData> source in list
-                         .GroupBy<ShipData, ShipClass>(gclass40_0 => gclass40_0.gclass22_0)
+                         .GroupBy<ShipData, ShipClass>(gclass40_0 => gclass40_0.Class)
                          .OrderBy<IGrouping<ShipClass, ShipData>, string>(igrouping_0 => igrouping_0.Key.ClassName))
             {
                 int int_72 = source.Count<ShipData>();
@@ -272,7 +273,7 @@ public class ShippingLineData
         {
             return this.gclass0_0.Ships.Values
                 .Where<ShipData>(gclass40_0 => gclass40_0.gclass187_0 == this)
-                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Cost);
+                .Sum<ShipData>(gclass40_0 => gclass40_0.Class.Cost);
         }
         catch (Exception ex)
         {
@@ -297,25 +298,25 @@ public class ShippingLineData
             this.int_7 = list.Count;
             foreach (ShipData gclass40 in list)
             {
-                if (gclass40.gclass22_0.MainFunction == AuroraClassMainFunction.Freighter)
+                if (gclass40.Class.MainFunction == AuroraClassMainFunction.Freighter)
                 {
                     ++this.int_3;
                     if (gclass40.gclass85_0.MoveOrderDictionary.Count > 0)
                         ++this.int_8;
                 }
-                else if (gclass40.gclass22_0.MainFunction == AuroraClassMainFunction.ColonyShip)
+                else if (gclass40.Class.MainFunction == AuroraClassMainFunction.ColonyShip)
                 {
                     ++this.int_4;
                     if (gclass40.gclass85_0.MoveOrderDictionary.Count > 0)
                         ++this.int_9;
                 }
-                else if (gclass40.gclass22_0.MainFunction == AuroraClassMainFunction.Liner)
+                else if (gclass40.Class.MainFunction == AuroraClassMainFunction.Liner)
                 {
                     ++this.int_6;
                     if (gclass40.gclass85_0.MoveOrderDictionary.Count > 0)
                         ++this.int_10;
                 }
-                else if (gclass40.gclass22_0.MainFunction == AuroraClassMainFunction.FuelHarvester)
+                else if (gclass40.Class.MainFunction == AuroraClassMainFunction.FuelHarvester)
                     ++this.int_5;
             }
         }
@@ -332,9 +333,9 @@ public class ShippingLineData
             Decimal num1 = this.method_4();
             if (num1 == 0M)
                 return 0M;
-            Decimal num2 = (num1 + this.decimal_0) / 10M;
-            if (num2 > this.decimal_0 - 1000M)
-                num2 = this.decimal_0 - 1000M;
+            Decimal num2 = (num1 + this.WealthBalance) / 10M;
+            if (num2 > this.WealthBalance - 1000M)
+                num2 = this.WealthBalance - 1000M;
             if (num2 < 0M)
                 num2 = 0M;
             return num2;
@@ -351,36 +352,36 @@ public class ShippingLineData
         try
         {
             Decimal num1 = this.method_6();
-            if (this.gclass0_0.GameTime - this.decimal_2 > AuroraUtils.decimal_29)
+            if (this.gclass0_0.GameTime - this.LastDividendTime > AuroraUtils.decimal_29)
             {
-                this.decimal_0 -= num1;
-                this.decimal_1 = num1;
-                this.decimal_2 = this.gclass0_0.GameTime;
+                this.WealthBalance -= num1;
+                this.LastDividendPaid = num1;
+                this.LastDividendTime = this.gclass0_0.GameTime;
             }
 
-            if (this.decimal_0 < num1 + 500M)
+            if (this.WealthBalance < num1 + 500M)
                 return;
             int num2 = this.gclass0_0.Populations.Values.Where<PopulationData>(gclass146_0 =>
-                gclass146_0.Population > 0M && gclass146_0.Race == this.gclass21_0).Count<PopulationData>();
+                gclass146_0.Population > 0M && gclass146_0.Race == this.Race).Count<PopulationData>();
             int num3 = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(
-                    gclass146_0 => gclass146_0.Population > 0M && gclass146_0.Race == this.gclass21_0)
+                    gclass146_0 => gclass146_0.Population > 0M && gclass146_0.Race == this.Race)
                 .Select<PopulationData, RacialSystemSurvey>(gclass146_0 => gclass146_0.gclass202_0).Distinct<RacialSystemSurvey>()
                 .Count<RacialSystemSurvey>();
             if (num2 < 2)
                 return;
-            if (this.decimal_0 < 25000M)
+            if (this.WealthBalance < 25000M)
             {
                 Decimal num4 = 1M;
-                if (this.decimal_0 > 6000M)
-                    num4 = (int)(this.decimal_0 - 5000M) / 1000M;
+                if (this.WealthBalance > 6000M)
+                    num4 = (int)(this.WealthBalance - 5000M) / 1000M;
                 if (AuroraUtils.GetRandomInteger(16 /*0x10*/) > num4)
                     return;
             }
 
             this.method_5();
             PopulationData gclass146_1 = this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(gclass146_0 =>
-                gclass146_0.bIsCapital && gclass146_0.Race == this.gclass21_0);
+                gclass146_0.bIsCapital && gclass146_0.Race == this.Race);
             if (gclass146_1 == null)
                 return;
             AuroraClassMainFunction classMainFunction;
@@ -408,20 +409,20 @@ public class ShippingLineData
                         {
                             list_0 = this.gclass0_0.Populations.Values
                                 .Where<PopulationData>(gclass146_0 =>
-                                    gclass146_0.decimal_30 > 10M && gclass146_0.Race == this.gclass21_0)
+                                    gclass146_0.decimal_30 > 10M && gclass146_0.Race == this.Race)
                                 .Select<PopulationData, StarSystem>(gclass146_0 => gclass146_0.gclass202_0.ActualSystem)
                                 .ToList<StarSystem>()
-                        }.method_0).Where<SystemBodyData>(gclass1_0 => gclass1_0.method_77(this.gclass21_0))
+                        }.method_0).Where<SystemBodyData>(gclass1_0 => gclass1_0.method_77(this.Race))
                     .FirstOrDefault<SystemBodyData>(gclass1_0 =>
                         gclass1_0.MineralDeposits.ContainsKey(AuroraElement.Sorium));
                 bool flag = false;
-                if (this.gclass0_0.TechDataDictionary[25148].dictionary_0.ContainsKey(this.gclass21_0.RaceID))
+                if (this.gclass0_0.TechSystems[25148].dictionary_0.ContainsKey(this.Race.RaceID))
                     flag = true;
                 int num5;
                 do
                 {
                     num5 = AuroraUtils.GetRandomInteger(5);
-                    if (this.gclass21_0.NPR)
+                    if (this.Race.NPR)
                         goto label_29;
                     label_23:
                     if (num5 >= 3)
@@ -459,7 +460,7 @@ public class ShippingLineData
             label_36:
             ShipClass gclass22 = null;
             AutomatedClassDesign gclass14_0 = null;
-            Decimal num6 = this.decimal_0 - num1;
+            Decimal num6 = this.WealthBalance - num1;
             for (int index = 1; index < 4; ++index)
             {
                 if (this.int_3 == 0 && this.int_4 == 0)
@@ -530,8 +531,8 @@ public class ShippingLineData
 
                 if (gclass14_0 != null)
                 {
-                    gclass22 = this.method_2(gclass14_0) ?? this.gclass21_0.method_6(this, gclass14_0);
-                    if (!(gclass22.Cost < this.decimal_0 - num1) && (this.int_7 <= 20 || index != 1) &&
+                    gclass22 = this.method_2(gclass14_0) ?? this.Race.method_6(this, gclass14_0);
+                    if (!(gclass22.Cost < this.WealthBalance - num1) && (this.int_7 <= 20 || index != 1) &&
                         (this.int_7 <= 10 || index != 2))
                     {
                         gclass22 = null;
@@ -545,14 +546,15 @@ public class ShippingLineData
             if (gclass22 == null)
                 return;
             int num7 = this.method_3();
-            string string_10 = $"{gclass22.ClassName} {AuroraUtils.smethod_33(num7 + 1)}";
-            ShipData gclass40 = this.gclass21_0.method_304(gclass146_1, null, null, gclass22, null, null,
-                this.gclass21_0.method_164(), null, this, string_10, 0M, true, true, GEnum20.const_2);
+            string string_10 = string.Format("{0} {1}", gclass22.ClassName, AuroraUtils.smethod_33(num7 + 1));
+            ShipData gclass40 = this.Race.method_304(gclass146_1, null, null, gclass22, null, null,
+                this.Race.method_164(), null, this, string_10, 0M, true, true, GEnum20.const_2);
             this.gclass0_0.gclass92_0.method_2(EventType.const_79,
-                $"{this.string_0} has launched a new {gclass22.ClassName} class {gclass22.ShipHull.Description}",
-                this.gclass21_0, gclass40.gclass85_0.System.ActualSystem, gclass40.gclass85_0.XCoord,
+                string.Format("{0} has launched a new {1} class {2}", this.LineName, gclass22.ClassName,
+                    gclass22.ShipHull.Description),
+                this.Race, gclass40.gclass85_0.System.ActualSystem, gclass40.gclass85_0.XCoord,
                 gclass40.gclass85_0.YCoord, AuroraEventCategory.Ship);
-            this.decimal_0 -= gclass22.Cost;
+            this.WealthBalance -= gclass22.Cost;
             this.method_10(gclass22);
         }
         catch (Exception ex)
@@ -587,12 +589,12 @@ public class ShippingLineData
             if (!this.gclass0_0.AutomatedClassDesignDictionary.ContainsKey(genum120_0))
                 return;
             AutomatedClassDesign gclass14_0 = this.gclass0_0.AutomatedClassDesignDictionary[genum120_0];
-            ShipClass gclass22_1 = this.method_2(gclass14_0) ?? this.gclass21_0.method_6(this, gclass14_0);
+            ShipClass gclass22_1 = this.method_2(gclass14_0) ?? this.Race.method_6(this, gclass14_0);
             if (gclass22_1 == null)
                 return;
             int num = this.method_3();
-            string string_10 = $"{gclass22_1.ClassName} {AuroraUtils.smethod_33(num + 1)}";
-            this.gclass21_0.method_304(gclass146_0, null, null, gclass22_1, null, null, gclass146_0.Species, null,
+            string string_10 = string.Format("{0} {1}", gclass22_1.ClassName, AuroraUtils.smethod_33(num + 1));
+            this.Race.method_304(gclass146_0, null, null, gclass22_1, null, null, gclass146_0.Species, null,
                 this, string_10, 0M, true, true, GEnum20.const_2);
         }
         catch (Exception ex)
@@ -621,10 +623,11 @@ public class ShippingLineData
             if (gclass40_1.gclass85_0.MoveOrderDictionary.Count == 0)
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_218,
-                    $"{this.string_0} has scrapped the {gclass40_1.ShipName} due to its replacement by a newer vessel",
-                    gclass40_1.gclass21_0, gclass40_1.gclass85_0.System.ActualSystem,
+                    string.Format("{0} has scrapped the {1} due to its replacement by a newer vessel", this.LineName,
+                        gclass40_1.ShipName),
+                    gclass40_1.Race, gclass40_1.gclass85_0.System.ActualSystem,
                     gclass40_1.gclass85_0.XCoord, gclass40_1.gclass85_0.YCoord, AuroraEventCategory.Ship);
-                gclass40_1.gclass21_0.method_303(gclass40_1, GEnum22.const_3);
+                gclass40_1.Race.method_303(gclass40_1, GEnum22.const_3);
             }
             else
                 gclass40_1.bool_13 = true;
@@ -643,15 +646,17 @@ public class ShippingLineData
             // ISSUE: reference to a compiler-generated method
             List<CommanderNameDefinition> list = this.gclass0_0.CommanderNameList.Where<CommanderNameDefinition>(new ShippingLineData.Class1161()
             {
-                gclass58_0 = this.gclass21_0.method_116()
+                gclass58_0 = this.Race.method_116()
             }.method_0).ToList<CommanderNameDefinition>();
             if (list.Count == 0)
                 list = this.gclass0_0.CommanderNameList.Where<CommanderNameDefinition>(gclass57_0 =>
                         gclass57_0.CommanderNameTheme == this.gclass0_0.NameThemeDictionary[3] && gclass57_0.AllowedForLastName)
                     .ToList<CommanderNameDefinition>();
-            this.string_1 = this.gclass0_0.method_534(list).Name;
-            this.string_0 =
-                $"{this.string_1} {this.gclass0_0.LineNameList.ElementAt<string>(AuroraUtils.GetRandomInteger(this.gclass0_0.LineNameList.Count) - 1)}";
+            this.ShortName = this.gclass0_0.method_534(list).Name;
+            this.LineName =
+                string.Format("{0} {1}", this.ShortName,
+                    this.gclass0_0.LineNameList.ElementAt<string>(
+                        AuroraUtils.GetRandomInteger(this.gclass0_0.LineNameList.Count) - 1));
         }
         catch (Exception ex)
         {
@@ -684,7 +689,7 @@ public class ShippingLineData
                 Fuel = bool_2,
                 Colonist = bool_3
             });
-            this.decimal_0 += decimal_3;
+            this.WealthBalance += decimal_3;
         }
         catch (Exception ex)
         {
@@ -698,8 +703,8 @@ public class ShippingLineData
         {
             if (gclass164_0.gclass163_0.TechType != TechType.EngineTechnology)
                 return;
-            this.gclass230_0 = null;
-            this.int_2 = 0;
+            this.EngineComponent = null;
+            this.CommercialEngines = 0;
             foreach (ShipClass gclass22 in this.gclass0_0.ShipClasses.Values
                          .Where<ShipClass>(gclass22_0 => gclass22_0.gclass187_0 == this).ToList<ShipClass>())
                 gclass22.Obsolete = 1;

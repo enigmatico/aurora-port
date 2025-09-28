@@ -809,7 +809,8 @@ public partial class SystemBodyData
                              .ToList<PopulationData>())
                 {
                     this.gclass0_0.gclass92_0.method_2(EventType.const_192,
-                        $"{gclass146_1.PopName} has been destroyed due to the destruction of the body on which it is based",
+                        string.Format("{0} has been destroyed due to the destruction of the body on which it is based",
+                            gclass146_1.PopName),
                         gclass146_1.Race, this.SystemData, this.XCoordinate, this.YCoordinate,
                         AuroraEventCategory.PopSummary);
                     gclass146_1.Race.method_132(gclass146_1);
@@ -1163,7 +1164,7 @@ public partial class SystemBodyData
                     species.decimal_3 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
             }
 
-            species.dictionary_0 = new Dictionary<int, GClass195>();
+            species.KnownSpecies = new Dictionary<int, KnownSpecies>();
             this.gclass194_0 = species;
             return species;
         }
@@ -2132,25 +2133,25 @@ public partial class SystemBodyData
                     if (this.ColonyCost == -1M)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? $"{AuroraUtils.smethod_45(this.ColonyCost, int_13)} LG"
+                        ? string.Format("{0} LG", AuroraUtils.smethod_45(this.ColonyCost, int_13))
                         : AuroraUtils.smethod_45(this.ColonyCost, int_13).ToString();
                 case GEnum80.const_1:
                     if (this.MaxColonyCost == -1M)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? $"{AuroraUtils.smethod_45(this.MaxColonyCost, int_13)} LG"
+                        ? string.Format("{0} LG", AuroraUtils.smethod_45(this.MaxColonyCost, int_13))
                         : AuroraUtils.smethod_45(this.MaxColonyCost, int_13).ToString();
                 case GEnum80.const_2:
                     if (this.double_34 == -1.0)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? $"{AuroraUtils.smethod_46(this.double_34, int_13)} LG"
+                        ? string.Format("{0} LG", AuroraUtils.smethod_46(this.double_34, int_13))
                         : AuroraUtils.smethod_46(this.double_34, int_13).ToString();
                 case GEnum80.const_3:
                     if (this.double_35 == -1.0)
                         return "N/A";
                     return this.Gravity < gclass194_1.double_7
-                        ? $"{AuroraUtils.smethod_46(this.double_35, int_13)} LG"
+                        ? string.Format("{0} LG", AuroraUtils.smethod_46(this.double_35, int_13))
                         : AuroraUtils.smethod_46(this.double_35, int_13).ToString();
                 default:
                     return "error";
@@ -2698,12 +2699,19 @@ public partial class SystemBodyData
             // If Oxygen exists and it's NOT the major gas, it takes priority for the second slot
             if (oxygenComponent != null && majorGas.Gas.Type != GasType.Oxygen)
             {
-                formPart = $" - {GasType.Oxygen.ToLocalizedString()} ({AuroraUtils.FormatDoubleToPrecision(oxygenComponent.AtmoGasAmount, 2)})"; 
+                formPart = string.Format(" - {0} ({1})", GasType.Oxygen.ToLocalizedString(),
+                    AuroraUtils.FormatDoubleToPrecision(oxygenComponent.AtmoGasAmount, 2)); 
             }
             else if (secondGas != null)
             {
                 formPart =
-                    $" - {(secondGas.Gas.Type switch { GasType.CarbonDioxide => "CO2", GasType.WaterVapor => UITextHelper.GetLocalizedStringFor(LocalizedText.VaporFormWater), _ => secondGas.Gas.Type.ToLocalizedString() })}";
+                    string.Format(" - {0}",
+                        secondGas.Gas.Type switch
+                        {
+                            GasType.CarbonDioxide => "CO2",
+                            GasType.WaterVapor => UITextHelper.GetLocalizedStringFor(LocalizedText.VaporFormWater),
+                            _ => secondGas.Gas.Type.ToLocalizedString()
+                        });
             }
 
             return basePart + formPart;
@@ -2840,7 +2848,7 @@ public partial class SystemBodyData
             if (this.BodyClass == PlanetBodyClass.Moon && !bool_10)
             {
                 // ISSUE: reference to a compiler-generated field
-                string_10 = $"    {this.method_79(class317.gclass21_0, true, false)}";
+                string_10 = string.Format("    {0}", this.method_79(class317.gclass21_0, true, false));
             }
 
             // ISSUE: reference to a compiler-generated field
@@ -2901,7 +2909,7 @@ public partial class SystemBodyData
                 0 && bool_10)
                 return "Existing LP";
             string str = AuroraUtils.FormatDoubleToPrecision(60.0 / Math.Sqrt(this.Mass) / 12.0, 2);
-            return bool_11 ? $"{str} years" : str;
+            return bool_11 ? string.Format("{0} years", str) : str;
         }
         catch (Exception ex)
         {
@@ -2965,8 +2973,8 @@ public partial class SystemBodyData
             if (this.BodyClass != PlanetBodyClass.Moon)
                 return AuroraUtils.smethod_1(this.DistanceToParent);
             return this.OrbitalDistance > 1000000.0
-                ? $"{AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0)}m"
-                : $"{AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0)}k";
+                ? string.Format("{0}m", AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0))
+                : string.Format("{0}k", AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0));
         }
         catch (Exception ex)
         {
@@ -2982,8 +2990,8 @@ public partial class SystemBodyData
             if (this.BodyClass != PlanetBodyClass.Moon)
                 return AuroraUtils.smethod_1(this.double_27);
             return this.OrbitalDistance > 1000000.0
-                ? $"{AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0)}m"
-                : $"{AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0)}k";
+                ? string.Format("{0}m", AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0))
+                : string.Format("{0}k", AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0));
         }
         catch (Exception ex)
         {
@@ -2999,8 +3007,8 @@ public partial class SystemBodyData
             if (this.BodyClass != PlanetBodyClass.Moon)
                 return AuroraUtils.smethod_1(this.double_28);
             return this.OrbitalDistance > 1000000.0
-                ? $"{AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0)}m"
-                : $"{AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0)}k";
+                ? string.Format("{0}m", AuroraUtils.smethod_50(this.OrbitalDistance / 1000000.0))
+                : string.Format("{0}k", AuroraUtils.smethod_43(this.OrbitalDistance / 1000.0));
         }
         catch (Exception ex)
         {
@@ -3087,7 +3095,7 @@ public partial class SystemBodyData
                 this.gclass0_0.method_597(listView_0, LocalizedText.Hydrosphere.GetText(), AuroraUtils.smethod_82(this.HydrosphereTypeId));
                 this.gclass0_0.method_597(listView_0, LocalizedText.HydroExtent.GetText(), AuroraUtils.smethod_59(this.HydroExtent, "%"));
                 this.gclass0_0.method_597(listView_0, LocalizedText.Year.GetText(), AuroraUtils.smethod_31(this.Year));
-                this.gclass0_0.method_597(listView_0, "Day", AuroraUtils.smethod_31(this.Day));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Day.GetText(), AuroraUtils.smethod_31(this.Day));
                 this.gclass0_0.method_597(listView_0, LocalizedText.SurfaceTemperature.GetText(),
                     AuroraUtils.smethod_59(this.SurfaceTemp - AuroraUtils.int_17, "C"));
                 this.gclass0_0.method_597(listView_0, LocalizedText.Tectonics.GetText(), AuroraUtils.smethod_82(this.TectonicActivity));
@@ -3110,8 +3118,8 @@ public partial class SystemBodyData
                     {
                         foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
                             this.gclass0_0.method_601(listView_1, gclass124.MaterialID.ToString(),
-                                $"{string.Format("{0:0,0}", gclass124.Amount)}  tons",
-                                $"Acc  {gclass124.Accessibility}");
+                                string.Format("{0:0,0}  tons", gclass124.Amount),
+                                string.Format("Acc  {0}", gclass124.Accessibility));
                     }
                 }
                 else
@@ -3296,9 +3304,9 @@ public partial class SystemBodyData
                 if (this.RadiationLevel > 0M)
                 {
                     this.gclass0_0.method_601(listView_0, "Radiation Production Impact",
-                        $"{AuroraUtils.smethod_45(this.RadiationLevel / 10000M, 2)}%", null);
+                        string.Format("{0}%", AuroraUtils.smethod_45(this.RadiationLevel / 10000M, 2)), null);
                     this.gclass0_0.method_601(listView_0, "Radiation Growth Rate Impact",
-                        $"{AuroraUtils.smethod_45(this.RadiationLevel * 0.0025M, 2)}%", null);
+                        string.Format("{0}%", AuroraUtils.smethod_45(this.RadiationLevel * 0.0025M, 2)), null);
                 }
 
                 double num2 = 4.0 * AuroraUtils.PI_Apprx * Math.Pow(this.Radius, 2.0);
@@ -3874,7 +3882,7 @@ public partial class SystemBodyData
         {
             string str = "";
             if (!bool_11)
-                str = $"{this.StarData.method_18(gclass21_0)} ";
+                str = string.Format("{0} ", this.StarData.method_18(gclass21_0));
             switch (this.BodyClass)
             {
                 case PlanetBodyClass.Planet:
@@ -3890,9 +3898,9 @@ public partial class SystemBodyData
                         string.Format("Moon {0}-{1} {2}", this.StarData.method_19(),
                             AuroraUtils.smethod_79(this.PlanetNumber), this.OrbitNumber.ToString());
                 case PlanetBodyClass.Asteroid:
-                    return $"Asteroid #{this.OrbitNumber}";
+                    return string.Format("Asteroid #{0}", this.OrbitNumber);
                 case PlanetBodyClass.Comet:
-                    return $"Comet #{this.OrbitNumber}";
+                    return string.Format("Comet #{0}", this.OrbitNumber);
                 default:
                     return "No Name";
             }

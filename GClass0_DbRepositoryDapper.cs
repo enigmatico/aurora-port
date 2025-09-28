@@ -10,7 +10,7 @@ public static class GClass0_DbRepositoryDapper
     public static void UpsertTableFCT_Game(SQLiteConnection dbCon, GClass0 game)
     {
         // delete first
-        dbCon.Execute($"DELETE FROM FCT_Game WHERE GameID = {game.GameID.ToString()}");
+        dbCon.Execute(string.Format("DELETE FROM FCT_Game WHERE GameID = {0}", game.GameID.ToString()));
         dbCon.Execute("UPDATE FCT_Game SET LastViewed = 0");
         
         const string sql =
@@ -46,33 +46,34 @@ public partial class GClass0
     {
         try
         {
-            new SQLiteCommand($"DELETE FROM FCT_Race WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_Race WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_ResearchQueue WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_ResearchQueue WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_PausedResearch WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_PausedResearch WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_SwarmResearch WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_SwarmResearch WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_KnownRuinRace WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_KnownRuinRace WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_RaceNameThemes WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceNameThemes WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_BannedBodies WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_BannedBodies WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_WindowPosition WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WindowPosition WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_RaceGroundCombat WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_RaceGroundCombat WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitSeries WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitSeries WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_GroundUnitSeriesClass WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_GroundUnitSeriesClass WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_RaceOperationalGroupElements WHERE GameID = {this.GameID}",
+            new SQLiteCommand(
+                string.Format("DELETE FROM FCT_RaceOperationalGroupElements WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_HullNumber WHERE GameID = {this.GameID}", sqliteConnection_0)
+            new SQLiteCommand(string.Format("DELETE FROM FCT_HullNumber WHERE GameID = {0}", this.GameID), sqliteConnection_0)
                 .ExecuteNonQuery();
-            new SQLiteCommand($"DELETE FROM FCT_WealthHistory WHERE GameID = {this.GameID}",
+            new SQLiteCommand(string.Format("DELETE FROM FCT_WealthHistory WHERE GameID = {0}", this.GameID),
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
@@ -105,14 +106,14 @@ public partial class GClass0
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PausedResearch (TechSystemID, RaceID, GameID, PointsAccumulated ) VALUES ( @TechSystemID, @RaceID, @GameID, @PointsAccumulated )";
-                        sqLiteCommand.Parameters.AddWithValue("@TechSystemID", pausedResearch.gclass164_0.TechSystemID);
+                        sqLiteCommand.Parameters.AddWithValue("@TechSystemID", pausedResearch.TechSystem.TechSystemID);
                         sqLiteCommand.Parameters.AddWithValue("@RaceID", race.RaceID);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@PointsAccumulated", pausedResearch.PointsAccumulated);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (SwarmResearch swarmResearch in race.list_7)
+                    foreach (SwarmResearch swarmResearch in race.SwarmResearches)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_SwarmResearch (GameID, RaceID, ResearchPoints, TechSystemID ) VALUES ( @GameID, @RaceID, @ResearchPoints, @TechSystemID )";

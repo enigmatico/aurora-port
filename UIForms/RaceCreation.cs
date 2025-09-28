@@ -21,7 +21,7 @@ public class RaceCreation : Form
     private PopulationData gclass146_0;
     private bool bool_0;
     private bool bool_1;
-    private IContainer icontainer_0;
+    
     private FlowLayoutPanel flowLayoutPanel10;
     private FlowLayoutPanel flowLayoutPanel4;
     private Panel panel2;
@@ -336,8 +336,8 @@ public class RaceCreation : Form
             {
                 this.gclass21_0.UnknownNprClass = new UnknownNPRClass2(this.gclass0_0, this.gclass21_0);
                 this.gclass21_0.decimal_26 = this.gclass21_0.StartBuildPoints / 2M;
-                this.gclass146_0.gclass6_0 = new GClass6(this.gclass0_0, this.gclass146_0);
-                this.gclass146_0.gclass202_0.gclass3_0 = new GClass3(this.gclass0_0, this.gclass146_0.gclass202_0);
+                this.gclass146_0.gclass6_0 = new NPRLogicClass6(this.gclass0_0, this.gclass146_0);
+                this.gclass146_0.gclass202_0.gclass3_0 = new NPRSurveyOperation(this.gclass0_0, this.gclass146_0.gclass202_0);
             }
 
             ParsedDecimal gclass208_2 = AuroraUtils.ParseDecimalString(this.txtPopulation.Text);
@@ -467,7 +467,8 @@ public class RaceCreation : Form
             this.gclass146_0.Species = (Species)this.cboSpecies.SelectedValue;
             this.txtSpeciesName.Text = this.gclass146_0.Species.SpeciesName;
             this.pbRace.Image =
-                Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass146_0.Species.RaceImageFileName}");
+                Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                    this.gclass146_0.Species.RaceImageFileName));
             this.txtGravity.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_5, 2);
             this.txtGravityDev.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_6, 2);
             this.txtTemp.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_3 - AuroraUtils.int_17, 2);
@@ -505,7 +506,8 @@ public class RaceCreation : Form
             }
 
             this.pbRace.Image =
-                Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass146_0.Species.RaceImageFileName}");
+                Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                    this.gclass146_0.Species.RaceImageFileName));
         }
         catch (Exception ex)
         {
@@ -525,7 +527,7 @@ public class RaceCreation : Form
             }
 
             this.gclass21_0.FlagPicLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\Flags\\{this.gclass21_0.FlagPic}");
+                Image.FromFile(string.Format("{0}\\Flags\\{1}", Application.StartupPath, this.gclass21_0.FlagPic));
             this.pbFlag.Image = this.gclass21_0.FlagPicLoadedImg;
         }
         catch (Exception ex)
@@ -548,7 +550,7 @@ public class RaceCreation : Form
             string string_10 = this.gclass0_0.method_551();
             this.txtShortName.Text = string_10;
             this.txtTitle.Text = this.gclass0_0.GenerateEmpireName(string_10);
-            this.txtHomeworld.Text = $"{string_10} Prime";
+            this.txtHomeworld.Text = string.Format("{0} Prime", string_10);
             if (this.gclass146_0.Species.int_10 != 0)
                 return;
             this.txtSpeciesName.Text = string_10;
@@ -624,7 +626,7 @@ public class RaceCreation : Form
             }
 
             this.gclass21_0.ShipIconLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass21_0.HullPic}");
+                Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath, this.gclass21_0.HullPic));
             this.pbShip.Image = this.gclass21_0.ShipIconLoadedImg;
         }
         catch (Exception ex)
@@ -645,7 +647,8 @@ public class RaceCreation : Form
             }
 
             this.gclass21_0.SpaceStationPicLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\StationIcons\\{this.gclass21_0.SpaceStationPic}");
+                Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                    this.gclass21_0.SpaceStationPic));
             this.pbStation.Image = this.gclass21_0.SpaceStationPicLoadedImg;
         }
         catch (Exception ex)
@@ -751,12 +754,7 @@ public class RaceCreation : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

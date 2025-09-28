@@ -11,17 +11,9 @@ using System.Windows.Forms;
 #nullable disable
 public class ManageNPRTemplates : Form
 {
-    private IContainer icontainer_0;
     private ComboBox cboRaces;
 
     public ManageNPRTemplates() => this.InitializeComponent();
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
 
     private void InitializeComponent()
     {

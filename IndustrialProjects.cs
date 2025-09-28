@@ -39,27 +39,27 @@ public class IndustrialProjects
     {
         try
         {
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Duranium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Duranium,
                 this.MineralCost.Duranium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Neutronium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Neutronium,
                 this.MineralCost.Neutronium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Corbomite,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Corbomite,
                 this.MineralCost.Corbomite * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Tritanium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Tritanium,
                 this.MineralCost.Tritanium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Boronide,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Boronide,
                 this.MineralCost.Boronide * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Mercassium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Mercassium,
                 this.MineralCost.Mercassium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Vendarite,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Vendarite,
                 this.MineralCost.Vendarite * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Sorium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Sorium,
                 this.MineralCost.Sorium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Uridium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Uridium,
                 this.MineralCost.Uridium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Corundium,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Corundium,
                 this.MineralCost.Corundium * decimal_4);
-            this.Population.method_21((MineralUsage)this.WealthUsage.WealthUsage, AuroraElement.Gallicite,
+            this.Population.method_21((MineralUsageType)this.WealthUsage.WealthUsageType, AuroraElement.Gallicite,
                 this.MineralCost.Gallicite * decimal_4);
         }
         catch (Exception ex)

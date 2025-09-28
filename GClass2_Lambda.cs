@@ -42,7 +42,7 @@ public partial class UnknownNPRClass2
             return gclass146_0.Race == this.gclass2_0.gclass21_0 && gclass146_0.gclass202_0 != this.gclass202_0;
         }
 
-        internal bool method_3(GClass59 gclass59_0)
+        internal bool method_3(LifePod gclass59_0)
         {
             return this.list_0.Contains(gclass59_0.gclass200_0);
         }
@@ -144,10 +144,10 @@ public partial class UnknownNPRClass2
 
     private sealed class Class343
     {
-        public AlienRaceInfo gclass110_0;
+        public AlienRaceIntel gclass110_0;
         public UnknownNPRClass2 gclass2_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass110_0 == this.gclass110_0 && !gclass117_0.bool_0 && gclass117_0.int_1 > 1 &&
                    !gclass117_0.gclass115_0.gclass22_0.Commercial &&
@@ -156,8 +156,8 @@ public partial class UnknownNPRClass2
 
         internal bool method_1(ShipData gclass40_0)
         {
-            return gclass40_0.gclass21_0 == this.gclass2_0.gclass21_0 && gclass40_0.gclass22_0.MaxSpeed > 1 &&
-                   !gclass40_0.gclass22_0.Commercial;
+            return gclass40_0.Race == this.gclass2_0.gclass21_0 && gclass40_0.Class.MaxSpeed > 1 &&
+                   !gclass40_0.Class.Commercial;
         }
 
         internal bool method_2(ShipClass gclass22_0)
@@ -165,7 +165,7 @@ public partial class UnknownNPRClass2
             return gclass22_0.Race == this.gclass2_0.gclass21_0;
         }
 
-        internal bool method_3(GClass115 gclass115_0)
+        internal bool method_3(AlienShipClassIntel gclass115_0)
         {
             return gclass115_0.gclass110_0 == this.gclass110_0;
         }
@@ -179,7 +179,7 @@ public partial class UnknownNPRClass2
 
     private sealed class Class344
     {
-        public AlienRaceInfo gclass110_0;
+        public AlienRaceIntel gclass110_0;
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
@@ -196,7 +196,7 @@ public partial class UnknownNPRClass2
 
         internal bool method_0(ShipData gclass40_1)
         {
-            return gclass40_1.gclass21_0 == this.gclass2_0.gclass21_0 &&
+            return gclass40_1.Race == this.gclass2_0.gclass21_0 &&
                    gclass40_1.gclass85_0.System == this.gclass202_0;
         }
 
@@ -267,7 +267,7 @@ public partial class UnknownNPRClass2
     {
         public RacialSystemSurvey gclass202_0;
         public Func<PopulationData, bool> func_0;
-        public Func<GClass115, Decimal> func_1;
+        public Func<AlienShipClassIntel, Decimal> func_1;
 
         internal bool method_0(Contact gclass65_0)
         {
@@ -279,7 +279,7 @@ public partial class UnknownNPRClass2
             return gclass146_0.gclass202_0 == this.gclass202_0;
         }
 
-        internal Decimal method_2(GClass115 gclass115_0)
+        internal Decimal method_2(AlienShipClassIntel gclass115_0)
         {
             return gclass115_0.method_2(this.gclass202_0);
         }
@@ -288,7 +288,7 @@ public partial class UnknownNPRClass2
 
     private sealed class Class350
     {
-        public AlienRaceInfo gclass110_0;
+        public AlienRaceIntel gclass110_0;
         public UnknownNPRClass2.Class349 class349_0;
 
         internal bool method_0(Contact gclass65_0)
@@ -388,9 +388,9 @@ public partial class UnknownNPRClass2
     {
         public List<StarSystem> list_0;
 
-        internal bool method_0(GClass113 gclass113_0)
+        internal bool method_0(AlienPopulationIntel gclass113_0)
         {
-            return this.list_0.Contains(gclass113_0.gclass146_0.gclass202_0.ActualSystem);
+            return this.list_0.Contains(gclass113_0.Population.gclass202_0.ActualSystem);
         }
     }
 
@@ -571,7 +571,7 @@ public partial class UnknownNPRClass2
         internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.System == this.gclass202_0 &&
-                   gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == this.genum120_0;
+                   gclass40_0.Class.AutomatedClassDesign.AutomatedClassDesignTypeID == this.genum120_0;
         }
     }
 
@@ -695,16 +695,16 @@ public partial class UnknownNPRClass2
 
     private sealed class Class375
     {
-        public GClass113 gclass113_0;
+        public AlienPopulationIntel gclass113_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.SystemBodyData == this.gclass113_0.gclass146_0.SystemBodyData;
+            return gclass146_0.SystemBodyData == this.gclass113_0.Population.SystemBodyData;
         }
 
         internal bool method_1(Contact gclass65_0)
         {
-            return gclass65_0.TargetPopulation == this.gclass113_0.gclass146_0;
+            return gclass65_0.TargetPopulation == this.gclass113_0.Population;
         }
     }
 
@@ -865,9 +865,9 @@ public partial class UnknownNPRClass2
         public List<SystemBodyData> list_0;
         public UnknownNPRClass2 gclass2_0;
 
-        internal bool method_0(GClass193 gclass193_0)
+        internal bool method_0(Shipyard gclass193_0)
         {
-            return !this.list_0.Contains(gclass193_0.gclass146_0.SystemBodyData);
+            return !this.list_0.Contains(gclass193_0.Population.SystemBodyData);
         }
     }
 
@@ -877,11 +877,11 @@ public partial class UnknownNPRClass2
         public FleetData gclass85_0;
         public UnknownNPRClass2.Class385 class385_0;
 
-        internal bool method_0(GClass193 gclass193_0)
+        internal bool method_0(Shipyard gclass193_0)
         {
-            return gclass193_0.gclass146_0.gclass202_0 == this.gclass85_0.System &&
-                   gclass193_0.auroraShipyardType_0 == this.class385_0.gclass2_0.auroraShipyardType_0 &&
-                   gclass193_0.decimal_0 >= this.class385_0.gclass2_0.decimal_4;
+            return gclass193_0.Population.gclass202_0 == this.gclass85_0.System &&
+                   gclass193_0.SYType == this.class385_0.gclass2_0.auroraShipyardType_0 &&
+                   gclass193_0.Capacity >= this.class385_0.gclass2_0.decimal_4;
         }
 
         internal double method_1(PopulationData gclass146_0)
@@ -932,7 +932,7 @@ public partial class UnknownNPRClass2
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(GClass210 gclass210_0)
+        internal bool method_0(AetherGate gclass210_0)
         {
             return gclass210_0.gclass200_0 == this.gclass85_0.System.ActualSystem;
         }
@@ -1022,12 +1022,12 @@ public partial class UnknownNPRClass2
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile == this.gclass129_0;
         }
 
-        internal bool method_1(PopOrdnanceStock gclass130_0)
+        internal bool method_1(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile == this.gclass129_0;
         }
@@ -1036,7 +1036,7 @@ public partial class UnknownNPRClass2
 
     private sealed class Class397
     {
-        public PopOrdnanceStock gclass130_0;
+        public ShipOrdnance gclass130_0;
         public UnknownNPRClass2.Class395 class395_0;
 
         internal bool method_0(PopulationData gclass146_0)

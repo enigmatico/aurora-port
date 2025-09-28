@@ -13,7 +13,6 @@ using System.Windows.Forms;
 public class MessageEntry : Form
 {
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
     private TextBox txtInput;
     private Button cmdOK;
     private Button cmdCancel;
@@ -82,13 +81,6 @@ public class MessageEntry : Form
 
     private void method_0(object sender, FormClosingEventArgs e)
     {
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

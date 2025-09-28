@@ -30,8 +30,8 @@ public class FCTRaceMedalRecord
     {
         try
         {
-            List<MedalCondition> list = this.gclass0_0.list_1.Where<GClass44>(gclass44_0 => gclass44_0.gclass42_0 == this)
-                .Select<GClass44, MedalCondition>(gclass44_0 => gclass44_0.gclass43_0).ToList<MedalCondition>();
+            List<MedalCondition> list = this.gclass0_0.ConditionForMedals.Where<ConditionForMedal>(gclass44_0 => gclass44_0.Medal == this)
+                .Select<ConditionForMedal, MedalCondition>(gclass44_0 => gclass44_0.Condition).ToList<MedalCondition>();
             listBox_0.DisplayMember = "Description";
             listBox_0.DataSource = list;
         }

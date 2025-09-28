@@ -30,11 +30,15 @@ public class OrganizationNodeC93
                     ? (this.FieldPosition != AuroraGroundFormationFieldPosition.FrontlineAttack
                         ? (this.FieldPosition != AuroraGroundFormationFieldPosition.Support
                             ? (this.FieldPosition != AuroraGroundFormationFieldPosition.RearEchelon
-                                ? $"{this.FormationTemplate.Abbreviation} {this.FormationTemplate.Name}"
-                                : $"{this.FormationTemplate.Abbreviation} {this.FormationTemplate.Name}  (RE)")
-                            : $"{this.FormationTemplate.Abbreviation} {this.FormationTemplate.Name}  (SP)")
-                        : $"{this.FormationTemplate.Abbreviation} {this.FormationTemplate.Name}  (FA)")
-                    : $"{this.FormationTemplate.Abbreviation} {this.FormationTemplate.Name}");
+                                ? string.Format("{0} {1}", this.FormationTemplate.Abbreviation,
+                                    this.FormationTemplate.Name)
+                                : string.Format("{0} {1}  (RE)", this.FormationTemplate.Abbreviation,
+                                    this.FormationTemplate.Name))
+                            : string.Format("{0} {1}  (SP)", this.FormationTemplate.Abbreviation,
+                                this.FormationTemplate.Name))
+                        : string.Format("{0} {1}  (FA)", this.FormationTemplate.Abbreviation,
+                            this.FormationTemplate.Name))
+                    : string.Format("{0} {1}", this.FormationTemplate.Abbreviation, this.FormationTemplate.Name));
         }
         catch (Exception ex)
         {

@@ -29,7 +29,9 @@ public class SystemView : Form
     private bool bool_0;
     private bool bool_1;
     private bool bool_2;
-    private IContainer icontainer_0;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+    
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     private ComboBox cboSystems;
     private ListView lstvStars;
     private ColumnHeader columnHeader_0;
@@ -557,7 +559,8 @@ public class SystemView : Form
             this.gclass194_0 = (Species)this.cboSpecies.SelectedValue;
             this.gclass194_0.method_0(this.lblGravity, this.lblOxygen, this.lblTemperature, this.lblBreathe,
                 this.lblPressure);
-            this.pbSpecies.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass194_0.RaceImageFileName}");
+            this.pbSpecies.Image = Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                this.gclass194_0.RaceImageFileName));
         }
         catch (Exception ex)
         {
@@ -667,7 +670,8 @@ public class SystemView : Form
         try
         {
             if (this.gclass202_0 == null ||
-                MessageBox.Show($" Are you sure you want to delete the system {this.gclass202_0.Name}?",
+                MessageBox.Show(
+                    string.Format(" Are you sure you want to delete the system {0}?", this.gclass202_0.Name),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes || MessageBox.Show(
                     " Are you really sure? This will delete all populations and military forces in the system",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -1480,7 +1484,9 @@ public class SystemView : Form
             }
             else
             {
-                if (MessageBox.Show($" Are you sure you want to delete {this.gclass197_0.method_18(this.gclass21_0)}?",
+                if (MessageBox.Show(
+                        string.Format(" Are you sure you want to delete {0}?",
+                            this.gclass197_0.method_18(this.gclass21_0)),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                     MessageBox.Show(
                         " Are you really sure? This will delete all populations on bodies orbiting the star",
@@ -1503,7 +1509,8 @@ public class SystemView : Form
         try
         {
             if (this.gclass202_0 == null || this.gclass1_0 == null ||
-                MessageBox.Show($" Are you sure you want to delete {this.gclass1_0.method_78(this.gclass21_0)}?",
+                MessageBox.Show(
+                    string.Format(" Are you sure you want to delete {0}?", this.gclass1_0.method_78(this.gclass21_0)),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes || MessageBox.Show(
                     " Are you really sure? This will delete all populations on the system body or on any orbiting moons",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -1580,7 +1587,8 @@ public class SystemView : Form
                 if (this.gclass1_0.PlanetNumber == 100)
                 {
                     if (MessageBox.Show(
-                            $" Are you sure you want to delete {this.gclass1_0.method_78(this.gclass21_0)} and all asteroids in the same belt?",
+                            string.Format(" Are you sure you want to delete {0} and all asteroids in the same belt?",
+                                this.gclass1_0.method_78(this.gclass21_0)),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                         MessageBox.Show(" Are you really sure? This will delete all populations in the asteroid belt",
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
@@ -1595,7 +1603,9 @@ public class SystemView : Form
                 else if (this.gclass1_0.PlanetNumber == 101)
                 {
                     if (MessageBox.Show(
-                            $" Are you sure you want to delete {this.gclass1_0.method_78(this.gclass21_0)} and all other trojan asteroids for the same planet?",
+                            string.Format(
+                                " Are you sure you want to delete {0} and all other trojan asteroids for the same planet?",
+                                this.gclass1_0.method_78(this.gclass21_0)),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                         MessageBox.Show(
                             " Are you really sure? This will delete all populations on the trojan asteroids",
@@ -1635,7 +1645,8 @@ public class SystemView : Form
             else
             {
                 if (MessageBox.Show(
-                        $" Are you sure you want to delete the Lagrange Point for {this.gclass1_0.method_78(this.gclass21_0)}?",
+                        string.Format(" Are you sure you want to delete the Lagrange Point for {0}?",
+                            this.gclass1_0.method_78(this.gclass21_0)),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 foreach (FleetData gclass85 in this.gclass0_0.FleetDictionary.Values
@@ -1682,7 +1693,8 @@ public class SystemView : Form
         try
         {
             if (this.gclass202_0 == null || this.gclass1_0 == null || this.gclass21_0 == null || MessageBox.Show(
-                    $" Are you sure you want to remove and regenerate the minerals on {this.gclass1_0.method_78(this.gclass21_0)}?",
+                    string.Format(" Are you sure you want to remove and regenerate the minerals on {0}?",
+                        this.gclass1_0.method_78(this.gclass21_0)),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             if (this.gclass1_0.BodyTypeId != AuroraSystemBodyType.GasGiant &&
@@ -1850,7 +1862,8 @@ public class SystemView : Form
         try
         {
             if (this.gclass202_0 == null || this.gclass1_0 == null || this.gclass21_0 == null || MessageBox.Show(
-                    $" Are you sure you want to remove and regenerate the jump points in {this.gclass202_0.Name}?",
+                    string.Format(" Are you sure you want to remove and regenerate the jump points in {0}?",
+                        this.gclass202_0.Name),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             foreach (JumpPoint gclass120_1 in this.gclass0_0.JumpPointDictionary.Values
@@ -1878,7 +1891,9 @@ public class SystemView : Form
         try
         {
             if (this.gclass202_0 == null || this.gclass21_0 == null || MessageBox.Show(
-                    $"Are you sure you want to remove and regenerate the minerals on all system bodies in {this.gclass202_0.Name}, except for those with existing colonies?",
+                    string.Format(
+                        "Are you sure you want to remove and regenerate the minerals on all system bodies in {0}, except for those with existing colonies?",
+                        this.gclass202_0.Name),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             List<SystemBodyData> list1 = this.gclass0_0.Populations.Values
@@ -1995,7 +2010,9 @@ public class SystemView : Form
                     this.gclass120_0.LinkedJumpPoint.RacialJumpPointSurveys[this.gclass21_0.RaceID].MilitaryRestricted = 0;
             }
             else if (MessageBox.Show(
-                         $" Are you sure you want to restrict {this.gclass120_0.method_7(this.gclass202_0)} to military traffic? Any civilian freighters scheduled to enter this jump point will abandon their cargo and seek new trade runs. Colony ships will be diverted.",
+                         string.Format(
+                             " Are you sure you want to restrict {0} to military traffic? Any civilian freighters scheduled to enter this jump point will abandon their cargo and seek new trade runs. Colony ships will be diverted.",
+                             this.gclass120_0.method_7(this.gclass202_0)),
                          "Confirmation Required", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.gclass120_0.RacialJumpPointSurveys[this.gclass21_0.RaceID].MilitaryRestricted = 1;
@@ -2132,12 +2149,7 @@ public class SystemView : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

@@ -364,21 +364,21 @@ internal class Class788
 
         internal bool method_58(ShipComponent gclass230_0)
         {
-            return !gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+            return !gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete;
         }
 
         internal bool method_59(ShipComponent gclass230_0)
         {
-            if (gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Laser &&
+            if (gclass230_0.Data.ComponentTypeID == AuroraComponentType.Laser &&
                 this.gclass21_0.DesignDoctrine.PrimaryBeamPreference == BeamWeaponPreference.const_1 ||
-                gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Railgun &&
+                gclass230_0.Data.ComponentTypeID == AuroraComponentType.Railgun &&
                 this.gclass21_0.DesignDoctrine.PrimaryBeamPreference == BeamWeaponPreference.const_3 ||
-                gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.ParticleBeam &&
+                gclass230_0.Data.ComponentTypeID == AuroraComponentType.ParticleBeam &&
                 this.gclass21_0.DesignDoctrine.PrimaryBeamPreference == BeamWeaponPreference.const_2 ||
-                gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.MesonCannon &&
+                gclass230_0.Data.ComponentTypeID == AuroraComponentType.MesonCannon &&
                 this.gclass21_0.DesignDoctrine.PrimaryBeamPreference == BeamWeaponPreference.const_4)
                 return true;
-            return gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Carronade &&
+            return gclass230_0.Data.ComponentTypeID == AuroraComponentType.Carronade &&
                    this.gclass21_0.DesignDoctrine.PrimaryBeamPreference == BeamWeaponPreference.const_5;
         }
 
@@ -401,25 +401,25 @@ internal class Class788
 
         internal bool method_63(ShipComponent gclass230_0)
         {
-            return gclass230_0.bool_4 && gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.CIWS &&
+            return gclass230_0.bool_4 && gclass230_0.Data.ComponentTypeID != AuroraComponentType.CIWS &&
                    gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID);
         }
 
         internal bool method_64(ShipComponent gclass230_0)
         {
-            return !gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+            return !gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete;
         }
 
         internal bool method_65(ShipComponent gclass230_0)
         {
-            if (gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Laser &&
+            if (gclass230_0.Data.ComponentTypeID == AuroraComponentType.Laser &&
                 this.gclass21_0.DesignDoctrine.PointDefencePreference == BeamWeaponPreference.const_1 ||
-                gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.Railgun &&
+                gclass230_0.Data.ComponentTypeID == AuroraComponentType.Railgun &&
                 this.gclass21_0.DesignDoctrine.PointDefencePreference == BeamWeaponPreference.const_3 ||
-                gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.MesonCannon &&
+                gclass230_0.Data.ComponentTypeID == AuroraComponentType.MesonCannon &&
                 this.gclass21_0.DesignDoctrine.PointDefencePreference == BeamWeaponPreference.const_4)
                 return true;
-            return gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.GaussCannon &&
+            return gclass230_0.Data.ComponentTypeID == AuroraComponentType.GaussCannon &&
                    this.gclass21_0.DesignDoctrine.PointDefencePreference == BeamWeaponPreference.const_6;
         }
 
@@ -443,7 +443,7 @@ internal class Class788
 
         internal bool method_1(GroundUnitClass101 gclass101_0)
         {
-            return !gclass101_0.TechData.dictionary_0[this.gclass21_0.RaceID].bool_0;
+            return !gclass101_0.TechData.dictionary_0[this.gclass21_0.RaceID].Obsolete;
         }
     }
 
@@ -744,7 +744,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)} {string_0}";
+                        string.Format("{0} {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -776,7 +777,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -802,7 +804,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -829,7 +832,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)} Infantry Support Tank";
+                        string.Format("{0} Infantry Support Tank",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4));
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -858,7 +862,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -887,7 +892,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -922,7 +928,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -947,7 +954,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -972,7 +980,8 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
@@ -1055,13 +1064,14 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)}  {string_0}";
+                        string.Format("{0}  {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
                 gclass101 = this.gclass0_0.method_448(class789.gclass21_0,
                     this.gclass0_0.GroundUnitBaseTypeDictionary[GroundUnitBaseType.const_5], gclass97_0_29,
-                    this.gclass0_0.GroundUnitComponentDataDictionary[GroundUnitComponent.const_22], null, null, null, gclass230_2,
+                    this.gclass0_0.GroundUnitComponentDataDictionary[GroundUnitComponent.SurfaceToOrbit], null, null, null, gclass230_2,
                     gclass194_0.dictionary_1, string_10, true, CheckState.Unchecked, CheckState.Unchecked,
                     CheckState.Unchecked, 0);
             }
@@ -1098,13 +1108,14 @@ internal class Class788
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     string_10 =
-                        $"{class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4)} {string_0}";
+                        string.Format("{0} {1}",
+                            class789.gclass21_0.GroundTheme.method_0(class789.gclass21_0, GEnum21.const_4), string_0);
                 }
 
                 // ISSUE: reference to a compiler-generated field
                 gclass101 = this.gclass0_0.method_448(class789.gclass21_0,
                     this.gclass0_0.GroundUnitBaseTypeDictionary[GroundUnitBaseType.const_5], gclass97_0_31,
-                    this.gclass0_0.GroundUnitComponentDataDictionary[GroundUnitComponent.const_22], null, null, null, gclass230_2,
+                    this.gclass0_0.GroundUnitComponentDataDictionary[GroundUnitComponent.SurfaceToOrbit], null, null, null, gclass230_2,
                     gclass194_0.dictionary_1, string_10, true, CheckState.Checked, CheckState.Unchecked,
                     CheckState.Unchecked, 0);
             }

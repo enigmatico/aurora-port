@@ -13,7 +13,6 @@ using System.Windows.Forms;
 public class UserSelection : Form
 {
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
     private Button cmdCancel;
     private Button cmdOK;
     private ComboBox cboOption;
@@ -105,13 +104,6 @@ public class UserSelection : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 3184);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

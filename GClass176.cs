@@ -42,27 +42,28 @@ public class GClass176
                     this.int_1 *= 2;
                 gclass146_0.CurrentMinerals.AddSpecific((AuroraElement)num, this.int_1);
                 if (!gclass146_0.Race.NPR)
-                    gclass146_0.method_21(MineralUsage.const_10, (AuroraElement)num, this.int_1);
+                    gclass146_0.method_21(MineralUsageType.const_10, (AuroraElement)num, this.int_1);
                 this.string_0 =
-                    $"{AuroraUtils.smethod_37(this.int_1)} tons of {AuroraUtils.smethod_82((AuroraElement)num)}";
+                    string.Format("{0} tons of {1}", AuroraUtils.smethod_37(this.int_1),
+                        AuroraUtils.smethod_82((AuroraElement)num));
             }
             else if (this.genum39_0 == GEnum39.const_3)
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200000;
                 gclass146_0.FuelStockpile += this.int_1;
-                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} litres of fuel";
+                this.string_0 = string.Format("{0} litres of fuel", AuroraUtils.smethod_37(this.int_1));
             }
             else if (this.genum39_0 == GEnum39.const_5)
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200;
                 gclass146_0.MaintenanceStockpile += this.int_1;
-                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} maintenance supplies";
+                this.string_0 = string.Format("{0} maintenance supplies", AuroraUtils.smethod_37(this.int_1));
             }
             else if (this.genum39_0 == GEnum39.const_4)
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200;
-                gclass146_0.Race.method_300(this.int_1, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_28]);
-                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} wealth";
+                gclass146_0.Race.method_300(this.int_1, this.gclass0_0.WealthUsageDictionary[WealthUsageType.const_28]);
+                this.string_0 = string.Format("{0} wealth", AuroraUtils.smethod_37(this.int_1));
             }
             else if (this.genum39_0 == GEnum39.const_6)
             {
@@ -82,7 +83,7 @@ public class GClass176
 
                 this.int_1 = AuroraUtils.smethod_22(50, 4);
                 gclass190.TradeBalance += this.int_1;
-                this.string_0 = $"{AuroraUtils.smethod_37(this.int_1)} alien artifacts";
+                this.string_0 = string.Format("{0} alien artifacts", AuroraUtils.smethod_37(this.int_1));
             }
             else if (this.genum39_0 == GEnum39.const_2)
             {
@@ -100,8 +101,9 @@ public class GClass176
                 this.int_1 = AuroraUtils.GetRandomInteger(this.int_2) * this.int_3;
                 gclass146_0.method_65(this.auroraInstallationType_0, this.int_1);
                 this.string_0 = this.int_1 != 1
-                    ? $"{this.int_1.ToString()} abandoned {AuroraUtils.smethod_11(AuroraUtils.smethod_82(this.auroraInstallationType_0))}"
-                    : $"an abandoned {AuroraUtils.smethod_82(this.auroraInstallationType_0)}";
+                    ? string.Format("{0} abandoned {1}", this.int_1.ToString(),
+                        AuroraUtils.smethod_11(AuroraUtils.smethod_82(this.auroraInstallationType_0)))
+                    : string.Format("an abandoned {0}", AuroraUtils.smethod_82(this.auroraInstallationType_0));
                 if (this.auroraInstallationType_0 == AuroraInstallationType.SectorCommand)
                     gclass146_0.method_66();
                 if (AuroraUtils.GetRandomInteger(this.int_4) == 1)
@@ -120,7 +122,8 @@ public class GClass176
                         {
                             TechSystem gclass164_0 = gclass146_0.Race.method_392(this.genum122_0);
                             gclass146_0.Race.method_282(gclass164_0, null, null, null, true, false);
-                            this.string_0 = $"{this.string_0} plus technical information on {gclass164_0.Name}";
+                            this.string_0 = string.Format("{0} plus technical information on {1}", this.string_0,
+                                gclass164_0.Name);
                         }
                     }
                 }
@@ -128,7 +131,8 @@ public class GClass176
 
             if (this.genum39_0 != GEnum39.const_2)
                 this.gclass0_0.gclass92_0.method_2(EventType.const_65,
-                    $"{gclass39_0.Formation.Name} has recovered {this.string_0} on {gclass146_0.SystemBodyData.method_78(gclass146_0.Race)}",
+                    string.Format("{0} has recovered {1} on {2}", gclass39_0.Formation.Name, this.string_0,
+                        gclass146_0.SystemBodyData.method_78(gclass146_0.Race)),
                     gclass146_0.Race, gclass146_0.gclass202_0.ActualSystem, gclass146_0.method_87(),
                     gclass146_0.method_88(), AuroraEventCategory.PopGroundUnits);
             return true;

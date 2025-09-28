@@ -7,7 +7,7 @@
 #nullable disable
 public class MineralUsageData
 {
-    public MineralUsage MineralUsage;
+    public MineralUsageType MineralUsageType;
     public int DisplayOrder;
     public bool Income;
     public string string_0;

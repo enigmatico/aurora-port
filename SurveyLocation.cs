@@ -50,7 +50,7 @@ public class SurveyLocation
             SolidBrush solidBrush = new SolidBrush(Color.Wheat);
             Pen pen = new Pen(solidBrush);
             GClass221 gclass221 = new GClass221();
-            string str = $"SL {this.LocationNumber}";
+            string str = string.Format("SL {0}", this.LocationNumber);
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2.0;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2.0;
             if (this.RaceIDs.Contains(gclass202_0.Race.RaceID))

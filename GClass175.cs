@@ -70,10 +70,11 @@ public class GClass175
                 return false;
             gclass146_0.method_67(gclass230_0, this.int_1);
             this.string_0 = this.int_1 != 1
-                ? $"{this.int_1.ToString()} abandoned {AuroraUtils.smethod_11(gclass230_0.Name)}"
-                : $"an abandoned {gclass230_0.Name}";
+                ? string.Format("{0} abandoned {1}", this.int_1.ToString(), AuroraUtils.smethod_11(gclass230_0.Name))
+                : string.Format("an abandoned {0}", gclass230_0.Name);
             this.gclass0_0.gclass92_0.method_2(EventType.const_65,
-                $"{gclass39_0.Formation.Name} has recovered {this.string_0} on {gclass146_0.SystemBodyData.method_78(gclass146_0.Race)}",
+                string.Format("{0} has recovered {1} on {2}", gclass39_0.Formation.Name, this.string_0,
+                    gclass146_0.SystemBodyData.method_78(gclass146_0.Race)),
                 gclass146_0.Race, gclass146_0.gclass202_0.ActualSystem, gclass146_0.method_87(),
                 gclass146_0.method_88(), AuroraEventCategory.PopGroundUnits);
             return true;

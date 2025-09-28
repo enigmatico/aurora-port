@@ -83,13 +83,13 @@ public class RuinDefinition
 
         internal bool method_2(ShipData gclass40_0)
         {
-            return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0 &&
-                   gclass40_0.gclass22_0.MaxSpeed > 1;
+            return gclass40_0.Race == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0 &&
+                   gclass40_0.Class.MaxSpeed > 1;
         }
 
         internal bool method_3(ShipData gclass40_0)
         {
-            return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
+            return gclass40_0.Race == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
         }
 
         internal bool method_4(GroundUnitFormationData gclass103_0)
@@ -99,12 +99,12 @@ public class RuinDefinition
 
         internal bool method_5(ShipData gclass40_0)
         {
-            return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
+            return gclass40_0.Race == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
         }
 
         internal bool method_6(ShipData gclass40_0)
         {
-            return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
+            return gclass40_0.Race == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
         }
 
         internal bool method_7(GroundUnitFormationData gclass103_0)
@@ -185,7 +185,7 @@ public class RuinDefinition
                 num1 = this.decimal_3 + num2 / num3;
             }
 
-            this.gclass0_0.list_8.Add(new GClass172()
+            this.gclass0_0.list_8.Add(new PrecursorTombGroup()
             {
                 gclass1_0 = gclass1_0,
                 gclass9_0 = gclass9_0,
@@ -552,7 +552,7 @@ public class RuinDefinition
 
                 // ISSUE: reference to a compiler-generated method
                 Decimal num1 = this.gclass0_0.Ships.Values.Where<ShipData>(class1154.method_2)
-                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size * AuroraUtils.decimal_17);
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size * AuroraUtils.decimal_17);
                 if (num1 > 100000M)
                 {
                     int int_136_9 = (int)Math.Floor(num1 / 100000M);
@@ -569,7 +569,7 @@ public class RuinDefinition
 
                 // ISSUE: reference to a compiler-generated method
                 int num2 = this.gclass0_0.Ships.Values.Where<ShipData>(class1154.method_3)
-                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.FuelCapacity);
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.Class.FuelCapacity);
                 if (num2 > 5000000)
                 {
                     // ISSUE: reference to a compiler-generated method
@@ -627,7 +627,8 @@ public class RuinDefinition
                         // ISSUE: reference to a compiler-generated field
                         class1154.gclass21_0
                             .method_157(
-                                $"{AuroraUtils.smethod_80(int_72)} {class1153.gclass1_0.method_78(class1154.gclass21_0)} Mech Regiment",
+                                string.Format("{0} {1} Mech Regiment", AuroraUtils.smethod_80(int_72),
+                                    class1153.gclass1_0.method_78(class1154.gclass21_0)),
                                 AutomatedGroundTemplateDesignType.PrecursorMechBattalion, class1154.gclass146_0, gclass194_1, null, false, false)
                             .FieldPosition = AuroraGroundFormationFieldPosition.FrontlineDefence;
                     }
@@ -643,7 +644,8 @@ public class RuinDefinition
                         // ISSUE: reference to a compiler-generated field
                         class1154.gclass21_0
                             .method_157(
-                                $"{AuroraUtils.smethod_80(int_72)} {class1153.gclass1_0.method_78(class1154.gclass21_0)} Planetary Defence Regiment",
+                                string.Format("{0} {1} Planetary Defence Regiment", AuroraUtils.smethod_80(int_72),
+                                    class1153.gclass1_0.method_78(class1154.gclass21_0)),
                                 AutomatedGroundTemplateDesignType.PrecursorDefenceRegiment, class1154.gclass146_0, gclass194_1, null, false, false)
                             .FieldPosition = AuroraGroundFormationFieldPosition.RearEchelon;
                     }
@@ -666,7 +668,8 @@ public class RuinDefinition
                             // ISSUE: reference to a compiler-generated field
                             class1154.gclass21_0
                                 .method_157(
-                                    $"{AuroraUtils.smethod_80(int_72)} {class1153.gclass1_0.method_78(class1154.gclass21_0)} Planetary Headquarters",
+                                    string.Format("{0} {1} Planetary Headquarters", AuroraUtils.smethod_80(int_72),
+                                        class1153.gclass1_0.method_78(class1154.gclass21_0)),
                                     AutomatedGroundTemplateDesignType.PrecursorPlanetaryHQ, class1154.gclass146_0, gclass194_1, null, false, false)
                                 .FieldPosition = AuroraGroundFormationFieldPosition.Support;
                         }
@@ -687,12 +690,12 @@ public class RuinDefinition
 
                 // ISSUE: reference to a compiler-generated method
                 Decimal num7 = this.gclass0_0.Ships.Values.Where<ShipData>(class1154.method_5)
-                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size);
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size);
                 // ISSUE: reference to a compiler-generated method
-                List<PopOrdnanceStock> list2 = this.gclass0_0.Ships.Values
+                List<ShipOrdnance> list2 = this.gclass0_0.Ships.Values
                     .Where<ShipData>(class1154.method_6)
-                    .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.gclass22_0.list_0)
-                    .ToList<PopOrdnanceStock>();
+                    .SelectMany<ShipData, ShipOrdnance>(gclass40_0 => gclass40_0.Class.OrdnanceTemplate)
+                    .ToList<ShipOrdnance>();
                 if (num7 > 0M)
                 {
                     // ISSUE: reference to a compiler-generated field

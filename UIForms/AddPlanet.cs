@@ -24,7 +24,9 @@ public class AddPlanet : Form
     private double double_2;
     private double double_3;
     private double double_4;
-    private IContainer icontainer_0;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+    
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     private ComboBox cboPlanetType;
     private Label lblDistance;
     private TextBox txtDistance;
@@ -221,7 +223,7 @@ public class AddPlanet : Form
                                      .ThenBy<SystemBodyData, double>(gclass1_0 => gclass1_0.OrbitalDistance)
                                      .ToList<SystemBodyData>())
                         {
-                            gclass1_3.Name = $"Asteroid #{num2}";
+                            gclass1_3.Name = string.Format("Asteroid #{0}", num2);
                             gclass1_3.OrbitNumber = num2;
                             ++num2;
                         }
@@ -300,12 +302,7 @@ public class AddPlanet : Form
     {
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

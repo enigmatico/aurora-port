@@ -9,7 +9,7 @@ using Aurora;
 #nullable disable
 public class AlienRaceSystemStatus
 {
-    public AlienRaceInfo gclass110_0;
+    public AlienRaceIntel gclass110_0;
     public RacialSystemSurvey gclass202_0;
     public AuroraSystemProtectionStatus auroraSystemProtectionStatus_0;
 }

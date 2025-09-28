@@ -32,7 +32,7 @@ public class FireControlAssignment
 
         internal bool method_0(MissileSalvo gclass132_1)
         {
-            return gclass132_1.Race == this.gclass21_0 && gclass132_1.gclass132_0 == this.gclass132_0;
+            return gclass132_1.Race == this.gclass21_0 && gclass132_1.TargetSalvo == this.gclass132_0;
         }
     }
 
@@ -78,10 +78,11 @@ public class FireControlAssignment
             return num >= 1000000.0
                 ? (num >= 10000000.0
                     ? (num >= 100000000.0
-                        ? $"{str}  (Max {AuroraUtils.smethod_43(num / 1000000.0)}m km)"
-                        : $"{str}  (Max {AuroraUtils.FormatDoubleToPrecision(num / 1000000.0, 1)}m km)")
-                    : $"{str}  (Max {AuroraUtils.FormatDoubleToPrecision(num / 1000000.0, 2)}m km)")
-                : $"{str}  (Max {AuroraUtils.smethod_43(num / 1000.0)}k km)";
+                        ? string.Format("{0}  (Max {1}m km)", str, AuroraUtils.smethod_43(num / 1000000.0))
+                        : string.Format("{0}  (Max {1}m km)", str,
+                            AuroraUtils.FormatDoubleToPrecision(num / 1000000.0, 1)))
+                    : string.Format("{0}  (Max {1}m km)", str, AuroraUtils.FormatDoubleToPrecision(num / 1000000.0, 2)))
+                : string.Format("{0}  (Max {1}k km)", str, AuroraUtils.smethod_43(num / 1000.0));
         }
         catch (Exception ex)
         {
@@ -108,8 +109,8 @@ public class FireControlAssignment
                 if (!this.gclass0_0.MissileSalvoes.ContainsKey(this.TargetID))
                     return -1.0;
                 MissileSalvo gclass132 = this.gclass0_0.MissileSalvoes[this.TargetID];
-                return this.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord, gclass132.double_0,
-                    gclass132.double_1);
+                return this.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord, gclass132.Xcor,
+                    gclass132.Ycor);
             }
 
             if (this.TargetContactType != AuroraContactType.Population &&
@@ -135,7 +136,7 @@ public class FireControlAssignment
         try
         {
             double num1 = 0.0;
-            if (this.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl)
+            if (this.FCComponent.Data.ComponentTypeID == AuroraComponentType.MissileFireControl)
             {
                 if (this.TargetContactType == AuroraContactType.Ship)
                 {
@@ -179,7 +180,7 @@ public class FireControlAssignment
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (class792.gclass31_0.WeaponComponent.gclass231_0.ComponentTypeID !=
+                    if (class792.gclass31_0.WeaponComponent.Data.ComponentTypeID !=
                         AuroraComponentType.MissileLauncher)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -214,11 +215,11 @@ public class FireControlAssignment
         try
         {
             double num1 = 1.0;
-            if (gclass230_1.decimal_6 > gclass40_2.method_51())
-                num1 = Math.Pow((double)gclass40_2.method_51() / (double)gclass230_1.decimal_6, 2.0);
+            if (gclass230_1.Resolution > gclass40_2.method_51())
+                num1 = Math.Pow((double)gclass40_2.method_51() / (double)gclass230_1.Resolution, 2.0);
             Decimal decimal_29 = gclass40_2.method_156(AuroraJammerType.Sensor);
             if (decimal_29 > 0M)
-                gclass40_1.gclass21_0.method_35(gclass40_2, AuroraJammerType.Sensor, decimal_29);
+                gclass40_1.Race.method_35(gclass40_2, AuroraJammerType.Sensor, decimal_29);
             if (gclass230_1.decimal_13 >= decimal_29)
                 return gclass230_1.double_0 * num1;
             double num2 = Math.Pow(0.75, (double)(decimal_29 - gclass230_1.decimal_13));
@@ -239,8 +240,8 @@ public class FireControlAssignment
             double num2 = (double)gclass129_0.Size;
             if (num2 < 0.33)
                 num2 = 0.33;
-            if ((double)gclass230_1.decimal_6 > num2)
-                num1 = Math.Pow(num2 / (double)gclass230_1.decimal_6, 2.0);
+            if ((double)gclass230_1.Resolution > num2)
+                num1 = Math.Pow(num2 / (double)gclass230_1.Resolution, 2.0);
             return gclass230_1.double_0 * num1;
         }
         catch (Exception ex)

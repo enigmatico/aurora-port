@@ -11,6 +11,6 @@ using System;
 public class GClass155
 {
     public AuroraElement auroraElement_0;
-    public MineralUsage genum85_0;
+    public MineralUsageType genum85_0;
     public Decimal decimal_0;
 }

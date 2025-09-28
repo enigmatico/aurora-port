@@ -19,6 +19,6 @@ public class MineralDeposit
 
     public string method_0()
     {
-        return $"{string.Format("{0:0,0}", this.Amount)}  Acc {this.Accessibility.ToString()}";
+        return string.Format("{0}  Acc {1}", string.Format("{0:0,0}", this.Amount), this.Accessibility.ToString());
     }
 }

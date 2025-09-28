@@ -36,8 +36,8 @@ public class SystemBodyAtmosphericGas
             if (this.FrozenOut)
                 str += " (F)";
             if (this.Gas == gclass194_0.gclass223_0)
-                str = $"{str} ({AuroraUtils.smethod_50(this.GasAtm)})";
-            return $"{str} {AuroraUtils.smethod_50(this.AtmoGasAmount)}%";
+                str = string.Format("{0} ({1})", str, AuroraUtils.smethod_50(this.GasAtm));
+            return string.Format("{0} {1}%", str, AuroraUtils.smethod_50(this.AtmoGasAmount));
         }
         catch (Exception ex)
         {

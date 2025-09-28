@@ -43,9 +43,9 @@ public class Economics : Form
     [CompilerGenerated]
     private sealed class Class1075
     {
-        public GClass107 gclass107_0;
+        public GroundUnitTrainingQueue gclass107_0;
 
-        internal bool method_0(GClass107 gclass107_1)
+        internal bool method_0(GroundUnitTrainingQueue gclass107_1)
         {
             return gclass107_1.int_0 == this.gclass107_0.int_0 - 1;
         }
@@ -54,9 +54,9 @@ public class Economics : Form
     [CompilerGenerated]
     private sealed class Class1076
     {
-        public GClass107 gclass107_0;
+        public GroundUnitTrainingQueue gclass107_0;
 
-        internal bool method_0(GClass107 gclass107_1)
+        internal bool method_0(GroundUnitTrainingQueue gclass107_1)
         {
             return gclass107_1.int_0 == this.gclass107_0.int_0 + 1;
         }
@@ -65,9 +65,9 @@ public class Economics : Form
     [CompilerGenerated]
     private sealed class Class1077
     {
-        public GClass193 gclass193_0;
+        public Shipyard gclass193_0;
 
-        internal bool method_0(GClass192 gclass192_0)
+        internal bool method_0(ShipyardTask gclass192_0)
         {
             return gclass192_0.gclass193_0 == this.gclass193_0;
         }
@@ -96,17 +96,17 @@ public class Economics : Form
     {
         public TechSystem gclass164_0;
 
-        internal bool method_0(PopOrdnanceStock gclass130_0)
+        internal bool method_0(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile.TechSystem == this.gclass164_0;
         }
 
-        internal bool method_1(PopOrdnanceStock gclass130_0)
+        internal bool method_1(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile.TechSystem == this.gclass164_0;
         }
 
-        internal bool method_2(PopOrdnanceStock gclass130_0)
+        internal bool method_2(ShipOrdnance gclass130_0)
         {
             return gclass130_0.RaceMissile.TechSystem == this.gclass164_0;
         }
@@ -121,9 +121,9 @@ public class Economics : Form
             return gclass39_0.GroundUnitClass.TechData == this.gclass164_0;
         }
 
-        internal bool method_5(GClass228 gclass228_0)
+        internal bool method_5(ClassComponent gclass228_0)
         {
-            return gclass228_0.gclass230_0.gclass164_0 == this.gclass164_0;
+            return gclass228_0.Component.gclass164_0 == this.gclass164_0;
         }
 
         internal bool method_6(RaceMissile gclass129_0)
@@ -148,8 +148,8 @@ public class Economics : Form
     private GameRace gclass21_0;
     private RacialSystemSurvey gclass202_0;
     private PopulationData gclass146_0;
-    private GClass193 gclass193_0;
-    private GClass192 gclass192_0;
+    private Shipyard gclass193_0;
+    private ShipyardTask gclass192_0;
     private GEnum34 genum34_0;
     private bool bool_0;
     private bool bool_1;
@@ -728,7 +728,7 @@ public class Economics : Form
             this.method_0(control);
     }
 
-    private void method_2(GClass193 gclass193_1)
+    private void method_2(Shipyard gclass193_1)
     {
         try
         {
@@ -739,7 +739,7 @@ public class Economics : Form
             foreach (ListViewItem listViewItem in this.lstvShipyards.Items)
             {
                 listViewItem.Selected = false;
-                if ((GClass193)listViewItem.Tag == gclass193_1)
+                if ((Shipyard)listViewItem.Tag == gclass193_1)
                     listViewItem.Selected = true;
             }
         }
@@ -974,7 +974,8 @@ public class Economics : Form
             this.gclass21_0.method_298();
             this.gclass21_0.method_338();
             this.Text =
-                $"Economics   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.gclass21_0.WealthPoints)}";
+                string.Format("Economics   {0}   Racial Wealth {1}", this.gclass0_0.method_586(true),
+                    AuroraUtils.smethod_38(this.gclass21_0.WealthPoints));
             this.gclass21_0.method_59(this.tvPopList, this.chkByFunction.CheckState, this.chkShowSystemBody.CheckState,
                 this.chkShowStars.CheckState, this.chkHideCMC.CheckState, this.gclass146_0);
             this.gclass21_0.method_330(this.cboTransferRace);
@@ -1543,18 +1544,18 @@ public class Economics : Form
             }
             else
             {
-                this.gclass193_0 = (GClass193)this.lstvShipyards.SelectedItems[0].Tag;
+                this.gclass193_0 = (Shipyard)this.lstvShipyards.SelectedItems[0].Tag;
                 if (this.gclass193_0 == null)
                     return;
                 this.gclass146_0.method_123(this.gclass193_0, this.cboShipyardUpgrade.Text, this.txtShipyardUpgradeCost,
                     this.txtShipyardUpgradeDate, this.cboRetoolClass, this.lblCT, this.txtCT, this.lblSetSL,
                     this.txtSetSL, false);
-                this.method_31(this.gclass193_0.int_3);
-                if (this.gclass193_0.gclass85_0 != null)
-                    this.cboFleet.SelectedItem = this.gclass193_0.gclass85_0;
-                if (this.gclass193_0.gclass83_0 != null)
-                    this.cboAdminCommand.SelectedItem = this.gclass193_0.gclass83_0;
-                if (this.gclass193_0.method_1() == this.gclass193_0.int_1)
+                this.method_31(this.gclass193_0.UseAdmin);
+                if (this.gclass193_0.DefaultFleet != null)
+                    this.cboFleet.SelectedItem = this.gclass193_0.DefaultFleet;
+                if (this.gclass193_0.DefaultNavalAdmin != null)
+                    this.cboAdminCommand.SelectedItem = this.gclass193_0.DefaultNavalAdmin;
+                if (this.gclass193_0.method_1() == this.gclass193_0.Slipways)
                     this.cmdAddShipyardTask.Enabled = false;
                 else
                     this.cmdAddShipyardTask.Enabled = true;
@@ -1578,7 +1579,7 @@ public class Economics : Form
             }
             else
             {
-                this.gclass193_0 = (GClass193)this.lstvShipyards.SelectedItems[0].Tag;
+                this.gclass193_0 = (Shipyard)this.lstvShipyards.SelectedItems[0].Tag;
                 this.gclass146_0.method_127(this.gclass193_0, (ShipClass)this.cboRetoolClass.SelectedItem,
                     this.txtShipyardUpgradeCost, this.txtShipyardUpgradeDate);
                 this.timer_0.Enabled = true;
@@ -1603,15 +1604,18 @@ public class Economics : Form
         {
             if (!this.method_15())
                 return;
-            if (this.gclass193_0.gclass40_1 != null)
+            if (this.gclass193_0.ParentShip != null)
             {
-                int num1 = (int)MessageBox.Show($"{this.gclass193_0.string_0} is ship-based and cannot be modified",
+                int num1 = (int)MessageBox.Show(
+                    string.Format("{0} is ship-based and cannot be modified", this.gclass193_0.ShipyardName),
                     "Action Not Possible");
             }
             else
             {
-                if (this.gclass193_0.auroraShipyardUpgradeType_0 != AuroraShipyardUpgradeType.None && MessageBox.Show(
-                        $"{this.gclass193_0.string_0} already has a task in progress. Are you sure you want to cancel the existing shipyard activity?",
+                if (this.gclass193_0.TaskType != AuroraShipyardUpgradeType.None && MessageBox.Show(
+                        string.Format(
+                            "{0} already has a task in progress. Are you sure you want to cancel the existing shipyard activity?",
+                            this.gclass193_0.ShipyardName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 int int_25 = 0;
@@ -1704,8 +1708,8 @@ public class Economics : Form
                         case 24:
                             if (text == "Spacemaster Modification")
                             {
-                                this.gclass193_0.decimal_0 = Convert.ToInt32(this.txtCT.Text);
-                                this.gclass193_0.int_1 = Convert.ToInt32(this.txtSetSL.Text);
+                                this.gclass193_0.Capacity = Convert.ToInt32(this.txtCT.Text);
+                                this.gclass193_0.Slipways = Convert.ToInt32(this.txtSetSL.Text);
                                 break;
                             }
 
@@ -1727,10 +1731,10 @@ public class Economics : Form
                 }
                 else
                 {
-                    GClass193 gclass1930 = this.gclass193_0;
+                    Shipyard gclass1930 = this.gclass193_0;
                     if (auroraShipyardUpgradeType_0 != AuroraShipyardUpgradeType.None &&
                         auroraShipyardUpgradeType_0 == AuroraShipyardUpgradeType.Continual &&
-                        int_25 < this.gclass193_0.decimal_0)
+                        int_25 < this.gclass193_0.Capacity)
                     {
                         int num3 = (int)MessageBox.Show("Target Capacity is less than current capacity");
                     }
@@ -1753,12 +1757,13 @@ public class Economics : Form
     {
         try
         {
-            if (!this.method_15() || this.gclass193_0.auroraShipyardUpgradeType_0 != AuroraShipyardUpgradeType.None &&
+            if (!this.method_15() || this.gclass193_0.TaskType != AuroraShipyardUpgradeType.None &&
                 MessageBox.Show(
-                    $" Are you sure you want to cancel the shipyard activity for {this.gclass193_0.string_0}?",
+                    string.Format(" Are you sure you want to cancel the shipyard activity for {0}?",
+                        this.gclass193_0.ShipyardName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            GClass193 gclass1930 = this.gclass193_0;
+            Shipyard gclass1930 = this.gclass193_0;
             this.gclass146_0.method_125(this.gclass193_0);
             this.method_2(gclass1930);
         }
@@ -1774,8 +1779,8 @@ public class Economics : Form
         {
             if (!this.method_15())
                 return;
-            GClass193 gclass1930 = this.gclass193_0;
-            this.gclass193_0.bool_0 = !this.gclass193_0.bool_0;
+            Shipyard gclass1930 = this.gclass193_0;
+            this.gclass193_0.PauseActivity = !this.gclass193_0.PauseActivity;
             this.method_2(gclass1930);
         }
         catch (Exception ex)
@@ -1792,12 +1797,12 @@ public class Economics : Form
                 return;
             int index = this.lstvShipyards.SelectedItems[0].Index;
             this.gclass0_0.string_3 = "Enter New Shipyard Name";
-            this.gclass0_0.string_4 = this.gclass193_0.string_0;
+            this.gclass0_0.string_4 = this.gclass193_0.ShipyardName;
             int num = (int)new MessageEntry(this.gclass0_0).ShowDialog();
-            if (this.gclass0_0.string_4 != this.gclass193_0.string_0 && !this.gclass0_0.bool_21)
+            if (this.gclass0_0.string_4 != this.gclass193_0.ShipyardName && !this.gclass0_0.bool_21)
             {
-                GClass193 gclass1930 = this.gclass193_0;
-                this.gclass193_0.string_0 = this.gclass0_0.string_4;
+                Shipyard gclass1930 = this.gclass193_0;
+                this.gclass193_0.ShipyardName = this.gclass0_0.string_4;
                 this.method_2(gclass1930);
             }
 
@@ -1825,7 +1830,7 @@ public class Economics : Form
                 return false;
             }
 
-            this.gclass193_0 = (GClass193)this.lstvShipyards.SelectedItems[0].Tag;
+            this.gclass193_0 = (Shipyard)this.lstvShipyards.SelectedItems[0].Tag;
             return true;
         }
         catch (Exception ex)
@@ -2034,7 +2039,7 @@ public class Economics : Form
                 this.gclass193_0.auroraSYTaskType_0 = AuroraSYTaskType.Repair;
             else if (this.cboShipyardTaskType.Text == "Scrap")
                 this.gclass193_0.auroraSYTaskType_0 = AuroraSYTaskType.Scrap;
-            GClass193 gclass1930 = this.gclass193_0;
+            Shipyard gclass1930 = this.gclass193_0;
             if (!this.gclass193_0.method_4(this.chkUseComponents.CheckState, this.chkAdminCommand.CheckState,
                     this.cboRefitFrom, this.cboEligible, this.cboShip))
                 return;
@@ -2048,15 +2053,15 @@ public class Economics : Form
                     // ISSUE: variable of a compiler-generated type
                     Economics.Class1077 class1077 = new Economics.Class1077();
                     // ISSUE: reference to a compiler-generated field
-                    class1077.gclass193_0 = (GClass193)listViewItem.Tag;
+                    class1077.gclass193_0 = (Shipyard)listViewItem.Tag;
                     // ISSUE: reference to a compiler-generated field
                     if (class1077.gclass193_0 == gclass1930)
                     {
                         // ISSUE: reference to a compiler-generated method
-                        List<GClass192> list = this.gclass0_0.dictionary_32.Values.Where<GClass192>(class1077.method_0)
-                            .ToList<GClass192>();
+                        List<ShipyardTask> list = this.gclass0_0.dictionary_32.Values.Where<ShipyardTask>(class1077.method_0)
+                            .ToList<ShipyardTask>();
                         // ISSUE: reference to a compiler-generated field
-                        int num = class1077.gclass193_0.int_1 - list.Count;
+                        int num = class1077.gclass193_0.Slipways - list.Count;
                         listViewItem.SubItems[4].Text = num.ToString();
                         if (this.gclass193_0.auroraSYTaskType_0 == AuroraSYTaskType.Construction)
                             this.txtShipName.Text = this.gclass193_0.gclass22_2.method_39();
@@ -2064,7 +2069,7 @@ public class Economics : Form
                 }
             }
 
-            if (this.gclass193_0.method_1() == this.gclass193_0.int_1)
+            if (this.gclass193_0.method_1() == this.gclass193_0.Slipways)
                 this.cmdAddShipyardTask.Enabled = false;
             else
                 this.cmdAddShipyardTask.Enabled = true;
@@ -2083,9 +2088,9 @@ public class Economics : Form
             if (!this.method_15())
                 return;
             if (this.cmdDefaultFleet.Text == "Default Fleet")
-                this.gclass193_0.gclass85_0 = (FleetData)this.cboFleet.SelectedItem;
+                this.gclass193_0.DefaultFleet = (FleetData)this.cboFleet.SelectedItem;
             else
-                this.gclass193_0.gclass83_0 = (NavalAdminCommand)this.cboAdminCommand.SelectedItem;
+                this.gclass193_0.DefaultNavalAdmin = (NavalAdminCommand)this.cboAdminCommand.SelectedItem;
         }
         catch (Exception ex)
         {
@@ -2123,8 +2128,8 @@ public class Economics : Form
             if (!this.method_15())
                 return;
             int index = this.lstvShipyards.SelectedItems[0].Index;
-            GClass193 gclass1930 = this.gclass193_0;
-            this.gclass193_0.string_0 = this.gclass146_0.method_151();
+            Shipyard gclass1930 = this.gclass193_0;
+            this.gclass193_0.ShipyardName = this.gclass146_0.method_151();
             this.method_2(gclass1930);
             this.lstvShipyards.Items[index].Selected = true;
         }
@@ -2145,7 +2150,8 @@ public class Economics : Form
             else
             {
                 if (MessageBox.Show(
-                        $" Are you sure you want to delete the shipyard task: {this.gclass192_0.method_0()}?",
+                        string.Format(" Are you sure you want to delete the shipyard task: {0}?",
+                            this.gclass192_0.method_0()),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass0_0.dictionary_32.Remove(this.gclass192_0.int_0);
@@ -2173,7 +2179,7 @@ public class Economics : Form
             {
                 if (this.lstvShipyardTasks.SelectedItems.Count == 0)
                     return;
-                this.gclass192_0 = (GClass192)this.lstvShipyardTasks.SelectedItems[0].Tag;
+                this.gclass192_0 = (ShipyardTask)this.lstvShipyardTasks.SelectedItems[0].Tag;
             }
         }
         catch (Exception ex)
@@ -2282,9 +2288,9 @@ public class Economics : Form
                 else
                 {
                     ParsedDecimal gclass208 = AuroraUtils.ParseDecimalString(this.txtGUPercentage.Text);
-                    if (100M - this.gclass146_0.dictionary_3.Values.Sum<GClass106>(gclass106_0 =>
+                    if (100M - this.gclass146_0.dictionary_3.Values.Sum<GroundUnitTraining>(gclass106_0 =>
                             gclass106_0.decimal_2) < gclass208.Value)
-                        this.gclass146_0.list_0.Add(new GClass107(this.gclass0_0)
+                        this.gclass146_0.list_0.Add(new GroundUnitTrainingQueue(this.gclass0_0)
                         {
                             int_0 = this.gclass146_0.list_0.Count + 1,
                             gclass146_0 = this.gclass146_0,
@@ -2303,10 +2309,10 @@ public class Economics : Form
                     if (this.chkRoman.CheckState == CheckState.Checked)
                     {
                         string str2 = AuroraUtils.smethod_79(tag.FormationTrained + 1);
-                        this.txtUnitName.Text = $"{tag.Name} {str2}";
+                        this.txtUnitName.Text = string.Format("{0} {1}", tag.Name, str2);
                     }
                     else
-                        this.txtUnitName.Text = $"{str1} {tag.Name}";
+                        this.txtUnitName.Text = string.Format("{0} {1}", str1, tag.Name);
                 }
             }
         }
@@ -2334,18 +2340,18 @@ public class Economics : Form
             }
             else
             {
-                if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GClass106)
+                if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GroundUnitTraining)
                 {
-                    GClass106 tag = (GClass106)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
+                    GroundUnitTraining tag = (GroundUnitTraining)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
                     this.gclass0_0.string_3 = "Enter New Formation Name";
                     this.gclass0_0.string_4 = tag.string_0;
                     int num4 = (int)new MessageEntry(this.gclass0_0).ShowDialog();
                     if (this.gclass0_0.string_4 != tag.string_0 && !this.gclass0_0.bool_21)
                         tag.string_0 = this.gclass0_0.string_4;
                 }
-                else if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GClass107)
+                else if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GroundUnitTrainingQueue)
                 {
-                    GClass107 tag = (GClass107)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
+                    GroundUnitTrainingQueue tag = (GroundUnitTrainingQueue)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
                     this.gclass0_0.string_3 = "Enter New Formation Name";
                     this.gclass0_0.string_4 = tag.string_0;
                     int num5 = (int)new MessageEntry(this.gclass0_0).ShowDialog();
@@ -2380,18 +2386,18 @@ public class Economics : Form
             }
             else
             {
-                if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GClass106)
+                if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GroundUnitTraining)
                 {
-                    GClass106 tag = (GClass106)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
+                    GroundUnitTraining tag = (GroundUnitTraining)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
                     if (MessageBox.Show("Are you sure you wish to delete the selected task?", "Confirmation Required",
                             MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     --tag.gclass102_0.FormationTrained;
                     this.gclass146_0.dictionary_3.Remove(tag.int_0);
                 }
-                else if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GClass107)
+                else if (this.lstvGroundUnitTraining.SelectedItems[0].Tag is GroundUnitTrainingQueue)
                 {
-                    GClass107 tag = (GClass107)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
+                    GroundUnitTrainingQueue tag = (GroundUnitTrainingQueue)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
                     if (MessageBox.Show("Are you sure you wish to delete the selected queued task?",
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
@@ -2688,7 +2694,7 @@ public class Economics : Form
                         this.cmdRemoveLab.Enabled = true;
                         if (tag.int_0 == 1)
                             this.cmdRemoveLab.Enabled = false;
-                        if (tag.int_0 >= tag.gclass55_0.method_5(CommanderBonusType.ResearchAdmin))
+                        if (tag.int_0 >= tag.Researcher.method_5(CommanderBonusType.ResearchAdmin))
                             this.cmdAddLab.Enabled = false;
                         if (this.gclass146_0.int_16 != 0)
                             return;
@@ -2759,7 +2765,7 @@ public class Economics : Form
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                         !(this.lstvResearchProjects.SelectedItems[0].Tag is ResearchProject))
                         return;
-                    ((ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag).gclass55_0.method_40(true);
+                    ((ResearchProject)this.lstvResearchProjects.SelectedItems[0].Tag).Researcher.method_40(true);
                     this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                         this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
                     ResearchFieldData selectedValue = (ResearchFieldData)this.cboResearchFields.SelectedValue;
@@ -2983,7 +2989,7 @@ public class Economics : Form
                 else
                 {
                     TechSystem tag1 = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
-                    GClass55 tag2 = (GClass55)this.lstvScientists.SelectedItems[0].Tag;
+                    Commander tag2 = (Commander)this.lstvScientists.SelectedItems[0].Tag;
                     if (tag2 == null)
                     {
                         int num7 = (int)MessageBox.Show("Please select a scientist to lead the project");
@@ -2991,7 +2997,9 @@ public class Economics : Form
                     else if (int32 > this.gclass146_0.int_16)
                     {
                         int num8 = (int)MessageBox.Show(
-                            $"Too many facilities selected. There are only {this.gclass146_0.int_16.ToString()} facilities available at this population");
+                            string.Format(
+                                "Too many facilities selected. There are only {0} facilities available at this population",
+                                this.gclass146_0.int_16.ToString()));
                     }
                     else
                     {
@@ -3244,7 +3252,8 @@ public class Economics : Form
             else
             {
                 TechSystem tag = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
-                if (MessageBox.Show($"Are you sure you want to remove {tag.Name}, from the current race?",
+                if (MessageBox.Show(
+                        string.Format("Are you sure you want to remove {0}, from the current race?", tag.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass21_0.method_278(tag);
@@ -3278,8 +3287,8 @@ public class Economics : Form
                 class1079.gclass164_0 = (TechSystem)this.lstvTechnology.SelectedItems[0].Tag;
                 // ISSUE: reference to a compiler-generated method
                 if (this.gclass0_0.Ships.Values
-                        .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.list_10)
-                        .Count<PopOrdnanceStock>(class1079.method_0) > 0)
+                        .SelectMany<ShipData, ShipOrdnance>(gclass40_0 => gclass40_0.Ordnances)
+                        .Count<ShipOrdnance>(class1079.method_0) > 0)
                 {
                     int num3 = (int)MessageBox.Show(
                         "This technology cannot be deleted as there are missiles reliant on this technology in ship magazines");
@@ -3288,8 +3297,8 @@ public class Economics : Form
                 {
                     // ISSUE: reference to a compiler-generated method
                     if (this.gclass0_0.ShipClasses.Values
-                            .SelectMany<ShipClass, PopOrdnanceStock>(gclass22_0 => gclass22_0.list_0)
-                            .Count<PopOrdnanceStock>(class1079.method_1) > 0)
+                            .SelectMany<ShipClass, ShipOrdnance>(gclass22_0 => gclass22_0.OrdnanceTemplate)
+                            .Count<ShipOrdnance>(class1079.method_1) > 0)
                     {
                         int num4 = (int)MessageBox.Show(
                             "This technology cannot be deleted as there are missiles reliant on this technology in class loadout templates");
@@ -3298,8 +3307,8 @@ public class Economics : Form
                     {
                         // ISSUE: reference to a compiler-generated method
                         if (this.gclass0_0.Populations.Values
-                                .SelectMany<PopulationData, PopOrdnanceStock>(gclass146_0 => gclass146_0.OrdnanceStocks)
-                                .Count<PopOrdnanceStock>(class1079.method_2) > 0)
+                                .SelectMany<PopulationData, ShipOrdnance>(gclass146_0 => gclass146_0.OrdnanceStocks)
+                                .Count<ShipOrdnance>(class1079.method_2) > 0)
                         {
                             int num5 = (int)MessageBox.Show(
                                 "This technology cannot be deleted as there are missiles reliant on this technology in population stockpiles");
@@ -3328,8 +3337,8 @@ public class Economics : Form
                                 {
                                     // ISSUE: reference to a compiler-generated method
                                     if (this.gclass0_0.ShipClasses.Values
-                                            .SelectMany<ShipClass, GClass228>(gclass22_0 =>
-                                                gclass22_0.dictionary_0.Values).Count<GClass228>(class1079.method_5) >
+                                            .SelectMany<ShipClass, ClassComponent>(gclass22_0 =>
+                                                gclass22_0.ClassComponents.Values).Count<ClassComponent>(class1079.method_5) >
                                         0)
                                     {
                                         int num8 = (int)MessageBox.Show(
@@ -3339,7 +3348,9 @@ public class Economics : Form
                                     {
                                         // ISSUE: reference to a compiler-generated field
                                         if (MessageBox.Show(
-                                                $"Are you sure you want to delete {class1079.gclass164_0.Name}?  Any associated ship components, ground unit designs and missile designs will also be deleted.",
+                                                string.Format(
+                                                    "Are you sure you want to delete {0}?  Any associated ship components, ground unit designs and missile designs will also be deleted.",
+                                                    class1079.gclass164_0.Name),
                                                 "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                                             return;
                                         // ISSUE: reference to a compiler-generated method
@@ -3394,11 +3405,12 @@ public class Economics : Form
                 for (int index = 1; index <= int32; ++index)
                 {
                     GroundUnitFormationTemplateData tag = (GroundUnitFormationTemplateData)this.lstvTemplate.SelectedItems[0].Tag;
-                    string string_10 = $"{AuroraUtils.smethod_80(tag.FormationTrained + 1)} {tag.Name}";
+                    string string_10 = string.Format("{0} {1}", AuroraUtils.smethod_80(tag.FormationTrained + 1),
+                        tag.Name);
                     if (this.chkRoman.CheckState == CheckState.Checked)
                     {
                         string str = AuroraUtils.smethod_79(tag.FormationTrained + 1);
-                        string_10 = $"{tag.Name} {str}";
+                        string_10 = string.Format("{0} {1}", tag.Name, str);
                     }
 
                     ++tag.FormationTrained;
@@ -3527,10 +3539,12 @@ public class Economics : Form
         try
         {
             if (this.gclass146_0 == null ||
-                MessageBox.Show($" Are you sure you want to delete {this.gclass146_0.PopName}?",
+                MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", this.gclass146_0.PopName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                 this.gclass146_0.decimal_30 > 0M && MessageBox.Show(
-                    $" Are you really sure you want to delete {this.gclass146_0.PopName}?  This will remove any installations, shipyards, ground units, research projects, sectors and naval admin commands and will unset all movement orders for fleets heading for that population.",
+                    string.Format(
+                        " Are you really sure you want to delete {0}?  This will remove any installations, shipyards, ground units, research projects, sectors and naval admin commands and will unset all movement orders for fleets heading for that population.",
+                        this.gclass146_0.PopName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             this.gclass21_0.method_132(this.gclass146_0);
@@ -3567,10 +3581,10 @@ public class Economics : Form
             if (this.chkRoman.CheckState == CheckState.Checked)
             {
                 string str2 = AuroraUtils.smethod_79(tag.FormationTrained + 1);
-                this.txtUnitName.Text = $"{tag.Name} {str2}";
+                this.txtUnitName.Text = string.Format("{0} {1}", tag.Name, str2);
             }
             else
-                this.txtUnitName.Text = $"{str1} {tag.Name}";
+                this.txtUnitName.Text = string.Format("{0} {1}", str1, tag.Name);
         }
         catch (Exception ex)
         {
@@ -3592,7 +3606,7 @@ public class Economics : Form
             }
             else
             {
-                this.gclass146_0.method_54((PopOrdnanceStock)this.lstvPopMissiles.SelectedItems[0].Tag);
+                this.gclass146_0.method_54((ShipOrdnance)this.lstvPopMissiles.SelectedItems[0].Tag);
                 this.gclass146_0.method_58(this.lstvPopMissiles, this.lstvPopComponents);
             }
         }
@@ -3616,7 +3630,7 @@ public class Economics : Form
             }
             else
             {
-                this.gclass146_0.method_51((TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag);
+                this.gclass146_0.method_51((StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag);
                 this.gclass146_0.method_58(this.lstvPopMissiles, this.lstvPopComponents);
                 foreach (global::Events events in Application.OpenForms.OfType<global::Events>())
                     events.method_0();
@@ -3650,7 +3664,7 @@ public class Economics : Form
             }
             else
             {
-                this.gclass146_0.method_49((TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag);
+                this.gclass146_0.method_49((StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag);
                 this.gclass146_0.method_58(this.lstvPopMissiles, this.lstvPopComponents);
                 this.gclass146_0.method_102(this.lstvResearchProjects, this.lblRFAvailable, this.rdoLabs.Checked,
                     this.cboResearchFields, this.chkMatchOnly, this.rdoPopProjects.Checked);
@@ -3850,7 +3864,9 @@ public class Economics : Form
             else
             {
                 PopInstallationDemand tag = (PopInstallationDemand)this.lstvDemand.SelectedItems[0].Tag;
-                if (MessageBox.Show($" Are you sure you want to delete the demand request for {tag.InstallationType.Name}?",
+                if (MessageBox.Show(
+                        string.Format(" Are you sure you want to delete the demand request for {0}?",
+                            tag.InstallationType.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass146_0.InstallationDemands.Remove(tag.InstallationType.InstallationType);
@@ -3878,7 +3894,9 @@ public class Economics : Form
             else
             {
                 PopInstallationDemand tag = (PopInstallationDemand)this.lstvSupply.SelectedItems[0].Tag;
-                if (MessageBox.Show($" Are you sure you want to delete the supply request for {tag.InstallationType.Name}?",
+                if (MessageBox.Show(
+                        string.Format(" Are you sure you want to delete the supply request for {0}?",
+                            tag.InstallationType.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass146_0.InstallationDemands.Remove(tag.InstallationType.InstallationType);
@@ -3977,7 +3995,7 @@ public class Economics : Form
             else
             {
                 PopulationInstallation tag = (PopulationInstallation)this.lstvInstallations.SelectedItems[0].Tag;
-                if (MessageBox.Show($" Are you sure you want to delete {tag.InstallationType.Name}?",
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", tag.InstallationType.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass146_0.dictionary_0.Remove(tag.InstallationType.InstallationType);
@@ -3994,10 +4012,11 @@ public class Economics : Form
     {
         try
         {
-            if (!this.method_15() || MessageBox.Show($" Are you sure you want to delete {this.gclass193_0.string_0}?",
+            if (!this.method_15() || MessageBox.Show(
+                    string.Format(" Are you sure you want to delete {0}?", this.gclass193_0.ShipyardName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            this.gclass0_0.dictionary_31.Remove(this.gclass193_0.int_0);
+            this.gclass0_0.Shipyards.Remove(this.gclass193_0.ShipyardID);
             this.gclass146_0.method_131(this.lstvShipyards, true);
             this.gclass146_0.method_119(this.lstvMining, this.lstvMines, this.lstvUsage);
         }
@@ -4013,7 +4032,7 @@ public class Economics : Form
         {
             if (this.lstvScientists.SelectedItems.Count == 0)
                 return;
-            GClass55 tag = (GClass55)this.lstvScientists.SelectedItems[0].Tag;
+            Commander tag = (Commander)this.lstvScientists.SelectedItems[0].Tag;
             if (tag == null)
                 return;
             Decimal num = tag.method_5(CommanderBonusType.ResearchAdmin);
@@ -4052,7 +4071,7 @@ public class Economics : Form
             }
             else
             {
-                this.gclass193_0 = (GClass193)this.lstvShipyards.SelectedItems[0].Tag;
+                this.gclass193_0 = (Shipyard)this.lstvShipyards.SelectedItems[0].Tag;
                 if (!(this.txtShipName.Text != ""))
                     return;
                 this.gclass193_0.string_1 = this.txtShipName.Text;
@@ -4071,7 +4090,7 @@ public class Economics : Form
             if (this.gclass0_0.bool_9 || this.lstvShipyards.SelectedItems.Count == 0 ||
                 this.cboFleet.SelectedItem == null)
                 return;
-            this.gclass193_0 = (GClass193)this.lstvShipyards.SelectedItems[0].Tag;
+            this.gclass193_0 = (Shipyard)this.lstvShipyards.SelectedItems[0].Tag;
             this.gclass193_0.gclass85_1 = (FleetData)this.cboFleet.SelectedItem;
         }
         catch (Exception ex)
@@ -4379,7 +4398,8 @@ public class Economics : Form
                 if (this.chkReserve.CheckState == CheckState.Checked)
                 {
                     Decimal num3 = this.gclass146_0.ReserveMinerals.GetValueOfElement(tag);
-                    this.gclass0_0.string_3 = $"Enter New {AuroraUtils.smethod_82(tag)} Reserve Amount";
+                    this.gclass0_0.string_3 =
+                        string.Format("Enter New {0} Reserve Amount", AuroraUtils.smethod_82(tag));
                     this.gclass0_0.string_4 = num3.ToString();
                 }
                 else
@@ -4387,7 +4407,8 @@ public class Economics : Form
                     if (!this.gclass0_0.bool_8)
                         return;
                     Decimal num4 = this.gclass146_0.CurrentMinerals.GetValueOfElement(tag);
-                    this.gclass0_0.string_3 = $"Enter New {AuroraUtils.smethod_82(tag)} Stockpile Amount";
+                    this.gclass0_0.string_3 =
+                        string.Format("Enter New {0} Stockpile Amount", AuroraUtils.smethod_82(tag));
                     this.gclass0_0.string_4 = num4.ToString();
                 }
 
@@ -4433,7 +4454,7 @@ public class Economics : Form
             }
             else
             {
-                TransportedComponent tag = (TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag;
+                StoredComponent tag = (StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag;
                 if (tag == null)
                     return;
                 int num3 = (int)Math.Floor(tag.Amount);
@@ -4598,7 +4619,9 @@ public class Economics : Form
             if (checkBox.CheckState == CheckState.Checked)
             {
                 if (MessageBox.Show(
-                        $" Are you sure you want to restrict {this.gclass146_0.PopName} to military traffic? Any civilian freighters scheduled to visit this colony will abandon their cargo and seek new trade runs. Colony ships will be diverted",
+                        string.Format(
+                            " Are you sure you want to restrict {0} to military traffic? Any civilian freighters scheduled to visit this colony will abandon their cargo and seek new trade runs. Colony ships will be diverted",
+                            this.gclass146_0.PopName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     checkBox.CheckState = CheckState.Unchecked;
@@ -4644,10 +4667,13 @@ public class Economics : Form
         try
         {
             if (this.gclass146_0 == null ||
-                MessageBox.Show($" Are you sure you want to grant independence to {this.gclass146_0.PopName}?",
+                MessageBox.Show(
+                    string.Format(" Are you sure you want to grant independence to {0}?", this.gclass146_0.PopName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                 this.gclass146_0.Population > 0M && MessageBox.Show(
-                    $" Are you really sure you want to grant independence to {this.gclass146_0.PopName}?  This will transfer all population assets to the new race, including any installations, shipyards and ground units and will unset all movement orders for fleets heading for that population.",
+                    string.Format(
+                        " Are you really sure you want to grant independence to {0}?  This will transfer all population assets to the new race, including any installations, shipyards and ground units and will unset all movement orders for fleets heading for that population.",
+                        this.gclass146_0.PopName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             GameRace gclass21 = this.gclass21_0.method_94(this.gclass146_0);
@@ -4685,13 +4711,15 @@ public class Economics : Form
                 if (this.chkReserve.CheckState == CheckState.Checked)
                 {
                     Decimal num3 = this.gclass146_0.ReserveMinerals.GetValueOfElement(tag);
-                    this.gclass0_0.string_3 = $"Enter New {AuroraUtils.smethod_82(tag)} Reserve Amount";
+                    this.gclass0_0.string_3 =
+                        string.Format("Enter New {0} Reserve Amount", AuroraUtils.smethod_82(tag));
                     this.gclass0_0.string_4 = num3.ToString();
                 }
                 else
                 {
                     Decimal num4 = this.gclass146_0.CurrentMinerals.GetValueOfElement(tag);
-                    this.gclass0_0.string_3 = $"Enter New {AuroraUtils.smethod_82(tag)} Stockpile Amount";
+                    this.gclass0_0.string_3 =
+                        string.Format("Enter New {0} Stockpile Amount", AuroraUtils.smethod_82(tag));
                     this.gclass0_0.string_4 = num4.ToString();
                 }
 
@@ -4871,7 +4899,7 @@ public class Economics : Form
         {
             if (this.lstvScientists.SelectedItems.Count == 0)
                 return;
-            GClass55 tag = (GClass55)this.lstvScientists.SelectedItems[0].Tag;
+            Commander tag = (Commander)this.lstvScientists.SelectedItems[0].Tag;
             if (tag == null)
                 return;
             Decimal num = tag.method_5(CommanderBonusType.ResearchAdmin);
@@ -4949,19 +4977,19 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvGroundUnitTraining.SelectedItems[0].Tag is GClass107))
+                if (!(this.lstvGroundUnitTraining.SelectedItems[0].Tag is GroundUnitTrainingQueue))
                     return;
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 Economics.Class1075 class1075 = new Economics.Class1075();
                 // ISSUE: reference to a compiler-generated field
-                class1075.gclass107_0 = (GClass107)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
+                class1075.gclass107_0 = (GroundUnitTrainingQueue)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
                 // ISSUE: reference to a compiler-generated field
                 if (class1075.gclass107_0.int_0 == 1)
                 {
                     Decimal num4 = 100M;
                     if (this.gclass146_0.dictionary_3.Count > 0)
-                        num4 -= this.gclass146_0.dictionary_3.Values.Sum<GClass106>(
+                        num4 -= this.gclass146_0.dictionary_3.Values.Sum<GroundUnitTraining>(
                             gclass106_0 => gclass106_0.decimal_2);
                     // ISSUE: reference to a compiler-generated field
                     if (num4 >= class1075.gclass107_0.decimal_0)
@@ -4989,7 +5017,7 @@ public class Economics : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated method
-                    GClass107 gclass107 = this.gclass146_0.list_0.FirstOrDefault<GClass107>(class1075.method_0);
+                    GroundUnitTrainingQueue gclass107 = this.gclass146_0.list_0.FirstOrDefault<GroundUnitTrainingQueue>(class1075.method_0);
                     if (gclass107 == null)
                         return;
                     // ISSUE: reference to a compiler-generated field
@@ -5030,15 +5058,15 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvGroundUnitTraining.SelectedItems[0].Tag is GClass107))
+                if (!(this.lstvGroundUnitTraining.SelectedItems[0].Tag is GroundUnitTrainingQueue))
                     return;
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 Economics.Class1076 class1076 = new Economics.Class1076();
                 // ISSUE: reference to a compiler-generated field
-                class1076.gclass107_0 = (GClass107)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
+                class1076.gclass107_0 = (GroundUnitTrainingQueue)this.lstvGroundUnitTraining.SelectedItems[0].Tag;
                 // ISSUE: reference to a compiler-generated method
-                GClass107 gclass107 = this.gclass146_0.list_0.FirstOrDefault<GClass107>(class1076.method_0);
+                GroundUnitTrainingQueue gclass107 = this.gclass146_0.list_0.FirstOrDefault<GroundUnitTrainingQueue>(class1076.method_0);
                 if (gclass107 == null)
                     return;
                 // ISSUE: reference to a compiler-generated field
@@ -5090,7 +5118,8 @@ public class Economics : Form
             }
             else
             {
-                if (MessageBox.Show($"Are you sure you want to change your capital to {this.gclass146_0.PopName}?",
+                if (MessageBox.Show(
+                        string.Format("Are you sure you want to change your capital to {0}?", this.gclass146_0.PopName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 PopulationData gclass146 = this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(gclass146_1 =>
@@ -5189,7 +5218,7 @@ public class Economics : Form
                 int num2 = (int)MessageBox.Show("Please select a population");
             }
             else
-                this.gclass146_0.BonusOne = ((CommanderBonus)this.cboBonusOne.SelectedItem).CommanderBonusType;
+                this.gclass146_0.BonusOne = ((CommanderBonusDefinition)this.cboBonusOne.SelectedItem).CommanderBonusType;
         }
         catch (Exception ex)
         {
@@ -5212,7 +5241,7 @@ public class Economics : Form
                 int num2 = (int)MessageBox.Show("Please select a population");
             }
             else
-                this.gclass146_0.BonusTwo = ((CommanderBonus)this.cboBonusTwo.SelectedItem).CommanderBonusType;
+                this.gclass146_0.BonusTwo = ((CommanderBonusDefinition)this.cboBonusTwo.SelectedItem).CommanderBonusType;
         }
         catch (Exception ex)
         {
@@ -5235,7 +5264,7 @@ public class Economics : Form
                 int num2 = (int)MessageBox.Show("Please select a population");
             }
             else
-                this.gclass146_0.BonusThree = ((CommanderBonus)this.cboBonusThree.SelectedItem).CommanderBonusType;
+                this.gclass146_0.BonusThree = ((CommanderBonusDefinition)this.cboBonusThree.SelectedItem).CommanderBonusType;
         }
         catch (Exception ex)
         {
@@ -5469,7 +5498,8 @@ public class Economics : Form
                     return;
                 this.gclass21_0.WealthPoints = gclass208.Value;
                 this.Text =
-                    $"Economics   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.gclass21_0.WealthPoints)}";
+                    string.Format("Economics   {0}   Racial Wealth {1}", this.gclass0_0.method_586(true),
+                        AuroraUtils.smethod_38(this.gclass21_0.WealthPoints));
             }
         }
         catch (Exception ex)
@@ -5501,7 +5531,7 @@ public class Economics : Form
             }
             else
             {
-                TransportedComponent tag = (TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag;
+                StoredComponent tag = (StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag;
                 this.gclass0_0.string_4 = tag.Amount.ToString();
                 this.gclass0_0.string_3 = "Select Target Population and Amount";
                 int num5 = (int)new SelectRace(this.gclass21_0, this.gclass0_0, this.gclass146_0).ShowDialog();
@@ -5511,7 +5541,7 @@ public class Economics : Form
                 if (decimal0 >= tag.Amount)
                 {
                     decimal0 = tag.Amount;
-                    this.gclass146_0.list_2.Remove(tag);
+                    this.gclass146_0.StoredComponents.Remove(tag);
                 }
                 else
                     tag.Amount -= decimal0;
@@ -5549,7 +5579,7 @@ public class Economics : Form
             }
             else
             {
-                PopOrdnanceStock tag = (PopOrdnanceStock)this.lstvPopMissiles.SelectedItems[0].Tag;
+                ShipOrdnance tag = (ShipOrdnance)this.lstvPopMissiles.SelectedItems[0].Tag;
                 this.gclass0_0.string_4 = tag.Amount.ToString();
                 this.gclass0_0.string_3 = "Select Target Population and Amount";
                 int num5 = (int)new SelectRace(this.gclass21_0, this.gclass0_0, this.gclass146_0).ShowDialog();
@@ -5701,7 +5731,7 @@ public class Economics : Form
                 if (this.gclass21_0.ShippingLineTax < 0M)
                     this.gclass21_0.ShippingLineTax = 0M;
                 this.txtTaxRate.Text =
-                    $"{AuroraUtils.FormatNumberToDigits(this.gclass21_0.ShippingLineTax * 100M, 2)}%";
+                    string.Format("{0}%", AuroraUtils.FormatNumberToDigits(this.gclass21_0.ShippingLineTax * 100M, 2));
             }
         }
         catch (Exception ex)
@@ -5835,10 +5865,10 @@ public class Economics : Form
             if (this.chkAdminCommand.CheckState == CheckState.Checked)
             {
                 if (this.gclass193_0 != null)
-                    this.gclass193_0.int_3 = 1;
+                    this.gclass193_0.UseAdmin = 1;
             }
             else if (this.gclass193_0 != null)
-                this.gclass193_0.int_3 = 0;
+                this.gclass193_0.UseAdmin = 0;
 
             this.cboShipyardTaskType_SelectedIndexChanged(null, null);
         }
@@ -5855,7 +5885,7 @@ public class Economics : Form
             if (this.gclass0_0.bool_9 || this.lstvShipyards.SelectedItems.Count == 0 ||
                 this.cboAdminCommand.SelectedItem == null)
                 return;
-            this.gclass193_0 = (GClass193)this.lstvShipyards.SelectedItems[0].Tag;
+            this.gclass193_0 = (Shipyard)this.lstvShipyards.SelectedItems[0].Tag;
             this.gclass193_0.gclass83_1 = (NavalAdminCommand)this.cboAdminCommand.SelectedItem;
         }
         catch (Exception ex)
@@ -5874,10 +5904,11 @@ public class Economics : Form
             }
             else
             {
-                AlienRaceInfo selectedItem = (AlienRaceInfo)this.cboTransferRace.SelectedItem;
+                AlienRaceIntel selectedItem = (AlienRaceIntel)this.cboTransferRace.SelectedItem;
                 if (selectedItem == null ||
                     MessageBox.Show(
-                        $"Are you sure you want to transfer this population to the {selectedItem.AlienRaceName}?",
+                        string.Format("Are you sure you want to transfer this population to the {0}?",
+                            selectedItem.AlienRaceName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass146_0.method_114(selectedItem.ActualAlienRace, PopPoliticalStatusType.ImperialPopulation, false, false, false);
@@ -5956,7 +5987,7 @@ public class Economics : Form
                 this.cmdScrapComponent.Visible = false;
                 this.cmdTransferItem.Visible = false;
                 this.txtComponentDetail.Visible = false;
-                TransportedComponent tag = (TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag;
+                StoredComponent tag = (StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag;
                 if (tag == null)
                     return;
                 this.cmdScrapComponent.Visible = true;
@@ -6004,7 +6035,7 @@ public class Economics : Form
             {
                 if (this.lstvPopComponents.SelectedItems.Count == 0)
                     return;
-                TransportedComponent tag = (TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag;
+                StoredComponent tag = (StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag;
                 if (tag == null)
                 {
                     int num2 = (int)MessageBox.Show("Please select a component");
@@ -6034,7 +6065,7 @@ public class Economics : Form
             {
                 if (this.lstvPopComponents.SelectedItems.Count == 0)
                     return;
-                TransportedComponent tag = (TransportedComponent)this.lstvPopComponents.SelectedItems[0].Tag;
+                StoredComponent tag = (StoredComponent)this.lstvPopComponents.SelectedItems[0].Tag;
                 if (tag == null)
                 {
                     int num2 = (int)MessageBox.Show("Please select a component");
@@ -6081,7 +6112,7 @@ public class Economics : Form
                 this.cmdScrapComponent.Visible = false;
                 this.cmdTransferItem.Visible = false;
                 this.txtComponentDetail.Visible = false;
-                PopOrdnanceStock tag = (PopOrdnanceStock)this.lstvPopMissiles.SelectedItems[0].Tag;
+                ShipOrdnance tag = (ShipOrdnance)this.lstvPopMissiles.SelectedItems[0].Tag;
                 if (tag == null || !this.gclass146_0.method_46(tag.RaceMissile))
                     return;
                 this.lstvPopComponents.Height = 662;
@@ -6111,7 +6142,7 @@ public class Economics : Form
             {
                 if (this.lstvPopMissiles.SelectedItems.Count == 0)
                     return;
-                PopOrdnanceStock tag = (PopOrdnanceStock)this.lstvPopMissiles.SelectedItems[0].Tag;
+                ShipOrdnance tag = (ShipOrdnance)this.lstvPopMissiles.SelectedItems[0].Tag;
                 if (tag == null)
                 {
                     int num2 = (int)MessageBox.Show("Please select a component");
@@ -6162,9 +6193,9 @@ public class Economics : Form
                 else
                     this.cmdRelease.Text = "Release";
             }
-            else if (this.lstvPOWOfficers.SelectedItems[0].Tag is GClass147)
+            else if (this.lstvPOWOfficers.SelectedItems[0].Tag is Prisoner)
             {
-                if (this.gclass21_0.method_325(((GClass147)this.lstvPOWOfficers.SelectedItems[0].Tag).gclass21_0.RaceID)
+                if (this.gclass21_0.method_325(((Prisoner)this.lstvPOWOfficers.SelectedItems[0].Tag).gclass21_0.RaceID)
                         .ContactStatus == AuroraContactStatus.Hostile)
                     this.cmdRelease.Text = "Execute";
                 else
@@ -6172,9 +6203,9 @@ public class Economics : Form
             }
             else
             {
-                if (!(this.lstvPOWOfficers.SelectedItems[0].Tag is GClass55))
+                if (!(this.lstvPOWOfficers.SelectedItems[0].Tag is Commander))
                     return;
-                if (this.gclass21_0.method_325(((GClass55)this.lstvPOWOfficers.SelectedItems[0].Tag).gclass21_0.RaceID)
+                if (this.gclass21_0.method_325(((Commander)this.lstvPOWOfficers.SelectedItems[0].Tag).Race.RaceID)
                         .ContactStatus == AuroraContactStatus.Hostile)
                     this.cmdRelease.Text = "Execute";
                 else
@@ -6205,30 +6236,32 @@ public class Economics : Form
                 if (this.lstvPOWOfficers.SelectedItems[0].Tag is Survivors)
                 {
                     Survivors tag = (Survivors)this.lstvPOWOfficers.SelectedItems[0].Tag;
-                    AlienRaceInfo gclass110 = this.gclass21_0.method_325(tag.Race.RaceID);
+                    AlienRaceIntel gclass110 = this.gclass21_0.method_325(tag.Race.RaceID);
                     if (gclass110.ContactStatus == AuroraContactStatus.Hostile)
                         str = "Execute";
                     if (MessageBox.Show(
-                            $"Are you sure you want to {str}{tag.Crew.ToString()} from the {gclass110.AlienRaceName}",
+                            string.Format("Are you sure you want to {0}{1} from the {2}", str, tag.Crew.ToString(),
+                                gclass110.AlienRaceName),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     if (gclass110.ContactStatus != AuroraContactStatus.Hostile)
                         tag.Race.method_325(this.gclass21_0.RaceID).DiplomaticPoints += tag.Crew / 100M;
                     tag.Ship.SurvivorsList.Remove(tag);
                 }
-                else if (this.lstvPOWOfficers.SelectedItems[0].Tag is GClass147)
+                else if (this.lstvPOWOfficers.SelectedItems[0].Tag is Prisoner)
                 {
-                    GClass147 tag = (GClass147)this.lstvPOWOfficers.SelectedItems[0].Tag;
-                    AlienRaceInfo gclass110_1 = this.gclass21_0.method_325(tag.gclass21_0.RaceID);
+                    Prisoner tag = (Prisoner)this.lstvPOWOfficers.SelectedItems[0].Tag;
+                    AlienRaceIntel gclass110_1 = this.gclass21_0.method_325(tag.gclass21_0.RaceID);
                     if (gclass110_1.ContactStatus == AuroraContactStatus.Hostile)
                         str = "Execute";
                     if (MessageBox.Show(
-                            $"Are you sure you want to {str}{tag.int_0.ToString()} from the {gclass110_1.AlienRaceName}",
+                            string.Format("Are you sure you want to {0}{1} from the {2}", str, tag.int_0.ToString(),
+                                gclass110_1.AlienRaceName),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     if (gclass110_1.ContactStatus != AuroraContactStatus.Hostile)
                     {
-                        AlienRaceInfo gclass110_2 = tag.gclass21_0.method_325(this.gclass21_0.RaceID);
+                        AlienRaceIntel gclass110_2 = tag.gclass21_0.method_325(this.gclass21_0.RaceID);
                         gclass110_2.DiplomaticPoints =
                             gclass110_2.DiplomaticPoints + tag.int_1 / 400M + (tag.int_0 - tag.int_1) / 100M;
                     }
@@ -6237,30 +6270,31 @@ public class Economics : Form
                 }
                 else
                 {
-                    if (!(this.lstvPOWOfficers.SelectedItems[0].Tag is GClass55))
+                    if (!(this.lstvPOWOfficers.SelectedItems[0].Tag is Commander))
                         return;
-                    GClass55 tag = (GClass55)this.lstvPOWOfficers.SelectedItems[0].Tag;
-                    AlienRaceInfo gclass110_3 = this.gclass21_0.method_325(tag.gclass21_0.RaceID);
+                    Commander tag = (Commander)this.lstvPOWOfficers.SelectedItems[0].Tag;
+                    AlienRaceIntel gclass110_3 = this.gclass21_0.method_325(tag.Race.RaceID);
                     if (gclass110_3.ContactStatus == AuroraContactStatus.Hostile)
                         str = "Execute";
                     if (MessageBox.Show(
-                            $"Are you sure you want to {str}{tag.method_36()} from the {gclass110_3.AlienRaceName}",
+                            string.Format("Are you sure you want to {0}{1} from the {2}", str, tag.method_36(),
+                                gclass110_3.AlienRaceName),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     if (gclass110_3.ContactStatus != AuroraContactStatus.Hostile)
                     {
-                        AlienRaceInfo gclass110_4 = tag.gclass21_0.method_325(this.gclass21_0.RaceID);
+                        AlienRaceIntel gclass110_4 = tag.Race.method_325(this.gclass21_0.RaceID);
                         Decimal num3 = (Decimal)Math.Pow(tag.method_0() + 1, 3.0);
-                        if (tag.bool_5)
+                        if (tag.Processed)
                             num3 /= 4M;
                         gclass110_4.DiplomaticPoints += num3;
-                        tag.bool_4 = false;
-                        tag.bool_5 = false;
-                        tag.gclass40_0 = null;
-                        tag.gclass146_0 = null;
+                        tag.Prisoner = false;
+                        tag.Processed = false;
+                        tag.TransportShip = null;
+                        tag.Population = null;
                     }
                     else
-                        tag.method_42(AuroraRetirementStatus.Executed);
+                        tag.SetToRetired(AuroraRetirementStatus.Executed);
                 }
             }
         }
@@ -6281,23 +6315,25 @@ public class Economics : Form
             else
             {
                 if (MessageBox.Show(
-                        $"Are you sure you want to scrap all components at {this.gclass146_0.PopName}, except for researched non-obsolete components or those that can be disassembled?",
+                        string.Format(
+                            "Are you sure you want to scrap all components at {0}, except for researched non-obsolete components or those that can be disassembled?",
+                            this.gclass146_0.PopName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                foreach (TransportedComponent gclass73 in this.gclass146_0.list_2)
+                foreach (StoredComponent gclass73 in this.gclass146_0.StoredComponents)
                 {
                     gclass73.bool_0 = true;
                     if (gclass73.Component.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                     {
-                        if (!gclass73.Component.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                        if (!gclass73.Component.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                             gclass73.bool_0 = false;
                     }
                     else if (this.gclass146_0.Race.method_103(gclass73.Component))
                         gclass73.bool_0 = false;
                 }
 
-                foreach (TransportedComponent gclass73_0 in this.gclass146_0.list_2.Where<TransportedComponent>(gclass73_0 => gclass73_0.bool_0)
-                             .ToList<TransportedComponent>())
+                foreach (StoredComponent gclass73_0 in this.gclass146_0.StoredComponents.Where<StoredComponent>(gclass73_0 => gclass73_0.bool_0)
+                             .ToList<StoredComponent>())
                     this.gclass146_0.method_51(gclass73_0);
                 this.gclass146_0.method_58(this.lstvPopMissiles, this.lstvPopComponents);
                 foreach (global::Events events in Application.OpenForms.OfType<global::Events>())
@@ -6324,7 +6360,9 @@ public class Economics : Form
             else
             {
                 if (MessageBox.Show(
-                        $"Are you sure you want to remove all items in the ground construction queue for {this.gclass146_0.PopName}", "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                        string.Format(
+                            "Are you sure you want to remove all items in the ground construction queue for {0}",
+                            this.gclass146_0.PopName), "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass146_0.list_0.Clear();
                 this.gclass146_0.method_121(this.lstvGroundUnitTraining);

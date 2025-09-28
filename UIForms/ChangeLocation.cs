@@ -13,7 +13,7 @@ using System.Windows.Forms;
 public class ChangeLocation : Form
 {
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
+    
     private Button cmdCancel;
     private Button cmdOK;
     private TextBox txtInput;
@@ -71,12 +71,7 @@ public class ChangeLocation : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

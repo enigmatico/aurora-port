@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass112
 {
-    public AlienRaceInfo gclass110_0;
+    public AlienRaceIntel gclass110_0;
     public int int_0;
 
     public string Description { get; set; }
 
-    public GClass112(AlienRaceInfo gclass110_1, string string_1, int int_1)
+    public GClass112(AlienRaceIntel gclass110_1, string string_1, int int_1)
     {
         this.gclass110_0 = gclass110_1;
         this.Description = string_1;

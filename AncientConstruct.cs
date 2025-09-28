@@ -24,7 +24,8 @@ public class AncientConstruct
     public string method_0()
     {
         return this.Active
-            ? $"{this.ResearchField.ShortName} {AuroraUtils.smethod_39((this.ResearchBonus - 1M) * 100M)}%"
+            ? string.Format("{0} {1}%", this.ResearchField.ShortName,
+                AuroraUtils.smethod_39((this.ResearchBonus - 1M) * 100M))
             : "Dormant Construct";
     }
 }

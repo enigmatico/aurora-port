@@ -22,7 +22,7 @@ public partial class RacialSystemSurvey
     }
 
     [CompilerGenerated]
-    private bool method_50(AlienRaceInfo gclass110_1)
+    private bool method_50(AlienRaceIntel gclass110_1)
     {
         return gclass110_1.ActualAlienRace == this.gclass110_0.ActualAlienRace;
     }
@@ -87,7 +87,7 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private bool method_60(ShipData gclass40_0)
     {
-        return gclass40_0.gclass22_0 == this.Race.SelectedClass;
+        return gclass40_0.Class == this.Race.SelectedClass;
     }
 
     [CompilerGenerated]
@@ -186,12 +186,12 @@ public partial class RacialSystemSurvey
             return gclass214_0.Number;
         }
 
-        internal bool method_8(AlienRaceInfo gclass110_0)
+        internal bool method_8(AlienRaceIntel gclass110_0)
         {
             return gclass110_0.bTradeTreaty;
         }
 
-        internal GameRace method_9(AlienRaceInfo gclass110_0)
+        internal GameRace method_9(AlienRaceIntel gclass110_0)
         {
             return gclass110_0.ActualAlienRace;
         }
@@ -213,7 +213,7 @@ public partial class RacialSystemSurvey
 
         internal Decimal method_13(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0.ProtectionValue;
+            return gclass40_0.Class.ProtectionValue;
         }
 
         internal bool method_14(SystemBodyData gclass1_0)
@@ -276,7 +276,7 @@ public partial class RacialSystemSurvey
             return gclass120_0.Distance;
         }
 
-        internal string method_26(AlienRaceInfo gclass110_0)
+        internal string method_26(AlienRaceIntel gclass110_0)
         {
             return gclass110_0.AlienRaceName;
         }
@@ -301,9 +301,9 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1183
     {
-        public KeyValuePair<AlienRaceInfo, AlienRaceSystemStatus> keyValuePair_0;
+        public KeyValuePair<AlienRaceIntel, AlienRaceSystemStatus> keyValuePair_0;
 
-        internal bool method_0(AlienRaceInfo gclass110_0)
+        internal bool method_0(AlienRaceIntel gclass110_0)
         {
             return gclass110_0.ActualAlienRace == this.keyValuePair_0.Key.ActualAlienRace;
         }
@@ -690,14 +690,14 @@ public partial class RacialSystemSurvey
     {
         public RacialSystemSurvey gclass202_0;
         public GameRace gclass21_0;
-        public Func<AlienRaceInfo, bool> func_0;
+        public Func<AlienRaceIntel, bool> func_0;
 
         internal bool method_0(JumpPoint gclass120_0)
         {
             return gclass120_0.SystemData == this.gclass202_0.ActualSystem;
         }
 
-        internal bool method_1(AlienRaceInfo gclass110_0)
+        internal bool method_1(AlienRaceIntel gclass110_0)
         {
             return gclass110_0.ActualAlienRace == this.gclass21_0;
         }

@@ -16,9 +16,9 @@ public class ShipComponent
     public List<TechSystem> list_1 = new List<TechSystem>();
     public TechSystem gclass164_0;
     public ShipComponent gclass230_0;
-    public ComponentTypeData gclass231_0;
+    public ComponentTypeData Data;
     public AllMineralsValue gclass123_0;
-    public GClass185 gclass185_0;
+    public ShipComponentTemplate gclass185_0;
     public GEnum87 genum87_0;
     public GEnum86 genum86_0;
     public int int_0;
@@ -50,12 +50,12 @@ public class ShipComponent
     public Decimal decimal_3;
     public Decimal decimal_4;
     public Decimal decimal_5 = 1M;
-    public Decimal decimal_6;
+    public Decimal Resolution;
     public Decimal decimal_7;
     public Decimal decimal_8;
     public Decimal decimal_9;
     public Decimal decimal_10;
-    public Decimal decimal_11;
+    public Decimal ExplosionChance;
     public Decimal decimal_12;
     public Decimal decimal_13;
     public Decimal decimal_14;
@@ -92,11 +92,11 @@ public class ShipComponent
             if (this.genum86_0 == GEnum86.const_0)
                 this.DisplayName = this.Name;
             else if (this.genum86_0 == GEnum86.const_1)
-                this.DisplayName = $"{this.Name} (P)";
+                this.DisplayName = string.Format("{0} (P)", this.Name);
             else if (this.genum86_0 == GEnum86.const_2)
-                this.DisplayName = $"{this.Name} (FP)";
+                this.DisplayName = string.Format("{0} (FP)", this.Name);
             else if (this.genum86_0 == GEnum86.const_3)
-                this.DisplayName = $"{this.Name} (RP)";
+                this.DisplayName = string.Format("{0} (RP)", this.Name);
             return this.DisplayName;
         }
         catch (Exception ex)
@@ -136,9 +136,9 @@ public class ShipComponent
     {
         try
         {
-            if (int_24 <= 0 || !gclass0_0.TechDataDictionary.ContainsKey(int_24))
+            if (int_24 <= 0 || !gclass0_0.TechSystems.ContainsKey(int_24))
                 return;
-            this.list_0.Add(gclass0_0.TechDataDictionary[int_24]);
+            this.list_0.Add(gclass0_0.TechSystems[int_24]);
         }
         catch (Exception ex)
         {
@@ -231,41 +231,64 @@ public class ShipComponent
         string str;
         if (this.int_3 > 0)
         {
-            if (this.gclass231_0.ComponentTypeID == AuroraComponentType.CIWS)
+            if (this.Data.ComponentTypeID == AuroraComponentType.CIWS)
                 str =
-                    $"{this.Name} ({decimal_19.ToString()}x{this.int_7.ToString()})    Range 1000 km     TS: {AuroraUtils.smethod_37(this.int_3)} km/s     ROF {num1.ToString()}       ";
+                    string.Format("{0} ({1}x{2})    Range 1000 km     TS: {3} km/s     ROF {4}       ", this.Name,
+                        decimal_19.ToString(), this.int_7.ToString(), AuroraUtils.smethod_37(this.int_3),
+                        num1.ToString());
             else
                 str =
-                    $"{this.Name} ({decimal_19.ToString()}x{this.int_7.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {this.int_3.ToString()} km/s     Power {this.decimal_0.ToString()}-{this.decimal_4.ToString()}    ROF {num1.ToString()}       ";
+                    string.Format("{0} ({1}x{2})    Range {3}km     TS: {4} km/s     Power {5}-{6}    ROF {7}       ",
+                        this.Name, decimal_19.ToString(), this.int_7.ToString(), AuroraUtils.smethod_38(decimal_73),
+                        this.int_3.ToString(), this.decimal_0.ToString(), this.decimal_4.ToString(), num1.ToString());
         }
         else if (this.int_8 > 0)
             str =
-                $"{this.Name} ({decimal_19.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {AuroraUtils.smethod_37(int_25)} km/s     Power {this.decimal_0.ToString()}-{this.decimal_4.ToString()}    ROF {num1.ToString()}       ";
+                string.Format("{0} ({1})    Range {2}km     TS: {3} km/s     Power {4}-{5}    ROF {6}       ",
+                    this.Name, decimal_19.ToString(), AuroraUtils.smethod_38(decimal_73),
+                    AuroraUtils.smethod_37(int_25), this.decimal_0.ToString(), this.decimal_4.ToString(),
+                    num1.ToString());
         else if (this.int_7 > 1 && this.decimal_0 == 0M)
         {
             if (this.decimal_5 > 0M && this.decimal_5 < 1M)
                 str =
-                    $"{this.Name} ({decimal_19.ToString()}x{this.int_7.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {AuroraUtils.smethod_37(int_25)} km/s     Accuracy Modifier {(this.decimal_5 * 100M).ToString()}%     ROF {num1.ToString()}       ";
+                    string.Format(
+                        "{0} ({1}x{2})    Range {3}km     TS: {4} km/s     Accuracy Modifier {5}%     ROF {6}       ",
+                        this.Name, decimal_19.ToString(), this.int_7.ToString(), AuroraUtils.smethod_38(decimal_73),
+                        AuroraUtils.smethod_37(int_25), (this.decimal_5 * 100M).ToString(), num1.ToString());
             else
                 str =
-                    $"{this.Name} ({decimal_19.ToString()}x{this.int_7.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {AuroraUtils.smethod_37(int_25)} km/s     Power {this.decimal_0.ToString()}-{this.decimal_4.ToString()}     ROF {num1.ToString()}       ";
+                    string.Format("{0} ({1}x{2})    Range {3}km     TS: {4} km/s     Power {5}-{6}     ROF {7}       ",
+                        this.Name, decimal_19.ToString(), this.int_7.ToString(), AuroraUtils.smethod_38(decimal_73),
+                        AuroraUtils.smethod_37(int_25), this.decimal_0.ToString(), this.decimal_4.ToString(),
+                        num1.ToString());
         }
         else if (this.int_7 > 1 && this.decimal_0 > 0M)
         {
             if (this.decimal_5 > 0M && this.decimal_5 < 1M)
                 str =
-                    $"{this.Name} ({decimal_19.ToString()}x{this.int_7.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {AuroraUtils.smethod_37(int_25)} km/s     Power {this.decimal_0.ToString()}-{this.decimal_4.ToString()}     Accuracy Modifier {(this.decimal_5 * 100M).ToString()}%     ROF {num1.ToString()}       ";
+                    string.Format(
+                        "{0} ({1}x{2})    Range {3}km     TS: {4} km/s     Power {5}-{6}     Accuracy Modifier {7}%     ROF {8}       ",
+                        this.Name, decimal_19.ToString(), this.int_7.ToString(), AuroraUtils.smethod_38(decimal_73),
+                        AuroraUtils.smethod_37(int_25), this.decimal_0.ToString(), this.decimal_4.ToString(),
+                        (this.decimal_5 * 100M).ToString(), num1.ToString());
             else
                 str =
-                    $"{this.Name} ({decimal_19.ToString()}x{this.int_7.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {AuroraUtils.smethod_37(int_25)} km/s     Power {this.decimal_0.ToString()}-{this.decimal_4.ToString()}     ROF {num1.ToString()}       ";
+                    string.Format("{0} ({1}x{2})    Range {3}km     TS: {4} km/s     Power {5}-{6}     ROF {7}       ",
+                        this.Name, decimal_19.ToString(), this.int_7.ToString(), AuroraUtils.smethod_38(decimal_73),
+                        AuroraUtils.smethod_37(int_25), this.decimal_0.ToString(), this.decimal_4.ToString(),
+                        num1.ToString());
         }
         else
             str =
-                $"{this.Name} ({decimal_19.ToString()})    Range {AuroraUtils.smethod_38(decimal_73)}km     TS: {AuroraUtils.smethod_37(int_25)} km/s     Power {this.decimal_0.ToString()}-{this.decimal_4.ToString()}     ROF {num1.ToString()}       ";
+                string.Format("{0} ({1})    Range {2}km     TS: {3} km/s     Power {4}-{5}     ROF {6}       ",
+                    this.Name, decimal_19.ToString(), AuroraUtils.smethod_38(decimal_73),
+                    AuroraUtils.smethod_37(int_25), this.decimal_0.ToString(), this.decimal_4.ToString(),
+                    num1.ToString());
 
         if (int_26 > 0 && int_27 == 1)
         {
-            if (this.gclass231_0.ComponentTypeID == AuroraComponentType.CIWS)
+            if (this.Data.ComponentTypeID == AuroraComponentType.CIWS)
             {
                 str += "Base 50% to hit";
             }
@@ -280,13 +303,14 @@ public class ShipComponent
                             Decimal num2 = index / this.decimal_17;
                             if (num2 < 1M)
                                 num2 = 1M;
-                            str = $"{str} {((int)(this.int_6 / num2)).ToString()}";
+                            str = string.Format("{0} {1}", str, ((int)(this.int_6 / num2)).ToString());
                         }
                         else
                             str += " 0";
                     }
                     else
-                        str = !(decimal_73 >= index) ? $"{str} 0" : $"{str} {this.int_6.ToString()}";
+                        str = !(decimal_73 >= index) ? string.Format("{0} 0", str) : string.Format("{0} {1}", str,
+                            this.int_6.ToString());
                 }
             }
         }
@@ -298,7 +322,7 @@ public class ShipComponent
     {
         try
         {
-            if (this.gclass231_0.ComponentTypeID != AuroraComponentType.BeamFireControl)
+            if (this.Data.ComponentTypeID != AuroraComponentType.BeamFireControl)
                 return "Not Beam Fire Control";
             string str = "";
             for (int index = int_24; index < int_24 * 11; index += int_24)
@@ -308,7 +332,7 @@ public class ShipComponent
                     num *= this.int_3 / (Decimal)int_25;
                 if (num < 0M)
                     num = 0M;
-                str = $"{str} {Math.Round(num * 100M).ToString()}";
+                str = string.Format("{0} {1}", str, Math.Round(num * 100M).ToString());
             }
 
             return str;
@@ -324,7 +348,7 @@ public class ShipComponent
     {
         try
         {
-            if (this.gclass231_0.ComponentTypeID != AuroraComponentType.BeamFireControl)
+            if (this.Data.ComponentTypeID != AuroraComponentType.BeamFireControl)
                 return 0.0;
             double num1 = 1.0 - double_2 / (double)this.decimal_3;
             int num2 = this.int_3;
@@ -370,89 +394,119 @@ public class ShipComponent
         }
     }
 
-    public string method_13(Decimal decimal_19)
+    public string GetComponentSpecLine(Decimal performanceRating)
     {
         try
         {
             string str1 = "";
-            switch (this.gclass231_0.ComponentTypeID)
+            switch (this.Data.ComponentTypeID)
             {
                 case AuroraComponentType.Engine:
-                    string[] strArray = new string[13];
-                    strArray[0] = this.Name;
-                    strArray[1] = " (";
-                    strArray[2] = decimal_19.ToString();
-                    strArray[3] = ")    Power ";
-                    strArray[4] = Math.Round(this.decimal_3 * decimal_19, 1).ToString();
-                    strArray[5] = "    Fuel Use ";
-                    Decimal num1 = Math.Round(this.decimal_8 * 100M, 2);
-                    strArray[6] = num1.ToString();
-                    strArray[7] = "%    Signature ";
-                    num1 = this.decimal_9 * this.decimal_3;
-                    strArray[8] = num1.ToString();
-                    strArray[9] = "    Explosion ";
-                    strArray[10] = this.decimal_11.ToString();
-                    strArray[11] = "%";
-                    strArray[12] = Environment.NewLine;
-                    return string.Concat(strArray);
+                    return
+                        string.Format("{0} ({1})    Power {2}    Fuel Use {3}%    Signature {4}    Explosion {5}%\n",
+                            Name, performanceRating, Math.Round(decimal_3 * performanceRating, 1),
+                            Math.Round(this.decimal_8 * 100M, 2), decimal_9 * decimal_3, ExplosionChance);
                 case AuroraComponentType.GravitationalSurveySensors:
                 case AuroraComponentType.GeologicalSurveySensors:
                     return
-                        $"{this.Name} ({decimal_19.ToString()})   {(this.decimal_3 * decimal_19).ToString()} Survey Points Per Hour{Environment.NewLine}";
+                        string.Format("{0} ({1})   {2} Survey Points Per Hour{3}", this.Name,
+                            performanceRating.ToString(), (this.decimal_3 * performanceRating).ToString(),
+                            Environment.NewLine);
                 case AuroraComponentType.ThermalSensors:
                 case AuroraComponentType.EMSensors:
                     double num2 = this.method_11(1000M);
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Sensitivity {this.decimal_3.ToString()}     Detect Sig Strength 1000:  {AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1)}m km{Environment.NewLine}";
+                        string.Format("{0} ({1})     Sensitivity {2}     Detect Sig Strength 1000:  {3}m km{4}",
+                            this.Name, performanceRating.ToString(), this.decimal_3.ToString(),
+                            AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1), Environment.NewLine);
                 case AuroraComponentType.Shields:
-                    Decimal num3 = this.decimal_7 * decimal_19;
+                    Decimal num3 = this.decimal_7 * performanceRating;
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Recharge Time {this.decimal_4.ToString()} seconds ({AuroraUtils.FormatNumberToDigits(this.decimal_3 / this.decimal_4 * decimal_19, 1)} per second){Environment.NewLine}";
+                        string.Format("{0} ({1})     Recharge Time {2} seconds ({3} per second){4}", this.Name,
+                            performanceRating.ToString(), this.decimal_4.ToString(),
+                            AuroraUtils.FormatNumberToDigits(this.decimal_3 / this.decimal_4 * performanceRating, 1),
+                            Environment.NewLine);
                 case AuroraComponentType.JumpDrive:
                     return
-                        $"{this.Name}     Max Ship Size {(this.decimal_3 * 50M).ToString()} tons    Distance {this.int_9.ToString()}k km     Squadron Size {this.int_10.ToString()}{Environment.NewLine}";
+                        string.Format("{0}     Max Ship Size {1} tons    Distance {2}k km     Squadron Size {3}{4}",
+                            this.Name, (this.decimal_3 * 50M).ToString(), this.int_9.ToString(), this.int_10.ToString(),
+                            Environment.NewLine);
                 case AuroraComponentType.PowerPlant:
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Total Power Output {AuroraUtils.FormatNumberToDigits(this.decimal_3 * decimal_19, 1)}    Exp {this.decimal_11.ToString()}%{Environment.NewLine}";
+                        string.Format("{0} ({1})     Total Power Output {2}    Exp {3}%{4}", this.Name,
+                            performanceRating.ToString(),
+                            AuroraUtils.FormatNumberToDigits(this.decimal_3 * performanceRating, 1),
+                            this.ExplosionChance.ToString(), Environment.NewLine);
                 case AuroraComponentType.BeamFireControl:
                     if (this.decimal_13 > 0M)
-                        str1 = $"   ECCM-{AuroraUtils.smethod_38(this.decimal_13)}";
+                        str1 = string.Format("   ECCM-{0}", AuroraUtils.smethod_38(this.decimal_13));
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Max Range: {AuroraUtils.smethod_38(this.decimal_3)} km   TS: {this.int_3.ToString()} km/s{str1}{Environment.NewLine}";
+                        string.Format("{0} ({1})     Max Range: {2} km   TS: {3} km/s{4}{5}", this.Name,
+                            performanceRating.ToString(), AuroraUtils.smethod_38(this.decimal_3), this.int_3.ToString(),
+                            str1, Environment.NewLine);
                 case AuroraComponentType.MissileLauncher:
                     return !this.bool_7
-                        ? $"{this.Name} ({decimal_19.ToString()})     Missile Size: {this.decimal_3.ToString()}    Rate of Fire {this.int_11.ToString()}{Environment.NewLine}"
-                        : $"{this.Name} ({decimal_19.ToString()})     Missile Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
+                        ? string.Format("{0} ({1})     Missile Size: {2}    Rate of Fire {3}{4}", this.Name,
+                            performanceRating.ToString(), this.decimal_3.ToString(), this.int_11.ToString(),
+                            Environment.NewLine)
+                        : string.Format(
+                            "{0} ({1})     Missile Size: {2}    Hangar Reload {3} minutes    MF Reload {4} hours{5}",
+                            this.Name, performanceRating.ToString(), this.decimal_3.ToString(),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1), Environment.NewLine);
                 case AuroraComponentType.ActiveSearchSensors:
                     string str2 = this.double_0 <= 1000000.0
-                        ? $"     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    "
-                        : $"     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    ";
-                    if (this.decimal_6 == 1M)
+                        ? string.Format("     Range {0}k km    ",
+                            AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1))
+                        : string.Format("     Range {0}m km    ",
+                            AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1));
+                    if (this.Resolution == 1M)
                     {
                         double num4 = Math.Pow(AuroraUtils.double_20, 2.0) * this.double_0;
                         str2 = num4 < 1000000.0
-                            ? $"{str2}MCR {AuroraUtils.FormatDoubleToPrecision(num4 / 1000.0, 1)}k km    "
-                            : $"{str2}MCR {AuroraUtils.FormatDoubleToPrecision(num4 / 1000000.0, 1)}m km    ";
+                            ? string.Format("{0}MCR {1}k km    ", str2,
+                                AuroraUtils.FormatDoubleToPrecision(num4 / 1000.0, 1))
+                            : string.Format("{0}MCR {1}m km    ", str2,
+                                AuroraUtils.FormatDoubleToPrecision(num4 / 1000000.0, 1));
                     }
 
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     GPS {Math.Ceiling(this.decimal_3 * this.decimal_6).ToString()}{str2}Resolution {this.decimal_6.ToString()}{Environment.NewLine}";
+                        string.Format("{0} ({1})     GPS {2}{3}Resolution {4}{5}", this.Name,
+                            performanceRating.ToString(), Math.Ceiling(this.decimal_3 * this.Resolution).ToString(),
+                            str2, this.Resolution.ToString(), Environment.NewLine);
                 case AuroraComponentType.MissileFireControl:
                     if (this.decimal_13 > 0M)
-                        str1 = $"   ECCM-{AuroraUtils.smethod_38(this.decimal_13)}";
+                        str1 = string.Format("   ECCM-{0}", AuroraUtils.smethod_38(this.decimal_13));
                     return this.double_0 > 1000000.0
-                        ? $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}"
-                        : $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}";
+                        ? string.Format("{0} ({1})     Range {2}m km    Resolution {3}{4}{5}", this.Name,
+                            performanceRating.ToString(),
+                            AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1),
+                            this.Resolution.ToString(), str1, Environment.NewLine)
+                        : string.Format("{0} ({1})     Range {2}k km    Resolution {3}{4}{5}", this.Name,
+                            performanceRating.ToString(),
+                            AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1), this.Resolution.ToString(),
+                            str1, Environment.NewLine);
                 case AuroraComponentType.FighterPodBay:
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Pod Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
+                        string.Format(
+                            "{0} ({1})     Pod Size: {2}    Hangar Reload {3} minutes    MF Reload {4} hours{5}",
+                            this.Name, performanceRating.ToString(), this.decimal_3.ToString(),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1), Environment.NewLine);
                 case AuroraComponentType.ELINTModule:
-                    double num5 = this.method_12(1000M, decimal_19);
+                    double num5 = this.method_12(1000M, performanceRating);
                     return
-                        $"ELINT Module ({decimal_19.ToString()})     Sensitivity {(this.decimal_3 * decimal_19).ToString()}     Detect Sig Strength 1000:  {AuroraUtils.FormatDoubleToPrecision(num5 / 1000000.0, 1)}m km{Environment.NewLine}";
+                        string.Format(
+                            "ELINT Module ({0})     Sensitivity {1}     Detect Sig Strength 1000:  {2}m km{3}",
+                            performanceRating.ToString(), (this.decimal_3 * performanceRating).ToString(),
+                            AuroraUtils.FormatDoubleToPrecision(num5 / 1000000.0, 1), Environment.NewLine);
                 case AuroraComponentType.DecoyMissileLauncher:
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Decoy Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
+                        string.Format(
+                            "{0} ({1})     Decoy Size: {2}    Hangar Reload {3} minutes    MF Reload {4} hours{5}",
+                            this.Name, performanceRating.ToString(), this.decimal_3.ToString(),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1), Environment.NewLine);
                 default:
                     return "Component Type Not Found";
             }
@@ -469,53 +523,66 @@ public class ShipComponent
         try
         {
             string str1 = this.Name + Environment.NewLine;
-            Decimal num1;
-            switch (this.gclass231_0.ComponentTypeID)
+            switch (this.Data.ComponentTypeID)
             {
                 case AuroraComponentType.Engine:
                     string str2 =
-                        $"{str1}Engine Power {this.decimal_3.ToString()}    Fuel Use Per Hour {AuroraUtils.FormatNumberToDigits(this.decimal_3 * this.decimal_8, 1)} litres    Fuel per EPH {AuroraUtils.FormatNumberToDigits(this.decimal_8, 3)}{Environment.NewLine}";
-                    string[] strArray1 = new string[7];
-                    strArray1[0] = str2;
-                    strArray1[1] = "Thermal Signature ";
-                    num1 = this.decimal_9 * this.decimal_3;
-                    strArray1[2] = num1.ToString();
-                    strArray1[3] = "    Explosion Chance ";
-                    strArray1[4] = this.decimal_11.ToString();
-                    strArray1[5] = "%";
-                    strArray1[6] = Environment.NewLine;
-                    string str3 = string.Concat(strArray1);
+                        string.Format("{0}Engine Power {1}    Fuel Use Per Hour {2} litres    Fuel per EPH {3}{4}",
+                            str1, this.decimal_3.ToString(),
+                            AuroraUtils.FormatNumberToDigits(this.decimal_3 * this.decimal_8, 1),
+                            AuroraUtils.FormatNumberToDigits(this.decimal_8, 3), Environment.NewLine);
+                    string str3 = string.Format("{0}Thermal Signature {1}    Explosion Chance {2}%\n", str2,
+                        decimal_9 * decimal_3, ExplosionChance);
                     str1 = !this.bool_1
-                        ? $"{str3}Commercial Engine{Environment.NewLine}"
-                        : $"{str3}Military Engine{Environment.NewLine}";
+                        ? string.Format("{0}Commercial Engine{1}", str3, Environment.NewLine)
+                        : string.Format("{0}Military Engine{1}", str3, Environment.NewLine);
                     break;
                 case AuroraComponentType.GravitationalSurveySensors:
                 case AuroraComponentType.GeologicalSurveySensors:
-                    str1 = $"{str1}{this.decimal_3.ToString()} Survey Points Per Hour{Environment.NewLine}";
+                    str1 = string.Format("{0}{1} Survey Points Per Hour{2}", str1, this.decimal_3.ToString(),
+                        Environment.NewLine);
                     break;
                 case AuroraComponentType.ThermalSensors:
                 case AuroraComponentType.EMSensors:
                     str1 =
-                        $"{$"{$"{str1}Sensitivity {this.decimal_3.ToString()}{Environment.NewLine}"}Detect Sig Strength 100:  {AuroraUtils.FormatDoubleToPrecision(Math.Sqrt((double)this.decimal_3 * 100.0) * AuroraUtils.double_18 / 1000000.0, 2)}m km{Environment.NewLine}"}Detect Sig Strength 1000:  {AuroraUtils.FormatDoubleToPrecision(Math.Sqrt((double)this.decimal_3 * 1000.0) * AuroraUtils.double_18 / 1000000.0, 2)}m km{Environment.NewLine}";
+                        string.Format("{0}Detect Sig Strength 1000:  {1}m km{2}",
+                            string.Format("{0}Detect Sig Strength 100:  {1}m km{2}",
+                                string.Format("{0}Sensitivity {1}{2}", str1, this.decimal_3.ToString(),
+                                    Environment.NewLine),
+                                AuroraUtils.FormatDoubleToPrecision(
+                                    Math.Sqrt((double)this.decimal_3 * 100.0) * AuroraUtils.double_18 / 1000000.0, 2),
+                                Environment.NewLine),
+                            AuroraUtils.FormatDoubleToPrecision(
+                                Math.Sqrt((double)this.decimal_3 * 1000.0) * AuroraUtils.double_18 / 1000000.0, 2),
+                            Environment.NewLine);
                     break;
                 case AuroraComponentType.Shields:
                     str1 =
-                        $"{str1}Shield Strength {this.decimal_3.ToString()}    Recharge Time {this.decimal_4.ToString()}{Environment.NewLine}";
+                        string.Format("{0}Shield Strength {1}    Recharge Time {2}{3}", str1, this.decimal_3.ToString(),
+                            this.decimal_4.ToString(), Environment.NewLine);
                     break;
                 case AuroraComponentType.JumpDrive:
                     str1 =
-                        $"{$"{str1}Max Ship Size {AuroraUtils.smethod_38(this.decimal_3 * 50M)} tons    Jump Radius {AuroraUtils.smethod_37(this.int_9)}k km     Squadron Size {this.int_10.ToString()}{Environment.NewLine}"}Max Ship Size vs Drive Size Ratio {AuroraUtils.smethod_38(this.decimal_3 / this.decimal_1)}{Environment.NewLine}";
+                        string.Format("{0}Max Ship Size vs Drive Size Ratio {1}{2}",
+                            string.Format("{0}Max Ship Size {1} tons    Jump Radius {2}k km     Squadron Size {3}{4}",
+                                str1, AuroraUtils.smethod_38(this.decimal_3 * 50M), AuroraUtils.smethod_37(this.int_9),
+                                this.int_10.ToString(), Environment.NewLine),
+                            AuroraUtils.smethod_38(this.decimal_3 / this.decimal_1), Environment.NewLine);
                     break;
                 case AuroraComponentType.PowerPlant:
                     str1 =
-                        $"{str1}Total Power Output {AuroraUtils.FormatNumberToDigits(this.decimal_3, 2)}    Explosion Chance {this.decimal_11.ToString()}%{Environment.NewLine}";
+                        string.Format("{0}Total Power Output {1}    Explosion Chance {2}%{3}", str1,
+                            AuroraUtils.FormatNumberToDigits(this.decimal_3, 2), this.ExplosionChance.ToString(),
+                            Environment.NewLine);
                     break;
                 case AuroraComponentType.BeamFireControl:
                     str1 =
-                        $"{str1}Max Range {AuroraUtils.smethod_38(this.decimal_3)} km    Tracking Speed {AuroraUtils.smethod_37(this.int_3)} km/s    ECCM-{AuroraUtils.smethod_38(this.decimal_13)}{Environment.NewLine}";
+                        string.Format("{0}Max Range {1} km    Tracking Speed {2} km/s    ECCM-{3}{4}", str1,
+                            AuroraUtils.smethod_38(this.decimal_3), AuroraUtils.smethod_37(this.int_3),
+                            AuroraUtils.smethod_38(this.decimal_13), Environment.NewLine);
                     if (this.genum87_0 == GEnum87.const_6)
                     {
-                        str1 = $"{str1}Single Weapon Only{Environment.NewLine}";
+                        str1 = string.Format("{0}Single Weapon Only{1}", str1, Environment.NewLine);
                         break;
                     }
 
@@ -524,64 +591,72 @@ public class ShipComponent
                     if (!this.bool_7)
                     {
                         str1 =
-                            $"{str1}Missile Size: {this.decimal_3.ToString()}    Rate of Fire {this.int_11.ToString()}{Environment.NewLine}";
+                            string.Format("{0}Missile Size: {1}    Rate of Fire {2}{3}", str1,
+                                this.decimal_3.ToString(), this.int_11.ToString(), Environment.NewLine);
                         break;
                     }
 
                     str1 =
-                        $"{str1}Missile Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
+                        string.Format("{0}Missile Size: {1}    Hangar Reload {2} minutes    MF Reload {3} hours{4}",
+                            str1, this.decimal_3.ToString(), AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1),
+                            AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1), Environment.NewLine);
                     break;
                 case AuroraComponentType.ActiveSearchSensors:
                 case AuroraComponentType.MissileFireControl:
                     string str4 = this.double_0 <= 1000000.0
-                        ? $"{AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    "
-                        : $"{AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    ";
-                    if (this.decimal_6 == 1M)
+                        ? string.Format("{0}k km    ", AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1))
+                        : string.Format("{0}m km    ",
+                            AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1));
+                    if (this.Resolution == 1M)
                     {
                         double num2 = Math.Pow(AuroraUtils.double_20, 2.0) * this.double_0;
                         str4 = num2 < 1000000.0
-                            ? $"{str4}MCR {AuroraUtils.FormatDoubleToPrecision(num2 / 1000.0, 1)}k km    "
-                            : $"{str4}MCR {AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1)}m km    ";
+                            ? string.Format("{0}MCR {1}k km    ", str4,
+                                AuroraUtils.FormatDoubleToPrecision(num2 / 1000.0, 1))
+                            : string.Format("{0}MCR {1}m km    ", str4,
+                                AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1));
                     }
 
                     str1 =
-                        $"{$"{$"{str1}Resolution {this.decimal_6.ToString()}   Range vs {AuroraUtils.smethod_38(this.decimal_6 * AuroraUtils.decimal_17)} ton object (or larger) {str4}{Environment.NewLine}"}Range vs 1000 ton object {this.method_16(this.method_15(20M))}{Environment.NewLine}"}Range vs 250 ton object {this.method_16(this.method_15(5M))}{Environment.NewLine}";
+                        string.Format("{0}Range vs 250 ton object {1}{2}",
+                            string.Format("{0}Range vs 1000 ton object {1}{2}",
+                                string.Format("{0}Resolution {1}   Range vs {2} ton object (or larger) {3}{4}", str1,
+                                    this.Resolution.ToString(),
+                                    AuroraUtils.smethod_38(this.Resolution * AuroraUtils.decimal_17), str4,
+                                    Environment.NewLine),
+                                this.method_16(this.method_15(20M)), Environment.NewLine),
+                            this.method_16(this.method_15(5M)), Environment.NewLine);
                     if (this.decimal_13 > 0M)
-                        str1 = $"{str1}ECCM-{this.decimal_13.ToString()}{Environment.NewLine}";
-                    if (this.gclass231_0.ComponentTypeID == AuroraComponentType.ActiveSearchSensors)
+                        str1 = string.Format("{0}ECCM-{1}{2}", str1, this.decimal_13.ToString(), Environment.NewLine);
+                    if (this.Data.ComponentTypeID == AuroraComponentType.ActiveSearchSensors)
                     {
                         str1 =
-                            $"{str1}Signature vs Passive Detection: {Math.Ceiling(this.decimal_3 * this.decimal_6).ToString()}{Environment.NewLine}";
+                            string.Format("{0}Signature vs Passive Detection: {1}{2}", str1,
+                                Math.Ceiling(this.decimal_3 * this.Resolution).ToString(), Environment.NewLine);
                         break;
                     }
 
                     break;
                 case AuroraComponentType.CIWS:
                     str1 =
-                        $"{$"{str1}Rate of Fire {this.int_7.ToString()} shots every five seconds{Environment.NewLine}"}Tracking Speed {AuroraUtils.smethod_37(this.int_3)} km/s     ECCM-{AuroraUtils.smethod_38(this.decimal_13)}{Environment.NewLine}";
+                        string.Format("{0}Tracking Speed {1} km/s     ECCM-{2}{3}",
+                            string.Format("{0}Rate of Fire {1} shots every five seconds{2}", str1,
+                                this.int_7.ToString(), Environment.NewLine),
+                            AuroraUtils.smethod_37(this.int_3), AuroraUtils.smethod_38(this.decimal_13),
+                            Environment.NewLine);
                     break;
             }
 
             string str5 =
-                $"{str1}Cost {this.decimal_2.ToString()}   Size {AuroraUtils.FormatNumberToDigits(this.decimal_1 * AuroraUtils.decimal_17, 2)} tons   Crew {this.int_1.ToString()}   HTK {this.int_4.ToString()}{Environment.NewLine}";
+                string.Format("{0}Cost {1}   Size {2} tons   Crew {3}   HTK {4}{5}", str1, this.decimal_2.ToString(),
+                    AuroraUtils.FormatNumberToDigits(this.decimal_1 * AuroraUtils.decimal_17, 2), this.int_1.ToString(),
+                    this.int_4.ToString(), Environment.NewLine);
             if (this.decimal_5 > 0M && this.decimal_5 < 1M)
             {
-                string[] strArray2 = new string[5]
-                {
-                    str5,
-                    "Base Chance to hit ",
-                    null,
-                    null,
-                    null
-                };
-                num1 = Math.Round(this.decimal_5 * 100M, 1);
-                strArray2[2] = num1.ToString();
-                strArray2[3] = "%";
-                strArray2[4] = Environment.NewLine;
-                str5 = string.Concat(strArray2);
+                str5 = string.Format("{0}Base Chance to hit {1}%\n", str5, Math.Round(this.decimal_5 * 100M, 1));
             }
 
-            return $"{str5}Materials Required: {this.gclass123_0.method_36()}";
+            return string.Format("{0}Materials Required: {1}", str5, this.gclass123_0.method_36());
         }
         catch (Exception ex)
         {
@@ -594,9 +669,9 @@ public class ShipComponent
     {
         try
         {
-            if (this.decimal_6 <= decimal_19)
+            if (this.Resolution <= decimal_19)
                 return this.double_0;
-            double num = (double)(decimal_19 / this.decimal_6);
+            double num = (double)(decimal_19 / this.Resolution);
             return this.double_0 * num * num;
         }
         catch (Exception ex)
@@ -611,8 +686,8 @@ public class ShipComponent
         try
         {
             return double_2 > 1000000.0
-                ? $"{AuroraUtils.FormatDoubleToPrecision(double_2 / 1000000.0, 1)}m km"
-                : $"{AuroraUtils.FormatDoubleToPrecision(double_2 / 1000.0, 1)}k km";
+                ? string.Format("{0}m km", AuroraUtils.FormatDoubleToPrecision(double_2 / 1000000.0, 1))
+                : string.Format("{0}k km", AuroraUtils.FormatDoubleToPrecision(double_2 / 1000.0, 1));
         }
         catch (Exception ex)
         {
@@ -626,10 +701,12 @@ public class ShipComponent
         try
         {
             string str1 = "";
-            if (this.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl)
+            if (this.Data.ComponentTypeID == AuroraComponentType.BeamFireControl)
             {
                 string str2 =
-                    $"{this.Name} ({decimal_19.ToString()})     Max Range: {AuroraUtils.smethod_38(this.decimal_3)} km   TS: {AuroraUtils.smethod_37(this.int_3)} km/s    ECCM-{AuroraUtils.smethod_38(this.decimal_13)}    ";
+                    string.Format("{0} ({1})     Max Range: {2} km   TS: {3} km/s    ECCM-{4}    ", this.Name,
+                        decimal_19.ToString(), AuroraUtils.smethod_38(this.decimal_3),
+                        AuroraUtils.smethod_37(this.int_3), AuroraUtils.smethod_38(this.decimal_13));
                 if (int_25 > 0 && int_24 > 0)
                     str2 += this.method_9(int_24, int_25);
                 str1 = str2 + Environment.NewLine;

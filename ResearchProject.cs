@@ -14,7 +14,7 @@ public class ResearchProject
     public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public TechSystem gclass164_0;
-    public GClass55 gclass55_0;
+    public Commander Researcher;
     public ResearchFieldData gclass162_0;
     public int int_0;
     public int ResearchProjectID;
@@ -33,7 +33,7 @@ public class ResearchProject
         try
         {
             PausedResearch gclass167 = new PausedResearch();
-            gclass167.gclass164_0 = this.gclass164_0;
+            gclass167.TechSystem = this.gclass164_0;
             gclass167.PointsAccumulated = this.gclass164_0.int_4 - (int)this.decimal_0;
             if (this.gclass164_0.int_4 - (int)this.decimal_0 > 0)
                 this.gclass21_0.PausedResearches.Add(gclass167);

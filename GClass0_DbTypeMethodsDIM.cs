@@ -16,7 +16,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"SELECT * FROM DIM_KnownSystems where GameID = 0 OR GameID = {this.GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"SELECT * FROM DIM_KnownSystems where GameID = 0 OR GameID = {this.GameID.ToString()}").Rows)
             {
                 DIMKnownSystemsData198 knownSystemData = new DIMKnownSystemsData198();
                 int int32_1 = Convert.ToInt32(row["Component1ID"]);
@@ -156,9 +157,9 @@ public partial class GClass0
             {
                 GroundUnitCapabilityDefinition gclass98 = new GroundUnitCapabilityDefinition();
                 int int32 = Convert.ToInt32(row["TechSystemID"]);
-                if (this.TechDataDictionary.ContainsKey(int32))
+                if (this.TechSystems.ContainsKey(int32))
                 {
-                    gclass98.TechData = this.TechDataDictionary[int32];
+                    gclass98.TechData = this.TechSystems[int32];
                     gclass98.GroundUnitCapability = (GroundUnitCapability)Convert.ToInt32(row["CapabilityID"]);
                     gclass98.CostMultiplier = Convert.ToDecimal(row["CostMultiplier"]);
                     gclass98.HPEnhancement = Convert.ToDecimal(row["HPEnhancement"]);
@@ -184,9 +185,9 @@ public partial class GClass0
             {
                 GroundComponentTypeDefinition gclass100 = new GroundComponentTypeDefinition();
                 int int32 = Convert.ToInt32(row["TechSystemID"]);
-                if (this.TechDataDictionary.ContainsKey(int32))
+                if (this.TechSystems.ContainsKey(int32))
                 {
-                    gclass100.TechData = this.TechDataDictionary[int32];
+                    gclass100.TechData = this.TechSystems[int32];
                     gclass100.GroundUnitComponentType = (GroundUnitComponent)Convert.ToInt32(row["ComponentTypeID"]);
                     gclass100.Shots = Convert.ToInt32(row["Shots"]);
                     gclass100.STO = Convert.ToInt32(row["STO"]);
@@ -432,8 +433,8 @@ public partial class GClass0
             {
                 PlanetaryInstallationType gclass157 = new PlanetaryInstallationType();
                 int int32 = Convert.ToInt32(row["RequiredTechID"]);
-                if (this.TechDataDictionary.ContainsKey(int32))
-                    gclass157.TechData = this.TechDataDictionary[int32];
+                if (this.TechSystems.ContainsKey(int32))
+                    gclass157.TechData = this.TechSystems[int32];
                 gclass157.InstallationType =
                     (AuroraInstallationType)Convert.ToInt32(row["PlanetaryInstallationID"]);
                 gclass157.CargoPoints = Convert.ToInt32(row["CargoPoints"]);
@@ -507,11 +508,11 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_WealthUse").Rows)
             {
                 WealthUsageData gclass150 = new WealthUsageData();
-                gclass150.WealthUsage = (WealthUsage)Convert.ToInt32(row["WealthUseID"]);
+                gclass150.WealthUsageType = (WealthUsageType)Convert.ToInt32(row["WealthUseID"]);
                 gclass150.DisplayOrder = Convert.ToDecimal(row["DisplayOrder"]);
                 gclass150.Income = Convert.ToBoolean(row["Income"]);
                 gclass150.Description = row["Description"].ToString();
-                this.WealthUsageDictionary.Add(gclass150.WealthUsage, gclass150);
+                this.WealthUsageDictionary.Add(gclass150.WealthUsageType, gclass150);
             }
         }
         catch (DbException ex)
@@ -533,11 +534,11 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_MineralDataType").Rows)
             {
                 MineralUsageData gclass154 = new MineralUsageData();
-                gclass154.MineralUsage = (MineralUsage)Convert.ToInt32(row["MineralDataType"]);
+                gclass154.MineralUsageType = (MineralUsageType)Convert.ToInt32(row["MineralDataType"]);
                 gclass154.DisplayOrder = Convert.ToInt32(row["DisplayOrder"]);
                 gclass154.Income = Convert.ToBoolean(row["Income"]);
                 gclass154.string_0 = row["Description"].ToString();
-                this.MineralUsageDataDictionary.Add(gclass154.MineralUsage, gclass154);
+                this.MineralUsageDataDictionary.Add(gclass154.MineralUsageType, gclass154);
             }
         }
         catch (DbException ex)
@@ -633,7 +634,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery("SELECT * FROM DIM_CommanderBonusType").Rows)
             {
-                CommanderBonus gclass50 = new CommanderBonus();
+                CommanderBonusDefinition gclass50 = new CommanderBonusDefinition();
                 gclass50.CommanderBonusType = (CommanderBonusType)Convert.ToInt32(row["BonusID"]);
                 gclass50.DisplayOrder = Convert.ToInt32(row["DisplayOrder"]);
                 gclass50.MaximumBonus = Convert.ToDecimal(row["MaximumBonus"]);
@@ -667,8 +668,8 @@ public partial class GClass0
             {
                 AutomatedGroundTemplateDesign gclass23 = new AutomatedGroundTemplateDesign();
                 int int32 = Convert.ToInt32(row["RequiredTechID"]);
-                if (this.TechDataDictionary.ContainsKey(int32))
-                    gclass23.RequiredTechData = this.TechDataDictionary[int32];
+                if (this.TechSystems.ContainsKey(int32))
+                    gclass23.RequiredTechData = this.TechSystems[int32];
                 gclass23.GroundTemplateDesignType = (AutomatedGroundTemplateDesignType)Convert.ToInt32(row["AutomatedTemplateID"]);
                 gclass23.GroundFormationFieldPosition =
                     (AuroraGroundFormationFieldPosition)Convert.ToInt32(row["FieldPosition"]);
@@ -936,7 +937,7 @@ public partial class GClass0
                 RankTheme gclass60 = new RankTheme();
                 gclass60.ThemeID = Convert.ToInt32(row["ThemeID"]);
                 gclass60.ThemeName = row["ThemeName"].ToString();
-                gclass60.RankThemeEntries = new List<RankThemeEntry>();
+                gclass60.RankThemeEntries = new List<RacialRank>();
                 this.RankThemeDictionary.Add(gclass60.ThemeID, gclass60);
             }
 
@@ -959,7 +960,7 @@ public partial class GClass0
                     string str1 = row["RankName"].ToString();
                     if (str1 != "")
                     {
-                        RankThemeEntry gclass61 = new RankThemeEntry()
+                        RacialRank gclass61 = new RacialRank()
                         {
                             CommanderType = AuroraCommanderType.Naval,
                             RankName = str1,
@@ -976,7 +977,7 @@ public partial class GClass0
                     string str2 = row["GFRankName"].ToString();
                     if (str2 != "")
                     {
-                        RankThemeEntry gclass61 = new RankThemeEntry()
+                        RacialRank gclass61 = new RacialRank()
                         {
                             CommanderType = AuroraCommanderType.GroundForce,
                             RankName = str2,
@@ -1259,11 +1260,11 @@ public partial class GClass0
             {
                 AutomatedClassDesign gclass14 = new AutomatedClassDesign(this);
                 int int32_1 = Convert.ToInt32(row["KeyTechA"]);
-                if (int32_1 > 0 && this.TechDataDictionary.ContainsKey(int32_1))
-                    gclass14.KeyTechDataA = this.TechDataDictionary[int32_1];
+                if (int32_1 > 0 && this.TechSystems.ContainsKey(int32_1))
+                    gclass14.KeyTechDataA = this.TechSystems[int32_1];
                 int int32_2 = Convert.ToInt32(row["KeyTechB"]);
-                if (int32_2 > 0 && this.TechDataDictionary.ContainsKey(int32_2))
-                    gclass14.KeyTechDataB = this.TechDataDictionary[int32_2];
+                if (int32_2 > 0 && this.TechSystems.ContainsKey(int32_2))
+                    gclass14.KeyTechDataB = this.TechSystems[int32_2];
                 int int32_3 = Convert.ToInt32(row["HullID"]);
                 if (int32_3 > 0 && this.ShipHullDictionary.ContainsKey(int32_3))
                     gclass14.ShipHull = this.ShipHullDictionary[int32_3];
@@ -1283,7 +1284,7 @@ public partial class GClass0
                 gclass14.BeamFireControl = (BFCDesignType)Convert.ToInt32(row["BeamFireControl"]);
                 gclass14.SpinalLaser = (SpinalLaserDesignType)Convert.ToInt32(row["SpinalLaser"]);
                 gclass14.HullSizeType = (HullSizeDesignType)Convert.ToInt32(row["HullSizeType"]);
-                gclass14.SurrenderStatus = (SurrenderStatusDesignType)Convert.ToInt32(row["SurrenderStatus"]);
+                gclass14.SurrenderStatus = (SurrenderStatus)Convert.ToInt32(row["SurrenderStatus"]);
                 gclass14.HullSize = Convert.ToInt32(row["HullSize"]);
                 gclass14.EngineNumber = Convert.ToInt32(row["EngineNumber"]);
                 gclass14.RandomEngineElement = Convert.ToInt32(row["RandomEngineElement"]);
@@ -1410,7 +1411,8 @@ public partial class GClass0
                     SizeText = row["SizeText"].ToString(),
                     SpectralClass = row["SpectralClass"].ToString()
                 };
-                gclass217.StellarDescription = $"{gclass217.SpectralClass}{gclass217.SpectralNumber.ToString()}-{gclass217.SizeText}";
+                gclass217.StellarDescription =
+                    $"{gclass217.SpectralClass}{gclass217.SpectralNumber.ToString()}-{gclass217.SizeText}";
                 this.StarTypeDictionary.Add(gclass217.StellarTypeID, gclass217);
             }
         }
@@ -1449,12 +1451,12 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_ResearchField").Rows)
             {
                 ResearchFieldData gclass162 = new ResearchFieldData();
-                gclass162.ResearchFieldID = (AuroraResearchField)Convert.ToInt32(row["ResearchFieldID"]);
+                gclass162.ResearchFieldType = (AuroraResearchFieldType)Convert.ToInt32(row["ResearchFieldID"]);
                 gclass162.FieldName = row["FieldName"].ToString();
                 gclass162.ShortName = row["ShortName"].ToString();
                 gclass162.Abbreviation = row["Abbreviation"].ToString();
                 gclass162.bDoNotDisplay = Convert.ToBoolean(row["DoNotDisplay"]);
-                this.ResearchFieldDictionary.Add(gclass162.ResearchFieldID, gclass162);
+                this.ResearchFieldDictionary.Add(gclass162.ResearchFieldType, gclass162);
             }
         }
         catch (DbException ex)
@@ -1475,9 +1477,9 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_TechType").Rows)
             {
                 TechTypeData gclass163 = new TechTypeData();
-                AuroraResearchField researchFieldID = (AuroraResearchField)Convert.ToInt32(row["FieldID"]);
-                if (this.ResearchFieldDictionary.ContainsKey(researchFieldID))
-                    gclass163.ResearchField = this.ResearchFieldDictionary[researchFieldID];
+                AuroraResearchFieldType researchFieldType = (AuroraResearchFieldType)Convert.ToInt32(row["FieldID"]);
+                if (this.ResearchFieldDictionary.ContainsKey(researchFieldType))
+                    gclass163.ResearchField = this.ResearchFieldDictionary[researchFieldType];
                 gclass163.TechType = (TechType)Convert.ToInt32(row["TechTypeID"]);
                 gclass163.DistributeLowerTech = Convert.ToBoolean(row["DistributeLowerTech"]);
                 gclass163.RuinTechType = Convert.ToBoolean(row["RuinTechType"]);
@@ -1506,9 +1508,9 @@ public partial class GClass0
                 TechType int32 = (TechType)Convert.ToInt32(row["TechTypeID"]);
                 if (this.TechTypeDataDictionary.ContainsKey(int32))
                     designPhilosophyTechProgression.gclass163_0 = this.TechTypeDataDictionary[int32];
-                AuroraResearchField key = (AuroraResearchField)Convert.ToInt32(row["ResearchField"]);
+                AuroraResearchFieldType key = (AuroraResearchFieldType)Convert.ToInt32(row["ResearchField"]);
                 if (!this.ResearchFieldDictionary.ContainsKey(key))
-                    key = AuroraResearchField.ConstructionProduction;
+                    key = AuroraResearchFieldType.ConstructionProduction;
                 designPhilosophyTechProgression.ResearchField = this.ResearchFieldDictionary[key];
                 designPhilosophyTechProgression.TechProgressionCategoryID = (TechProgressionCategoryType)Convert.ToInt32(row["TechProgressionCategoryID"]);
                 designPhilosophyTechProgression.ProgressionOrder = Convert.ToInt32(row["ProgressionOrder"]);
@@ -2121,8 +2123,8 @@ public partial class GClass0
                     ? this.StandingOrderDictionary[AuroraStandingOrder.NoOrder]
                     : this.StandingOrderDictionary[int32_2];
                 int int32_3 = Convert.ToInt32(row["TechRequirementA"]);
-                if (this.TechDataDictionary.ContainsKey(int32_3))
-                    gclass9.gclass164_0 = this.TechDataDictionary[int32_3];
+                if (this.TechSystems.ContainsKey(int32_3))
+                    gclass9.gclass164_0 = this.TechSystems[int32_3];
                 this.OperationalGroupDictionary.Add(gclass9.OperationalGroupId, gclass9);
             }
         }
@@ -2185,9 +2187,9 @@ public partial class GClass0
             {
                 GroundUnitBaseTypeData gclass96 = new GroundUnitBaseTypeData();
                 int int32 = Convert.ToInt32(row["TechSystemID"]);
-                if (this.TechDataDictionary.ContainsKey(int32))
+                if (this.TechSystems.ContainsKey(int32))
                 {
-                    gclass96.gclass164_0 = this.TechDataDictionary[int32];
+                    gclass96.gclass164_0 = this.TechSystems[int32];
                     gclass96.genum112_0 = (GroundUnitBaseType)Convert.ToInt32(row["UnitBaseTypeID"]);
                     gclass96.int_0 = Convert.ToInt32(row["HitPoints"]);
                     gclass96.int_1 = Convert.ToInt32(row["DisplayOrder"]);
@@ -2217,9 +2219,9 @@ public partial class GClass0
             {
                 ArmourTypeData gclass97 = new ArmourTypeData();
                 int int32 = Convert.ToInt32(row["TechSystemID"]);
-                if (this.TechDataDictionary.ContainsKey(int32))
+                if (this.TechSystems.ContainsKey(int32))
                 {
-                    gclass97.gclass164_0 = this.TechDataDictionary[int32];
+                    gclass97.gclass164_0 = this.TechSystems[int32];
                     gclass97.int_0 = Convert.ToInt32(row["ArmourTypeID"]);
                     gclass97.genum112_0 = (GroundUnitBaseType)Convert.ToInt32(row["BaseUnitType"]);
                     gclass97.decimal_0 = Convert.ToDecimal(row["ArmourStrength"]);

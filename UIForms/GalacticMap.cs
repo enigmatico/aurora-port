@@ -28,7 +28,7 @@ public class GalacticMap : Form
     public MapLabelData122 gclass122_0;
     public MapLabelData122 gclass122_1;
     public NamingTheme gclass140_0;
-    public AlienRaceInfo gclass110_0;
+    public AlienRaceIntel gclass110_0;
     public int int_0;
     public int int_1;
     public int int_2;
@@ -43,7 +43,9 @@ public class GalacticMap : Form
     private bool bool_3;
     private bool bool_4 = true;
     private bool bool_5;
-    private IContainer icontainer_0;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+    
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     private ComboBox cboRaces;
     private TabControl tabSidebar;
     private TabPage tabDisplay;
@@ -387,7 +389,7 @@ public class GalacticMap : Form
             this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_183(this.chkAllied.CheckState, this.chkFriendly.CheckState,
                 this.chkNeutral.CheckState, this.chkHostile.CheckState, this.chkCivilian.CheckState,
-                (AlienRaceInfo)this.cboContactRaceFilter.SelectedItem);
+                (AlienRaceIntel)this.cboContactRaceFilter.SelectedItem);
             this.gclass21_0.method_182(this.chkUseMaxCCDisplay.CheckState);
             SystemBodyData gclass1 = this.gclass21_0.method_189();
             this.gclass0_0.bool_9 = true;
@@ -451,7 +453,7 @@ public class GalacticMap : Form
             this.chkNoAutoRoute.CheckState = !this.gclass202_0.bNoAutoRoute ? CheckState.Unchecked : CheckState.Checked;
             this.chkRestricted.CheckState = !this.gclass202_0.bMilitaryRestrictedSystem ? CheckState.Unchecked : CheckState.Checked;
             this.chkMineralSearchFlag.CheckState = !this.gclass202_0.bMineralSearchFlag ? CheckState.Unchecked : CheckState.Checked;
-            GClass62 gclass62 = this.gclass21_0.method_186(this.cboSector, this.gclass202_0);
+            Sector gclass62 = this.gclass21_0.method_186(this.cboSector, this.gclass202_0);
             this.cboSector.SelectedItem =
                 this.gclass202_0.gclass62_0 == null ? gclass62 : (object)this.gclass202_0.gclass62_0;
             this.gclass0_0.bool_9 = false;
@@ -570,7 +572,7 @@ public class GalacticMap : Form
             if ((string)checkBox.Tag == "UpdateContacts")
                 this.gclass21_0.method_183(this.chkAllied.CheckState, this.chkFriendly.CheckState,
                     this.chkNeutral.CheckState, this.chkHostile.CheckState, this.chkCivilian.CheckState,
-                    (AlienRaceInfo)this.cboContactRaceFilter.SelectedItem);
+                    (AlienRaceIntel)this.cboContactRaceFilter.SelectedItem);
             this.Refresh();
         }
         catch (Exception ex)
@@ -585,10 +587,10 @@ public class GalacticMap : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0.ContactFilterRace = (AlienRaceInfo)this.cboContactRaceFilter.SelectedValue;
+            this.gclass21_0.ContactFilterRace = (AlienRaceIntel)this.cboContactRaceFilter.SelectedValue;
             this.gclass21_0.method_183(this.chkAllied.CheckState, this.chkFriendly.CheckState,
                 this.chkNeutral.CheckState, this.chkHostile.CheckState, this.chkCivilian.CheckState,
-                (AlienRaceInfo)this.cboContactRaceFilter.SelectedItem);
+                (AlienRaceIntel)this.cboContactRaceFilter.SelectedItem);
             this.Refresh();
         }
         catch (Exception ex)
@@ -787,7 +789,7 @@ public class GalacticMap : Form
                 .Where<MissileSalvo>(gclass132_0 =>
                     gclass132_0.Race == this.gclass21_0 &&
                     gclass132_0.System == this.gclass202_0.ActualSystem)
-                .OrderBy<MissileSalvo, int>(gclass132_0 => gclass132_0.int_1).ToList<MissileSalvo>();
+                .OrderBy<MissileSalvo, int>(gclass132_0 => gclass132_0.MissileSalvoID).ToList<MissileSalvo>();
             this.lstvMissiles.Items.Clear();
             this.lstvMissiles.Items.Add(new ListViewItem("Missile")
             {
@@ -798,7 +800,8 @@ public class GalacticMap : Form
             });
             foreach (MissileSalvo gclass132 in list)
                 this.lstvMissiles.Items.Add(
-                    new ListViewItem($"{gclass132.RemainingDecoys.Count.ToString()}x {gclass132.RaceMissile.Name}")
+                    new ListViewItem(string.Format("{0}x {1}", gclass132.RemainingDecoys.Count.ToString(),
+                        gclass132.RaceMissile.Name))
                     {
                         SubItems =
                         {
@@ -834,7 +837,7 @@ public class GalacticMap : Form
         {
             if (this.gclass0_0.bool_9 || this.gclass202_0 == null)
                 return;
-            this.gclass202_0.gclass110_0 = (AlienRaceInfo)this.cboAlienRace.SelectedValue;
+            this.gclass202_0.gclass110_0 = (AlienRaceIntel)this.cboAlienRace.SelectedValue;
             this.Refresh();
         }
         catch (Exception ex)
@@ -962,7 +965,9 @@ public class GalacticMap : Form
                 if (this.gclass0_0.gclass42_0 == null)
                     return;
                 if (MessageBox.Show(
-                        $" Are you sure you want to award the {this.gclass0_0.gclass42_0.MedalName} to all officers with the selected command types in {this.gclass202_0.Name}?",
+                        string.Format(
+                            " Are you sure you want to award the {0} to all officers with the selected command types in {1}?",
+                            this.gclass0_0.gclass42_0.MedalName, this.gclass202_0.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
 
@@ -973,12 +978,12 @@ public class GalacticMap : Form
                     .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.PopulationData != null)
                     .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.PopulationData.gclass202_0 == this.gclass202_0)
                     .ToList<GroundUnitFormationData>();
-                List<GClass55> list = this.gclass0_0.dictionary_42.Values.Where<GClass55>(
-                    v => localList_0.Contains(v.gclass40_0)
-                ).ToList<GClass55>();
-                list.AddRange(gclass0_0.dictionary_42.Values
-                    .Where(gclass55_0 => gclass55_0.gclass103_0 != null)
-                    .Where<GClass55>(v => localList_1.Contains(v.gclass103_0)).ToList<GClass55>());
+                List<Commander> list = this.gclass0_0.ActiveCommanders.Values.Where<Commander>(
+                    v => localList_0.Contains(v.TransportShip)
+                ).ToList<Commander>();
+                list.AddRange(gclass0_0.ActiveCommanders.Values
+                    .Where(gclass55_0 => gclass55_0.CommandingFormation != null)
+                    .Where<Commander>(v => localList_1.Contains(v.CommandingFormation)).ToList<Commander>());
                 this.gclass21_0.method_109(list.Distinct().ToList(), this.gclass0_0.gclass42_0);
             }
         }
@@ -1036,7 +1041,9 @@ public class GalacticMap : Form
             if (((CheckBox)sender).CheckState == CheckState.Checked)
             {
                 if (MessageBox.Show(
-                        $" Are you sure you want to restrict the {this.gclass202_0.Name} system to military traffic? Any civilian freighters scheduled to enter this system will abandon their cargo and seek new trade runs. Colony ships will be diverted.",
+                        string.Format(
+                            " Are you sure you want to restrict the {0} system to military traffic? Any civilian freighters scheduled to enter this system will abandon their cargo and seek new trade runs. Colony ships will be diverted.",
+                            this.gclass202_0.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     this.chkRestricted.CheckState = CheckState.Unchecked;
@@ -1109,7 +1116,7 @@ public class GalacticMap : Form
             }
 
             this.gclass21_0.ShipIconLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass21_0.HullPic}");
+                Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath, this.gclass21_0.HullPic));
             this.pbShip.Image = this.gclass21_0.ShipIconLoadedImg;
         }
         catch (Exception ex)
@@ -1132,7 +1139,8 @@ public class GalacticMap : Form
             }
 
             this.gclass21_0.SpaceStationPicLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\StationIcons\\{this.gclass21_0.SpaceStationPic}");
+                Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                    this.gclass21_0.SpaceStationPic));
             this.pbStation.Image = this.gclass21_0.SpaceStationPicLoadedImg;
         }
         catch (Exception ex)
@@ -1173,7 +1181,9 @@ public class GalacticMap : Form
             else
             {
                 if (MessageBox.Show(
-                        $" Are you sure you want to trigger a supernova in {this.gclass202_0.Name}? This will cause massive radiation damage to many systems and potentially destroy shipping.",
+                        string.Format(
+                            " Are you sure you want to trigger a supernova in {0}? This will cause massive radiation damage to many systems and potentially destroy shipping.",
+                            this.gclass202_0.Name),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass202_0.ActualSystem.method_1(1.0);
@@ -1286,9 +1296,9 @@ public class GalacticMap : Form
         {
             this.tvContacts.SelectedNode = e.Node;
             if (this.tvContacts.SelectedNode == null || this.tvContacts.SelectedNode.Tag == null ||
-                !(this.tvContacts.SelectedNode.Tag is AlienRaceInfo))
+                !(this.tvContacts.SelectedNode.Tag is AlienRaceIntel))
                 return;
-            ((AlienRaceInfo)this.tvContacts.SelectedNode.Tag).bool_5 = this.tvContacts.SelectedNode.IsExpanded;
+            ((AlienRaceIntel)this.tvContacts.SelectedNode.Tag).bool_5 = this.tvContacts.SelectedNode.IsExpanded;
         }
         catch (Exception ex)
         {
@@ -1369,8 +1379,8 @@ public class GalacticMap : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass202_0.gclass62_0 = (GClass62)this.cboSector.SelectedValue;
-            this.gclass202_0.SectorID = this.gclass202_0.gclass62_0.int_0;
+            this.gclass202_0.gclass62_0 = (Sector)this.cboSector.SelectedValue;
+            this.gclass202_0.SectorID = this.gclass202_0.gclass62_0.SectorCommandID;
             if (this.gclass202_0.SectorID == 0)
                 this.gclass202_0.gclass62_0 = null;
             this.Refresh();
@@ -1411,7 +1421,7 @@ public class GalacticMap : Form
             }
 
             this.gclass21_0.ShipIconLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass21_0.HullPic}");
+                Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath, this.gclass21_0.HullPic));
             this.pbShip.Image = this.gclass21_0.ShipIconLoadedImg;
             this.Refresh();
         }
@@ -1433,7 +1443,8 @@ public class GalacticMap : Form
             }
 
             this.gclass21_0.SpaceStationPicLoadedImg =
-                Image.FromFile($"{Application.StartupPath}\\StationIcons\\{this.gclass21_0.SpaceStationPic}");
+                Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                    this.gclass21_0.SpaceStationPic));
             this.pbStation.Image = this.gclass21_0.SpaceStationPicLoadedImg;
             this.Refresh();
         }
@@ -1636,7 +1647,8 @@ public class GalacticMap : Form
                 {
                     GClass69 gclass69 = new GClass69(local202, gclass85_1);
                     // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
-                    ToolStripMenuItem menuItem4 = new ToolStripMenuItem($"{gclass85_1.FleetName} - Tactical", null, this.method_16);
+                    ToolStripMenuItem menuItem4 = new ToolStripMenuItem(
+                        string.Format("{0} - Tactical", gclass85_1.FleetName), null, this.method_16);
                     menuItem4.Tag = gclass69;
                     contextMenu.Items.Add(menuItem4);
                 }
@@ -1686,12 +1698,7 @@ public class GalacticMap : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

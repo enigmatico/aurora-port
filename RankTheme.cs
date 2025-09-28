@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public class RankTheme
 {
     public int ThemeID;
-    public List<RankThemeEntry> RankThemeEntries;
+    public List<RacialRank> RankThemeEntries;
 
     public string ThemeName { get; set; }
 }

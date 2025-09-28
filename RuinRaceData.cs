@@ -28,8 +28,8 @@ public class RuinRaceData
             TechSystem gclass164_1 = this.gclass0_0.method_493(TechType.LaserFocalSize, this.Level);
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.LaserWavelength, this.Level);
             TechSystem gclass164_3 = this.gclass0_0.method_493(TechType.CapacitorRechargeRate, this.Level);
-            TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[26596];
-            TechSystem gclass164_5_1 = this.gclass0_0.TechDataDictionary[55406];
+            TechSystem gclass164_4 = this.gclass0_0.TechSystems[26596];
+            TechSystem gclass164_5_1 = this.gclass0_0.TechSystems[55406];
             if (AuroraUtils.GetRandomInteger(3) < 3)
             {
                 ShipComponent gclass230 = this.gclass0_0.method_473(null, gclass164_1, gclass164_2, gclass164_3,
@@ -81,7 +81,7 @@ public class RuinRaceData
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.MaximumParticleBeamRange, this.Level);
             TechSystem gclass164_4 = this.gclass0_0.method_493(TechType.ParticleLance, this.Level);
             TechSystem gclass164_3 = this.gclass0_0.method_493(TechType.CapacitorRechargeRate, this.Level);
-            TechSystem gclass164_5 = this.gclass0_0.TechDataDictionary[55406];
+            TechSystem gclass164_5 = this.gclass0_0.TechSystems[55406];
             ShipComponent gclass230 = this.gclass0_0.method_467(null, gclass164_1, gclass164_2, gclass164_3, gclass164_4,
                 gclass164_5, null, null, false);
             return this.gclass0_0.method_489(null, AuroraComponentType.ParticleBeam, gclass230.decimal_1,
@@ -122,7 +122,7 @@ public class RuinRaceData
         {
             TechSystem gclass164_1 = this.gclass0_0.method_493(TechType.CarronadeCalibre, this.Level);
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.CapacitorRechargeRate, this.Level);
-            TechSystem gclass164_3 = this.gclass0_0.TechDataDictionary[55406];
+            TechSystem gclass164_3 = this.gclass0_0.TechSystems[55406];
             ShipComponent gclass230 =
                 this.gclass0_0.method_470(null, gclass164_1, gclass164_2, gclass164_3, null, null, false);
             return this.gclass0_0.method_489(null, AuroraComponentType.Carronade, gclass230.decimal_1,
@@ -144,8 +144,8 @@ public class RuinRaceData
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.GaussCannonVelocity, this.Level);
             TechSystem gclass164_1_2 = this.gclass0_0.method_493(TechType.TurretRotationGear, this.Level);
             TechSystem gclass164_1 = this.gclass0_0.method_493(TechType.BeamFireControlDistanceRating, this.Level);
-            TechSystem gclass164_3 = this.gclass0_0.TechDataDictionary[26645];
-            TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[24375];
+            TechSystem gclass164_3 = this.gclass0_0.TechSystems[26645];
+            TechSystem gclass164_4 = this.gclass0_0.TechSystems[24375];
             ShipComponent gclass230_1 =
                 this.gclass0_0.method_466(null, gclass164_1_1, gclass164_2, gclass164_3, null, null, false);
             ShipComponent gclass230_2 = this.gclass0_0.method_489(null, AuroraComponentType.GaussCannon,
@@ -193,7 +193,7 @@ public class RuinRaceData
         {
             TechSystem gclass164_1 = this.gclass0_0.method_493(TechType.EngineTechnology, this.Level);
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.FuelConsumption, this.Level);
-            TechSystem gclass164_3 = this.gclass0_0.TechDataDictionary[26091];
+            TechSystem gclass164_3 = this.gclass0_0.TechSystems[26091];
             int decimal_14 = 5 + this.Level * 5;
             ShipComponent gclass230 = this.gclass0_0.method_457(null, gclass164_1, gclass164_2, gclass164_3, 1M, decimal_14,
                 null, null, null, false);
@@ -216,7 +216,7 @@ public class RuinRaceData
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.FuelConsumption, this.Level);
             TechSystem gclass164_3 = this.gclass0_0.method_493(TechType.MinEngineThrustModifier, this.Level);
             TechSystem gclass164_4 = this.gclass0_0.method_493(TechType.MaximumEngineSize, this.Level);
-            TechSystem gclass164_3_1 = this.gclass0_0.TechDataDictionary[26091];
+            TechSystem gclass164_3_1 = this.gclass0_0.TechSystems[26091];
             ShipComponent gclass230 = this.gclass0_0.method_457(null, gclass164_1, gclass164_2, gclass164_3_1,
                 gclass164_3.decimal_0, gclass164_4.decimal_0, null, null, null, false);
             return this.gclass0_0.method_489(null, AuroraComponentType.Engine, gclass230.decimal_1, gclass230.decimal_3,
@@ -260,10 +260,10 @@ public class RuinRaceData
             TechSystem gclass164_1 = this.gclass0_0.method_493(TechType.JumpDriveEfficiency, this.Level);
             TechSystem gclass164_2 = this.gclass0_0.method_493(TechType.MaxJumpSquadronSize, this.Level);
             TechSystem gclass164_3 = this.gclass0_0.method_493(TechType.MaxSquadronJumpRadius, this.Level);
-            TechSystem gclass164_4 = this.gclass0_0.TechDataDictionary[33302];
+            TechSystem gclass164_4 = this.gclass0_0.TechSystems[33302];
             Decimal decimal_13 = AuroraUtils.GetRandomInteger(100) + AuroraUtils.GetRandomInteger(100) + 10;
             if (AuroraUtils.GetRandomInteger(3) == 1)
-                gclass164_4 = this.gclass0_0.TechDataDictionary[33303];
+                gclass164_4 = this.gclass0_0.TechSystems[33303];
             ShipComponent gclass230 = this.gclass0_0.method_456(null, decimal_13, gclass164_1, gclass164_2, gclass164_3,
                 gclass164_4, null, null, false);
             return this.gclass0_0.method_489(null, AuroraComponentType.JumpDrive, gclass230.decimal_1,

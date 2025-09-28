@@ -17,7 +17,7 @@ public class AddMoons : Form
 {
     private GClass0 gclass0_0;
     private SystemBodyData gclass1_0;
-    private IContainer icontainer_0;
+    
     private ComboBox cboMoonType1;
     private Label lblDistance;
     private Button cmdCancel;
@@ -170,12 +170,7 @@ public class AddMoons : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

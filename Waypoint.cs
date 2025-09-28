@@ -86,7 +86,7 @@ public class Waypoint
                 str1 = "Temporary #";
             string str2 = str1 + this.Number.ToString();
             if (bool_1 && this.OrbitBody != null)
-                str2 = $"{str2}  ({this.OrbitBody.method_78(this.Race)})";
+                str2 = string.Format((string)"{0}  ({1})", (object)str2, (object)this.OrbitBody.method_78(this.Race));
             return str2;
         }
         catch (Exception ex)

@@ -16,7 +16,7 @@ public class frmMedalAward : Form
 {
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
-    private IContainer icontainer_0;
+    
     private Button cmdAwardMedal;
     private Button cmdCancel;
     private FlowLayoutPanel flpCommandType;
@@ -108,13 +108,6 @@ public class frmMedalAward : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 1062);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

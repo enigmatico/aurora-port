@@ -3,40 +3,40 @@ using System.Collections.Generic;
 using Aurora;
 
 #nullable disable
-public partial class GClass3
+public partial class NPRSurveyOperation
 {
     private sealed class Class417
     {
         public double double_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation thisRef;
     }
 
 
     private sealed class Class418
     {
-        public FleetData gclass85_0;
-        public GClass3.Class417 class417_0;
+        public FleetData Fleet;
+        public NPRSurveyOperation.Class417 class417_0;
 
         internal bool method_0(ShipData gclass40_0)
         {
-            return gclass40_0.gclass85_0 == this.gclass85_0;
+            return gclass40_0.gclass85_0 == this.Fleet;
         }
 
         internal bool method_1(JumpPoint gclass120_0)
         {
-            return this.class417_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
+            return this.class417_0.thisRef.Game.GetDistanceBetween(this.Fleet.XCoord, this.Fleet.YCoord,
                 gclass120_0.XCoord, gclass120_0.YCoord) == 0.0;
         }
 
         internal bool method_2(Contact gclass65_0)
         {
-            return this.class417_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
+            return this.class417_0.thisRef.Game.GetDistanceBetween(this.Fleet.XCoord, this.Fleet.YCoord,
                 gclass65_0.Xcor, gclass65_0.Ycor) <= this.class417_0.double_0;
         }
 
         internal bool method_3(Contact gclass65_0)
         {
-            return this.class417_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
+            return this.class417_0.thisRef.Game.GetDistanceBetween(this.Fleet.XCoord, this.Fleet.YCoord,
                 gclass65_0.Xcor, gclass65_0.Ycor) <= this.class417_0.double_0;
         }
     }
@@ -45,7 +45,7 @@ public partial class GClass3
     private sealed class Class419
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal bool method_0(ShipData gclass40_0)
         {
@@ -57,17 +57,17 @@ public partial class GClass3
     private sealed class Class420
     {
         public double double_0;
-        public GClass3.Class419 class419_0;
+        public NPRSurveyOperation.Class419 class419_0;
 
         internal bool method_0(Contact gclass65_0)
         {
-            return this.class419_0.gclass3_0.gclass0_0.GetDistanceBetween(this.class419_0.gclass85_0.XCoord,
+            return this.class419_0.gclass3_0.Game.GetDistanceBetween(this.class419_0.gclass85_0.XCoord,
                 this.class419_0.gclass85_0.YCoord, gclass65_0.Xcor, gclass65_0.Ycor) <= this.double_0;
         }
 
         internal bool method_1(Contact gclass65_0)
         {
-            return this.class419_0.gclass3_0.gclass0_0.GetDistanceBetween(this.class419_0.gclass85_0.XCoord,
+            return this.class419_0.gclass3_0.Game.GetDistanceBetween(this.class419_0.gclass85_0.XCoord,
                 this.class419_0.gclass85_0.YCoord, gclass65_0.Xcor, gclass65_0.Ycor) <= this.double_0;
         }
     }
@@ -76,18 +76,18 @@ public partial class GClass3
     private sealed class Class421
     {
         public double double_0;
-        public GClass3.Class420 class420_0;
+        public NPRSurveyOperation.Class420 class420_0;
 
         internal bool method_0(Contact gclass65_0)
         {
-            return this.class420_0.class419_0.gclass3_0.gclass0_0.GetDistanceBetween(
+            return this.class420_0.class419_0.gclass3_0.Game.GetDistanceBetween(
                 this.class420_0.class419_0.gclass85_0.XCoord, this.class420_0.class419_0.gclass85_0.YCoord,
                 gclass65_0.Xcor, gclass65_0.Ycor) <= this.double_0;
         }
 
         internal bool method_1(Contact gclass65_0)
         {
-            return this.class420_0.class419_0.gclass3_0.gclass0_0.GetDistanceBetween(
+            return this.class420_0.class419_0.gclass3_0.Game.GetDistanceBetween(
                 this.class420_0.class419_0.gclass85_0.XCoord, this.class420_0.class419_0.gclass85_0.YCoord,
                 gclass65_0.Xcor, gclass65_0.Ycor) <= this.double_0;
         }
@@ -97,11 +97,11 @@ public partial class GClass3
     private sealed class Class422
     {
         public double double_0;
-        public GClass3.Class421 class421_0;
+        public NPRSurveyOperation.Class421 class421_0;
 
         internal bool method_0(Contact gclass65_0)
         {
-            return this.class421_0.class420_0.class419_0.gclass3_0.gclass0_0.GetDistanceBetween(
+            return this.class421_0.class420_0.class419_0.gclass3_0.Game.GetDistanceBetween(
                        this.class421_0.class420_0.class419_0.gclass85_0.XCoord,
                        this.class421_0.class420_0.class419_0.gclass85_0.YCoord, gclass65_0.Xcor,
                        gclass65_0.Ycor) <=
@@ -110,7 +110,7 @@ public partial class GClass3
 
         internal bool method_1(Contact gclass65_0)
         {
-            return this.class421_0.class420_0.class419_0.gclass3_0.gclass0_0.GetDistanceBetween(
+            return this.class421_0.class420_0.class419_0.gclass3_0.Game.GetDistanceBetween(
                        this.class421_0.class420_0.class419_0.gclass85_0.XCoord,
                        this.class421_0.class420_0.class419_0.gclass85_0.YCoord, gclass65_0.Xcor,
                        gclass65_0.Ycor) <=
@@ -124,7 +124,7 @@ public partial class GClass3
         public List<ShipData> list_0;
         public Species gclass194_0;
         public List<ShipData> list_1;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal bool method_0(Contact gclass65_0)
         {
@@ -138,7 +138,7 @@ public partial class GClass3
                    gclass65_0.ContactType == AuroraContactType.Shipyard;
         }
 
-        internal bool method_2(GClass117 gclass117_0)
+        internal bool method_2(AlienShipIntel gclass117_0)
         {
             return this.list_1.Contains(gclass117_0.gclass40_0);
         }
@@ -158,19 +158,19 @@ public partial class GClass3
 
     private sealed class Class425
     {
-        public GClass117 gclass117_0;
-        public GClass3.Class441 class441_0;
+        public AlienShipIntel gclass117_0;
+        public NPRSurveyOperation.Class441 class441_0;
         public Func<ShipData, Decimal> func_0;
 
         internal bool method_0(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass40_1 == this.gclass117_0.gclass40_0;
+            return gclass132_0.TargetShip == this.gclass117_0.gclass40_0;
         }
 
         internal bool method_1(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass40_1 == this.gclass117_0.gclass40_0 && gclass132_0.decimal_0 <
-                this.class441_0.class440_0.class423_0.gclass3_0.gclass0_0.GameTime;
+            return gclass132_0.TargetShip == this.gclass117_0.gclass40_0 && gclass132_0.LaunchTime <
+                this.class441_0.class440_0.class423_0.gclass3_0.Game.GameTime;
         }
 
         internal Decimal method_2(ShipData gclass40_0)
@@ -218,7 +218,7 @@ public partial class GClass3
 
         internal bool method_0(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass146_0 == this.gclass13_0.gclass146_0;
+            return gclass132_0.TargetPopulation == this.gclass13_0.gclass146_0;
         }
 
         internal Decimal method_1(ShipData gclass40_0)
@@ -276,11 +276,11 @@ public partial class GClass3
     private sealed class Class433
     {
         public GroundUnitFormationElement gclass39_0;
-        public GClass3.Class423 class423_0;
+        public NPRSurveyOperation.Class423 class423_0;
 
         internal bool method_0(ShipData gclass40_0)
         {
-            return this.class423_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass39_0.Formation.PopulationData.method_87(),
+            return this.class423_0.gclass3_0.Game.GetDistanceBetween(this.gclass39_0.Formation.PopulationData.method_87(),
                 this.gclass39_0.Formation.PopulationData.method_88(), gclass40_0.gclass85_0.XCoord,
                 gclass40_0.gclass85_0.YCoord) <= this.gclass39_0.GroundUnitClass.int_1;
         }
@@ -291,9 +291,9 @@ public partial class GClass3
     {
         public GClass13 gclass13_0;
 
-        internal bool method_0(GClass113 gclass113_0)
+        internal bool method_0(AlienPopulationIntel gclass113_0)
         {
-            return gclass113_0.gclass146_0 == this.gclass13_0.gclass146_0;
+            return gclass113_0.Population == this.gclass13_0.gclass146_0;
         }
     }
 
@@ -301,12 +301,12 @@ public partial class GClass3
     private sealed class Class435
     {
         public GClass13 gclass13_0;
-        public GClass3.Class423 class423_0;
+        public NPRSurveyOperation.Class423 class423_0;
 
         internal bool method_0(PopulationData gclass146_0)
         {
             return gclass146_0.SystemBodyData == this.gclass13_0.gclass146_0.SystemBodyData &&
-                   gclass146_0.Race == this.class423_0.gclass3_0.gclass202_0.Race;
+                   gclass146_0.Race == this.class423_0.gclass3_0.SystemSurvey.Race;
         }
     }
 
@@ -314,11 +314,11 @@ public partial class GClass3
     private sealed class Class436
     {
         public FleetData gclass85_0;
-        public GClass3.Class423 class423_0;
+        public NPRSurveyOperation.Class423 class423_0;
 
         internal bool method_0(FleetData gclass85_1)
         {
-            return this.class423_0.gclass3_0.gclass0_0.method_521(gclass85_1.XCoord, this.gclass85_0.XCoord,
+            return this.class423_0.gclass3_0.Game.method_521(gclass85_1.XCoord, this.gclass85_0.XCoord,
                 gclass85_1.YCoord, this.gclass85_0.YCoord, 100000.0);
         }
     }
@@ -330,7 +330,7 @@ public partial class GClass3
 
         internal bool method_0(MissileSalvo gclass132_0)
         {
-            return this.list_0.Contains(gclass132_0.gclass40_1);
+            return this.list_0.Contains(gclass132_0.TargetShip);
         }
     }
 
@@ -338,17 +338,17 @@ public partial class GClass3
     private sealed class Class438
     {
         public ShipData gclass40_0;
-        public GClass3.Class423 class423_0;
+        public NPRSurveyOperation.Class423 class423_0;
 
         internal double method_0(MissileSalvo gclass132_0)
         {
-            return this.class423_0.gclass3_0.gclass0_0.GetDistanceBetween(gclass132_0.double_0, gclass132_0.double_1,
+            return this.class423_0.gclass3_0.Game.GetDistanceBetween(gclass132_0.Xcor, gclass132_0.Ycor,
                 this.gclass40_0.gclass85_0.XCoord, this.gclass40_0.gclass85_0.YCoord);
         }
 
         internal double method_1(GClass116 gclass116_0)
         {
-            return this.class423_0.gclass3_0.gclass0_0.GetDistanceBetween(gclass116_0.double_0, gclass116_0.double_1,
+            return this.class423_0.gclass3_0.Game.GetDistanceBetween(gclass116_0.double_0, gclass116_0.double_1,
                 this.gclass40_0.gclass85_0.XCoord, this.gclass40_0.gclass85_0.YCoord);
         }
     }
@@ -368,14 +368,14 @@ public partial class GClass3
     private sealed class Class440
     {
         public ShipData gclass40_0;
-        public GClass3.Class423 class423_0;
+        public NPRSurveyOperation.Class423 class423_0;
 
         internal bool method_0(ShipData gclass40_1)
         {
-            return this.class423_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass40_0.gclass85_0.XCoord,
+            return this.class423_0.gclass3_0.Game.GetDistanceBetween(this.gclass40_0.gclass85_0.XCoord,
                        this.gclass40_0.gclass85_0.YCoord, gclass40_1.gclass85_0.XCoord,
                        gclass40_1.gclass85_0.YCoord) <=
-                   this.gclass40_0.gclass5_0.double_3;
+                   this.gclass40_0.NPRShipBehaviour.double_3;
         }
     }
 
@@ -383,15 +383,15 @@ public partial class GClass3
     private sealed class Class441
     {
         public List<ShipData> list_0;
-        public GClass3.Class440 class440_0;
+        public NPRSurveyOperation.Class440 class440_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
         {
-            return gclass103_0.RaceData == this.class440_0.gclass40_0.gclass21_0 &&
+            return gclass103_0.RaceData == this.class440_0.gclass40_0.Race &&
                    this.list_0.Contains(gclass103_0.ShipData);
         }
 
-        internal bool method_1(GClass117 gclass117_0)
+        internal bool method_1(AlienShipIntel gclass117_0)
         {
             return this.list_0.Contains(gclass117_0.gclass40_0);
         }
@@ -401,11 +401,11 @@ public partial class GClass3
     private sealed class Class442
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal double method_0(FleetData gclass85_1)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                 gclass85_1.XCoord, gclass85_1.YCoord);
         }
     }
@@ -414,11 +414,11 @@ public partial class GClass3
     private sealed class Class443
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal double method_0(FleetData gclass85_1)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.gclass3_0.gclass202_0.ActualSystem, gclass85_1.XCoord,
+            return this.gclass3_0.Game.GetDistanceToNearestGClass212(this.gclass3_0.SystemSurvey.ActualSystem, gclass85_1.XCoord,
                 gclass85_1.YCoord, this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
     }
@@ -426,17 +426,17 @@ public partial class GClass3
 
     private sealed class Class444
     {
-        public GClass210 gclass210_0;
+        public AetherGate gclass210_0;
         public List<ShipData> list_0;
         public List<ShipData> list_1;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return this.list_0.Contains(gclass117_0.gclass40_0);
         }
 
-        internal bool method_1(GClass117 gclass117_0)
+        internal bool method_1(AlienShipIntel gclass117_0)
         {
             return this.list_1.Contains(gclass117_0.gclass40_0);
         }
@@ -447,7 +447,7 @@ public partial class GClass3
     {
         public List<JumpPoint> list_0;
         public int int_0;
-        public GClass3.Class444 class444_0;
+        public NPRSurveyOperation.Class444 class444_0;
 
         internal bool method_0(FleetData gclass85_0)
         {
@@ -466,7 +466,7 @@ public partial class GClass3
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass40_0.gclass85_0 == this.gclass85_0;
         }
@@ -476,11 +476,11 @@ public partial class GClass3
     private sealed class Class447
     {
         public FleetData gclass85_0;
-        public GClass3.Class444 class444_0;
+        public NPRSurveyOperation.Class444 class444_0;
 
-        internal double method_0(GClass117 gclass117_0)
+        internal double method_0(AlienShipIntel gclass117_0)
         {
-            return this.class444_0.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.class444_0.gclass3_0.gclass202_0.ActualSystem,
+            return this.class444_0.gclass3_0.Game.GetDistanceToNearestGClass212(this.class444_0.gclass3_0.SystemSurvey.ActualSystem,
                 gclass117_0.gclass40_0.gclass85_0.XCoord, gclass117_0.gclass40_0.gclass85_0.YCoord,
                 this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
@@ -490,12 +490,12 @@ public partial class GClass3
     private sealed class Class448
     {
         public double double_0;
-        public GClass3.Class447 class447_0;
+        public NPRSurveyOperation.Class447 class447_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
-            return this.class447_0.class444_0.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(
-                this.class447_0.class444_0.gclass3_0.gclass202_0.ActualSystem,
+            return this.class447_0.class444_0.gclass3_0.Game.GetDistanceToNearestGClass212(
+                this.class447_0.class444_0.gclass3_0.SystemSurvey.ActualSystem,
                 gclass117_0.gclass40_0.gclass85_0.XCoord, gclass117_0.gclass40_0.gclass85_0.YCoord,
                 this.class447_0.gclass85_0.XCoord, this.class447_0.gclass85_0.YCoord) < this.double_0;
         }
@@ -505,11 +505,11 @@ public partial class GClass3
     private sealed class Class449
     {
         public FleetData gclass85_0;
-        public GClass3.Class444 class444_0;
+        public NPRSurveyOperation.Class444 class444_0;
 
         internal double method_0(ShipData gclass40_0)
         {
-            return this.class444_0.gclass3_0.gclass0_0.GetDistanceBetween(gclass40_0.gclass85_0.XCoord,
+            return this.class444_0.gclass3_0.Game.GetDistanceBetween(gclass40_0.gclass85_0.XCoord,
                 gclass40_0.gclass85_0.YCoord, this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
     }
@@ -518,17 +518,17 @@ public partial class GClass3
     private sealed class Class450
     {
         public FleetData gclass85_0;
-        public GClass3.Class445 class445_0;
+        public NPRSurveyOperation.Class445 class445_0;
 
         internal double method_0(MissileSalvo gclass132_0)
         {
-            return this.class445_0.class444_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord,
-                this.gclass85_0.YCoord, gclass132_0.double_0, gclass132_0.double_1);
+            return this.class445_0.class444_0.gclass3_0.Game.GetDistanceBetween(this.gclass85_0.XCoord,
+                this.gclass85_0.YCoord, gclass132_0.Xcor, gclass132_0.Ycor);
         }
 
         internal double method_1(JumpPoint gclass120_0)
         {
-            return this.class445_0.class444_0.gclass3_0.gclass0_0.GetDistanceBetween(gclass120_0.XCoord, gclass120_0.YCoord,
+            return this.class445_0.class444_0.gclass3_0.Game.GetDistanceBetween(gclass120_0.XCoord, gclass120_0.YCoord,
                 this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
     }
@@ -540,8 +540,8 @@ public partial class GClass3
 
         internal bool method_0(MissileSalvo gclass132_1)
         {
-            return gclass132_1.double_0 == this.gclass132_0.double_0 &&
-                   gclass132_1.double_1 == this.gclass132_0.double_1;
+            return gclass132_1.Xcor == this.gclass132_0.Xcor &&
+                   gclass132_1.Ycor == this.gclass132_0.Ycor;
         }
     }
 
@@ -549,12 +549,12 @@ public partial class GClass3
     private sealed class Class452
     {
         public FleetData gclass85_0;
-        public GClass3.Class445 class445_0;
+        public NPRSurveyOperation.Class445 class445_0;
 
         internal double method_0(MissileSalvo gclass132_0)
         {
-            return this.class445_0.class444_0.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord,
-                this.gclass85_0.YCoord, gclass132_0.double_0, gclass132_0.double_1);
+            return this.class445_0.class444_0.gclass3_0.Game.GetDistanceBetween(this.gclass85_0.XCoord,
+                this.gclass85_0.YCoord, gclass132_0.Xcor, gclass132_0.Ycor);
         }
     }
 
@@ -565,8 +565,8 @@ public partial class GClass3
 
         internal bool method_0(MissileSalvo gclass132_1)
         {
-            return gclass132_1.double_0 == this.gclass132_0.double_0 &&
-                   gclass132_1.double_1 == this.gclass132_0.double_1;
+            return gclass132_1.Xcor == this.gclass132_0.Xcor &&
+                   gclass132_1.Ycor == this.gclass132_0.Ycor;
         }
     }
 
@@ -574,7 +574,7 @@ public partial class GClass3
     private sealed class Class454
     {
         public FleetData gclass85_0;
-        public GClass3.Class444 class444_0;
+        public NPRSurveyOperation.Class444 class444_0;
 
         internal bool method_0(FleetData gclass85_1)
         {
@@ -584,13 +584,13 @@ public partial class GClass3
 
         internal double method_1(FleetData gclass85_1)
         {
-            return this.class444_0.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.gclass85_0.System.ActualSystem,
+            return this.class444_0.gclass3_0.Game.GetDistanceToNearestGClass212(this.gclass85_0.System.ActualSystem,
                 gclass85_1.XCoord, gclass85_1.YCoord, this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
 
         internal double method_2(FleetData gclass85_1)
         {
-            return this.class444_0.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.class444_0.gclass3_0.gclass202_0.ActualSystem,
+            return this.class444_0.gclass3_0.Game.GetDistanceToNearestGClass212(this.class444_0.gclass3_0.SystemSurvey.ActualSystem,
                 gclass85_1.XCoord, gclass85_1.YCoord, this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
 
@@ -608,7 +608,7 @@ public partial class GClass3
 
         internal double method_5(FleetData gclass85_1)
         {
-            return this.class444_0.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.class444_0.gclass3_0.gclass202_0.ActualSystem,
+            return this.class444_0.gclass3_0.Game.GetDistanceToNearestGClass212(this.class444_0.gclass3_0.SystemSurvey.ActualSystem,
                 gclass85_1.XCoord, gclass85_1.YCoord, this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
     }
@@ -618,7 +618,7 @@ public partial class GClass3
     {
         public List<ShipData> list_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return this.list_0.Contains(gclass117_0.gclass40_0);
         }
@@ -629,7 +629,7 @@ public partial class GClass3
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass40_0.gclass85_0 == this.gclass85_0;
         }
@@ -639,7 +639,7 @@ public partial class GClass3
             return gclass40_0.method_171(false) > this.gclass85_0.Speed;
         }
 
-        internal bool method_2(GClass117 gclass117_0)
+        internal bool method_2(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass40_0.gclass85_0 == this.gclass85_0;
         }
@@ -671,17 +671,17 @@ public partial class GClass3
     private sealed class Class459
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal double method_0(FleetData gclass85_1)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.gclass3_0.gclass202_0.ActualSystem, gclass85_1.XCoord,
+            return this.gclass3_0.Game.GetDistanceToNearestGClass212(this.gclass3_0.SystemSurvey.ActualSystem, gclass85_1.XCoord,
                 gclass85_1.YCoord, this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
 
         internal int method_1(FleetData gclass85_1)
         {
-            return this.gclass3_0.gclass0_0.method_35(this.gclass85_0.System.ActualSystem,
+            return this.gclass3_0.Game.method_35(this.gclass85_0.System.ActualSystem,
                 gclass85_1.System.ActualSystem, this.gclass85_0.Race);
         }
     }
@@ -707,7 +707,7 @@ public partial class GClass3
     private sealed class Class461
     {
         public Decimal decimal_0;
-        public GClass3.Class460 class460_0;
+        public NPRSurveyOperation.Class460 class460_0;
         public Func<FleetData, bool> func_0;
 
         internal bool method_0(FleetData gclass85_0)
@@ -721,11 +721,11 @@ public partial class GClass3
     private sealed class Class462
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal double method_0(FleetData gclass85_1)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(gclass85_1.XCoord, gclass85_1.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(gclass85_1.XCoord, gclass85_1.YCoord,
                 this.gclass85_0.XCoord, this.gclass85_0.YCoord);
         }
     }
@@ -733,12 +733,12 @@ public partial class GClass3
 
     private sealed class Class463
     {
-        public GClass3 gclass3_0;
-        public GClass117 gclass117_0;
+        public NPRSurveyOperation gclass3_0;
+        public AlienShipIntel gclass117_0;
 
         internal double method_0(FleetData gclass85_0)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord,
                 this.gclass117_0.gclass40_0.gclass85_0.XCoord, this.gclass117_0.gclass40_0.gclass85_0.YCoord);
         }
     }
@@ -763,12 +763,12 @@ public partial class GClass3
 
     private sealed class Class465
     {
-        public GClass3 gclass3_0;
-        public GClass117 gclass117_0;
+        public NPRSurveyOperation gclass3_0;
+        public AlienShipIntel gclass117_0;
 
         internal double method_0(FleetData gclass85_0)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord,
                 this.gclass117_0.gclass40_0.gclass85_0.XCoord, this.gclass117_0.gclass40_0.gclass85_0.YCoord);
         }
     }
@@ -812,7 +812,7 @@ public partial class GClass3
     private sealed class Class468
     {
         public WayPointType wayPointType_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal bool method_0(Waypoint gclass214_0)
         {
@@ -825,12 +825,12 @@ public partial class GClass3
     {
         public double double_0;
         public double double_1;
-        public GClass3.Class468 class468_0;
+        public NPRSurveyOperation.Class468 class468_0;
         public Func<Waypoint, double> func_0;
 
         internal double method_0(Waypoint gclass214_0)
         {
-            return this.class468_0.gclass3_0.gclass0_0.GetDistanceToNearestGClass212(this.class468_0.gclass3_0.gclass202_0.ActualSystem,
+            return this.class468_0.gclass3_0.Game.GetDistanceToNearestGClass212(this.class468_0.gclass3_0.SystemSurvey.ActualSystem,
                 gclass214_0.Xcor, gclass214_0.Ycor, this.double_0, this.double_1);
         }
     }
@@ -839,11 +839,11 @@ public partial class GClass3
     private sealed class Class470
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal double method_0(PopulationData gclass146_0)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                 gclass146_0.method_87(), gclass146_0.method_88());
         }
     }
@@ -852,11 +852,11 @@ public partial class GClass3
     private sealed class Class471
     {
         public FleetData gclass85_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal double method_0(PopulationData gclass146_0)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(this.gclass85_0.XCoord, this.gclass85_0.YCoord,
                 gclass146_0.method_87(), gclass146_0.method_88());
         }
     }
@@ -865,7 +865,7 @@ public partial class GClass3
     private sealed class Class472
     {
         public PopulationData gclass146_0;
-        public GClass3 gclass3_0;
+        public NPRSurveyOperation gclass3_0;
 
         internal bool method_0(MoveOrder gclass139_0)
         {
@@ -875,7 +875,7 @@ public partial class GClass3
 
         internal double method_1(FleetData gclass85_0)
         {
-            return this.gclass3_0.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord,
+            return this.gclass3_0.Game.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord,
                 this.gclass146_0.method_87(), this.gclass146_0.method_88());
         }
     }
@@ -885,16 +885,16 @@ public partial class GClass3
     {
         public List<PopulationData> list_0;
 
-        internal bool method_0(GClass193 gclass193_0)
+        internal bool method_0(Shipyard gclass193_0)
         {
-            return this.list_0.Contains(gclass193_0.gclass146_0) &&
-                   gclass193_0.auroraShipyardType_0 == AuroraShipyardType.Naval;
+            return this.list_0.Contains(gclass193_0.Population) &&
+                   gclass193_0.SYType == AuroraShipyardType.Naval;
         }
 
-        internal bool method_1(GClass193 gclass193_0)
+        internal bool method_1(Shipyard gclass193_0)
         {
-            return this.list_0.Contains(gclass193_0.gclass146_0) &&
-                   gclass193_0.auroraShipyardType_0 == AuroraShipyardType.Commercial;
+            return this.list_0.Contains(gclass193_0.Population) &&
+                   gclass193_0.SYType == AuroraShipyardType.Commercial;
         }
 
         internal bool method_2(ShipData gclass40_0)

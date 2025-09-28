@@ -25,9 +25,9 @@ public class FleetWindow : Form
         public List<ShipData> list_0;
         public List<GroundUnitFormationData> list_1;
 
-        internal bool method_0(GClass55 gclass55_0)
+        internal bool method_0(Commander gclass55_0)
         {
-            return this.list_0.Contains(gclass55_0.gclass40_0);
+            return this.list_0.Contains(gclass55_0.TransportShip);
         }
 
         internal bool method_1(GroundUnitFormationData gclass103_0)
@@ -35,9 +35,9 @@ public class FleetWindow : Form
             return this.list_0.Contains(gclass103_0.ShipData);
         }
 
-        internal bool method_2(GClass55 gclass55_0)
+        internal bool method_2(Commander gclass55_0)
         {
-            return this.list_1.Contains(gclass55_0.gclass103_0);
+            return this.list_1.Contains(gclass55_0.CommandingFormation);
         }
     }
 
@@ -104,7 +104,7 @@ public class FleetWindow : Form
 
         internal bool method_0(ShipData gclass40_1)
         {
-            return gclass40_1.gclass22_0.ShipHull == this.gclass40_0.gclass22_0.ShipHull &&
+            return gclass40_1.Class.ShipHull == this.gclass40_0.Class.ShipHull &&
                    gclass40_1.int_20 == this.int_0;
         }
     }
@@ -138,7 +138,7 @@ public class FleetWindow : Form
 
         internal bool method_0(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0 == this.gclass22_0;
+            return gclass40_0.Class == this.gclass22_0;
         }
     }
 
@@ -255,16 +255,16 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1035
     {
-        public GClass228 gclass228_0;
+        public ClassComponent gclass228_0;
 
-        internal bool method_0(GClass178 gclass178_0)
+        internal bool method_0(ComponentDamage gclass178_0)
         {
-            return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass178_0.ShipComponent == this.gclass228_0.Component;
         }
 
         internal bool method_1(DamageControlQueue gclass26_0)
         {
-            return gclass26_0.Component == this.gclass228_0.gclass230_0;
+            return gclass26_0.Component == this.gclass228_0.Component;
         }
     }
 
@@ -306,7 +306,7 @@ public class FleetWindow : Form
     private MissileSalvo gclass132_0;
     private bool bool_1;
     private bool bool_2;
-    private IContainer icontainer_0;
+    
     private ComboBox cboRaces;
     private TreeView tvFleetList;
     private Button cmdDelete;
@@ -1191,7 +1191,7 @@ public class FleetWindow : Form
                         if (this.gclass0_0.method_520(class1027.gclass40_0.gclass85_0.XCoord, tag.ParentFleet.XCoord,
                                 class1027.gclass40_0.gclass85_0.YCoord, tag.ParentFleet.YCoord) &&
                             class1027.gclass40_0.gclass85_0.System == tag.ParentFleet.System &&
-                            class1027.gclass40_0.gclass21_0 == tag.Race)
+                            class1027.gclass40_0.Race == tag.Race)
                         {
                             // ISSUE: reference to a compiler-generated field
                             class1027.gclass40_0.gclass84_0 = tag;
@@ -1219,7 +1219,7 @@ public class FleetWindow : Form
                     {
                         if (tag1.gclass40_0 != tag2.ParentShipData)
                         {
-                            if (tag2.ParentShipData.method_125() >= tag1.gclass22_0.Size)
+                            if (tag2.ParentShipData.method_125() >= tag1.Class.Size)
                             {
                                 tag1.gclass40_0 = tag2.ParentShipData;
                                 tag1.gclass40_1 = tag2.ParentShipData;
@@ -1273,7 +1273,7 @@ public class FleetWindow : Form
                         // ISSUE: reference to a compiler-generated field
                         if (class1028.gclass40_0.gclass85_0.method_52(tag.XCoord, tag.YCoord) &&
                             class1028.gclass40_0.gclass85_0.System == tag.System &&
-                            class1028.gclass40_0.gclass21_0 == tag.Race)
+                            class1028.gclass40_0.Race == tag.Race)
                         {
                             // ISSUE: reference to a compiler-generated field
                             class1028.gclass40_0.gclass84_0 = null;
@@ -1308,7 +1308,7 @@ public class FleetWindow : Form
                     tag3.ParentShipData.gclass85_0.System == tag4.gclass85_0.System)
                 {
                     List<ShipData> source = tag3.method_0();
-                    if (tag4.method_125() >= source.Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size))
+                    if (tag4.method_125() >= source.Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size))
                     {
                         foreach (ShipData gclass40 in source)
                         {
@@ -1345,7 +1345,7 @@ public class FleetWindow : Form
                     if (tag5.Race == tag6.Race)
                     {
                         tag5.ParentNavalCommand = tag6;
-                        tag6.bool_0 = true;
+                        tag6.FleetNodeExpanded = true;
                     }
                     else
                     {
@@ -1400,7 +1400,7 @@ public class FleetWindow : Form
                     {
                         List<ShipData> source = tag10.method_177();
                         if (tag11.ParentShipData.method_125() >=
-                            source.Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size))
+                            source.Sum<ShipData>(gclass40_0 => gclass40_0.Class.Size))
                         {
                             foreach (ShipData gclass40 in source)
                             {
@@ -1412,8 +1412,8 @@ public class FleetWindow : Form
                                 gclass40.gclass84_0 = tag11.ParentShipData.gclass84_0;
                             }
 
-                            tag11.ParentShipData.gclass21_0.genum42_0 = GEnum42.const_2;
-                            tag11.ParentShipData.gclass21_0.int_43 = tag11.SquadronID;
+                            tag11.ParentShipData.Race.genum42_0 = GEnum42.const_2;
+                            tag11.ParentShipData.Race.int_43 = tag11.SquadronID;
                             tag11.bool_0 = true;
                         }
                         else
@@ -1509,7 +1509,7 @@ public class FleetWindow : Form
                         // ISSUE: reference to a compiler-generated field
                         tag.ParentAdminCommand = class1029.gclass83_0;
                         // ISSUE: reference to a compiler-generated field
-                        class1029.gclass83_0.bool_0 = true;
+                        class1029.gclass83_0.FleetNodeExpanded = true;
                     }
                     else
                     {
@@ -1559,7 +1559,7 @@ public class FleetWindow : Form
                 }
                 else
                 {
-                    PopulationData gclass1460 = tag.gclass146_0;
+                    PopulationData gclass1460 = tag.Population;
                     ShipData gclass40_1 = null;
                     if (this.gclass146_0 != null)
                         gclass1460 = this.gclass146_0;
@@ -1620,7 +1620,7 @@ public class FleetWindow : Form
                     if (this.gclass146_0 != null)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        class1030.gclass83_0.gclass146_0 = this.gclass146_0;
+                        class1030.gclass83_0.Population = this.gclass146_0;
                         // ISSUE: reference to a compiler-generated field
                         class1030.gclass83_0.gclass40_0 = null;
                     }
@@ -1635,7 +1635,7 @@ public class FleetWindow : Form
                         }
 
                         // ISSUE: reference to a compiler-generated field
-                        class1030.gclass83_0.gclass146_0 = null;
+                        class1030.gclass83_0.Population = null;
                         // ISSUE: reference to a compiler-generated field
                         class1030.gclass83_0.gclass40_0 = this.gclass40_1;
                     }
@@ -1696,8 +1696,8 @@ public class FleetWindow : Form
                     return;
                 string string4 = this.gclass0_0.string_4;
                 NavalAdminCommand tag = (NavalAdminCommand)this.tvFleetList.SelectedNode.Tag;
-                if (tag.gclass146_0 != null)
-                    this.gclass21_0.method_307(string4, tag, tag.gclass146_0.SystemBodyData, OperationalGroupID.None);
+                if (tag.Population != null)
+                    this.gclass21_0.method_307(string4, tag, tag.Population.SystemBodyData, OperationalGroupID.None);
                 else if (tag.gclass40_0 != null)
                     this.gclass21_0.method_307(string4, tag, tag.gclass40_0.gclass85_0.OrbitingBody, OperationalGroupID.None);
                 this.gclass21_0.method_355(this.tvFleetList, null, false,
@@ -1862,23 +1862,23 @@ public class FleetWindow : Form
                     this.cmdCreateFleet.Visible = true;
                     this.cmdCreateAdmin.Visible = true;
                     this.cmdUpdateAdmin.Visible = true;
-                    this.txtImportance.Text = this.gclass83_0.int_2.ToString();
-                    this.chkAutoAssign.CheckState = AuroraUtils.smethod_28(this.gclass83_0.bool_1);
-                    this.cboBonusOne.SelectedItem = this.gclass0_0.CommanderBonusDictionary[this.gclass83_0.genum121_0];
-                    this.cboBonusTwo.SelectedItem = this.gclass0_0.CommanderBonusDictionary[this.gclass83_0.genum121_1];
-                    this.cboBonusThree.SelectedItem = this.gclass0_0.CommanderBonusDictionary[this.gclass83_0.genum121_2];
-                    CommanderBonus selectedItem = (CommanderBonus)this.cboBonusOne.SelectedItem;
+                    this.txtImportance.Text = this.gclass83_0.CommandPriority.ToString();
+                    this.chkAutoAssign.CheckState = AuroraUtils.smethod_28(this.gclass83_0.AutoAssign);
+                    this.cboBonusOne.SelectedItem = this.gclass0_0.CommanderBonusDictionary[this.gclass83_0.BonusOne];
+                    this.cboBonusTwo.SelectedItem = this.gclass0_0.CommanderBonusDictionary[this.gclass83_0.BonusTwo];
+                    this.cboBonusThree.SelectedItem = this.gclass0_0.CommanderBonusDictionary[this.gclass83_0.BonusThree];
+                    CommanderBonusDefinition selectedItem = (CommanderBonusDefinition)this.cboBonusOne.SelectedItem;
                     this.cboNavalRanks.SelectedItem =
-                        this.gclass21_0.RacialRankDictionary.Values.FirstOrDefault<RankThemeEntry>(gclass61_0 =>
-                            gclass61_0.RankNum == this.gclass83_0.int_3) ?? this.gclass21_0.RacialRankDictionary.Values
-                            .OrderByDescending<RankThemeEntry, int>(gclass61_0 => gclass61_0.RankNum)
-                            .FirstOrDefault<RankThemeEntry>();
+                        this.gclass21_0.RacialRankDictionary.Values.FirstOrDefault<RacialRank>(gclass61_0 =>
+                            gclass61_0.RankNum == this.gclass83_0.MinimumRankPriority) ?? this.gclass21_0.RacialRankDictionary.Values
+                            .OrderByDescending<RacialRank, int>(gclass61_0 => gclass61_0.RankNum)
+                            .FirstOrDefault<RacialRank>();
                     this.lblNACCommander.Text = this.gclass83_0.method_4();
                     this.gclass83_0.method_9(this.lstvAdminCommandSystems);
                     this.gclass21_0.method_187(this.lstvPopulation, this.gclass83_0);
                     this.tabNaval.SelectTab(this.tabAdminCommand);
                     this.gclass21_0.genum42_0 = GEnum42.const_1;
-                    this.gclass21_0.int_43 = this.gclass83_0.int_0;
+                    this.gclass21_0.int_43 = this.gclass83_0.NavalAdminCommandID;
                 }
                 else if (this.tvFleetList.SelectedNode.Tag is ShipData)
                 {
@@ -1895,7 +1895,7 @@ public class FleetWindow : Form
                 {
                     this.gclass187_0 = (ShippingLineData)this.tvFleetList.SelectedNode.Tag;
                     this.gclass21_0.genum42_0 = GEnum42.const_5;
-                    this.gclass21_0.int_43 = this.gclass187_0.int_0;
+                    this.gclass21_0.int_43 = this.gclass187_0.ShippingLineID;
                     this.gclass187_0.method_1(this.lstvSL, this.lstvWealth);
                     this.tabNaval.SelectTab(this.tabShippingLine);
                 }
@@ -1960,7 +1960,7 @@ public class FleetWindow : Form
                     this.cmdActive2.Text = "Active Off";
                 else
                     this.cmdActive2.Text = "Active On";
-                int num = list2.Count<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ShieldStrength > 0);
+                int num = list2.Count<ShipData>(gclass40_0 => gclass40_0.Class.ShieldStrength > 0);
                 if (num > 0)
                 {
                     this.cmdFleetShields.Visible = true;
@@ -2048,8 +2048,8 @@ public class FleetWindow : Form
                 this.lstvLogistics, this.lstvCrew, this.lstvOrdnance, this.lstvOfficers, this.lstvDAC,
                 this.lstvDamageControlQueue, this.lstvMeasurement, this.lstvShipHistory,
                 AuroraUtils.smethod_67(this.txtRepairChanceTime.Text));
-            this.gclass40_0.gclass22_0.method_85(0, 0, "");
-            this.txtClassDisplay.Text = this.gclass40_0.gclass22_0.string_0;
+            this.gclass40_0.Class.method_85(0, 0, "");
+            this.txtClassDisplay.Text = this.gclass40_0.Class.string_0;
             this.txtFuelPriority.Text = AuroraUtils.smethod_37(this.gclass40_0.int_18);
             this.txtSupplyPriority.Text = AuroraUtils.smethod_37(this.gclass40_0.int_19);
             this.chkAutoDC.CheckState = AuroraUtils.smethod_28(this.gclass40_0.bool_14);
@@ -2057,7 +2057,7 @@ public class FleetWindow : Form
             this.ckhTarget.CheckState = AuroraUtils.smethod_26(this.gclass40_0.int_24);
             this.panArmour.Refresh();
             this.gclass40_0.method_37(this.tvCombatAssignment, this.tvTargets, this.bool_1);
-            this.gclass40_0.gclass22_0.method_63(this.lstvClassTemplate);
+            this.gclass40_0.Class.method_63(this.lstvClassTemplate);
             this.gclass40_0.method_63(this.lstvShipTemplate);
             this.gclass40_0.method_64(this.lstvShipLoadout);
             this.gclass21_0.method_102(this.tvShipCargo, this.gclass40_0);
@@ -2102,7 +2102,7 @@ public class FleetWindow : Form
                     this.cmdActive2.Text = "Active On";
             }
 
-            if (this.gclass40_0.gclass22_0.ShieldStrength > 0)
+            if (this.gclass40_0.Class.ShieldStrength > 0)
             {
                 this.cmdFleetShields.Visible = true;
                 if (this.gclass40_0.bool_10)
@@ -2146,7 +2146,7 @@ public class FleetWindow : Form
             else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
                 ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
-                if (MessageBox.Show($" Are you sure you want to delete {tag.ShipName}?", "Confirmation Required",
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", tag.ShipName), "Confirmation Required",
                         MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass21_0.method_303(tag, GEnum22.const_0);
@@ -2156,7 +2156,7 @@ public class FleetWindow : Form
             else if (this.tvFleetList.SelectedNode.Tag is FleetData)
             {
                 FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                if (MessageBox.Show($" Are you sure you want to delete the fleet '{tag.FleetName}'?",
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete the fleet '{0}'?", tag.FleetName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass21_0.method_302(tag, true);
@@ -2166,7 +2166,8 @@ public class FleetWindow : Form
             else if (this.tvFleetList.SelectedNode.Tag is SubFleet)
             {
                 SubFleet tag = (SubFleet)this.tvFleetList.SelectedNode.Tag;
-                if (MessageBox.Show($" Are you sure you want to delete the sub fleet '{tag.SubFleetName}'?",
+                if (MessageBox.Show(
+                        string.Format(" Are you sure you want to delete the sub fleet '{0}'?", tag.SubFleetName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 tag.ParentFleet.method_163(tag);
@@ -2176,7 +2177,7 @@ public class FleetWindow : Form
             else if (this.tvFleetList.SelectedNode.Tag is FCTSquadronData70)
             {
                 FCTSquadronData70 tag = (FCTSquadronData70)this.tvFleetList.SelectedNode.Tag;
-                if (MessageBox.Show($" Are you sure you want to delete '{tag.SquadronName}'?", "Confirmation Required",
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete '{0}'?", tag.SquadronName), "Confirmation Required",
                         MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 tag.ParentShipData.method_54(tag);
@@ -2192,7 +2193,9 @@ public class FleetWindow : Form
                 }
                 else
                 {
-                    if (MessageBox.Show($" Are you sure you want to delete the Admin Command '{tag.AdminCommandName}'?",
+                    if (MessageBox.Show(
+                            string.Format(" Are you sure you want to delete the Admin Command '{0}'?",
+                                tag.AdminCommandName),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     this.gclass0_0.method_560(tag);
@@ -2205,7 +2208,8 @@ public class FleetWindow : Form
                 if (!(this.tvFleetList.SelectedNode.Tag is ShippingLineData))
                     return;
                 ShippingLineData tag = (ShippingLineData)this.tvFleetList.SelectedNode.Tag;
-                if (MessageBox.Show($" Are you sure you want to delete the Shipping Line '{tag.string_0}'?",
+                if (MessageBox.Show(
+                        string.Format(" Are you sure you want to delete the Shipping Line '{0}'?", tag.LineName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass0_0.method_561(tag);
@@ -2276,13 +2280,13 @@ public class FleetWindow : Form
                 if (!(this.tvFleetList.SelectedNode.Tag is ShippingLineData))
                     return;
                 ShippingLineData tag = (ShippingLineData)this.tvFleetList.SelectedNode.Tag;
-                string str1 = this.gclass0_0.method_562("Enter New Shipping Line Name", tag.string_0);
+                string str1 = this.gclass0_0.method_562("Enter New Shipping Line Name", tag.LineName);
                 if (str1 != "")
-                    tag.string_0 = str1;
-                string str2 = this.gclass0_0.method_562("Enter New Shipping Line Short Name", tag.string_1);
+                    tag.LineName = str1;
+                string str2 = this.gclass0_0.method_562("Enter New Shipping Line Short Name", tag.ShortName);
                 if (str2 != "")
-                    tag.string_1 = str2;
-                this.tvFleetList.SelectedNode.Text = tag.string_0;
+                    tag.ShortName = str2;
+                this.tvFleetList.SelectedNode.Text = tag.LineName;
             }
         }
         catch (Exception ex)
@@ -2311,7 +2315,7 @@ public class FleetWindow : Form
             {
                 if (!(e.Node.Tag is NavalAdminCommand))
                     return;
-                ((NavalAdminCommand)e.Node.Tag).bool_0 = true;
+                ((NavalAdminCommand)e.Node.Tag).FleetNodeExpanded = true;
             }
         }
         catch (Exception ex)
@@ -2340,7 +2344,7 @@ public class FleetWindow : Form
             {
                 if (!(e.Node.Tag is NavalAdminCommand))
                     return;
-                ((NavalAdminCommand)e.Node.Tag).bool_0 = false;
+                ((NavalAdminCommand)e.Node.Tag).FleetNodeExpanded = false;
             }
         }
         catch (Exception ex)
@@ -2787,9 +2791,9 @@ public class FleetWindow : Form
             {
                 WeaponFireControlAssignment tag1 = (WeaponFireControlAssignment)this.tvCombatAssignment.SelectedNode.Tag;
             }
-            else if (this.tvCombatAssignment.SelectedNode.Tag is PopOrdnanceStock)
+            else if (this.tvCombatAssignment.SelectedNode.Tag is ShipOrdnance)
             {
-                PopOrdnanceStock tag2 = (PopOrdnanceStock)this.tvCombatAssignment.SelectedNode.Tag;
+                ShipOrdnance tag2 = (ShipOrdnance)this.tvCombatAssignment.SelectedNode.Tag;
             }
             else
             {
@@ -2826,14 +2830,14 @@ public class FleetWindow : Form
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     FireControlAssignment tag3 = (FireControlAssignment)nodeAt.Tag;
-                    if (tag3.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl &&
+                    if (tag3.FCComponent.Data.ComponentTypeID == AuroraComponentType.BeamFireControl &&
                         !tag2.WeaponComponent.bool_4)
                     {
                         int num = (int)MessageBox.Show("Missile weapons cannot be assigned to beam fire controls");
                         return;
                     }
 
-                    if (tag3.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl &&
+                    if (tag3.FCComponent.Data.ComponentTypeID == AuroraComponentType.MissileFireControl &&
                         tag2.WeaponComponent.bool_4)
                     {
                         int num = (int)MessageBox.Show("Energy weapons cannot be assigned to missile fire controls");
@@ -2870,7 +2874,7 @@ public class FleetWindow : Form
                     // ISSUE: reference to a compiler-generated field
                     class1031.gclass36_0 = (FireControlAssignment)nodeAt.Tag;
                     // ISSUE: reference to a compiler-generated field
-                    if (class1031.gclass36_0.FCComponent.gclass231_0.ComponentTypeID ==
+                    if (class1031.gclass36_0.FCComponent.Data.ComponentTypeID ==
                         AuroraComponentType.BeamFireControl && !tag5.gclass230_0.bool_4)
                     {
                         int num = (int)MessageBox.Show("Missile weapons cannot be assigned to beam fire controls");
@@ -2878,14 +2882,14 @@ public class FleetWindow : Form
                     }
 
                     // ISSUE: reference to a compiler-generated field
-                    if (class1031.gclass36_0.FCComponent.gclass231_0.ComponentTypeID ==
+                    if (class1031.gclass36_0.FCComponent.Data.ComponentTypeID ==
                         AuroraComponentType.MissileFireControl && tag5.gclass230_0.bool_4)
                     {
                         int num = (int)MessageBox.Show("Energy weapons cannot be assigned to missile fire controls");
                         return;
                     }
 
-                    if (tag5.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.DecoyMissileLauncher)
+                    if (tag5.gclass230_0.Data.ComponentTypeID == AuroraComponentType.DecoyMissileLauncher)
                     {
                         int num = (int)MessageBox.Show("Decoy launchers cannot be assigned to fire controls");
                         return;
@@ -2907,7 +2911,7 @@ public class FleetWindow : Form
                 }
                 else if (nodeAt.Tag is string && (string)nodeAt.Tag == "Decoys")
                 {
-                    if (tag5.gclass230_0.gclass231_0.ComponentTypeID != AuroraComponentType.DecoyMissileLauncher)
+                    if (tag5.gclass230_0.Data.ComponentTypeID != AuroraComponentType.DecoyMissileLauncher)
                     {
                         int num = (int)MessageBox.Show("Only Decoy Launchers cannot be assigned to the decoys section");
                         return;
@@ -2917,20 +2921,20 @@ public class FleetWindow : Form
                     flag = true;
                 }
             }
-            else if (data.Tag is PopOrdnanceStock)
+            else if (data.Tag is ShipOrdnance)
             {
-                PopOrdnanceStock tag6 = (PopOrdnanceStock)data.Tag;
+                ShipOrdnance tag6 = (ShipOrdnance)data.Tag;
                 if (nodeAt.Tag is WeaponFireControlAssignment)
                 {
                     WeaponFireControlAssignment tag7 = (WeaponFireControlAssignment)nodeAt.Tag;
-                    if (tag6.RaceMissile.ShipDecoy == 1 && tag7.WeaponComponent.gclass231_0.ComponentTypeID !=
+                    if (tag6.RaceMissile.ShipDecoy == 1 && tag7.WeaponComponent.Data.ComponentTypeID !=
                         AuroraComponentType.DecoyMissileLauncher)
                     {
                         int num = (int)MessageBox.Show("Decoy Missiles can only be assigned to Decoy Launchers");
                         return;
                     }
 
-                    if (tag6.RaceMissile.ShipDecoy == 0 && tag7.WeaponComponent.gclass231_0.ComponentTypeID ==
+                    if (tag6.RaceMissile.ShipDecoy == 0 && tag7.WeaponComponent.Data.ComponentTypeID ==
                         AuroraComponentType.DecoyMissileLauncher)
                     {
                         int num = (int)MessageBox.Show("Only Decoy Missiles can be assigned to Decoy Launchers");
@@ -2953,7 +2957,7 @@ public class FleetWindow : Form
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     FireControlAssignment tag10 = (FireControlAssignment)nodeAt.Tag;
-                    if (tag10.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.BeamFireControl &&
+                    if (tag10.FCComponent.Data.ComponentTypeID == AuroraComponentType.BeamFireControl &&
                         tag9 > AuroraPointDefenceMode.PointBlankDefensiveFire)
                     {
                         int num = (int)MessageBox.Show(
@@ -2961,7 +2965,7 @@ public class FleetWindow : Form
                         return;
                     }
 
-                    if (tag10.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl &&
+                    if (tag10.FCComponent.Data.ComponentTypeID == AuroraComponentType.MissileFireControl &&
                         tag9 < AuroraPointDefenceMode.PointBlankDefensiveFireSelf &&
                         tag9 != AuroraPointDefenceMode.None)
                     {
@@ -2980,7 +2984,7 @@ public class FleetWindow : Form
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     FireControlAssignment tag12 = (FireControlAssignment)nodeAt.Tag;
-                    if (tag12.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl)
+                    if (tag12.FCComponent.Data.ComponentTypeID == AuroraComponentType.MissileFireControl)
                     {
                         int num = (int)MessageBox.Show(
                             "Beam fire control priorities cannot be assigned to missile fire controls");
@@ -2997,7 +3001,7 @@ public class FleetWindow : Form
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     FireControlAssignment tag14 = (FireControlAssignment)nodeAt.Tag;
-                    if (tag14.FCComponent.gclass231_0.ComponentTypeID == AuroraComponentType.MissileFireControl)
+                    if (tag14.FCComponent.Data.ComponentTypeID == AuroraComponentType.MissileFireControl)
                     {
                         int num = (int)MessageBox.Show(
                             "Beam fire control concentration cannot be assigned to missile fire controls");
@@ -3040,7 +3044,7 @@ public class FleetWindow : Form
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     FireControlAssignment tag18 = (FireControlAssignment)nodeAt.Tag;
-                    if (tag18.FCComponent.gclass231_0.ComponentTypeID != AuroraComponentType.MissileFireControl)
+                    if (tag18.FCComponent.Data.ComponentTypeID != AuroraComponentType.MissileFireControl)
                     {
                         int num = (int)MessageBox.Show("Waypoints may only be assigned to missile fire controls");
                         return;
@@ -3294,7 +3298,7 @@ public class FleetWindow : Form
             {
                 tag.int_17 = 1;
                 this.cmdSyncFire.Text = "Sync Fire Off";
-                this.tvFleetList.SelectedNode.Text = $"{tag.method_187()}  (SF)";
+                this.tvFleetList.SelectedNode.Text = string.Format("{0}  (SF)", tag.method_187());
             }
             else
             {
@@ -3351,9 +3355,9 @@ public class FleetWindow : Form
             {
                 int num = (int)MessageBox.Show("Please select a race");
             }
-            else if (e.Node.Tag is AlienRaceInfo)
+            else if (e.Node.Tag is AlienRaceIntel)
             {
-                ((AlienRaceInfo)e.Node.Tag).bool_6 = false;
+                ((AlienRaceIntel)e.Node.Tag).bool_6 = false;
             }
             else
             {
@@ -3376,9 +3380,9 @@ public class FleetWindow : Form
             {
                 int num = (int)MessageBox.Show("Please select a race");
             }
-            else if (e.Node.Tag is AlienRaceInfo)
+            else if (e.Node.Tag is AlienRaceIntel)
             {
-                ((AlienRaceInfo)e.Node.Tag).bool_6 = true;
+                ((AlienRaceIntel)e.Node.Tag).bool_6 = true;
             }
             else
             {
@@ -3880,17 +3884,17 @@ public class FleetWindow : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a component to repair");
             }
-            else if (this.lstvDAC.SelectedItems[0].Tag is GClass228)
+            else if (this.lstvDAC.SelectedItems[0].Tag is ClassComponent)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 FleetWindow.Class1035 class1035 = new FleetWindow.Class1035();
                 // ISSUE: reference to a compiler-generated field
-                class1035.gclass228_0 = (GClass228)this.lstvDAC.SelectedItems[0].Tag;
+                class1035.gclass228_0 = (ClassComponent)this.lstvDAC.SelectedItems[0].Tag;
                 ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated method
-                int num2 = tag.list_12.Where<GClass178>(class1035.method_0)
-                    .Select<GClass178, int>(gclass178_0 => gclass178_0.int_0).FirstOrDefault<int>();
+                int num2 = tag.ComponentDamages.Where<ComponentDamage>(class1035.method_0)
+                    .Select<ComponentDamage, int>(gclass178_0 => gclass178_0.Number).FirstOrDefault<int>();
                 if (num2 == 0)
                 {
                     int num3 = (int)MessageBox.Show("This component is not damaged");
@@ -3907,7 +3911,7 @@ public class FleetWindow : Form
                         // ISSUE: reference to a compiler-generated field
                         tag.DamageControlQueue.Add(new DamageControlQueue()
                         {
-                            Component = class1035.gclass228_0.gclass230_0,
+                            Component = class1035.gclass228_0.Component,
                             Ship = tag,
                             RepairOrder = tag.DamageControlQueue.Count <= 0
                                 ? 1
@@ -4245,8 +4249,8 @@ public class FleetWindow : Form
             if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
             ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
-            tag.list_12.Clear();
-            tag.dictionary_5.Clear();
+            tag.ComponentDamages.Clear();
+            tag.ArmorDamages.Clear();
         }
         catch (Exception ex)
         {
@@ -4504,7 +4508,7 @@ public class FleetWindow : Form
             if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
             ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
-            tag.decimal_14 = tag.gclass22_0.FuelCapacity;
+            tag.decimal_14 = tag.Class.FuelCapacity;
             this.method_9();
         }
         catch (Exception ex)
@@ -4543,7 +4547,7 @@ public class FleetWindow : Form
             if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
             ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
-            if (MessageBox.Show($" Are you sure you want to abandon {tag.ShipName}?", "Confirmation Required",
+            if (MessageBox.Show(string.Format(" Are you sure you want to abandon {0}?", tag.ShipName), "Confirmation Required",
                     MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             this.gclass21_0.method_303(tag, GEnum22.const_4);
@@ -4622,7 +4626,7 @@ public class FleetWindow : Form
                 else
                 {
                     OrderTemplateData tag2 = (OrderTemplateData)this.lstvSystemLocations.SelectedItems[0].Tag;
-                    if (MessageBox.Show($" Are you sure you want to delete {tag2.TemplateName}?", "Confirmation Required",
+                    if (MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", tag2.TemplateName), "Confirmation Required",
                             MessageBoxButtons.YesNo) != DialogResult.Yes ||
                         !this.gclass0_0.MoveOrderTemplateDictionary.ContainsKey(tag2.OrderTemplateID))
                         return;
@@ -4701,7 +4705,7 @@ public class FleetWindow : Form
             // ISSUE: reference to a compiler-generated field
             class1015.list_0 = new List<ShipData>();
             string str = "";
-            GClass55 gclass55 = null;
+            Commander gclass55 = null;
             if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
                 this.gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag;
@@ -4758,24 +4762,26 @@ public class FleetWindow : Form
             if (this.gclass0_0.gclass42_0 == null)
                 return;
             if (MessageBox.Show(
-                    $" Are you sure you want to award the {this.gclass0_0.gclass42_0.MedalName} to all officers of {str} with the selected command types?",
+                    string.Format(
+                        " Are you sure you want to award the {0} to all officers of {1} with the selected command types?",
+                        this.gclass0_0.gclass42_0.MedalName, str),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass55> list = this.gclass0_0.dictionary_42.Values.Where<GClass55>(class1015.method_0)
-                .ToList<GClass55>();
+            List<Commander> list = this.gclass0_0.ActiveCommanders.Values.Where<Commander>(class1015.method_0)
+                .ToList<Commander>();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             class1015.list_1 = this.gclass0_0.FormationDictionary.Values
                 .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.ShipData != null).Where<GroundUnitFormationData>(class1015.method_1)
                 .ToList<GroundUnitFormationData>();
             // ISSUE: reference to a compiler-generated method
-            list.AddRange(this.gclass0_0.dictionary_42.Values
-                .Where<GClass55>(gclass55_0 => gclass55_0.gclass103_0 != null).Where<GClass55>(class1015.method_2)
-                .ToList<GClass55>());
+            list.AddRange(this.gclass0_0.ActiveCommanders.Values
+                .Where<Commander>(gclass55_0 => gclass55_0.CommandingFormation != null).Where<Commander>(class1015.method_2)
+                .ToList<Commander>());
             if (gclass55 != null)
                 list.Add(gclass55);
-            this.gclass21_0.method_109(list.Distinct<GClass55>().ToList<GClass55>(), this.gclass0_0.gclass42_0);
+            this.gclass21_0.method_109(list.Distinct<Commander>().ToList<Commander>(), this.gclass0_0.gclass42_0);
         }
         catch (Exception ex)
         {
@@ -4849,8 +4855,8 @@ public class FleetWindow : Form
             }
             else
             {
-                this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                    !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete =
+                    !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete;
                 this.gclass21_0.method_316(this.lstvOrdnance, this.chkObsoleteMissiles.CheckState, false);
             }
         }
@@ -4925,7 +4931,7 @@ public class FleetWindow : Form
         {
             if (this.lstvShipTemplate.SelectedItems.Count == 0)
                 return;
-            this.gclass40_0.method_69((PopOrdnanceStock)this.lstvShipTemplate.SelectedItems[0].Tag, this.method_19());
+            this.gclass40_0.method_69((ShipOrdnance)this.lstvShipTemplate.SelectedItems[0].Tag, this.method_19());
             this.method_9();
         }
         catch (Exception ex)
@@ -4941,7 +4947,7 @@ public class FleetWindow : Form
             if (this.gclass40_0 == null)
                 return;
             foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
-                         .Where<ShipData>(gclass40_2 => gclass40_2.gclass22_0 == this.gclass40_0.gclass22_0)
+                         .Where<ShipData>(gclass40_2 => gclass40_2.Class == this.gclass40_0.Class)
                          .ToList<ShipData>())
                 gclass40.method_62(false);
         }
@@ -5702,9 +5708,9 @@ public class FleetWindow : Form
             else if (this.tvFleetList.SelectedNode.Tag is FleetData)
             {
                 FleetData tag1 = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                if (this.tvThreat.SelectedNode.Tag is GClass117)
+                if (this.tvThreat.SelectedNode.Tag is AlienShipIntel)
                 {
-                    GClass117 tag2 = (GClass117)this.tvThreat.SelectedNode.Tag;
+                    AlienShipIntel tag2 = (AlienShipIntel)this.tvThreat.SelectedNode.Tag;
                     tag1.gclass117_0 = tag2;
                     tag1.method_259(this.lstvFormation);
                 }
@@ -5878,7 +5884,7 @@ public class FleetWindow : Form
         }
     }
 
-    private void method_24(GClass55 gclass55_0)
+    private void method_24(Commander gclass55_0)
     {
         try
         {
@@ -5930,7 +5936,7 @@ public class FleetWindow : Form
         {
             if (this.lstvOfficers.SelectedItems.Count == 0)
                 return;
-            this.method_24((GClass55)this.lstvOfficers.SelectedItems[0].Tag);
+            this.method_24((Commander)this.lstvOfficers.SelectedItems[0].Tag);
         }
         catch (Exception ex)
         {
@@ -5953,7 +5959,7 @@ public class FleetWindow : Form
                 ShipData tag2 = (ShipData)this.lstvShips.HitTest(e.X, e.Y).Item.Tag;
                 if (tag2 == null)
                     return;
-                GClass55 gclass55_0 = tag2.method_192(AuroraCommandType.Ship);
+                Commander gclass55_0 = tag2.method_192(AuroraCommandType.Ship);
                 if (gclass55_0 == null)
                     return;
                 this.method_24(gclass55_0);
@@ -5995,7 +6001,7 @@ public class FleetWindow : Form
             else if (this.tvFleetList.SelectedNode.Tag is FleetData)
             {
                 FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                AlienRaceInfo selectedValue = (AlienRaceInfo)this.cboTransferRace.SelectedValue;
+                AlienRaceIntel selectedValue = (AlienRaceIntel)this.cboTransferRace.SelectedValue;
                 if (selectedValue == null)
                     return;
                 GameRace gclass210 = selectedValue.ActualAlienRace;
@@ -6179,7 +6185,7 @@ public class FleetWindow : Form
                 int num2 = (int)MessageBox.Show("Please select a naval admin command");
             }
             else
-                this.gclass83_0.bool_1 = AuroraUtils.smethod_27(this.chkAutoAssign.CheckState);
+                this.gclass83_0.AutoAssign = AuroraUtils.smethod_27(this.chkAutoAssign.CheckState);
         }
         catch (Exception ex)
         {
@@ -6203,10 +6209,10 @@ public class FleetWindow : Form
             }
             else
             {
-                this.gclass83_0.int_2 = Convert.ToInt32(this.txtImportance.Text);
-                if (this.gclass83_0.int_2 >= 1)
+                this.gclass83_0.CommandPriority = Convert.ToInt32(this.txtImportance.Text);
+                if (this.gclass83_0.CommandPriority >= 1)
                     return;
-                this.gclass83_0.int_2 = 1;
+                this.gclass83_0.CommandPriority = 1;
             }
         }
         catch (Exception ex)
@@ -6230,7 +6236,7 @@ public class FleetWindow : Form
                 int num2 = (int)MessageBox.Show("Please select a naval admin command");
             }
             else
-                this.gclass83_0.genum121_0 = ((CommanderBonus)this.cboBonusOne.SelectedItem).CommanderBonusType;
+                this.gclass83_0.BonusOne = ((CommanderBonusDefinition)this.cboBonusOne.SelectedItem).CommanderBonusType;
         }
         catch (Exception ex)
         {
@@ -6253,7 +6259,7 @@ public class FleetWindow : Form
                 int num2 = (int)MessageBox.Show("Please select a naval admin command");
             }
             else
-                this.gclass83_0.genum121_2 = ((CommanderBonus)this.cboBonusThree.SelectedItem).CommanderBonusType;
+                this.gclass83_0.BonusThree = ((CommanderBonusDefinition)this.cboBonusThree.SelectedItem).CommanderBonusType;
         }
         catch (Exception ex)
         {
@@ -6276,7 +6282,7 @@ public class FleetWindow : Form
                 int num2 = (int)MessageBox.Show("Please select a naval admin command");
             }
             else
-                this.gclass83_0.genum121_1 = ((CommanderBonus)this.cboBonusTwo.SelectedItem).CommanderBonusType;
+                this.gclass83_0.BonusTwo = ((CommanderBonusDefinition)this.cboBonusTwo.SelectedItem).CommanderBonusType;
         }
         catch (Exception ex)
         {
@@ -6374,7 +6380,7 @@ public class FleetWindow : Form
             }
             else
             {
-                this.gclass83_0.int_3 = ((RankThemeEntry)this.cboNavalRanks.SelectedItem).RankNum;
+                this.gclass83_0.MinimumRankPriority = ((RacialRank)this.cboNavalRanks.SelectedItem).RankNum;
                 this.gclass21_0.method_255(false);
                 this.tvFleetList.SelectedNode.Text = this.gclass83_0.method_6();
             }
@@ -6417,14 +6423,14 @@ public class FleetWindow : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(class1021.gclass40_0.gclass22_0.ShipHull))
+                    if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(class1021.gclass40_0.Class.ShipHull))
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         class1021.gclass40_0.int_20 = class1021.int_0;
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        this.gclass21_0.ShipHullCountDictionary.Add(class1021.gclass40_0.gclass22_0.ShipHull, class1021.int_0);
+                        this.gclass21_0.ShipHullCountDictionary.Add(class1021.gclass40_0.Class.ShipHull, class1021.int_0);
                         // ISSUE: reference to a compiler-generated field
                         this.tvFleetList.SelectedNode.Text = class1021.gclass40_0.method_187();
                     }
@@ -6438,7 +6444,8 @@ public class FleetWindow : Form
                         {
                             // ISSUE: reference to a compiler-generated field
                             int num4 = (int)MessageBox.Show(
-                                $"Hull number {class1021.int_0.ToString()} is already assigned to {gclass40.method_187()}");
+                                string.Format("Hull number {0} is already assigned to {1}", class1021.int_0.ToString(),
+                                    gclass40.method_187()));
                             return;
                         }
 
@@ -6447,11 +6454,11 @@ public class FleetWindow : Form
                         class1021.gclass40_0.int_20 = class1021.int_0;
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        if (class1021.int_0 > this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.gclass22_0.ShipHull])
+                        if (class1021.int_0 > this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.Class.ShipHull])
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.gclass22_0.ShipHull] = class1021.int_0;
+                            this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.Class.ShipHull] = class1021.int_0;
                         }
 
                         // ISSUE: reference to a compiler-generated field
@@ -6537,7 +6544,7 @@ public class FleetWindow : Form
                     source1 = tag.method_176().Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
                         .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
                         .ToList<ShipData>();
-                    gclass85_1 = this.gclass21_0.method_308($"{tag.FleetName} Strikegroup", tag.ParentNavalCommand,
+                    gclass85_1 = this.gclass21_0.method_308(string.Format("{0} Strikegroup", tag.FleetName), tag.ParentNavalCommand,
                         tag.System, tag.XCoord, tag.YCoord, tag.OrbitingBody, OperationalGroupID.None);
                 }
                 else if (this.tvFleetList.SelectedNode.Tag is SubFleet)
@@ -6546,7 +6553,7 @@ public class FleetWindow : Form
                     source1 = tag.method_0().Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
                         .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
                         .ToList<ShipData>();
-                    gclass85_1 = this.gclass21_0.method_308($"{tag.SubFleetName} Strikegroup", tag.ParentFleet.ParentNavalCommand,
+                    gclass85_1 = this.gclass21_0.method_308(string.Format("{0} Strikegroup", tag.SubFleetName), tag.ParentFleet.ParentNavalCommand,
                         tag.ParentFleet.System, tag.ParentFleet.XCoord, tag.ParentFleet.YCoord,
                         tag.ParentFleet.OrbitingBody, OperationalGroupID.None);
                 }
@@ -6554,7 +6561,7 @@ public class FleetWindow : Form
                 {
                     ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                     source1 = tag.method_205();
-                    gclass85_1 = this.gclass21_0.method_308($"{tag.ShipName} Strikegroup", tag.gclass85_0.ParentNavalCommand,
+                    gclass85_1 = this.gclass21_0.method_308(string.Format("{0} Strikegroup", tag.ShipName), tag.gclass85_0.ParentNavalCommand,
                         tag.gclass85_0.System, tag.gclass85_0.XCoord, tag.gclass85_0.YCoord,
                         tag.gclass85_0.OrbitingBody, OperationalGroupID.None);
                 }
@@ -6649,7 +6656,7 @@ public class FleetWindow : Form
             else if (this.tvCombatAssignment.SelectedNode.Tag is FireControlAssignment)
             {
                 FireControlAssignment tag = (FireControlAssignment)this.tvCombatAssignment.SelectedNode.Tag;
-                if (tag.FCComponent.gclass231_0.ComponentTypeID != AuroraComponentType.MissileFireControl)
+                if (tag.FCComponent.Data.ComponentTypeID != AuroraComponentType.MissileFireControl)
                 {
                     int num2 = (int)MessageBox.Show("Please select a missile fire control");
                 }
@@ -6743,7 +6750,7 @@ public class FleetWindow : Form
             }
             else
             {
-                if (MessageBox.Show($" Are you sure you want to delete {this.gclass132_0.string_0}?",
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", this.gclass132_0.string_0),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass21_0.method_130(this.gclass132_0);
@@ -6804,7 +6811,7 @@ public class FleetWindow : Form
         try
         {
             foreach (ShippingLineData gclass187 in this.gclass0_0.ShippingLineDictionary.Values
-                         .Where<ShippingLineData>(gclass187_0 => gclass187_0.decimal_0 == 0M).ToList<ShippingLineData>())
+                         .Where<ShippingLineData>(gclass187_0 => gclass187_0.WealthBalance == 0M).ToList<ShippingLineData>())
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -6827,7 +6834,7 @@ public class FleetWindow : Form
                         int num = list.Count - 15;
                         foreach (ShipData gclass40 in list)
                         {
-                            gclass40.gclass21_0.method_302(gclass40.gclass85_0, false);
+                            gclass40.Race.method_302(gclass40.gclass85_0, false);
                             --num;
                             if (num == 0)
                                 break;
@@ -6836,7 +6843,7 @@ public class FleetWindow : Form
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                class1023.gclass187_0.decimal_0 = 3000M;
+                class1023.gclass187_0.WealthBalance = 3000M;
             }
         }
         catch (Exception ex)
@@ -6913,26 +6920,28 @@ public class FleetWindow : Form
                 {
                     FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
                     if (MessageBox.Show(
-                            $"Are you sure you want to scrap all components in {tag.FleetName}, except for researched non-obsolete components or those that can be disassembled?",
+                            string.Format(
+                                "Are you sure you want to scrap all components in {0}, except for researched non-obsolete components or those that can be disassembled?",
+                                tag.FleetName),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     List<ShipData> source = tag.method_176();
-                    List<TransportedComponent> list1 = source
-                        .SelectMany<ShipData, TransportedComponent>(gclass40_0 => gclass40_0.TransportedComponents).ToList<TransportedComponent>();
-                    foreach (TransportedComponent gclass73 in list1)
+                    List<StoredComponent> list1 = source
+                        .SelectMany<ShipData, StoredComponent>(gclass40_0 => gclass40_0.TransportedComponents).ToList<StoredComponent>();
+                    foreach (StoredComponent gclass73 in list1)
                     {
                         gclass73.bool_0 = true;
                         if (gclass73.Component.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                         {
-                            if (!gclass73.Component.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                            if (!gclass73.Component.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
                                 gclass73.bool_0 = false;
                         }
                         else if (this.gclass21_0.method_103(gclass73.Component))
                             gclass73.bool_0 = false;
                     }
 
-                    List<ShipComponent> list2 = list1.Where<TransportedComponent>(gclass73_0 => gclass73_0.bool_0)
-                        .Select<TransportedComponent, ShipComponent>(gclass73_0 => gclass73_0.Component).Distinct<ShipComponent>()
+                    List<ShipComponent> list2 = list1.Where<StoredComponent>(gclass73_0 => gclass73_0.bool_0)
+                        .Select<StoredComponent, ShipComponent>(gclass73_0 => gclass73_0.Component).Distinct<ShipComponent>()
                         .ToList<ShipComponent>();
                     foreach (ShipData gclass40 in source)
                     {
@@ -6979,7 +6988,7 @@ public class FleetWindow : Form
             }
 
             foreach (NavalAdminCommand gclass83 in this.gclass0_0.NavalAdminCommands.Values)
-                gclass83.bool_0 = false;
+                gclass83.FleetNodeExpanded = false;
             this.gclass21_0.method_355(this.tvFleetList, null, false,
                 AuroraUtils.smethod_27(this.chkIncludeCivilians.CheckState), this.txtSystemOOB);
         }
@@ -7276,14 +7285,14 @@ public class FleetWindow : Form
                     int num4 = (int)new MessageEntry(this.gclass0_0).ShowDialog();
                     if (this.gclass0_0.bool_21)
                         return;
-                    GClass135 gclass135 = new GClass135();
-                    gclass135.int_0 = this.gclass0_0.method_26(GEnum0.const_56);
-                    gclass135.string_0 = this.gclass0_0.string_4;
-                    this.gclass21_0.dictionary_9.Add(gclass135.int_0, gclass135);
+                    StandingOrderTemplate gclass135 = new StandingOrderTemplate();
+                    gclass135.TemplateID = this.gclass0_0.method_26(GEnum0.const_56);
+                    gclass135.TemplateName = this.gclass0_0.string_4;
+                    this.gclass21_0.StandingOrderTemplates.Add(gclass135.TemplateID, gclass135);
                     foreach (KeyValuePair<int, StandingOrderDefinition> keyValuePair in tag.StandingOrdersDictionary)
-                        gclass135.dictionary_0.Add(keyValuePair.Key, keyValuePair.Value);
+                        gclass135.StandingOrders.Add(keyValuePair.Key, keyValuePair.Value);
                     foreach (KeyValuePair<int, FleetConditionalOrder> keyValuePair in tag.ConditionalOrdersDictionary)
-                        gclass135.dictionary_1.Add(keyValuePair.Key, keyValuePair.Value);
+                        gclass135.ConditionalOrders.Add(keyValuePair.Key, keyValuePair.Value);
                     this.gclass21_0.method_331(this.lstvStandingOrderTemplates);
                 }
             }
@@ -7316,11 +7325,11 @@ public class FleetWindow : Form
             }
             else
             {
-                GClass135 tag = (GClass135)this.lstvStandingOrdersList.SelectedItems[0].Tag;
-                if (MessageBox.Show($" Are you sure you want to delete {tag.string_0}?", "Confirmation Required",
+                StandingOrderTemplate tag = (StandingOrderTemplate)this.lstvStandingOrdersList.SelectedItems[0].Tag;
+                if (MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", tag.TemplateName), "Confirmation Required",
                         MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                this.gclass21_0.dictionary_9.Remove(tag.int_0);
+                this.gclass21_0.StandingOrderTemplates.Remove(tag.TemplateID);
                 this.gclass21_0.method_331(this.lstvStandingOrderTemplates);
             }
         }
@@ -7357,16 +7366,18 @@ public class FleetWindow : Form
                 }
                 else
                 {
-                    GClass135 tag2 = (GClass135)this.lstvStandingOrderTemplates.SelectedItems[0].Tag;
+                    StandingOrderTemplate tag2 = (StandingOrderTemplate)this.lstvStandingOrderTemplates.SelectedItems[0].Tag;
                     if ((tag1.StandingOrdersDictionary.Count > 0 || tag1.ConditionalOrdersDictionary.Count > 0) && MessageBox.Show(
-                            $" Are you sure you want to replace the existing standing and conditional orders with {tag2.string_0}?",
+                            string.Format(
+                                " Are you sure you want to replace the existing standing and conditional orders with {0}?",
+                                tag2.TemplateName),
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
                     tag1.StandingOrdersDictionary.Clear();
                     tag1.ConditionalOrdersDictionary.Clear();
-                    foreach (KeyValuePair<int, StandingOrderDefinition> keyValuePair in tag2.dictionary_0)
+                    foreach (KeyValuePair<int, StandingOrderDefinition> keyValuePair in tag2.StandingOrders)
                         tag1.StandingOrdersDictionary.Add(keyValuePair.Key, keyValuePair.Value);
-                    foreach (KeyValuePair<int, FleetConditionalOrder> keyValuePair in tag2.dictionary_1)
+                    foreach (KeyValuePair<int, FleetConditionalOrder> keyValuePair in tag2.ConditionalOrders)
                         tag1.ConditionalOrdersDictionary.Add(keyValuePair.Key, keyValuePair.Value);
                     this.lblDefault.Text = tag1.method_173();
                     tag1.method_197(this.lstvStandingOrdersList);
@@ -7635,12 +7646,7 @@ public class FleetWindow : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

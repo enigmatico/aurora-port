@@ -205,7 +205,7 @@ public class JumpPoint
     {
         try
         {
-            string str1 = $"JP{this.method_9(gclass202_0).ToString()}: ";
+            string str1 = string.Format("JP{0}: ", this.method_9(gclass202_0).ToString());
             string str2 = "Unex";
             return this.RacialJumpPointSurveys[gclass202_0.Race.RaceID].Explored == 1 &&
                    gclass202_0.Race.RacialSystemDictionary.ContainsKey(this.LinkedJumpPoint.SystemData.SystemID)
@@ -223,11 +223,12 @@ public class JumpPoint
     {
         try
         {
-            string str1 = $"JP{this.method_9(gclass202_0).ToString()} (";
+            string str1 = string.Format("JP{0} (", this.method_9(gclass202_0).ToString());
             string str2 = "Unex)";
             return this.RacialJumpPointSurveys[gclass202_0.Race.RaceID].Explored == 1 &&
                    gclass202_0.Race.RacialSystemDictionary.ContainsKey(this.LinkedJumpPoint.SystemData.SystemID)
-                ? $"{str1}{gclass202_0.Race.RacialSystemDictionary[this.LinkedJumpPoint.SystemData.SystemID].Name})"
+                ? string.Format("{0}{1})", str1,
+                    gclass202_0.Race.RacialSystemDictionary[this.LinkedJumpPoint.SystemData.SystemID].Name)
                 : str1 + str2;
         }
         catch (Exception ex)

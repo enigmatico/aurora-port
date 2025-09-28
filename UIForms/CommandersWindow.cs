@@ -15,6 +15,7 @@ using System.Windows.Forms;
 #nullable disable
 public class CommandersWindow : Form
 {
+/*
     private sealed class Class894
     {
         public GClass115 gclass115_0;
@@ -24,17 +25,8 @@ public class CommandersWindow : Form
             return gclass117_0.gclass115_0 == this.gclass115_0 && !gclass117_0.bool_0;
         }
     }
-
-    private sealed class Class895
-    {
-        public GClass115 gclass115_0;
-
-        internal bool method_0(GClass117 gclass117_0)
-        {
-            return gclass117_0.gclass115_0 == this.gclass115_0;
-        }
-    }
-
+*/
+/*
     private sealed class Class896
     {
         public string string_0;
@@ -45,34 +37,37 @@ public class CommandersWindow : Form
             return keyValuePair_0.Value == this.string_0;
         }
     }
+*/
 
     private sealed class Class892
     {
-        public GClass55 gclass55_0;
+        public Commander gclass55_0;
 
         internal bool method_0(ResearchFieldData gclass162_0)
         {
-            return !gclass162_0.bDoNotDisplay && gclass162_0 != this.gclass55_0.gclass162_0;
+            return !gclass162_0.bDoNotDisplay && gclass162_0 != this.gclass55_0.ResearchField;
         }
     }
 
     private sealed class Class893
     {
-        public GClass55 gclass55_0;
+        public Commander gclass55_0;
 
-        internal bool method_0(GClass55 gclass55_1)
+        internal bool method_0(Commander gclass55_1)
         {
-            return gclass55_1.gclass61_0 == this.gclass55_0.gclass61_0;
+            return gclass55_1.RacialRank == this.gclass55_0.RacialRank;
         }
     }
 
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
-    private GClass55 gclass55_0;
-    private GClass55 gclass55_1;
-    private RankThemeEntry gclass61_0;
+    private Commander gclass55_0;
+    private Commander gclass55_1;
+    private RacialRank gclass61_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+    
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     private TreeView tvCommanderList;
     private ComboBox cboRaces;
     private Button cmdRename;
@@ -241,12 +236,12 @@ public class CommandersWindow : Form
             this.cmdChangeField.Visible = false;
             this.cmdRetire.Visible = true;
             this.cmdAssign.Visible = true;
-            if (e.Node.Tag is GClass55)
+            if (e.Node.Tag is Commander)
             {
                 this.gclass55_1 = this.gclass55_0;
-                this.gclass55_0 = (GClass55)e.Node.Tag;
+                this.gclass55_0 = (Commander)e.Node.Tag;
                 this.cmdRename.Visible = true;
-                if (this.gclass55_0.auroraRetirementStatus_0 != AuroraRetirementStatus.Active)
+                if (this.gclass55_0.RetirementStatus != AuroraRetirementStatus.Active)
                 {
                     this.cmdRetire.Visible = false;
                     this.cmdAssign.Visible = false;
@@ -254,17 +249,17 @@ public class CommandersWindow : Form
                     if (this.gclass0_0.bool_8)
                         this.cmdRestore.Visible = true;
                 }
-                else if (this.gclass55_0.auroraCommanderType_0 != AuroraCommanderType.Naval &&
-                         this.gclass55_0.auroraCommanderType_0 != AuroraCommanderType.GroundForce)
+                else if (this.gclass55_0.CommanderType != AuroraCommanderType.Naval &&
+                         this.gclass55_0.CommanderType != AuroraCommanderType.GroundForce)
                 {
-                    if (this.gclass55_0.auroraCommanderType_0 == AuroraCommanderType.Scientist)
+                    if (this.gclass55_0.CommanderType == AuroraCommanderType.Scientist)
                         this.cmdChangeField.Visible = true;
                 }
                 else
                 {
-                    if (this.gclass55_0.gclass61_0.method_1() != null)
+                    if (this.gclass55_0.RacialRank.method_1() != null)
                         this.cmdPromote.Visible = true;
-                    if (this.gclass55_0.gclass61_0.method_3() != null)
+                    if (this.gclass55_0.RacialRank.method_3() != null)
                         this.cmdDemote.Visible = true;
                 }
 
@@ -274,9 +269,9 @@ public class CommandersWindow : Form
             }
             else
             {
-                if (!(e.Node.Tag is RankThemeEntry))
+                if (!(e.Node.Tag is RacialRank))
                     return;
-                this.gclass61_0 = (RankThemeEntry)e.Node.Tag;
+                this.gclass61_0 = (RacialRank)e.Node.Tag;
                 this.cmdRename.Visible = true;
                 if (this.gclass61_0.CommanderType == AuroraCommanderType.Naval ||
                     this.gclass61_0.CommanderType == AuroraCommanderType.GroundForce)
@@ -306,20 +301,20 @@ public class CommandersWindow : Form
             {
                 int num2 = (int)MessageBox.Show("Please select an item to rename");
             }
-            else if (this.tvCommanderList.SelectedNode.Tag is GClass55)
+            else if (this.tvCommanderList.SelectedNode.Tag is Commander)
             {
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
-                string str = this.gclass0_0.method_562("Enter New Commander Name", tag.string_0);
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
+                string str = this.gclass0_0.method_562("Enter New Commander Name", tag.Name);
                 if (!(str != ""))
                     return;
-                tag.string_0 = str;
+                tag.Name = str;
                 this.tvCommanderList.SelectedNode.Text = tag.method_26();
             }
             else
             {
-                if (!(this.tvCommanderList.SelectedNode.Tag is RankThemeEntry))
+                if (!(this.tvCommanderList.SelectedNode.Tag is RacialRank))
                     return;
-                RankThemeEntry tag = (RankThemeEntry)this.tvCommanderList.SelectedNode.Tag;
+                RacialRank tag = (RacialRank)this.tvCommanderList.SelectedNode.Tag;
                 string str1 = this.gclass0_0.method_562("Enter New Rank Name", tag.RankName);
                 if (!(str1 != ""))
                     return;
@@ -328,7 +323,7 @@ public class CommandersWindow : Form
                     return;
                 tag.RankName = str1;
                 tag.RankAbbreviation = str2;
-                this.tvCommanderList.SelectedNode.Text = $"{tag.RankAbbreviation} {tag.RankName}";
+                this.tvCommanderList.SelectedNode.Text = string.Format("{0} {1}", tag.RankAbbreviation, tag.RankName);
             }
         }
         catch (Exception ex)
@@ -343,13 +338,13 @@ public class CommandersWindow : Form
         {
             if (!this.method_1())
                 return;
-            if (this.tvCommanderList.SelectedNode.Tag is GClass55)
+            if (this.tvCommanderList.SelectedNode.Tag is Commander)
             {
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
-                if (tag.auroraCommanderType_0 != AuroraCommanderType.Scientist &&
-                    tag.auroraCommanderType_0 != AuroraCommanderType.Administrator)
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
+                if (tag.CommanderType != AuroraCommanderType.Scientist &&
+                    tag.CommanderType != AuroraCommanderType.Administrator)
                 {
-                    if (tag.gclass61_0.method_1() == null)
+                    if (tag.RacialRank.method_1() == null)
                     {
                         int num = (int)MessageBox.Show("No higher rank available");
                         return;
@@ -362,7 +357,7 @@ public class CommandersWindow : Form
                     {
                         foreach (TreeNode node2 in node1.Nodes)
                         {
-                            if (node2.Tag is RankThemeEntry && (RankThemeEntry)node2.Tag == tag.gclass61_0)
+                            if (node2.Tag is RacialRank && (RacialRank)node2.Tag == tag.RacialRank)
                             {
                                 node2.Nodes.Add(selectedNode);
                                 this.tvCommanderList.SelectedNode = selectedNode;
@@ -392,13 +387,13 @@ public class CommandersWindow : Form
         {
             if (!this.method_1())
                 return;
-            if (this.tvCommanderList.SelectedNode.Tag is GClass55)
+            if (this.tvCommanderList.SelectedNode.Tag is Commander)
             {
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
-                if (tag.auroraCommanderType_0 != AuroraCommanderType.Scientist &&
-                    tag.auroraCommanderType_0 != AuroraCommanderType.Administrator)
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
+                if (tag.CommanderType != AuroraCommanderType.Scientist &&
+                    tag.CommanderType != AuroraCommanderType.Administrator)
                 {
-                    if (tag.gclass61_0.method_3() == null)
+                    if (tag.RacialRank.method_3() == null)
                     {
                         int num = (int)MessageBox.Show("No lower rank available");
                         return;
@@ -411,7 +406,7 @@ public class CommandersWindow : Form
                     {
                         foreach (TreeNode node2 in node1.Nodes)
                         {
-                            if (node2.Tag is RankThemeEntry && (RankThemeEntry)node2.Tag == tag.gclass61_0)
+                            if (node2.Tag is RacialRank && (RacialRank)node2.Tag == tag.RacialRank)
                             {
                                 node2.Nodes.Add(selectedNode);
                                 this.tvCommanderList.SelectedNode = selectedNode;
@@ -469,14 +464,14 @@ public class CommandersWindow : Form
             }
             else
             {
-                if (!(this.tvCommanderList.SelectedNode.Tag is GClass55))
+                if (!(this.tvCommanderList.SelectedNode.Tag is Commander))
                     return;
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
-                if (tag.gclass59_0 != null)
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
+                if (tag.LifePod != null)
                 {
                     int num2 = (int)MessageBox.Show("This commander is currently in a lifepod");
                 }
-                else if (tag.bool_4)
+                else if (tag.Prisoner)
                 {
                     int num3 = (int)MessageBox.Show("This commander is currently a prisoner of another race");
                 }
@@ -487,7 +482,7 @@ public class CommandersWindow : Form
                     tag.method_19(this.lstvCmdrSummary, this.lstvBonus, this.lstvHistory, this.lstvAssign,
                         this.cboAssign, this.chkEligible, this.chkAvailable, this.lblName, this.lblAssignment,
                         this.gclass55_1, this.flpMedals, this.chkDoNotPromote, this.chkStory);
-                    if (tag.auroraCommanderType_0 == AuroraCommanderType.Naval)
+                    if (tag.CommanderType == AuroraCommanderType.Naval)
                         this.gclass21_0.method_255(false);
                     this.method_4();
                 }
@@ -503,9 +498,9 @@ public class CommandersWindow : Form
     {
         try
         {
-            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is GClass55))
+            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is Commander))
                 return;
-            GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
+            Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
             tag.method_40(true);
             tag.method_19(this.lstvCmdrSummary, this.lstvBonus, this.lstvHistory, this.lstvAssign, this.cboAssign,
                 this.chkEligible, this.chkAvailable, this.lblName, this.lblAssignment, this.gclass55_1, this.flpMedals,
@@ -612,21 +607,21 @@ public class CommandersWindow : Form
     {
         try
         {
-            RankThemeEntry gclass61_2 = null;
-            RankThemeEntry gclass61_3 = null;
+            RacialRank gclass61_2 = null;
+            RacialRank gclass61_3 = null;
             int int_56 = 1;
             int int_57 = 8;
             AuroraCommanderType auroraCommanderType_0 = this.method_3((string)this.cboType.SelectedItem);
-            CommanderBonus selectedItem1 = (CommanderBonus)this.cboSort1.SelectedItem;
-            CommanderBonus selectedItem2 = (CommanderBonus)this.cboSort2.SelectedItem;
-            CommanderBonus selectedItem3 = (CommanderBonus)this.cboSort3.SelectedItem;
-            CommanderBonus selectedItem4 = (CommanderBonus)this.cboSort4.SelectedItem;
+            CommanderBonusDefinition selectedItem1 = (CommanderBonusDefinition)this.cboSort1.SelectedItem;
+            CommanderBonusDefinition selectedItem2 = (CommanderBonusDefinition)this.cboSort2.SelectedItem;
+            CommanderBonusDefinition selectedItem3 = (CommanderBonusDefinition)this.cboSort3.SelectedItem;
+            CommanderBonusDefinition selectedItem4 = (CommanderBonusDefinition)this.cboSort4.SelectedItem;
             switch (auroraCommanderType_0)
             {
                 case AuroraCommanderType.Naval:
                 case AuroraCommanderType.GroundForce:
-                    gclass61_2 = (RankThemeEntry)this.cboMinRank.SelectedItem;
-                    gclass61_3 = (RankThemeEntry)this.cboMaxRank.SelectedItem;
+                    gclass61_2 = (RacialRank)this.cboMinRank.SelectedItem;
+                    gclass61_3 = (RacialRank)this.cboMaxRank.SelectedItem;
                     break;
                 case AuroraCommanderType.Administrator:
                     int_56 = this.cboMinRank.SelectedIndex + 1;
@@ -649,7 +644,7 @@ public class CommandersWindow : Form
         {
             if (this.lstvSearch.SelectedItems.Count == 0)
                 return;
-            this.method_5((GClass55)this.lstvSearch.SelectedItems[0].Tag);
+            this.method_5((Commander)this.lstvSearch.SelectedItems[0].Tag);
         }
         catch (Exception ex)
         {
@@ -657,7 +652,7 @@ public class CommandersWindow : Form
         }
     }
 
-    public void method_5(GClass55 gclass55_2)
+    public void method_5(Commander gclass55_2)
     {
         try
         {
@@ -667,7 +662,7 @@ public class CommandersWindow : Form
                 {
                     foreach (TreeNode node3 in node2.Nodes)
                     {
-                        if (node3.Tag is GClass55 && (GClass55)node3.Tag == gclass55_2)
+                        if (node3.Tag is Commander && (Commander)node3.Tag == gclass55_2)
                         {
                             this.tvCommanderList.SelectedNode = node3;
                             break;
@@ -682,7 +677,7 @@ public class CommandersWindow : Form
         }
     }
 
-    public void method_6(GClass55 gclass55_2)
+    public void method_6(Commander gclass55_2)
     {
         try
         {
@@ -694,7 +689,7 @@ public class CommandersWindow : Form
                     {
                         foreach (TreeNode node4 in node3.Nodes)
                         {
-                            if (node4.Tag is GClass55 && (GClass55)node4.Tag == gclass55_2)
+                            if (node4.Tag is Commander && (Commander)node4.Tag == gclass55_2)
                             {
                                 this.tvCommanderList.SelectedNode = node4;
                                 break;
@@ -726,15 +721,15 @@ public class CommandersWindow : Form
             {
                 int num2 = (int)MessageBox.Show("Please select an item to rename");
             }
-            else if (this.tvCommanderList.SelectedNode.Tag is GClass55)
+            else if (this.tvCommanderList.SelectedNode.Tag is Commander)
             {
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
-                tag.string_0 = tag.gclass21_0.method_114();
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
+                tag.Name = tag.Race.method_114();
                 this.tvCommanderList.SelectedNode.Text = tag.method_26();
             }
             else
             {
-                if (!(this.tvCommanderList.SelectedNode.Tag is RankThemeEntry))
+                if (!(this.tvCommanderList.SelectedNode.Tag is RacialRank))
                     return;
                 int num3 = (int)MessageBox.Show("Please select a commander to rename");
             }
@@ -749,11 +744,11 @@ public class CommandersWindow : Form
     {
         try
         {
-            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is GClass55))
+            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is Commander))
                 return;
-            GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
-            tag.method_46("Retired by order of High Command", GEnum28.const_0);
-            tag.method_42(AuroraRetirementStatus.RetiredByOrder);
+            Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
+            tag.AddHistory("Retired by order of High Command", HistoryType.Personal);
+            tag.SetToRetired(AuroraRetirementStatus.RetiredByOrder);
             this.tvCommanderList.Nodes.Remove(this.tvCommanderList.SelectedNode);
             this.gclass21_0.method_234(this.tvCommanderList);
             this.method_6(tag);
@@ -835,12 +830,12 @@ public class CommandersWindow : Form
                 if (int32 == 0)
                     return;
                 PopulationData gclass146_1 = this.gclass21_0.method_191();
-                foreach (GClass55 gclass55 in this.gclass0_0.dictionary_42.Values
-                             .Where<GClass55>(gclass55_2 => gclass55_2.gclass21_0 == this.gclass21_0)
-                             .ToList<GClass55>())
+                foreach (Commander gclass55 in this.gclass0_0.ActiveCommanders.Values
+                             .Where<Commander>(gclass55_2 => gclass55_2.Race == this.gclass21_0)
+                             .ToList<Commander>())
                 {
                     gclass55.method_40(false);
-                    this.gclass0_0.dictionary_42.Remove(gclass55.int_0);
+                    this.gclass0_0.ActiveCommanders.Remove(gclass55.CommanderID);
                 }
 
                 for (int index = 1; index <= int32; ++index)
@@ -869,10 +864,10 @@ public class CommandersWindow : Form
                 if (MessageBox.Show("Are you sure you wish to rename all commanders to the current name theme?",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                foreach (GClass55 gclass55 in this.gclass0_0.dictionary_42.Values
-                             .Where<GClass55>(gclass55_2 => gclass55_2.gclass21_0 == this.gclass21_0)
-                             .ToList<GClass55>())
-                    gclass55.string_0 = gclass55.gclass21_0.method_114();
+                foreach (Commander gclass55 in this.gclass0_0.ActiveCommanders.Values
+                             .Where<Commander>(gclass55_2 => gclass55_2.Race == this.gclass21_0)
+                             .ToList<Commander>())
+                    gclass55.Name = gclass55.Race.method_114();
             }
         }
         catch (Exception ex)
@@ -975,19 +970,19 @@ public class CommandersWindow : Form
                     str2 = this.gclass0_0.string_4;
                 if (str2 == "")
                     return;
-                foreach (RankThemeEntry gclass61 in this.gclass21_0.RacialRankDictionary.Values
-                             .Where<RankThemeEntry>(gclass61_1 =>
+                foreach (RacialRank gclass61 in this.gclass21_0.RacialRankDictionary.Values
+                             .Where<RacialRank>(gclass61_1 =>
                                  gclass61_1.CommanderType == this.gclass61_0.CommanderType)
-                             .OrderBy<RankThemeEntry, int>(gclass61_0 => gclass61_0.RankNum).ToList<RankThemeEntry>())
+                             .OrderBy<RacialRank, int>(gclass61_0 => gclass61_0.RankNum).ToList<RacialRank>())
                     ++gclass61.RankNum;
-                RankThemeEntry gclass61_2 = new RankThemeEntry();
-                gclass61_2.int_0 = this.gclass0_0.method_26(GEnum0.const_14);
-                gclass61_2.gclass21_0 = this.gclass21_0;
+                RacialRank gclass61_2 = new RacialRank();
+                gclass61_2.RankID = this.gclass0_0.method_26(GEnum0.const_14);
+                gclass61_2.Race = this.gclass21_0;
                 gclass61_2.CommanderType = this.gclass61_0.CommanderType;
                 gclass61_2.RankNum = 1;
                 gclass61_2.RankName = str1;
                 gclass61_2.RankAbbreviation = str2;
-                this.gclass21_0.RacialRankDictionary.Add(gclass61_2.int_0, gclass61_2);
+                this.gclass21_0.RacialRankDictionary.Add(gclass61_2.RankID, gclass61_2);
                 this.gclass21_0.method_234(this.tvCommanderList);
             }
         }
@@ -1012,24 +1007,26 @@ public class CommandersWindow : Form
             else
             {
                 if (MessageBox.Show(
-                        $"Are you sure you wish to delete the rank '{this.gclass61_0.RankName}'? All commanders with this rank will be lost.",
+                        string.Format(
+                            "Are you sure you wish to delete the rank '{0}'? All commanders with this rank will be lost.",
+                            this.gclass61_0.RankName),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                foreach (GClass55 gclass55 in this.gclass0_0.dictionary_42.Values
-                             .Where<GClass55>(gclass55_2 => gclass55_2.gclass61_0 == this.gclass61_0)
-                             .ToList<GClass55>())
+                foreach (Commander gclass55 in this.gclass0_0.ActiveCommanders.Values
+                             .Where<Commander>(gclass55_2 => gclass55_2.RacialRank == this.gclass61_0)
+                             .ToList<Commander>())
                 {
                     gclass55.method_40(false);
-                    this.gclass0_0.dictionary_42.Remove(gclass55.int_0);
+                    this.gclass0_0.ActiveCommanders.Remove(gclass55.CommanderID);
                 }
 
-                this.gclass21_0.RacialRankDictionary.Remove(this.gclass61_0.int_0);
-                List<RankThemeEntry> list = this.gclass21_0.RacialRankDictionary.Values
-                    .Where<RankThemeEntry>(gclass61_1 =>
+                this.gclass21_0.RacialRankDictionary.Remove(this.gclass61_0.RankID);
+                List<RacialRank> list = this.gclass21_0.RacialRankDictionary.Values
+                    .Where<RacialRank>(gclass61_1 =>
                         gclass61_1.CommanderType == this.gclass61_0.CommanderType)
-                    .OrderBy<RankThemeEntry, int>(gclass61_0 => gclass61_0.RankNum).ToList<RankThemeEntry>();
+                    .OrderBy<RacialRank, int>(gclass61_0 => gclass61_0.RankNum).ToList<RacialRank>();
                 int num3 = 1;
-                foreach (RankThemeEntry gclass61 in list)
+                foreach (RacialRank gclass61 in list)
                 {
                     gclass61.RankNum = num3;
                     ++num3;
@@ -1058,13 +1055,13 @@ public class CommandersWindow : Form
             }
             else
             {
-                if (!(this.tvCommanderList.SelectedNode.Tag is GClass55))
+                if (!(this.tvCommanderList.SelectedNode.Tag is Commander))
                     return;
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
                 if (this.chkStory.CheckState == CheckState.Checked)
-                    tag.bool_2 = true;
+                    tag.StoryCharacter = true;
                 else
-                    tag.bool_2 = false;
+                    tag.StoryCharacter = false;
             }
         }
         catch (Exception ex)
@@ -1087,13 +1084,13 @@ public class CommandersWindow : Form
             }
             else
             {
-                if (!(this.tvCommanderList.SelectedNode.Tag is GClass55))
+                if (!(this.tvCommanderList.SelectedNode.Tag is Commander))
                     return;
-                GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
+                Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
                 if (this.chkDoNotPromote.CheckState == CheckState.Checked)
-                    tag.bool_0 = true;
+                    tag.DoNotPromote = true;
                 else
-                    tag.bool_0 = false;
+                    tag.DoNotPromote = false;
             }
         }
         catch (Exception ex)
@@ -1124,7 +1121,7 @@ public class CommandersWindow : Form
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 // ISSUE: reference to a compiler-generated field
-                class892.gclass55_0 = (GClass55)this.tvCommanderList.SelectedNode.Tag;
+                class892.gclass55_0 = (Commander)this.tvCommanderList.SelectedNode.Tag;
                 this.gclass0_0.string_3 = "Select New Research Field";
                 this.gclass0_0.string_7 = "";
                 this.gclass0_0.string_8 = "";
@@ -1138,21 +1135,21 @@ public class CommandersWindow : Form
                 if (this.gclass0_0.bool_21)
                     return;
                 // ISSUE: reference to a compiler-generated field
-                class892.gclass55_0.gclass162_0 =
+                class892.gclass55_0.ResearchField =
                     this.gclass0_0.ResearchFieldDictionary.Values.FirstOrDefault<ResearchFieldData>(gclass162_0 =>
                         gclass162_0.FieldName == this.gclass0_0.string_4);
                 // ISSUE: reference to a compiler-generated field
-                if (class892.gclass55_0.dictionary_0.ContainsKey(CommanderBonusType.Research))
+                if (class892.gclass55_0.SkillBonuses.ContainsKey(CommanderBonusType.Research))
                 {
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    class892.gclass55_0.dictionary_0[CommanderBonusType.Research].decimal_0 = Math.Round(
-                        (class892.gclass55_0.dictionary_0[CommanderBonusType.Research].decimal_0 - 1M) * 0.25M + 1M, 2,
+                    class892.gclass55_0.SkillBonuses[CommanderBonusType.Research].BonusValue = Math.Round(
+                        (class892.gclass55_0.SkillBonuses[CommanderBonusType.Research].BonusValue - 1M) * 0.25M + 1M, 2,
                         MidpointRounding.AwayFromZero);
                 }
 
                 // ISSUE: reference to a compiler-generated field
-                TreeNode treeNode = this.method_7(class892.gclass55_0.gclass162_0.FieldName);
+                TreeNode treeNode = this.method_7(class892.gclass55_0.ResearchField.FieldName);
                 TreeNode selectedNode = this.tvCommanderList.SelectedNode;
                 this.tvCommanderList.SelectedNode.Remove();
                 treeNode.Nodes.Add(selectedNode);
@@ -1265,12 +1262,12 @@ public class CommandersWindow : Form
     {
         try
         {
-            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is GClass55))
+            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is Commander))
                 return;
-            GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
+            Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
             if (tag == null)
                 return;
-            tag.bool_3 = !tag.bool_3;
+            tag.RetainRetired = !tag.RetainRetired;
             this.tvCommanderList.SelectedNode.Text = tag.method_26();
         }
         catch (Exception ex)
@@ -1285,45 +1282,45 @@ public class CommandersWindow : Form
         {
             if (!this.method_1())
                 return;
-            if (this.tvCommanderList.SelectedNode.Tag is GClass55)
+            if (this.tvCommanderList.SelectedNode.Tag is Commander)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 CommandersWindow.Class893 class893 = new CommandersWindow.Class893()
                 {
-                    gclass55_0 = (GClass55)this.tvCommanderList.SelectedNode.Tag
+                    gclass55_0 = (Commander)this.tvCommanderList.SelectedNode.Tag
                 };
                 // ISSUE: reference to a compiler-generated field
-                class893.gclass55_0.int_6 = 1;
+                class893.gclass55_0.HealthRisk = 1;
                 // ISSUE: reference to a compiler-generated field
-                class893.gclass55_0.auroraRetirementStatus_0 = AuroraRetirementStatus.Active;
+                class893.gclass55_0.RetirementStatus = AuroraRetirementStatus.Active;
                 // ISSUE: reference to a compiler-generated field
-                this.gclass0_0.dictionary_43.Remove(class893.gclass55_0.int_0);
+                this.gclass0_0.RetiredCommanders.Remove(class893.gclass55_0.CommanderID);
                 TreeNode selectedNode = this.tvCommanderList.SelectedNode;
                 selectedNode.Remove();
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if (class893.gclass55_0.auroraCommanderType_0 != AuroraCommanderType.Naval &&
-                    class893.gclass55_0.auroraCommanderType_0 != AuroraCommanderType.GroundForce)
+                if (class893.gclass55_0.CommanderType != AuroraCommanderType.Naval &&
+                    class893.gclass55_0.CommanderType != AuroraCommanderType.GroundForce)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    class893.gclass55_0.int_4 = 0;
+                    class893.gclass55_0.Seniority = 0;
                     // ISSUE: reference to a compiler-generated field
-                    class893.gclass55_0.method_46("Restored to active service", GEnum28.const_0);
+                    class893.gclass55_0.AddHistory("Restored to active service", HistoryType.Personal);
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     this.gclass0_0.gclass92_0.method_2(EventType.const_193,
-                        $"{class893.gclass55_0.string_0} restored to active service", class893.gclass55_0.gclass21_0,
+                        string.Format("{0} restored to active service", class893.gclass55_0.Name), class893.gclass55_0.Race,
                         null, 0.0, 0.0, AuroraEventCategory.Commander);
                     // ISSUE: reference to a compiler-generated field
-                    if (class893.gclass55_0.auroraCommanderType_0 == AuroraCommanderType.Scientist)
+                    if (class893.gclass55_0.CommanderType == AuroraCommanderType.Scientist)
                     {
                         foreach (TreeNode node1 in this.tvCommanderList.Nodes)
                         {
                             foreach (TreeNode node2 in node1.Nodes)
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                if (node2.Tag is ResearchFieldData && (ResearchFieldData)node2.Tag == class893.gclass55_0.gclass162_0)
+                                if (node2.Tag is ResearchFieldData && (ResearchFieldData)node2.Tag == class893.gclass55_0.ResearchField)
                                 {
                                     node2.Nodes.Add(selectedNode);
                                     // ISSUE: reference to a compiler-generated field
@@ -1337,7 +1334,7 @@ public class CommandersWindow : Form
                     else
                     {
                         // ISSUE: reference to a compiler-generated field
-                        if (class893.gclass55_0.auroraCommanderType_0 == AuroraCommanderType.Administrator)
+                        if (class893.gclass55_0.CommanderType == AuroraCommanderType.Administrator)
                         {
                             foreach (TreeNode node3 in this.tvCommanderList.Nodes)
                             {
@@ -1361,25 +1358,27 @@ public class CommandersWindow : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated method
-                    int num = this.gclass0_0.dictionary_42.Values.Count<GClass55>(class893.method_0);
+                    int num = this.gclass0_0.ActiveCommanders.Values.Count<Commander>(class893.method_0);
                     // ISSUE: reference to a compiler-generated field
-                    class893.gclass55_0.int_4 = num + 1;
+                    class893.gclass55_0.Seniority = num + 1;
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    class893.gclass55_0.method_46($"Restored to {class893.gclass55_0.gclass61_0.RankName}",
-                        GEnum28.const_0);
+                    class893.gclass55_0.AddHistory(
+                        string.Format("Restored to {0}", class893.gclass55_0.RacialRank.RankName),
+                        HistoryType.Personal);
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     this.gclass0_0.gclass92_0.method_2(EventType.const_193,
-                        $"{class893.gclass55_0.string_0} restored to {class893.gclass55_0.gclass61_0.RankName}",
-                        class893.gclass55_0.gclass21_0, null, 0.0, 0.0, AuroraEventCategory.Commander);
+                        string.Format("{0} restored to {1}", class893.gclass55_0.Name,
+                            class893.gclass55_0.RacialRank.RankName),
+                        class893.gclass55_0.Race, null, 0.0, 0.0, AuroraEventCategory.Commander);
                     foreach (TreeNode node5 in this.tvCommanderList.Nodes)
                     {
                         foreach (TreeNode node6 in node5.Nodes)
                         {
                             // ISSUE: reference to a compiler-generated field
-                            if (node6.Tag is RankThemeEntry && (RankThemeEntry)node6.Tag == class893.gclass55_0.gclass61_0)
+                            if (node6.Tag is RacialRank && (RacialRank)node6.Tag == class893.gclass55_0.RacialRank)
                             {
                                 node6.Nodes.Add(selectedNode);
                                 // ISSUE: reference to a compiler-generated field
@@ -1404,9 +1403,9 @@ public class CommandersWindow : Form
     {
         try
         {
-            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is GClass55))
+            if (!this.method_1() || !(this.tvCommanderList.SelectedNode.Tag is Commander))
                 return;
-            GClass55 tag = (GClass55)this.tvCommanderList.SelectedNode.Tag;
+            Commander tag = (Commander)this.tvCommanderList.SelectedNode.Tag;
             AssignmentTypeFilter selectedValue = (AssignmentTypeFilter)this.cboAssign.SelectedValue;
             if (selectedValue.ShipboardPosition > AuroraCommandType.Ship)
                 this.chkEligible.Visible = false;
@@ -1424,12 +1423,7 @@ public class CommandersWindow : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

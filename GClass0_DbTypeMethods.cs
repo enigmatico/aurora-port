@@ -112,7 +112,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_Squadron where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_Squadron where GameID = {GameID.ToString()}").Rows)
             {
                 FCTSquadronData70 squadronData = new FCTSquadronData70(this);
                 int parentShipId = Convert.ToInt32(row["ParentShipID"]);
@@ -291,7 +292,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_MapLabel where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_MapLabel where GameID = {GameID.ToString()}").Rows)
             {
                 MapLabelData122 mapLabel = new MapLabelData122(this);
                 int raceID = Convert.ToInt32(row["RaceID"]);
@@ -440,7 +442,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_RaceOperationalGroupElements WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_RaceOperationalGroupElements WHERE GameID = {GameID.ToString()}").Rows)
             {
                 RaceOperationalGroupElement gclass11 = new RaceOperationalGroupElement();
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
@@ -501,7 +504,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_WayPoint where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_WayPoint where GameID = {GameID.ToString()}").Rows)
             {
                 Waypoint gclass214 = new Waypoint(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
@@ -629,7 +633,8 @@ public partial class GClass0
                     try
                     {
                         raceMedal.MedalImageLoaded =
-                            Image.FromFile($"{Application.StartupPath}\\Medals\\{raceMedal.MedalFileName}");
+                            Image.FromFile(string.Format("{0}\\Medals\\{1}", Application.StartupPath,
+                                raceMedal.MedalFileName));
                     }
                     catch
                     {
@@ -958,7 +963,8 @@ public partial class GClass0
                 try
                 {
                     raceRecord.ShipIconLoadedImg =
-                        Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{raceRecord.HullPic}");
+                        Image.FromFile(
+                            $"{Application.StartupPath}\\ShipIcons\\{raceRecord.HullPic}");
                 }
                 catch
                 {
@@ -967,7 +973,8 @@ public partial class GClass0
                 try
                 {
                     raceRecord.SpaceStationPicLoadedImg =
-                        Image.FromFile($"{Application.StartupPath}\\StationIcons\\{raceRecord.SpaceStationPic}");
+                        Image.FromFile(string.Format("{0}\\StationIcons\\{1}", Application.StartupPath,
+                            raceRecord.SpaceStationPic));
                 }
                 catch
                 {
@@ -1131,7 +1138,7 @@ public partial class GClass0
             {
                 GroundUnitClass101 gclass101 = new GroundUnitClass101(this);
                 int int32_1 = Convert.ToInt32(row["TechSystemID"]);
-                if (TechDataDictionary.TryGetValue(int32_1, out var value))
+                if (TechSystems.TryGetValue(int32_1, out var value))
                 {
                     gclass101.TechData = value;
                     GroundUnitBaseType int32_2 = (GroundUnitBaseType)Convert.ToInt32(row["BaseType"]);
@@ -1156,7 +1163,7 @@ public partial class GClass0
                                 gclass101.GroundUnitComponentList.Add(value6);
                             int int32_8 = Convert.ToInt32(row["STOWeapon"]);
                             if (ComponentDataDictionary.TryGetValue(int32_8, out var value7))
-                                gclass101.gclass230_0 = value7;
+                                gclass101.SurfaceToOrbitWeapon = value7;
                             gclass101.genum115_0 = (GroundUnitClassType)Convert.ToInt32(row["GUClassType"]);
                             gclass101.ClassID = Convert.ToInt32(row["GroundUnitClassID"]);
                             gclass101.int_1 = Convert.ToInt32(row["MaxWeaponRange"]);
@@ -1228,7 +1235,7 @@ public partial class GClass0
                     gclass103.RaceData = race;
                     int int32_2 = Convert.ToInt32(row["RequiredRank"]);
                     if (gclass103.RaceData.RacialRankDictionary.TryGetValue(int32_2, out var value))
-                        gclass103.RequiredRankData = value;
+                        gclass103.RequiredRacialRankData = value;
                     gclass103.FormationID = Convert.ToInt32(row["FormationID"]);
                     gclass103.ParentFormationID = Convert.ToInt32(row["ParentFormationID"]);
                     gclass103.AssignedFormationID = Convert.ToInt32(row["AssignedFormationID"]);
@@ -1286,7 +1293,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_GroundUnitFormationTemplate where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_GroundUnitFormationTemplate where GameID = {GameID.ToString()}").Rows)
             {
                 GroundUnitFormationTemplateData gclass102 = new GroundUnitFormationTemplateData(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
@@ -1295,7 +1303,7 @@ public partial class GClass0
                     gclass102.RaceData = race;
                     int int32_2 = Convert.ToInt32(row["RequiredRank"]);
                     if (gclass102.RaceData.RacialRankDictionary.TryGetValue(int32_2, out var value))
-                        gclass102.RequiredRankData = value;
+                        gclass102.RequiredRacialRankData = value;
                     gclass102.AutomatedTemplateType = (AutomatedGroundTemplateDesignType)Convert.ToInt32(row["AutomatedTemplateID"]);
                     gclass102.TemplateID = Convert.ToInt32(row["TemplateID"]);
                     gclass102.FormationTrained = Convert.ToInt32(row["FormationsTrained"]);
@@ -1317,7 +1325,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_GroundUnitFormationElement where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_GroundUnitFormationElement where GameID = {GameID.ToString()}").Rows)
             {
                 GroundUnitFormationElement GUElement = new GroundUnitFormationElement(this);
                 int int32_1 = Convert.ToInt32(row["FormationID"]);
@@ -1357,7 +1366,8 @@ public partial class GClass0
         try
         {
             DataTable dataTable =
-                new SQLiteDatabaseC1181().ExecuteQuery($"select * from FCT_ElementRecharge where GameID = {GameID.ToString()}");
+                new SQLiteDatabaseC1181().ExecuteQuery(
+                    $"select * from FCT_ElementRecharge where GameID = {GameID.ToString()}");
             if (dataTable.Rows.Count == 0)
                 return;
             Dictionary<int, GroundUnitFormationElement> dictionary = FormationDictionary.Values
@@ -1382,7 +1392,8 @@ public partial class GClass0
         try
         {
             DataTable dataTable =
-                new SQLiteDatabaseC1181().ExecuteQuery($"select * from FCT_STODetected where GameID = {GameID.ToString()}");
+                new SQLiteDatabaseC1181().ExecuteQuery(
+                    $"select * from FCT_STODetected where GameID = {GameID.ToString()}");
             if (dataTable.Rows.Count == 0)
                 return;
             Dictionary<int, GroundUnitFormationElement> dictionary = FormationDictionary.Values
@@ -1410,7 +1421,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_GroundUnitFormationElementTemplates where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_GroundUnitFormationElementTemplates where GameID = {GameID.ToString()}").Rows)
             {
                 GroundUnitFormationElement formationElement = new GroundUnitFormationElement(this);
                 int groundFormationTemplateID = Convert.ToInt32(row["FormationTemplateID"]);
@@ -2233,7 +2245,7 @@ public partial class GClass0
                             Ships[int32_1].TransportedMineral.AddSpecific(mineralElement, amount);
                             continue;
                         case 6:
-                            TransportedComponent tComponent = new TransportedComponent();
+                            StoredComponent tComponent = new StoredComponent();
                             int int32_6 = Convert.ToInt32(row["CargoID"]);
                             if (ComponentDataDictionary.TryGetValue(int32_6, out var value1))
                             {
@@ -2359,10 +2371,11 @@ public partial class GClass0
                                     popData.PopName =
                                         popData.SystemBodyData.BodyTypeId == AuroraSystemBodyType.Asteroid ||
                                         popData.SystemBodyData.BodyTypeId == AuroraSystemBodyType.Comet
-                                            ? $"{popData.gclass202_0.Name} {popData.SystemBodyData.method_78(popData.Race)}"
+                                            ? string.Format("{0} {1}", popData.gclass202_0.Name,
+                                                popData.SystemBodyData.method_78(popData.Race))
                                             : popData.SystemBodyData.method_78(popData.Race);
                                 popData.CurrentMinerals = new AllMineralsValue(this);
-                                popData.gclass123_3 = new AllMineralsValue(this);
+                                popData.MineralDepositChange = new AllMineralsValue(this);
                                 popData.LastMinerals = new AllMineralsValue(this);
                                 popData.ReserveMinerals = new AllMineralsValue(this);
                                 popData.gclass123_4 = new AllMineralsValue(this);
@@ -2406,7 +2419,7 @@ public partial class GClass0
                                 Populations.Add(popData.PopulationID, popData);
                                 if (popData.Race.NPR)
                                 {
-                                    popData.gclass6_0 = new GClass6(this, popData);
+                                    popData.gclass6_0 = new NPRLogicClass6(this, popData);
                                     popData.gclass6_0.genum97_0 = (GEnum97)Convert.ToInt32(row["AIValue"]);
                                 }
                             }
@@ -2495,10 +2508,10 @@ public partial class GClass0
                         if (shipClass.Race.SpecialNPRID == SpecialNPRIDs.const_0 ||
                             shipClass.Race.SpecialNPRID == SpecialNPRIDs.Eldar)
                         {
-                            shipClass.RankTheme =
+                            shipClass.RacialRankTheme =
                                 shipClass.Race.GetRankThemeForCommanderLevel((CommanderLevel)shipClass.RankRequired, AuroraCommanderType.Naval);
-                            if (shipClass.RankTheme == null)
-                                shipClass.RankTheme = shipClass.Race.GetHighestRankThemeForCommanderType(AuroraCommanderType.Naval);
+                            if (shipClass.RacialRankTheme == null)
+                                shipClass.RacialRankTheme = shipClass.Race.GetHighestRankThemeForCommanderType(AuroraCommanderType.Naval);
                         }
 
                         shipClass.ShipClassID = Convert.ToInt32(row["ShipClassID"]);
@@ -2721,7 +2734,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select distinct * FROM FCT_SystemBodySurveys WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select distinct * FROM FCT_SystemBodySurveys WHERE GameID = {GameID.ToString()}").Rows)
             {
                 RacialSystemBodySurvey raceSurvey = new RacialSystemBodySurvey();
                 int int32_1 = Convert.ToInt32(row["SystemBodyID"]);
@@ -2814,8 +2828,8 @@ public partial class GClass0
                          .Rows)
             {
                 AncientConstruct ancientConstruct = new AncientConstruct(this);
-                AuroraResearchField researchField = (AuroraResearchField)Convert.ToInt32(row["ResearchField"]);
-                if (ResearchFieldDictionary.TryGetValue(researchField, out var value))
+                AuroraResearchFieldType researchFieldType = (AuroraResearchFieldType)Convert.ToInt32(row["ResearchField"]);
+                if (ResearchFieldDictionary.TryGetValue(researchFieldType, out var value))
                 {
                     ancientConstruct.ResearchField = value;
                     int int32_2 = Convert.ToInt32(row["SystemBodyID"]);
@@ -2847,7 +2861,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * FROM FCT_RuinRace WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * FROM FCT_RuinRace WHERE GameID = {GameID.ToString()}").Rows)
             {
                 RuinRaceData gclass171 = new RuinRaceData(this);
                 gclass171.RuinRaceID = Convert.ToInt32(row["RuinRaceID"]);
@@ -2876,94 +2891,94 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_Ship WHERE GameID = {GameID.ToString()}").Rows)
             {
-                ShipData gclass40_1 = new ShipData(this);
+                ShipData ship = new ShipData(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass40_1.gclass21_0 = race;
+                    ship.Race = race;
                     int int32_2 = Convert.ToInt32(row["SpeciesID"]);
                     if (SpeciesDictionary.TryGetValue(int32_2, out var value))
                     {
-                        gclass40_1.gclass194_0 = value;
+                        ship.gclass194_0 = value;
                         int int32_3 = Convert.ToInt32(row["ShipClassID"]);
                         if (ShipClasses.TryGetValue(int32_3, out var @class))
                         {
-                            gclass40_1.gclass22_0 = @class;
+                            ship.Class = @class;
                             int int32_4 = Convert.ToInt32(row["FleetID"]);
                             if (FleetDictionary.TryGetValue(int32_4, out var value1))
                             {
-                                gclass40_1.gclass85_0 = value1;
-                                gclass40_1.gclass85_0.list_3.Add(gclass40_1);
+                                ship.gclass85_0 = value1;
+                                ship.gclass85_0.list_3.Add(ship);
                                 int int32_5 = Convert.ToInt32(row["SubFleetID"]);
                                 if (SubFleetDictionary.TryGetValue(int32_5, out var value2))
-                                    gclass40_1.gclass84_0 = value2;
+                                    ship.gclass84_0 = value2;
                                 int int32_6 = Convert.ToInt32(row["ShippingLineID"]);
                                 if (ShippingLineDictionary.TryGetValue(int32_6, out var value3))
-                                    gclass40_1.gclass187_0 = value3;
-                                gclass40_1.int_8 = Convert.ToInt32(row["ShipID"]);
-                                gclass40_1.AssignedSquadronID = Convert.ToInt32(row["ParentSquadronID"]);
-                                gclass40_1.int_26 = Convert.ToInt32(row["AssignedMSID"]);
-                                gclass40_1.int_9 = Convert.ToInt32(row["Autofire"]);
-                                gclass40_1.int_10 = Convert.ToInt32(row["BoardingCombatClock"]);
-                                gclass40_1.int_11 = Convert.ToInt32(row["CurrentCrew"]);
-                                gclass40_1.int_12 = Convert.ToInt32(row["DamageControlID"]);
-                                gclass40_1.int_13 = Convert.ToInt32(row["FireDelay"]);
-                                gclass40_1.int_14 = Convert.ToInt32(row["HoldTechData"]);
-                                gclass40_1.genum29_0 = (GEnum29)Convert.ToInt32(row["MaintenanceState"]);
-                                gclass40_1.int_27 = Convert.ToInt32(row["MothershipID"]);
-                                gclass40_1.int_15 = Convert.ToInt32(row["SensorDelay"]);
-                                gclass40_1.int_16 = Convert.ToInt32(row["SpeciesID"]);
-                                gclass40_1.int_17 = Convert.ToInt32(row["SyncFire"]);
-                                gclass40_1.int_28 = Convert.ToInt32(row["TractorTargetShipID"]);
-                                gclass40_1.int_29 = Convert.ToInt32(row["TractorTargetShipyardID"]);
-                                gclass40_1.int_30 = Convert.ToInt32(row["TractorParentShipID"]);
-                                gclass40_1.int_18 = Convert.ToInt32(row["RefuelPriority"]);
-                                gclass40_1.int_19 = Convert.ToInt32(row["ResupplyPriority"]);
-                                gclass40_1.auroraResupplyStatus_0 =
+                                    ship.gclass187_0 = value3;
+                                ship.int_8 = Convert.ToInt32(row["ShipID"]);
+                                ship.AssignedSquadronID = Convert.ToInt32(row["ParentSquadronID"]);
+                                ship.int_26 = Convert.ToInt32(row["AssignedMSID"]);
+                                ship.int_9 = Convert.ToInt32(row["Autofire"]);
+                                ship.int_10 = Convert.ToInt32(row["BoardingCombatClock"]);
+                                ship.int_11 = Convert.ToInt32(row["CurrentCrew"]);
+                                ship.int_12 = Convert.ToInt32(row["DamageControlID"]);
+                                ship.int_13 = Convert.ToInt32(row["FireDelay"]);
+                                ship.int_14 = Convert.ToInt32(row["HoldTechData"]);
+                                ship.genum29_0 = (GEnum29)Convert.ToInt32(row["MaintenanceState"]);
+                                ship.int_27 = Convert.ToInt32(row["MothershipID"]);
+                                ship.int_15 = Convert.ToInt32(row["SensorDelay"]);
+                                ship.int_16 = Convert.ToInt32(row["SpeciesID"]);
+                                ship.int_17 = Convert.ToInt32(row["SyncFire"]);
+                                ship.int_28 = Convert.ToInt32(row["TractorTargetShipID"]);
+                                ship.TractorTargetShipyardID = Convert.ToInt32(row["TractorTargetShipyardID"]);
+                                ship.int_30 = Convert.ToInt32(row["TractorParentShipID"]);
+                                ship.int_18 = Convert.ToInt32(row["RefuelPriority"]);
+                                ship.int_19 = Convert.ToInt32(row["ResupplyPriority"]);
+                                ship.auroraResupplyStatus_0 =
                                     (AuroraResupplyStatus)Convert.ToInt32(row["ResupplyStatus"]);
-                                gclass40_1.auroraRefuelStatus_0 =
+                                ship.auroraRefuelStatus_0 =
                                     (AuroraRefuelStatus)Convert.ToInt32(row["RefuelStatus"]);
-                                gclass40_1.auroraOrdnanceTransferStatus_0 =
+                                ship.auroraOrdnanceTransferStatus_0 =
                                     (AuroraOrdnanceTransferStatus)Convert.ToInt32(row["OrdnanceTransferStatus"]);
-                                gclass40_1.genum43_0 = (GEnum43)Convert.ToInt32(row["HangarLoadType"]);
-                                gclass40_1.int_31 = Convert.ToInt32(row["AssignedFormationID"]);
-                                gclass40_1.genum78_0 = (GEnum78)Convert.ToInt32(row["TransponderActive"]);
-                                gclass40_1.int_20 = Convert.ToInt32(row["HullNumber"]);
-                                gclass40_1.LinkedSquadronID = Convert.ToInt32(row["AssignedSquadronID"]);
-                                gclass40_1.int_23 = Convert.ToInt32(row["DecoyThreshold"]);
-                                gclass40_1.int_24 = Convert.ToInt32(row["DesignateAsTarget"]);
-                                gclass40_1.decimal_1 = Convert.ToDecimal(row["Constructed"]);
-                                gclass40_1.decimal_2 = Convert.ToDecimal(row["CrewMorale"]);
-                                gclass40_1.decimal_3 = Convert.ToDecimal(row["CurrentShieldStrength"]);
-                                gclass40_1.decimal_4 = Convert.ToDecimal(row["CurrentMaintSupplies"]);
-                                gclass40_1.decimal_14 = Convert.ToDecimal(row["Fuel"]);
-                                gclass40_1.decimal_15 = Convert.ToDecimal(row["GradePoints"]);
-                                gclass40_1.decimal_5 = Convert.ToDecimal(row["LastLaunchTime"]);
-                                gclass40_1.decimal_6 = Convert.ToDecimal(row["LastOverhaul"]);
-                                gclass40_1.decimal_7 = Convert.ToDecimal(row["LastShoreLeave"]);
-                                gclass40_1.decimal_8 = Convert.ToDecimal(row["LaunchMorale"]);
-                                gclass40_1.decimal_16 = Convert.ToDecimal(row["TFPoints"]);
-                                gclass40_1.decimal_19 = Convert.ToDecimal(row["LastMissileHitTime"]);
-                                gclass40_1.decimal_20 = Convert.ToDecimal(row["LastBeamHitTime"]);
-                                gclass40_1.decimal_18 = Convert.ToDecimal(row["LastShipDamageTime"]);
-                                gclass40_1.decimal_21 = Convert.ToDecimal(row["LastPenetratingDamageTime"]);
-                                gclass40_1.decimal_9 = Convert.ToDecimal(row["OverhaulFactor"]);
-                                gclass40_1.decimal_17 = Convert.ToDecimal(row["BioEnergy"]);
-                                gclass40_1.decimal_10 = Convert.ToDecimal(row["DistanceTravelled"]);
-                                gclass40_1.decimal_11 = Convert.ToDecimal(row["LoadDistance"]);
-                                gclass40_1.decimal_13 = Convert.ToDecimal(row["LastFiringTime"]);
-                                gclass40_1.decimal_12 = Convert.ToDecimal(row["LastTransitTime"]);
-                                gclass40_1.bool_8 = Convert.ToBoolean(row["ActiveSensorsOn"]);
-                                gclass40_1.bool_9 = Convert.ToBoolean(row["Destroyed"]);
-                                gclass40_1.bool_10 = Convert.ToBoolean(row["ShieldsActive"]);
-                                gclass40_1.bool_11 = Convert.ToBoolean(row["ScrapFlag"]);
-                                gclass40_1.bool_14 = Convert.ToBoolean(row["AutomatedDamageControl"]);
-                                gclass40_1.ShipName = row["ShipName"].ToString();
-                                gclass40_1.string_0 = row["ShipNotes"].ToString();
-                                gclass40_1.TransportedMineral = new AllMineralsValue(this);
-                                if (gclass40_1.gclass21_0.NPR)
-                                    gclass40_1.gclass5_0 = new GClass5(this, gclass40_1);
-                                Ships.Add(gclass40_1.int_8, gclass40_1);
+                                ship.genum43_0 = (GEnum43)Convert.ToInt32(row["HangarLoadType"]);
+                                ship.int_31 = Convert.ToInt32(row["AssignedFormationID"]);
+                                ship.genum78_0 = (GEnum78)Convert.ToInt32(row["TransponderActive"]);
+                                ship.int_20 = Convert.ToInt32(row["HullNumber"]);
+                                ship.LinkedSquadronID = Convert.ToInt32(row["AssignedSquadronID"]);
+                                ship.int_23 = Convert.ToInt32(row["DecoyThreshold"]);
+                                ship.int_24 = Convert.ToInt32(row["DesignateAsTarget"]);
+                                ship.decimal_1 = Convert.ToDecimal(row["Constructed"]);
+                                ship.decimal_2 = Convert.ToDecimal(row["CrewMorale"]);
+                                ship.decimal_3 = Convert.ToDecimal(row["CurrentShieldStrength"]);
+                                ship.decimal_4 = Convert.ToDecimal(row["CurrentMaintSupplies"]);
+                                ship.decimal_14 = Convert.ToDecimal(row["Fuel"]);
+                                ship.decimal_15 = Convert.ToDecimal(row["GradePoints"]);
+                                ship.decimal_5 = Convert.ToDecimal(row["LastLaunchTime"]);
+                                ship.decimal_6 = Convert.ToDecimal(row["LastOverhaul"]);
+                                ship.decimal_7 = Convert.ToDecimal(row["LastShoreLeave"]);
+                                ship.decimal_8 = Convert.ToDecimal(row["LaunchMorale"]);
+                                ship.decimal_16 = Convert.ToDecimal(row["TFPoints"]);
+                                ship.decimal_19 = Convert.ToDecimal(row["LastMissileHitTime"]);
+                                ship.decimal_20 = Convert.ToDecimal(row["LastBeamHitTime"]);
+                                ship.decimal_18 = Convert.ToDecimal(row["LastShipDamageTime"]);
+                                ship.decimal_21 = Convert.ToDecimal(row["LastPenetratingDamageTime"]);
+                                ship.decimal_9 = Convert.ToDecimal(row["OverhaulFactor"]);
+                                ship.decimal_17 = Convert.ToDecimal(row["BioEnergy"]);
+                                ship.decimal_10 = Convert.ToDecimal(row["DistanceTravelled"]);
+                                ship.decimal_11 = Convert.ToDecimal(row["LoadDistance"]);
+                                ship.decimal_13 = Convert.ToDecimal(row["LastFiringTime"]);
+                                ship.decimal_12 = Convert.ToDecimal(row["LastTransitTime"]);
+                                ship.bool_8 = Convert.ToBoolean(row["ActiveSensorsOn"]);
+                                ship.bool_9 = Convert.ToBoolean(row["Destroyed"]);
+                                ship.bool_10 = Convert.ToBoolean(row["ShieldsActive"]);
+                                ship.bool_11 = Convert.ToBoolean(row["ScrapFlag"]);
+                                ship.bool_14 = Convert.ToBoolean(row["AutomatedDamageControl"]);
+                                ship.ShipName = row["ShipName"].ToString();
+                                ship.string_0 = row["ShipNotes"].ToString();
+                                ship.TransportedMineral = new AllMineralsValue(this);
+                                if (ship.Race.NPR)
+                                    ship.NPRShipBehaviour = new NPRShipBehaviour_5(this, ship);
+                                Ships.Add(ship.int_8, ship);
                             }
                         }
                     }
@@ -2984,7 +2999,7 @@ public partial class GClass0
 
             foreach (NavalAdminCommand gclass83 in NavalAdminCommands.Values)
             {
-                if (gclass83.int_4 != 0 && Ships.TryGetValue(gclass83.int_4, out var ship))
+                if (gclass83.ShipID != 0 && Ships.TryGetValue(gclass83.ShipID, out var ship))
                     gclass83.gclass40_0 = ship;
             }
         }
@@ -3003,7 +3018,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_Contacts WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * from FCT_Contacts WHERE GameID = {GameID.ToString()}").Rows)
             {
                 Contact gclass65 = new Contact(this);
                 int int32_1 = Convert.ToInt32(row["SystemID"]);
@@ -3093,7 +3109,7 @@ public partial class GClass0
                 if (Wrecks.ContainsKey(id))
                 {
                     int techId = Convert.ToInt32(row["TechID"]);
-                    if (TechDataDictionary.TryGetValue(techId, out var value))
+                    if (TechSystems.TryGetValue(techId, out var value))
                     {
                         wreckTech.TechData = value;
                         wreckTech.Percentage = Convert.ToDecimal(row["Percentage"]);
@@ -3260,8 +3276,8 @@ public partial class GClass0
                         if (SpeciesDictionary.TryGetValue(int32_3, out var value))
                         {
                             indProject.Species = value;
-                            WealthUsage wealthUsage = (WealthUsage)Convert.ToInt32(row["WealthUse"]);
-                            if (WealthUsageDictionary.TryGetValue(wealthUsage, out var value1))
+                            WealthUsageType wealthUsageType = (WealthUsageType)Convert.ToInt32(row["WealthUse"]);
+                            if (WealthUsageDictionary.TryGetValue(wealthUsageType, out var value1))
                             {
                                 indProject.WealthUsage = value1;
                                 int int32_5 = Convert.ToInt32(row["RefitClassID"]);
@@ -3350,63 +3366,63 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_MissileSalvo where GameID = {GameID.ToString()}").Rows)
             {
-                MissileSalvo gclass132 = new MissileSalvo(this);
+                MissileSalvo missileSalvo = new MissileSalvo(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass132.Race = race;
+                    missileSalvo.Race = race;
                     int int32_2 = Convert.ToInt32(row["MissileID"]);
                     if (RaceMissileDictionary.TryGetValue(int32_2, out var value))
                     {
-                        gclass132.RaceMissile = value;
+                        missileSalvo.RaceMissile = value;
                         int int32_3 = Convert.ToInt32(row["SystemID"]);
                         if (StarSystemDictionary.TryGetValue(int32_3, out var value1))
                         {
-                            gclass132.System = value1;
+                            missileSalvo.System = value1;
                             int int32_4 = Convert.ToInt32(row["ShipID"]);
                             if (Ships.TryGetValue(int32_4, out var ship))
-                                gclass132.Ship = ship;
+                                missileSalvo.Ship = ship;
                             int int32_5 = Convert.ToInt32(row["OrbitBodyID"]);
                             if (SystemBodyRecordDic.TryGetValue(int32_5, out var value2))
-                                gclass132.gclass1_0 = value2;
+                                missileSalvo.OrbitBody = value2;
                             int int32_6 = Convert.ToInt32(row["FireControlID"]);
                             if (ComponentDataDictionary.TryGetValue(int32_6, out var value3))
-                                gclass132.gclass230_0 = value3;
-                            gclass132.int_0 = Convert.ToInt32(row["TargetID"]);
-                            gclass132.int_1 = Convert.ToInt32(row["MissileSalvoID"]);
-                            gclass132.int_2 = Convert.ToInt32(row["FCNum"]);
-                            gclass132.double_9 = Convert.ToInt32(row["MissileSpeed"]);
-                            gclass132.genum58_0 = (GEnum58)Convert.ToInt32(row["HomingMethod"]);
-                            gclass132.decimal_0 = Convert.ToDecimal(row["LaunchTime"]);
-                            gclass132.decimal_2 = Convert.ToDecimal(row["CurrentDetonationRange"]);
-                            gclass132.double_8 = Convert.ToDouble(row["ModifierToHit"]);
-                            gclass132.decimal_1 = Convert.ToDecimal(row["Endurance"]);
-                            gclass132.double_0 = Convert.ToDouble(row["Xcor"]);
-                            gclass132.double_1 = Convert.ToDouble(row["Ycor"]);
-                            gclass132.double_2 = Convert.ToDouble(row["LastXcor"]);
-                            gclass132.double_3 = Convert.ToDouble(row["LastYcor"]);
-                            gclass132.double_4 = Convert.ToDouble(row["LastTargetX"]);
-                            gclass132.double_5 = Convert.ToDouble(row["LastTargetY"]);
-                            gclass132.double_6 = Convert.ToDouble(row["IncrementStartX"]);
-                            gclass132.double_7 = Convert.ToDouble(row["IncrementStartY"]);
-                            MissileSalvoes.Add(gclass132.int_1, gclass132);
-                            if (gclass132.int_0 > 0)
+                                missileSalvo.FireControl = value3;
+                            missileSalvo.TargetID = Convert.ToInt32(row["TargetID"]);
+                            missileSalvo.MissileSalvoID = Convert.ToInt32(row["MissileSalvoID"]);
+                            missileSalvo.FCNum = Convert.ToInt32(row["FCNum"]);
+                            missileSalvo.MissileSpeed = Convert.ToInt32(row["MissileSpeed"]);
+                            missileSalvo.HomingMethod = (HomingMethod)Convert.ToInt32(row["HomingMethod"]);
+                            missileSalvo.LaunchTime = Convert.ToDecimal(row["LaunchTime"]);
+                            missileSalvo.CurrentDetonationRange = Convert.ToDecimal(row["CurrentDetonationRange"]);
+                            missileSalvo.ModifierToHit = Convert.ToDouble(row["ModifierToHit"]);
+                            missileSalvo.Endurance = Convert.ToDecimal(row["Endurance"]);
+                            missileSalvo.Xcor = Convert.ToDouble(row["Xcor"]);
+                            missileSalvo.Ycor = Convert.ToDouble(row["Ycor"]);
+                            missileSalvo.LastXcor = Convert.ToDouble(row["LastXcor"]);
+                            missileSalvo.LastYcor = Convert.ToDouble(row["LastYcor"]);
+                            missileSalvo.LastTargetX = Convert.ToDouble(row["LastTargetX"]);
+                            missileSalvo.LastTargetY = Convert.ToDouble(row["LastTargetY"]);
+                            missileSalvo.IncrementStartX = Convert.ToDouble(row["IncrementStartX"]);
+                            missileSalvo.IncrementStartY = Convert.ToDouble(row["IncrementStartY"]);
+                            MissileSalvoes.Add(missileSalvo.MissileSalvoID, missileSalvo);
+                            if (missileSalvo.TargetID > 0)
                             {
-                                gclass132.auroraContactType_0 = (AuroraContactType)Convert.ToInt32(row["TargetType"]);
-                                switch (gclass132.auroraContactType_0)
+                                missileSalvo.TargetType = (AuroraContactType)Convert.ToInt32(row["TargetType"]);
+                                switch (missileSalvo.TargetType)
                                 {
                                     case AuroraContactType.Ship:
-                                        if (Ships.TryGetValue(gclass132.int_0, out var ship1))
+                                        if (Ships.TryGetValue(missileSalvo.TargetID, out var ship1))
                                         {
-                                            gclass132.gclass40_1 = ship1;
+                                            missileSalvo.TargetShip = ship1;
                                             continue;
                                         }
 
                                         continue;
                                     case AuroraContactType.Salvo:
-                                        if (MissileSalvoes.TryGetValue(gclass132.int_0, out var salvo))
+                                        if (MissileSalvoes.TryGetValue(missileSalvo.TargetID, out var salvo))
                                         {
-                                            gclass132.gclass132_0 = salvo;
+                                            missileSalvo.TargetSalvo = salvo;
                                             continue;
                                         }
 
@@ -3415,17 +3431,17 @@ public partial class GClass0
                                     case AuroraContactType.GroundUnit:
                                     case AuroraContactType.STOGroundUnit:
                                     case AuroraContactType.Shipyard:
-                                        if (Populations.TryGetValue(gclass132.int_0, out var population))
+                                        if (Populations.TryGetValue(missileSalvo.TargetID, out var population))
                                         {
-                                            gclass132.gclass146_0 = population;
+                                            missileSalvo.TargetPopulation = population;
                                             continue;
                                         }
 
                                         continue;
                                     case AuroraContactType.WayPoint:
-                                        if (Waypoints.TryGetValue(gclass132.int_0, out var waypoint))
+                                        if (Waypoints.TryGetValue(missileSalvo.TargetID, out var waypoint))
                                         {
-                                            gclass132.gclass214_0 = waypoint;
+                                            missileSalvo.TargetWaypoint = waypoint;
                                             continue;
                                         }
 
@@ -3488,7 +3504,7 @@ public partial class GClass0
                     rdMissileDesign.EngineComponent = value;
                 rdMissileDesign.Name = row["Name"].ToString();
                 rdMissileDesign.MissileID = Convert.ToInt32(row["MissileID"]);
-                if (TechDataDictionary.TryGetValue(rdMissileDesign.MissileID, out var value1))
+                if (TechSystems.TryGetValue(rdMissileDesign.MissileID, out var value1))
                 {
                     rdMissileDesign.TechSystem = value1;
                     rdMissileDesign.MissileSeriesID = Convert.ToInt32(row["MissileSeriesID"]);
@@ -3617,15 +3633,15 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_PopulationWeapon WHERE GameID = {GameID.ToString()}")
                          .Rows)
             {
-                PopOrdnanceStock ordnanceStock = new PopOrdnanceStock();
+                ShipOrdnance ordnance = new ShipOrdnance();
                 int int32_1 = Convert.ToInt32(row["MissileID"]);
                 if (RaceMissileDictionary.TryGetValue(int32_1, out var value))
                 {
-                    ordnanceStock.RaceMissile = value;
-                    ordnanceStock.Amount = Convert.ToInt32(row["Amount"]);
+                    ordnance.RaceMissile = value;
+                    ordnance.Amount = Convert.ToInt32(row["Amount"]);
                     int int32_2 = Convert.ToInt32(row["PopulationID"]);
                     if (Populations.ContainsKey(int32_2))
-                        Populations[int32_2].OrdnanceStocks.Add(ordnanceStock);
+                        Populations[int32_2].OrdnanceStocks.Add(ordnance);
                 }
             }
         }
@@ -3639,22 +3655,22 @@ public partial class GClass0
         }
     }
 
-    public void method_261()
+    public void LoadPopulationOrdnance()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_ShipWeapon WHERE GameID = {GameID.ToString()}").Rows)
             {
-                PopOrdnanceStock gclass130 = new PopOrdnanceStock();
+                ShipOrdnance shipOrdnance = new ShipOrdnance();
                 int int32_1 = Convert.ToInt32(row["MissileID"]);
                 if (RaceMissileDictionary.TryGetValue(int32_1, out var value))
                 {
-                    gclass130.RaceMissile = value;
-                    gclass130.Amount = Convert.ToInt32(row["Amount"]);
+                    shipOrdnance.RaceMissile = value;
+                    shipOrdnance.Amount = Convert.ToInt32(row["Amount"]);
                     int int32_2 = Convert.ToInt32(row["ShipID"]);
                     if (Ships.Keys.Contains(int32_2))
-                        Ships[int32_2].list_10.Add(gclass130);
+                        Ships[int32_2].Ordnances.Add(shipOrdnance);
                 }
             }
         }
@@ -3668,7 +3684,7 @@ public partial class GClass0
         }
     }
 
-    public void method_262()
+    public void LoadClassOrdnanceTemplate()
     {
         try
         {
@@ -3678,12 +3694,12 @@ public partial class GClass0
                 int int32_1 = Convert.ToInt32(row["MissileID"]);
                 if (RaceMissileDictionary.TryGetValue(int32_1, out var value))
                 {
-                    PopOrdnanceStock gclass130 = new PopOrdnanceStock();
+                    ShipOrdnance gclass130 = new ShipOrdnance();
                     gclass130.RaceMissile = value;
                     gclass130.Amount = Convert.ToInt32(row["Amount"]);
                     int int32_2 = Convert.ToInt32(row["ShipClassID"]);
                     if (ShipClasses.Keys.Contains(int32_2))
-                        ShipClasses[int32_2].list_0.Add(gclass130);
+                        ShipClasses[int32_2].OrdnanceTemplate.Add(gclass130);
                 }
             }
         }
@@ -3697,7 +3713,7 @@ public partial class GClass0
         }
     }
 
-    public void method_263()
+    public void LoadFctShipOrdnanceTemplate()
     {
         try
         {
@@ -3708,12 +3724,12 @@ public partial class GClass0
                 int int32_1 = Convert.ToInt32(row["MissileID"]);
                 if (RaceMissileDictionary.TryGetValue(int32_1, out var value))
                 {
-                    PopOrdnanceStock gclass130 = new PopOrdnanceStock();
+                    ShipOrdnance gclass130 = new ShipOrdnance();
                     gclass130.RaceMissile = value;
                     gclass130.Amount = Convert.ToInt32(row["Amount"]);
                     int int32_2 = Convert.ToInt32(row["ShipID"]);
                     if (Ships.Keys.Contains(int32_2))
-                        Ships[int32_2].list_9.Add(gclass130);
+                        Ships[int32_2].ShipOrdnanceTemplate.Add(gclass130);
                 }
             }
         }
@@ -3727,7 +3743,7 @@ public partial class GClass0
         }
     }
 
-    public void method_264()
+    public void LoadClassComponents()
     {
         try
         {
@@ -3735,18 +3751,18 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_ClassComponent where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass228 gclass228 = new GClass228();
-                gclass228.int_1 = Convert.ToInt32(row["ClassID"]);
-                if (ShipClasses.ContainsKey(gclass228.int_1))
+                ClassComponent classComponent = new ClassComponent();
+                classComponent.ClassID = Convert.ToInt32(row["ClassID"]);
+                if (ShipClasses.ContainsKey(classComponent.ClassID))
                 {
-                    gclass228.int_0 = Convert.ToInt32(row["ComponentID"]);
-                    if (ComponentDataDictionary.TryGetValue(gclass228.int_0, out var value))
+                    classComponent.ComponentID = Convert.ToInt32(row["ComponentID"]);
+                    if (ComponentDataDictionary.TryGetValue(classComponent.ComponentID, out var value))
                     {
-                        gclass228.decimal_0 = Convert.ToDecimal(row["NumComponent"]);
-                        gclass228.int_2 = Convert.ToInt32(row["ChanceToHit"]);
-                        gclass228.int_3 = Convert.ToInt32(row["ElectronicCTH"]);
-                        gclass228.gclass230_0 = value;
-                        ShipClasses[gclass228.int_1].dictionary_0.Add(gclass228.int_0, gclass228);
+                        classComponent.NumComponent = Convert.ToDecimal(row["NumComponent"]);
+                        classComponent.ChanceToHit = Convert.ToInt32(row["ChanceToHit"]);
+                        classComponent.ElectronicCTH = Convert.ToInt32(row["ElectronicCTH"]);
+                        classComponent.Component = value;
+                        ShipClasses[classComponent.ClassID].ClassComponents.Add(classComponent.ComponentID, classComponent);
                     }
                 }
             }
@@ -3761,7 +3777,7 @@ public partial class GClass0
         }
     }
 
-    public void method_265()
+    public void LoadComponentDamages()
     {
         try
         {
@@ -3770,16 +3786,16 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_DamagedComponent where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass178 gclass178 = new GClass178();
+                ComponentDamage componentDamage = new ComponentDamage();
                 int int32_1 = Convert.ToInt32(row["ShipID"]);
                 if (Ships.ContainsKey(int32_1))
                 {
                     int int32_2 = Convert.ToInt32(row["ComponentID"]);
-                    if (ComponentDataDictionary.TryGetValue(int32_2, out var value))
+                    if (ComponentDataDictionary.TryGetValue(int32_2, out var shipComponent))
                     {
-                        gclass178.gclass230_0 = value;
-                        gclass178.int_0 = Convert.ToInt32(row["Number"]);
-                        Ships[int32_1].list_12.Add(gclass178);
+                        componentDamage.ShipComponent = shipComponent;
+                        componentDamage.Number = Convert.ToInt32(row["Number"]);
+                        Ships[int32_1].ComponentDamages.Add(componentDamage);
                     }
                 }
             }
@@ -3792,7 +3808,7 @@ public partial class GClass0
                 {
                     int int32_4 = Convert.ToInt32(row["ArmourColumn"]);
                     int int32_5 = Convert.ToInt32(row["Damage"]);
-                    Ships[int32_3].dictionary_5.Add(int32_4, int32_5);
+                    Ships[int32_3].ArmorDamages.Add(int32_4, int32_5);
                 }
             }
         }
@@ -3806,21 +3822,21 @@ public partial class GClass0
         }
     }
 
-    public void method_266()
+    public void LoadClassFighterTemplate()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_ClassSC where GameID = {GameID.ToString()}").Rows)
             {
-                GClass74 gclass74 = new GClass74();
+                ClassFighterTemplate classFighterTemplate = new ClassFighterTemplate();
                 int int32_1 = Convert.ToInt32(row["ShipClassID"]);
                 int int32_2 = Convert.ToInt32(row["FighterClassID"]);
-                if (ShipClasses.ContainsKey(int32_1) && ShipClasses.TryGetValue(int32_2, out var @class))
+                if (ShipClasses.ContainsKey(int32_1) && ShipClasses.TryGetValue(int32_2, out var shipClass))
                 {
-                    gclass74.gclass22_0 = @class;
-                    gclass74.int_0 = Convert.ToInt32(row["Number"]);
-                    ShipClasses[int32_1].list_1.Add(gclass74);
+                    classFighterTemplate.FighterClass = shipClass;
+                    classFighterTemplate.Number = Convert.ToInt32(row["Number"]);
+                    ShipClasses[int32_1].FighterClassTemplates.Add(classFighterTemplate);
                 }
             }
         }
@@ -3834,7 +3850,7 @@ public partial class GClass0
         }
     }
 
-    public void method_267()
+    public void LoadClassGroundTemplates()
     {
         try
         {
@@ -3842,14 +3858,14 @@ public partial class GClass0
                          .ExecuteQuery(
                              $"SELECT * FROM FCT_ClassGroundTemplates where GameID = {GameID.ToString()}").Rows)
             {
-                GClass75 gclass75 = new GClass75();
+                ClassGroundTemplate classGroundTemplate = new ClassGroundTemplate();
                 int int32_1 = Convert.ToInt32(row["ShipClassID"]);
                 int int32_2 = Convert.ToInt32(row["TemplateID"]);
                 if (ShipClasses.ContainsKey(int32_1) && FormationTemplateRecordDic.TryGetValue(int32_2, out var value))
                 {
-                    gclass75.gclass102_0 = value;
-                    gclass75.int_0 = Convert.ToInt32(row["Number"]);
-                    ShipClasses[int32_1].list_2.Add(gclass75);
+                    classGroundTemplate.GroundUnitTemplate = value;
+                    classGroundTemplate.Number = Convert.ToInt32(row["Number"]);
+                    ShipClasses[int32_1].GroundUnitTemplates.Add(classGroundTemplate);
                 }
             }
         }
@@ -3863,7 +3879,7 @@ public partial class GClass0
         }
     }
 
-    public void method_268()
+    public void LoadHullDescriptions()
     {
         try
         {
@@ -3890,21 +3906,20 @@ public partial class GClass0
         }
     }
 
-    public void method_269()
+    public void LoadFleetHistories()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_FleetHistory where GameID = {GameID.ToString()}").Rows)
             {
-                GClass177 gclass177 = new GClass177();
+                HistoryRecord historyRecord = new HistoryRecord();
                 int int32 = Convert.ToInt32(row["FleetID"]);
-                if (FleetDictionary.TryGetValue(int32, out var gclass85))
+                if (FleetDictionary.TryGetValue(int32, out var fleet))
                 {
-                    gclass177.decimal_0 = Convert.ToDecimal(row["GameTime"]);
-                    gclass177.Description = row["Description"].ToString();
-                    gclass177.bool_0 = true;
-                    gclass85.list_0.Add(gclass177);
+                    historyRecord.GameTime = Convert.ToDecimal(row["GameTime"]);
+                    historyRecord.Description = row["Description"].ToString();
+                    fleet.Histories.Add(historyRecord);
                 }
             }
         }
@@ -3918,20 +3933,20 @@ public partial class GClass0
         }
     }
 
-    public void method_270()
+    public void LoadShipHistories()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_ShipHistory where GameID = {GameID.ToString()}").Rows)
             {
-                GClass177 gclass177 = new GClass177();
+                HistoryRecord record = new HistoryRecord();
                 int int32 = Convert.ToInt32(row["ShipID"]);
-                if (Ships.TryGetValue(int32, out var gclass40))
+                if (Ships.TryGetValue(int32, out var ship))
                 {
-                    gclass177.decimal_0 = Convert.ToDecimal(row["GameTime"]);
-                    gclass177.Description = row["Description"].ToString();
-                    gclass40.list_11.Add(gclass177);
+                    record.GameTime = Convert.ToDecimal(row["GameTime"]);
+                    record.Description = row["Description"].ToString();
+                    ship.Histories.Add(record);
                 }
             }
         }
@@ -3945,7 +3960,7 @@ public partial class GClass0
         }
     }
 
-    public void method_271()
+    public void LoadCommanderHistories()
     {
         try
         {
@@ -3953,18 +3968,18 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_CommanderHistory where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass177 gclass177 = new GClass177();
+                HistoryRecord record = new HistoryRecord();
                 int int32 = Convert.ToInt32(row["CommanderID"]);
-                GClass55 gclass55;
-                if (dictionary_42.TryGetValue(int32, out var value))
-                    gclass55 = value;
-                else if (dictionary_43.TryGetValue(int32, out var value1))
-                    gclass55 = value1;
+                Commander commander;
+                if (ActiveCommanders.TryGetValue(int32, out var value))
+                    commander = value;
+                else if (RetiredCommanders.TryGetValue(int32, out var value1))
+                    commander = value1;
                 else
                     continue;
-                gclass177.decimal_0 = Convert.ToDecimal(row["GameTime"]);
-                gclass177.Description = row["HistoryText"].ToString();
-                gclass55.list_0.Add(gclass177);
+                record.GameTime = Convert.ToDecimal(row["GameTime"]);
+                record.Description = row["HistoryText"].ToString();
+                commander.Histories.Add(record);
             }
         }
         catch (DbException ex)
@@ -3977,7 +3992,7 @@ public partial class GClass0
         }
     }
 
-    public void method_273()
+    public void LoadCommanderMeasuerments()
     {
         try
         {
@@ -3985,18 +4000,18 @@ public partial class GClass0
                          .ExecuteQuery(
                              $"SELECT * FROM FCT_CommanderMeasurement where GameID = {GameID.ToString()}").Rows)
             {
-                GClass54 gclass54 = new GClass54();
+                Measurement measurement = new Measurement();
                 int int32 = Convert.ToInt32(row["CommanderID"]);
-                GClass55 gclass55;
-                if (dictionary_42.TryGetValue(int32, out var value))
-                    gclass55 = value;
-                else if (dictionary_43.TryGetValue(int32, out var value1))
-                    gclass55 = value1;
+                Commander commander;
+                if (ActiveCommanders.TryGetValue(int32, out var value))
+                    commander = value;
+                else if (RetiredCommanders.TryGetValue(int32, out var value1))
+                    commander = value1;
                 else
                     continue;
-                gclass54.auroraMeasurementType_0 = (AuroraMeasurementType)Convert.ToInt32(row["MeasurementType"]);
-                gclass54.decimal_0 = Convert.ToDecimal(row["Amount"]);
-                gclass55.dictionary_2.Add(gclass54.auroraMeasurementType_0, gclass54);
+                measurement.MeasurementType = (AuroraMeasurementType)Convert.ToInt32(row["MeasurementType"]);
+                measurement.Amount = Convert.ToDecimal(row["Amount"]);
+                commander.Measurements.Add(measurement.MeasurementType, measurement);
             }
         }
         catch (DbException ex)
@@ -4009,7 +4024,7 @@ public partial class GClass0
         }
     }
 
-    public void method_274()
+    public void LoadShipMeasurements()
     {
         try
         {
@@ -4017,14 +4032,14 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_ShipMeasurement where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass54 gclass54 = new GClass54();
+                Measurement metric = new Measurement();
                 int int32 = Convert.ToInt32(row["ShipID"]);
                 if (Ships.ContainsKey(int32))
                 {
-                    gclass54.auroraMeasurementType_0 = (AuroraMeasurementType)Convert.ToInt32(row["MeasurementType"]);
-                    gclass54.decimal_0 = Convert.ToDecimal(row["Amount"]);
-                    gclass54.bool_0 = Convert.ToBoolean(row["StrikeGroup"]);
-                    Ships[int32].list_0.Add(gclass54);
+                    metric.MeasurementType = (AuroraMeasurementType)Convert.ToInt32(row["MeasurementType"]);
+                    metric.Amount = Convert.ToDecimal(row["Amount"]);
+                    metric.StrikeGroup = Convert.ToBoolean(row["StrikeGroup"]);
+                    Ships[int32].Measurements.Add(metric);
                 }
             }
         }
@@ -4038,23 +4053,23 @@ public partial class GClass0
         }
     }
 
-    public void method_275()
+    public void LoadMedalConditionAssignments()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_MedalConditionAssignment where GameID = {GameID.ToString()}").Rows)
             {
-                GClass44 gclass44 = new GClass44();
+                ConditionForMedal condition = new ConditionForMedal();
                 int int32_1 = Convert.ToInt32(row["MedalID"]);
                 if (RaceMedalDictionary.TryGetValue(int32_1, out var value))
                 {
-                    gclass44.gclass42_0 = value;
+                    condition.Medal = value;
                     int int32_2 = Convert.ToInt32(row["MedalConditionID"]);
                     if (MedalConditionDictionary.TryGetValue(int32_2, out var value1))
                     {
-                        gclass44.gclass43_0 = value1;
-                        list_1.Add(gclass44);
+                        condition.Condition = value1;
+                        ConditionForMedals.Add(condition);
                     }
                 }
             }
@@ -4069,7 +4084,7 @@ public partial class GClass0
         }
     }
 
-    public void method_276()
+    public void LoadCommanderMedals()
     {
         try
         {
@@ -4077,22 +4092,22 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_CommanderMedal where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass53 gclass53 = new GClass53();
+                CommanderMedal commanderMedal = new CommanderMedal();
                 int int32_1 = Convert.ToInt32(row["CommanderID"]);
-                GClass55 gclass55;
-                if (dictionary_42.TryGetValue(int32_1, out var value))
-                    gclass55 = value;
-                else if (dictionary_43.TryGetValue(int32_1, out var value1))
-                    gclass55 = value1;
+                Commander commander;
+                if (ActiveCommanders.TryGetValue(int32_1, out var value))
+                    commander = value;
+                else if (RetiredCommanders.TryGetValue(int32_1, out var value1))
+                    commander = value1;
                 else
                     continue;
                 int int32_2 = Convert.ToInt32(row["MedalID"]);
                 if (RaceMedalDictionary.TryGetValue(int32_2, out var value2))
                 {
-                    gclass53.gclass42_0 = value2;
-                    gclass53.int_0 = Convert.ToInt32(row["NumAwarded"]);
-                    gclass53.string_0 = row["AwardReason"].ToString();
-                    gclass55.dictionary_1.Add(int32_2, gclass53);
+                    commanderMedal.gclass42_0 = value2;
+                    commanderMedal.int_0 = Convert.ToInt32(row["NumAwarded"]);
+                    commanderMedal.string_0 = row["AwardReason"].ToString();
+                    commander.dictionary_1.Add(int32_2, commanderMedal);
                 }
             }
         }
@@ -4106,7 +4121,7 @@ public partial class GClass0
         }
     }
 
-    public void method_277()
+    public void LoadStandingOrderTemplates()
     {
         try
         {
@@ -4114,39 +4129,40 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)sqLiteDatabaseC1181
                          .ExecuteQuery($"select * FROM FCT_StandingOrderTemplate where GameID = {GameID.ToString()}").Rows)
             {
-                GClass135 gclass135 = new GClass135();
+                StandingOrderTemplate standingOrderTemplate = new StandingOrderTemplate();
                 int int32 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.ContainsKey(int32))
                 {
-                    gclass135.int_0 = Convert.ToInt32(row["TemplateID"]);
-                    gclass135.string_0 = row["TemplateName"].ToString();
-                    GameRaces[int32].dictionary_9.Add(gclass135.int_0, gclass135);
+                    standingOrderTemplate.TemplateID = Convert.ToInt32(row["TemplateID"]);
+                    standingOrderTemplate.TemplateName = row["TemplateName"].ToString();
+                    GameRaces[int32].StandingOrderTemplates.Add(standingOrderTemplate.TemplateID, standingOrderTemplate);
                 }
             }
 
             foreach (DataRow row in (InternalDataCollectionBase)sqLiteDatabaseC1181
-                         .ExecuteQuery($"select * FROM FCT_StandingOrderTemplateOrder where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * FROM FCT_StandingOrderTemplateOrder where GameID = {GameID.ToString()}").Rows)
             {
-                int int32_1 = Convert.ToInt32(row["RaceID"]);
-                if (GameRaces.ContainsKey(int32_1))
+                int raceId = Convert.ToInt32(row["RaceID"]);
+                if (GameRaces.ContainsKey(raceId))
                 {
-                    int int32_2 = Convert.ToInt32(row["TemplateID"]);
-                    if (GameRaces[int32_1].dictionary_9.ContainsKey(int32_2))
+                    int templateId = Convert.ToInt32(row["TemplateID"]);
+                    if (GameRaces[raceId].StandingOrderTemplates.ContainsKey(templateId))
                     {
-                        int int32_3 = Convert.ToInt32(row["Priority"]);
-                        int int32_4 = Convert.ToInt32(row["CreateFWP"]);
-                        AuroraStandingOrder int32_5 = (AuroraStandingOrder)Convert.ToInt32(row["OrderID"]);
-                        AuroraFleetCondition int32_6 = (AuroraFleetCondition)Convert.ToInt32(row["ConditionID"]);
-                        if (int32_6 == AuroraFleetCondition.NoCondition)
-                            GameRaces[int32_1].dictionary_9[int32_2].dictionary_0
-                                .Add(int32_3, StandingOrderDictionary[int32_5]);
+                        int priority = Convert.ToInt32(row["Priority"]);
+                        int createFWP = Convert.ToInt32(row["CreateFWP"]);
+                        AuroraStandingOrder orderId = (AuroraStandingOrder)Convert.ToInt32(row["OrderID"]);
+                        AuroraFleetCondition conditionId = (AuroraFleetCondition)Convert.ToInt32(row["ConditionID"]);
+                        if (conditionId == AuroraFleetCondition.NoCondition)
+                            GameRaces[raceId].StandingOrderTemplates[templateId].StandingOrders
+                                .Add(priority, StandingOrderDictionary[orderId]);
                         else
-                            GameRaces[int32_1].dictionary_9[int32_2].dictionary_1.Add(int32_3,
+                            GameRaces[raceId].StandingOrderTemplates[templateId].ConditionalOrders.Add(priority,
                                 new FleetConditionalOrder()
                                 {
-                                    Condition = int32_6,
-                                    StandingOrder = int32_5,
-                                    CreateFleetWaypoint = int32_4
+                                    Condition = conditionId,
+                                    StandingOrder = orderId,
+                                    CreateFleetWaypoint = createFWP
                                 });
                     }
                 }
@@ -4162,61 +4178,62 @@ public partial class GClass0
         }
     }
 
-    public void method_280()
+    public void LoadShipyards()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * FROM FCT_Shipyard WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * FROM FCT_Shipyard WHERE GameID = {GameID.ToString()}").Rows)
             {
-                GClass193 gclass193 = new GClass193(this);
+                Shipyard shipyard = new Shipyard(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass193.gclass21_0 = race;
+                    shipyard.Race = race;
                     int int32_2 = Convert.ToInt32(row["PopulationID"]);
                     if (Populations.TryGetValue(int32_2, out var population))
-                        gclass193.gclass146_0 = population;
+                        shipyard.Population = population;
                     int int32_3 = Convert.ToInt32(row["ParentShipID"]);
                     if (Ships.TryGetValue(int32_3, out var ship))
-                        gclass193.gclass40_1 = ship;
+                        shipyard.ParentShip = ship;
                     int int32_4 = Convert.ToInt32(row["TractorParentShipID"]);
                     if (Ships.TryGetValue(int32_4, out var ship1))
-                        gclass193.gclass40_0 = ship1;
+                        shipyard.TractorParentShip = ship1;
                     int int32_5 = Convert.ToInt32(row["BuildClassID"]);
                     if (ShipClasses.TryGetValue(int32_5, out var @class))
-                        gclass193.gclass22_0 = @class;
+                        shipyard.BuildShipClass = @class;
                     int int32_6 = Convert.ToInt32(row["RetoolClassID"]);
                     if (ShipClasses.TryGetValue(int32_6, out var shipClass))
-                        gclass193.gclass22_1 = shipClass;
+                        shipyard.RetoolClassID = shipClass;
                     int int32_7 = Convert.ToInt32(row["DefaultFleetID"]);
                     if (FleetDictionary.TryGetValue(int32_7, out var value))
-                        gclass193.gclass85_0 = value;
+                        shipyard.DefaultFleet = value;
                     int int32_8 = Convert.ToInt32(row["DefaultNavalAdminID"]);
                     if (NavalAdminCommands.TryGetValue(int32_8, out var command))
-                        gclass193.gclass83_0 = command;
-                    gclass193.int_0 = Convert.ToInt32(row["ShipyardID"]);
-                    gclass193.int_1 = Convert.ToInt32(row["Slipways"]);
-                    gclass193.int_2 = Convert.ToInt32(row["CapacityTarget"]);
-                    gclass193.int_3 = Convert.ToInt32(row["UseAdmin"]);
-                    gclass193.auroraShipyardType_0 = (AuroraShipyardType)Convert.ToInt32(row["SYType"]);
-                    gclass193.auroraShipyardUpgradeType_0 = (AuroraShipyardUpgradeType)Convert.ToInt32(row["TaskType"]);
-                    gclass193.decimal_0 = Convert.ToDecimal(row["Capacity"]);
-                    gclass193.decimal_1 = Convert.ToDecimal(row["RequiredBP"]);
-                    gclass193.decimal_2 = Convert.ToDecimal(row["CompletedBP"]);
-                    gclass193.double_0 = Convert.ToDouble(row["Xcor"]);
-                    gclass193.double_1 = Convert.ToDouble(row["Ycor"]);
-                    gclass193.bool_0 = Convert.ToBoolean(row["PauseActivity"]);
-                    gclass193.string_0 = row["ShipyardName"].ToString();
-                    dictionary_31.Add(gclass193.int_0, gclass193);
+                        shipyard.DefaultNavalAdmin = command;
+                    shipyard.ShipyardID = Convert.ToInt32(row["ShipyardID"]);
+                    shipyard.Slipways = Convert.ToInt32(row["Slipways"]);
+                    shipyard.CapacityTarget = Convert.ToInt32(row["CapacityTarget"]);
+                    shipyard.UseAdmin = Convert.ToInt32(row["UseAdmin"]);
+                    shipyard.SYType = (AuroraShipyardType)Convert.ToInt32(row["SYType"]);
+                    shipyard.TaskType = (AuroraShipyardUpgradeType)Convert.ToInt32(row["TaskType"]);
+                    shipyard.Capacity = Convert.ToDecimal(row["Capacity"]);
+                    shipyard.RequiredBP = Convert.ToDecimal(row["RequiredBP"]);
+                    shipyard.CompletedBP = Convert.ToDecimal(row["CompletedBP"]);
+                    shipyard.XCor = Convert.ToDouble(row["Xcor"]);
+                    shipyard.YCor = Convert.ToDouble(row["Ycor"]);
+                    shipyard.PauseActivity = Convert.ToBoolean(row["PauseActivity"]);
+                    shipyard.ShipyardName = row["ShipyardName"].ToString();
+                    Shipyards.Add(shipyard.ShipyardID, shipyard);
                 }
             }
 
-            foreach (ShipData gclass40 in Ships.Values
-                         .Where(gclass40_0 => gclass40_0.int_29 > 0).ToList())
+            foreach (ShipData ship in Ships.Values
+                         .Where(ship => ship.TractorTargetShipyardID > 0).ToList())
             {
-                if (dictionary_31.TryGetValue(gclass40.int_29, out var value))
-                    gclass40.gclass193_0 = value;
+                if (Shipyards.TryGetValue(ship.TractorTargetShipyardID, out var value))
+                    ship.TractorTargetShipyard = value;
             }
         }
         catch (DbException ex)
@@ -4229,16 +4246,16 @@ public partial class GClass0
         }
     }
 
-    public void method_281()
+    public void LoadShipyardTask()
     {
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_ShipyardTask WHERE GameID = {GameID.ToString()}").Rows)
             {
-                GClass192 gclass192 = new GClass192();
+                ShipyardTask gclass192 = new ShipyardTask();
                 int int32_1 = Convert.ToInt32(row["ShipyardID"]);
-                if (dictionary_31.TryGetValue(int32_1, out var value))
+                if (Shipyards.TryGetValue(int32_1, out var value))
                 {
                     gclass192.gclass193_0 = value;
                     int int32_2 = Convert.ToInt32(row["RaceID"]);
@@ -4308,16 +4325,16 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_PopComponent WHERE GameID = {GameID.ToString()}").Rows)
             {
-                TransportedComponent gclass73 = new TransportedComponent();
+                StoredComponent gclass73 = new StoredComponent();
                 int int32 = Convert.ToInt32(row["PopulationID"]);
                 if (Populations.ContainsKey(int32))
                 {
-                    gclass73.int_0 = Convert.ToInt32(row["ComponentID"]);
-                    if (ComponentDataDictionary.TryGetValue(gclass73.int_0, out var value))
+                    gclass73.ComponentID = Convert.ToInt32(row["ComponentID"]);
+                    if (ComponentDataDictionary.TryGetValue(gclass73.ComponentID, out var value))
                     {
                         gclass73.Component = value;
                         gclass73.Amount = Convert.ToDecimal(row["Amount"]);
-                        Populations[int32].list_2.Add(gclass73);
+                        Populations[int32].StoredComponents.Add(gclass73);
                     }
                 }
             }
@@ -4332,7 +4349,7 @@ public partial class GClass0
         }
     }
 
-    public void method_283()
+    public void LoadPopulationMineralDepositChanges()
     {
         try
         {
@@ -4342,17 +4359,17 @@ public partial class GClass0
                 int int32 = Convert.ToInt32(row["PopulationID"]);
                 if (Populations.ContainsKey(int32))
                 {
-                    Populations[int32].gclass123_3.Duranium = Convert.ToDecimal(row["Duranium"]);
-                    Populations[int32].gclass123_3.Neutronium = Convert.ToDecimal(row["Neutronium"]);
-                    Populations[int32].gclass123_3.Corbomite = Convert.ToDecimal(row["Corbomite"]);
-                    Populations[int32].gclass123_3.Tritanium = Convert.ToDecimal(row["Tritanium"]);
-                    Populations[int32].gclass123_3.Boronide = Convert.ToDecimal(row["Boronide"]);
-                    Populations[int32].gclass123_3.Mercassium = Convert.ToDecimal(row["Mercassium"]);
-                    Populations[int32].gclass123_3.Vendarite = Convert.ToDecimal(row["Vendarite"]);
-                    Populations[int32].gclass123_3.Sorium = Convert.ToDecimal(row["Sorium"]);
-                    Populations[int32].gclass123_3.Uridium = Convert.ToDecimal(row["Uridium"]);
-                    Populations[int32].gclass123_3.Corundium = Convert.ToDecimal(row["Corundium"]);
-                    Populations[int32].gclass123_3.Gallicite = Convert.ToDecimal(row["Gallicite"]);
+                    Populations[int32].MineralDepositChange.Duranium = Convert.ToDecimal(row["Duranium"]);
+                    Populations[int32].MineralDepositChange.Neutronium = Convert.ToDecimal(row["Neutronium"]);
+                    Populations[int32].MineralDepositChange.Corbomite = Convert.ToDecimal(row["Corbomite"]);
+                    Populations[int32].MineralDepositChange.Tritanium = Convert.ToDecimal(row["Tritanium"]);
+                    Populations[int32].MineralDepositChange.Boronide = Convert.ToDecimal(row["Boronide"]);
+                    Populations[int32].MineralDepositChange.Mercassium = Convert.ToDecimal(row["Mercassium"]);
+                    Populations[int32].MineralDepositChange.Vendarite = Convert.ToDecimal(row["Vendarite"]);
+                    Populations[int32].MineralDepositChange.Sorium = Convert.ToDecimal(row["Sorium"]);
+                    Populations[int32].MineralDepositChange.Uridium = Convert.ToDecimal(row["Uridium"]);
+                    Populations[int32].MineralDepositChange.Corundium = Convert.ToDecimal(row["Corundium"]);
+                    Populations[int32].MineralDepositChange.Gallicite = Convert.ToDecimal(row["Gallicite"]);
                 }
             }
         }
@@ -4413,7 +4430,7 @@ public partial class GClass0
                     gclass194.double_10 = gclass194.double_0 + gclass194.double_1;
                     gclass194.double_12 = gclass194.double_3 - gclass194.double_4;
                     gclass194.double_11 = gclass194.double_3 + gclass194.double_4;
-                    gclass194.dictionary_0 = new Dictionary<int, GClass195>();
+                    gclass194.KnownSpecies = new Dictionary<int, KnownSpecies>();
                     SpeciesDictionary.Add(gclass194.int_0, gclass194);
                 }
             }
@@ -4443,16 +4460,16 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_KnownSpecies").Rows)
             {
-                GClass195 gclass195 = new GClass195();
+                KnownSpecies knownSpecies = new KnownSpecies();
                 int int32_1 = Convert.ToInt32(row["ViewRaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
                     int int32_2 = Convert.ToInt32(row["SpeciesID"]);
                     if (SpeciesDictionary.ContainsKey(int32_2))
                     {
-                        gclass195.gclass21_0 = race;
-                        gclass195.genum25_0 = (GEnum25)Convert.ToInt32(row["Status"]);
-                        SpeciesDictionary[int32_2].dictionary_0.Add(int32_1, gclass195);
+                        knownSpecies.ViewRace = race;
+                        knownSpecies.Status = (GEnum25)Convert.ToInt32(row["Status"]);
+                        SpeciesDictionary[int32_2].KnownSpecies.Add(int32_1, knownSpecies);
                     }
                 }
             }
@@ -4474,17 +4491,17 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_WealthData where GameID = {GameID.ToString()}").Rows)
             {
-                GClass151 gclass151 = new GClass151();
+                WealthUsage wealthDelta = new WealthUsage();
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass151.gclass21_0 = race;
-                    WealthUsage int32_2 = (WealthUsage)Convert.ToInt32(row["UseID"]);
-                    if (WealthUsageDictionary.TryGetValue(int32_2, out var value))
-                        gclass151.gclass150_0 = value;
-                    gclass151.decimal_0 = Convert.ToDecimal(row["Amount"]);
-                    gclass151.decimal_1 = Convert.ToDecimal(row["TimeUsed"]);
-                    gclass151.gclass21_0.list_3.Add(gclass151);
+                    wealthDelta.Race = race;
+                    WealthUsageType UseID = (WealthUsageType)Convert.ToInt32(row["UseID"]);
+                    if (WealthUsageDictionary.TryGetValue(UseID, out var value))
+                        wealthDelta.Data = value;
+                    wealthDelta.Amount = Convert.ToDecimal(row["Amount"]);
+                    wealthDelta.TimeUsed = Convert.ToDecimal(row["TimeUsed"]);
+                    wealthDelta.Race.WealthUsages.Add(wealthDelta);
                 }
             }
         }
@@ -4506,19 +4523,19 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_RaceMineralData where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass153 gclass153 = new GClass153();
+                RaceMineralUsage minUsage = new RaceMineralUsage();
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass153.gclass21_0 = race;
+                    minUsage.Race = race;
                     int int32_2 = Convert.ToInt32(row["PopulationID"]);
                     if (Populations.TryGetValue(int32_2, out var population))
-                        gclass153.gclass146_0 = population;
-                    gclass153.genum85_0 = (MineralUsage)Convert.ToInt32(row["MineralDataType"]);
-                    gclass153.auroraElement_0 = (AuroraElement)Convert.ToInt32(row["MineralID"]);
-                    gclass153.decimal_0 = Convert.ToDecimal(row["Amount"]);
-                    gclass153.decimal_1 = Convert.ToDecimal(row["Time"]);
-                    gclass153.gclass21_0.list_4.Add(gclass153);
+                        minUsage.Population = population;
+                    minUsage.MineralDataType = (MineralUsageType)Convert.ToInt32(row["MineralDataType"]);
+                    minUsage.MineralID = (AuroraElement)Convert.ToInt32(row["MineralID"]);
+                    minUsage.Amount = Convert.ToDecimal(row["Amount"]);
+                    minUsage.Time = Convert.ToDecimal(row["Time"]);
+                    minUsage.Race.list_4.Add(minUsage);
                 }
             }
         }
@@ -4544,7 +4561,7 @@ public partial class GClass0
                 if (Populations.TryGetValue(int32_1, out var population))
                 {
                     int int32_2 = Convert.ToInt32(row["TechSystemID"]);
-                    if (TechDataDictionary.TryGetValue(int32_2, out var value))
+                    if (TechSystems.TryGetValue(int32_2, out var value))
                     {
                         gclass166.Population = population;
                         gclass166.TechSystem = value;
@@ -4582,9 +4599,9 @@ public partial class GClass0
                 if (GameRaces.ContainsKey(int32_1))
                 {
                     int int32_2 = Convert.ToInt32(row["TechSystemID"]);
-                    if (TechDataDictionary.TryGetValue(int32_2, out var value))
+                    if (TechSystems.TryGetValue(int32_2, out var value))
                     {
-                        gclass167.gclass164_0 = value;
+                        gclass167.TechSystem = value;
                         gclass167.PointsAccumulated = Convert.ToInt32(row["PointsAccumulated"]);
                         GameRaces[int32_1].PausedResearches.Add(gclass167);
                     }
@@ -4608,17 +4625,17 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_SwarmResearch where GameID = {GameID.ToString()}").Rows)
             {
-                SwarmResearch gclass168 = new SwarmResearch();
+                SwarmResearch swarmResearch = new SwarmResearch();
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
                     int int32_2 = Convert.ToInt32(row["TechSystemID"]);
-                    if (TechDataDictionary.TryGetValue(int32_2, out var value))
+                    if (TechSystems.TryGetValue(int32_2, out var value))
                     {
-                        gclass168.Race = race;
-                        gclass168.TechSystem = value;
-                        gclass168.ResearchPoints = Convert.ToInt32(row["ResearchPoints"]);
-                        gclass168.Race.list_7.Add(gclass168);
+                        swarmResearch.Race = race;
+                        swarmResearch.TechSystem = value;
+                        swarmResearch.ResearchPoints = Convert.ToInt32(row["ResearchPoints"]);
+                        swarmResearch.Race.SwarmResearches.Add(swarmResearch);
                     }
                 }
             }
@@ -4663,24 +4680,24 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_ShippingLines WHERE GameID = {GameID.ToString()}").Rows)
             {
-                ShippingLineData gclass187 = new ShippingLineData(this);
+                ShippingLineData shippingLine = new ShippingLineData(this);
                 int int32_1 = Convert.ToInt32(row["EmpireID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass187.gclass21_0 = race;
+                    shippingLine.Race = race;
                     int int32_2 = Convert.ToInt32(row["CommEngineID"]);
                     if (ComponentDataDictionary.TryGetValue(int32_2, out var value))
-                        gclass187.gclass230_0 = value;
-                    gclass187.int_0 = Convert.ToInt32(row["ShippingLineID"]);
-                    gclass187.int_1 = Convert.ToInt32(row["ShipNum"]);
-                    gclass187.int_2 = Convert.ToInt32(row["CommercialEngines"]);
-                    gclass187.decimal_0 = Convert.ToDecimal(row["WealthBalance"]);
-                    gclass187.decimal_1 = Convert.ToDecimal(row["LastDividendPaid"]);
-                    gclass187.decimal_2 = Convert.ToDecimal(row["LastDividendTime"]);
-                    gclass187.bool_0 = Convert.ToBoolean(row["NPRace"]);
-                    gclass187.string_0 = row["LineName"].ToString();
-                    gclass187.string_1 = row["ShortName"].ToString();
-                    ShippingLineDictionary.Add(gclass187.int_0, gclass187);
+                        shippingLine.EngineComponent = value;
+                    shippingLine.ShippingLineID = Convert.ToInt32(row["ShippingLineID"]);
+                    shippingLine.ShipNum = Convert.ToInt32(row["ShipNum"]);
+                    shippingLine.CommercialEngines = Convert.ToInt32(row["CommercialEngines"]);
+                    shippingLine.WealthBalance = Convert.ToDecimal(row["WealthBalance"]);
+                    shippingLine.LastDividendPaid = Convert.ToDecimal(row["LastDividendPaid"]);
+                    shippingLine.LastDividendTime = Convert.ToDecimal(row["LastDividendTime"]);
+                    shippingLine.NPRace = Convert.ToBoolean(row["NPRace"]);
+                    shippingLine.LineName = row["LineName"].ToString();
+                    shippingLine.ShortName = row["ShortName"].ToString();
+                    ShippingLineDictionary.Add(shippingLine.ShippingLineID, shippingLine);
                 }
             }
         }
@@ -4702,35 +4719,35 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_NavalAdminCommand WHERE GameID = {GameID.ToString()}")
                          .Rows)
             {
-                NavalAdminCommand gclass83 = new NavalAdminCommand(this);
+                NavalAdminCommand navalAdmin = new NavalAdminCommand(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
                     int int32_2 = Convert.ToInt32(row["PopulationID"]);
                     if (Populations.TryGetValue(int32_2, out var population))
-                        gclass83.gclass146_0 = population;
-                    gclass83.int_4 = Convert.ToInt32(row["ShipID"]);
+                        navalAdmin.Population = population;
+                    navalAdmin.ShipID = Convert.ToInt32(row["ShipID"]);
                     AdminCommandType int32_3 = (AdminCommandType)Convert.ToInt32(row["AdminCommandTypeID"]);
                     if (AdminCommandTypeDictionary.TryGetValue(int32_3, out var value))
-                        gclass83.gclass79_0 = value;
-                    gclass83.Race = race;
-                    gclass83.int_0 = Convert.ToInt32(row["NavalAdminCommandID"]);
-                    gclass83.int_1 = Convert.ToInt32(row["ParentAdminCommandID"]);
-                    gclass83.int_2 = Convert.ToInt32(row["CommandPriority"]);
-                    gclass83.int_3 = Convert.ToInt32(row["MinimumRankPriority"]);
-                    gclass83.genum121_0 = (CommanderBonusType)Convert.ToInt32(row["BonusOne"]);
-                    gclass83.genum121_1 = (CommanderBonusType)Convert.ToInt32(row["BonusTwo"]);
-                    gclass83.genum121_2 = (CommanderBonusType)Convert.ToInt32(row["BonusThree"]);
-                    gclass83.bool_1 = Convert.ToBoolean(row["AutoAssign"]);
-                    gclass83.bool_0 = Convert.ToBoolean(row["FleetNodeExpanded"]);
-                    gclass83.AdminCommandName = row["AdminCommandName"].ToString();
-                    NavalAdminCommands.Add(gclass83.int_0, gclass83);
+                        navalAdmin.gclass79_0 = value;
+                    navalAdmin.Race = race;
+                    navalAdmin.NavalAdminCommandID = Convert.ToInt32(row["NavalAdminCommandID"]);
+                    navalAdmin.ParentAdminCommandID = Convert.ToInt32(row["ParentAdminCommandID"]);
+                    navalAdmin.CommandPriority = Convert.ToInt32(row["CommandPriority"]);
+                    navalAdmin.MinimumRankPriority = Convert.ToInt32(row["MinimumRankPriority"]);
+                    navalAdmin.BonusOne = (CommanderBonusType)Convert.ToInt32(row["BonusOne"]);
+                    navalAdmin.BonusTwo = (CommanderBonusType)Convert.ToInt32(row["BonusTwo"]);
+                    navalAdmin.BonusThree = (CommanderBonusType)Convert.ToInt32(row["BonusThree"]);
+                    navalAdmin.AutoAssign = Convert.ToBoolean(row["AutoAssign"]);
+                    navalAdmin.FleetNodeExpanded = Convert.ToBoolean(row["FleetNodeExpanded"]);
+                    navalAdmin.AdminCommandName = row["AdminCommandName"].ToString();
+                    NavalAdminCommands.Add(navalAdmin.NavalAdminCommandID, navalAdmin);
                 }
             }
 
             foreach (NavalAdminCommand gclass83 in NavalAdminCommands.Values)
             {
-                if (NavalAdminCommands.TryGetValue(gclass83.int_1, out var command))
+                if (NavalAdminCommands.TryGetValue(gclass83.ParentAdminCommandID, out var command))
                     gclass83.ParentAdminCommand = command;
             }
 
@@ -4763,197 +4780,197 @@ public partial class GClass0
                     keyValuePair_0 => keyValuePair_0.Value);
             foreach (DataRow row in (InternalDataCollectionBase)dataTable.Rows)
             {
-                GClass55 gclass55 = new GClass55(this);
+                Commander commander = new Commander(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    gclass55.gclass21_0 = race;
+                    commander.Race = race;
                     int int32_2 = Convert.ToInt32(row["SpeciesID"]);
                     if (SpeciesDictionary.TryGetValue(int32_2, out var value))
                     {
-                        gclass55.gclass194_0 = value;
+                        commander.Species = value;
                         int int32_3 = Convert.ToInt32(row["POWRaceID"]);
                         if (GameRaces.TryGetValue(int32_3, out var gameRace))
-                            gclass55.gclass21_1 = gameRace;
+                            commander.PrisonedRace = gameRace;
                         int int32_4 = Convert.ToInt32(row["PopLocationID"]);
                         if (Populations.TryGetValue(int32_4, out var population))
-                            gclass55.gclass146_0 = population;
+                            commander.Population = population;
                         int int32_5 = Convert.ToInt32(row["EducationColony"]);
                         if (Populations.TryGetValue(int32_5, out var population1))
-                            gclass55.gclass146_2 = population1;
+                            commander.EducatedColony = population1;
                         int int32_6 = Convert.ToInt32(row["HomeworldID"]);
                         if (SystemBodyRecordDic.TryGetValue(int32_6, out var value1))
-                            gclass55.gclass1_0 = value1;
+                            commander.HomeworldSystem = value1;
                         int int32_7 = Convert.ToInt32(row["TransportShipID"]);
                         if (Ships.TryGetValue(int32_7, out var ship))
-                            gclass55.gclass40_0 = ship;
-                        AuroraResearchField int32_8 = (AuroraResearchField)Convert.ToInt32(row["ResSpecID"]);
-                        if (ResearchFieldDictionary.TryGetValue(int32_8, out var value2))
+                            commander.TransportShip = ship;
+                        AuroraResearchFieldType researchFieldType = (AuroraResearchFieldType)Convert.ToInt32(row["ResSpecID"]);
+                        if (ResearchFieldDictionary.TryGetValue(researchFieldType, out var value2))
                         {
-                            gclass55.gclass162_0 = value2;
+                            commander.ResearchField = value2;
                             int int32_9 = Convert.ToInt32(row["LifepodID"]);
-                            if (dictionary_30.TryGetValue(int32_9, out var value3))
-                                gclass55.gclass59_0 = value3;
+                            if (LifePods.TryGetValue(int32_9, out var value3))
+                                commander.LifePod = value3;
                             int int32_10 = Convert.ToInt32(row["RankID"]);
-                            if (gclass55.gclass21_0.RacialRankDictionary.TryGetValue(int32_10, out var value4))
-                                gclass55.gclass61_0 = value4;
-                            gclass55.auroraCommanderType_0 = (AuroraCommanderType)Convert.ToInt32(row["CommanderType"]);
-                            gclass55.auroraCommandType_0 = (AuroraCommandType)Convert.ToInt32(row["CommandType"]);
-                            int int32_11 = Convert.ToInt32(row["CommandID"]);
-                            switch (gclass55.auroraCommandType_0)
+                            if (commander.Race.RacialRankDictionary.TryGetValue(int32_10, out var value4))
+                                commander.RacialRank = value4;
+                            commander.CommanderType = (AuroraCommanderType)Convert.ToInt32(row["CommanderType"]);
+                            commander.CommandType = (AuroraCommandType)Convert.ToInt32(row["CommandType"]);
+                            int commandTargetID = Convert.ToInt32(row["CommandID"]);
+                            switch (commander.CommandType)
                             {
                                 case AuroraCommandType.Ship:
-                                    if (Ships.TryGetValue(int32_11, out var ship1))
+                                    if (Ships.TryGetValue(commandTargetID, out var ship1))
                                     {
-                                        gclass55.gclass40_1 = ship1;
-                                        gclass55.gclass40_1.dictionary_1.Add(AuroraCommandType.Ship, gclass55);
+                                        commander.CommandingShip = ship1;
+                                        commander.CommandingShip.Officers.Add(AuroraCommandType.Ship, commander);
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.Colony:
-                                    if (Populations.TryGetValue(int32_11, out var population2))
+                                    if (Populations.TryGetValue(commandTargetID, out var population2))
                                     {
-                                        gclass55.gclass146_1 = population2;
-                                        gclass55.gclass146_1.gclass55_0 = gclass55;
+                                        commander.GoverningPopulation = population2;
+                                        commander.GoverningPopulation.Governer = commander;
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.Sector:
-                                    if (gclass55.gclass21_0.dictionary_2.TryGetValue(int32_11, out var value5))
+                                    if (commander.Race.Sectors.TryGetValue(commandTargetID, out var value5))
                                     {
-                                        gclass55.gclass62_0 = value5;
-                                        gclass55.gclass62_0.gclass55_0 = gclass55;
+                                        commander.CommandingSector = value5;
+                                        commander.CommandingSector.SectorCommander = commander;
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.GroundFormation:
-                                    if (FormationDictionary.TryGetValue(int32_11, out var value6))
+                                    if (FormationDictionary.TryGetValue(commandTargetID, out var value6))
                                     {
-                                        gclass55.gclass103_0 = value6;
-                                        gclass55.gclass103_0.gclass55_0 = gclass55;
+                                        commander.CommandingFormation = value6;
+                                        commander.CommandingFormation.Commander = commander;
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.ResearchProject:
-                                    if (dictionary.TryGetValue(int32_11, out var value7))
+                                    if (dictionary.TryGetValue(commandTargetID, out var value7))
                                     {
-                                        gclass55.gclass161_0 = value7;
-                                        gclass55.gclass161_0.gclass55_0 = gclass55;
+                                        commander.ResearchingProject = value7;
+                                        commander.ResearchingProject.Researcher = commander;
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.ExecutiveOfficer:
-                                    if (Ships.TryGetValue(int32_11, out var ship2))
+                                    if (Ships.TryGetValue(commandTargetID, out var ship2))
                                     {
-                                        gclass55.gclass40_2 = ship2;
-                                        gclass55.gclass40_2.dictionary_1.Add(AuroraCommandType.ExecutiveOfficer,
-                                            gclass55);
+                                        commander.ShipOnboardAsXO = ship2;
+                                        commander.ShipOnboardAsXO.Officers.Add(AuroraCommandType.ExecutiveOfficer,
+                                            commander);
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.ChiefEngineer:
-                                    if (Ships.TryGetValue(int32_11, out var ship3))
+                                    if (Ships.TryGetValue(commandTargetID, out var ship3))
                                     {
-                                        gclass55.gclass40_3 = ship3;
-                                        gclass55.gclass40_3.dictionary_1.Add(AuroraCommandType.ChiefEngineer, gclass55);
+                                        commander.ShipOnboardAsChiefEngi = ship3;
+                                        commander.ShipOnboardAsChiefEngi.Officers.Add(AuroraCommandType.ChiefEngineer, commander);
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.ScienceOfficer:
-                                    if (Ships.TryGetValue(int32_11, out var ship4))
+                                    if (Ships.TryGetValue(commandTargetID, out var ship4))
                                     {
-                                        gclass55.gclass40_4 = ship4;
-                                        gclass55.gclass40_4.dictionary_1.Add(AuroraCommandType.ScienceOfficer,
-                                            gclass55);
+                                        commander.ShipOnboardAsScienceOfficer = ship4;
+                                        commander.ShipOnboardAsScienceOfficer.Officers.Add(AuroraCommandType.ScienceOfficer,
+                                            commander);
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.TacticalOfficer:
-                                    if (Ships.TryGetValue(int32_11, out var ship5))
+                                    if (Ships.TryGetValue(commandTargetID, out var ship5))
                                     {
-                                        gclass55.gclass40_5 = ship5;
-                                        gclass55.gclass40_5.dictionary_1.Add(AuroraCommandType.TacticalOfficer,
-                                            gclass55);
+                                        commander.ShipOnboardAsTactician = ship5;
+                                        commander.ShipOnboardAsTactician.Officers.Add(AuroraCommandType.TacticalOfficer,
+                                            commander);
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.NavalAdminCommand:
-                                    if (NavalAdminCommands.TryGetValue(int32_11, out var command))
+                                    if (NavalAdminCommands.TryGetValue(commandTargetID, out var command))
                                     {
-                                        gclass55.gclass83_0 = command;
-                                        gclass55.gclass83_0.gclass55_0 = gclass55;
+                                        commander.CurrentAdmin = command;
+                                        commander.CurrentAdmin.gclass55_0 = commander;
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.CAG:
-                                    if (Ships.TryGetValue(int32_11, out var ship6))
+                                    if (Ships.TryGetValue(commandTargetID, out var ship6))
                                     {
-                                        gclass55.gclass40_6 = ship6;
-                                        gclass55.gclass40_6.dictionary_1.Add(AuroraCommandType.CAG, gclass55);
+                                        commander.ShipOnboardAsCAG = ship6;
+                                        commander.ShipOnboardAsCAG.Officers.Add(AuroraCommandType.CAG, commander);
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                                 case AuroraCommandType.AcademyCommandant:
-                                    if (Populations.TryGetValue(int32_11, out var population3))
+                                    if (Populations.TryGetValue(commandTargetID, out var population3))
                                     {
-                                        gclass55.gclass146_3 = population3;
+                                        commander.PopulationAsAcademyCommandant = population3;
                                         break;
                                     }
 
-                                    gclass55.auroraCommandType_0 = AuroraCommandType.None;
+                                    commander.CommandType = AuroraCommandType.None;
                                     break;
                             }
 
-                            gclass55.int_0 = Convert.ToInt32(row["CommanderID"]);
-                            gclass55.int_1 = Convert.ToInt32(row["PromotionScore"]);
-                            gclass55.int_2 = Convert.ToInt32(row["PopPromotionScore"]);
-                            gclass55.int_3 = Convert.ToInt32(row["DoNotRelieve"]);
-                            gclass55.int_4 = Convert.ToInt32(row["Seniority"]);
-                            gclass55.int_5 = Convert.ToInt32(row["Loyalty"]);
-                            gclass55.int_6 = Convert.ToInt32(row["HealthRisk"]);
-                            gclass55.int_7 = Convert.ToInt32(row["KillTonnageCommercial"]);
-                            gclass55.int_8 = Convert.ToInt32(row["KillTonnageMilitary"]);
-                            gclass55.auroraRetirementStatus_0 =
+                            commander.CommanderID = Convert.ToInt32(row["CommanderID"]);
+                            commander.PromotionScore = Convert.ToInt32(row["PromotionScore"]);
+                            commander.PopPromotionScore = Convert.ToInt32(row["PopPromotionScore"]);
+                            commander.DoNotRelieve = Convert.ToInt32(row["DoNotRelieve"]);
+                            commander.Seniority = Convert.ToInt32(row["Seniority"]);
+                            commander.Loyalty = Convert.ToInt32(row["Loyalty"]);
+                            commander.HealthRisk = Convert.ToInt32(row["HealthRisk"]);
+                            commander.KillTonnageCommercial = Convert.ToInt32(row["KillTonnageCommercial"]);
+                            commander.KillTonnageMilitary = Convert.ToInt32(row["KillTonnageMilitary"]);
+                            commander.RetirementStatus =
                                 (AuroraRetirementStatus)Convert.ToInt32(row["RetireStatus"]);
-                            gclass55.decimal_0 = Convert.ToDecimal(row["GameTimePromoted"]);
-                            gclass55.decimal_1 = Convert.ToDecimal(row["GameTimeAssigned"]);
-                            gclass55.decimal_2 = Convert.ToDecimal(row["CareerStart"]);
-                            gclass55.bool_2 = Convert.ToBoolean(row["StoryCharacter"]);
-                            gclass55.bool_0 = Convert.ToBoolean(row["DoNotPromote"]);
-                            gclass55.bool_1 = Convert.ToBoolean(row["Female"]);
-                            gclass55.bool_3 = Convert.ToBoolean(row["RetainRetired"]);
-                            gclass55.bool_4 = Convert.ToBoolean(row["Prisoner"]);
-                            gclass55.bool_5 = Convert.ToBoolean(row["Processed"]);
-                            gclass55.string_0 = row["Name"].ToString();
-                            gclass55.string_1 = row["Title"].ToString();
-                            gclass55.string_2 = row["Orders"].ToString();
-                            gclass55.string_3 = row["Notes"].ToString();
-                            if (gclass55.auroraRetirementStatus_0 == AuroraRetirementStatus.Active)
-                                dictionary_42.Add(gclass55.int_0, gclass55);
+                            commander.GameTimePromoted = Convert.ToDecimal(row["GameTimePromoted"]);
+                            commander.GameTimeAssigned = Convert.ToDecimal(row["GameTimeAssigned"]);
+                            commander.CareerStart = Convert.ToDecimal(row["CareerStart"]);
+                            commander.StoryCharacter = Convert.ToBoolean(row["StoryCharacter"]);
+                            commander.DoNotPromote = Convert.ToBoolean(row["DoNotPromote"]);
+                            commander.Female = Convert.ToBoolean(row["Female"]);
+                            commander.RetainRetired = Convert.ToBoolean(row["RetainRetired"]);
+                            commander.Prisoner = Convert.ToBoolean(row["Prisoner"]);
+                            commander.Processed = Convert.ToBoolean(row["Processed"]);
+                            commander.Name = row["Name"].ToString();
+                            commander.Title = row["Title"].ToString();
+                            commander.Orders = row["Orders"].ToString();
+                            commander.Notes = row["Notes"].ToString();
+                            if (commander.RetirementStatus == AuroraRetirementStatus.Active)
+                                ActiveCommanders.Add(commander.CommanderID, commander);
                             else
-                                dictionary_43.Add(gclass55.int_0, gclass55);
+                                RetiredCommanders.Add(commander.CommanderID, commander);
                         }
                     }
                 }
@@ -4961,7 +4978,7 @@ public partial class GClass0
 
             foreach (ResearchProject gclass161 in dictionary.Values)
             {
-                if (gclass161.gclass55_0 == null)
+                if (gclass161.Researcher == null)
                     gclass161.method_0();
             }
 
@@ -4969,16 +4986,16 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_CommanderTraits").Rows)
             {
                 int int32_12 = Convert.ToInt32(row["CmdrID"]);
-                GClass55 gclass55;
-                if (dictionary_42.TryGetValue(int32_12, out var value))
+                Commander gclass55;
+                if (ActiveCommanders.TryGetValue(int32_12, out var value))
                     gclass55 = value;
-                else if (dictionary_43.TryGetValue(int32_12, out var value1))
+                else if (RetiredCommanders.TryGetValue(int32_12, out var value1))
                     gclass55 = value1;
                 else
                     continue;
                 int int32_13 = Convert.ToInt32(row["TraitID"]);
                 if (TraitNameDictionary.ContainsKey(int32_13))
-                    gclass55.list_1.Add(int32_13);
+                    gclass55.Traits.Add(int32_13);
             }
         }
         catch (DbException ex)
@@ -4996,9 +5013,10 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * FROM FCT_Lifepods WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * FROM FCT_Lifepods WHERE GameID = {GameID.ToString()}").Rows)
             {
-                GClass59 gclass59 = new GClass59(this);
+                LifePod gclass59 = new LifePod(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
@@ -5021,7 +5039,7 @@ public partial class GClass0
                             gclass59.decimal_0 = Convert.ToDecimal(row["CreationTime"]);
                             gclass59.decimal_1 = Convert.ToDecimal(row["GradePoints"]);
                             gclass59.string_0 = row["ShipName"].ToString();
-                            dictionary_30.Add(gclass59.int_0, gclass59);
+                            LifePods.Add(gclass59.int_0, gclass59);
                         }
                     }
                 }
@@ -5045,21 +5063,21 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_CommanderBonuses WHERE GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass52 gclass52 = new GClass52();
+                CommanderBonus skillBonus = new CommanderBonus();
                 int int32_1 = Convert.ToInt32(row["CommanderID"]);
-                GClass55 gclass55;
-                if (dictionary_42.TryGetValue(int32_1, out var value))
-                    gclass55 = value;
-                else if (dictionary_43.TryGetValue(int32_1, out var value1))
-                    gclass55 = value1;
+                Commander commander;
+                if (ActiveCommanders.TryGetValue(int32_1, out var value))
+                    commander = value;
+                else if (RetiredCommanders.TryGetValue(int32_1, out var value1))
+                    commander = value1;
                 else
                     continue;
-                CommanderBonusType int32_2 = (CommanderBonusType)Convert.ToInt32(row["BonusID"]);
-                if (CommanderBonusDictionary.TryGetValue(int32_2, out var value2))
+                CommanderBonusType bonusType = (CommanderBonusType)Convert.ToInt32(row["BonusID"]);
+                if (CommanderBonusDictionary.TryGetValue(bonusType, out var value2))
                 {
-                    gclass52.gclass50_0 = value2;
-                    gclass52.decimal_0 = Math.Round(Convert.ToDecimal(row["BonusValue"]), 3);
-                    gclass55.dictionary_0.Add(int32_2, gclass52);
+                    skillBonus.BonusDefinition = value2;
+                    skillBonus.BonusValue = Math.Round(Convert.ToDecimal(row["BonusValue"]), 3);
+                    commander.SkillBonuses.Add(bonusType, skillBonus);
                 }
             }
         }
@@ -5081,7 +5099,7 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_GroundUnitTraining where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass106 gclass106 = new GClass106(this);
+                GroundUnitTraining gclass106 = new GroundUnitTraining(this);
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
@@ -5126,7 +5144,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_GroundUnitTrainingQueue where GameID = {GameID.ToString()}").Rows)
             {
-                GClass107 gclass107 = new GClass107(this);
+                GroundUnitTrainingQueue gclass107 = new GroundUnitTrainingQueue(this);
                 int int32_1 = Convert.ToInt32(row["PopulationID"]);
                 if (Populations.TryGetValue(int32_1, out var population))
                 {
@@ -5175,10 +5193,10 @@ public partial class GClass0
                     {
                         gclass161.gclass146_0 = population;
                         int int32_3 = Convert.ToInt32(row["TechID"]);
-                        if (TechDataDictionary.TryGetValue(int32_3, out var value))
+                        if (TechSystems.TryGetValue(int32_3, out var value))
                         {
                             gclass161.gclass164_0 = value;
-                            AuroraResearchField int32_4 = (AuroraResearchField)Convert.ToInt32(row["ResSpecID"]);
+                            AuroraResearchFieldType int32_4 = (AuroraResearchFieldType)Convert.ToInt32(row["ResSpecID"]);
                             if (ResearchFieldDictionary.TryGetValue(int32_4, out var value1))
                             {
                                 gclass161.gclass162_0 = value1;
@@ -5214,17 +5232,17 @@ public partial class GClass0
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32_1, out var race))
                 {
-                    GClass62 gclass62 = new GClass62(this);
+                    Sector sector = new Sector(this);
                     int int32_2 = Convert.ToInt32(row["PopulationID"]);
                     if (Populations.TryGetValue(int32_2, out var population))
                     {
-                        gclass62.gclass146_0 = population;
-                        gclass62.gclass21_0 = race;
-                        gclass62.int_0 = Convert.ToInt32(row["SectorCommandID"]);
-                        gclass62.SectorName = row["SectorName"].ToString();
+                        sector.gclass146_0 = population;
+                        sector.Race = race;
+                        sector.SectorCommandID = Convert.ToInt32(row["SectorCommandID"]);
+                        sector.SectorName = row["SectorName"].ToString();
                         int int32_3 = Convert.ToInt32(row["Colour"]);
-                        gclass62.color_0 = Color.FromArgb(int32_3);
-                        gclass62.gclass21_0.dictionary_2.Add(gclass62.int_0, gclass62);
+                        sector.Colour = Color.FromArgb(int32_3);
+                        sector.Race.Sectors.Add(sector.SectorCommandID, sector);
                     }
                 }
             }
@@ -5233,7 +5251,7 @@ public partial class GClass0
             {
                 foreach (RacialSystemSurvey gclass202 in gclass21.RacialSystemDictionary.Values)
                 {
-                    if (gclass202.SectorID > 0 && gclass21.dictionary_2.TryGetValue(gclass202.SectorID, out var value))
+                    if (gclass202.SectorID > 0 && gclass21.Sectors.TryGetValue(gclass202.SectorID, out var value))
                         gclass202.gclass62_0 = value;
                 }
             }
@@ -5258,16 +5276,16 @@ public partial class GClass0
                 int int32 = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.TryGetValue(int32, out var race))
                 {
-                    RankThemeEntry gclass61 = new RankThemeEntry();
-                    gclass61.gclass21_0 = race;
-                    gclass61.CommanderType = (AuroraCommanderType)Convert.ToInt32(row["RankType"]);
-                    gclass61.int_0 = Convert.ToInt32(row["RankID"]);
-                    gclass61.RankNum = Convert.ToInt32(row["Priority"]);
-                    gclass61.RankName = row["RankName"].ToString();
-                    gclass61.RankAbbreviation = row["RankAbbrev"].ToString();
-                    if (gclass61.RankAbbreviation == "")
-                        gclass61.RankAbbreviation = $"R{gclass61.RankNum}";
-                    gclass61.gclass21_0.RacialRankDictionary.Add(gclass61.int_0, gclass61);
+                    RacialRank rank = new RacialRank();
+                    rank.Race = race;
+                    rank.CommanderType = (AuroraCommanderType)Convert.ToInt32(row["RankType"]);
+                    rank.RankID = Convert.ToInt32(row["RankID"]);
+                    rank.RankNum = Convert.ToInt32(row["Priority"]);
+                    rank.RankName = row["RankName"].ToString();
+                    rank.RankAbbreviation = row["RankAbbrev"].ToString();
+                    if (rank.RankAbbreviation == "")
+                        rank.RankAbbreviation = $"R{rank.RankNum}";
+                    rank.Race.RacialRankDictionary.Add(rank.RankID, rank);
                 }
             }
         }
@@ -5288,37 +5306,37 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_AlienRace WHERE GameID = {GameID.ToString()}").Rows)
             {
-                AlienRaceInfo alienRaceInfo = new AlienRaceInfo(this);
+                AlienRaceIntel alienRaceIntel = new AlienRaceIntel(this);
                 int int32_1 = Convert.ToInt32(row["ViewRaceID"]);
                 if (GameRaces.ContainsKey(int32_1))
                 {
-                    alienRaceInfo.ViewingRace = GameRaces[int32_1];
+                    alienRaceIntel.ViewingRace = GameRaces[int32_1];
                     int int32_2 = Convert.ToInt32(row["ClassThemeID"]);
                     if (int32_2 != 0)
-                        alienRaceInfo.ClassTheme = ThemeDictionary[int32_2];
-                    alienRaceInfo.ActualAlienRaceID = Convert.ToInt32(row["AlienRaceID"]);
-                    if (GameRaces.TryGetValue(alienRaceInfo.ActualAlienRaceID, out var race))
+                        alienRaceIntel.ClassTheme = ThemeDictionary[int32_2];
+                    alienRaceIntel.ActualAlienRaceID = Convert.ToInt32(row["AlienRaceID"]);
+                    if (GameRaces.TryGetValue(alienRaceIntel.ActualAlienRaceID, out var race))
                     {
-                        alienRaceInfo.ActualAlienRace = race;
-                        alienRaceInfo.FixedRelationShip = Convert.ToInt32(row["FixedRelationship"]);
-                        alienRaceInfo.ContactStatus = (AuroraContactStatus)Convert.ToInt32(row["ContactStatus"]);
-                        alienRaceInfo.CommStatus = (AuroraCommStatus)Convert.ToInt32(row["CommStatus"]);
-                        alienRaceInfo.UseRealClassNames = Convert.ToInt32(row["RealClassNames"]);
-                        alienRaceInfo.RandomNameOrder = Convert.ToInt32(row["RandomNameOrder"]);
-                        alienRaceInfo.CommModifier = Convert.ToDecimal(row["CommModifier"]);
-                        alienRaceInfo.FirstDetected = Convert.ToDecimal(row["FirstDetected"]);
-                        alienRaceInfo.CommEstablished = Convert.ToDecimal(row["CommEstablished"]);
-                        alienRaceInfo.DiplomaticPoints = Convert.ToDecimal(row["DiplomaticPoints"]);
-                        alienRaceInfo.DamageCausedByAlienRace = Convert.ToDecimal(row["DamageCausedByAlienRace"]);
-                        alienRaceInfo.AlienRaceIntelPoints = Convert.ToDouble(row["AlienRaceIntelligencePoints"]);
-                        alienRaceInfo.bTradeTreaty = Convert.ToBoolean(row["TradeTreaty"]);
-                        alienRaceInfo.bTechTreaty = Convert.ToBoolean(row["TechTreaty"]);
-                        alienRaceInfo.bGeoTreaty = Convert.ToBoolean(row["GeoTreaty"]);
-                        alienRaceInfo.bGravTreaty = Convert.ToBoolean(row["GravTreaty"]);
-                        alienRaceInfo.bPortraitShown = Convert.ToBoolean(row["PortraitShown"]);
-                        alienRaceInfo.AlienRaceName = row["AlienRaceName"].ToString();
-                        alienRaceInfo.Abbreviation = row["Abbrev"].ToString();
-                        GameRaces[int32_1].PerceivedAliens.Add(alienRaceInfo.ActualAlienRaceID, alienRaceInfo);
+                        alienRaceIntel.ActualAlienRace = race;
+                        alienRaceIntel.FixedRelationShip = Convert.ToInt32(row["FixedRelationship"]);
+                        alienRaceIntel.ContactStatus = (AuroraContactStatus)Convert.ToInt32(row["ContactStatus"]);
+                        alienRaceIntel.CommStatus = (AuroraCommStatus)Convert.ToInt32(row["CommStatus"]);
+                        alienRaceIntel.UseRealClassNames = Convert.ToInt32(row["RealClassNames"]);
+                        alienRaceIntel.RandomNameOrder = Convert.ToInt32(row["RandomNameOrder"]);
+                        alienRaceIntel.CommModifier = Convert.ToDecimal(row["CommModifier"]);
+                        alienRaceIntel.FirstDetected = Convert.ToDecimal(row["FirstDetected"]);
+                        alienRaceIntel.CommEstablished = Convert.ToDecimal(row["CommEstablished"]);
+                        alienRaceIntel.DiplomaticPoints = Convert.ToDecimal(row["DiplomaticPoints"]);
+                        alienRaceIntel.DamageCausedByAlienRace = Convert.ToDecimal(row["DamageCausedByAlienRace"]);
+                        alienRaceIntel.AlienRaceIntelPoints = Convert.ToDouble(row["AlienRaceIntelligencePoints"]);
+                        alienRaceIntel.bTradeTreaty = Convert.ToBoolean(row["TradeTreaty"]);
+                        alienRaceIntel.bTechTreaty = Convert.ToBoolean(row["TechTreaty"]);
+                        alienRaceIntel.bGeoTreaty = Convert.ToBoolean(row["GeoTreaty"]);
+                        alienRaceIntel.bGravTreaty = Convert.ToBoolean(row["GravTreaty"]);
+                        alienRaceIntel.bPortraitShown = Convert.ToBoolean(row["PortraitShown"]);
+                        alienRaceIntel.AlienRaceName = row["AlienRaceName"].ToString();
+                        alienRaceIntel.Abbreviation = row["Abbrev"].ToString();
+                        GameRaces[int32_1].AlienRaceIntels.Add(alienRaceIntel.ActualAlienRaceID, alienRaceIntel);
                     }
                 }
             }
@@ -5341,41 +5359,41 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_AlienPopulation WHERE GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass113 gclass113 = new GClass113(this);
+                AlienPopulationIntel alienPopInfo = new AlienPopulationIntel(this);
                 int int32_1 = Convert.ToInt32(row["ViewingRaceID"]);
                 if (GameRaces.ContainsKey(int32_1))
                 {
-                    gclass113.gclass21_0 = GameRaces[int32_1];
+                    alienPopInfo.ViewingRace = GameRaces[int32_1];
                     int int32_2 = Convert.ToInt32(row["AlienRaceID"]);
                     if (GameRaces.ContainsKey(int32_2) &&
-                        GameRaces[int32_1].PerceivedAliens.ContainsKey(int32_2))
+                        GameRaces[int32_1].AlienRaceIntels.ContainsKey(int32_2))
                     {
-                        gclass113.gclass110_0 = GameRaces[int32_1].PerceivedAliens[int32_2];
+                        alienPopInfo.RaceIntel = GameRaces[int32_1].AlienRaceIntels[int32_2];
                         int int32_3 = Convert.ToInt32(row["PopulationID"]);
                         if (Populations.TryGetValue(int32_3, out var population))
                         {
-                            gclass113.gclass146_0 = population;
-                            gclass113.int_0 = Convert.ToInt32(row["Installations"]);
-                            gclass113.int_1 = Convert.ToInt32(row["Mines"]);
-                            gclass113.int_2 = Convert.ToInt32(row["Factories"]);
-                            gclass113.int_3 = Convert.ToInt32(row["Refineries"]);
-                            gclass113.int_4 = Convert.ToInt32(row["ResearchFacilities"]);
-                            gclass113.int_5 = Convert.ToInt32(row["MaintenanceFacilities"]);
-                            gclass113.int_6 = Convert.ToInt32(row["GFTF"]);
-                            gclass113.double_0 = Convert.ToDouble(row["AlienPopulationIntelligencePoints"]);
-                            gclass113.double_1 = Convert.ToDouble(row["MaxIntelligence"]);
-                            gclass113.double_2 = Convert.ToDouble(row["PreviousMaxIntelligence"]);
-                            gclass113.decimal_1 = Convert.ToDecimal(row["PopulationAmount"]);
-                            gclass113.decimal_2 = Convert.ToDecimal(row["EMSignature"]);
-                            gclass113.decimal_3 = Convert.ToDecimal(row["ThermalSignature"]);
-                            gclass113.bool_0 = Convert.ToBoolean(row["Spaceport"]);
-                            gclass113.bool_1 = Convert.ToBoolean(row["NavalHeadquarters"]);
-                            gclass113.bool_2 = Convert.ToBoolean(row["SectorCommand"]);
-                            gclass113.bool_3 = Convert.ToBoolean(row["RefuellingStation"]);
-                            gclass113.bool_4 = Convert.ToBoolean(row["OrdnanceTransfer"]);
-                            gclass113.bool_5 = Convert.ToBoolean(row["CargoStation"]);
-                            gclass113.string_0 = row["PopulationName"].ToString();
-                            GameRaces[int32_1].dictionary_13.Add(int32_3, gclass113);
+                            alienPopInfo.Population = population;
+                            alienPopInfo.Installations = Convert.ToInt32(row["Installations"]);
+                            alienPopInfo.Mines = Convert.ToInt32(row["Mines"]);
+                            alienPopInfo.Factories = Convert.ToInt32(row["Factories"]);
+                            alienPopInfo.Refineries = Convert.ToInt32(row["Refineries"]);
+                            alienPopInfo.ResearchFacilities = Convert.ToInt32(row["ResearchFacilities"]);
+                            alienPopInfo.MaintenanceFacilities = Convert.ToInt32(row["MaintenanceFacilities"]);
+                            alienPopInfo.GFTF = Convert.ToInt32(row["GFTF"]);
+                            alienPopInfo.AlienPopulationIntelligencePoints = Convert.ToDouble(row["AlienPopulationIntelligencePoints"]);
+                            alienPopInfo.MaxIntelligence = Convert.ToDouble(row["MaxIntelligence"]);
+                            alienPopInfo.PreviousMaxIntelligence = Convert.ToDouble(row["PreviousMaxIntelligence"]);
+                            alienPopInfo.PopulationAmount = Convert.ToDecimal(row["PopulationAmount"]);
+                            alienPopInfo.EMSignature = Convert.ToDecimal(row["EMSignature"]);
+                            alienPopInfo.ThermalSignature = Convert.ToDecimal(row["ThermalSignature"]);
+                            alienPopInfo.Spaceport = Convert.ToBoolean(row["Spaceport"]);
+                            alienPopInfo.NavalHeadquarters = Convert.ToBoolean(row["NavalHeadquarters"]);
+                            alienPopInfo.SectorCommand = Convert.ToBoolean(row["SectorCommand"]);
+                            alienPopInfo.RefuellingStation = Convert.ToBoolean(row["RefuellingStation"]);
+                            alienPopInfo.OrdnanceTransfer = Convert.ToBoolean(row["OrdnanceTransfer"]);
+                            alienPopInfo.CargoStation = Convert.ToBoolean(row["CargoStation"]);
+                            alienPopInfo.PopulationName = row["PopulationName"].ToString();
+                            GameRaces[int32_1].AlienPopulationIntels.Add(int32_3, alienPopInfo);
                         }
                     }
                 }
@@ -5406,8 +5424,8 @@ public partial class GClass0
                     if (GameRaces.ContainsKey(int32_2))
                     {
                         int int32_3 = Convert.ToInt32(row["AlienRaceID"]);
-                        if (GameRaces[int32_2].PerceivedAliens.ContainsKey(int32_3))
-                            GameRaces[int32_2].PerceivedAliens[int32_3].dictionary_0
+                        if (GameRaces[int32_2].AlienRaceIntels.ContainsKey(int32_3))
+                            GameRaces[int32_2].AlienRaceIntels[int32_3].SpeciesIntels
                                 .Add(int32_1, value);
                     }
                 }
@@ -5437,8 +5455,8 @@ public partial class GClass0
                     if (GameRaces.ContainsKey(int32_2))
                     {
                         int int32_3 = Convert.ToInt32(row["AlienRaceID"]);
-                        if (GameRaces[int32_2].PerceivedAliens.ContainsKey(int32_3))
-                            GameRaces[int32_2].PerceivedAliens[int32_3].dictionary_1
+                        if (GameRaces[int32_2].AlienRaceIntels.ContainsKey(int32_3))
+                            GameRaces[int32_2].AlienRaceIntels[int32_3].SystemIntels
                                 .Add(int32_1, value);
                     }
                 }
@@ -5462,32 +5480,32 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_AlienRaceSensor WHERE GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass118 gclass118 = new GClass118();
+                AlienSensorIntel gclass118 = new AlienSensorIntel();
                 int int32_1 = Convert.ToInt32(row["ViewingRaceID"]);
                 if (GameRaces.ContainsKey(int32_1))
                 {
-                    gclass118.gclass21_0 = GameRaces[int32_1];
+                    gclass118.Race = GameRaces[int32_1];
                     int int32_2 = Convert.ToInt32(row["AlienRaceID"]);
                     if (GameRaces.TryGetValue(int32_2, out var race))
                     {
-                        gclass118.gclass21_1 = race;
+                        gclass118.AlienRace = race;
                         int int32_3 = Convert.ToInt32(row["ActualSensor"]);
                         if (ComponentDataDictionary.TryGetValue(int32_3, out var value))
-                            gclass118.gclass230_0 = value;
+                            gclass118.ActualSensor = value;
                         int int32_4 = Convert.ToInt32(row["ActualMissile"]);
                         if (RaceMissileDictionary.TryGetValue(int32_4, out var value1))
-                            gclass118.gclass129_0 = value1;
+                            gclass118.ActualMissile = value1;
                         int int32_5 = Convert.ToInt32(row["ActualGroundUnitClass"]);
                         if (GroundUnitClassDictionary.TryGetValue(int32_5, out var value2))
-                            gclass118.gclass101_0 = value2;
-                        gclass118.int_0 = Convert.ToInt32(row["AlienSensorID"]);
-                        gclass118.decimal_1 = Convert.ToInt32(row["Strength"]);
-                        gclass118.int_1 = Convert.ToInt32(row["Resolution"]);
-                        gclass118.double_0 = Convert.ToDouble(row["Range"]);
-                        gclass118.double_1 = Convert.ToDouble(row["IntelligencePoints"]);
-                        gclass118.string_0 = row["Name"].ToString();
-                        GameRaces[int32_1].PerceivedAliens[int32_2].dictionary_2
-                            .Add(gclass118.int_0, gclass118);
+                            gclass118.ActualGroundUnitClass = value2;
+                        gclass118.AlienSensorID = Convert.ToInt32(row["AlienSensorID"]);
+                        gclass118.Strength = Convert.ToInt32(row["Strength"]);
+                        gclass118.Resolution = Convert.ToInt32(row["Resolution"]);
+                        gclass118.Range = Convert.ToDouble(row["Range"]);
+                        gclass118.IntelligencePoints = Convert.ToDouble(row["IntelligencePoints"]);
+                        gclass118.Name = row["Name"].ToString();
+                        GameRaces[int32_1].AlienRaceIntels[int32_2].dictionary_2
+                            .Add(gclass118.AlienSensorID, gclass118);
                     }
                 }
             }
@@ -5509,7 +5527,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_AlienClass where GameID = {GameID.ToString()}").Rows)
             {
-                GClass115 gclass115 = new GClass115(this);
+                AlienShipClassIntel gclass115 = new AlienShipClassIntel(this);
                 int int32_1 = Convert.ToInt32(row["ActualClassID"]);
                 if (ShipClasses.TryGetValue(int32_1, out var @class))
                 {
@@ -5522,7 +5540,7 @@ public partial class GClass0
                         if (GameRaces.TryGetValue(int32_3, out var race))
                         {
                             gclass115.gclass21_0 = race;
-                            gclass115.gclass110_0 = GameRaces[int32_2].PerceivedAliens[int32_3];
+                            gclass115.gclass110_0 = GameRaces[int32_2].AlienRaceIntels[int32_3];
                             int int32_4 = Convert.ToInt32(row["HullID"]);
                             gclass115.gclass76_0 = !ShipHullDictionary.TryGetValue(int32_4, out var value)
                                 ? ShipHullDictionary[5]
@@ -5556,12 +5574,12 @@ public partial class GClass0
                 }
             }
 
-            Dictionary<int, GClass115> dictionary1 = GameRaces.Values
+            Dictionary<int, AlienShipClassIntel> dictionary1 = GameRaces.Values
                 .SelectMany(gclass21_0 => gclass21_0.dictionary_11)
                 .ToDictionary(keyValuePair_0 => keyValuePair_0.Key,
                     keyValuePair_0 => keyValuePair_0.Value);
-            Dictionary<int, GClass118> dictionary2 = GameRaces.Values
-                .SelectMany(gclass21_0 => gclass21_0.PerceivedAliens.Values)
+            Dictionary<int, AlienSensorIntel> dictionary2 = GameRaces.Values
+                .SelectMany(gclass21_0 => gclass21_0.AlienRaceIntels.Values)
                 .SelectMany(gclass110_0 => gclass110_0.dictionary_2)
                 .Distinct()
                 .ToDictionary(keyValuePair_0 => keyValuePair_0.Key,
@@ -5583,7 +5601,7 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_AlienClassWeapon where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass119 gclass119 = new GClass119();
+                AlienShipWeaponIntel gclass119 = new AlienShipWeaponIntel();
                 int int32_7 = Convert.ToInt32(row["AlienClassID"]);
                 if (dictionary1.ContainsKey(int32_7))
                 {
@@ -5607,7 +5625,7 @@ public partial class GClass0
                 if (dictionary1.ContainsKey(int32_9))
                 {
                     int int32_10 = Convert.ToInt32(row["TechID"]);
-                    if (TechDataDictionary.TryGetValue(int32_10, out var value))
+                    if (TechSystems.TryGetValue(int32_10, out var value))
                         dictionary1[int32_9].list_2.Add(value);
                 }
             }
@@ -5629,7 +5647,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_AlienShip where GameID = {GameID.ToString()}").Rows)
             {
-                GClass117 gclass117 = new GClass117(this);
+                AlienShipIntel gclass117 = new AlienShipIntel(this);
                 int int32_1 = Convert.ToInt32(row["ViewRaceID"]);
                 if (GameRaces.ContainsKey(int32_1))
                 {
@@ -5642,7 +5660,7 @@ public partial class GClass0
                         if (GameRaces.TryGetValue(int32_3, out var race))
                         {
                             gclass117.gclass21_0 = race;
-                            gclass117.gclass110_0 = GameRaces[int32_1].PerceivedAliens[int32_3];
+                            gclass117.gclass110_0 = GameRaces[int32_1].AlienRaceIntels[int32_3];
                             int int32_4 = Convert.ToInt32(row["LastSysID"]);
                             if (StarSystemDictionary.TryGetValue(int32_4, out var value))
                                 gclass117.gclass200_0 = value;
@@ -5702,7 +5720,7 @@ public partial class GClass0
                          .ExecuteQuery(
                              $"SELECT * FROM FCT_AlienGroundUnitClass where GameID = {GameID.ToString()}").Rows)
             {
-                GClass114 gclass114 = new GClass114(this);
+                AlienGroundUnitClassIntel gclass114 = new AlienGroundUnitClassIntel(this);
                 int int32_1 = Convert.ToInt32(row["ViewRaceID"]);
                 if (GameRaces.ContainsKey(int32_1))
                 {
@@ -5715,7 +5733,7 @@ public partial class GClass0
                         if (GameRaces.TryGetValue(int32_3, out var race))
                         {
                             gclass114.gclass21_1 = race;
-                            gclass114.gclass110_0 = GameRaces[int32_1].PerceivedAliens[int32_3];
+                            gclass114.gclass110_0 = GameRaces[int32_1].AlienRaceIntels[int32_3];
                             gclass114.int_0 = Convert.ToInt32(row["AlienGroundUnitClassID"]);
                             gclass114.int_1 = Convert.ToInt32(row["Hits"]);
                             gclass114.int_2 = Convert.ToInt32(row["Penetrated"]);
@@ -5743,17 +5761,18 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * FROM FCT_RaceTech where GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * FROM FCT_RaceTech where GameID = {GameID.ToString()}").Rows)
             {
-                GClass165 gclass165 = new GClass165();
+                RacialTech gclass165 = new RacialTech();
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 int int32_2 = Convert.ToInt32(row["TechID"]);
-                if (GameRaces.ContainsKey(int32_1) && TechDataDictionary.ContainsKey(int32_2))
+                if (GameRaces.ContainsKey(int32_1) && TechSystems.ContainsKey(int32_2))
                 {
-                    gclass165.gclass164_0 = TechDataDictionary[int32_2];
-                    gclass165.gclass21_0 = GameRaces[int32_1];
-                    gclass165.bool_0 = Convert.ToBoolean(row["Obsolete"]);
-                    TechDataDictionary[int32_2].dictionary_0.Add(int32_1, gclass165);
+                    gclass165.TechSystem = TechSystems[int32_2];
+                    gclass165.Race = GameRaces[int32_1];
+                    gclass165.Obsolete = Convert.ToBoolean(row["Obsolete"]);
+                    TechSystems[int32_2].dictionary_0.Add(int32_1, gclass165);
                 }
             }
         }
@@ -5775,11 +5794,11 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_EligibleProjects where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass165 gclass165 = new GClass165();
+                RacialTech gclass165 = new RacialTech();
                 int int32_1 = Convert.ToInt32(row["RaceID"]);
                 int int32_2 = Convert.ToInt32(row["TechSystemID"]);
-                if (GameRaces.ContainsKey(int32_1) && TechDataDictionary.TryGetValue(int32_2, out var value))
-                    GameRaces[int32_1].list_18.Add(value);
+                if (GameRaces.ContainsKey(int32_1) && TechSystems.TryGetValue(int32_2, out var value))
+                    GameRaces[int32_1].EligibleProjects.Add(value);
             }
         }
         catch (DbException ex)
@@ -5799,7 +5818,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_AetherRift WHERE GameID = {GameID.ToString()}").Rows)
             {
-                GClass211 gclass211 = new GClass211(this);
+                AetherRift gclass211 = new AetherRift(this);
                 int int32 = Convert.ToInt32(row["SystemID"]);
                 if (StarSystemDictionary.TryGetValue(int32, out var value))
                 {
@@ -5828,7 +5847,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_AetherGates WHERE GameID = {GameID.ToString()}").Rows)
             {
-                GClass210 gclass210 = new GClass210(this);
+                AetherGate gclass210 = new AetherGate(this);
                 int int32 = Convert.ToInt32(row["SystemID"]);
                 if (StarSystemDictionary.TryGetValue(int32, out var value))
                 {
@@ -5886,20 +5905,20 @@ public partial class GClass0
                 gclass164.bool_4 = Convert.ToBoolean(row["AutomaticResearch"]);
                 if (GameRaces.TryGetValue(gclass164.int_1, out var race))
                     gclass164.gclass21_0 = race;
-                TechDataDictionary.Add(gclass164.TechSystemID, gclass164);
+                TechSystems.Add(gclass164.TechSystemID, gclass164);
             }
 
-            foreach (TechSystem gclass164 in TechDataDictionary.Values)
+            foreach (TechSystem gclass164 in TechSystems.Values)
             {
-                if (TechDataDictionary.TryGetValue(gclass164.int_2, out var value))
+                if (TechSystems.TryGetValue(gclass164.int_2, out var value))
                     gclass164.gclass164_0 = value;
-                if (TechDataDictionary.TryGetValue(gclass164.int_3, out var value1))
+                if (TechSystems.TryGetValue(gclass164.int_3, out var value1))
                     gclass164.gclass164_1 = value1;
             }
 
             foreach (Species gclass194 in SpeciesDictionary.Values
                          .Where(gclass194_0 => gclass194_0.int_9 > 0).ToList())
-                gclass194.gclass164_0 = !TechDataDictionary.TryGetValue(gclass194.int_9, out var value)
+                gclass194.gclass164_0 = !TechSystems.TryGetValue(gclass194.int_9, out var value)
                     ? null
                     : value;
         }
@@ -5920,7 +5939,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_ShipComponentTemplate").Rows)
             {
-                GClass185 gclass185 = new GClass185();
+                ShipComponentTemplate gclass185 = new ShipComponentTemplate();
                 gclass185.int_0 = Convert.ToInt32(row["ShipComponentTemplateID"]);
                 gclass185.auroraComponentType_0 = (AuroraComponentType)Convert.ToInt32(row["ComponentTypeID"]);
                 gclass185.int_9 = Convert.ToInt32(row["Resolution"]);
@@ -5963,7 +5982,7 @@ public partial class GClass0
             {
                 ShipComponent gclass230 = new ShipComponent();
                 gclass230.int_0 = Convert.ToInt32(row["SDComponentID"]);
-                if (TechDataDictionary.TryGetValue(gclass230.int_0, out var value))
+                if (TechSystems.TryGetValue(gclass230.int_0, out var value))
                 {
                     int int32_1 = Convert.ToInt32(row["ShipComponentTemplateID"]);
                     if (dictionary_76.TryGetValue(int32_1, out var value1))
@@ -5989,12 +6008,12 @@ public partial class GClass0
                     gclass230.decimal_13 = Convert.ToDecimal(row["ECCM"]);
                     gclass230.decimal_1 = Convert.ToDecimal(row["Size"]);
                     gclass230.decimal_2 = Convert.ToDecimal(row["Cost"]);
-                    gclass230.decimal_11 = Convert.ToDecimal(row["ExplosionChance"]);
+                    gclass230.ExplosionChance = Convert.ToDecimal(row["ExplosionChance"]);
                     gclass230.decimal_3 = Convert.ToDecimal(row["ComponentValue"]);
                     gclass230.decimal_4 = Convert.ToDecimal(row["RechargeRate"]);
                     gclass230.decimal_5 = Convert.ToDecimal(row["WeaponToHitModifier"]);
                     gclass230.double_0 = Convert.ToDouble(row["MaxSensorRange"]);
-                    gclass230.decimal_6 = Convert.ToDecimal(row["Resolution"]);
+                    gclass230.Resolution = Convert.ToDecimal(row["Resolution"]);
                     gclass230.decimal_7 = Convert.ToDecimal(row["FuelUse"]);
                     gclass230.decimal_17 = Convert.ToDecimal(row["RangeModifier"]);
                     gclass230.decimal_8 = Convert.ToDecimal(row["FuelEfficiency"]);
@@ -6023,7 +6042,7 @@ public partial class GClass0
                     AuroraComponentType int32_2 = (AuroraComponentType)Convert.ToInt32(row["ComponentTypeID"]);
                     if (ComponentTypeDictionary.TryGetValue(int32_2, out var value2))
                     {
-                        gclass230.gclass231_0 = value2;
+                        gclass230.Data = value2;
                         gclass230.int_16 = Convert.ToInt32(row["BGTech1"]);
                         gclass230.int_17 = Convert.ToInt32(row["BGTech2"]);
                         gclass230.int_18 = Convert.ToInt32(row["BGTech3"]);
@@ -6066,7 +6085,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_Prisoners where GameID = {GameID.ToString()}").Rows)
             {
-                GClass147 gclass147 = new GClass147();
+                Prisoner gclass147 = new Prisoner();
                 int int32_1 = Convert.ToInt32(row["PopulationID"]);
                 if (Populations.ContainsKey(int32_1))
                 {
@@ -6104,7 +6123,7 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery($"select * FROM FCT_Increments where GameID = {GameID.ToString()}").Rows)
             {
-                GClass91 gclass91 = new GClass91();
+                IncrementRecord gclass91 = new IncrementRecord();
                 gclass91.int_0 = Convert.ToInt32(row["IncrementID"]);
                 gclass91.int_1 = Convert.ToInt32(row["Length"]);
                 gclass91.decimal_0 = Convert.ToDecimal(row["GameTime"]);
@@ -6130,7 +6149,7 @@ public partial class GClass0
                              $"SELECT * FROM FCT_GameLog where GameID = {GameID.ToString()} ORDER BY IncrementID desc LIMIT 10000")
                          .Rows)
             {
-                GClass87 gclass87 = new GClass87();
+                GameLogEntry gclass87 = new GameLogEntry();
                 int int32_1 = Convert.ToInt32(row["IncrementID"]);
                 if (gclass92_0.dictionary_0.TryGetValue(int32_1, out var value))
                 {
@@ -6179,7 +6198,7 @@ public partial class GClass0
                          .ExecuteQuery($"select * FROM FCT_PrecursorTombGroup where GameID = {GameID.ToString()}")
                          .Rows)
             {
-                GClass172 gclass172 = new GClass172();
+                PrecursorTombGroup gclass172 = new PrecursorTombGroup();
                 int int32_1 = Convert.ToInt32(row["SystemBodyID"]);
                 if (SystemBodyRecordDic.TryGetValue(int32_1, out var value))
                 {
@@ -6286,7 +6305,7 @@ public partial class GClass0
                         if (ThemeDictionary.TryGetValue(int32_3, out var value1))
                             raceSystemSurvey.NamingTheme = value1;
                         int int32_4 = Convert.ToInt32(row["ControlRaceID"]);
-                        if (raceSystemSurvey.Race.PerceivedAliens.TryGetValue(int32_4, out var alien))
+                        if (raceSystemSurvey.Race.AlienRaceIntels.TryGetValue(int32_4, out var alien))
                             raceSystemSurvey.gclass110_0 = alien;
                         raceSystemSurvey.DangerRating = Convert.ToInt32(row["DangerRating"]);
                         raceSystemSurvey.ForeignFleetRaceID = Convert.ToInt32(row["ForeignFleetRaceID"]);
@@ -6316,8 +6335,8 @@ public partial class GClass0
                         raceSystemSurvey.Race.RacialSystemDictionary.Add(raceSystemSurvey.ActualSystem.SystemID, raceSystemSurvey);
                         if (raceSystemSurvey.Race.NPR)
                         {
-                            raceSystemSurvey.gclass3_0 = new GClass3(this, raceSystemSurvey);
-                            raceSystemSurvey.gclass3_0.genum95_0 = (GEnum95)Convert.ToInt32(row["SystemValue"]);
+                            raceSystemSurvey.gclass3_0 = new NPRSurveyOperation(this, raceSystemSurvey);
+                            raceSystemSurvey.gclass3_0.genum95_0 = (NPRSystemValue)Convert.ToInt32(row["SystemValue"]);
                         }
                     }
                 }
@@ -6348,7 +6367,8 @@ public partial class GClass0
             }
 
             DataTable dataTable =
-                new SQLiteDatabaseC1181().ExecuteQuery($"select * from FCT_AlienRaceSystemStatus where GameID = {GameID.ToString()}");
+                new SQLiteDatabaseC1181().ExecuteQuery(
+                    $"select * from FCT_AlienRaceSystemStatus where GameID = {GameID.ToString()}");
             
             /* ** Weird line : Result not used. Disabling.
             this.FCTRaceRecordDic.Values
@@ -6367,15 +6387,15 @@ public partial class GClass0
                     {
                         int int32_7 = Convert.ToInt32(row["AlienRaceID"]);
                         if (GameRaces.ContainsKey(int32_7) &&
-                            GameRaces[int32_5].PerceivedAliens.ContainsKey(int32_7) &&
+                            GameRaces[int32_5].AlienRaceIntels.ContainsKey(int32_7) &&
                             GameRaces[int32_5].RacialSystemDictionary.ContainsKey(int32_6))
                         {
                             gclass111.gclass202_0 = GameRaces[int32_5].RacialSystemDictionary[int32_6];
-                            gclass111.gclass110_0 = GameRaces[int32_5].PerceivedAliens[int32_7];
+                            gclass111.gclass110_0 = GameRaces[int32_5].AlienRaceIntels[int32_7];
                             gclass111.auroraSystemProtectionStatus_0 =
                                 (AuroraSystemProtectionStatus)Convert.ToInt32(row["ProtectionStatusID"]);
                             GameRaces[int32_5].RacialSystemDictionary[int32_6].dictionary_0
-                                .Add(GameRaces[int32_5].PerceivedAliens[int32_7], gclass111);
+                                .Add(GameRaces[int32_5].AlienRaceIntels[int32_7], gclass111);
                         }
                     }
                 }
@@ -6400,7 +6420,7 @@ public partial class GClass0
                 {
                     shipTechData.ShipData = Ships[shipId];
                     int techID = Convert.ToInt32(row["TechID"]);
-                    if (TechDataDictionary.TryGetValue(techID, out var value))
+                    if (TechSystems.TryGetValue(techID, out var value))
                     {
                         shipTechData.TechData = value;
                         shipTechData.TechPoints = Convert.ToInt32(row["TechPoints"]);
@@ -6672,7 +6692,8 @@ public partial class GClass0
         try
         {
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * FROM FCT_DesignPhilosophyTechProgressionCategories WHERE GameID = {GameID.ToString()}").Rows)
+                         .ExecuteQuery(
+                             $"select * FROM FCT_DesignPhilosophyTechProgressionCategories WHERE GameID = {GameID.ToString()}").Rows)
             {
                 int race = Convert.ToInt32(row["RaceID"]);
                 if (GameRaces.ContainsKey(race))
@@ -6717,7 +6738,7 @@ public partial class GClass0
                     // ISSUE: reference to a compiler-generated field
                     class87.DesignDoctrine.Race = race;
                     int int32_2 = Convert.ToInt32(row["LauncherSizeModifier"]);
-                    if (TechDataDictionary.TryGetValue(int32_2, out var value))
+                    if (TechSystems.TryGetValue(int32_2, out var value))
                     {
                         // ISSUE: reference to a compiler-generated field
                         class87.DesignDoctrine.gclass164_0 = value;

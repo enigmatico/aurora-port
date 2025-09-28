@@ -206,20 +206,20 @@ public class StarSystem
 
         internal bool method_2(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_30.ContainsKey(gclass139_0.DestinationID);
+            return this.gclass200_0.gclass0_0.LifePods.ContainsKey(gclass139_0.DestinationID);
         }
 
-        internal GClass59 method_3(MoveOrder gclass139_0)
+        internal LifePod method_3(MoveOrder gclass139_0)
         {
-            return this.gclass200_0.gclass0_0.dictionary_30[gclass139_0.DestinationID];
+            return this.gclass200_0.gclass0_0.LifePods[gclass139_0.DestinationID];
         }
 
-        internal bool method_4(GClass59 gclass59_0)
+        internal bool method_4(LifePod gclass59_0)
         {
             return gclass59_0.gclass200_0 == this.gclass200_0;
         }
 
-        internal double method_5(GClass59 gclass59_0)
+        internal double method_5(LifePod gclass59_0)
         {
             return this.gclass200_0.method_3(this.double_0, this.double_1, gclass59_0.double_0, gclass59_0.double_1);
         }
@@ -398,7 +398,7 @@ public class StarSystem
                          .ThenBy<SystemBodyData, double>(gclass1_0 => gclass1_0.OrbitalDistance)
                          .ToList<SystemBodyData>())
             {
-                gclass1.Name = $"Asteroid #{num}";
+                gclass1.Name = string.Format("Asteroid #{0}", num);
                 gclass1.OrbitNumber = num;
                 gclass1.UnknownEnumDBUpdateNeedState = Unknown_SystemBodyDataUpdateLevel.ExtendedUpdate;
                 ++num;
@@ -424,11 +424,11 @@ public class StarSystem
         }
     }
 
-    public GClass210 method_2()
+    public AetherGate method_2()
     {
         try
         {
-            return this.gclass0_0.dictionary_16.Values.FirstOrDefault<GClass210>(gclass210_0 =>
+            return this.gclass0_0.dictionary_16.Values.FirstOrDefault<AetherGate>(gclass210_0 =>
                 gclass210_0.gclass200_0 == this);
         }
         catch (Exception ex)
@@ -667,7 +667,7 @@ public class StarSystem
         }
     }
 
-    public GClass59 method_9(double double_8, double double_9, RacialSystemSurvey gclass202_0)
+    public LifePod method_9(double double_8, double double_9, RacialSystemSurvey gclass202_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -682,19 +682,19 @@ public class StarSystem
         class1172.double_1 = double_9;
         try
         {
-            List<GClass59> gclass59List = new List<GClass59>();
+            List<LifePod> gclass59List = new List<LifePod>();
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            List<GClass59> list = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class1172.method_0)
+            List<LifePod> list = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class1172.method_0)
                 .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                 .Where<MoveOrder>(class1172.method_1).Where<MoveOrder>(class1172.method_2)
-                .Select<MoveOrder, GClass59>(class1172.method_3).ToList<GClass59>();
+                .Select<MoveOrder, LifePod>(class1172.method_3).ToList<LifePod>();
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.dictionary_30.Values.Where<GClass59>(class1172.method_4).Except<GClass59>(list)
-                .OrderBy<GClass59, double>(class1172.method_5).FirstOrDefault<GClass59>();
+            return this.gclass0_0.LifePods.Values.Where<LifePod>(class1172.method_4).Except<LifePod>(list)
+                .OrderBy<LifePod, double>(class1172.method_5).FirstOrDefault<LifePod>();
         }
         catch (Exception ex)
         {
@@ -1039,8 +1039,10 @@ public class StarSystem
                 Decimal num4 = (Decimal)Math.Round(this.gclass0_0.method_591(double_8, double_9, gclass1.XCoordinate,
                     gclass1.YCoordinate));
                 return num1 < 10000000.0
-                    ? $"{Math.Round(num1 / 1000000.0, 1).ToString()}m km from {gclass1.method_78(gclass202_0.Race)} at bearing {num4.ToString()}°"
-                    : $"{Math.Round(num1 / 1000000.0).ToString()}m km from {gclass1.method_78(gclass202_0.Race)} at bearing {num4.ToString()}°";
+                    ? string.Format("{0}m km from {1} at bearing {2}°", Math.Round(num1 / 1000000.0, 1).ToString(),
+                        gclass1.method_78(gclass202_0.Race), num4.ToString())
+                    : string.Format("{0}m km from {1} at bearing {2}°", Math.Round(num1 / 1000000.0).ToString(),
+                        gclass1.method_78(gclass202_0.Race), num4.ToString());
             }
 
             if (num2 > -1.0 && (num2 <= num1 || num1 == -1.0) && num2 <= num3)
@@ -1049,15 +1051,19 @@ public class StarSystem
                     (Decimal)Math.Round(this.gclass0_0.method_591(double_8, double_9, gclass120.XCoord,
                         gclass120.YCoord));
                 return num1 < 10000000.0
-                    ? $"{Math.Round(num2 / 1000000.0, 1).ToString()}m km from {gclass120.method_8(gclass202_0)} at bearing {num5.ToString()}°"
-                    : $"{Math.Round(num2 / 1000000.0).ToString()}m km from {gclass120.method_8(gclass202_0)} at bearing {num5.ToString()}°";
+                    ? string.Format("{0}m km from {1} at bearing {2}°", Math.Round(num2 / 1000000.0, 1).ToString(),
+                        gclass120.method_8(gclass202_0), num5.ToString())
+                    : string.Format("{0}m km from {1} at bearing {2}°", Math.Round(num2 / 1000000.0).ToString(),
+                        gclass120.method_8(gclass202_0), num5.ToString());
             }
 
             Decimal num6 =
                 (Decimal)Math.Round(this.gclass0_0.method_591(double_8, double_9, gclass197.XCoord, gclass197.YCoord));
             return num1 < 10000000.0
-                ? $"{Math.Round(num3 / 1000000.0, 1).ToString()}m km from {gclass197.method_18(gclass202_0.Race)} at bearing {num6.ToString()}°"
-                : $"{Math.Round(num3 / 1000000.0).ToString()}m km from {gclass197.method_18(gclass202_0.Race)} at bearing {num6.ToString()}°";
+                ? string.Format("{0}m km from {1} at bearing {2}°", Math.Round(num3 / 1000000.0, 1).ToString(),
+                    gclass197.method_18(gclass202_0.Race), num6.ToString())
+                : string.Format("{0}m km from {1} at bearing {2}°", Math.Round(num3 / 1000000.0).ToString(),
+                    gclass197.method_18(gclass202_0.Race), num6.ToString());
         }
         catch (Exception ex)
         {
@@ -1318,17 +1324,17 @@ public class StarSystem
         }
     }
 
-    public List<GClass59> method_36()
+    public List<LifePod> method_36()
     {
         try
         {
-            return this.gclass0_0.dictionary_30.Values.Where<GClass59>(gclass59_0 => gclass59_0.gclass200_0 == this)
-                .OrderBy<GClass59, string>(gclass59_0 => gclass59_0.string_0).ToList<GClass59>();
+            return this.gclass0_0.LifePods.Values.Where<LifePod>(gclass59_0 => gclass59_0.gclass200_0 == this)
+                .OrderBy<LifePod, string>(gclass59_0 => gclass59_0.string_0).ToList<LifePod>();
         }
         catch (Exception ex)
         {
             AuroraUtils.ShowExceptionPopup(ex, 2990);
-            return new List<GClass59>();
+            return new List<LifePod>();
         }
     }
 

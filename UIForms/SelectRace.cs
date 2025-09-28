@@ -15,7 +15,6 @@ public class SelectRace : Form
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
     private PopulationData gclass146_0;
-    private IContainer icontainer_0;
     private ComboBox cboTargetPopulation;
     private Button cmdCancel;
     private Button cmdOK;
@@ -73,13 +72,6 @@ public class SelectRace : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 3568);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

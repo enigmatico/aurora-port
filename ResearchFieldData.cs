@@ -11,7 +11,7 @@ public class ResearchFieldData
 {
     public bool bDoNotDisplay;
 
-    public AuroraResearchField ResearchFieldID { get; set; }
+    public AuroraResearchFieldType ResearchFieldType { get; set; }
 
     public string FieldName { get; set; }
 

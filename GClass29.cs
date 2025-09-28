@@ -17,20 +17,6 @@ public class GClass29
     [Serializable]
     private sealed class staticCompGen
     {
-        public static readonly GClass29.staticCompGen staticCompMem;
-        public static Func<MissileSalvo, Decimal> staticCompMem__6_0;
-        public static Func<MissileSalvo, int> staticCompMem__6_1;
-        public static Func<MissileSalvo, int> staticCompMem__6_2;
-        public static Func<KeyValuePair<int, int>, int> staticCompMem__6_3;
-        public static Func<KeyValuePair<int, int>, int> staticCompMem__6_4;
-        public static Func<KeyValuePair<int, int>, int> staticCompMem__6_5;
-        public static Func<KeyValuePair<int, int>, int> staticCompMem__6_7;
-
-        static staticCompGen()
-        {
-            GClass29.staticCompGen.staticCompMem = new GClass29.staticCompGen();
-        }
-
         internal Decimal method_0(MissileSalvo gclass132_0)
         {
             return gclass132_0.RaceMissile.Speed;
@@ -106,7 +92,7 @@ public class GClass29
                     return;
                 foreach (MissileSalvo gclass132 in this.list_0)
                 {
-                    int key = (int)(this.gclass0_0.GetDistanceBetween(gclass132.double_0, gclass132.double_1,
+                    int key = (int)(this.gclass0_0.GetDistanceBetween(gclass132.Xcor, gclass132.Ycor,
                         this.gclass221_0.double_0,
                         this.gclass221_0.double_1) / (double)gclass132.RaceMissile.Speed);
                     if (source.ContainsKey(key))
@@ -134,7 +120,7 @@ public class GClass29
 
             foreach (MissileSalvo gclass132 in this.list_0)
             {
-                if (gclass132.auroraContactType_0 != AuroraContactType.WayPoint)
+                if (gclass132.TargetType != AuroraContactType.WayPoint)
                     gclass132.bool_3 = true;
             }
         }

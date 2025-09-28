@@ -17,7 +17,6 @@ public class TurretDesign : Form
     private ShipComponent gclass230_0;
     private int int_0 = 1;
     private bool bool_0 = true;
-    private IContainer icontainer_0;
     private ComboBox cboRaces;
     private FlowLayoutPanel flowLayoutPanel4;
     private FlowLayoutPanel flowLayoutPanel3;
@@ -304,7 +303,7 @@ public class TurretDesign : Form
         try
         {
             this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text == "")
-                ? $"{this.txtCompanyName.Text} {this.txtTurretName.Text}"
+                ? string.Format("{0} {1}", this.txtCompanyName.Text, this.txtTurretName.Text)
                 : this.txtTurretName.Text;
             if (this.gclass230_0.genum86_0 != GEnum86.const_0)
             {
@@ -313,7 +312,7 @@ public class TurretDesign : Form
             }
             else
             {
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 this.gclass0_0.gclass230_1.Name = this.gclass0_0.gclass164_0.Name;
                 this.gclass0_0.ComponentDataDictionary.Add(this.gclass0_0.gclass230_1.int_0, this.gclass0_0.gclass230_1);
                 int num2 = (int)MessageBox.Show(
@@ -338,7 +337,7 @@ public class TurretDesign : Form
             else
             {
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text == "")
-                    ? $"{this.txtCompanyName.Text} {this.txtTurretName.Text}"
+                    ? string.Format("{0} {1}", this.txtCompanyName.Text, this.txtTurretName.Text)
                     : this.txtTurretName.Text;
                 if (this.gclass230_0.genum86_0 != GEnum86.const_0)
                 {
@@ -347,7 +346,7 @@ public class TurretDesign : Form
                 }
                 else
                 {
-                    this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                    this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                     this.gclass0_0.gclass230_1.Name = this.gclass0_0.gclass164_0.Name;
                     this.gclass0_0.ComponentDataDictionary.Add(this.gclass0_0.gclass230_1.int_0,
                         this.gclass0_0.gclass230_1);
@@ -378,9 +377,9 @@ public class TurretDesign : Form
             else
             {
                 this.gclass0_0.gclass164_0.Name = !(this.txtCompanyName.Text == "")
-                    ? $"{this.txtCompanyName.Text} {this.txtTurretName.Text}"
+                    ? string.Format("{0} {1}", this.txtCompanyName.Text, this.txtTurretName.Text)
                     : this.txtTurretName.Text;
-                this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
+                this.gclass0_0.TechSystems.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 this.gclass0_0.gclass230_1.Name = this.gclass0_0.gclass164_0.Name;
                 this.gclass0_0.gclass230_1.genum86_0 = GEnum86.const_1;
                 this.gclass0_0.ComponentDataDictionary.Add(this.gclass0_0.gclass230_1.int_0, this.gclass0_0.gclass230_1);
@@ -427,13 +426,6 @@ public class TurretDesign : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 3287);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

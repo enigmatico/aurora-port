@@ -15,7 +15,6 @@ public class MineralPopUp : Form
     private SystemBodyData gclass1_0;
     private GameRace gclass21_0;
     private GClass0 gclass0_0;
-    private IContainer icontainer_0;
     private TextBox txtMinerals;
 
     public MineralPopUp(SystemBodyData gclass1_1, GameRace gclass21_1, GClass0 gclass0_1)
@@ -51,13 +50,6 @@ public class MineralPopUp : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 2020);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

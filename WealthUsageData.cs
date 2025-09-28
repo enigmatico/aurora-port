@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class WealthUsageData
 {
-    public WealthUsage WealthUsage;
+    public WealthUsageType WealthUsageType;
     public Decimal DisplayOrder;
     public bool Income;
     public string Description;

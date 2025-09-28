@@ -121,7 +121,7 @@ public class LagrangePoint
             if (gclass202_0.Race.chkWP == CheckState.Unchecked)
                 return;
             SolidBrush solidBrush = new SolidBrush(Color.Orange);
-            string str = $"LP{this.int_1}";
+            string str = string.Format((string)"LP{0}", (object)this.int_1);
             double x = gclass222_0.double_2 - AuroraUtils.int_61 / 2.0;
             double y = gclass222_0.double_3 - AuroraUtils.int_61 / 2.0;
             graphics_0.FillEllipse(solidBrush, (float)x, (float)y, AuroraUtils.int_61, AuroraUtils.int_61);
@@ -141,7 +141,8 @@ public class LagrangePoint
     {
         try
         {
-            return $"LP{this.int_1.ToString()}  ({this.Planet.method_78(gclass21_0)})";
+            return string.Format((string)"LP{0}  ({1})", (object)this.int_1.ToString(),
+                (object)this.Planet.method_78(gclass21_0));
         }
         catch (Exception ex)
         {
@@ -158,7 +159,8 @@ public class LagrangePoint
             {
                 if (object_1 != this)
                     this.gclass0_0.method_598(listView_0,
-                        $"LP{object_1.int_1.ToString()}  ({object_1.Planet.method_78(gclass21_0)})", "", object_1);
+                        string.Format((string)"LP{0}  ({1})", (object)object_1.int_1.ToString(),
+                            (object)object_1.Planet.method_78(gclass21_0)), "", object_1);
             }
         }
         catch (Exception ex)

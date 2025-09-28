@@ -79,9 +79,9 @@ public class NamingTheme
                 string string_10 = str;
                 string_10.Trim();
                 if (string_1 != "")
-                    string_10 = $"{string_1} {string_10}";
+                    string_10 = string.Format("{0} {1}", string_1, string_10);
                 if (string_2 != "")
-                    string_10 = $"{string_10} {string_2}";
+                    string_10 = string.Format("{0} {1}", string_10, string_2);
                 switch (genum21_0)
                 {
                     case GEnum21.const_0:

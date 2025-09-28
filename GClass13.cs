@@ -14,7 +14,7 @@ public class GClass13
     private GClass0 gclass0_0;
     public Dictionary<AuroraContactType, Contact> dictionary_0 = new Dictionary<AuroraContactType, Contact>();
     public PopulationData gclass146_0;
-    public GClass113 gclass113_0;
+    public AlienPopulationIntel gclass113_0;
     public Contact gclass65_0;
     public double double_0;
     public double double_1;
@@ -30,7 +30,7 @@ public class GClass13
     {
         try
         {
-            Decimal num = this.gclass113_0.decimal_2 / 25M;
+            Decimal num = this.gclass113_0.EMSignature / 25M;
             if (this.gclass65_0.ContactType == AuroraContactType.Population)
                 return num;
             return this.gclass65_0.ContactType == AuroraContactType.Shipyard ? num / 10M : num * 5M;
@@ -47,7 +47,7 @@ public class GClass13
         try
         {
             this.bool_1 = false;
-            this.double_0 = (double)this.gclass113_0.decimal_2;
+            this.double_0 = (double)this.gclass113_0.EMSignature;
             if (this.double_0 == 0.0)
                 this.double_0 = 1.0;
             if (this.dictionary_0.ContainsKey(AuroraContactType.STOGroundUnit))

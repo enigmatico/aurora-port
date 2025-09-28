@@ -15,7 +15,7 @@ public class ClassComponentTemplate186
         public ClassComponentTemplate186 gclass186_0;
         public GameRace gclass21_0;
 
-        internal bool method_0(GClass185 gclass185_0)
+        internal bool method_0(ShipComponentTemplate gclass185_0)
         {
             return gclass185_0.int_0 == this.gclass186_0.ShipComponentTemplateID;
         }
@@ -33,7 +33,7 @@ public class ClassComponentTemplate186
     }
 
     private GClass0 gclass0_0;
-    public GClass185 gclass185_0;
+    public ShipComponentTemplate gclass185_0;
     public ShipComponent gclass230_0;
     public ShipComponent gclass230_1;
     public int ShipClassTemplateID;
@@ -61,7 +61,7 @@ public class ClassComponentTemplate186
             this.int_4 = 0;
             this.string_0 = "Component Not Known";
             // ISSUE: reference to a compiler-generated method
-            this.gclass185_0 = this.gclass0_0.dictionary_76.Values.FirstOrDefault<GClass185>(class1155.method_0);
+            this.gclass185_0 = this.gclass0_0.dictionary_76.Values.FirstOrDefault<ShipComponentTemplate>(class1155.method_0);
             // ISSUE: reference to a compiler-generated method
             this.gclass230_0 =
                 this.gclass0_0.ComponentDataDictionary.Values.FirstOrDefault<ShipComponent>(class1155.method_1);

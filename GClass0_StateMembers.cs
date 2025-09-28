@@ -96,8 +96,8 @@ public partial class GClass0
     public Dictionary<int, JumpPoint> JumpPointDictionary = new Dictionary<int, JumpPoint>();
     public Dictionary<int, Waypoint> Waypoints = new Dictionary<int, Waypoint>();
     public Dictionary<int, LagrangePoint> LagrangePoints = new Dictionary<int, LagrangePoint>();
-    public Dictionary<int, GClass211> dictionary_15 = new Dictionary<int, GClass211>();
-    public Dictionary<int, GClass210> dictionary_16 = new Dictionary<int, GClass210>();
+    public Dictionary<int, AetherRift> dictionary_15 = new Dictionary<int, AetherRift>();
+    public Dictionary<int, AetherGate> dictionary_16 = new Dictionary<int, AetherGate>();
 
     public Dictionary<int, DIMKnownSystemsData198> KnownSystemDataDictionary =
         new Dictionary<int, DIMKnownSystemsData198>();
@@ -118,13 +118,13 @@ public partial class GClass0
     public Dictionary<int, AncientConstruct> AncientConstructsOnSystemBodies = new Dictionary<int, AncientConstruct>();
     public Dictionary<int, Contact> Contacts = new Dictionary<int, Contact>();
     public Dictionary<int, Wreck> Wrecks = new Dictionary<int, Wreck>();
-    public Dictionary<int, GClass59> dictionary_30 = new Dictionary<int, GClass59>();
-    public Dictionary<int, GClass193> dictionary_31 = new Dictionary<int, GClass193>();
-    public Dictionary<int, GClass192> dictionary_32 = new Dictionary<int, GClass192>();
+    public Dictionary<int, LifePod> LifePods = new Dictionary<int, LifePod>();
+    public Dictionary<int, Shipyard> Shipyards = new Dictionary<int, Shipyard>();
+    public Dictionary<int, ShipyardTask> dictionary_32 = new Dictionary<int, ShipyardTask>();
     public Dictionary<int, OrderTemplateData> MoveOrderTemplateDictionary = new Dictionary<int, OrderTemplateData>();
     public Dictionary<int, FCTRaceMedalRecord> RaceMedalDictionary = new Dictionary<int, FCTRaceMedalRecord>();
     public Dictionary<int, MedalCondition> MedalConditionDictionary = new Dictionary<int, MedalCondition>();
-    public List<GClass44> list_1 = new List<GClass44>();
+    public List<ConditionForMedal> ConditionForMedals = new List<ConditionForMedal>();
     public Dictionary<int, GameRace> GameRaces = new Dictionary<int, GameRace>();
     public Dictionary<int, Species> SpeciesDictionary = new Dictionary<int, Species>();
     public Dictionary<int, RuinDefinition> RuinDefinitionDictionary = new Dictionary<int, RuinDefinition>();
@@ -134,22 +134,22 @@ public partial class GClass0
     public List<GClass12> list_2 = new List<GClass12>();
     public List<DIMDesignPhilosophyTechProgression> DesignPhilosophyTechProgressionsDictionary = new List<DIMDesignPhilosophyTechProgression>();
     public List<GClass16> list_4 = new List<GClass16>();
-    public Dictionary<int, GClass55> dictionary_42 = new Dictionary<int, GClass55>();
-    public Dictionary<int, GClass55> dictionary_43 = new Dictionary<int, GClass55>();
+    public Dictionary<int, Commander> ActiveCommanders = new Dictionary<int, Commander>();
+    public Dictionary<int, Commander> RetiredCommanders = new Dictionary<int, Commander>();
 
     public Dictionary<AuroraInstallationType, PlanetaryInstallationType> InstallationTypes =
         new Dictionary<AuroraInstallationType, PlanetaryInstallationType>();
 
-    public Dictionary<WealthUsage, WealthUsageData> WealthUsageDictionary = new Dictionary<WealthUsage, WealthUsageData>();
+    public Dictionary<WealthUsageType, WealthUsageData> WealthUsageDictionary = new Dictionary<WealthUsageType, WealthUsageData>();
 
     public Dictionary<EventType, DIMEventTypeData88> DIMEventTypeDictionary =
         new Dictionary<EventType, DIMEventTypeData88>();
 
     public Dictionary<int, CommanderNameThemeData> NameThemeDictionary = new Dictionary<int, CommanderNameThemeData>();
-    public Dictionary<AuroraResearchField, ResearchFieldData> ResearchFieldDictionary = new Dictionary<AuroraResearchField, ResearchFieldData>();
+    public Dictionary<AuroraResearchFieldType, ResearchFieldData> ResearchFieldDictionary = new Dictionary<AuroraResearchFieldType, ResearchFieldData>();
     public Dictionary<TechType, TechTypeData> TechTypeDataDictionary = new Dictionary<TechType, TechTypeData>();
-    public Dictionary<int, TechSystem> TechDataDictionary = new Dictionary<int, TechSystem>();
-    public Dictionary<MineralUsage, MineralUsageData> MineralUsageDataDictionary = new Dictionary<MineralUsage, MineralUsageData>();
+    public Dictionary<int, TechSystem> TechSystems = new Dictionary<int, TechSystem>();
+    public Dictionary<MineralUsageType, MineralUsageData> MineralUsageDataDictionary = new Dictionary<MineralUsageType, MineralUsageData>();
     public Dictionary<AuroraComponentType, ComponentTypeData> ComponentTypeDictionary = new Dictionary<AuroraComponentType, ComponentTypeData>();
     public Dictionary<ClassSummaryTypeID, ClassSummaryType> ClassSummaryTypeDictionary = new Dictionary<ClassSummaryTypeID, ClassSummaryType>();
     public Dictionary<int, ShipComponent> ComponentDataDictionary = new Dictionary<int, ShipComponent>();
@@ -160,7 +160,7 @@ public partial class GClass0
     public Dictionary<int, TraitGroup> TraitGroupDictionary = new Dictionary<int, TraitGroup>();
     public Dictionary<int, string> TraitNameDictionary = new Dictionary<int, string>();
     public Dictionary<int, AssignmentTypeFilter> AssignmentTypeFilterDictionary = new Dictionary<int, AssignmentTypeFilter>();
-    public Dictionary<CommanderBonusType, CommanderBonus> CommanderBonusDictionary = new Dictionary<CommanderBonusType, CommanderBonus>();
+    public Dictionary<CommanderBonusType, CommanderBonusDefinition> CommanderBonusDictionary = new Dictionary<CommanderBonusType, CommanderBonusDefinition>();
     public Dictionary<AutomatedClassDesignType, AutomatedClassDesign> AutomatedClassDesignDictionary = new Dictionary<AutomatedClassDesignType, AutomatedClassDesign>();
     public Dictionary<ResearchCategoryType, ResearchCategoryData> ResearchCategoryDictionary = new Dictionary<ResearchCategoryType, ResearchCategoryData>();
     public Dictionary<AdminCommandType, NavalAdminCommandType> AdminCommandTypeDictionary = new Dictionary<AdminCommandType, NavalAdminCommandType>();
@@ -183,8 +183,8 @@ public partial class GClass0
     public Dictionary<int, ShipClassTemplate184> ShipClassTemplateDictionary =
         new Dictionary<int, ShipClassTemplate184>();
 
-    public Dictionary<int, GClass185> dictionary_76 = new Dictionary<int, GClass185>();
-    public List<GClass172> list_8 = new List<GClass172>();
+    public Dictionary<int, ShipComponentTemplate> dictionary_76 = new Dictionary<int, ShipComponentTemplate>();
+    public List<PrecursorTombGroup> list_8 = new List<PrecursorTombGroup>();
     public List<RacialSystemBodySurvey> SystemBodySurveys = new List<RacialSystemBodySurvey>();
     public List<MissileGeoSurvey> MissileGeoSurveys = new List<MissileGeoSurvey>();
     public List<HideEventData> HideEventList = new List<HideEventData>();

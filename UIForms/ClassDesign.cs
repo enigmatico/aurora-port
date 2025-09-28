@@ -23,7 +23,7 @@ public class ClassDesign : Form
             return gclass230_0.int_0 == this.gclass186_0.StandardComponentID;
         }
 
-        internal bool method_1(GClass185 gclass185_0)
+        internal bool method_1(ShipComponentTemplate gclass185_0)
         {
             return gclass185_0.int_0 == this.gclass186_0.ShipComponentTemplateID;
         }
@@ -38,7 +38,7 @@ public class ClassDesign : Form
             return gclass230_0.int_0 == this.gclass186_0.StandardComponentID;
         }
 
-        internal bool method_1(GClass185 gclass185_0)
+        internal bool method_1(ShipComponentTemplate gclass185_0)
         {
             return gclass185_0.int_0 == this.gclass186_0.ShipComponentTemplateID;
         }
@@ -50,7 +50,7 @@ public class ClassDesign : Form
 
         internal bool method_0(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0 == this.gclass22_0;
+            return gclass40_0.Class == this.gclass22_0;
         }
     }
 
@@ -70,7 +70,7 @@ public class ClassDesign : Form
     private bool bool_0;
     private bool bool_1 = true;
     private bool bool_2;
-    private IContainer icontainer_0;
+    
     private TabControl tabDesign;
     private TabPage ClassDesignTab;
     private CheckBox chkShowCivilian;
@@ -653,7 +653,7 @@ public class ClassDesign : Form
         try
         {
             if (this.gclass22_0 == null ||
-                MessageBox.Show($" Are you sure you want to delete {this.gclass22_0.ClassName}?",
+                MessageBox.Show(string.Format(" Are you sure you want to delete {0}?", this.gclass22_0.ClassName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes ||
                 !this.gclass21_0.method_309(this.gclass22_0))
                 return;
@@ -780,10 +780,10 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || this.tvInClass.SelectedNode == null)
                 return;
-            if (!(this.tvInClass.SelectedNode.Tag is GClass228))
+            if (!(this.tvInClass.SelectedNode.Tag is ClassComponent))
                 return;
-            GClass228 tag = (GClass228)this.tvInClass.SelectedNode.Tag;
-            this.gclass230_0 = tag.gclass230_0;
+            ClassComponent tag = (ClassComponent)this.tvInClass.SelectedNode.Tag;
+            this.gclass230_0 = tag.Component;
             this.txtComponentDetail.Text = this.gclass230_0.method_14();
             TreeNode selectedNode = this.tvInClass.SelectedNode;
             if (this.gclass230_0 == null || this.gclass22_0 == null)
@@ -805,7 +805,7 @@ public class ClassDesign : Form
         }
     }
 
-    private void method_6(GClass228 gclass228_0)
+    private void method_6(ClassComponent gclass228_0)
     {
         try
         {
@@ -813,7 +813,7 @@ public class ClassDesign : Form
             {
                 foreach (TreeNode node2 in node1.Nodes)
                 {
-                    if (node2.Tag is GClass228 && node2.Tag == gclass228_0)
+                    if (node2.Tag is ClassComponent && node2.Tag == gclass228_0)
                     {
                         node2.Parent.Expand();
                         this.tvInClass.SelectedNode = node2;
@@ -886,7 +886,7 @@ public class ClassDesign : Form
                 this.cmdResearch.Visible = true;
             else
                 this.cmdResearch.Visible = false;
-            this.cndObsoComp.Visible = this.gclass230_0.gclass231_0.bObsoleteAllowed;
+            this.cndObsoComp.Visible = this.gclass230_0.Data.bObsoleteAllowed;
         }
         catch (Exception ex)
         {
@@ -912,17 +912,17 @@ public class ClassDesign : Form
     {
         try
         {
-            if (this.gclass22_0 == null || !(e.Node.Tag is GClass228))
+            if (this.gclass22_0 == null || !(e.Node.Tag is ClassComponent))
                 return;
-            GClass228 tag = (GClass228)e.Node.Tag;
-            this.gclass230_0 = tag.gclass230_0;
+            ClassComponent tag = (ClassComponent)e.Node.Tag;
+            this.gclass230_0 = tag.Component;
             this.bool_1 = false;
             this.txtComponentDetail.Text = this.gclass230_0.method_14();
             if (this.gclass230_0.genum86_0 == GEnum86.const_1)
                 this.cmdResearch.Visible = true;
             else
                 this.cmdResearch.Visible = false;
-            if (tag.gclass230_0.gclass164_0.gclass21_0 == null)
+            if (tag.Component.gclass164_0.gclass21_0 == null)
                 this.cndObsoComp.Visible = false;
             else
                 this.cndObsoComp.Visible = true;
@@ -968,7 +968,9 @@ public class ClassDesign : Form
                                 this.gclass22_0.MinimumFuel = (int)Math.Ceiling(this.gclass22_0.FuelCapacity * 0.1);
                                 this.txtMinFuel.Text = this.gclass22_0.MinimumFuel.ToString();
                                 int num = (int)MessageBox.Show(
-                                    $"Minimum fuel capacity set to {AuroraUtils.smethod_37(this.gclass22_0.MinimumFuel)}. This can be adjusted on the Miscellaneous tab");
+                                    string.Format(
+                                        "Minimum fuel capacity set to {0}. This can be adjusted on the Miscellaneous tab",
+                                        AuroraUtils.smethod_37(this.gclass22_0.MinimumFuel)));
                                 break;
                             }
 
@@ -1168,7 +1170,7 @@ public class ClassDesign : Form
             if (!(this.gclass0_0.string_4 != ""))
                 return;
             gclass76.Abbreviation = this.gclass0_0.string_4;
-            gclass76.Combined = $"{gclass76.Description}  {gclass76.Abbreviation}";
+            gclass76.Combined = string.Format("{0}  {1}", gclass76.Description, gclass76.Abbreviation);
             if (this.gclass22_0 != null)
                 this.gclass22_0.ShipHull = gclass76;
             this.gclass0_0.ShipHullDictionary.Add(gclass76.ShipHullDescriptionID, gclass76);
@@ -1200,10 +1202,10 @@ public class ClassDesign : Form
     {
         try
         {
-            if (this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
-                this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 = false;
+            if (this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete)
+                this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete = false;
             else
-                this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 = true;
+                this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete = true;
         }
         catch (Exception ex)
         {
@@ -1246,8 +1248,8 @@ public class ClassDesign : Form
             }
             else
             {
-                this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                    !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete =
+                    !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].Obsolete;
                 this.gclass21_0.method_316(this.lstvOrdnance, this.chkObsoleteMissiles.CheckState, false);
             }
         }
@@ -1335,7 +1337,7 @@ public class ClassDesign : Form
         {
             if (this.lstClassOrdnance.SelectedItems.Count <= 0 || this.gclass22_0 == null)
                 return;
-            this.gclass22_0.method_55((PopOrdnanceStock)this.lstClassOrdnance.SelectedItem, this.method_8());
+            this.gclass22_0.method_55((ShipOrdnance)this.lstClassOrdnance.SelectedItem, this.method_8());
             this.method_1();
         }
         catch (Exception ex)
@@ -1350,7 +1352,7 @@ public class ClassDesign : Form
         {
             if (this.lstClassFighters.SelectedItems.Count <= 0 || this.gclass22_0 == null)
                 return;
-            this.gclass22_0.method_58((GClass74)this.lstClassFighters.SelectedItem, this.method_8());
+            this.gclass22_0.method_58((ClassFighterTemplate)this.lstClassFighters.SelectedItem, this.method_8());
             this.method_1();
         }
         catch (Exception ex)
@@ -1649,27 +1651,28 @@ public class ClassDesign : Form
                         true, GEnum20.const_2);
                     gclass40_2_2.SquadronData = gclass70_1;
                     this.gclass21_0.StartBuildPoints -= (int)this.gclass22_0.Cost;
-                    if (this.chkIncludeGround.CheckState == CheckState.Checked && this.gclass22_0.list_2.Count > 0)
+                    if (this.chkIncludeGround.CheckState == CheckState.Checked && this.gclass22_0.GroundUnitTemplates.Count > 0)
                         gclass40_2_2.method_50();
                     if (this.chkIncludeParasites.CheckState == CheckState.Checked &&
-                        gclass40_2_2.gclass22_0.list_1.Count > 0 && gclass40_2_2.gclass22_0.ParasiteCapacity > 0M)
+                        gclass40_2_2.Class.FighterClassTemplates.Count > 0 && gclass40_2_2.Class.ParasiteCapacity > 0M)
                     {
-                        FCTSquadronData70 gclass70_2 = gclass40_2_2.method_186($"{gclass40_2_2.ShipName} Strikegroup");
-                        foreach (GClass74 gclass74 in this.gclass22_0.list_1)
+                        FCTSquadronData70 gclass70_2 = gclass40_2_2.method_186(string.Format("{0} Strikegroup",
+                            gclass40_2_2.ShipName));
+                        foreach (ClassFighterTemplate gclass74 in this.gclass22_0.FighterClassTemplates)
                         {
-                            for (int index2 = 1; index2 <= gclass74.int_0; ++index2)
+                            for (int index2 = 1; index2 <= gclass74.Number; ++index2)
                             {
-                                if (gclass40_2_2.method_125() >= gclass74.gclass22_0.Size)
+                                if (gclass40_2_2.method_125() >= gclass74.FighterClass.Size)
                                 {
-                                    string string_10_2 = gclass74.gclass22_0.method_39();
+                                    string string_10_2 = gclass74.FighterClass.method_39();
                                     ShipData gclass40 = this.gclass21_0.method_304(null, null, null,
-                                        gclass74.gclass22_0, gclass40_2_2.gclass85_0, null, gclass194_1, gclass40_2_2,
+                                        gclass74.FighterClass, gclass40_2_2.gclass85_0, null, gclass194_1, gclass40_2_2,
                                         null, string_10_2, AuroraUtils.int_26, true, true, GEnum20.const_2);
                                     gclass40.SquadronData = gclass70_2;
                                     gclass40.LinkedSquadronID = gclass70_2.SquadronID;
-                                    this.gclass21_0.StartBuildPoints -= gclass40.gclass22_0.Cost;
+                                    this.gclass21_0.StartBuildPoints -= gclass40.Class.Cost;
                                     if (this.chkIncludeGround.CheckState == CheckState.Checked &&
-                                        gclass74.gclass22_0.list_2.Count > 0)
+                                        gclass74.FighterClass.GroundUnitTemplates.Count > 0)
                                         gclass40.method_50();
                                 }
                             }
@@ -1939,13 +1942,14 @@ public class ClassDesign : Form
             {
                 foreach (TreeNode node2 in node1.Nodes)
                 {
-                    if (node2.Tag is GClass228)
+                    if (node2.Tag is ClassComponent)
                     {
-                        GClass228 tag = (GClass228)node2.Tag;
-                        if (tag.gclass230_0 == this.gclass230_0)
+                        ClassComponent tag = (ClassComponent)node2.Tag;
+                        if (tag.Component == this.gclass230_0)
                         {
                             tag.Description =
-                                $"{Math.Round(tag.decimal_0, 1).ToString()}x {tag.gclass230_0.method_0()}";
+                                string.Format("{0}x {1}", Math.Round(tag.NumComponent, 1).ToString(),
+                                    tag.Component.method_0());
                             node2.Text = tag.Description;
                             return;
                         }
@@ -1966,8 +1970,8 @@ public class ClassDesign : Form
             if (this.gclass21_0 == null || this.gclass230_0 == null ||
                 !this.gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                 return;
-            this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                !this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+            this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete =
+                !this.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].Obsolete;
             this.gclass21_0.method_384(this.tvComponents, this.chkShowObsolete.CheckState,
                 this.chkUseAlienTech.CheckState, this.chkPrototypes.CheckState);
         }
@@ -2043,7 +2047,7 @@ public class ClassDesign : Form
             if (this.gclass22_0 == null)
                 return;
             List<ShipData> list = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this.gclass22_0)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Class == this.gclass22_0)
                 .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_8).ToList<ShipData>();
             foreach (ShipData gclass40 in list)
                 gclass40.ShipName = "";
@@ -2145,8 +2149,8 @@ public class ClassDesign : Form
                 return;
             List<ShipData> list = this.gclass0_0.Ships.Values
                 .Where<ShipData>(gclass40_0 =>
-                    gclass40_0.gclass22_0.ShipHull == this.gclass22_0.ShipHull &&
-                    gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass187_0 == null)
+                    gclass40_0.Class.ShipHull == this.gclass22_0.ShipHull &&
+                    gclass40_0.Race == this.gclass21_0 && gclass40_0.gclass187_0 == null)
                 .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_8).ToList<ShipData>();
             if (list.Count == 0)
                 return;
@@ -2298,7 +2302,7 @@ public class ClassDesign : Form
         {
             if (this.lstClassGround.SelectedItems.Count <= 0 || this.gclass22_0 == null)
                 return;
-            this.gclass22_0.method_59((GClass75)this.lstClassGround.SelectedItem, this.method_8());
+            this.gclass22_0.method_59((ClassGroundTemplate)this.lstClassGround.SelectedItem, this.method_8());
             this.method_1();
         }
         catch (Exception ex)
@@ -2395,8 +2399,8 @@ public class ClassDesign : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated method
-                    GClass185 gclass185_0 =
-                        this.gclass0_0.dictionary_76.Values.FirstOrDefault<GClass185>(class905.method_1);
+                    ShipComponentTemplate gclass185_0 =
+                        this.gclass0_0.dictionary_76.Values.FirstOrDefault<ShipComponentTemplate>(class905.method_1);
                     if (gclass185_0 != null)
                         gclass230_0 = this.gclass21_0.method_73(gclass185_0, true, false, false);
                 }
@@ -2486,8 +2490,8 @@ public class ClassDesign : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated method
-                    GClass185 gclass185_0 =
-                        this.gclass0_0.dictionary_76.Values.FirstOrDefault<GClass185>(class906.method_1);
+                    ShipComponentTemplate gclass185_0 =
+                        this.gclass0_0.dictionary_76.Values.FirstOrDefault<ShipComponentTemplate>(class906.method_1);
                     if (gclass185_0 != null)
                         gclass230 = this.gclass21_0.method_73(gclass185_0, true, true, true);
                 }
@@ -2533,7 +2537,8 @@ public class ClassDesign : Form
         try
         {
             if (this.gclass21_0 == null || this.gclass184_0 == null ||
-                MessageBox.Show($" Are you sure you want to delete {this.gclass184_0.ShipClassTemplateName}?",
+                MessageBox.Show(
+                    string.Format(" Are you sure you want to delete {0}?", this.gclass184_0.ShipClassTemplateName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             this.lstvTemplateComponents.Items.Clear();
@@ -2788,12 +2793,12 @@ public class ClassDesign : Form
             if (this.gclass22_0 == null)
                 return;
             List<ShipData> list = this.gclass0_0.Ships.Values
-                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this.gclass22_0)
+                .Where<ShipData>(gclass40_0 => gclass40_0.Class == this.gclass22_0)
                 .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_8).ToList<ShipData>();
             int int_72 = 1;
             foreach (ShipData gclass40 in list)
             {
-                gclass40.ShipName = $"{this.gclass22_0.ClassName} {AuroraUtils.smethod_33(int_72)}";
+                gclass40.ShipName = string.Format("{0} {1}", this.gclass22_0.ClassName, AuroraUtils.smethod_33(int_72));
                 ++int_72;
             }
 
@@ -2925,12 +2930,7 @@ public class ClassDesign : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

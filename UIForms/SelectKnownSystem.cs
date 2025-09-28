@@ -16,7 +16,9 @@ public class SelectKnownSystem : Form
     private DIMKnownSystemsData198 gclass198_0;
     private bool bool_0;
     private bool bool_1 = true;
-    private IContainer icontainer_0;
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+    
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     private Button cmdCancel;
     private Button cmdGenerate;
     private Button cmdDistSol;
@@ -178,12 +180,7 @@ public class SelectKnownSystem : Form
         this.Close();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

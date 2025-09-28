@@ -22,7 +22,7 @@ public class TacticalMap : Form
 {
     public GClass0 gclass0_0;
     public GClass0 gclass0_1;
-    private List<GClass87> list_0 = new List<GClass87>();
+    private List<GameLogEntry> list_0 = new List<GameLogEntry>();
     public GameRace Race;
     public RacialSystemSurvey gclass202_0;
     public WayPointType wayPointType_0;
@@ -40,7 +40,7 @@ public class TacticalMap : Form
     private DateTime dateTime_0;
     private double double_0;
     private double double_1;
-    private IContainer icontainer_0;
+    
     private FlowLayoutPanel tlbMainToolbar;
     private Button cmdToolbarColony;
     private Button cmdToolbarIndustry;
@@ -371,7 +371,7 @@ public class TacticalMap : Form
         {
             GClass0 gclass0 = new GClass0(this);
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
-                         .ExecuteQuery($"select * from FCT_Game where GameID = {int_5.ToString()}").Rows)
+                         .ExecuteQuery(string.Format("select * from FCT_Game where GameID = {0}", int_5.ToString())).Rows)
             {
                 gclass0.GameID = Convert.ToInt32(row["GameID"]);
                 gclass0.DifficultyModifier = Convert.ToInt32(row["DifficultyModifier"]);
@@ -481,7 +481,8 @@ public class TacticalMap : Form
             if (this.Race == null)
                 return;
             this.Text =
-                $"{this.Race.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.Race.WealthPoints)}";
+                string.Format("{0}   {1}   Racial Wealth {2}", this.Race.RaceTitle, this.gclass0_0.method_586(true),
+                    AuroraUtils.smethod_38(this.Race.WealthPoints));
         }
         catch (Exception ex)
         {
@@ -510,7 +511,8 @@ public class TacticalMap : Form
             this.Race = (GameRace)this.cboRaces.SelectedValue;
             this.gclass0_0.raceRecord_0 = this.Race;
             this.Text =
-                $"{this.Race.RaceTitle}   {this.gclass0_0.method_586(true)}   Racial Wealth {AuroraUtils.smethod_38(this.Race.WealthPoints)}";
+                string.Format("{0}   {1}   Racial Wealth {2}", this.Race.RaceTitle, this.gclass0_0.method_586(true),
+                    AuroraUtils.smethod_38(this.Race.WealthPoints));
             this.Race.method_326(this.cboContactRaceFilter, "All Races");
             List<RacialSystemSurvey> gclass202List = this.Race.method_321();
             this.gclass0_0.bool_9 = true;
@@ -676,7 +678,7 @@ public class TacticalMap : Form
     {
         try
         {
-            this.Race.ContactFilterRace = (AlienRaceInfo)this.cboContactRaceFilter.SelectedValue;
+            this.Race.ContactFilterRace = (AlienRaceIntel)this.cboContactRaceFilter.SelectedValue;
             if (this.gclass0_0.bool_9)
                 return;
             this.Refresh();
@@ -1286,7 +1288,8 @@ public class TacticalMap : Form
             else
             {
                 Waypoint tag = (Waypoint)this.lstvWaypoints.SelectedItems[0].Tag;
-                if (tag == null || MessageBox.Show($" Are you sure you want to delete {tag.method_2(true)}?",
+                if (tag == null || MessageBox.Show(
+                        string.Format(" Are you sure you want to delete {0}?", tag.method_2(true)),
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
                 this.gclass0_0.Waypoints.Remove(tag.WaypointID);
@@ -1657,7 +1660,7 @@ public class TacticalMap : Form
         {
             if (e.X < 345 || e.X > 1285 || this.chkEvents.CheckState == CheckState.Unchecked)
                 return;
-            foreach (GClass87 gclass87_0 in this.list_0)
+            foreach (GameLogEntry gclass87_0 in this.list_0)
             {
                 if (e.Y >= gclass87_0.double_2 && e.Y < gclass87_0.double_3)
                 {
@@ -1700,8 +1703,8 @@ public class TacticalMap : Form
             else
             {
                 foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
-                             .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.Race)
-                             .Where<ShipData>(gclass40_0 => !gclass40_0.gclass22_0.Commercial).ToList<ShipData>())
+                             .Where<ShipData>(gclass40_0 => gclass40_0.Race == this.Race)
+                             .Where<ShipData>(gclass40_0 => !gclass40_0.Class.Commercial).ToList<ShipData>())
                     gclass40.method_31(GEnum61.const_2);
             }
         }
@@ -1729,11 +1732,11 @@ public class TacticalMap : Form
                 if (this.gclass214_0 == null)
                     return;
                 foreach (MissileSalvo gclass132 in this.gclass0_0.MissileSalvoes.Values.Where<MissileSalvo>(gclass132_0 =>
-                             gclass132_0.auroraContactType_0 == AuroraContactType.WayPoint &&
-                             gclass132_0.int_0 == this.gclass214_0.WaypointID).ToList<MissileSalvo>())
+                             gclass132_0.TargetType == AuroraContactType.WayPoint &&
+                             gclass132_0.TargetID == this.gclass214_0.WaypointID).ToList<MissileSalvo>())
                 {
-                    gclass132.int_0 = 0;
-                    gclass132.auroraContactType_0 = AuroraContactType.None;
+                    gclass132.TargetID = 0;
+                    gclass132.TargetType = AuroraContactType.None;
                 }
 
                 this.wayPointType_0 = WayPointType.Normal;
@@ -2154,12 +2157,7 @@ public class TacticalMap : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

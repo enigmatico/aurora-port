@@ -17,9 +17,9 @@ public class Diplomacy : Form
 {
     private sealed class Class894
     {
-        public GClass115 gclass115_0;
+        public AlienShipClassIntel gclass115_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass115_0 == this.gclass115_0 && !gclass117_0.bool_0;
         }
@@ -27,9 +27,9 @@ public class Diplomacy : Form
 
     private sealed class Class895
     {
-        public GClass115 gclass115_0;
+        public AlienShipClassIntel gclass115_0;
 
-        internal bool method_0(GClass117 gclass117_0)
+        internal bool method_0(AlienShipIntel gclass117_0)
         {
             return gclass117_0.gclass115_0 == this.gclass115_0;
         }
@@ -51,10 +51,10 @@ public class Diplomacy : Form
 
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
-    private AlienRaceInfo gclass110_0;
+    private AlienRaceIntel gclass110_0;
     private TreeNode treeNode_0;
     private bool bool_0;
-    private IContainer icontainer_0;
+    
     private PictureBox pbRace;
     private PictureBox pbShip;
     private PictureBox pbFlag;
@@ -233,7 +233,7 @@ public class Diplomacy : Form
         }
     }
 
-    private void method_3(GClass115 gclass115_0)
+    private void method_3(AlienShipClassIntel gclass115_0)
     {
         try
         {
@@ -246,7 +246,7 @@ public class Diplomacy : Form
         }
     }
 
-    private void method_4(GClass114 gclass114_0)
+    private void method_4(AlienGroundUnitClassIntel gclass114_0)
     {
         try
         {
@@ -358,7 +358,7 @@ public class Diplomacy : Form
     {
         try
         {
-            this.gclass110_0 = (AlienRaceInfo)this.cboAlienRaces.SelectedValue;
+            this.gclass110_0 = (AlienRaceIntel)this.cboAlienRaces.SelectedValue;
             this.method_1();
         }
         catch (Exception ex)
@@ -457,7 +457,7 @@ public class Diplomacy : Form
             string str = this.gclass0_0.method_562("Enter New Alien Race Name", this.gclass110_0.AlienRaceName);
             if (str != "")
                 this.gclass110_0.AlienRaceName = str;
-            AlienRaceInfo gclass1100 = this.gclass110_0;
+            AlienRaceIntel gclass1100 = this.gclass110_0;
             this.gclass21_0.method_330(this.cboAlienRaces);
             this.cboAlienRaces.SelectedItem = gclass1100;
         }
@@ -673,7 +673,9 @@ public class Diplomacy : Form
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             this.tvIntelligence.SelectedNode.Text =
-                $"{class894.gclass115_0.gclass21_1.dictionary_12.Values.Count<GClass117>(class894.method_0).ToString()}x {class894.gclass115_0.gclass76_0.Abbreviation} {class894.gclass115_0.ClassName}";
+                string.Format("{0}x {1} {2}",
+                    class894.gclass115_0.gclass21_1.dictionary_12.Values.Count<AlienShipIntel>(class894.method_0).ToString(),
+                    class894.gclass115_0.gclass76_0.Abbreviation, class894.gclass115_0.ClassName);
         }
         catch (Exception ex)
         {
@@ -681,7 +683,7 @@ public class Diplomacy : Form
         }
     }
 
-    private GClass115 method_9()
+    private AlienShipClassIntel method_9()
     {
         try
         {
@@ -697,8 +699,8 @@ public class Diplomacy : Form
                 return null;
             }
 
-            if (this.tvIntelligence.SelectedNode.Tag is GClass115)
-                return (GClass115)this.tvIntelligence.SelectedNode.Tag;
+            if (this.tvIntelligence.SelectedNode.Tag is AlienShipClassIntel)
+                return (AlienShipClassIntel)this.tvIntelligence.SelectedNode.Tag;
             int num1 = (int)MessageBox.Show(" Please select an alien class");
             return null;
         }
@@ -709,7 +711,7 @@ public class Diplomacy : Form
         }
     }
 
-    private GClass114 method_10()
+    private AlienGroundUnitClassIntel method_10()
     {
         try
         {
@@ -725,8 +727,8 @@ public class Diplomacy : Form
                 return null;
             }
 
-            if (this.tvIntelligence.SelectedNode.Tag is GClass114)
-                return (GClass114)this.tvIntelligence.SelectedNode.Tag;
+            if (this.tvIntelligence.SelectedNode.Tag is AlienGroundUnitClassIntel)
+                return (AlienGroundUnitClassIntel)this.tvIntelligence.SelectedNode.Tag;
             int num1 = (int)MessageBox.Show(" Please select an alien ground unit");
             return null;
         }
@@ -756,7 +758,7 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass115 gclass115_0 = this.method_9();
+            AlienShipClassIntel gclass115_0 = this.method_9();
             if (gclass115_0 == null)
                 return;
             this.gclass0_0.string_3 = "Select Alien Class Hull";
@@ -800,12 +802,12 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass115 gclass115_0 = this.method_9();
+            AlienShipClassIntel gclass115_0 = this.method_9();
             if (gclass115_0 == null)
                 return;
             if (this.lstvAlienShips.SelectedItems.Count > 0)
             {
-                GClass117 tag = (GClass117)this.lstvAlienShips.SelectedItems[0].Tag;
+                AlienShipIntel tag = (AlienShipIntel)this.lstvAlienShips.SelectedItems[0].Tag;
                 string str = this.gclass0_0.method_562("Enter New Alien Ship Name", tag.string_0);
                 if (str != "")
                     tag.string_0 = str;
@@ -835,9 +837,9 @@ public class Diplomacy : Form
             else
             {
                 if (this.lstvAlienShips.SelectedItems.Count == 0 || this.lstvAlienShips.SelectedItems[0].Tag == null ||
-                    !(this.lstvAlienShips.SelectedItems[0].Tag is GClass117))
+                    !(this.lstvAlienShips.SelectedItems[0].Tag is AlienShipIntel))
                     return;
-                GClass117 tag = (GClass117)this.lstvAlienShips.SelectedItems[0].Tag;
+                AlienShipIntel tag = (AlienShipIntel)this.lstvAlienShips.SelectedItems[0].Tag;
                 if (tag == null)
                     return;
                 this.gclass0_0.method_524(this.gclass21_0, tag.gclass200_0, tag.double_0, tag.double_1);
@@ -853,12 +855,12 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass115 gclass115_0 = this.method_9();
+            AlienShipClassIntel gclass115_0 = this.method_9();
             if (gclass115_0 == null)
                 return;
             if (this.lstvAlienShips.SelectedItems.Count > 0)
             {
-                ((GClass117)this.lstvAlienShips.SelectedItems[0].Tag).bool_0 = true;
+                ((AlienShipIntel)this.lstvAlienShips.SelectedItems[0].Tag).bool_0 = true;
                 this.method_3(gclass115_0);
             }
             else
@@ -888,14 +890,15 @@ public class Diplomacy : Form
                 return;
             int int_72 = 1;
             // ISSUE: reference to a compiler-generated method
-            List<GClass117> list = this.gclass21_0.dictionary_12.Values.Where<GClass117>(class895.method_0)
-                .OrderBy<GClass117, Decimal>(gclass117_0 => gclass117_0.decimal_1).ToList<GClass117>();
+            List<AlienShipIntel> list = this.gclass21_0.dictionary_12.Values.Where<AlienShipIntel>(class895.method_0)
+                .OrderBy<AlienShipIntel, Decimal>(gclass117_0 => gclass117_0.decimal_1).ToList<AlienShipIntel>();
             // ISSUE: reference to a compiler-generated field
             class895.gclass115_0.int_4 = list.Count;
-            foreach (GClass117 gclass117 in list)
+            foreach (AlienShipIntel gclass117 in list)
             {
                 // ISSUE: reference to a compiler-generated field
-                gclass117.string_0 = $"{class895.gclass115_0.ClassName} {AuroraUtils.smethod_33(int_72)}";
+                gclass117.string_0 = string.Format("{0} {1}", class895.gclass115_0.ClassName,
+                    AuroraUtils.smethod_33(int_72));
                 ++int_72;
             }
 
@@ -914,7 +917,7 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            GClass115 gclass115 = this.method_9();
+            AlienShipClassIntel gclass115 = this.method_9();
             if (gclass115 == null)
                 return;
             gclass115.ClassName = this.gclass110_0.ClassTheme.method_0(this.gclass21_0, GEnum21.const_3);
@@ -930,7 +933,7 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass115 gclass115 = this.method_9();
+            AlienShipClassIntel gclass115 = this.method_9();
             if (gclass115 == null)
                 return;
             int num = (int)new cmdSelect(this.gclass0_0).ShowDialog();
@@ -952,13 +955,13 @@ public class Diplomacy : Form
         {
             if (this.gclass21_0 == null || this.gclass110_0 == null)
                 return;
-            foreach (GClass115 gclass115 in this.gclass21_0.dictionary_11.Values
-                         .Where<GClass115>(gclass115_0 => gclass115_0.gclass110_0 == this.gclass110_0)
-                         .ToList<GClass115>())
+            foreach (AlienShipClassIntel gclass115 in this.gclass21_0.dictionary_11.Values
+                         .Where<AlienShipClassIntel>(gclass115_0 => gclass115_0.gclass110_0 == this.gclass110_0)
+                         .ToList<AlienShipClassIntel>())
                 gclass115.ClassName = gclass115.gclass22_0.ClassName;
-            foreach (GClass117 gclass117 in this.gclass21_0.dictionary_12.Values
-                         .Where<GClass117>(gclass117_0 => gclass117_0.gclass110_0 == this.gclass110_0)
-                         .ToList<GClass117>())
+            foreach (AlienShipIntel gclass117 in this.gclass21_0.dictionary_12.Values
+                         .Where<AlienShipIntel>(gclass117_0 => gclass117_0.gclass110_0 == this.gclass110_0)
+                         .ToList<AlienShipIntel>())
             {
                 if (gclass117.int_0 > 0 && gclass117.gclass40_0 == null)
                     gclass117.method_3(gclass117.int_0);
@@ -1010,9 +1013,9 @@ public class Diplomacy : Form
         {
             if (this.gclass110_0 == null)
                 return;
-            if (treeNode_1.Tag is GClass115)
+            if (treeNode_1.Tag is AlienShipClassIntel)
             {
-                GClass115 tag = (GClass115)treeNode_1.Tag;
+                AlienShipClassIntel tag = (AlienShipClassIntel)treeNode_1.Tag;
                 if (tag == null)
                     return;
                 this.method_3(tag);
@@ -1029,9 +1032,9 @@ public class Diplomacy : Form
                     : (object)AuroraUtils.smethod_82(tag.dictionary_0[this.gclass110_0].auroraSystemProtectionStatus_0);
                 this.tabIntelligence.SelectTab(this.tabKnownSystems);
             }
-            else if (treeNode_1.Tag is GClass114)
+            else if (treeNode_1.Tag is AlienGroundUnitClassIntel)
             {
-                GClass114 tag = (GClass114)treeNode_1.Tag;
+                AlienGroundUnitClassIntel tag = (AlienGroundUnitClassIntel)treeNode_1.Tag;
                 if (tag == null)
                     return;
                 this.method_4(tag);
@@ -1045,9 +1048,9 @@ public class Diplomacy : Form
                 this.gclass21_0.method_27(this.lstvKnownSpecies, tag);
                 this.tabIntelligence.SelectTab(this.tabSpecies);
             }
-            else if (treeNode_1.Tag is GClass113)
+            else if (treeNode_1.Tag is AlienPopulationIntel)
             {
-                GClass113 tag = (GClass113)treeNode_1.Tag;
+                AlienPopulationIntel tag = (AlienPopulationIntel)treeNode_1.Tag;
                 if (tag == null)
                     return;
                 this.gclass21_0.method_28(this.lstvPopulation, tag);
@@ -1055,9 +1058,9 @@ public class Diplomacy : Form
             }
             else
             {
-                if (!(treeNode_1.Tag is GClass118))
+                if (!(treeNode_1.Tag is AlienSensorIntel))
                     return;
-                GClass118 tag = (GClass118)treeNode_1.Tag;
+                AlienSensorIntel tag = (AlienSensorIntel)treeNode_1.Tag;
                 if (tag == null)
                     return;
                 this.gclass21_0.method_20(this.lstvMountingClasses, tag);
@@ -1089,8 +1092,9 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass115 gclass115 = this.method_9();
-            if (gclass115 == null || MessageBox.Show($" Are you sure you want to delete {gclass115.ClassName}?",
+            AlienShipClassIntel gclass115 = this.method_9();
+            if (gclass115 == null || MessageBox.Show(
+                    string.Format(" Are you sure you want to delete {0}?", gclass115.ClassName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             this.gclass21_0.dictionary_11.Remove(gclass115.int_0);
@@ -1106,9 +1110,9 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass115 gclass115 = this.method_9();
+            AlienShipClassIntel gclass115 = this.method_9();
             if (gclass115 == null ||
-                MessageBox.Show($" Are you sure you want to clear all data for {gclass115.ClassName}?",
+                MessageBox.Show(string.Format(" Are you sure you want to clear all data for {0}?", gclass115.ClassName),
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             gclass115.list_0.Clear();
@@ -1226,7 +1230,8 @@ public class Diplomacy : Form
                     gclass194.RaceImageFileName = str.Substring(num2 + 1);
                 }
 
-                this.pbRace.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{gclass194.RaceImageFileName}");
+                this.pbRace.Image = Image.FromFile(string.Format("{0}\\Races\\{1}", Application.StartupPath,
+                    gclass194.RaceImageFileName));
             }
         }
         catch (Exception ex)
@@ -1255,7 +1260,8 @@ public class Diplomacy : Form
                 }
 
                 this.gclass110_0.ActualAlienRace.FlagPicLoadedImg =
-                    Image.FromFile($"{Application.StartupPath}\\Flags\\{this.gclass110_0.ActualAlienRace.FlagPic}");
+                    Image.FromFile(string.Format("{0}\\Flags\\{1}", Application.StartupPath,
+                        this.gclass110_0.ActualAlienRace.FlagPic));
                 this.pbFlag.Image = this.gclass110_0.ActualAlienRace.FlagPicLoadedImg;
             }
         }
@@ -1285,7 +1291,8 @@ public class Diplomacy : Form
                 }
 
                 this.gclass110_0.ActualAlienRace.ShipIconLoadedImg =
-                    Image.FromFile($"{Application.StartupPath}\\ShipIcons\\{this.gclass110_0.ActualAlienRace.HullPic}");
+                    Image.FromFile(string.Format("{0}\\ShipIcons\\{1}", Application.StartupPath,
+                        this.gclass110_0.ActualAlienRace.HullPic));
                 this.pbShip.Image = this.gclass110_0.ActualAlienRace.ShipIconLoadedImg;
             }
         }
@@ -1299,7 +1306,7 @@ public class Diplomacy : Form
     {
         try
         {
-            GClass114 gclass114 = this.method_10();
+            AlienGroundUnitClassIntel gclass114 = this.method_10();
             if (gclass114 == null)
                 return;
             string str = this.gclass0_0.method_562("Enter New Alien Ground Unit Name", gclass114.string_0);
@@ -1378,12 +1385,12 @@ public class Diplomacy : Form
             {
                 int num2 = (int)MessageBox.Show("Please select an alien sensor to rename");
             }
-            else if (this.tvIntelligence.SelectedNode.Tag is GClass118)
+            else if (this.tvIntelligence.SelectedNode.Tag is AlienSensorIntel)
             {
-                GClass118 tag = (GClass118)this.tvIntelligence.SelectedNode.Tag;
-                string str = this.gclass0_0.method_562("Enter New Alien Sensor Name", tag.string_0);
+                AlienSensorIntel tag = (AlienSensorIntel)this.tvIntelligence.SelectedNode.Tag;
+                string str = this.gclass0_0.method_562("Enter New Alien Sensor Name", tag.Name);
                 if (str != "")
-                    tag.string_0 = str;
+                    tag.Name = str;
                 this.tvIntelligence.SelectedNode.Text = tag.method_3();
             }
             else
@@ -1397,12 +1404,7 @@ public class Diplomacy : Form
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
-    }
+    
 
     private void InitializeComponent()
     {

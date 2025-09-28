@@ -16,7 +16,6 @@ public class frmSectors : Form
     private GClass0 gclass0_0;
     private GameRace gclass21_0;
     private bool bool_0;
-    private IContainer icontainer_0;
     private TreeView tvSectors;
     private ComboBox cboRaces;
     private ListBox lstAvailable;
@@ -107,9 +106,9 @@ public class frmSectors : Form
     {
         try
         {
-            if (!(e.Node.Tag is GClass62))
+            if (!(e.Node.Tag is Sector))
                 return;
-            GClass62 tag = (GClass62)e.Node.Tag;
+            Sector tag = (Sector)e.Node.Tag;
             this.gclass21_0.method_381(this.lstAvailable, tag);
             tag.method_0(this.lstvSectorDetail);
         }
@@ -123,9 +122,9 @@ public class frmSectors : Form
     {
         try
         {
-            if (!(e.Node.Tag is GClass62))
+            if (!(e.Node.Tag is Sector))
                 return;
-            ((GClass62)e.Node.Tag).bool_0 = e.Node.IsExpanded;
+            ((Sector)e.Node.Tag).bool_0 = e.Node.IsExpanded;
         }
         catch (Exception ex)
         {
@@ -145,9 +144,9 @@ public class frmSectors : Form
             {
                 int num2 = (int)MessageBox.Show("Please select a sector");
             }
-            else if (this.tvSectors.SelectedNode.Tag is GClass62)
+            else if (this.tvSectors.SelectedNode.Tag is Sector)
             {
-                GClass62 tag = (GClass62)this.tvSectors.SelectedNode.Tag;
+                Sector tag = (Sector)this.tvSectors.SelectedNode.Tag;
                 RacialSystemSurvey selectedValue = (RacialSystemSurvey)this.lstAvailable.SelectedValue;
                 if (selectedValue == null)
                 {
@@ -157,11 +156,11 @@ public class frmSectors : Form
                 {
                     tag.bool_0 = true;
                     selectedValue.gclass62_0 = tag;
-                    selectedValue.SectorID = tag.int_0;
+                    selectedValue.SectorID = tag.SectorCommandID;
                     this.gclass21_0.method_380(this.tvSectors);
                     foreach (TreeNode node in this.tvSectors.Nodes)
                     {
-                        if ((GClass62)node.Tag == tag)
+                        if ((Sector)node.Tag == tag)
                         {
                             this.tvSectors.SelectedNode = node;
                             break;
@@ -211,7 +210,7 @@ public class frmSectors : Form
                     TreeNode treeNode = new TreeNode();
                     foreach (TreeNode node in this.tvSectors.Nodes)
                     {
-                        if ((GClass62)node.Tag == cgc62)
+                        if ((Sector)node.Tag == cgc62)
                         {
                             treeNode = node;
                             break;
@@ -253,9 +252,9 @@ public class frmSectors : Form
             {
                 int num2 = (int)MessageBox.Show("Please select an item to rename");
             }
-            else if (this.tvSectors.SelectedNode.Tag is GClass62)
+            else if (this.tvSectors.SelectedNode.Tag is Sector)
             {
-                GClass62 tag = (GClass62)this.tvSectors.SelectedNode.Tag;
+                Sector tag = (Sector)this.tvSectors.SelectedNode.Tag;
                 string str = this.gclass0_0.method_562("Enter New Sector Name", tag.SectorName);
                 if (str != "")
                     tag.SectorName = str;
@@ -300,10 +299,10 @@ public class frmSectors : Form
                 return;
             if (data.Tag is RacialSystemSurvey)
             {
-                if (nodeAt.Tag is GClass62)
+                if (nodeAt.Tag is Sector)
                 {
                     RacialSystemSurvey tag1 = (RacialSystemSurvey)data.Tag;
-                    GClass62 tag2 = (GClass62)nodeAt.Tag;
+                    Sector tag2 = (Sector)nodeAt.Tag;
                     tag2.method_1();
                     if (tag2.dictionary_0.Values.Contains<RacialSystemSurvey>(tag1))
                     {
@@ -365,13 +364,6 @@ public class frmSectors : Form
         {
             AuroraUtils.ShowExceptionPopup(ex, 3278);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && this.icontainer_0 != null)
-            this.icontainer_0.Dispose();
-        base.Dispose(disposing);
     }
 
     private void InitializeComponent()

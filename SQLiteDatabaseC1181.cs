@@ -38,7 +38,7 @@ internal class SQLiteDatabaseC1181
             SQLiteConnection connection = new SQLiteConnection(AuroraUtils.string_1);
             connection.Open();
             SQLiteDataAdapter sqLiteDataAdapter =
-                new SQLiteDataAdapter($"Select max({string_1}) from {string_0}", connection);
+                new SQLiteDataAdapter(string.Format("Select max({0}) from {1}", string_1, string_0), connection);
             sqLiteDataAdapter.SelectCommand.CommandTimeout = 360;
             DataSet dataSet = new DataSet();
             sqLiteDataAdapter.Fill(dataSet, "RecordSet");

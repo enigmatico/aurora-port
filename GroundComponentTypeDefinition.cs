@@ -83,24 +83,30 @@ public class GroundComponentTypeDefinition
     {
         try
         {
-            string str = $"{this.GroundUnitComponentName}:";
+            string str = string.Format("{0}:", this.GroundUnitComponentName);
             if (this.Damage > 0M)
             {
                 str =
-                    $"{str}      Shots {this.Shots.ToString()}      Penetration {this.method_1(decimal_8).ToString()}      Damage {this.method_2(decimal_8).ToString()}";
+                    string.Format("{0}      Shots {1}      Penetration {2}      Damage {3}", str, this.Shots.ToString(),
+                        this.method_1(decimal_8).ToString(), this.method_2(decimal_8).ToString());
                 if (this.AAWeaponClass != AntiAirWeaponClass.const_0)
-                    str = $"{str}      AA Value {this.method_0(decimal_8).ToString()}";
+                    str = string.Format("{0}      AA Value {1}", str, this.method_0(decimal_8).ToString());
             }
             else if (this.Construction > 0M)
-                str = $"{str}      Construction Factory Equivalent {AuroraUtils.FormatNumberToDigits(this.Construction, 2)}";
+                str = string.Format("{0}      Construction Factory Equivalent {1}", str,
+                    AuroraUtils.FormatNumberToDigits(this.Construction, 2));
             else if (this.LogisticsPoint > 0)
-                str = $"{str}      Ground Supply Points {AuroraUtils.smethod_37(this.LogisticsPoint)}";
+                str = string.Format("{0}      Ground Supply Points {1}", str,
+                    AuroraUtils.smethod_37(this.LogisticsPoint));
             else if (this.GeoSurvey > 0M)
-                str = $"{str}      Geo Survey Points {AuroraUtils.FormatNumberToDigits(this.GeoSurvey, 1)}";
+                str = string.Format("{0}      Geo Survey Points {1}", str,
+                    AuroraUtils.FormatNumberToDigits(this.GeoSurvey, 1));
             else if (this.Xenoarchaeology > 0M)
-                str = $"{str}      Xenoarchaeology Points {AuroraUtils.FormatNumberToDigits(this.Xenoarchaeology, 1)}";
+                str = string.Format("{0}      Xenoarchaeology Points {1}", str,
+                    AuroraUtils.FormatNumberToDigits(this.Xenoarchaeology, 1));
             else if (this.Decontamination > 0M)
-                str = $"{str}      Decontamination Rate {AuroraUtils.FormatNumberToDigits(this.Decontamination, 1)}%";
+                str = string.Format("{0}      Decontamination Rate {1}%", str,
+                    AuroraUtils.FormatNumberToDigits(this.Decontamination, 1));
 
             return str;
         }
