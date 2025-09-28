@@ -15,7 +15,7 @@ using System.Windows.Forms;
 public partial class ShipClass
 {
     public Dictionary<int, GClass228> dictionary_0 = new Dictionary<int, GClass228>();
-    public List<GClass130> list_0 = new List<GClass130>();
+    public List<PopOrdnanceStock> list_0 = new List<PopOrdnanceStock>();
     public List<GClass74> list_1 = new List<GClass74>();
     public List<GClass75> list_2 = new List<GClass75>();
     public AllMineralsValue ClassMaterials;
@@ -1386,11 +1386,11 @@ public partial class ShipClass
         try
         {
             gclass40_0.list_10.Clear();
-            foreach (GClass130 gclass130 in gclass40_0.gclass22_0.list_0)
-                gclass40_0.list_10.Add(new GClass130()
+            foreach (PopOrdnanceStock gclass130 in gclass40_0.gclass22_0.list_0)
+                gclass40_0.list_10.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = gclass130.gclass129_0,
-                    int_0 = gclass130.int_0
+                    RaceMissile = gclass130.RaceMissile,
+                    Amount = gclass130.Amount
                 });
         }
         catch (Exception ex)
@@ -1408,27 +1408,27 @@ public partial class ShipClass
             ShipClass.Class770 class770 = new ShipClass.Class770();
             // ISSUE: reference to a compiler-generated field
             class770.gclass130_0 =
-                gclass40_0.gclass22_0.list_0.FirstOrDefault<GClass130>(gclass130_0 =>
-                    gclass130_0.gclass129_0.int_14 == 1);
+                gclass40_0.gclass22_0.list_0.FirstOrDefault<PopOrdnanceStock>(gclass130_0 =>
+                    gclass130_0.RaceMissile.ShipDecoy == 1);
             // ISSUE: reference to a compiler-generated field
             if (class770.gclass130_0 == null)
                 return;
             // ISSUE: reference to a compiler-generated method
-            GClass130 gclass130 = gclass40_0.list_10.FirstOrDefault<GClass130>(class770.method_0);
+            PopOrdnanceStock gclass130 = gclass40_0.list_10.FirstOrDefault<PopOrdnanceStock>(class770.method_0);
             if (gclass130 == null)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                gclass40_0.list_10.Add(new GClass130()
+                gclass40_0.list_10.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = class770.gclass130_0.gclass129_0,
-                    int_0 = class770.gclass130_0.int_0
+                    RaceMissile = class770.gclass130_0.RaceMissile,
+                    Amount = class770.gclass130_0.Amount
                 });
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                gclass130.int_0 = class770.gclass130_0.int_0;
+                gclass130.Amount = class770.gclass130_0.Amount;
             }
         }
         catch (Exception ex)
@@ -1442,9 +1442,9 @@ public partial class ShipClass
         try
         {
             Decimal num = 0M;
-            foreach (GClass130 gclass130 in this.list_0
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0).ToList<GClass130>())
-                num += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_0
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0).ToList<PopOrdnanceStock>())
+                num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.MagazineCapacity - num;
         }
         catch (Exception ex)
@@ -1459,9 +1459,9 @@ public partial class ShipClass
         try
         {
             Decimal num = 0M;
-            foreach (GClass130 gclass130 in this.list_0
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 1).ToList<GClass130>())
-                num += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_0
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 1).ToList<PopOrdnanceStock>())
+                num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.DecoyCapacity - num;
         }
         catch (Exception ex)
@@ -1552,16 +1552,16 @@ public partial class ShipClass
                 gclass22_2.dictionary_0.Add(gclass228_2.int_0, gclass228_2);
             }
 
-            gclass22_2.list_0 = new List<GClass130>();
+            gclass22_2.list_0 = new List<PopOrdnanceStock>();
             gclass22_2.list_1 = new List<GClass74>();
             gclass22_2.list_2 = new List<GClass75>();
             if (gclass21_1 == null)
             {
-                foreach (GClass130 gclass130 in this.list_0)
-                    gclass22_2.list_0.Add(new GClass130()
+                foreach (PopOrdnanceStock gclass130 in this.list_0)
+                    gclass22_2.list_0.Add(new PopOrdnanceStock()
                     {
-                        gclass129_0 = gclass130.gclass129_0,
-                        int_0 = gclass130.int_0
+                        RaceMissile = gclass130.RaceMissile,
+                        Amount = gclass130.Amount
                     });
                 foreach (GClass74 gclass74 in this.list_1)
                     gclass22_2.list_1.Add(new GClass74()
@@ -1812,42 +1812,42 @@ public partial class ShipClass
             if (int_69 == 0 || class773.gclass129_0 == null)
                 return;
             // ISSUE: reference to a compiler-generated field
-            if (class773.gclass129_0.int_14 == 0)
+            if (class773.gclass129_0.ShipDecoy == 0)
             {
                 Decimal num = this.method_45();
                 // ISSUE: reference to a compiler-generated field
-                if (class773.gclass129_0.decimal_4 * int_69 > num)
+                if (class773.gclass129_0.Size * int_69 > num)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    int_69 = (int)(num / class773.gclass129_0.decimal_4);
+                    int_69 = (int)(num / class773.gclass129_0.Size);
                 }
             }
             else
             {
                 Decimal num = this.method_46();
                 // ISSUE: reference to a compiler-generated field
-                if (class773.gclass129_0.decimal_4 * int_69 > num)
+                if (class773.gclass129_0.Size * int_69 > num)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    int_69 = (int)(num / class773.gclass129_0.decimal_4);
+                    int_69 = (int)(num / class773.gclass129_0.Size);
                 }
             }
 
             if (int_69 <= 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass130> list = this.list_0.Where<GClass130>(class773.method_0).ToList<GClass130>();
+            List<PopOrdnanceStock> list = this.list_0.Where<PopOrdnanceStock>(class773.method_0).ToList<PopOrdnanceStock>();
             if (list.Count == 1)
             {
-                list[0].int_0 += int_69;
+                list[0].Amount += int_69;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_0.Add(new GClass130()
+                this.list_0.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = class773.gclass129_0,
-                    int_0 = int_69
+                    RaceMissile = class773.gclass129_0,
+                    Amount = int_69
                 });
             }
         }
@@ -1857,7 +1857,7 @@ public partial class ShipClass
         }
     }
 
-    public void method_55(GClass130 gclass130_0, int int_69)
+    public void method_55(PopOrdnanceStock gclass130_0, int int_69)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1869,12 +1869,12 @@ public partial class ShipClass
             if (int_69 == 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass130> list = this.list_0.Where<GClass130>(class774.method_0).ToList<GClass130>();
+            List<PopOrdnanceStock> list = this.list_0.Where<PopOrdnanceStock>(class774.method_0).ToList<PopOrdnanceStock>();
             if (list.Count != 1)
                 return;
-            if (list[0].int_0 > int_69)
+            if (list[0].Amount > int_69)
             {
-                list[0].int_0 -= int_69;
+                list[0].Amount -= int_69;
             }
             else
             {
@@ -2088,12 +2088,12 @@ public partial class ShipClass
         try
         {
             Decimal decimal_73 = this.MagazineCapacity + this.DecoyCapacity;
-            List<GClass130> list = this.list_0.OrderBy<GClass130, string>(gclass130_0 => gclass130_0.gclass129_0.Name)
-                .ToList<GClass130>();
-            foreach (GClass130 gclass130 in list)
+            List<PopOrdnanceStock> list = this.list_0.OrderBy<PopOrdnanceStock, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
+                .ToList<PopOrdnanceStock>();
+            foreach (PopOrdnanceStock gclass130 in list)
             {
-                gclass130.Combined = $"{gclass130.int_0.ToString()}x {gclass130.gclass129_0.Name}";
-                decimal_73 -= gclass130.int_0 * gclass130.gclass129_0.decimal_4;
+                gclass130.Combined = $"{gclass130.Amount.ToString()}x {gclass130.RaceMissile.Name}";
+                decimal_73 -= gclass130.Amount * gclass130.RaceMissile.Size;
             }
 
             listBox_0.DataSource = list;
@@ -2114,10 +2114,10 @@ public partial class ShipClass
             listView_0.Items.Clear();
             this.gclass0_0.method_601(listView_0, "Class Template Loadout", "Num", null);
             this.gclass0_0.method_594(listView_0, "");
-            List<GClass130> list = this.list_0.OrderBy<GClass130, string>(gclass130_0 => gclass130_0.gclass129_0.Name)
-                .ToList<GClass130>();
-            foreach (GClass130 object_1 in list)
-                this.gclass0_0.method_598(listView_0, object_1.gclass129_0.Name, AuroraUtils.smethod_37(object_1.int_0),
+            List<PopOrdnanceStock> list = this.list_0.OrderBy<PopOrdnanceStock, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
+                .ToList<PopOrdnanceStock>();
+            foreach (PopOrdnanceStock object_1 in list)
+                this.gclass0_0.method_598(listView_0, object_1.RaceMissile.Name, AuroraUtils.smethod_37(object_1.Amount),
                     object_1);
             Decimal decimal_73_1 = this.method_45();
             Decimal decimal_73_2 = this.method_46();
@@ -2350,14 +2350,14 @@ public partial class ShipClass
             Decimal int63 = this.FuelCapacity;
             Decimal decimal_73_1 = 0M;
             string string_14 = "-";
-            foreach (GClass130 object_1 in this.list_0)
+            foreach (PopOrdnanceStock object_1 in this.list_0)
             {
-                decimal_73_1 += object_1.gclass129_0.decimal_3 * object_1.int_0;
-                this.gclass0_0.method_604(listView_0, object_1.gclass129_0.Name, AuroraUtils.smethod_37(object_1.int_0),
-                    AuroraUtils.smethod_38(object_1.gclass129_0.decimal_4 * object_1.int_0),
-                    AuroraUtils.smethod_38(object_1.gclass129_0.decimal_3 * object_1.int_0), object_1);
-                gclass123_0_3.method_11(object_1.gclass129_0.gclass123_0, object_1.int_0);
-                int63 += object_1.gclass129_0.int_4 * object_1.int_0;
+                decimal_73_1 += object_1.RaceMissile.Cost * object_1.Amount;
+                this.gclass0_0.method_604(listView_0, object_1.RaceMissile.Name, AuroraUtils.smethod_37(object_1.Amount),
+                    AuroraUtils.smethod_38(object_1.RaceMissile.Size * object_1.Amount),
+                    AuroraUtils.smethod_38(object_1.RaceMissile.Cost * object_1.Amount), object_1);
+                gclass123_0_3.method_11(object_1.RaceMissile.ProductionMineralCost, object_1.Amount);
+                int63 += object_1.RaceMissile.FuelRequired * object_1.Amount;
             }
 
             if (this.list_0.Count > 0)
@@ -3592,11 +3592,11 @@ public partial class ShipClass
             }
 
             Decimal num9 = 0M;
-            foreach (GClass130 gclass130 in this.list_0)
+            foreach (PopOrdnanceStock gclass130 in this.list_0)
             {
                 str14 += gclass130.method_1();
-                if (gclass130.gclass129_0.int_14 == 0)
-                    num9 += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+                if (gclass130.RaceMissile.ShipDecoy == 0)
+                    num9 += gclass130.RaceMissile.Size * gclass130.Amount;
             }
 
             if (num9 > this.MagazineCapacity)

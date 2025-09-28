@@ -359,7 +359,7 @@ public class Events : Form
                 else
                 {
                     EventColourSetting gclass90 = tag.gclass21_0.EventColourSettings[tag.gclass88_0.EventTypeId];
-                    foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values)
+                    foreach (GameRace gclass21 in this.gclass0_0.GameRaces.Values)
                     {
                         if (gclass21 != tag.gclass21_0)
                         {

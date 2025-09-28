@@ -21,5 +21,5 @@ public class GClass116
     public bool bool_1;
     public bool bool_2;
     public bool bool_3;
-    public List<GClass132> list_1 = new List<GClass132>();
+    public List<MissileSalvo> list_1 = new List<MissileSalvo>();
 }

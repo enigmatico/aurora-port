@@ -13,10 +13,10 @@ public class GClass131
     public List<GClass34> list_1 = new List<GClass34>();
     public List<GClass33> list_2 = new List<GClass33>();
     private GClass0 gclass0_0;
-    public GClass132 gclass132_0;
+    public MissileSalvo gclass132_0;
     public int int_0;
 
-    public GClass131(GClass0 gclass0_1, GClass132 gclass132_1, int int_1)
+    public GClass131(GClass0 gclass0_1, MissileSalvo gclass132_1, int int_1)
     {
         this.gclass0_0 = gclass0_1;
         this.int_0 = int_1;

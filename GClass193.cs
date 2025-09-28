@@ -19,53 +19,53 @@ public class GClass193
         public GClass193 gclass193_0;
         public bool bool_1;
 
-        internal bool method_0(GClass22 gclass22_0)
+        internal bool method_0(ShipClass gclass22_0)
         {
-            if (gclass22_0.gclass187_0 != null || gclass22_0.int_38 != 0 && !this.bool_0 ||
-                !(gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M) || !gclass22_0.bool_2 ||
-                gclass22_0.gclass21_0 != this.gclass193_0.gclass21_0)
+            if (gclass22_0.gclass187_0 != null || gclass22_0.Obsolete != 0 && !this.bool_0 ||
+                !(gclass22_0.Size <= this.gclass193_0.decimal_0 / 50M) || !gclass22_0.Commercial ||
+                gclass22_0.Race != this.gclass193_0.gclass21_0)
                 return false;
             if (!this.bool_1)
                 return true;
-            return gclass22_0.decimal_14 >= this.gclass193_0.gclass22_0.decimal_14 * 0.8M &&
-                   gclass22_0.decimal_14 <= this.gclass193_0.gclass22_0.decimal_14 * 1.2M;
+            return gclass22_0.Size >= this.gclass193_0.gclass22_0.Size * 0.8M &&
+                   gclass22_0.Size <= this.gclass193_0.gclass22_0.Size * 1.2M;
         }
 
-        internal bool method_1(GClass22 gclass22_0)
+        internal bool method_1(ShipClass gclass22_0)
         {
-            if (gclass22_0.gclass187_0 != null || gclass22_0.int_38 != 0 && !this.bool_0 ||
-                !(gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M) ||
-                gclass22_0.gclass21_0 != this.gclass193_0.gclass21_0)
+            if (gclass22_0.gclass187_0 != null || gclass22_0.Obsolete != 0 && !this.bool_0 ||
+                !(gclass22_0.Size <= this.gclass193_0.decimal_0 / 50M) ||
+                gclass22_0.Race != this.gclass193_0.gclass21_0)
                 return false;
             if (!this.bool_1)
                 return true;
-            return gclass22_0.decimal_14 >= this.gclass193_0.gclass22_0.decimal_14 * 0.8M &&
-                   gclass22_0.decimal_14 <= this.gclass193_0.gclass22_0.decimal_14 * 1.2M;
+            return gclass22_0.Size >= this.gclass193_0.gclass22_0.Size * 0.8M &&
+                   gclass22_0.Size <= this.gclass193_0.gclass22_0.Size * 1.2M;
         }
 
-        internal bool method_2(FCTShipData40 gclass40_0)
+        internal bool method_2(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.gclass193_0.gclass21_0;
         }
 
-        internal bool method_3(GClass22 gclass22_0)
+        internal bool method_3(ShipClass gclass22_0)
         {
-            return gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M && gclass22_0.bool_2 &&
-                   gclass22_0.gclass21_0 == this.gclass193_0.gclass21_0 && gclass22_0.gclass187_0 == null;
+            return gclass22_0.Size <= this.gclass193_0.decimal_0 / 50M && gclass22_0.Commercial &&
+                   gclass22_0.Race == this.gclass193_0.gclass21_0 && gclass22_0.gclass187_0 == null;
         }
 
-        internal bool method_4(GClass22 gclass22_0)
+        internal bool method_4(ShipClass gclass22_0)
         {
-            return gclass22_0.decimal_14 <= this.gclass193_0.decimal_0 / 50M &&
-                   gclass22_0.gclass21_0 == this.gclass193_0.gclass21_0 && gclass22_0.gclass187_0 == null;
+            return gclass22_0.Size <= this.gclass193_0.decimal_0 / 50M &&
+                   gclass22_0.Race == this.gclass193_0.gclass21_0 && gclass22_0.gclass187_0 == null;
         }
 
-        internal bool method_5(FCTShipData40 gclass40_0)
+        internal bool method_5(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.gclass193_0.gclass21_0;
         }
 
-        internal bool method_6(FCTShipData40 gclass40_0)
+        internal bool method_6(ShipData gclass40_0)
         {
             return this.gclass193_0.gclass0_0.method_520(gclass40_0.gclass85_0.XCoord,
                 this.gclass193_0.gclass146_0.method_87(), gclass40_0.gclass85_0.YCoord,
@@ -76,10 +76,10 @@ public class GClass193
     public GClass0 gclass0_0;
     public GameRace gclass21_0;
     public PopulationData gclass146_0;
-    public FCTShipData40 gclass40_0;
-    public FCTShipData40 gclass40_1;
-    public GClass22 gclass22_0;
-    public GClass22 gclass22_1;
+    public ShipData gclass40_0;
+    public ShipData gclass40_1;
+    public ShipClass gclass22_0;
+    public ShipClass gclass22_1;
     public FleetData gclass85_0;
     public NavalAdminCommand gclass83_0;
     public AuroraShipyardType auroraShipyardType_0;
@@ -97,11 +97,11 @@ public class GClass193
     public string string_0;
     public Decimal decimal_3;
     public Decimal decimal_4;
-    public GClass22 gclass22_2;
-    public GClass22 gclass22_3;
+    public ShipClass gclass22_2;
+    public ShipClass gclass22_3;
     public FleetData gclass85_1;
     public NavalAdminCommand gclass83_1;
-    public FCTShipData40 gclass40_2;
+    public ShipData gclass40_2;
     public AllMineralsValue gclass123_0;
     public AuroraSYTaskType auroraSYTaskType_0;
     public Decimal decimal_5;
@@ -150,11 +150,11 @@ public class GClass193
             gclass192.gclass22_0 = this.gclass22_0;
             gclass192.gclass22_1 = null;
             gclass192.gclass85_0 = null;
-            gclass192.gclass123_0 = this.gclass22_0.gclass123_0.method_25();
+            gclass192.gclass123_0 = this.gclass22_0.ClassMaterials.method_25();
             gclass192.auroraSYTaskType_0 = AuroraSYTaskType.Construction;
-            gclass192.decimal_0 = this.gclass22_0.decimal_4;
+            gclass192.decimal_0 = this.gclass22_0.Cost;
             gclass192.decimal_1 = 0M;
-            gclass192.bool_0 = this.gclass22_0.bool_2;
+            gclass192.bool_0 = this.gclass22_0.Commercial;
             gclass192.string_0 = "";
             gclass192.bool_2 = false;
             gclass192.bool_1 = this.gclass21_0.NPR;
@@ -168,9 +168,9 @@ public class GClass193
 
     public void method_3(
         AuroraSYTaskType auroraSYTaskType_1,
-        FCTShipData40 gclass40_3,
-        GClass22 gclass22_4,
-        GClass22 gclass22_5,
+        ShipData gclass40_3,
+        ShipClass gclass22_4,
+        ShipClass gclass22_5,
         FleetData gclass85_2,
         AllMineralsValue gclass123_1,
         Decimal decimal_6,
@@ -191,7 +191,7 @@ public class GClass193
             gclass192.auroraSYTaskType_0 = auroraSYTaskType_1;
             gclass192.decimal_0 = decimal_6;
             gclass192.decimal_1 = 0M;
-            gclass192.bool_0 = gclass22_4.bool_2;
+            gclass192.bool_0 = gclass22_4.Commercial;
             gclass192.string_0 = string_2;
             gclass192.bool_2 = false;
             gclass192.bool_1 = this.gclass21_0.NPR;
@@ -248,7 +248,7 @@ public class GClass193
                     return false;
                 }
 
-                FCTShipData40 gclass40 = this.gclass0_0.FCTShipDataDictionary.Values.FirstOrDefault<FCTShipData40>(
+                ShipData gclass40 = this.gclass0_0.Ships.Values.FirstOrDefault<ShipData>(
                     gclass40_3 => gclass40_3.gclass21_0 == this.gclass21_0 && gclass40_3.ShipName == this.string_1);
                 if (gclass40 != null)
                 {
@@ -257,7 +257,7 @@ public class GClass193
                     return false;
                 }
 
-                this.gclass22_2.bool_3 = true;
+                this.gclass22_2.Locked = true;
             }
             else if (this.auroraSYTaskType_0 != AuroraSYTaskType.Refit &&
                      this.auroraSYTaskType_0 != AuroraSYTaskType.AutoRefit)
@@ -305,7 +305,7 @@ public class GClass193
                     return false;
                 }
 
-                this.gclass22_2.bool_3 = true;
+                this.gclass22_2.Locked = true;
             }
 
             GClass192 gclass192_0 = new GClass192();
@@ -332,7 +332,7 @@ public class GClass193
             gclass192_0.string_0 = this.string_1;
             gclass192_0.bool_2 = false;
             gclass192_0.bool_1 = this.gclass21_0.NPR;
-            gclass192_0.bool_0 = this.gclass22_2.bool_2;
+            gclass192_0.bool_0 = this.gclass22_2.Commercial;
             if (gclass192_0.auroraSYTaskType_0 != AuroraSYTaskType.Construction && gclass192_0.gclass40_0 != null)
                 gclass192_0.gclass85_0 = gclass192_0.gclass40_0.gclass85_0;
             if (this.auroraSYTaskType_0 != AuroraSYTaskType.Refit &&
@@ -350,7 +350,7 @@ public class GClass193
             if (this.auroraSYTaskType_0 == AuroraSYTaskType.Construction)
             {
                 this.gclass146_0.method_33(gclass192_0, checkState_0);
-                gclass192_0.gclass22_0.bool_3 = true;
+                gclass192_0.gclass22_0.Locked = true;
                 gclass192_0.bool_3 = true;
             }
 
@@ -368,14 +368,14 @@ public class GClass193
                 this.auroraSYTaskType_0 != AuroraSYTaskType.AutoRefit)
             {
                 if (this.auroraSYTaskType_0 == AuroraSYTaskType.Scrap)
-                    gclass192_0.gclass146_0.method_129((GClass22)comboBox_1.SelectedItem, comboBox_2, false, false,
+                    gclass192_0.gclass146_0.method_129((ShipClass)comboBox_1.SelectedItem, comboBox_2, false, false,
                         true);
                 else if (this.auroraSYTaskType_0 == AuroraSYTaskType.Repair)
-                    gclass192_0.gclass146_0.method_129((GClass22)comboBox_1.SelectedItem, comboBox_2, false, true,
+                    gclass192_0.gclass146_0.method_129((ShipClass)comboBox_1.SelectedItem, comboBox_2, false, true,
                         true);
             }
             else
-                gclass192_0.gclass146_0.method_129((GClass22)comboBox_0.SelectedItem, comboBox_2, true, false, true);
+                gclass192_0.gclass146_0.method_129((ShipClass)comboBox_0.SelectedItem, comboBox_2, true, false, true);
 
             return true;
         }
@@ -405,9 +405,9 @@ public class GClass193
             label_0.Text = "N/A";
             label_1.Text = "N/A";
             listView_0.Items.Clear();
-            this.gclass22_2 = (GClass22)comboBox_1.SelectedItem;
-            this.gclass22_3 = (GClass22)comboBox_2.SelectedItem;
-            this.gclass40_2 = (FCTShipData40)comboBox_3.SelectedItem;
+            this.gclass22_2 = (ShipClass)comboBox_1.SelectedItem;
+            this.gclass22_3 = (ShipClass)comboBox_2.SelectedItem;
+            this.gclass40_2 = (ShipData)comboBox_3.SelectedItem;
             this.gclass85_1 = (FleetData)comboBox_4.SelectedItem;
             this.gclass83_1 = null;
             this.gclass123_0 = null;
@@ -422,9 +422,9 @@ public class GClass193
                 case "Construction":
                     this.string_1 = this.gclass22_2.method_39();
                     textBox_0.Text = this.string_1;
-                    this.decimal_5 = this.gclass22_2.decimal_4;
-                    this.gclass22_2.gclass123_0.method_31(listView_0, this.gclass146_0.CurrentMinerals);
-                    this.gclass123_0 = this.gclass22_2.gclass123_0.method_25();
+                    this.decimal_5 = this.gclass22_2.Cost;
+                    this.gclass22_2.ClassMaterials.method_31(listView_0, this.gclass146_0.CurrentMinerals);
+                    this.gclass123_0 = this.gclass22_2.ClassMaterials.method_25();
                     this.auroraSYTaskType_0 = AuroraSYTaskType.Construction;
                     this.gclass83_1 = (NavalAdminCommand)comboBox_5.SelectedItem;
                     break;
@@ -439,10 +439,10 @@ public class GClass193
                 case "Scrap":
                     if (this.gclass40_2 == null)
                         return;
-                    this.decimal_5 = this.gclass22_2.decimal_4 * AuroraUtils.decimal_39;
-                    this.gclass22_2.gclass123_0.method_32(listView_0, this.gclass146_0.CurrentMinerals,
+                    this.decimal_5 = this.gclass22_2.Cost * AuroraUtils.decimal_39;
+                    this.gclass22_2.ClassMaterials.method_32(listView_0, this.gclass146_0.CurrentMinerals,
                         AuroraUtils.decimal_39);
-                    this.gclass123_0 = this.gclass22_2.gclass123_0.method_26(AuroraUtils.decimal_39);
+                    this.gclass123_0 = this.gclass22_2.ClassMaterials.method_26(AuroraUtils.decimal_39);
                     this.auroraSYTaskType_0 = AuroraSYTaskType.Scrap;
                     this.string_1 = this.gclass40_2.ShipName;
                     break;
@@ -494,12 +494,12 @@ public class GClass193
         }
     }
 
-    public void method_7(GClass22 gclass22_4)
+    public void method_7(ShipClass gclass22_4)
     {
         try
         {
-            Decimal decimal14 = gclass22_4.decimal_14;
-            if (gclass22_4.bool_2)
+            Decimal decimal14 = gclass22_4.Size;
+            if (gclass22_4.Commercial)
                 decimal14 *= AuroraUtils.decimal_22;
             this.decimal_4 = (1M + (decimal14 / AuroraUtils.int_20 - 1M) / 2M) * this.gclass146_0.decimal_65;
         }
@@ -509,29 +509,29 @@ public class GClass193
         }
     }
 
-    public List<GClass22> method_8()
+    public List<ShipClass> method_8()
     {
         try
         {
-            List<GClass22> gclass22List = new List<GClass22>();
+            List<ShipClass> gclass22List = new List<ShipClass>();
             if (this.gclass22_0 == null)
                 return gclass22List;
             gclass22List.Add(this.gclass22_0);
-            foreach (GClass22 gclass22_0 in this.auroraShipyardType_0 != AuroraShipyardType.Commercial
-                         ? this.gclass0_0.dictionary_3.Values.Where<GClass22>(gclass22_4 =>
-                                 gclass22_4.gclass187_0 == null && gclass22_4.int_38 == 0 && gclass22_4.int_39 == 0 &&
-                                 gclass22_4.decimal_14 <= this.decimal_0 / 50M && gclass22_4 != this.gclass22_0 &&
-                                 gclass22_4.gclass21_0 == this.gclass21_0)
-                             .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>()
-                         : this.gclass0_0.dictionary_3.Values.Where<GClass22>(gclass22_4 =>
-                                 gclass22_4.gclass187_0 == null && gclass22_4.int_38 == 0 && gclass22_4.int_39 == 0 &&
-                                 gclass22_4.decimal_14 <= this.decimal_0 / 50M && gclass22_4 != this.gclass22_0 &&
-                                 gclass22_4.bool_2 && gclass22_4.gclass21_0 == this.gclass21_0)
-                             .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>())
+            foreach (ShipClass gclass22_0 in this.auroraShipyardType_0 != AuroraShipyardType.Commercial
+                         ? this.gclass0_0.ShipClasses.Values.Where<ShipClass>(gclass22_4 =>
+                                 gclass22_4.gclass187_0 == null && gclass22_4.Obsolete == 0 && gclass22_4.OtherRaceClassID == 0 &&
+                                 gclass22_4.Size <= this.decimal_0 / 50M && gclass22_4 != this.gclass22_0 &&
+                                 gclass22_4.Race == this.gclass21_0)
+                             .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>()
+                         : this.gclass0_0.ShipClasses.Values.Where<ShipClass>(gclass22_4 =>
+                                 gclass22_4.gclass187_0 == null && gclass22_4.Obsolete == 0 && gclass22_4.OtherRaceClassID == 0 &&
+                                 gclass22_4.Size <= this.decimal_0 / 50M && gclass22_4 != this.gclass22_0 &&
+                                 gclass22_4.Commercial && gclass22_4.Race == this.gclass21_0)
+                             .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>())
             {
-                if (!(gclass22_0.decimal_14 < this.gclass22_0.decimal_14 * 0.8M) &&
-                    !(gclass22_0.decimal_14 > this.gclass22_0.decimal_14 * 1.2M) &&
-                    this.gclass22_0.method_40(gclass22_0, null, null) <= this.gclass22_0.decimal_4 / 5M)
+                if (!(gclass22_0.Size < this.gclass22_0.Size * 0.8M) &&
+                    !(gclass22_0.Size > this.gclass22_0.Size * 1.2M) &&
+                    this.gclass22_0.method_40(gclass22_0, null, null) <= this.gclass22_0.Cost / 5M)
                     gclass22List.Add(gclass22_0);
             }
 
@@ -544,7 +544,7 @@ public class GClass193
         }
     }
 
-    public List<GClass22> method_9(bool bool_2, bool bool_3, bool bool_4)
+    public List<ShipClass> method_9(bool bool_2, bool bool_3, bool bool_4)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -559,47 +559,47 @@ public class GClass193
         {
             // ISSUE: reference to a compiler-generated field
             if (this.gclass22_0 == null && class1162.bool_1)
-                return new List<GClass22>();
-            List<GClass22> gclass22List = new List<GClass22>();
-            List<GClass22> first;
+                return new List<ShipClass>();
+            List<ShipClass> gclass22List = new List<ShipClass>();
+            List<ShipClass> first;
             // ISSUE: reference to a compiler-generated field
             if (class1162.bool_1)
             {
                 if (this.gclass22_0 == null)
-                    return new List<GClass22>();
+                    return new List<ShipClass>();
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
                 first = (this.auroraShipyardType_0 != AuroraShipyardType.Commercial
-                        ? this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1162.method_1)
-                            .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>()
-                        : (IEnumerable<GClass22>)this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1162.method_0)
-                            .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>())
-                    .Intersect<GClass22>(this.gclass0_0.FCTShipDataDictionary.Values
-                        .Where<FCTShipData40>(class1162.method_2)
-                        .Select<FCTShipData40, GClass22>(gclass40_0 => gclass40_0.gclass22_0).Distinct<GClass22>()
-                        .ToList<GClass22>()).ToList<GClass22>();
+                        ? this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1162.method_1)
+                            .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>()
+                        : (IEnumerable<ShipClass>)this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1162.method_0)
+                            .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>())
+                    .Intersect<ShipClass>(this.gclass0_0.Ships.Values
+                        .Where<ShipData>(class1162.method_2)
+                        .Select<ShipData, ShipClass>(gclass40_0 => gclass40_0.gclass22_0).Distinct<ShipClass>()
+                        .ToList<ShipClass>()).ToList<ShipClass>();
             }
             else
             {
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
                 first = this.auroraShipyardType_0 != AuroraShipyardType.Commercial
-                    ? this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1162.method_4)
-                        .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>()
-                    : this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1162.method_3)
-                        .OrderBy<GClass22, string>(gclass22_0 => gclass22_0.ClassName).ToList<GClass22>();
+                    ? this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1162.method_4)
+                        .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>()
+                    : this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1162.method_3)
+                        .OrderBy<ShipClass, string>(gclass22_0 => gclass22_0.ClassName).ToList<ShipClass>();
             }
 
             if (bool_4)
             {
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
-                List<GClass22> list = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(class1162.method_5).Where<FCTShipData40>(class1162.method_6)
-                    .Select<FCTShipData40, GClass22>(gclass40_0 => gclass40_0.gclass22_0).Distinct<GClass22>()
-                    .ToList<GClass22>();
-                first = first.Intersect<GClass22>(list).ToList<GClass22>();
+                List<ShipClass> list = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(class1162.method_5).Where<ShipData>(class1162.method_6)
+                    .Select<ShipData, ShipClass>(gclass40_0 => gclass40_0.gclass22_0).Distinct<ShipClass>()
+                    .ToList<ShipClass>();
+                first = first.Intersect<ShipClass>(list).ToList<ShipClass>();
             }
 
             return first;

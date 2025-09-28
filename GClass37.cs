@@ -10,7 +10,7 @@ using System;
 #nullable disable
 public class GClass37
 {
-    public FCTShipData40 gclass40_0;
+    public ShipData gclass40_0;
     public GameRace gclass21_0;
     public GameRace gclass21_1;
     public RaceMissile gclass129_0;

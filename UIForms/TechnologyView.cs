@@ -623,9 +623,9 @@ public class TechnologyView : Form
             this.gclass0_0.method_594(this.lstvDisplayTech, "");
             foreach (RaceMissile object_1 in this.gclass0_0.RaceMissileDictionary.Values
                          .Where<RaceMissile>(gclass129_1 =>
-                             gclass129_1.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
+                             gclass129_1.TechSystem.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                          .Where<RaceMissile>(gclass129_1 =>
-                             !gclass129_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
+                             !gclass129_1.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 ||
                              this.chkObsolete.CheckState == CheckState.Checked)
                          .OrderBy<RaceMissile, string>(gclass129_0 => gclass129_0.Name).ToList<RaceMissile>())
             {
@@ -633,63 +633,63 @@ public class TechnologyView : Form
                 string string_15 = "-";
                 string string_20 = "-";
                 if (this.chkObsolete.CheckState == CheckState.Checked &&
-                    object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                    object_1.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0)
                     string_26 = "Yes";
                 string string_27 = "";
-                if (object_1.gclass129_0 != null)
-                    string_27 = $"{object_1.int_16.ToString()}x {object_1.gclass129_0.Name}";
-                if (object_1.decimal_0 > 0M)
+                if (object_1.SecondStageMissile != null)
+                    string_27 = $"{object_1.NumSS.ToString()}x {object_1.SecondStageMissile.Name}";
+                if (object_1.WarheadStrength > 0M)
                 {
-                    if (object_1.decimal_1 > 0M)
+                    if (object_1.LaserWarhead > 0M)
                         string_15 =
-                            $"L{AuroraUtils.FormatNumberToDigits(object_1.method_2(object_1.decimal_25), 1)} {AuroraUtils.FormatNumberToDigits(object_1.decimal_25 / 1000M, 0)}k";
+                            $"L{AuroraUtils.FormatNumberToDigits(object_1.method_2(object_1.MaxDetonationRange), 1)} {AuroraUtils.FormatNumberToDigits(object_1.MaxDetonationRange / 1000M, 0)}k";
                     else
-                        string_15 = object_1.int_13 <= 1
-                            ? AuroraUtils.FormatNumberToDigits(object_1.decimal_0, 3)
-                            : $"{AuroraUtils.FormatNumberToDigits(object_1.decimal_0 / object_1.int_13, 3)}x{object_1.int_13.ToString()}";
+                        string_15 = object_1.MultipleWarheads <= 1
+                            ? AuroraUtils.FormatNumberToDigits(object_1.WarheadStrength, 3)
+                            : $"{AuroraUtils.FormatNumberToDigits(object_1.WarheadStrength / object_1.MultipleWarheads, 3)}x{object_1.MultipleWarheads.ToString()}";
                 }
 
-                if (object_1.int_14 == 1)
+                if (object_1.ShipDecoy == 1)
                     string_20 = "SHIP";
-                else if (object_1.int_7 > 0)
-                    string_20 = $"{AuroraUtils.smethod_37(object_1.int_7).ToString()}-{object_1.int_12.ToString()}";
+                else if (object_1.NumDecoys > 0)
+                    string_20 = $"{AuroraUtils.smethod_37(object_1.NumDecoys).ToString()}-{object_1.MissileECM.ToString()}";
                 string string_12 = "-";
-                if (object_1.decimal_5 > 0M)
-                    string_12 = AuroraUtils.smethod_38(object_1.decimal_5);
+                if (object_1.Speed > 0M)
+                    string_12 = AuroraUtils.smethod_38(object_1.Speed);
                 string string_24 = "-";
-                if (object_1.decimal_2 > 0M)
-                    string_24 = AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 3);
+                if (object_1.RadDamage > 0M)
+                    string_24 = AuroraUtils.FormatNumberToDigits(object_1.RadDamage, 3);
                 string string_13 = "-";
-                if (object_1.double_4 > 0.0)
-                    string_13 = AuroraUtils.smethod_50(object_1.double_4 / 1000000.0);
+                if (object_1.CombinatedMaxRange > 0.0)
+                    string_13 = AuroraUtils.smethod_50(object_1.CombinatedMaxRange / 1000000.0);
                 string string_14 = "-";
-                if (object_1.double_4 > object_1.double_5)
-                    string_14 = AuroraUtils.smethod_50(object_1.double_5 / 1000000.0);
+                if (object_1.CombinatedMaxRange > object_1.MaxRange)
+                    string_14 = AuroraUtils.smethod_50(object_1.MaxRange / 1000000.0);
                 string string_16 = "-";
-                if (object_1.double_0 > 0.0)
-                    string_16 = AuroraUtils.smethod_44(object_1.double_0, 3);
+                if (object_1.SensorStrength > 0.0)
+                    string_16 = AuroraUtils.FormatDoubleToPrecision(object_1.SensorStrength, 3);
                 string string_17 = "-";
-                if (object_1.double_1 > 0.0)
-                    string_17 = AuroraUtils.smethod_44(object_1.double_1, 3);
+                if (object_1.ThermalStrength > 0.0)
+                    string_17 = AuroraUtils.FormatDoubleToPrecision(object_1.ThermalStrength, 3);
                 string string_18 = "-";
-                if (object_1.double_2 > 0.0)
-                    string_18 = AuroraUtils.smethod_44(object_1.double_2, 3);
+                if (object_1.EMStrength > 0.0)
+                    string_18 = AuroraUtils.FormatDoubleToPrecision(object_1.EMStrength, 3);
                 string string_19 = "-";
-                if (object_1.decimal_16 > 0M)
-                    string_19 = AuroraUtils.FormatNumberToDigits(object_1.decimal_16, 3);
+                if (object_1.GeoStrength > 0M)
+                    string_19 = AuroraUtils.FormatNumberToDigits(object_1.GeoStrength, 3);
                 string string_22 = "-";
-                if (object_1.decimal_26 > 1M)
-                    string_22 = AuroraUtils.FormatNumberToDigits((object_1.decimal_26 - 1M) * 100M, 3) + "%";
+                if (object_1.ATG > 1M)
+                    string_22 = AuroraUtils.FormatNumberToDigits((object_1.ATG - 1M) * 100M, 3) + "%";
                 string string_23 = "-";
-                if (object_1.int_10 == 1)
+                if (object_1.Retargeting == 1)
                     string_23 = "Yes";
                 string string_21 = "-";
-                if (object_1.int_8 > 0)
-                    string_21 = AuroraUtils.FormatNumberToDigits(object_1.int_8, 3);
+                if (object_1.ECCM > 0)
+                    string_21 = AuroraUtils.FormatNumberToDigits(object_1.ECCM, 3);
                 this.gclass0_0.method_629(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.FormatNumberToDigits(object_1.decimal_4 * decimal_0, 4), string_12, string_13, string_14,
+                    AuroraUtils.FormatNumberToDigits(object_1.Size * decimal_0, 4), string_12, string_13, string_14,
                     string_15, string_16, string_17, string_18, string_19, string_20, string_21, string_22, string_23,
-                    string_24, AuroraUtils.FormatNumberToDigits(object_1.decimal_3, 2), string_26, string_27, object_1);
+                    string_24, AuroraUtils.FormatNumberToDigits(object_1.Cost, 2), string_26, string_27, object_1);
             }
         }
         catch (Exception ex)
@@ -733,7 +733,7 @@ public class TechnologyView : Form
                     object_1.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
                     string_18 = "Yes";
                 this.gclass0_0.method_615(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.smethod_44(object_1.double_0 / 1000000.0, 1),
+                    AuroraUtils.FormatDoubleToPrecision(object_1.double_0 / 1000000.0, 1),
                     AuroraUtils.smethod_39(object_1.decimal_6), AuroraUtils.smethod_39(object_1.decimal_3),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
@@ -829,8 +829,8 @@ public class TechnologyView : Form
                 double num2 = Math.Sqrt((double)object_1.decimal_3 * 1000.0) * AuroraUtils.double_18;
                 double num3 = Math.Sqrt((double)object_1.decimal_3 * 10000.0) * AuroraUtils.double_18;
                 this.gclass0_0.method_617(this.lstvDisplayTech, object_1.Name,
-                    AuroraUtils.smethod_39(object_1.decimal_3), AuroraUtils.smethod_44(num1 / 1000000.0, 1),
-                    AuroraUtils.smethod_44(num2 / 1000000.0, 1), AuroraUtils.smethod_44(num3 / 1000000.0, 1),
+                    AuroraUtils.smethod_39(object_1.decimal_3), AuroraUtils.FormatDoubleToPrecision(num1 / 1000000.0, 1),
+                    AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1), AuroraUtils.FormatDoubleToPrecision(num3 / 1000000.0, 1),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_1 * int_0, 2),
                     AuroraUtils.FormatNumberToDigits(object_1.decimal_2, 2), AuroraUtils.smethod_37(object_1.int_1),
                     AuroraUtils.smethod_37(object_1.int_4), string_19, object_1);
@@ -1042,9 +1042,9 @@ public class TechnologyView : Form
             {
                 if (this.gclass129_0 == null)
                     return;
-                if (this.gclass129_0.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
-                    this.gclass129_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                        !this.gclass129_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                if (this.gclass129_0.TechSystem.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
+                    this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 =
+                        !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0;
             }
 
             this.method_3();

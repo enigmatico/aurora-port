@@ -11,9 +11,9 @@ public class GClass201
     public RacialSystemSurvey gclass202_0;
     public PopulationData gclass146_0;
     public FleetData gclass85_0;
-    public JumpPoint120 gclass120_0;
-    public GClass233 gclass233_0;
-    public GClass214 gclass214_0;
-    public GClass190 gclass190_0;
-    public GClass148 gclass148_0;
+    public JumpPoint gclass120_0;
+    public Wreck gclass233_0;
+    public Waypoint gclass214_0;
+    public PopTradeBalance gclass190_0;
+    public PopInstallationDemand gclass148_0;
 }

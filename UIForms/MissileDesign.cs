@@ -577,10 +577,10 @@ public class MissileDesign : Form
                 int num2 = this.gclass0_0.TechDataDictionary.Values.Max<TechSystem>(gclass164_0 => gclass164_0.TechSystemID) +
                            1;
                 this.gclass0_0.gclass164_0.TechSystemID = num2;
-                this.gclass0_0.gclass129_0.int_0 = num2;
+                this.gclass0_0.gclass129_0.MissileID = num2;
                 this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
                 this.gclass0_0.gclass129_0.Name = this.gclass0_0.gclass164_0.Name;
-                this.gclass0_0.RaceMissileDictionary.Add(this.gclass0_0.gclass129_0.int_0, this.gclass0_0.gclass129_0);
+                this.gclass0_0.RaceMissileDictionary.Add(this.gclass0_0.gclass129_0.MissileID, this.gclass0_0.gclass129_0);
                 this.gclass21_0.method_282(this.gclass0_0.gclass164_0, null, null, null, false, false);
                 int num3 = (int)MessageBox.Show("Missile has been created and automatically researched");
                 this.gclass21_0.method_218(this.cboSecond, this.cboPreviousDesigns);
@@ -599,7 +599,7 @@ public class MissileDesign : Form
         {
             if (this.gclass0_0.gclass164_0.genum119_0 != ResearchCategoryType.Missiles)
             {
-                this.gclass0_0.gclass164_0.int_4 = this.gclass0_0.method_445(this.gclass0_0.gclass129_0.decimal_3 * 5M);
+                this.gclass0_0.gclass164_0.int_4 = this.gclass0_0.method_445(this.gclass0_0.gclass129_0.Cost * 5M);
                 this.gclass0_0.gclass164_0.Name = this.gclass0_0.gclass129_0.Name;
                 this.gclass0_0.gclass164_0.genum119_0 = ResearchCategoryType.Missiles;
                 this.gclass0_0.gclass164_0.gclass163_0 = this.gclass0_0.TechTypeDataDictionary[TechType.RDMissile];
@@ -615,12 +615,12 @@ public class MissileDesign : Form
             if (num1 > this.gclass0_0.gclass164_0.TechSystemID)
             {
                 this.gclass0_0.gclass164_0.TechSystemID = num1;
-                this.gclass0_0.gclass129_0.int_0 = num1;
+                this.gclass0_0.gclass129_0.MissileID = num1;
             }
 
             this.gclass0_0.TechDataDictionary.Add(this.gclass0_0.gclass164_0.TechSystemID, this.gclass0_0.gclass164_0);
             this.gclass0_0.gclass129_0.Name = this.gclass0_0.gclass164_0.Name;
-            this.gclass0_0.RaceMissileDictionary.Add(this.gclass0_0.gclass129_0.int_0, this.gclass0_0.gclass129_0);
+            this.gclass0_0.RaceMissileDictionary.Add(this.gclass0_0.gclass129_0.MissileID, this.gclass0_0.gclass129_0);
             int num2 = (int)MessageBox.Show(
                 "Missile Design Created. Research the new missile on the Research tab of the economics window");
             this.method_7();
@@ -784,41 +784,41 @@ public class MissileDesign : Form
             if (this.gclass129_0 == null)
                 return;
             this.gclass0_0.bool_9 = true;
-            this.txtWHSize.Text = this.gclass129_0.decimal_7.ToString();
-            this.txtFCSize.Text = this.gclass129_0.decimal_9.ToString();
-            this.txtSensorSize.Text = this.gclass129_0.decimal_10.ToString();
-            this.txtThermalSize.Text = this.gclass129_0.decimal_11.ToString();
-            this.txtEMSize.Text = this.gclass129_0.decimal_12.ToString();
-            this.txtGeoSize.Text = this.gclass129_0.decimal_13.ToString();
-            this.txtResolution.Text = this.gclass129_0.int_5.ToString();
-            this.txtNumSS.Text = this.gclass129_0.int_16.ToString();
-            this.txtMultipleWarheads.Text = this.gclass129_0.int_13.ToString();
-            this.txtMinDetonationRange.Text = this.gclass129_0.decimal_24.ToString();
-            this.txtMaxDetonationRange.Text = this.gclass129_0.decimal_25.ToString();
+            this.txtWHSize.Text = this.gclass129_0.MSPWarhead.ToString();
+            this.txtFCSize.Text = this.gclass129_0.MSPFuel.ToString();
+            this.txtSensorSize.Text = this.gclass129_0.MSPActive.ToString();
+            this.txtThermalSize.Text = this.gclass129_0.MSPThermal.ToString();
+            this.txtEMSize.Text = this.gclass129_0.MSPEM.ToString();
+            this.txtGeoSize.Text = this.gclass129_0.MSPGeo.ToString();
+            this.txtResolution.Text = this.gclass129_0.SensorResolution.ToString();
+            this.txtNumSS.Text = this.gclass129_0.NumSS.ToString();
+            this.txtMultipleWarheads.Text = this.gclass129_0.MultipleWarheads.ToString();
+            this.txtMinDetonationRange.Text = this.gclass129_0.MinDetonationRange.ToString();
+            this.txtMaxDetonationRange.Text = this.gclass129_0.MaxDetonationRange.ToString();
             this.cboEngineSize.SelectedItem =
                 ((IEnumerable<GClass170>)this.cboEngineSize.DataSource).FirstOrDefault<GClass170>(gclass170_0 =>
-                    gclass170_0.decimal_0 == this.gclass129_0.decimal_8);
+                    gclass170_0.decimal_0 == this.gclass129_0.MSPEngine);
             this.cboEnginePower.SelectedItem =
                 ((IEnumerable<GClass170>)this.cboEnginePower.DataSource).FirstOrDefault<GClass170>(gclass170_0 =>
-                    gclass170_0.decimal_0 == this.gclass129_0.decimal_23);
+                    gclass170_0.decimal_0 == this.gclass129_0.PowerMod);
             this.cboSecond.SelectedItem =
                 ((IEnumerable<RaceMissile>)this.cboSecond.DataSource).FirstOrDefault<RaceMissile>(gclass129_1 =>
-                    gclass129_1 == this.gclass129_0.gclass129_0);
-            this.txtSeparationRange.Text = this.gclass129_0.int_17.ToString();
-            if (this.gclass129_0.int_7 > 0)
-                this.txtNumDecoys.Text = this.gclass129_0.int_7.ToString();
+                    gclass129_1 == this.gclass129_0.SecondStageMissile);
+            this.txtSeparationRange.Text = this.gclass129_0.SeparationRange.ToString();
+            if (this.gclass129_0.NumDecoys > 0)
+                this.txtNumDecoys.Text = this.gclass129_0.NumDecoys.ToString();
             else
                 this.txtNumDecoys.Text = "0";
-            this.chkECCM.CheckState = this.gclass129_0.int_8 <= 0 ? CheckState.Unchecked : CheckState.Checked;
-            this.chkERW.CheckState = !(this.gclass129_0.decimal_2 > this.gclass129_0.decimal_0)
+            this.chkECCM.CheckState = this.gclass129_0.ECCM <= 0 ? CheckState.Unchecked : CheckState.Checked;
+            this.chkERW.CheckState = !(this.gclass129_0.RadDamage > this.gclass129_0.WarheadStrength)
                 ? CheckState.Unchecked
                 : CheckState.Checked;
             this.chkNoEngine.CheckState =
-                this.gclass129_0.gclass230_0 != null ? CheckState.Unchecked : CheckState.Checked;
-            this.chkRetarget.CheckState = this.gclass129_0.int_10 != 1 ? CheckState.Unchecked : CheckState.Checked;
-            this.chkATG.CheckState = !(this.gclass129_0.decimal_26 > 1M) ? CheckState.Unchecked : CheckState.Checked;
+                this.gclass129_0.EngineComponent != null ? CheckState.Unchecked : CheckState.Checked;
+            this.chkRetarget.CheckState = this.gclass129_0.Retargeting != 1 ? CheckState.Unchecked : CheckState.Checked;
+            this.chkATG.CheckState = !(this.gclass129_0.ATG > 1M) ? CheckState.Unchecked : CheckState.Checked;
             this.chkLaserWarhead.CheckState =
-                !(this.gclass129_0.decimal_1 > 0M) ? CheckState.Unchecked : CheckState.Checked;
+                !(this.gclass129_0.LaserWarhead > 0M) ? CheckState.Unchecked : CheckState.Checked;
             this.gclass0_0.bool_9 = false;
             this.method_7();
             this.txtMissileName.Text = this.gclass129_0.Name;

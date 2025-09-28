@@ -262,7 +262,7 @@ public partial class GClass0
     }
 
     public double GetDistanceToNearestGClass212(
-        SystemData200 system,
+        StarSystem system,
         double posX,
         double posY,
         double otherPosX,
@@ -276,20 +276,20 @@ public partial class GClass0
         try
         {
             // ISSUE: reference to a compiler-generated method
-            var list = dictionary_14.Values.Where(scope245.method_0)
+            var list = LagrangePoints.Values.Where(scope245.method_0)
                 .OrderBy(gclass212_0 => gclass212_0.int_1).ToList();
-            var gclass212List = new List<GClass212>(list);
+            var gclass212List = new List<LagrangePoint>(list);
             var distance = GetDistanceBetween(posX, posY, otherPosX, otherPosY);
             if (list.Count < 2)
                 return distance;
             foreach (var gclass212_1 in list)
             {
-                var num2 = GetDistanceBetween(posX, posY, gclass212_1.double_0, gclass212_1.double_1);
+                var num2 = GetDistanceBetween(posX, posY, gclass212_1.XCor, gclass212_1.Ycor);
                 if (num2 < distance)
                     foreach (var gclass212_2 in gclass212List)
                         if (gclass212_2 != gclass212_1)
                         {
-                            var num3 = GetDistanceBetween(gclass212_2.double_0, gclass212_2.double_1, otherPosX,
+                            var num3 = GetDistanceBetween(gclass212_2.XCor, gclass212_2.Ycor, otherPosX,
                                 otherPosY);
                             if (num2 + num3 < distance)
                                 distance = num2 + num3;
@@ -313,7 +313,7 @@ public partial class GClass0
             var dictionary = new Dictionary<int, RacialSystemSurvey>();
             var gclass202List1 = new List<RacialSystemSurvey>();
             var gclass202List2 = new List<RacialSystemSurvey>();
-            dictionary.Add(gclass202_0_1.ActualSystemData.SystemID, gclass202_0_1);
+            dictionary.Add(gclass202_0_1.ActualSystem.SystemID, gclass202_0_1);
             gclass202List1.Add(gclass202_0_1);
             while (true)
             {
@@ -324,7 +324,7 @@ public partial class GClass0
                     foreach (var gclass202_2 in gclass202_1.method_37(true)
                                  .Where<RacialSystemSurvey>(gclass202_0_2 => gclass202_0_2.gclass3_0.genum95_0 != 0)
                                  .ToList())
-                        if (!dictionary.ContainsKey(gclass202_2.ActualSystemData.SystemID) &&
+                        if (!dictionary.ContainsKey(gclass202_2.ActualSystem.SystemID) &&
                             !gclass202List2.Contains(gclass202_2))
                             gclass202List2.Add(gclass202_2);
                 }
@@ -335,7 +335,7 @@ public partial class GClass0
                     foreach (var gclass202 in gclass202List2)
                     {
                         gclass202List1.Add(gclass202);
-                        dictionary.Add(gclass202.ActualSystemData.SystemID, gclass202);
+                        dictionary.Add(gclass202.ActualSystem.SystemID, gclass202);
                     }
 
                     gclass202List2.Clear();
@@ -392,7 +392,7 @@ public partial class GClass0
             : 95 + AuroraUtils.GetRandomInteger(4);
     }
 
-    public int method_641(SystemData200 gclass200_0, bool bool_25)
+    public int method_641(StarSystem gclass200_0, bool bool_25)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -442,7 +442,7 @@ public partial class GClass0
     {
         try
         {
-            var list = SystemDataDictionary.Values
+            var list = StarSystemDictionary.Values
                 .Select(gclass200_0 => gclass200_0.SystemNumber).ToList();
             int num;
             do
@@ -459,16 +459,16 @@ public partial class GClass0
         }
     }
 
-    public int method_35(SystemData200 gclass200_0, SystemData200 gclass200_1, GameRace gclass21_2)
+    public int method_35(StarSystem gclass200_0, StarSystem gclass200_1, GameRace gclass21_2)
     {
         try
         {
             if (gclass200_0 == gclass200_1)
                 return 0;
             var num = 0;
-            var gclass200List1 = new List<SystemData200>();
-            var gclass200List2 = new List<SystemData200>();
-            var collection = new List<SystemData200>();
+            var gclass200List1 = new List<StarSystem>();
+            var gclass200List2 = new List<StarSystem>();
+            var collection = new List<StarSystem>();
             gclass200_0.int_11 = 0;
             gclass200List1.Add(gclass200_0);
             gclass200List2.Add(gclass200_0);
@@ -491,7 +491,7 @@ public partial class GClass0
                 }
 
                 if (collection.Count != 0)
-                    gclass200List1 = new List<SystemData200>(collection);
+                    gclass200List1 = new List<StarSystem>(collection);
                 else
                     break;
             }
@@ -506,7 +506,7 @@ public partial class GClass0
     }
 
     public int method_36(
-        SystemData200 gclass200_0,
+        StarSystem gclass200_0,
         GameRace gclass21_2,
         CheckState checkState_3,
         CheckState checkState_4)
@@ -523,7 +523,7 @@ public partial class GClass0
             if (checkState_4 == CheckState.Checked)
             {
                 if (UseKnownStars == 1)
-                    foreach (var gclass200 in SystemDataDictionary.Values)
+                    foreach (var gclass200 in StarSystemDictionary.Values)
                         if (gclass200.KnownSystemData != null)
                             gclass200.double_7 = method_29(gclass200_0.KnownSystemData.X,
                                 gclass200_0.KnownSystemData.Y, gclass200_0.KnownSystemData.Z,
@@ -535,9 +535,9 @@ public partial class GClass0
             foreach (var gclass120 in JumpPointDictionary.Values)
                 gclass120.double_3 = 0.0;
             var num1 = 0;
-            var gclass200List1 = new List<SystemData200>();
-            var gclass200List2 = new List<SystemData200>();
-            var collection = new List<SystemData200>();
+            var gclass200List1 = new List<StarSystem>();
+            var gclass200List2 = new List<StarSystem>();
+            var collection = new List<StarSystem>();
             gclass200_0.double_7 = 0.0;
             gclass200_0.gclass120_0 = null;
             gclass200List1.Add(gclass200_0);
@@ -608,7 +608,7 @@ public partial class GClass0
                 }
 
                 if (collection.Count != 0)
-                    gclass200List1 = new List<SystemData200>(collection);
+                    gclass200List1 = new List<StarSystem>(collection);
                 else
                     break;
             }
@@ -623,7 +623,7 @@ public partial class GClass0
     }
 
     public int method_37(
-        SystemData200 gclass200_0,
+        StarSystem gclass200_0,
         GameRace gclass21_2,
         CheckState checkState_3,
         CheckState checkState_4)
@@ -640,7 +640,7 @@ public partial class GClass0
             if (checkState_4 == CheckState.Checked)
             {
                 if (UseKnownStars == 1)
-                    foreach (var gclass200 in SystemDataDictionary.Values)
+                    foreach (var gclass200 in StarSystemDictionary.Values)
                         if (gclass200.KnownSystemData != null)
                             gclass200.double_7 = method_29(gclass200_0.KnownSystemData.X,
                                 gclass200_0.KnownSystemData.Y, gclass200_0.KnownSystemData.Z,
@@ -652,9 +652,9 @@ public partial class GClass0
             foreach (var gclass120 in JumpPointDictionary.Values)
                 gclass120.double_3 = 0.0;
             var num1 = 0;
-            var gclass200List1 = new List<SystemData200>();
-            var gclass200List2 = new List<SystemData200>();
-            var collection = new List<SystemData200>();
+            var gclass200List1 = new List<StarSystem>();
+            var gclass200List2 = new List<StarSystem>();
+            var collection = new List<StarSystem>();
             gclass200_0.double_7 = 0.0;
             gclass200_0.gclass120_0 = null;
             gclass200List1.Add(gclass200_0);
@@ -737,7 +737,7 @@ public partial class GClass0
                 }
 
                 if (collection.Count != 0)
-                    gclass200List1 = new List<SystemData200>(collection);
+                    gclass200List1 = new List<StarSystem>(collection);
                 else
                     break;
             }
@@ -760,20 +760,20 @@ public partial class GClass0
         class303.decimal_0 = decimal_13;
         try
         {
-            var gclass132List = new List<GClass132>();
+            var gclass132List = new List<MissileSalvo>();
             double num1 = int_136;
-            foreach (var gclass132 in dictionary_6.Values)
-                gclass132.genum40_0 = gclass132.gclass129_0.int_14 != 1
+            foreach (var gclass132 in MissileSalvoes.Values)
+                gclass132.genum40_0 = gclass132.RaceMissile.ShipDecoy != 1
                     ? gclass132.gclass132_0 == null ? GEnum40.const_0 : GEnum40.const_1
                     : GEnum40.const_2;
-            var list1 = dictionary_6.Values
+            var list1 = MissileSalvoes.Values
                 .OrderByDescending(gclass132_0 => gclass132_0.genum40_0)
-                .ThenByDescending(gclass132_0 => gclass132_0.gclass129_0.decimal_4)
-                .ThenByDescending(gclass132_0 => gclass132_0.dictionary_2.Count).ToList();
+                .ThenByDescending(gclass132_0 => gclass132_0.RaceMissile.Size)
+                .ThenByDescending(gclass132_0 => gclass132_0.RemainingDecoys.Count).ToList();
             if (list1.Count == 0)
                 return 0;
-            method_171(dictionary_6.Values
-                .Select<GClass132, SystemData200>(gclass132_0 => gclass132_0.gclass200_0).Distinct()
+            method_171(MissileSalvoes.Values
+                .Select<MissileSalvo, StarSystem>(gclass132_0 => gclass132_0.System).Distinct()
                 .ToList());
             foreach (var gclass132 in list1)
             {
@@ -787,16 +787,16 @@ public partial class GClass0
                 // ISSUE: reference to a compiler-generated field
                 var gclass1320 = class304.gclass132_0;
                 // ISSUE: reference to a compiler-generated field
-                var count = class304.gclass132_0.dictionary_2.Count;
+                var count = class304.gclass132_0.RemainingDecoys.Count;
                 // ISSUE: reference to a compiler-generated field
-                var str = $"{count.ToString()}x {class304.gclass132_0.gclass129_0.Name}";
+                var str = $"{count.ToString()}x {class304.gclass132_0.RaceMissile.Name}";
                 gclass1320.string_0 = str;
                 // ISSUE: reference to a compiler-generated field
-                if (class304.gclass132_0.dictionary_2.Count != 0)
+                if (class304.gclass132_0.RemainingDecoys.Count != 0)
                 {
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    if (class304.gclass132_0.double_9 == 0.0 && class304.gclass132_0.gclass129_0.gclass129_0 == null)
+                    if (class304.gclass132_0.double_9 == 0.0 && class304.gclass132_0.RaceMissile.SecondStageMissile == null)
                     {
                         // ISSUE: reference to a compiler-generated field
                         if (bool_25 && !class304.gclass132_0.method_13(true))
@@ -811,18 +811,18 @@ public partial class GClass0
                                 null
                             };
                             // ISSUE: reference to a compiler-generated field
-                            count = class304.gclass132_0.dictionary_2.Count;
+                            count = class304.gclass132_0.RemainingDecoys.Count;
                             strArray[1] = count.ToString();
                             strArray[2] = "x ";
                             // ISSUE: reference to a compiler-generated field
-                            strArray[3] = class304.gclass132_0.gclass129_0.Name;
+                            strArray[3] = class304.gclass132_0.RaceMissile.Name;
                             strArray[4] =
                                 " has no sensors, no second stage and no method of movement. Therefore it has self-destructed";
                             var string_0 = string.Concat(strArray);
                             // ISSUE: reference to a compiler-generated field
-                            var gclass210 = class304.gclass132_0.gclass21_0;
+                            var gclass210 = class304.gclass132_0.Race;
                             // ISSUE: reference to a compiler-generated field
-                            var gclass2000 = class304.gclass132_0.gclass200_0;
+                            var gclass2000 = class304.gclass132_0.System;
                             // ISSUE: reference to a compiler-generated field
                             var double0 = class304.gclass132_0.double_0;
                             // ISSUE: reference to a compiler-generated field
@@ -871,7 +871,7 @@ public partial class GClass0
                             if (class304.gclass132_0.gclass40_1 != null)
                             {
                                 // ISSUE: reference to a compiler-generated method
-                                var list2 = dictionary_28.Values.Where(class304.method_0)
+                                var list2 = Contacts.Values.Where(class304.method_0)
                                     .ToList();
                                 if (list2.Count > 0)
                                 {
@@ -881,7 +881,7 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         if (!class304.gclass132_0.gclass40_1.gclass85_0.method_253() &&
-                                            class304.gclass132_0.gclass129_0.decimal_25 == 0M)
+                                            class304.gclass132_0.RaceMissile.MaxDetonationRange == 0M)
                                         {
                                             // ISSUE: reference to a compiler-generated field
                                             gclass221_2.double_0 = class304.gclass132_0.gclass40_1.gclass85_0.XCoord;
@@ -918,7 +918,7 @@ public partial class GClass0
                                 else
                                 {
                                     // ISSUE: reference to a compiler-generated method
-                                    dictionary_28.Values.Where(class304.method_1).ToList();
+                                    Contacts.Values.Where(class304.method_1).ToList();
                                 }
                             }
                         }
@@ -929,7 +929,7 @@ public partial class GClass0
                             {
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated method
-                                if (class304.gclass132_0.gclass132_0 != null && dictionary_28.Values
+                                if (class304.gclass132_0.gclass132_0 != null && Contacts.Values
                                         .Where(class304.method_2).ToList().Count > 0)
                                 {
                                     // ISSUE: reference to a compiler-generated field
@@ -966,9 +966,9 @@ public partial class GClass0
                                         class304.gclass132_0.gclass214_0 != null)
                                     {
                                         // ISSUE: reference to a compiler-generated field
-                                        gclass221_2.double_0 = class304.gclass132_0.gclass214_0.double_0;
+                                        gclass221_2.double_0 = class304.gclass132_0.gclass214_0.Xcor;
                                         // ISSUE: reference to a compiler-generated field
-                                        gclass221_2.double_1 = class304.gclass132_0.gclass214_0.double_1;
+                                        gclass221_2.double_1 = class304.gclass132_0.gclass214_0.Ycor;
                                     }
                                 }
                                 else
@@ -976,12 +976,12 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     if (class304.gclass132_0.gclass146_0 != null)
                                     {
-                                        var gclass65List = new List<GClass65>();
+                                        var gclass65List = new List<Contact>();
                                         // ISSUE: reference to a compiler-generated field
                                         if (class304.gclass132_0.auroraContactType_0 == AuroraContactType.Population)
                                         {
                                             // ISSUE: reference to a compiler-generated method
-                                            gclass65List = dictionary_28.Values.Where(class304.method_3)
+                                            gclass65List = Contacts.Values.Where(class304.method_3)
                                                 .ToList();
                                         }
                                         else
@@ -995,7 +995,7 @@ public partial class GClass0
                                                 AuroraContactType.GroundUnit ||
                                                 class304.gclass132_0.auroraContactType_0 == AuroraContactType.Shipyard)
                                                 // ISSUE: reference to a compiler-generated method
-                                                gclass65List = dictionary_28.Values
+                                                gclass65List = Contacts.Values
                                                     .Where(class304.method_4).ToList();
                                         }
 
@@ -1047,7 +1047,7 @@ public partial class GClass0
                                     gclass92_0.method_2(EventType.const_30,
                                         class304.gclass132_0.string_0 +
                                         " has no target and no onboard sensors and will therefore self-destruct",
-                                        class304.gclass132_0.gclass21_0, class304.gclass132_0.gclass200_0,
+                                        class304.gclass132_0.Race, class304.gclass132_0.System,
                                         class304.gclass132_0.double_0, class304.gclass132_0.double_1,
                                         AuroraEventCategory.MissileSalvo);
                                     // ISSUE: reference to a compiler-generated field
@@ -1069,7 +1069,7 @@ public partial class GClass0
                                         gclass92_0.method_2(EventType.const_30,
                                             class304.gclass132_0.string_0 +
                                             " cannot locate its target. it will continue to the last known target location and use onboard sensors to search for a new target",
-                                            class304.gclass132_0.gclass21_0, class304.gclass132_0.gclass200_0,
+                                            class304.gclass132_0.Race, class304.gclass132_0.System,
                                             class304.gclass132_0.double_0, class304.gclass132_0.double_1,
                                             AuroraEventCategory.MissileSalvo);
                                         // ISSUE: reference to a compiler-generated field
@@ -1177,8 +1177,8 @@ public partial class GClass0
 
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
-                                if (class304.gclass132_0.gclass129_0.gclass129_0 != null &&
-                                    num6 <= class304.gclass132_0.gclass129_0.int_17)
+                                if (class304.gclass132_0.RaceMissile.SecondStageMissile != null &&
+                                    num6 <= class304.gclass132_0.RaceMissile.SeparationRange)
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     class304.gclass132_0.method_12();
@@ -1196,7 +1196,7 @@ public partial class GClass0
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 if (class304.gclass132_0.gclass40_1 != null &&
-                                    class304.gclass132_0.gclass129_0.decimal_25 == 0M)
+                                    class304.gclass132_0.RaceMissile.MaxDetonationRange == 0M)
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
@@ -1214,9 +1214,9 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     if (class304.gclass132_0.gclass214_0 != null &&
-                                        class304.gclass132_0.gclass214_0.wayPointType_0 == WayPointType.Temporary)
+                                        class304.gclass132_0.gclass214_0.WaypointType == WayPointType.Temporary)
                                         // ISSUE: reference to a compiler-generated field
-                                        class304.gclass132_0.gclass214_0.wayPointType_0 =
+                                        class304.gclass132_0.gclass214_0.WaypointType =
                                             WayPointType.MarkedForDeletion;
                                 }
 
@@ -1233,30 +1233,30 @@ public partial class GClass0
             method_43(gclass132List, false);
             method_44(gclass132List);
             var list3 = gclass132List
-                .Where(gclass132_0 => gclass132_0.dictionary_2.Count > 0 && !gclass132_0.bool_2)
-                .OrderByDescending(gclass132_0 => gclass132_0.gclass129_0.decimal_4)
+                .Where(gclass132_0 => gclass132_0.RemainingDecoys.Count > 0 && !gclass132_0.bool_2)
+                .OrderByDescending(gclass132_0 => gclass132_0.RaceMissile.Size)
                 .ToList();
             if (list3.Count > 0)
             {
                 var list4 = list3
                     .Where(gclass132_0 =>
-                        gclass132_0.dictionary_2.Count > 0 &&
+                        gclass132_0.RemainingDecoys.Count > 0 &&
                         gclass132_0.auroraContactType_0 == AuroraContactType.Salvo)
-                    .OrderByDescending(gclass132_0 => gclass132_0.gclass129_0.decimal_4)
+                    .OrderByDescending(gclass132_0 => gclass132_0.RaceMissile.Size)
                     .ToList();
                 if (list4.Count > 0)
                     method_45(list4);
                 var list5 = list3
                     .Where(gclass132_0 =>
-                        gclass132_0.dictionary_2.Count > 0 &&
+                        gclass132_0.RemainingDecoys.Count > 0 &&
                         gclass132_0.auroraContactType_0 != AuroraContactType.Salvo)
-                    .OrderByDescending(gclass132_0 => gclass132_0.gclass129_0.decimal_4)
+                    .OrderByDescending(gclass132_0 => gclass132_0.RaceMissile.Size)
                     .ToList();
                 if (list5.Count > 0)
                 {
                     foreach (var gclass40 in list5
                                  .Where(gclass132_0 => gclass132_0.gclass40_1 != null)
-                                 .Select<GClass132, FCTShipData40>(gclass132_0 => gclass132_0.gclass40_1)
+                                 .Select<MissileSalvo, ShipData>(gclass132_0 => gclass132_0.gclass40_1)
                                  .Distinct().ToList())
                     {
                         // ISSUE: object of a compiler-generated type is created
@@ -1275,7 +1275,7 @@ public partial class GClass0
                                 num12 = 1M;
                             // ISSUE: reference to a compiler-generated method
                             var num13 = list5.Where(class305.method_0).Sum(gclass132_0 =>
-                                gclass132_0.gclass129_0.decimal_4 * gclass132_0.dictionary_2.Count);
+                                gclass132_0.RaceMissile.Size * gclass132_0.RemainingDecoys.Count);
                             if (num13 >= num12)
                             {
                                 // ISSUE: reference to a compiler-generated field
@@ -1306,9 +1306,9 @@ public partial class GClass0
                                                  .Where(gclass32_0 =>
                                                      gclass32_0.gclass30_0 != null)
                                                  .OrderByDescending(gclass32_0 =>
-                                                     gclass32_0.gclass30_0.Missile.decimal_4)
+                                                     gclass32_0.gclass30_0.Missile.Size)
                                                  .ThenByDescending(gclass32_0 =>
-                                                     gclass32_0.gclass30_0.Missile.int_12)
+                                                     gclass32_0.gclass30_0.Missile.MissileECM)
                                                  .ToList())
                                         // ISSUE: reference to a compiler-generated field
                                         if (!class305.gclass40_0.method_103(gclass32.gclass30_0.Missile))
@@ -1321,11 +1321,11 @@ public partial class GClass0
                                             gclass92_0.method_2(EventType.const_12,
                                                 $"{class305.gclass40_0.ShipName} cannot launch a {gclass32.gclass30_0.Missile.Name} as no decoys of the required type are available",
                                                 class305.gclass40_0.gclass21_0,
-                                                class305.gclass40_0.gclass85_0.System.ActualSystemData,
+                                                class305.gclass40_0.gclass85_0.System.ActualSystem,
                                                 class305.gclass40_0.gclass85_0.XCoord,
                                                 class305.gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Ship);
                                         }
-                                        else if (gclass32.gclass30_0.Missile.decimal_4 >
+                                        else if (gclass32.gclass30_0.Missile.Size >
                                                  gclass32.LauncherData.decimal_3)
                                         {
                                             // ISSUE: reference to a compiler-generated field
@@ -1336,7 +1336,7 @@ public partial class GClass0
                                             gclass92_0.method_2(EventType.const_194,
                                                 $"{class305.gclass40_0.ShipName} cannot lauch a {gclass32.gclass30_0.Missile.Name} as the ordnance is too large for the launcher.",
                                                 class305.gclass40_0.gclass21_0,
-                                                class305.gclass40_0.gclass85_0.System.ActualSystemData,
+                                                class305.gclass40_0.gclass85_0.System.ActualSystem,
                                                 class305.gclass40_0.gclass85_0.XCoord,
                                                 class305.gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Ship);
                                         }
@@ -1372,12 +1372,12 @@ public partial class GClass0
                             // ISSUE: reference to a compiler-generated field
                             method_46(class307.gclass132_0);
                             // ISSUE: reference to a compiler-generated field
-                            if (class307.gclass132_0.dictionary_2.Count == 0)
+                            if (class307.gclass132_0.RemainingDecoys.Count == 0)
                                 continue;
                         }
 
                         // ISSUE: reference to a compiler-generated field
-                        if (class307.gclass132_0.gclass129_0.gclass129_0 != null)
+                        if (class307.gclass132_0.RaceMissile.SecondStageMissile != null)
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated method
@@ -1394,23 +1394,23 @@ public partial class GClass0
                             var decimal_14 = 0M;
                             decimal decimal_13_1;
                             // ISSUE: reference to a compiler-generated field
-                            if (class307.gclass132_0.gclass129_0.decimal_1 > 0M)
+                            if (class307.gclass132_0.RaceMissile.LaserWarhead > 0M)
                             {
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 decimal_13_1 =
-                                    class307.gclass132_0.gclass129_0.method_2(class307.gclass132_0.decimal_2);
+                                    class307.gclass132_0.RaceMissile.method_2(class307.gclass132_0.decimal_2);
                             }
                             else
                             {
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
-                                decimal_13_1 = class307.gclass132_0.gclass129_0.decimal_0 /
-                                               class307.gclass132_0.gclass129_0.int_13;
+                                decimal_13_1 = class307.gclass132_0.RaceMissile.WarheadStrength /
+                                               class307.gclass132_0.RaceMissile.MultipleWarheads;
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
-                                decimal_14 = class307.gclass132_0.gclass129_0.decimal_2 /
-                                             class307.gclass132_0.gclass129_0.int_13;
+                                decimal_14 = class307.gclass132_0.RaceMissile.RadDamage /
+                                             class307.gclass132_0.RaceMissile.MultipleWarheads;
                             }
 
                             // ISSUE: reference to a compiler-generated field
@@ -1420,30 +1420,30 @@ public partial class GClass0
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 var gclass117 =
-                                    class307.gclass132_0.gclass21_0.method_268(class307.gclass132_0.gclass40_1.int_8);
+                                    class307.gclass132_0.Race.method_268(class307.gclass132_0.gclass40_1.int_8);
                                 if (gclass117 != null)
                                     string_10 = gclass117.method_11();
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 var double_7 =
-                                    class307.gclass132_0.gclass129_0.method_3(class307.gclass132_0.gclass40_1);
+                                    class307.gclass132_0.RaceMissile.method_3(class307.gclass132_0.gclass40_1);
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
-                                var num16 = class307.gclass132_0.gclass129_0.method_0(
+                                var num16 = class307.gclass132_0.RaceMissile.method_0(
                                     (int)class307.gclass132_0.gclass40_1.method_171(true), double_7,
                                     class307.gclass132_0.double_8);
                                 if (num16 > 100.0)
                                     num16 = 100.0;
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
-                                var int_137 = class307.gclass132_0.dictionary_2.Count *
-                                              class307.gclass132_0.gclass129_0.int_13;
+                                var int_137 = class307.gclass132_0.RemainingDecoys.Count *
+                                              class307.gclass132_0.RaceMissile.MultipleWarheads;
                                 // ISSUE: reference to a compiler-generated field
                                 var num17 = class307.gclass132_0.method_3(num16);
                                 var int_139 = 0;
                                 // ISSUE: reference to a compiler-generated method
-                                var list7 = dictionary_6.Values.Where(class307.method_1)
+                                var list7 = MissileSalvoes.Values.Where(class307.method_1)
                                     .ToList();
                                 if (list7.Count > 0)
                                 {
@@ -1451,19 +1451,19 @@ public partial class GClass0
                                     foreach (var gclass132_2 in list7)
                                     {
                                         // ISSUE: reference to a compiler-generated field
-                                        var num19 = class307.gclass132_0.gclass129_0.int_8 -
-                                                    gclass132_2.gclass129_0.int_12;
+                                        var num19 = class307.gclass132_0.RaceMissile.ECCM -
+                                                    gclass132_2.RaceMissile.MissileECM;
                                         if (num19 < 0)
                                             num19 = 0;
-                                        var num20 = gclass132_2.gclass129_0.decimal_0 * (1M - num19 * 0.2M);
+                                        var num20 = gclass132_2.RaceMissile.WarheadStrength * (1M - num19 * 0.2M);
                                         if (num20 > 0M)
-                                            num18 += num20 * gclass132_2.dictionary_2.Count;
+                                            num18 += num20 * gclass132_2.RemainingDecoys.Count;
                                     }
 
                                     if (num18 > 0M)
                                     {
                                         // ISSUE: reference to a compiler-generated field
-                                        var num21 = class307.gclass132_0.gclass40_1.gclass22_0.decimal_14 *
+                                        var num21 = class307.gclass132_0.gclass40_1.gclass22_0.Size *
                                                     AuroraUtils.decimal_17;
                                         var num22 = num21 + num18;
                                         for (var index = 1; index <= num17; ++index)
@@ -1475,7 +1475,7 @@ public partial class GClass0
                                 }
 
                                 // ISSUE: reference to a compiler-generated field
-                                if (class307.gclass132_0.gclass129_0.decimal_1 > 0M)
+                                if (class307.gclass132_0.RaceMissile.LaserWarhead > 0M)
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
@@ -1484,8 +1484,8 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
-                                    method_1(class307.gclass132_0.gclass21_0, class307.gclass132_0.gclass40_0,
-                                        null, class307.gclass132_0.gclass129_0, null,
+                                    method_1(class307.gclass132_0.Race, class307.gclass132_0.Ship,
+                                        null, class307.gclass132_0.RaceMissile, null,
                                         class307.gclass132_0.auroraContactType_0, class307.gclass132_0.int_0, int_137,
                                         num17, int_139, 0, 0, decimal_13_1, decimal_14,
                                         (double)class307.gclass132_0.decimal_2, num16, string_10,
@@ -1497,9 +1497,9 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     method_19(AuroraContactType.Explosion,
-                                        class307.gclass132_0.gclass129_0.decimal_1,
-                                        class307.gclass132_0.dictionary_2.Count + num17,
-                                        class307.gclass132_0.gclass200_0, class307.gclass132_0.double_0,
+                                        class307.gclass132_0.RaceMissile.LaserWarhead,
+                                        class307.gclass132_0.RemainingDecoys.Count + num17,
+                                        class307.gclass132_0.System, class307.gclass132_0.double_0,
                                         class307.gclass132_0.double_1, false);
                                     if (num17 > 0)
                                     {
@@ -1507,7 +1507,7 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         method_19(AuroraContactType.EWImpact, decimal_13_1, num17,
-                                            class307.gclass132_0.gclass200_0,
+                                            class307.gclass132_0.System,
                                             class307.gclass132_0.gclass40_1.gclass85_0.XCoord,
                                             class307.gclass132_0.gclass40_1.gclass85_0.YCoord, false);
                                         // ISSUE: reference to a compiler-generated field
@@ -1522,8 +1522,8 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
-                                    method_1(class307.gclass132_0.gclass21_0, class307.gclass132_0.gclass40_0,
-                                        null, class307.gclass132_0.gclass129_0, null,
+                                    method_1(class307.gclass132_0.Race, class307.gclass132_0.Ship,
+                                        null, class307.gclass132_0.RaceMissile, null,
                                         class307.gclass132_0.auroraContactType_0, class307.gclass132_0.int_0, int_137,
                                         num17, int_139, 0, 0, decimal_13_1, decimal_14, 0.0, num16, string_10,
                                         class307.gclass132_0.gclass40_1.gclass21_0, false, false, false, false, false,
@@ -1537,13 +1537,13 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         method_19(AuroraContactType.Explosion, decimal_13_1, num17 + int_139,
-                                            class307.gclass132_0.gclass200_0,
+                                            class307.gclass132_0.System,
                                             class307.gclass132_0.gclass40_1.gclass85_0.XCoord,
                                             class307.gclass132_0.gclass40_1.gclass85_0.YCoord, false);
                                 }
 
                                 // ISSUE: reference to a compiler-generated field
-                                if (class307.gclass132_0.gclass129_0.int_10 != 1)
+                                if (class307.gclass132_0.RaceMissile.Retargeting != 1)
                                     // ISSUE: reference to a compiler-generated field
                                     class307.gclass132_0.method_6();
                                 else
@@ -1583,7 +1583,7 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     var string_10 =
-                                        class307.gclass132_0.gclass146_0.RaceData.method_42(class307.gclass132_0
+                                        class307.gclass132_0.gclass146_0.Race.method_42(class307.gclass132_0
                                             .gclass146_0);
                                     // ISSUE: reference to a compiler-generated field
                                     if (class307.gclass132_0.auroraContactType_0 == AuroraContactType.Shipyard)
@@ -1607,7 +1607,7 @@ public partial class GClass0
                                     }
 
                                     // ISSUE: reference to a compiler-generated field
-                                    if (class307.gclass132_0.gclass129_0.decimal_1 > 0M)
+                                    if (class307.gclass132_0.RaceMissile.LaserWarhead > 0M)
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
@@ -1617,13 +1617,13 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
-                                        method_1(class307.gclass132_0.gclass21_0, class307.gclass132_0.gclass40_0,
-                                            null, class307.gclass132_0.gclass129_0, null,
+                                        method_1(class307.gclass132_0.Race, class307.gclass132_0.Ship,
+                                            null, class307.gclass132_0.RaceMissile, null,
                                             class307.gclass132_0.auroraContactType_0, class307.gclass132_0.int_0,
-                                            class307.gclass132_0.dictionary_2.Count,
-                                            class307.gclass132_0.dictionary_2.Count, 0, 0, 0, decimal_13_1, decimal_14,
+                                            class307.gclass132_0.RemainingDecoys.Count,
+                                            class307.gclass132_0.RemainingDecoys.Count, 0, 0, 0, decimal_13_1, decimal_14,
                                             (double)class307.gclass132_0.decimal_2, 100.0, string_10,
-                                            class307.gclass132_0.gclass146_0.RaceData, false, false, false, false,
+                                            class307.gclass132_0.gclass146_0.Race, false, false, false, false,
                                             false, GEnum62.const_0);
                                     else
                                         // ISSUE: reference to a compiler-generated field
@@ -1634,12 +1634,12 @@ public partial class GClass0
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
-                                        method_1(class307.gclass132_0.gclass21_0, class307.gclass132_0.gclass40_0,
-                                            null, class307.gclass132_0.gclass129_0, null,
+                                        method_1(class307.gclass132_0.Race, class307.gclass132_0.Ship,
+                                            null, class307.gclass132_0.RaceMissile, null,
                                             class307.gclass132_0.auroraContactType_0, class307.gclass132_0.int_0,
-                                            class307.gclass132_0.dictionary_2.Count,
-                                            class307.gclass132_0.dictionary_2.Count, 0, 0, 0, decimal_13_1, decimal_14,
-                                            0.0, 100.0, string_10, class307.gclass132_0.gclass146_0.RaceData, false,
+                                            class307.gclass132_0.RemainingDecoys.Count,
+                                            class307.gclass132_0.RemainingDecoys.Count, 0, 0, 0, decimal_13_1, decimal_14,
+                                            0.0, 100.0, string_10, class307.gclass132_0.gclass146_0.Race, false,
                                             false, false, false, false, GEnum62.const_0);
 
                                     // ISSUE: reference to a compiler-generated field
@@ -1648,8 +1648,8 @@ public partial class GClass0
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
                                     method_19(AuroraContactType.Explosion,
-                                        class307.gclass132_0.gclass129_0.decimal_0,
-                                        class307.gclass132_0.dictionary_2.Count, class307.gclass132_0.gclass200_0,
+                                        class307.gclass132_0.RaceMissile.WarheadStrength,
+                                        class307.gclass132_0.RemainingDecoys.Count, class307.gclass132_0.System,
                                         class307.gclass132_0.gclass146_0.method_87(),
                                         class307.gclass132_0.gclass146_0.method_88(), false);
                                     // ISSUE: reference to a compiler-generated field
@@ -1661,11 +1661,11 @@ public partial class GClass0
                 }
             }
 
-            foreach (var gclass132_0 in dictionary_6.Values
+            foreach (var gclass132_0 in MissileSalvoes.Values
                          .Where(gclass132_0 =>
-                             gclass132_0.dictionary_2.Count == 0 || gclass132_0.gclass129_0.int_14 == 1)
+                             gclass132_0.RemainingDecoys.Count == 0 || gclass132_0.RaceMissile.ShipDecoy == 1)
                          .ToList())
-                gclass132_0.gclass21_0.method_130(gclass132_0);
+                gclass132_0.Race.method_130(gclass132_0);
             return 0;
         }
         catch (Exception ex)
@@ -1730,7 +1730,7 @@ public partial class GClass0
     {
         try
         {
-            return gclass129_1 != null ? gclass129_1.int_0 : 0;
+            return gclass129_1 != null ? gclass129_1.MissileID : 0;
         }
         catch (Exception ex)
         {
@@ -1739,7 +1739,7 @@ public partial class GClass0
         }
     }
 
-    public int method_161(SystemData200 gclass200_0)
+    public int method_161(StarSystem gclass200_0)
     {
         try
         {
@@ -1800,27 +1800,27 @@ public partial class GClass0
                             class93.gclass139_0.DestinationType == DestinationType.const_4)
                         {
                             // ISSUE: reference to a compiler-generated field
-                            if (dictionary_28.ContainsKey(class93.gclass139_0.DestinationID))
+                            if (Contacts.ContainsKey(class93.gclass139_0.DestinationID))
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                if (dictionary_28[class93.gclass139_0.DestinationID].method_5() ==
+                                if (Contacts[class93.gclass139_0.DestinationID].method_5() ==
                                     AuroraContactStatus.Hostile)
                                 {
                                     // ISSUE: reference to a compiler-generated field
-                                    if (dictionary_28[class93.gclass139_0.DestinationID].auroraContactType_0 ==
+                                    if (Contacts[class93.gclass139_0.DestinationID].ContactType ==
                                         AuroraContactType.Ship)
                                     {
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
                                         // ISSUE: reference to a compiler-generated field
-                                        if (dictionary_28[class93.gclass139_0.DestinationID].gclass40_0.gclass85_0
-                                                .System.ActualSystemData ==
-                                            class93.class92_0.gclass85_0.System.ActualSystemData)
+                                        if (Contacts[class93.gclass139_0.DestinationID].TargetShip.gclass85_0
+                                                .System.ActualSystem ==
+                                            class93.class92_0.gclass85_0.System.ActualSystem)
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             // ISSUE: reference to a compiler-generated field
                                             gclass221 = method_50(
-                                                dictionary_28[class93.gclass139_0.DestinationID].gclass40_0.gclass85_0,
+                                                Contacts[class93.gclass139_0.DestinationID].TargetShip.gclass85_0,
                                                 class93.class92_0.gclass85_0, null, 0.0);
                                         else
                                             continue;
@@ -1846,7 +1846,7 @@ public partial class GClass0
                             if (class93.gclass139_0.DestinationType == DestinationType.const_3)
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                if (dictionary_13.ContainsKey(class93.gclass139_0.DestinationID))
+                                if (Waypoints.ContainsKey(class93.gclass139_0.DestinationID))
                                 {
                                     // ISSUE: reference to a compiler-generated field
                                     // ISSUE: reference to a compiler-generated field
@@ -1870,9 +1870,9 @@ public partial class GClass0
                                                                 class93.class92_0.method_1)) != null)
                                     {
                                         // ISSUE: reference to a compiler-generated field
-                                        gclass221.double_0 = dictionary_13[class93.gclass139_0.DestinationID].double_0;
+                                        gclass221.double_0 = Waypoints[class93.gclass139_0.DestinationID].Xcor;
                                         // ISSUE: reference to a compiler-generated field
-                                        gclass221.double_1 = dictionary_13[class93.gclass139_0.DestinationID].double_1;
+                                        gclass221.double_1 = Waypoints[class93.gclass139_0.DestinationID].Ycor;
                                     }
                                     else
                                     {
@@ -1980,7 +1980,7 @@ public partial class GClass0
         try
         {
             var num1 = int_136;
-            var list1 = FCTShipDataDictionary.Values
+            var list1 = Ships.Values
                 .Where(gclass40_0 => gclass40_0.gclass40_0 == null && gclass40_0.int_13 == 0)
                 .Where(gclass40_0 => gclass40_0.method_18(false)).ToList();
             if (list1.Count == 0)
@@ -2002,11 +2002,11 @@ public partial class GClass0
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     if (class94.gclass40_0.gclass21_0.NPR &&
-                        class94.gclass40_0.gclass22_0.gclass14_0.MissileDesignType == MissileDesignType.const_3)
+                        class94.gclass40_0.gclass22_0.AutomatedClassDesign.MissileDesignType == MissileDesignType.const_3)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        if (class94.gclass40_0.list_10.Count<GClass130>(gclass130_0 =>
-                                gclass130_0.gclass129_0.int_14 == 0) != 0)
+                        if (class94.gclass40_0.list_10.Count<PopOrdnanceStock>(gclass130_0 =>
+                                gclass130_0.RaceMissile.ShipDecoy == 0) != 0)
                         {
                             // ISSUE: reference to a compiler-generated field
                             var num2 = class94.gclass40_0.list_2.Count<WeaponFireControlAssignment>(gclass31_0 =>
@@ -2014,8 +2014,8 @@ public partial class GClass0
                                 AuroraComponentType.MissileLauncher && gclass31_0.WeaponComponent.decimal_3 > 3M);
                             // ISSUE: reference to a compiler-generated field
                             if (class94.gclass40_0.list_10
-                                    .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0)
-                                    .Sum(gclass130_0 => gclass130_0.int_0) >= num2)
+                                    .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0)
+                                    .Sum(gclass130_0 => gclass130_0.Amount) >= num2)
                             {
                                 // ISSUE: reference to a compiler-generated method
                                 gclass82 = source.FirstOrDefault(class94.method_0);
@@ -2176,7 +2176,7 @@ public partial class GClass0
             var class227 = new Class227();
             var num1 = 180;
             // ISSUE: reference to a compiler-generated field
-            class227.list_0 = FCTRaceRecordDic.Values
+            class227.list_0 = GameRaces.Values
                 .Where(gclass21_2 => !gclass21_2.NPR || bool_10)
                 .OrderBy<GameRace, string>(gclass21_0 => gclass21_0.RaceTitle).ToList();
             // ISSUE: reference to a compiler-generated field
@@ -2214,11 +2214,11 @@ public partial class GClass0
             var listViewItem20 = new ListViewItem("");
             var dictionary = new Dictionary<PlanetaryInstallationType, ListViewItem>();
             // ISSUE: reference to a compiler-generated method
-            var orderedEnumerable = PopulationDataDictionary.Values
+            var orderedEnumerable = Populations.Values
                 .Where(class227.method_0)
-                .SelectMany<PopulationData, GClass158>(gclass146_0 => gclass146_0.dictionary_0.Values)
-                .GroupBy<GClass158, PlanetaryInstallationType>(gclass158_0 => gclass158_0.gclass157_0)
-                .OrderBy<IGrouping<PlanetaryInstallationType, GClass158>, decimal>(igrouping_0 => igrouping_0.Key.DisplayOrder);
+                .SelectMany<PopulationData, PopulationInstallation>(gclass146_0 => gclass146_0.dictionary_0.Values)
+                .GroupBy<PopulationInstallation, PlanetaryInstallationType>(gclass158_0 => gclass158_0.InstallationType)
+                .OrderBy<IGrouping<PlanetaryInstallationType, PopulationInstallation>, decimal>(igrouping_0 => igrouping_0.Key.DisplayOrder);
             foreach (var grouping in orderedEnumerable)
             {
                 var listViewItem21 = new ListViewItem(grouping.Key.Name);
@@ -2237,7 +2237,7 @@ public partial class GClass0
                     // ISSUE: reference to a compiler-generated field
                     class228.gclass21_0 = enumerator.Current;
                     // ISSUE: reference to a compiler-generated method
-                    var list1 = PopulationDataDictionary.Values.Where(class228.method_0)
+                    var list1 = Populations.Values.Where(class228.method_0)
                         .ToList();
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_1 = list1.Where(class228.method_1)
@@ -2247,23 +2247,23 @@ public partial class GClass0
                     listViewItem3.SubItems.Add(AuroraUtils.smethod_39(class228.gclass21_0.WealthPoints));
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_2 =
-                        FCTShipDataDictionary.Values.Where(class228.method_2)
-                            .Sum(gclass40_0 => gclass40_0.gclass22_0.decimal_14) *
+                        Ships.Values.Where(class228.method_2)
+                            .Sum(gclass40_0 => gclass40_0.gclass22_0.Size) *
                         AuroraUtils.decimal_17;
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_3 =
-                        FCTShipDataDictionary.Values.Where(class228.method_3)
-                            .Sum(gclass40_0 => gclass40_0.gclass22_0.decimal_14) *
+                        Ships.Values.Where(class228.method_3)
+                            .Sum(gclass40_0 => gclass40_0.gclass22_0.Size) *
                         AuroraUtils.decimal_17;
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_4 =
-                        FCTShipDataDictionary.Values.Where(class228.method_4)
-                            .Sum(gclass40_0 => gclass40_0.gclass22_0.decimal_14) *
+                        Ships.Values.Where(class228.method_4)
+                            .Sum(gclass40_0 => gclass40_0.gclass22_0.Size) *
                         AuroraUtils.decimal_17;
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_5 =
-                        FCTShipDataDictionary.Values.Where(class228.method_5)
-                            .Sum(gclass40_0 => gclass40_0.gclass22_0.decimal_14) *
+                        Ships.Values.Where(class228.method_5)
+                            .Sum(gclass40_0 => gclass40_0.gclass22_0.Size) *
                         AuroraUtils.decimal_17;
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_6 = FormationDictionary.Values.Where(class228.method_6)
@@ -2317,19 +2317,19 @@ public partial class GClass0
                     var decimal_73_11 = list1.Where(class228.method_11)
                         .Sum(gclass146_0 => gclass146_0.MaintenanceStockpile);
                     // ISSUE: reference to a compiler-generated method
-                    var decimal_73_12 = FCTShipDataDictionary.Values.Where(class228.method_12)
+                    var decimal_73_12 = Ships.Values.Where(class228.method_12)
                         .Sum(gclass40_0 => gclass40_0.decimal_14);
                     // ISSUE: reference to a compiler-generated method
-                    var decimal_73_13 = FCTShipDataDictionary.Values.Where(class228.method_13)
+                    var decimal_73_13 = Ships.Values.Where(class228.method_13)
                         .Sum(gclass40_0 => gclass40_0.decimal_4);
                     // ISSUE: reference to a compiler-generated method
                     var decimal_73_14 = list1.Where(class228.method_14)
-                        .SelectMany<PopulationData, GClass130>(gclass146_0 => gclass146_0.list_1)
-                        .Sum(gclass130_0 => gclass130_0.int_0 * gclass130_0.gclass129_0.decimal_4);
+                        .SelectMany<PopulationData, PopOrdnanceStock>(gclass146_0 => gclass146_0.OrdnanceStocks)
+                        .Sum(gclass130_0 => gclass130_0.Amount * gclass130_0.RaceMissile.Size);
                     // ISSUE: reference to a compiler-generated method
-                    var decimal_73_15 = FCTShipDataDictionary.Values.Where(class228.method_15)
-                        .SelectMany<FCTShipData40, GClass130>(gclass40_0 => gclass40_0.list_10)
-                        .Sum(gclass130_0 => gclass130_0.int_0 * gclass130_0.gclass129_0.decimal_4);
+                    var decimal_73_15 = Ships.Values.Where(class228.method_15)
+                        .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.list_10)
+                        .Sum(gclass130_0 => gclass130_0.Amount * gclass130_0.RaceMissile.Size);
                     if (decimal_73_10 > 0M)
                         listViewItem12.SubItems.Add(AuroraUtils.smethod_39(decimal_73_10));
                     else
@@ -2367,13 +2367,13 @@ public partial class GClass0
                         // ISSUE: reference to a compiler-generated method
                         // ISSUE: reference to a compiler-generated method
                         var decimal_73_16 =
-                            list1.SelectMany<PopulationData, GClass158>(gclass146_0 => gclass146_0.dictionary_0.Values)
+                            list1.SelectMany<PopulationData, PopulationInstallation>(gclass146_0 => gclass146_0.dictionary_0.Values)
                                 .Where(class229.method_0)
-                                .Sum(gclass158_0 => gclass158_0.decimal_0) + FCTShipDataDictionary
+                                .Sum(gclass158_0 => gclass158_0.Amount) + Ships
                                 .Values.Where(class228.func_0 ?? (class228.func_0 = class228.method_16))
-                                .SelectMany<FCTShipData40, GClass158>(gclass40_0 => gclass40_0.dictionary_2.Values)
+                                .SelectMany<ShipData, PopulationInstallation>(gclass40_0 => gclass40_0.TransportedInstallations.Values)
                                 .Where(class229.method_1)
-                                .Sum(gclass158_0 => gclass158_0.decimal_0);
+                                .Sum(gclass158_0 => gclass158_0.Amount);
                         if (decimal_73_16 > 0M)
                             // ISSUE: reference to a compiler-generated field
                             dictionary[class229.igrouping_0.Key].SubItems.Add(AuroraUtils.smethod_39(decimal_73_16));
@@ -2447,7 +2447,7 @@ public partial class GClass0
     }
 
     public double method_424(
-        FCTShipData40 gclass40_0,
+        ShipData gclass40_0,
         List<GroundUnitFormationData> list_33,
         List<GroundUnitFormationData> list_34,
         int int_136)
@@ -2630,14 +2630,14 @@ public partial class GClass0
                 list_0 = null
             };
             // ISSUE: reference to a compiler-generated field
-            class295.list_0 = FCTShipDataDictionary.Values.Where(gclass40_0 =>
+            class295.list_0 = Ships.Values.Where(gclass40_0 =>
                 gclass40_0.method_157(AuroraComponentType.HangarDeck, false) > 0M ||
                 gclass40_0.method_157(AuroraComponentType.CommercialHangarDeck, false) > 0M).ToList();
             // ISSUE: reference to a compiler-generated field
             if (class295.list_0.Count == 0)
                 return decimal_13;
             // ISSUE: reference to a compiler-generated method
-            var list1 = FCTShipDataDictionary.Values.Where(class295.method_0)
+            var list1 = Ships.Values.Where(class295.method_0)
                 .ToList();
             if (list1.Count == 0)
                 return decimal_13;
@@ -2669,7 +2669,7 @@ public partial class GClass0
                             gclass40_2.decimal_39 = num4 + gclass40_2.decimal_40;
                         foreach (var gclass40_3 in list2)
                         {
-                            List<GClass130> source = gclass40_3.gclass22_0.list_0;
+                            List<PopOrdnanceStock> source = gclass40_3.gclass22_0.list_0;
                             if (gclass40_3.list_9.Count > 0)
                                 source = gclass40_3.list_9;
                             // ISSUE: reference to a compiler-generated field
@@ -2681,8 +2681,8 @@ public partial class GClass0
                                 var num5 = class296.gclass40_0.method_210();
                                 if (num5 > 0M)
                                     foreach (var gclass130_1 in gclass40_3.list_10
-                                                 .OrderByDescending<GClass130, decimal>(gclass130_0 =>
-                                                     gclass130_0.gclass129_0.decimal_4).ToList())
+                                                 .OrderByDescending<PopOrdnanceStock, decimal>(gclass130_0 =>
+                                                     gclass130_0.RaceMissile.Size).ToList())
                                     {
                                         // ISSUE: object of a compiler-generated type is created
                                         // ISSUE: variable of a compiler-generated type
@@ -2694,7 +2694,7 @@ public partial class GClass0
                                         if (class296.gclass40_0.genum43_0 == GEnum43.const_1)
                                         {
                                             // ISSUE: reference to a compiler-generated field
-                                            num6 = class297.gclass130_0.int_0;
+                                            num6 = class297.gclass130_0.Amount;
                                         }
                                         else
                                         {
@@ -2703,14 +2703,14 @@ public partial class GClass0
                                             if (gclass130_2 == null)
                                             {
                                                 // ISSUE: reference to a compiler-generated field
-                                                num6 = class297.gclass130_0.int_0;
+                                                num6 = class297.gclass130_0.Amount;
                                             }
                                             else
                                             {
                                                 // ISSUE: reference to a compiler-generated field
-                                                if (gclass130_2.int_0 < class297.gclass130_0.int_0)
+                                                if (gclass130_2.Amount < class297.gclass130_0.Amount)
                                                     // ISSUE: reference to a compiler-generated field
-                                                    num6 = class297.gclass130_0.int_0 - gclass130_2.int_0;
+                                                    num6 = class297.gclass130_0.Amount - gclass130_2.Amount;
                                             }
                                         }
 
@@ -2718,35 +2718,35 @@ public partial class GClass0
                                         {
                                             // ISSUE: reference to a compiler-generated field
                                             var int_40 = (int)Math.Floor(gclass40_3.decimal_39 /
-                                                                         class297.gclass130_0.gclass129_0.decimal_4);
+                                                                         class297.gclass130_0.RaceMissile.Size);
                                             if (int_40 > num6)
                                                 int_40 = num6;
                                             // ISSUE: reference to a compiler-generated field
-                                            if (int_40 * class297.gclass130_0.gclass129_0.decimal_4 > num5)
+                                            if (int_40 * class297.gclass130_0.RaceMissile.Size > num5)
                                                 // ISSUE: reference to a compiler-generated field
-                                                int_40 = (int)Math.Floor(num5 / class297.gclass130_0.gclass129_0
-                                                    .decimal_4);
+                                                int_40 = (int)Math.Floor(num5 / class297.gclass130_0.RaceMissile
+                                                    .Size);
 
                                             if (int_40 > 0)
                                             {
                                                 // ISSUE: reference to a compiler-generated field
-                                                class297.gclass130_0.int_0 -= int_40;
+                                                class297.gclass130_0.Amount -= int_40;
                                                 // ISSUE: reference to a compiler-generated field
-                                                if (class297.gclass130_0.int_0 == 0)
+                                                if (class297.gclass130_0.Amount == 0)
                                                     // ISSUE: reference to a compiler-generated field
                                                     gclass40_3.list_10.Remove(class297.gclass130_0);
 
                                                 // ISSUE: reference to a compiler-generated field
                                                 // ISSUE: reference to a compiler-generated field
-                                                class296.gclass40_0.method_115(class297.gclass130_0.gclass129_0,
+                                                class296.gclass40_0.method_115(class297.gclass130_0.RaceMissile,
                                                     int_40);
                                                 // ISSUE: reference to a compiler-generated field
                                                 gclass40_3.decimal_39 -=
-                                                    int_40 * class297.gclass130_0.gclass129_0.decimal_4;
+                                                    int_40 * class297.gclass130_0.RaceMissile.Size;
                                                 // ISSUE: reference to a compiler-generated field
-                                                if (class297.gclass130_0.gclass129_0.decimal_4 > num2)
+                                                if (class297.gclass130_0.RaceMissile.Size > num2)
                                                     // ISSUE: reference to a compiler-generated field
-                                                    num2 = class297.gclass130_0.gclass129_0.decimal_4;
+                                                    num2 = class297.gclass130_0.RaceMissile.Size;
                                             }
                                             else if (num6 > 0)
                                             {
@@ -2765,7 +2765,7 @@ public partial class GClass0
                                 if (num7 > 0M)
                                     foreach (var gclass130_3 in source
                                                  .OrderByDescending(gclass130_0 =>
-                                                     gclass130_0.gclass129_0.decimal_4).ToList())
+                                                     gclass130_0.RaceMissile.Size).ToList())
                                     {
                                         // ISSUE: object of a compiler-generated type is created
                                         // ISSUE: variable of a compiler-generated type
@@ -2774,12 +2774,12 @@ public partial class GClass0
                                         class298.gclass130_0 = gclass130_3;
                                         // ISSUE: reference to a compiler-generated method
                                         var gclass130_4 =
-                                            gclass40_3.list_10.FirstOrDefault<GClass130>(class298.method_0);
+                                            gclass40_3.list_10.FirstOrDefault<PopOrdnanceStock>(class298.method_0);
                                         // ISSUE: reference to a compiler-generated field
-                                        var num8 = class298.gclass130_0.int_0;
+                                        var num8 = class298.gclass130_0.Amount;
                                         if (gclass130_4 != null)
                                             // ISSUE: reference to a compiler-generated field
-                                            num8 = class298.gclass130_0.int_0 - gclass130_4.int_0;
+                                            num8 = class298.gclass130_0.Amount - gclass130_4.Amount;
 
                                         if (num8 > 0)
                                         {
@@ -2787,39 +2787,39 @@ public partial class GClass0
                                             // ISSUE: reference to a compiler-generated method
                                             var gclass130_5 =
                                                 class296.gclass40_0.list_10
-                                                    .FirstOrDefault<GClass130>(class298.method_1);
+                                                    .FirstOrDefault<PopOrdnanceStock>(class298.method_1);
                                             if (gclass130_5 != null)
                                             {
                                                 // ISSUE: reference to a compiler-generated field
                                                 var int_40 = (int)Math.Floor(gclass40_3.decimal_39 /
-                                                                             class298.gclass130_0.gclass129_0
-                                                                                 .decimal_4);
+                                                                             class298.gclass130_0.RaceMissile
+                                                                                 .Size);
                                                 if (int_40 > num8)
                                                     int_40 = num8;
-                                                if (int_40 > gclass130_5.int_0)
-                                                    int_40 = gclass130_5.int_0;
+                                                if (int_40 > gclass130_5.Amount)
+                                                    int_40 = gclass130_5.Amount;
                                                 // ISSUE: reference to a compiler-generated field
-                                                if (int_40 * class298.gclass130_0.gclass129_0.decimal_4 > num7)
+                                                if (int_40 * class298.gclass130_0.RaceMissile.Size > num7)
                                                     // ISSUE: reference to a compiler-generated field
-                                                    int_40 = (int)Math.Floor(num7 / class298.gclass130_0.gclass129_0
-                                                        .decimal_4);
+                                                    int_40 = (int)Math.Floor(num7 / class298.gclass130_0.RaceMissile
+                                                        .Size);
 
                                                 if (int_40 > 0)
                                                 {
                                                     // ISSUE: reference to a compiler-generated field
-                                                    gclass40_3.method_115(class298.gclass130_0.gclass129_0, int_40);
-                                                    gclass130_5.int_0 -= int_40;
-                                                    if (gclass130_5.int_0 == 0)
+                                                    gclass40_3.method_115(class298.gclass130_0.RaceMissile, int_40);
+                                                    gclass130_5.Amount -= int_40;
+                                                    if (gclass130_5.Amount == 0)
                                                         // ISSUE: reference to a compiler-generated field
                                                         class296.gclass40_0.list_10.Remove(gclass130_5);
 
                                                     // ISSUE: reference to a compiler-generated field
                                                     gclass40_3.decimal_39 -=
-                                                        int_40 * class298.gclass130_0.gclass129_0.decimal_4;
+                                                        int_40 * class298.gclass130_0.RaceMissile.Size;
                                                     // ISSUE: reference to a compiler-generated field
-                                                    if (class298.gclass130_0.gclass129_0.decimal_4 > num2)
+                                                    if (class298.gclass130_0.RaceMissile.Size > num2)
                                                         // ISSUE: reference to a compiler-generated field
-                                                        num2 = class298.gclass130_0.gclass129_0.decimal_4;
+                                                        num2 = class298.gclass130_0.RaceMissile.Size;
                                                 }
                                                 else if (num8 > 0)
                                                 {
@@ -2882,29 +2882,29 @@ public partial class GClass0
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            class103.list_0 = dictionary_28.Values.Where(class103.class102_0.method_0)
-                .Select<GClass65, SystemData200>(gclass65_0 => gclass65_0.gclass200_0).Distinct()
+            class103.list_0 = Contacts.Values.Where(class103.class102_0.method_0)
+                .Select<Contact, StarSystem>(gclass65_0 => gclass65_0.System).Distinct()
                 .ToList();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            var list1 = dictionary_28.Values.Where(class103.class102_0.method_1)
-                .Select<GClass65, SystemData200>(gclass65_0 => gclass65_0.gclass200_0).Distinct()
+            var list1 = Contacts.Values.Where(class103.class102_0.method_1)
+                .Select<Contact, StarSystem>(gclass65_0 => gclass65_0.System).Distinct()
                 .ToList();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            class103.list_0 = class103.list_0.Intersect<SystemData200>(list1).ToList();
+            class103.list_0 = class103.list_0.Intersect<StarSystem>(list1).ToList();
             // ISSUE: reference to a compiler-generated field
-            if (class103.list_0.Count<SystemData200>() == 0)
+            if (class103.list_0.Count<StarSystem>() == 0)
                 return 0M;
-            var gclass40List = new List<FCTShipData40>();
+            var gclass40List = new List<ShipData>();
             // ISSUE: reference to a compiler-generated method
-            var list2 = FCTShipDataDictionary.Values.Where(class103.method_0)
+            var list2 = Ships.Values.Where(class103.method_0)
                 .Where(gclass40_0 =>
                     gclass40_0.method_157(AuroraComponentType.DiplomacyModule, false) > 0M).ToList();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             class103.class102_0.gclass110_0.ActualAlienRace.gclass55_0 = list2
-                .Select<FCTShipData40, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
+                .Select<ShipData, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
                 .Where(gclass55_0 => gclass55_0 != null)
                 .OrderByDescending(gclass55_0 => gclass55_0.method_5(CommanderBonusType.Diplomacy))
                 .FirstOrDefault();
@@ -2958,23 +2958,23 @@ public partial class GClass0
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            class105.list_0 = dictionary_28.Values.Where(class105.class104_0.method_0)
-                .Select<GClass65, SystemData200>(gclass65_0 => gclass65_0.gclass200_0).Distinct()
+            class105.list_0 = Contacts.Values.Where(class105.class104_0.method_0)
+                .Select<Contact, StarSystem>(gclass65_0 => gclass65_0.System).Distinct()
                 .ToList();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            var list1 = dictionary_28.Values.Where(class105.class104_0.method_1)
-                .Select<GClass65, SystemData200>(gclass65_0 => gclass65_0.gclass200_0).Distinct()
+            var list1 = Contacts.Values.Where(class105.class104_0.method_1)
+                .Select<Contact, StarSystem>(gclass65_0 => gclass65_0.System).Distinct()
                 .ToList();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            class105.list_0 = class105.list_0.Intersect<SystemData200>(list1).ToList();
+            class105.list_0 = class105.list_0.Intersect<StarSystem>(list1).ToList();
             // ISSUE: reference to a compiler-generated field
-            if (class105.list_0.Count<SystemData200>() == 0)
+            if (class105.list_0.Count<StarSystem>() == 0)
                 return 0M;
-            var gclass40List = new List<FCTShipData40>();
+            var gclass40List = new List<ShipData>();
             // ISSUE: reference to a compiler-generated method
-            var list2 = FCTShipDataDictionary.Values.Where(class105.method_0)
+            var list2 = Ships.Values.Where(class105.method_0)
                 .Where(gclass40_0 =>
                     gclass40_0.method_157(AuroraComponentType.DiplomacyModule, false) > 0M).ToList();
             if (list2.Count == 0)
@@ -2982,7 +2982,7 @@ public partial class GClass0
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
             class105.class104_0.gclass110_0.ViewingRace.gclass55_0 = list2
-                .Select<FCTShipData40, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
+                .Select<ShipData, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
                 .Where(gclass55_0 => gclass55_0 != null)
                 .OrderByDescending(gclass55_0 => gclass55_0.method_5(CommanderBonusType.Communications))
                 .FirstOrDefault();
@@ -3014,12 +3014,12 @@ public partial class GClass0
     {
         try
         {
-            if (gclass146_1.decimal_89 < int_136 * PlanetaryInstallationDictionary[auroraInstallationType_0].Workers)
-                int_136 = (int)(gclass146_1.decimal_89 / PlanetaryInstallationDictionary[auroraInstallationType_0].Workers);
+            if (gclass146_1.decimal_89 < int_136 * InstallationTypes[auroraInstallationType_0].Workers)
+                int_136 = (int)(gclass146_1.decimal_89 / InstallationTypes[auroraInstallationType_0].Workers);
             if (int_136 == 0)
                 return gclass146_1.decimal_89;
             gclass146_1.method_65(auroraInstallationType_0, int_136);
-            gclass146_1.decimal_89 -= int_136 * PlanetaryInstallationDictionary[auroraInstallationType_0].Workers;
+            gclass146_1.decimal_89 -= int_136 * InstallationTypes[auroraInstallationType_0].Workers;
             return gclass146_1.decimal_89;
         }
         catch (Exception ex)
@@ -3081,10 +3081,10 @@ public partial class GClass0
         try
         {
             var num1 = 30M;
-            var num2 = FCTRaceRecordDic.Values.Where(gclass21_0 => !gclass21_0.NPR)
+            var num2 = GameRaces.Values.Where(gclass21_0 => !gclass21_0.NPR)
                 .Count();
             return num2 > 0
-                ? PopulationDataDictionary.Values.Where(gclass146_0 => !gclass146_0.RaceData.NPR)
+                ? Populations.Values.Where(gclass146_0 => !gclass146_0.Race.NPR)
                     .Sum(gclass146_0 => gclass146_0.method_75(AuroraInstallationType.ResearchLab)) / num2
                 : num1;
         }
@@ -3100,7 +3100,7 @@ public partial class GClass0
         try
         {
             var num1 = 0M;
-            foreach (var gclass21 in FCTRaceRecordDic.Values
+            foreach (var gclass21 in GameRaces.Values
                          .Where(gclass21_0 => !gclass21_0.NPR).ToList())
             {
                 // ISSUE: object of a compiler-generated type is created
@@ -3128,12 +3128,12 @@ public partial class GClass0
         try
         {
             var num1 = 0M;
-            var num2 = FCTRaceRecordDic.Values.Where(gclass21_0 => !gclass21_0.NPR)
+            var num2 = GameRaces.Values.Where(gclass21_0 => !gclass21_0.NPR)
                 .Count();
             if (num2 <= 0)
                 return 1000M;
-            foreach (var gclass146 in PopulationDataDictionary.Values
-                         .Where(gclass146_0 => !gclass146_0.RaceData.NPR && gclass146_0.ProvideColonists == 0)
+            foreach (var gclass146 in Populations.Values
+                         .Where(gclass146_0 => !gclass146_0.Race.NPR && gclass146_0.ProvideColonists == 0)
                          .ToList())
                 num1 += gclass146.PopulationPoliticalStatus.WealthModifier * gclass146.decimal_30;
             return num1 / num2;
@@ -3151,14 +3151,14 @@ public partial class GClass0
         try
         {
             var num = 0M;
-            foreach (var gclass220 in PopulationDataDictionary.Values
+            foreach (var gclass220 in Populations.Values
                          .Where(gclass146_0 =>
-                             gclass146_0.SystemBodyData.gclass220_0 != null && gclass146_0.decimal_30 >= 1M)
+                             gclass146_0.SystemBodyData.AncientConstruct != null && gclass146_0.decimal_30 >= 1M)
                          .Where(gclass146_0 =>
-                             gclass146_0.SystemBodyData.gclass220_0.bool_0 && !gclass146_0.RaceData.NPR)
-                         .Select<PopulationData, GClass220>(gclass146_0 => gclass146_0.SystemBodyData.gclass220_0)
+                             gclass146_0.SystemBodyData.AncientConstruct.Active && !gclass146_0.Race.NPR)
+                         .Select<PopulationData, AncientConstruct>(gclass146_0 => gclass146_0.SystemBodyData.AncientConstruct)
                          .Distinct().ToList())
-                num += (gclass220.decimal_0 - 1M) / 10M;
+                num += (gclass220.ResearchBonus - 1M) / 10M;
             return num;
         }
         catch (Exception ex)

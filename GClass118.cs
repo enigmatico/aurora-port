@@ -98,7 +98,7 @@ public class GClass118
             if (this.double_1 <= 100.0)
                 return $"{this.string_0}: GPS {AuroraUtils.smethod_38(this.decimal_1 * this.int_1)}";
             return
-                $"{this.string_0}: {AuroraUtils.smethod_44(this.gclass230_0.double_0 / 1000000.0, 0)}m km  RES {AuroraUtils.smethod_37(this.int_1)}";
+                $"{this.string_0}: {AuroraUtils.FormatDoubleToPrecision(this.gclass230_0.double_0 / 1000000.0, 0)}m km  RES {AuroraUtils.smethod_37(this.int_1)}";
         }
         catch (Exception ex)
         {

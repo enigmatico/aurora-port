@@ -20,7 +20,7 @@ public class UnknownNPRFleetRelatedClass
     {
         public Decimal decimal_0;
 
-        internal double method_0(FCTShipData40 gclass40_0)
+        internal double method_0(ShipData gclass40_0)
         {
             return gclass40_0.method_218(this.decimal_0);
         }
@@ -30,12 +30,12 @@ public class UnknownNPRFleetRelatedClass
     private sealed class Class476
     {
         public UnknownNPRFleetRelatedClass gclass4_0;
-        public GClass22 gclass22_0;
+        public ShipClass gclass22_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0 == this.gclass4_0.Fleet &&
-                   gclass40_0.gclass22_0.gclass14_0 == this.gclass22_0.gclass14_0;
+                   gclass40_0.gclass22_0.AutomatedClassDesign == this.gclass22_0.AutomatedClassDesign;
         }
 
         internal bool method_1(FleetData gclass85_0)
@@ -49,9 +49,9 @@ public class UnknownNPRFleetRelatedClass
                    gclass139_0.DestinationID == this.gclass4_0.Fleet.FleetID;
         }
 
-        internal bool method_3(FCTShipData40 gclass40_0)
+        internal bool method_3(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0.gclass14_0 == this.gclass22_0.gclass14_0;
+            return gclass40_0.gclass22_0.AutomatedClassDesign == this.gclass22_0.AutomatedClassDesign;
         }
     }
 
@@ -60,7 +60,7 @@ public class UnknownNPRFleetRelatedClass
     {
         public Decimal decimal_0;
 
-        internal double method_0(FCTShipData40 gclass40_0)
+        internal double method_0(ShipData gclass40_0)
         {
             return gclass40_0.method_216(this.decimal_0);
         }
@@ -71,15 +71,15 @@ public class UnknownNPRFleetRelatedClass
     {
         public RaceOperationalGroupElement gclass11_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
-            return gclass40_0.gclass5_0.genum103_0 != GEnum103.const_4 && gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID ==
+            return gclass40_0.gclass5_0.genum103_0 != GEnum103.const_4 && gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID ==
                 this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
 
-        internal bool method_1(FCTShipData40 gclass40_0)
+        internal bool method_1(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
+            return gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == this.gclass11_0.AutomatedClassDesign.AutomatedClassDesignTypeID;
         }
     }
 
@@ -87,7 +87,7 @@ public class UnknownNPRFleetRelatedClass
 
     private GClass0 Game;
     private FleetData Fleet;
-    public FCTShipData40 gclass40_0;
+    public ShipData gclass40_0;
     public GEnum100 genum100_0;
     public GEnum101 genum101_0 = GEnum101.const_3;
     public GEnum103 genum103_0 = GEnum103.const_3;
@@ -111,7 +111,7 @@ public class UnknownNPRFleetRelatedClass
     {
         try
         {
-            List<FCTShipData40> source = this.Fleet.method_176();
+            List<ShipData> source = this.Fleet.method_176();
             if (this.Fleet.ShippingLine != null)
                 this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.Civilian];
             else if (this.Fleet.method_125(AuroraComponentType.GravitationalSurveySensors) > 0M)
@@ -140,7 +140,7 @@ public class UnknownNPRFleetRelatedClass
                 else if (source.Count == 1)
                 {
                     if (source
-                            .SelectMany<FCTShipData40,
+                            .SelectMany<ShipData,
                                 GClass228>(gclass40_0 => gclass40_0.gclass22_0.dictionary_0.Values)
                             .Count<GClass228>(gclass228_0 =>
                                 gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
@@ -154,7 +154,7 @@ public class UnknownNPRFleetRelatedClass
                     this.Fleet.NPROperationGroup = this.Game.OperationalGroupDictionary[OperationalGroupID.ReinforcementGroup];
                     if (source.Count <= 1)
                         return;
-                    foreach (FCTShipData40 gclass40_0 in source)
+                    foreach (ShipData gclass40_0 in source)
                     {
                         this.Fleet.method_75(gclass40_0, OperationalGroupID.ReinforcementGroup, false);
                         if (source.Count == 1)
@@ -166,8 +166,8 @@ public class UnknownNPRFleetRelatedClass
             {
                 Decimal num1 = this.Fleet.method_125(AuroraComponentType.MissileFireControl);
                 Decimal num2 = this.Fleet.method_125(AuroraComponentType.BeamFireControl);
-                Decimal num3 = source.Sum<FCTShipData40>(gclass40_0 =>
-                    gclass40_0.gclass22_0.decimal_14 * AuroraUtils.decimal_17);
+                Decimal num3 = source.Sum<ShipData>(gclass40_0 =>
+                    gclass40_0.gclass22_0.Size * AuroraUtils.decimal_17);
                 Decimal num4 = num2;
                 if (num1 > num4)
                 {
@@ -207,7 +207,7 @@ public class UnknownNPRFleetRelatedClass
         {
             FleetData fleet = list_0.Select<GClass117, FleetData>(gclass117_0 => gclass117_0.gclass40_0.gclass85_0)
                 .Distinct<FleetData>().OrderBy<FleetData, double>(gclass85_1 =>
-                    this.Game.GetDistanceToNearestGClass212(this.Fleet.System.ActualSystemData, gclass85_1.XCoord,
+                    this.Game.GetDistanceToNearestGClass212(this.Fleet.System.ActualSystem, gclass85_1.XCoord,
                         gclass85_1.YCoord, this.Fleet.XCoord, this.Fleet.YCoord))
                 .FirstOrDefault<FleetData>();
             if (fleet == null)
@@ -239,9 +239,9 @@ public class UnknownNPRFleetRelatedClass
     {
         try
         {
-            List<FCTShipData40> list = this.Fleet.method_176()
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.int_1 > 0).ToList<FCTShipData40>();
-            foreach (FCTShipData40 gclass40 in list)
+            List<ShipData> list = this.Fleet.method_176()
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ActiveSensorStrength > 0).ToList<ShipData>();
+            foreach (ShipData gclass40 in list)
                 gclass40.bool_8 = false;
             this.method_4(list);
         }
@@ -251,12 +251,12 @@ public class UnknownNPRFleetRelatedClass
         }
     }
 
-    public void method_4(List<FCTShipData40> list_0)
+    public void method_4(List<ShipData> list_0)
     {
         try
         {
             foreach (Decimal num in list_0
-                         .SelectMany<FCTShipData40,
+                         .SelectMany<ShipData,
                              GClass228>(gclass40_0 => gclass40_0.gclass22_0.dictionary_0.Values)
                          .Where<GClass228>(gclass228_0 =>
                              gclass228_0.gclass230_0.gclass231_0.ComponentTypeID ==
@@ -266,10 +266,10 @@ public class UnknownNPRFleetRelatedClass
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: reference to a compiler-generated method
-                List<FCTShipData40> list = list_0.OrderByDescending<FCTShipData40, double>(new UnknownNPRFleetRelatedClass.Class475()
+                List<ShipData> list = list_0.OrderByDescending<ShipData, double>(new UnknownNPRFleetRelatedClass.Class475()
                 {
                     decimal_0 = num
-                }.method_0).ThenBy<FCTShipData40, Decimal>(gclass40_0 => gclass40_0.decimal_1).ToList<FCTShipData40>();
+                }.method_0).ThenBy<ShipData, Decimal>(gclass40_0 => gclass40_0.decimal_1).ToList<ShipData>();
                 if (list.Count != 0)
                 {
                     list[0].bool_8 = true;
@@ -337,7 +337,7 @@ public class UnknownNPRFleetRelatedClass
         }
     }
 
-    public bool method_8(GClass22 gclass22_0)
+    public bool method_8(ShipClass gclass22_0)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -349,19 +349,19 @@ public class UnknownNPRFleetRelatedClass
         try
         {
             // ISSUE: reference to a compiler-generated field
-            int num = this.Fleet.NPROperationGroup.method_2(this.Fleet.Race, class476.gclass22_0.gclass14_0);
+            int num = this.Fleet.NPROperationGroup.method_2(this.Fleet.Race, class476.gclass22_0.AutomatedClassDesign);
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             return num != 0 &&
-                   this.Game.FCTShipDataDictionary.Values.Where<FCTShipData40>(class476.method_0)
-                       .Count<FCTShipData40>() + this.Game.FleetDictionary.Values.Where<FleetData>(class476.method_1)
+                   this.Game.Ships.Values.Where<ShipData>(class476.method_0)
+                       .Count<ShipData>() + this.Game.FleetDictionary.Values.Where<FleetData>(class476.method_1)
                        .Where<FleetData>(gclass85_0 => gclass85_0.NPROperationGroup.genum104_0 == GEnum104.const_11)
                        .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                        .Where<MoveOrder>(class476.method_2)
-                       .SelectMany<MoveOrder, FCTShipData40>(gclass139_0 => gclass139_0.Fleet.method_176())
-                       .Where<FCTShipData40>(class476.method_3).Count<FCTShipData40>() < num;
+                       .SelectMany<MoveOrder, ShipData>(gclass139_0 => gclass139_0.Fleet.method_176())
+                       .Where<ShipData>(class476.method_3).Count<ShipData>() < num;
         }
         catch (Exception ex)
         {
@@ -375,7 +375,7 @@ public class UnknownNPRFleetRelatedClass
         try
         {
             double num1 = -1.0;
-            FCTShipData40 gclass40 = null;
+            ShipData gclass40 = null;
             if (gclass117_0 == null)
                 return false;
             if (this.Fleet.method_25())
@@ -393,7 +393,7 @@ public class UnknownNPRFleetRelatedClass
             double num2 = 0.0;
             if (gclass40 != null)
             {
-                double num3 = gclass40.gclass5_0.double_1 / (double)gclass40.gclass5_0.gclass129_0.decimal_5;
+                double num3 = gclass40.gclass5_0.double_1 / (double)gclass40.gclass5_0.gclass129_0.Speed;
                 double num4 = gclass117_0.gclass115_0.int_2 * num3;
                 num2 = gclass40.gclass5_0.double_1 - num4;
             }
@@ -410,7 +410,7 @@ public class UnknownNPRFleetRelatedClass
             if (list_0.Count > 0)
             {
                 GClass221 gclass221_0 = this.Game.method_53(DestinationType.const_7,
-                    gclass117_0.gclass40_0.gclass85_0.FleetID, gclass117_0.gclass40_0.gclass85_0.System.ActualSystemData,
+                    gclass117_0.gclass40_0.gclass85_0.FleetID, gclass117_0.gclass40_0.gclass85_0.System.ActualSystem,
                     null, this.Fleet, num2, 0M);
                 if ((gclass221_0.double_0 != 0.0 || gclass221_0.double_1 != 0.0) && this.method_10(gclass221_0, list_0))
                     return true;
@@ -490,7 +490,7 @@ public class UnknownNPRFleetRelatedClass
             label_18:
             if (!flag1)
                 return false;
-            GClass214 gclass214_0 = this.Fleet.Race.method_188(this.Fleet.System.ActualSystemData, null,
+            Waypoint gclass214_0 = this.Fleet.Race.method_188(this.Fleet.System.ActualSystem, null,
                 null, WayPointType.Temporary, gclass221.double_0, gclass221.double_1,
                 this.Fleet.FleetName + " Manoeuvre Point", 0);
             this.Fleet.method_263();
@@ -523,7 +523,7 @@ public class UnknownNPRFleetRelatedClass
         }
     }
 
-    public bool method_12(FCTShipData40 gclass40_1)
+    public bool method_12(ShipData gclass40_1)
     {
         try
         {
@@ -557,16 +557,16 @@ public class UnknownNPRFleetRelatedClass
         }
     }
 
-    public FCTShipData40 method_14(Decimal decimal_0)
+    public ShipData method_14(Decimal decimal_0)
     {
         try
         {
-            List<FCTShipData40> source = this.Fleet.method_176();
-            foreach (FCTShipData40 gclass40 in source)
+            List<ShipData> source = this.Fleet.method_176();
+            foreach (ShipData gclass40 in source)
                 gclass40.gclass5_0.method_13(decimal_0, false);
-            return source.Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass5_0.double_1 > 0.0)
-                .OrderByDescending<FCTShipData40, double>(gclass40_0 => gclass40_0.gclass5_0.double_1)
-                .FirstOrDefault<FCTShipData40>();
+            return source.Where<ShipData>(gclass40_0 => gclass40_0.gclass5_0.double_1 > 0.0)
+                .OrderByDescending<ShipData, double>(gclass40_0 => gclass40_0.gclass5_0.double_1)
+                .FirstOrDefault<ShipData>();
         }
         catch (Exception ex)
         {
@@ -575,16 +575,16 @@ public class UnknownNPRFleetRelatedClass
         }
     }
 
-    public FCTShipData40 method_15(Decimal decimal_0)
+    public ShipData method_15(Decimal decimal_0)
     {
         try
         {
-            List<FCTShipData40> source = this.Fleet.method_176();
-            foreach (FCTShipData40 gclass40 in source)
+            List<ShipData> source = this.Fleet.method_176();
+            foreach (ShipData gclass40 in source)
                 gclass40.gclass5_0.method_13(decimal_0, true);
-            return source.Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass5_0.double_1 > 0.0)
-                .OrderBy<FCTShipData40, double>(gclass40_0 => gclass40_0.gclass5_0.double_1)
-                .FirstOrDefault<FCTShipData40>();
+            return source.Where<ShipData>(gclass40_0 => gclass40_0.gclass5_0.double_1 > 0.0)
+                .OrderBy<ShipData, double>(gclass40_0 => gclass40_0.gclass5_0.double_1)
+                .FirstOrDefault<ShipData>();
         }
         catch (Exception ex)
         {
@@ -602,9 +602,9 @@ public class UnknownNPRFleetRelatedClass
         class477.decimal_0 = decimal_0;
         try
         {
-            List<FCTShipData40> source = this.Fleet.method_176();
+            List<ShipData> source = this.Fleet.method_176();
             // ISSUE: reference to a compiler-generated method
-            return source.Count == 0 ? 0.0 : source.Max<FCTShipData40>(class477.method_0);
+            return source.Count == 0 ? 0.0 : source.Max<ShipData>(class477.method_0);
         }
         catch (Exception ex)
         {
@@ -622,7 +622,7 @@ public class UnknownNPRFleetRelatedClass
             UnknownNPRFleetRelatedClass.Class478 class478 = new UnknownNPRFleetRelatedClass.Class478();
             // ISSUE: reference to a compiler-generated field
             class478.gclass11_0 = this.Fleet.NPROperationGroup.method_1(this.Fleet.Race);
-            List<FCTShipData40> source = this.Fleet.method_176();
+            List<ShipData> source = this.Fleet.method_176();
             if (this.Fleet.Race.SpecialNPRID == SpecialNPRIDs.StarSwarm)
             {
                 this.genum101_0 = GEnum101.const_3;
@@ -631,7 +631,7 @@ public class UnknownNPRFleetRelatedClass
             else
             {
                 double num1 = 0.0;
-                foreach (FCTShipData40 gclass40 in source)
+                foreach (ShipData gclass40 in source)
                     num1 += (double)gclass40.gclass5_0.genum101_0;
                 if (num1 == 0.0)
                 {
@@ -648,22 +648,22 @@ public class UnknownNPRFleetRelatedClass
                 double num3 = 0.0;
                 double num4 = 0.0;
                 this.genum103_0 = GEnum103.const_4;
-                List<FCTShipData40> list = source
-                    .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass5_0.genum103_0 != GEnum103.const_4)
-                    .ToList<FCTShipData40>();
-                List<FCTShipData40> gclass40List = new List<FCTShipData40>();
+                List<ShipData> list = source
+                    .Where<ShipData>(gclass40_0 => gclass40_0.gclass5_0.genum103_0 != GEnum103.const_4)
+                    .ToList<ShipData>();
+                List<ShipData> gclass40List = new List<ShipData>();
                 // ISSUE: reference to a compiler-generated field
                 if (class478.gclass11_0 != null)
                 {
                     // ISSUE: reference to a compiler-generated method
-                    gclass40List = source.Where<FCTShipData40>(class478.method_0).ToList<FCTShipData40>();
+                    gclass40List = source.Where<ShipData>(class478.method_0).ToList<ShipData>();
                 }
 
                 if (list.Count > 0)
                 {
-                    foreach (FCTShipData40 gclass40 in list)
+                    foreach (ShipData gclass40 in list)
                         num3 += (double)gclass40.gclass5_0.genum103_0;
-                    foreach (FCTShipData40 gclass40 in gclass40List)
+                    foreach (ShipData gclass40 in gclass40List)
                         num4 += (double)gclass40.gclass5_0.genum103_0;
                     if (num3 == 0.0)
                         this.genum103_0 = GEnum103.const_0;
@@ -691,7 +691,7 @@ public class UnknownNPRFleetRelatedClass
             }
 
             double num7 = 0.0;
-            foreach (FCTShipData40 gclass40 in source)
+            foreach (ShipData gclass40 in source)
                 num7 += (double)gclass40.gclass5_0.genum102_0;
             if (num7 == 0.0)
             {
@@ -714,9 +714,9 @@ public class UnknownNPRFleetRelatedClass
                 if (this.genum100_0 == GEnum100.const_0)
                     return;
                 // ISSUE: reference to a compiler-generated method
-                List<FCTShipData40> list = source.Where<FCTShipData40>(class478.method_1).ToList<FCTShipData40>();
+                List<ShipData> list = source.Where<ShipData>(class478.method_1).ToList<ShipData>();
                 double num9 = 0.0;
-                foreach (FCTShipData40 gclass40 in list)
+                foreach (ShipData gclass40 in list)
                     num9 += (double)gclass40.gclass5_0.genum99_0;
                 if (num9 == 0.0)
                     this.genum100_0 = GEnum100.const_1;
@@ -730,18 +730,18 @@ public class UnknownNPRFleetRelatedClass
         }
     }
 
-    public bool method_18(List<FCTShipData40> list_0)
+    public bool method_18(List<ShipData> list_0)
     {
         try
         {
-            foreach (FCTShipData40 gclass40 in list_0)
+            foreach (ShipData gclass40 in list_0)
             {
-                if (gclass40.gclass22_0.gclass14_0.MissileDesignType > MissileDesignType.const_0)
+                if (gclass40.gclass22_0.AutomatedClassDesign.MissileDesignType > MissileDesignType.const_0)
                 {
                     if (gclass40.gclass22_0.list_0.Count == 0)
                         return false;
                     Decimal num =
-                        gclass40.gclass22_0.list_0.Min<GClass130>(gclass130_0 => gclass130_0.gclass129_0.decimal_4);
+                        gclass40.gclass22_0.list_0.Min<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.Size);
                     if (gclass40.method_208() > num)
                         return true;
                 }

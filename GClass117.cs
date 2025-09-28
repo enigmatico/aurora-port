@@ -16,10 +16,10 @@ public class GClass117
     public AlienRaceInfo gclass110_0;
     public GClass115 gclass115_0;
     public GClass116 gclass116_0;
-    public FCTShipData40 gclass40_0;
+    public ShipData gclass40_0;
     public GameRace gclass21_0;
     public GameRace gclass21_1;
-    public SystemData200 gclass200_0;
+    public StarSystem gclass200_0;
     public int int_0;
     public int int_1;
     public int int_2;
@@ -47,14 +47,14 @@ public class GClass117
     {
         try
         {
-            foreach (JumpPoint120 gclass120 in this.gclass0_0.JumpPointDictionary.Values
-                         .Where<JumpPoint120>(gclass120_0 =>
-                             gclass120_0.SystemData == this.gclass40_0.gclass85_0.System.ActualSystemData)
-                         .Where<JumpPoint120>(gclass120_0 =>
+            foreach (JumpPoint gclass120 in this.gclass0_0.JumpPointDictionary.Values
+                         .Where<JumpPoint>(gclass120_0 =>
+                             gclass120_0.SystemData == this.gclass40_0.gclass85_0.System.ActualSystem)
+                         .Where<JumpPoint>(gclass120_0 =>
                              gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass21_1.RaceID))
-                         .Where<JumpPoint120>(
+                         .Where<JumpPoint>(
                              gclass120_0 => gclass120_0.RacialJumpPointSurveys[this.gclass21_1.RaceID].Charted == 1)
-                         .ToList<JumpPoint120>())
+                         .ToList<JumpPoint>())
             {
                 if (this.gclass0_0.GetDistanceBetween(gclass120.XCoord, gclass120.YCoord, this.gclass40_0.gclass85_0.XCoord,
                         this.gclass40_0.gclass85_0.YCoord) < int_5 * 30)
@@ -112,9 +112,9 @@ public class GClass117
         try
         {
             this.int_0 = int_5;
-            if (!this.gclass0_0.FCTShipDataDictionary.ContainsKey(this.int_0))
+            if (!this.gclass0_0.Ships.ContainsKey(this.int_0))
                 return;
-            this.gclass40_0 = this.gclass0_0.FCTShipDataDictionary[this.int_0];
+            this.gclass40_0 = this.gclass0_0.Ships[this.int_0];
         }
         catch (Exception ex)
         {
@@ -134,11 +134,11 @@ public class GClass117
                 gclass116 = new GClass116();
                 gclass116.double_0 = this.gclass40_0.gclass85_0.XCoord;
                 gclass116.double_1 = this.gclass40_0.gclass85_0.YCoord;
-                gclass116.int_1 = this.gclass40_0.gclass22_0.int_32;
+                gclass116.int_1 = this.gclass40_0.gclass22_0.MaxSpeed;
                 list_0.Add(gclass116);
             }
-            else if (this.gclass40_0.gclass22_0.int_32 > gclass116.int_1 && this.gclass40_0.gclass40_0 == null)
-                gclass116.int_1 = this.gclass40_0.gclass22_0.int_32;
+            else if (this.gclass40_0.gclass22_0.MaxSpeed > gclass116.int_1 && this.gclass40_0.gclass40_0 == null)
+                gclass116.int_1 = this.gclass40_0.gclass22_0.MaxSpeed;
 
             if (this.gclass115_0.int_6 > 0)
                 gclass116.double_2 +=
@@ -159,7 +159,7 @@ public class GClass117
         try
         {
             this.method_1();
-            this.decimal_4 = this.gclass115_0.gclass22_0.decimal_14 +
+            this.decimal_4 = this.gclass115_0.gclass22_0.Size +
                              this.gclass115_0.list_1.Sum<GClass119>(gclass119_0 =>
                                  gclass119_0.gclass230_0.decimal_2 * gclass119_0.int_1) +
                              this.gclass115_0.list_0.Sum<GClass118>(gclass118_0 => gclass118_0.gclass230_0.decimal_2);
@@ -170,7 +170,7 @@ public class GClass117
         }
     }
 
-    public void method_6(FCTShipData40 gclass40_1)
+    public void method_6(ShipData gclass40_1)
     {
         try
         {
@@ -234,12 +234,12 @@ public class GClass117
     {
         try
         {
-            Decimal num1 = Math.Round(this.gclass115_0.gclass22_0.decimal_14 + this.gclass40_0.decimal_3);
-            if (this.gclass115_0.gclass22_0.bool_2)
+            Decimal num1 = Math.Round(this.gclass115_0.gclass22_0.Size + this.gclass40_0.decimal_3);
+            if (this.gclass115_0.gclass22_0.Commercial)
                 num1 /= 10M;
             if (this.gclass116_0 == null)
                 return num1;
-            Decimal num2 = num1 / this.gclass21_1.DesignDoctrine.MissileStandard.decimal_4;
+            Decimal num2 = num1 / this.gclass21_1.DesignDoctrine.MissileStandard.Size;
             if ((Decimal)this.gclass116_0.double_2 > num2)
             {
                 double num3 = Math.Sqrt(this.gclass116_0.double_2 / (double)num2);
@@ -259,8 +259,8 @@ public class GClass117
     {
         try
         {
-            Decimal num = Math.Round(this.gclass115_0.gclass22_0.decimal_14 + this.gclass40_0.decimal_3);
-            if (this.gclass115_0.gclass22_0.bool_2)
+            Decimal num = Math.Round(this.gclass115_0.gclass22_0.Size + this.gclass40_0.decimal_3);
+            if (this.gclass115_0.gclass22_0.Commercial)
                 num /= 10M;
             return num;
         }
@@ -296,18 +296,18 @@ public class GClass117
         }
     }
 
-    public void method_10(FCTShipData40 gclass40_1)
+    public void method_10(ShipData gclass40_1)
     {
         try
         {
             this.decimal_0 = this.gclass0_0.GameTime;
-            this.gclass200_0 = gclass40_1.gclass85_0.System.ActualSystemData;
+            this.gclass200_0 = gclass40_1.gclass85_0.System.ActualSystem;
             this.double_0 = gclass40_1.gclass85_0.XCoord;
             this.double_1 = gclass40_1.gclass85_0.YCoord;
             this.int_1 = gclass40_1.gclass85_0.Speed;
             if (this.gclass110_0.dictionary_1.ContainsKey(this.gclass200_0.SystemID))
                 return;
-            RacialSystemSurvey gclass202 = this.gclass21_1.method_128(gclass40_1.gclass85_0.System.ActualSystemData);
+            RacialSystemSurvey gclass202 = this.gclass21_1.method_128(gclass40_1.gclass85_0.System.ActualSystem);
             string str = "";
             if (gclass202.AutoSystemProtectionStatus != AuroraSystemProtectionStatus.NoProtection)
             {
@@ -331,7 +331,7 @@ public class GClass117
             this.gclass110_0.dictionary_1.Add(this.gclass200_0.SystemID, this.gclass200_0);
             this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                 $"The {this.gclass110_0.AlienRaceName} has been detected in {gclass202.Name} for the first time.{str}",
-                this.gclass21_1, gclass202.ActualSystemData, gclass40_1.gclass85_0.XCoord, gclass40_1.gclass85_0.YCoord,
+                this.gclass21_1, gclass202.ActualSystem, gclass40_1.gclass85_0.XCoord, gclass40_1.gclass85_0.YCoord,
                 AuroraEventCategory.Intelligence);
         }
         catch (Exception ex)

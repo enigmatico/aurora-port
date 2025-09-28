@@ -389,46 +389,46 @@ public class RaceCreation : Form
             ParsedDecimal gclass208_17 = AuroraUtils.ParseDecimalString(this.txtFC.Text);
             if (gclass208_17.Succeed)
                 this.gclass146_0.method_64(AuroraInstallationType.FinancialCentre, gclass208_17.Value);
-            this.gclass146_0.SpeciesData.SpeciesName = this.txtSpeciesName.Text;
-            this.gclass146_0.SpeciesData.int_7 = Convert.ToInt32(this.txtDet.Text);
-            this.gclass146_0.SpeciesData.int_3 = Convert.ToInt32(this.txtDip.Text);
-            this.gclass146_0.SpeciesData.int_6 = Convert.ToInt32(this.txtExp.Text);
-            this.gclass146_0.SpeciesData.int_5 = Convert.ToInt32(this.txtMil.Text);
-            this.gclass146_0.SpeciesData.int_8 = Convert.ToInt32(this.txtTrade.Text);
-            this.gclass146_0.SpeciesData.int_4 = Convert.ToInt32(this.txtTrans.Text);
-            this.gclass146_0.SpeciesData.int_2 = Convert.ToInt32(this.txtXen.Text);
+            this.gclass146_0.Species.SpeciesName = this.txtSpeciesName.Text;
+            this.gclass146_0.Species.int_7 = Convert.ToInt32(this.txtDet.Text);
+            this.gclass146_0.Species.int_3 = Convert.ToInt32(this.txtDip.Text);
+            this.gclass146_0.Species.int_6 = Convert.ToInt32(this.txtExp.Text);
+            this.gclass146_0.Species.int_5 = Convert.ToInt32(this.txtMil.Text);
+            this.gclass146_0.Species.int_8 = Convert.ToInt32(this.txtTrade.Text);
+            this.gclass146_0.Species.int_4 = Convert.ToInt32(this.txtTrans.Text);
+            this.gclass146_0.Species.int_2 = Convert.ToInt32(this.txtXen.Text);
             ParsedDecimal gclass208_18 = AuroraUtils.ParseDecimalString(this.txtDensity.Text);
             if (gclass208_18.Succeed)
-                this.gclass146_0.SpeciesData.decimal_0 = gclass208_18.Value;
+                this.gclass146_0.Species.decimal_0 = gclass208_18.Value;
             ParsedDecimal gclass208_19 = AuroraUtils.ParseDecimalString(this.txtGrowth.Text);
             if (gclass208_19.Succeed)
-                this.gclass146_0.SpeciesData.decimal_1 = gclass208_19.Value;
+                this.gclass146_0.Species.decimal_1 = gclass208_19.Value;
             ParsedDecimal gclass208_20 = AuroraUtils.ParseDecimalString(this.txtProduction.Text);
             if (gclass208_20.Succeed)
-                this.gclass146_0.SpeciesData.decimal_3 = gclass208_20.Value;
+                this.gclass146_0.Species.decimal_3 = gclass208_20.Value;
             ParsedDecimal gclass208_21 = AuroraUtils.ParseDecimalString(this.txtResearch.Text);
             if (gclass208_21.Succeed)
-                this.gclass146_0.SpeciesData.decimal_2 = gclass208_21.Value;
-            this.gclass146_0.SpeciesData.double_5 = Convert.ToDouble(this.txtGravity.Text);
-            this.gclass146_0.SpeciesData.double_6 = Convert.ToDouble(this.txtGravityDev.Text);
-            this.gclass146_0.SpeciesData.double_3 = Convert.ToDouble(this.txtTemp.Text) + AuroraUtils.int_17;
-            this.gclass146_0.SpeciesData.double_4 = Convert.ToDouble(this.txtTempDev.Text);
-            this.gclass146_0.SpeciesData.double_0 = Convert.ToDouble(this.txtOxygen.Text);
-            this.gclass146_0.SpeciesData.double_1 = Convert.ToDouble(this.txtOxygenDev.Text);
-            this.gclass146_0.SpeciesData.double_2 = Convert.ToDouble(this.txtPressure.Text);
-            this.gclass146_0.SpeciesData.int_11 = Convert.ToInt32(this.txtGraduationAge.Text);
-            this.gclass146_0.SpeciesData.double_7 =
-                this.gclass146_0.SpeciesData.double_5 - this.gclass146_0.SpeciesData.double_6;
-            this.gclass146_0.SpeciesData.double_8 =
-                this.gclass146_0.SpeciesData.double_5 + this.gclass146_0.SpeciesData.double_6;
-            this.gclass146_0.SpeciesData.double_9 =
-                this.gclass146_0.SpeciesData.double_0 - this.gclass146_0.SpeciesData.double_1;
-            this.gclass146_0.SpeciesData.double_10 =
-                this.gclass146_0.SpeciesData.double_0 + this.gclass146_0.SpeciesData.double_1;
-            this.gclass146_0.SpeciesData.double_12 =
-                this.gclass146_0.SpeciesData.double_3 - this.gclass146_0.SpeciesData.double_4;
-            this.gclass146_0.SpeciesData.double_11 =
-                this.gclass146_0.SpeciesData.double_3 + this.gclass146_0.SpeciesData.double_4;
+                this.gclass146_0.Species.decimal_2 = gclass208_21.Value;
+            this.gclass146_0.Species.double_5 = Convert.ToDouble(this.txtGravity.Text);
+            this.gclass146_0.Species.double_6 = Convert.ToDouble(this.txtGravityDev.Text);
+            this.gclass146_0.Species.double_3 = Convert.ToDouble(this.txtTemp.Text) + AuroraUtils.int_17;
+            this.gclass146_0.Species.double_4 = Convert.ToDouble(this.txtTempDev.Text);
+            this.gclass146_0.Species.double_0 = Convert.ToDouble(this.txtOxygen.Text);
+            this.gclass146_0.Species.double_1 = Convert.ToDouble(this.txtOxygenDev.Text);
+            this.gclass146_0.Species.double_2 = Convert.ToDouble(this.txtPressure.Text);
+            this.gclass146_0.Species.int_11 = Convert.ToInt32(this.txtGraduationAge.Text);
+            this.gclass146_0.Species.double_7 =
+                this.gclass146_0.Species.double_5 - this.gclass146_0.Species.double_6;
+            this.gclass146_0.Species.double_8 =
+                this.gclass146_0.Species.double_5 + this.gclass146_0.Species.double_6;
+            this.gclass146_0.Species.double_9 =
+                this.gclass146_0.Species.double_0 - this.gclass146_0.Species.double_1;
+            this.gclass146_0.Species.double_10 =
+                this.gclass146_0.Species.double_0 + this.gclass146_0.Species.double_1;
+            this.gclass146_0.Species.double_12 =
+                this.gclass146_0.Species.double_3 - this.gclass146_0.Species.double_4;
+            this.gclass146_0.Species.double_11 =
+                this.gclass146_0.Species.double_3 + this.gclass146_0.Species.double_4;
             this.gclass21_0.bool_14 = true;
             this.bool_1 = true;
             this.Close();
@@ -443,12 +443,12 @@ public class RaceCreation : Form
     {
         try
         {
-            List<GClass194> list1 = this.gclass0_0.SpeciesDictionary.Values.ToList<GClass194>();
-            foreach (GClass194 gclass194 in list1)
+            List<Species> list1 = this.gclass0_0.SpeciesDictionary.Values.ToList<Species>();
+            foreach (Species gclass194 in list1)
                 gclass194.int_10 = 1;
             list1.Add(this.gclass1_0.gclass194_0);
-            List<GClass194> list2 = list1.OrderBy<GClass194, int>(gclass194_0 => gclass194_0.int_10)
-                .ThenBy<GClass194, string>(gclass194_0 => gclass194_0.SpeciesName).ToList<GClass194>();
+            List<Species> list2 = list1.OrderBy<Species, int>(gclass194_0 => gclass194_0.int_10)
+                .ThenBy<Species, string>(gclass194_0 => gclass194_0.SpeciesName).ToList<Species>();
             comboBox_0.DisplayMember = "SpeciesName";
             comboBox_0.DataSource = list2;
         }
@@ -464,28 +464,28 @@ public class RaceCreation : Form
         {
             if (this.cboSpecies.SelectedValue == null)
                 return;
-            this.gclass146_0.SpeciesData = (GClass194)this.cboSpecies.SelectedValue;
-            this.txtSpeciesName.Text = this.gclass146_0.SpeciesData.SpeciesName;
+            this.gclass146_0.Species = (Species)this.cboSpecies.SelectedValue;
+            this.txtSpeciesName.Text = this.gclass146_0.Species.SpeciesName;
             this.pbRace.Image =
-                Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass146_0.SpeciesData.string_0}");
-            this.txtGravity.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_5, 2);
-            this.txtGravityDev.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_6, 2);
-            this.txtTemp.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_3 - AuroraUtils.int_17, 2);
-            this.txtTempDev.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_4, 2);
-            this.txtOxygen.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_0, 2);
-            this.txtOxygenDev.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_1, 2);
-            this.txtPressure.Text = AuroraUtils.smethod_46(this.gclass146_0.SpeciesData.double_2, 2);
-            this.txtDensity.Text = AuroraUtils.smethod_45(this.gclass146_0.SpeciesData.decimal_0, 2);
-            this.txtGrowth.Text = AuroraUtils.smethod_45(this.gclass146_0.SpeciesData.decimal_1, 2);
-            this.txtResearch.Text = AuroraUtils.smethod_45(this.gclass146_0.SpeciesData.decimal_2, 2);
-            this.txtProduction.Text = AuroraUtils.smethod_45(this.gclass146_0.SpeciesData.decimal_3, 2);
-            this.txtDet.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_7);
-            this.txtDip.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_3);
-            this.txtExp.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_6);
-            this.txtMil.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_5);
-            this.txtTrade.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_8);
-            this.txtTrans.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_4);
-            this.txtXen.Text = AuroraUtils.smethod_37(this.gclass146_0.SpeciesData.int_2);
+                Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass146_0.Species.RaceImageFileName}");
+            this.txtGravity.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_5, 2);
+            this.txtGravityDev.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_6, 2);
+            this.txtTemp.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_3 - AuroraUtils.int_17, 2);
+            this.txtTempDev.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_4, 2);
+            this.txtOxygen.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_0, 2);
+            this.txtOxygenDev.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_1, 2);
+            this.txtPressure.Text = AuroraUtils.smethod_46(this.gclass146_0.Species.double_2, 2);
+            this.txtDensity.Text = AuroraUtils.smethod_45(this.gclass146_0.Species.decimal_0, 2);
+            this.txtGrowth.Text = AuroraUtils.smethod_45(this.gclass146_0.Species.decimal_1, 2);
+            this.txtResearch.Text = AuroraUtils.smethod_45(this.gclass146_0.Species.decimal_2, 2);
+            this.txtProduction.Text = AuroraUtils.smethod_45(this.gclass146_0.Species.decimal_3, 2);
+            this.txtDet.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_7);
+            this.txtDip.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_3);
+            this.txtExp.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_6);
+            this.txtMil.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_5);
+            this.txtTrade.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_8);
+            this.txtTrans.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_4);
+            this.txtXen.Text = AuroraUtils.smethod_37(this.gclass146_0.Species.int_2);
         }
         catch (Exception ex)
         {
@@ -501,11 +501,11 @@ public class RaceCreation : Form
             if (str != "")
             {
                 int num = str.LastIndexOf("\\");
-                this.gclass146_0.SpeciesData.string_0 = str.Substring(num + 1);
+                this.gclass146_0.Species.RaceImageFileName = str.Substring(num + 1);
             }
 
             this.pbRace.Image =
-                Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass146_0.SpeciesData.string_0}");
+                Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass146_0.Species.RaceImageFileName}");
         }
         catch (Exception ex)
         {
@@ -549,7 +549,7 @@ public class RaceCreation : Form
             this.txtShortName.Text = string_10;
             this.txtTitle.Text = this.gclass0_0.GenerateEmpireName(string_10);
             this.txtHomeworld.Text = string_10 + " Prime";
-            if (this.gclass146_0.SpeciesData.int_10 != 0)
+            if (this.gclass146_0.Species.int_10 != 0)
                 return;
             this.txtSpeciesName.Text = string_10;
         }

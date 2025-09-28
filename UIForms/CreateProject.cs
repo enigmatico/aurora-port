@@ -400,7 +400,7 @@ public class CreateProject : Form
             if (this.gclass169_0.ResearchCategoryType == ResearchCategoryType.NewSpecies)
                 this.gclass0_0.method_452(this.gclass21_0, (TechSystem)this.cboTech1.SelectedItem,
                     (TechSystem)this.cboTech2.SelectedItem, (TechSystem)this.cboTech3.SelectedItem,
-                    (TechSystem)this.cboTech4.SelectedItem, (GClass194)this.cboTech0.SelectedItem, this.txtDetails,
+                    (TechSystem)this.cboTech4.SelectedItem, (Species)this.cboTech0.SelectedItem, this.txtDetails,
                     this.txtProjectName, false);
             if (!this.chkNoNameUpdate.Checked)
                 return;

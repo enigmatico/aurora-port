@@ -7,7 +7,7 @@
 #nullable disable
 public class GClass78
 {
-    public GClass22 gclass22_0;
+    public ShipClass gclass22_0;
     public int int_0;
     public int int_1;
 }

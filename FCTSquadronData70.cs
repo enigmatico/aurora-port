@@ -13,7 +13,7 @@ using System.Linq;
 public class FCTSquadronData70
 {
     public GClass0 gclass0_0;
-    public FCTShipData40 ParentShipData;
+    public ShipData ParentShipData;
     public int SquadronID;
     public bool bool_0;
 
@@ -21,12 +21,12 @@ public class FCTSquadronData70
 
     public FCTSquadronData70(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public List<FCTShipData40> method_0()
+    public List<ShipData> method_0()
     {
         try
         {
-            return this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this).ToList<FCTShipData40>();
+            return this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this).ToList<ShipData>();
         }
         catch (Exception ex)
         {
@@ -40,7 +40,7 @@ public class FCTSquadronData70
         try
         {
             Decimal num = 0M;
-            foreach (FCTShipData40 gclass40 in this.method_0())
+            foreach (ShipData gclass40 in this.method_0())
                 num += gclass40.method_157(auroraComponentType_0, true);
             return num;
         }
@@ -56,7 +56,7 @@ public class FCTSquadronData70
         try
         {
             double num1 = 0.0;
-            foreach (FCTShipData40 gclass40 in this.method_0())
+            foreach (ShipData gclass40 in this.method_0())
             {
                 double num2 = gclass40.method_220();
                 if (num2 > num1)
@@ -77,7 +77,7 @@ public class FCTSquadronData70
         try
         {
             double num = 0.0;
-            foreach (FCTShipData40 gclass40 in this.method_0())
+            foreach (ShipData gclass40 in this.method_0())
             {
                 GClass71 gclass71 = gclass40.method_213(decimal_0, null);
                 if (gclass71.double_0 > num)
@@ -98,7 +98,7 @@ public class FCTSquadronData70
         try
         {
             double num1 = 0.0;
-            foreach (FCTShipData40 gclass40 in this.method_0())
+            foreach (ShipData gclass40 in this.method_0())
             {
                 double num2 = gclass40.method_178();
                 if (num2 > num1)
@@ -118,10 +118,10 @@ public class FCTSquadronData70
     {
         try
         {
-            List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(gclass40_1 =>
+            List<ShipData> list = this.gclass0_0.Ships.Values.Where<ShipData>(gclass40_1 =>
                     gclass40_1.SquadronData == this && gclass40_1.gclass40_0 == null && gclass40_1.gclass40_3 == null)
-                .ToList<FCTShipData40>();
-            return list.Count == 0 ? 1 : (int)list.Min<FCTShipData40>(gclass40_0 => gclass40_0.method_171(false));
+                .ToList<ShipData>();
+            return list.Count == 0 ? 1 : (int)list.Min<ShipData>(gclass40_0 => gclass40_0.method_171(false));
         }
         catch (Exception ex)
         {
@@ -135,7 +135,7 @@ public class FCTSquadronData70
         try
         {
             Decimal num = 0M;
-            foreach (FCTShipData40 gclass40 in this.method_0())
+            foreach (ShipData gclass40 in this.method_0())
                 num += gclass40.method_177();
             return num;
         }
@@ -150,9 +150,9 @@ public class FCTSquadronData70
     {
         try
         {
-            List<GClass55> list = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this)
-                .Select<FCTShipData40, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
+            List<GClass55> list = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this)
+                .Select<ShipData, GClass55>(gclass40_0 => gclass40_0.method_192(AuroraCommandType.Ship))
                 .ToList<GClass55>();
             return list.Count == 0
                 ? null
@@ -171,7 +171,7 @@ public class FCTSquadronData70
     {
         try
         {
-            return this.method_0().Sum<FCTShipData40>(gclass40_0 => gclass40_0.method_124());
+            return this.method_0().Sum<ShipData>(gclass40_0 => gclass40_0.method_124());
         }
         catch (Exception ex)
         {
@@ -184,9 +184,9 @@ public class FCTSquadronData70
     {
         try
         {
-            return (int)this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this && !gclass40_1.gclass22_0.bool_2)
-                .Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_14) * AuroraUtils.decimal_17;
+            return (int)this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this && !gclass40_1.gclass22_0.Commercial)
+                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size) * AuroraUtils.decimal_17;
         }
         catch (Exception ex)
         {
@@ -199,8 +199,8 @@ public class FCTSquadronData70
     {
         try
         {
-            return this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this).Sum<FCTShipData40>(gclass40_0 =>
+            return this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this).Sum<ShipData>(gclass40_0 =>
                     gclass40_0.method_157(AuroraComponentType.MaintenanceModule, false));
         }
         catch (Exception ex)
@@ -214,8 +214,8 @@ public class FCTSquadronData70
     {
         try
         {
-            return (int)this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this).Sum<FCTShipData40>(gclass40_0 =>
+            return (int)this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this).Sum<ShipData>(gclass40_0 =>
                     gclass40_0.method_157(AuroraComponentType.FuelStorage, false));
         }
         catch (Exception ex)
@@ -229,9 +229,9 @@ public class FCTSquadronData70
     {
         try
         {
-            return (int)this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this)
-                .Sum<FCTShipData40>(gclass40_0 => gclass40_0.method_172());
+            return (int)this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this)
+                .Sum<ShipData>(gclass40_0 => gclass40_0.method_172());
         }
         catch (Exception ex)
         {
@@ -244,9 +244,9 @@ public class FCTSquadronData70
     {
         try
         {
-            return this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this)
-                .Sum<FCTShipData40>(gclass40_0 => gclass40_0.decimal_4);
+            return this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this)
+                .Sum<ShipData>(gclass40_0 => gclass40_0.decimal_4);
         }
         catch (Exception ex)
         {
@@ -259,9 +259,9 @@ public class FCTSquadronData70
     {
         try
         {
-            return this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this)
-                .Sum<FCTShipData40>(gclass40_0 => gclass40_0.decimal_14);
+            return this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this)
+                .Sum<ShipData>(gclass40_0 => gclass40_0.decimal_14);
         }
         catch (Exception ex)
         {
@@ -274,8 +274,8 @@ public class FCTSquadronData70
     {
         try
         {
-            return (int)this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this).Sum<FCTShipData40>(gclass40_0 =>
+            return (int)this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this).Sum<ShipData>(gclass40_0 =>
                     gclass40_0.method_157(AuroraComponentType.TroopTransport, false));
         }
         catch (Exception ex)
@@ -289,8 +289,8 @@ public class FCTSquadronData70
     {
         try
         {
-            return this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this).Sum<FCTShipData40>(gclass40_0 =>
+            return this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this).Sum<ShipData>(gclass40_0 =>
                     gclass40_0.method_157(AuroraComponentType.CargoHold, false));
         }
         catch (Exception ex)
@@ -304,12 +304,12 @@ public class FCTSquadronData70
     {
         try
         {
-            return this.gclass0_0.FCTShipDataDictionary.Values
-                       .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this)
-                       .Sum<FCTShipData40>(gclass40_0 =>
+            return this.gclass0_0.Ships.Values
+                       .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this)
+                       .Sum<ShipData>(gclass40_0 =>
                            gclass40_0.method_157(AuroraComponentType.ColonistTransport, false)) +
-                   this.gclass0_0.FCTShipDataDictionary.Values
-                       .Where<FCTShipData40>(gclass40_1 => gclass40_1.SquadronData == this).Sum<FCTShipData40>(
+                   this.gclass0_0.Ships.Values
+                       .Where<ShipData>(gclass40_1 => gclass40_1.SquadronData == this).Sum<ShipData>(
                            gclass40_0 =>
                                gclass40_0.method_157(AuroraComponentType.PassengerModule, false));
         }

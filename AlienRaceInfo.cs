@@ -12,8 +12,8 @@ using System.Collections.Generic;
 public class AlienRaceInfo
 {
     private GClass0 gclass0_0;
-    public Dictionary<int, GClass194> dictionary_0 = new Dictionary<int, GClass194>();
-    public Dictionary<int, SystemData200> dictionary_1 = new Dictionary<int, SystemData200>();
+    public Dictionary<int, Species> dictionary_0 = new Dictionary<int, Species>();
+    public Dictionary<int, StarSystem> dictionary_1 = new Dictionary<int, StarSystem>();
     public Dictionary<int, GClass118> dictionary_2 = new Dictionary<int, GClass118>();
     public GameRace ActualAlienRace;
     public GameRace ViewingRace;
@@ -50,12 +50,12 @@ public class AlienRaceInfo
             AlienRaceInfo gclass110_1 = new AlienRaceInfo(this.gclass0_0);
             AlienRaceInfo gclass110_2 = (AlienRaceInfo)this.MemberwiseClone();
             gclass110_2.ViewingRace = gclass21_2;
-            gclass110_2.dictionary_0 = new Dictionary<int, GClass194>();
-            gclass110_2.dictionary_1 = new Dictionary<int, SystemData200>();
+            gclass110_2.dictionary_0 = new Dictionary<int, Species>();
+            gclass110_2.dictionary_1 = new Dictionary<int, StarSystem>();
             gclass110_2.dictionary_2 = new Dictionary<int, GClass118>();
-            foreach (KeyValuePair<int, GClass194> keyValuePair in this.dictionary_0)
+            foreach (KeyValuePair<int, Species> keyValuePair in this.dictionary_0)
                 gclass110_2.dictionary_0.Add(keyValuePair.Key, keyValuePair.Value);
-            foreach (KeyValuePair<int, SystemData200> keyValuePair in this.dictionary_1)
+            foreach (KeyValuePair<int, StarSystem> keyValuePair in this.dictionary_1)
                 gclass110_2.dictionary_1.Add(keyValuePair.Key, keyValuePair.Value);
             foreach (GClass118 gclass118_1 in this.dictionary_2.Values)
             {

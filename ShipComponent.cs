@@ -403,7 +403,7 @@ public class ShipComponent
                 case AuroraComponentType.EMSensors:
                     double num2 = this.method_11(1000M);
                     return
-                        $"{this.Name} ({decimal_19.ToString()})     Sensitivity {this.decimal_3.ToString()}     Detect Sig Strength 1000:  {AuroraUtils.smethod_44(num2 / 1000000.0, 1)}m km{Environment.NewLine}";
+                        $"{this.Name} ({decimal_19.ToString()})     Sensitivity {this.decimal_3.ToString()}     Detect Sig Strength 1000:  {AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1)}m km{Environment.NewLine}";
                 case AuroraComponentType.Shields:
                     Decimal num3 = this.decimal_7 * decimal_19;
                     return
@@ -425,14 +425,14 @@ public class ShipComponent
                         : $"{this.Name} ({decimal_19.ToString()})     Missile Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
                 case AuroraComponentType.ActiveSearchSensors:
                     string str2 = this.double_0 <= 1000000.0
-                        ? $"     Range {AuroraUtils.smethod_44(this.double_0 / 1000.0, 1)}k km    "
-                        : $"     Range {AuroraUtils.smethod_44(this.double_0 / 1000000.0, 1)}m km    ";
+                        ? $"     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    "
+                        : $"     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    ";
                     if (this.decimal_6 == 1M)
                     {
                         double num4 = Math.Pow(AuroraUtils.double_20, 2.0) * this.double_0;
                         str2 = num4 < 1000000.0
-                            ? $"{str2}MCR {AuroraUtils.smethod_44(num4 / 1000.0, 1)}k km    "
-                            : $"{str2}MCR {AuroraUtils.smethod_44(num4 / 1000000.0, 1)}m km    ";
+                            ? $"{str2}MCR {AuroraUtils.FormatDoubleToPrecision(num4 / 1000.0, 1)}k km    "
+                            : $"{str2}MCR {AuroraUtils.FormatDoubleToPrecision(num4 / 1000000.0, 1)}m km    ";
                     }
 
                     return
@@ -441,15 +441,15 @@ public class ShipComponent
                     if (this.decimal_13 > 0M)
                         str1 = "   ECCM-" + AuroraUtils.smethod_38(this.decimal_13);
                     return this.double_0 > 1000000.0
-                        ? $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.smethod_44(this.double_0 / 1000000.0, 1)}m km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}"
-                        : $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.smethod_44(this.double_0 / 1000.0, 1)}k km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}";
+                        ? $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1)}m km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}"
+                        : $"{this.Name} ({decimal_19.ToString()})     Range {AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1)}k km    Resolution {this.decimal_6.ToString()}{str1}{Environment.NewLine}";
                 case AuroraComponentType.FighterPodBay:
                     return
                         $"{this.Name} ({decimal_19.ToString()})     Pod Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
                 case AuroraComponentType.ELINTModule:
                     double num5 = this.method_12(1000M, decimal_19);
                     return
-                        $"ELINT Module ({decimal_19.ToString()})     Sensitivity {(this.decimal_3 * decimal_19).ToString()}     Detect Sig Strength 1000:  {AuroraUtils.smethod_44(num5 / 1000000.0, 1)}m km{Environment.NewLine}";
+                        $"ELINT Module ({decimal_19.ToString()})     Sensitivity {(this.decimal_3 * decimal_19).ToString()}     Detect Sig Strength 1000:  {AuroraUtils.FormatDoubleToPrecision(num5 / 1000000.0, 1)}m km{Environment.NewLine}";
                 case AuroraComponentType.DecoyMissileLauncher:
                     return
                         $"{this.Name} ({decimal_19.ToString()})     Decoy Size: {this.decimal_3.ToString()}    Hangar Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 60, 1)} minutes    MF Reload {AuroraUtils.FormatNumberToDigits(this.int_11 / 360, 1)} hours{Environment.NewLine}";
@@ -496,7 +496,7 @@ public class ShipComponent
                 case AuroraComponentType.ThermalSensors:
                 case AuroraComponentType.EMSensors:
                     str1 =
-                        $"{$"{$"{str1}Sensitivity {this.decimal_3.ToString()}{Environment.NewLine}"}Detect Sig Strength 100:  {AuroraUtils.smethod_44(Math.Sqrt((double)this.decimal_3 * 100.0) * AuroraUtils.double_18 / 1000000.0, 2)}m km{Environment.NewLine}"}Detect Sig Strength 1000:  {AuroraUtils.smethod_44(Math.Sqrt((double)this.decimal_3 * 1000.0) * AuroraUtils.double_18 / 1000000.0, 2)}m km{Environment.NewLine}";
+                        $"{$"{$"{str1}Sensitivity {this.decimal_3.ToString()}{Environment.NewLine}"}Detect Sig Strength 100:  {AuroraUtils.FormatDoubleToPrecision(Math.Sqrt((double)this.decimal_3 * 100.0) * AuroraUtils.double_18 / 1000000.0, 2)}m km{Environment.NewLine}"}Detect Sig Strength 1000:  {AuroraUtils.FormatDoubleToPrecision(Math.Sqrt((double)this.decimal_3 * 1000.0) * AuroraUtils.double_18 / 1000000.0, 2)}m km{Environment.NewLine}";
                     break;
                 case AuroraComponentType.Shields:
                     str1 =
@@ -534,14 +534,14 @@ public class ShipComponent
                 case AuroraComponentType.ActiveSearchSensors:
                 case AuroraComponentType.MissileFireControl:
                     string str4 = this.double_0 <= 1000000.0
-                        ? AuroraUtils.smethod_44(this.double_0 / 1000.0, 1) + "k km    "
-                        : AuroraUtils.smethod_44(this.double_0 / 1000000.0, 1) + "m km    ";
+                        ? AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000.0, 1) + "k km    "
+                        : AuroraUtils.FormatDoubleToPrecision(this.double_0 / 1000000.0, 1) + "m km    ";
                     if (this.decimal_6 == 1M)
                     {
                         double num2 = Math.Pow(AuroraUtils.double_20, 2.0) * this.double_0;
                         str4 = num2 < 1000000.0
-                            ? $"{str4}MCR {AuroraUtils.smethod_44(num2 / 1000.0, 1)}k km    "
-                            : $"{str4}MCR {AuroraUtils.smethod_44(num2 / 1000000.0, 1)}m km    ";
+                            ? $"{str4}MCR {AuroraUtils.FormatDoubleToPrecision(num2 / 1000.0, 1)}k km    "
+                            : $"{str4}MCR {AuroraUtils.FormatDoubleToPrecision(num2 / 1000000.0, 1)}m km    ";
                     }
 
                     str1 =
@@ -611,8 +611,8 @@ public class ShipComponent
         try
         {
             return double_2 > 1000000.0
-                ? AuroraUtils.smethod_44(double_2 / 1000000.0, 1) + "m km"
-                : AuroraUtils.smethod_44(double_2 / 1000.0, 1) + "k km";
+                ? AuroraUtils.FormatDoubleToPrecision(double_2 / 1000000.0, 1) + "m km"
+                : AuroraUtils.FormatDoubleToPrecision(double_2 / 1000.0, 1) + "k km";
         }
         catch (Exception ex)
         {

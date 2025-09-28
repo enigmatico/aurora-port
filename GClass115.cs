@@ -49,7 +49,7 @@ public class GClass115
     public List<GClass119> list_1 = new List<GClass119>();
     public List<TechSystem> list_2 = new List<TechSystem>();
     public AlienRaceInfo gclass110_0;
-    public GClass22 gclass22_0;
+    public ShipClass gclass22_0;
     public GameRace gclass21_0;
     public GameRace gclass21_1;
     public ShipHull gclass76_0;
@@ -80,24 +80,24 @@ public class GClass115
 
     public GClass115(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public void method_0(GClass235 gclass235_0)
+    public void method_0(WreckComponents gclass235_0)
     {
         try
         {
-            if (gclass235_0.gclass230_0.bool_11)
-                this.method_11(null, gclass235_0.gclass230_0, 0.0, gclass235_0.int_0);
-            else if (gclass235_0.gclass230_0.gclass231_0.ComponentTypeID ==
+            if (gclass235_0.Component.bool_11)
+                this.method_11(null, gclass235_0.Component, 0.0, gclass235_0.Amount);
+            else if (gclass235_0.Component.gclass231_0.ComponentTypeID ==
                      AuroraComponentType.ActiveSearchSensors ||
-                     gclass235_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.EMSensors ||
-                     gclass235_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.ThermalSensors)
-                this.list_0.Add(this.gclass21_1.method_41(gclass235_0.gclass230_0, this.gclass110_0));
-            this.method_1(gclass235_0.gclass230_0.int_16);
-            this.method_1(gclass235_0.gclass230_0.int_17);
-            this.method_1(gclass235_0.gclass230_0.int_18);
-            this.method_1(gclass235_0.gclass230_0.int_19);
-            this.method_1(gclass235_0.gclass230_0.int_20);
-            this.method_1(gclass235_0.gclass230_0.int_21);
-            this.method_1(gclass235_0.gclass230_0.int_22);
+                     gclass235_0.Component.gclass231_0.ComponentTypeID == AuroraComponentType.EMSensors ||
+                     gclass235_0.Component.gclass231_0.ComponentTypeID == AuroraComponentType.ThermalSensors)
+                this.list_0.Add(this.gclass21_1.method_41(gclass235_0.Component, this.gclass110_0));
+            this.method_1(gclass235_0.Component.int_16);
+            this.method_1(gclass235_0.Component.int_17);
+            this.method_1(gclass235_0.Component.int_18);
+            this.method_1(gclass235_0.Component.int_19);
+            this.method_1(gclass235_0.Component.int_20);
+            this.method_1(gclass235_0.Component.int_21);
+            this.method_1(gclass235_0.Component.int_22);
         }
         catch (Exception ex)
         {
@@ -247,14 +247,14 @@ public class GClass115
             GClass115.Class1068 class1068 = new GClass115.Class1068();
             if (!this.gclass21_1.NPR && this.gclass21_0.NPR)
                 this.gclass22_0.ClassName = this.ClassName;
-            this.int_1 = this.gclass22_0.int_2;
-            this.int_2 = this.gclass22_0.int_32;
-            this.int_3 = this.gclass22_0.int_28;
-            this.decimal_5 = this.gclass22_0.decimal_18;
-            this.decimal_6 = this.gclass22_0.decimal_19;
-            this.decimal_7 = this.gclass22_0.decimal_20;
-            this.decimal_4 = this.gclass22_0.int_42;
-            this.decimal_0 = this.gclass22_0.int_40;
+            this.int_1 = this.gclass22_0.ArmourThickness;
+            this.int_2 = this.gclass22_0.MaxSpeed;
+            this.int_3 = this.gclass22_0.JumpDistance;
+            this.decimal_5 = this.gclass22_0.ActiveJammerStrength;
+            this.decimal_6 = this.gclass22_0.FireControlJammerStrength;
+            this.decimal_7 = this.gclass22_0.MissileJammerStrength;
+            this.decimal_4 = this.gclass22_0.ShieldStrength;
+            this.decimal_0 = this.gclass22_0.PassiveSensorStrength;
             this.ClassName = this.gclass22_0.ClassName;
             this.list_0.Clear();
             foreach (ShipComponent gclass230 in this.gclass22_0.dictionary_0.Values
@@ -286,7 +286,7 @@ public class GClass115
                         double_0 = class1069.gclass230_0.double_0,
                         double_1 = 500.0,
                         gclass230_0 = class1069.gclass230_0,
-                        gclass21_1 = this.gclass22_0.gclass21_0,
+                        gclass21_1 = this.gclass22_0.Race,
                         gclass21_0 = this.gclass21_1
                     };
                     gclass118.string_0 = "AS " + gclass118.int_0.ToString();
@@ -471,7 +471,7 @@ public class GClass115
                 return;
             this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                 $"Based on observation of {gclass117_0.string_0}, intelligence on the weapons of the {this.method_13()} class has been updated: ",
-                this.gclass21_1, gclass117_0.gclass40_0.gclass85_0.System.ActualSystemData,
+                this.gclass21_1, gclass117_0.gclass40_0.gclass85_0.System.ActualSystem,
                 gclass117_0.gclass40_0.gclass85_0.XCoord, gclass117_0.gclass40_0.gclass85_0.YCoord,
                 AuroraEventCategory.Intelligence);
         }
@@ -508,28 +508,28 @@ public class GClass115
         }
     }
 
-    public void method_14(GClass65 gclass65_0)
+    public void method_14(Contact gclass65_0)
     {
         try
         {
-            if (gclass65_0.genum10_0 == GEnum10.const_0)
+            if (gclass65_0.ContactMethod == ContactDetectMethod.const_0)
             {
-                if (gclass65_0.decimal_0 > this.decimal_3)
-                    this.decimal_3 = gclass65_0.decimal_0;
+                if (gclass65_0.ContactStrength > this.decimal_3)
+                    this.decimal_3 = gclass65_0.ContactStrength;
             }
-            else if (gclass65_0.genum10_0 == GEnum10.const_1)
+            else if (gclass65_0.ContactMethod == ContactDetectMethod.const_1)
             {
-                if (gclass65_0.decimal_0 > this.decimal_0)
-                    this.decimal_0 = gclass65_0.decimal_0;
-                if (gclass65_0.int_5 > 1 && this.genum70_0 == EngineDesignType.const_0)
-                    this.genum70_0 = !gclass65_0.gclass40_0.gclass22_0.bool_8 ? EngineDesignType.const_2 : EngineDesignType.const_1;
+                if (gclass65_0.ContactStrength > this.decimal_0)
+                    this.decimal_0 = gclass65_0.ContactStrength;
+                if (gclass65_0.Speed > 1 && this.genum70_0 == EngineDesignType.const_0)
+                    this.genum70_0 = !gclass65_0.TargetShip.gclass22_0.MilitaryEngines ? EngineDesignType.const_2 : EngineDesignType.const_1;
             }
-            else if (gclass65_0.genum10_0 == GEnum10.const_3 && gclass65_0.decimal_0 > this.decimal_4 * 30M)
-                this.decimal_4 = gclass65_0.decimal_0 / 30M;
+            else if (gclass65_0.ContactMethod == ContactDetectMethod.const_3 && gclass65_0.ContactStrength > this.decimal_4 * 30M)
+                this.decimal_4 = gclass65_0.ContactStrength / 30M;
 
-            if (gclass65_0.int_5 <= this.int_2)
+            if (gclass65_0.Speed <= this.int_2)
                 return;
-            this.int_2 = gclass65_0.int_5;
+            this.int_2 = gclass65_0.Speed;
         }
         catch (Exception ex)
         {

@@ -18,9 +18,9 @@ public class GClass29
     private sealed class staticCompGen
     {
         public static readonly GClass29.staticCompGen staticCompMem;
-        public static Func<GClass132, Decimal> staticCompMem__6_0;
-        public static Func<GClass132, int> staticCompMem__6_1;
-        public static Func<GClass132, int> staticCompMem__6_2;
+        public static Func<MissileSalvo, Decimal> staticCompMem__6_0;
+        public static Func<MissileSalvo, int> staticCompMem__6_1;
+        public static Func<MissileSalvo, int> staticCompMem__6_2;
         public static Func<KeyValuePair<int, int>, int> staticCompMem__6_3;
         public static Func<KeyValuePair<int, int>, int> staticCompMem__6_4;
         public static Func<KeyValuePair<int, int>, int> staticCompMem__6_5;
@@ -31,19 +31,19 @@ public class GClass29
             GClass29.staticCompGen.staticCompMem = new GClass29.staticCompGen();
         }
 
-        internal Decimal method_0(GClass132 gclass132_0)
+        internal Decimal method_0(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass129_0.decimal_5;
+            return gclass132_0.RaceMissile.Speed;
         }
 
-        internal int method_1(GClass132 gclass132_0)
+        internal int method_1(MissileSalvo gclass132_0)
         {
-            return gclass132_0.dictionary_2.Count;
+            return gclass132_0.RemainingDecoys.Count;
         }
 
-        internal int method_2(GClass132 gclass132_0)
+        internal int method_2(MissileSalvo gclass132_0)
         {
-            return gclass132_0.dictionary_2.Count * gclass132_0.gclass129_0.int_7;
+            return gclass132_0.RemainingDecoys.Count * gclass132_0.RaceMissile.NumDecoys;
         }
 
         internal int method_3(KeyValuePair<int, int> keyValuePair_0)
@@ -67,18 +67,18 @@ public class GClass29
         }
     }
 
-    public List<GClass132> list_0 = new List<GClass132>();
+    public List<MissileSalvo> list_0 = new List<MissileSalvo>();
     public GClass0 gclass0_0;
     public GameRace gclass21_0;
-    public SystemData200 gclass200_0;
+    public StarSystem gclass200_0;
     public GClass221 gclass221_0;
 
     public GClass29(
         GClass0 gclass0_1,
         GClass221 gclass221_1,
         GameRace gclass21_1,
-        SystemData200 gclass200_1,
-        GClass132 gclass132_0)
+        StarSystem gclass200_1,
+        MissileSalvo gclass132_0)
     {
         this.gclass0_0 = gclass0_1;
         this.gclass221_0 = gclass221_1;
@@ -92,10 +92,10 @@ public class GClass29
         try
         {
             Dictionary<int, int> source = new Dictionary<int, int>();
-            int int_0 = (int)this.list_0.Max<GClass132>(gclass132_0 => gclass132_0.gclass129_0.decimal_5);
-            int num1 = this.list_0.Sum<GClass132>(gclass132_0 => gclass132_0.dictionary_2.Count);
-            int num2 = this.list_0.Sum<GClass132>(gclass132_0 =>
-                gclass132_0.dictionary_2.Count * gclass132_0.gclass129_0.int_7);
+            int int_0 = (int)this.list_0.Max<MissileSalvo>(gclass132_0 => gclass132_0.RaceMissile.Speed);
+            int num1 = this.list_0.Sum<MissileSalvo>(gclass132_0 => gclass132_0.RemainingDecoys.Count);
+            int num2 = this.list_0.Sum<MissileSalvo>(gclass132_0 =>
+                gclass132_0.RemainingDecoys.Count * gclass132_0.RaceMissile.NumDecoys);
             if (num1 > 0)
             {
                 Decimal num3 = 0M;
@@ -104,15 +104,15 @@ public class GClass29
                 int num4 = this.gclass21_0.UnknownNprClass.method_11(this.gclass200_0, this.gclass221_0, int_0);
                 if (num4 == 0)
                     return;
-                foreach (GClass132 gclass132 in this.list_0)
+                foreach (MissileSalvo gclass132 in this.list_0)
                 {
                     int key = (int)(this.gclass0_0.GetDistanceBetween(gclass132.double_0, gclass132.double_1,
                         this.gclass221_0.double_0,
-                        this.gclass221_0.double_1) / (double)gclass132.gclass129_0.decimal_5);
+                        this.gclass221_0.double_1) / (double)gclass132.RaceMissile.Speed);
                     if (source.ContainsKey(key))
-                        source[key] += gclass132.dictionary_2.Count;
+                        source[key] += gclass132.RemainingDecoys.Count;
                     else
-                        source.Add(key, gclass132.dictionary_2.Count);
+                        source.Add(key, gclass132.RemainingDecoys.Count);
                 }
 
                 source.OrderBy<KeyValuePair<int, int>, int>(keyValuePair_0 => keyValuePair_0.Key)
@@ -132,7 +132,7 @@ public class GClass29
                 }
             }
 
-            foreach (GClass132 gclass132 in this.list_0)
+            foreach (MissileSalvo gclass132 in this.list_0)
             {
                 if (gclass132.auroraContactType_0 != AuroraContactType.WayPoint)
                     gclass132.bool_3 = true;

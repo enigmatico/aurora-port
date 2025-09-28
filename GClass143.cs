@@ -62,10 +62,10 @@ public class GClass143
     public GClass143(GClass0 gclass0_1)
     {
         this.gclass0_0 = gclass0_1;
-        this.string_5 = AuroraUtils.smethod_19("ShipIcons");
-        this.string_6 = AuroraUtils.smethod_19("StationIcons");
-        this.string_4 = AuroraUtils.smethod_19("Flags");
-        this.string_3 = AuroraUtils.smethod_19("Races");
+        this.string_5 = AuroraUtils.GetRandomImageFileNameFromFolder("ShipIcons");
+        this.string_6 = AuroraUtils.GetRandomImageFileNameFromFolder("StationIcons");
+        this.string_4 = AuroraUtils.GetRandomImageFileNameFromFolder("Flags");
+        this.string_3 = AuroraUtils.GetRandomImageFileNameFromFolder("Races");
         this.string_0 = this.gclass0_0.method_551();
         this.string_1 = this.gclass0_0.GenerateEmpireName(this.string_0);
         this.string_2 = this.string_0 + " Prime";

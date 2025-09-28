@@ -15,8 +15,8 @@ using System.Windows.Forms;
 public partial class RacialSystemSurvey
 {
     public Dictionary<AlienRaceInfo, AlienRaceSystemStatus> dictionary_0 = new Dictionary<AlienRaceInfo, AlienRaceSystemStatus>();
-    public List<FCTShipData40> list_0 = new List<FCTShipData40>();
-    public SystemData200 ActualSystemData;
+    public List<ShipData> list_0 = new List<ShipData>();
+    public StarSystem ActualSystem;
     public GameRace Race;
     public AlienRaceInfo gclass110_0;
     public GClass62 gclass62_0;
@@ -56,9 +56,9 @@ public partial class RacialSystemSurvey
     public Decimal decimal_7;
     public string string_3 = "";
     public Decimal decimal_8;
-    public List<FCTShipData40> list_1 = new List<FCTShipData40>();
+    public List<ShipData> list_1 = new List<ShipData>();
     public List<PopulationData> list_2 = new List<PopulationData>();
-    public List<GClass132> list_3 = new List<GClass132>();
+    public List<MissileSalvo> list_3 = new List<MissileSalvo>();
     public RacialSystemSurvey gclass202_0;
     public RacialSystemSurvey gclass202_1;
     public int int_10;
@@ -68,11 +68,11 @@ public partial class RacialSystemSurvey
     public List<SystemBodyData> list_5 = new List<SystemBodyData>();
     public FleetData gclass85_0;
     public SystemBodyData gclass1_0;
-    public GClass132 gclass132_0;
+    public MissileSalvo gclass132_0;
     public GClass221 gclass221_0 = new GClass221(0.0, 0.0);
     public List<SystemBodyData> list_6 = new List<SystemBodyData>();
-    public List<JumpPoint120> list_7 = new List<JumpPoint120>();
-    public List<JumpPoint120> list_8 = new List<JumpPoint120>();
+    public List<JumpPoint> list_7 = new List<JumpPoint>();
+    public List<JumpPoint> list_8 = new List<JumpPoint>();
     public int int_11;
     public int int_12 = 1;
     public int int_13;
@@ -131,12 +131,12 @@ public partial class RacialSystemSurvey
                 return list_9;
             // ISSUE: reference to a compiler-generated field
             class1182.list_0 = this.gclass0_0.JumpPointDictionary.Values
-                .Where<JumpPoint120>(gclass120_0 =>
-                    gclass120_0.SystemData == this.ActualSystemData &&
+                .Where<JumpPoint>(gclass120_0 =>
+                    gclass120_0.SystemData == this.ActualSystem &&
                     gclass120_0.RacialJumpPointSurveys[this.Race.RaceID].MilitaryRestricted == 0 &&
                     gclass120_0.RacialJumpPointSurveys[this.Race.RaceID].Explored == 1)
-                .Select<JumpPoint120, SystemData200>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
-                .ToList<SystemData200>();
+                .Select<JumpPoint, StarSystem>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
+                .ToList<StarSystem>();
             // ISSUE: reference to a compiler-generated method
             return list_9.Where<RacialSystemSurvey>(class1182.method_0).ToList<RacialSystemSurvey>();
         }
@@ -167,7 +167,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            return this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0 == this)
+            return this.gclass0_0.Populations.Values.Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0 == this)
                 .Sum<PopulationData>(gclass146_0 => gclass146_0.method_190());
         }
         catch (Exception ex)
@@ -192,9 +192,9 @@ public partial class RacialSystemSurvey
                     gclass110_1.ActualAlienRace == this.gclass110_0.ActualAlienRace);
             if (gclass21_1.NPR)
                 this.gclass3_0 = new GClass3(this.gclass0_0, gclass202_1);
-            gclass202_1.list_1 = new List<FCTShipData40>();
+            gclass202_1.list_1 = new List<ShipData>();
             gclass202_1.list_2 = new List<PopulationData>();
-            gclass202_1.list_3 = new List<GClass132>();
+            gclass202_1.list_3 = new List<MissileSalvo>();
             gclass202_1.dictionary_0 = new Dictionary<AlienRaceInfo, AlienRaceSystemStatus>();
             foreach (KeyValuePair<AlienRaceInfo, AlienRaceSystemStatus> keyValuePair in this.dictionary_0)
             {
@@ -227,7 +227,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            foreach (PopulationData gclass146_1 in this.gclass0_0.PopulationDataDictionary.Values
+            foreach (PopulationData gclass146_1 in this.gclass0_0.Populations.Values
                          .Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0 == this).ToList<PopulationData>())
                 this.Race.method_132(gclass146_1);
         }
@@ -241,13 +241,13 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            List<PopulationData> list1 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(gclass146_0 =>
+            List<PopulationData> list1 = this.gclass0_0.Populations.Values.Where<PopulationData>(gclass146_0 =>
             {
                 if (gclass146_0.gclass202_0 != this)
                     return false;
                 return gclass146_0.Population > 0.01M || gclass146_0.dictionary_0.Count > 0;
             }).ToList<PopulationData>();
-            List<PopulationData> list2 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(gclass146_0 =>
+            List<PopulationData> list2 = this.gclass0_0.Populations.Values.Where<PopulationData>(gclass146_0 =>
                 gclass146_0.gclass202_0 == this && gclass146_0.Population <= 0.01M &&
                 gclass146_0.dictionary_0.Count == 0).ToList<PopulationData>();
             foreach (PopulationData gclass146 in list1)
@@ -320,8 +320,8 @@ public partial class RacialSystemSurvey
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            RacialSystemSurvey gclass202 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1184.method_0)
-                .Select<JumpPoint120, RacialSystemSurvey>(class1184.method_1)
+            RacialSystemSurvey gclass202 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1184.method_0)
+                .Select<JumpPoint, RacialSystemSurvey>(class1184.method_1)
                 .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0 != null)
                 .OrderBy<RacialSystemSurvey, Decimal>(gclass202_0 => gclass202_0.DiscoveredTime).FirstOrDefault<RacialSystemSurvey>();
             if (gclass202 != null)
@@ -416,7 +416,7 @@ public partial class RacialSystemSurvey
         try
         {
             return this.gclass0_0.MassDriverPacketsDictionary.Values.Where<FCTMassDriverPacket126>(gclass126_0 =>
-                    gclass126_0.System == this.ActualSystemData && gclass126_0.Race == this.Race)
+                    gclass126_0.System == this.ActualSystem && gclass126_0.Race == this.Race)
                 .ToList<FCTMassDriverPacket126>();
         }
         catch (Exception ex)
@@ -426,7 +426,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public JumpPoint120 method_11(RacialSystemSurvey gclass202_2)
+    public JumpPoint method_11(RacialSystemSurvey gclass202_2)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -440,8 +440,8 @@ public partial class RacialSystemSurvey
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1186.method_0)
-                .Where<JumpPoint120>(class1186.method_1).FirstOrDefault<JumpPoint120>(class1186.method_2);
+            return this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1186.method_0)
+                .Where<JumpPoint>(class1186.method_1).FirstOrDefault<JumpPoint>(class1186.method_2);
         }
         catch (Exception ex)
         {
@@ -488,7 +488,7 @@ public partial class RacialSystemSurvey
             Dictionary<int, RacialSystemSurvey> dictionary = new Dictionary<int, RacialSystemSurvey>();
             List<RacialSystemSurvey> gclass202List1 = new List<RacialSystemSurvey>();
             List<RacialSystemSurvey> gclass202List2 = new List<RacialSystemSurvey>();
-            dictionary.Add(this.ActualSystemData.SystemID, this);
+            dictionary.Add(this.ActualSystem.SystemID, this);
             gclass202List1.Add(this);
             while (true)
             {
@@ -513,7 +513,7 @@ public partial class RacialSystemSurvey
                     foreach (RacialSystemSurvey gclass202 in gclass202List2)
                     {
                         gclass202List1.Add(gclass202);
-                        dictionary.Add(gclass202.ActualSystemData.SystemID, gclass202);
+                        dictionary.Add(gclass202.ActualSystem.SystemID, gclass202);
                     }
 
                     gclass202List2.Clear();
@@ -536,17 +536,17 @@ public partial class RacialSystemSurvey
         try
         {
             listView_0.Items.Clear();
-            foreach (GClass214 object_1 in this.method_15())
+            foreach (Waypoint object_1 in this.method_15())
             {
-                if (object_1.wayPointType_0 != WayPointType.TransitPOI || this.Race.NPR)
+                if (object_1.WaypointType != WayPointType.TransitPOI || this.Race.NPR)
                 {
                     string string_12 = "";
                     if (object_1.Name != "")
                         string_12 = object_1.Name;
-                    else if (object_1.gclass1_0 != null)
-                        string_12 = object_1.gclass1_0.method_78(this.Race);
-                    this.gclass0_0.method_602(listView_0, object_1.int_3.ToString(),
-                        AuroraUtils.smethod_82(object_1.wayPointType_0), string_12, object_1);
+                    else if (object_1.OrbitBody != null)
+                        string_12 = object_1.OrbitBody.method_78(this.Race);
+                    this.gclass0_0.method_602(listView_0, object_1.Number.ToString(),
+                        AuroraUtils.smethod_82(object_1.WaypointType), string_12, object_1);
                 }
             }
         }
@@ -556,14 +556,14 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public List<GClass214> method_15()
+    public List<Waypoint> method_15()
     {
         try
         {
-            return this.gclass0_0.dictionary_13.Values
-                .Where<GClass214>(gclass214_0 =>
-                    gclass214_0.gclass200_0 == this.ActualSystemData && gclass214_0.gclass21_0 == this.Race)
-                .OrderBy<GClass214, int>(gclass214_0 => gclass214_0.int_3).ToList<GClass214>();
+            return this.gclass0_0.Waypoints.Values
+                .Where<Waypoint>(gclass214_0 =>
+                    gclass214_0.System == this.ActualSystem && gclass214_0.Race == this.Race)
+                .OrderBy<Waypoint, int>(gclass214_0 => gclass214_0.Number).ToList<Waypoint>();
         }
         catch (Exception ex)
         {
@@ -576,8 +576,8 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            return this.gclass0_0.dictionary_28.Values.FirstOrDefault<GClass65>(gclass65_0 =>
-                gclass65_0.gclass200_0 == this.ActualSystemData && gclass65_0.gclass21_1 == this.Race &&
+            return this.gclass0_0.Contacts.Values.FirstOrDefault<Contact>(gclass65_0 =>
+                gclass65_0.System == this.ActualSystem && gclass65_0.DetectRace == this.Race &&
                 gclass65_0.method_5() == AuroraContactStatus.Hostile) != null;
         }
         catch (Exception ex)
@@ -601,7 +601,7 @@ public partial class RacialSystemSurvey
             GClass201 gclass201 = new GClass201();
             double num1 = 0.0;
             double num2 = 0.0;
-            JumpPoint120 gclass120 = this.ActualSystemData.method_4();
+            JumpPoint gclass120 = this.ActualSystem.method_4();
             if (gclass120 != null)
             {
                 num1 = gclass120.LinkedJumpPoint.XCoord;
@@ -641,7 +641,7 @@ public partial class RacialSystemSurvey
                     break;
                 case GEnum109.const_4:
                     // ISSUE: reference to a compiler-generated method
-                    if (this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1187.method_0).Count<PopulationData>() > 0)
+                    if (this.gclass0_0.Populations.Values.Where<PopulationData>(class1187.method_0).Count<PopulationData>() > 0)
                     {
                         gclass201.bool_0 = true;
                         return gclass201;
@@ -650,7 +650,7 @@ public partial class RacialSystemSurvey
                     break;
                 case GEnum109.const_5:
                     // ISSUE: reference to a compiler-generated method
-                    if (this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1187.method_2).Count<PopulationData>() > 0)
+                    if (this.gclass0_0.Populations.Values.Where<PopulationData>(class1187.method_2).Count<PopulationData>() > 0)
                     {
                         gclass201.bool_0 = true;
                         return gclass201;
@@ -713,7 +713,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_19:
-                    gclass201.gclass214_0 = this.ActualSystemData.method_8(num1, num2, this, WayPointType.POI, 0);
+                    gclass201.gclass214_0 = this.ActualSystem.method_8(num1, num2, this, WayPointType.POI, 0);
                     if (gclass201.gclass214_0 != null)
                     {
                         gclass201.bool_0 = true;
@@ -722,7 +722,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_20:
-                    gclass201.gclass214_0 = this.ActualSystemData.method_8(num1, num2, this, WayPointType.UrgentPOI, 0);
+                    gclass201.gclass214_0 = this.ActualSystem.method_8(num1, num2, this, WayPointType.UrgentPOI, 0);
                     if (gclass201.gclass214_0 != null)
                     {
                         gclass201.bool_0 = true;
@@ -775,7 +775,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_31:
-                    gclass201.gclass233_0 = this.ActualSystemData.method_5(num1, num2, this);
+                    gclass201.gclass233_0 = this.ActualSystem.method_5(num1, num2, this);
                     if (gclass201.gclass233_0 != null)
                     {
                         gclass201.bool_0 = true;
@@ -785,7 +785,7 @@ public partial class RacialSystemSurvey
                     break;
                 case GEnum109.const_33:
                     // ISSUE: reference to a compiler-generated method
-                    if (this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1187.method_1).Count<PopulationData>() > 0)
+                    if (this.gclass0_0.Populations.Values.Where<PopulationData>(class1187.method_1).Count<PopulationData>() > 0)
                     {
                         gclass201.bool_0 = true;
                         return gclass201;
@@ -793,7 +793,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_36:
-                    if (this.ActualSystemData.method_11(this.Race, 0M, false) != null)
+                    if (this.ActualSystem.method_11(this.Race, 0M, false) != null)
                     {
                         gclass201.bool_0 = true;
                         return gclass201;
@@ -801,7 +801,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_37:
-                    if (this.ActualSystemData.method_11(this.Race, 10M, true) != null)
+                    if (this.ActualSystem.method_11(this.Race, 10M, true) != null)
                     {
                         gclass201.bool_0 = true;
                         return gclass201;
@@ -809,7 +809,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_38:
-                    if (this.ActualSystemData.method_10(6000000000.0, this.Race) != null)
+                    if (this.ActualSystem.method_10(6000000000.0, this.Race) != null)
                     {
                         gclass201.bool_0 = true;
                         return gclass201;
@@ -825,7 +825,7 @@ public partial class RacialSystemSurvey
 
                     break;
                 case GEnum109.const_40:
-                    gclass201.gclass214_0 = this.ActualSystemData.method_8(num1, num2, this, WayPointType.Rendezvous, 0);
+                    gclass201.gclass214_0 = this.ActualSystem.method_8(num1, num2, this, WayPointType.Rendezvous, 0);
                     if (gclass201.gclass214_0 != null)
                     {
                         gclass201.bool_0 = true;
@@ -887,7 +887,7 @@ public partial class RacialSystemSurvey
                     break;
                 case GEnum109.const_49:
                     // ISSUE: reference to a compiler-generated field
-                    gclass201.gclass214_0 = this.ActualSystemData.method_8(num1, num2, this, WayPointType.FleetWaypoint,
+                    gclass201.gclass214_0 = this.ActualSystem.method_8(num1, num2, this, WayPointType.FleetWaypoint,
                         class1187.gclass85_0.FleetID);
                     if (gclass201.gclass214_0 != null)
                     {
@@ -941,10 +941,10 @@ public partial class RacialSystemSurvey
             // ISSUE: reference to a compiler-generated field
             class1189.list_0.Add(this.Race);
             // ISSUE: reference to a compiler-generated method
-            List<PopulationData> list = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class1189.method_0)
+            List<PopulationData> list = this.gclass0_0.Populations.Values.Where<PopulationData>(class1189.method_0)
                 .Where<PopulationData>(gclass146_0 =>
-                    gclass146_0.dictionary_4.Values.FirstOrDefault<GClass190>(
-                        gclass190_0 => gclass190_0.decimal_1 > 10M) != null).ToList<PopulationData>();
+                    gclass146_0.TradeBalances.Values.FirstOrDefault<PopTradeBalance>(
+                        gclass190_0 => gclass190_0.TradeBalance > 10M) != null).ToList<PopulationData>();
             if (list.Count == 0)
                 return null;
             // ISSUE: reference to a compiler-generated method
@@ -962,8 +962,8 @@ public partial class RacialSystemSurvey
         try
         {
             return this.gclass0_0.FleetDictionary.Values.Where<FleetData>(gclass85_1 => gclass85_1.System == this)
-                .SelectMany<FleetData, FCTShipData40>(gclass85_0 => gclass85_0.method_176())
-                .Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_10);
+                .SelectMany<FleetData, ShipData>(gclass85_0 => gclass85_0.method_176())
+                .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ProtectionValue);
         }
         catch (Exception ex)
         {
@@ -1070,7 +1070,7 @@ public partial class RacialSystemSurvey
         }
     }
 
-    public void method_26(GClass194 gclass194_0, CheckState checkState_0, List<SystemData200> list_9)
+    public void method_26(Species gclass194_0, CheckState checkState_0, List<StarSystem> list_9)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -1093,7 +1093,7 @@ public partial class RacialSystemSurvey
             this.int_33 = 0;
             this.int_34 = 0;
             this.int_35 = 0;
-            this.list_6 = this.ActualSystemData.method_20();
+            this.list_6 = this.ActualSystem.method_20();
             foreach (SystemBodyData gclass1 in this.list_6)
             {
                 // ISSUE: reference to a compiler-generated field
@@ -1187,24 +1187,24 @@ public partial class RacialSystemSurvey
             else
             {
                 // ISSUE: reference to a compiler-generated method
-                this.int_26 = this.gclass0_0.list_9.Where<GClass215>(class1191.method_12).Count<GClass215>();
+                this.int_26 = this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class1191.method_12).Count<RacialSystemBodySurvey>();
                 // ISSUE: reference to a compiler-generated field
                 this.int_27 = (int)Math.Round(this.int_26 / (Decimal)class1191.list_0.Count * 100M);
             }
 
-            if (list_9.Count <= 0 || this.ActualSystemData.KnownSystemData == null)
+            if (list_9.Count <= 0 || this.ActualSystem.KnownSystemData == null)
                 return;
-            foreach (SystemData200 gclass200 in list_9)
+            foreach (StarSystem gclass200 in list_9)
             {
                 double num1 = this.gclass0_0.method_29(gclass200.KnownSystemData.X, gclass200.KnownSystemData.Y,
-                    gclass200.KnownSystemData.Z, this.ActualSystemData.KnownSystemData.X, this.ActualSystemData.KnownSystemData.Y,
-                    this.ActualSystemData.KnownSystemData.Z) - gclass200.double_3;
-                if (this.ActualSystemData.double_4 == 0.0 || this.ActualSystemData.double_4 > num1)
+                    gclass200.KnownSystemData.Z, this.ActualSystem.KnownSystemData.X, this.ActualSystem.KnownSystemData.Y,
+                    this.ActualSystem.KnownSystemData.Z) - gclass200.double_3;
+                if (this.ActualSystem.double_4 == 0.0 || this.ActualSystem.double_4 > num1)
                 {
-                    this.ActualSystemData.double_4 = num1;
+                    this.ActualSystem.double_4 = num1;
                     double x = AuroraUtils.long_1 * num1;
                     double num2 = AuroraUtils.PI_Apprx * 4.0 * Math.Pow(x, 2.0);
-                    this.ActualSystemData.double_5 = AuroraUtils.double_8 * gclass200.SupernovaForce / num2;
+                    this.ActualSystem.double_5 = AuroraUtils.double_8 * gclass200.SupernovaForce / num2;
                 }
             }
         }
@@ -1218,7 +1218,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            foreach (JumpPoint120 gclass120 in this.list_8)
+            foreach (JumpPoint gclass120 in this.list_8)
             {
                 if (gclass120.LinkedJumpPoint != null &&
                     this.Race.RacialSystemDictionary.ContainsKey(gclass120.LinkedJumpPoint.SystemData.SystemID))
@@ -1360,16 +1360,16 @@ public partial class RacialSystemSurvey
                 this.list_6.Count.ToString(), null);
             if (!this.bSurveyComplete)
             {
-                int num2 = this.ActualSystemData.SurveyLocationDictionary.Values
-                    .Where<SurveyLocation213>(gclass213_0 => gclass213_0.list_0.Contains(this.Race.RaceID))
-                    .Count<SurveyLocation213>();
+                int num2 = this.ActualSystem.SurveyLocationDictionary.Values
+                    .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
+                    .Count<SurveyLocation>();
                 this.gclass0_0.method_603(listView_0, "Unsurveyed Gravsurvey Locations", (30 - num2).ToString(), "",
                     null);
             }
 
             this.gclass0_0.method_594(listView_0, "");
             this.gclass0_0.method_603(listView_0, "Jump Point", "AU", "Bearing", null);
-            foreach (JumpPoint120 object_1 in this.list_7)
+            foreach (JumpPoint object_1 in this.list_7)
             {
                 string str = "  Unexplored";
                 if (object_1.LinkedJumpPoint != null &&
@@ -1378,7 +1378,7 @@ public partial class RacialSystemSurvey
                 if (object_1.JumpGateStrength > 0)
                     str += " (S)";
                 this.gclass0_0.method_602(listView_0, num1.ToString() + str,
-                    AuroraUtils.smethod_44(object_1.Distance, 2), object_1.Bearing.ToString(), object_1);
+                    AuroraUtils.FormatDoubleToPrecision(object_1.Distance, 2), object_1.Bearing.ToString(), object_1);
                 ++num1;
             }
         }
@@ -1398,7 +1398,7 @@ public partial class RacialSystemSurvey
             double num4 = double_12 / 2.0;
             float num5 = (float)num4 - 6f;
             Star197 gclass197 = this.gclass0_0.StarDictionary.Values
-                .Where<Star197>(gclass197_0 => gclass197_0.SystemData == this.ActualSystemData)
+                .Where<Star197>(gclass197_0 => gclass197_0.SystemData == this.ActualSystem)
                 .OrderBy<Star197, int>(gclass197_0 => gclass197_0.Component).FirstOrDefault<Star197>();
             SolidBrush solidBrush1 = new SolidBrush(Color.FromArgb(255, gclass197.StellarType.Red,
                 gclass197.StellarType.Green, gclass197.StellarType.Blue));
@@ -1406,11 +1406,11 @@ public partial class RacialSystemSurvey
             graphics_0.FillEllipse(solidBrush1, rect);
             if (this.list_7.Count == 0)
                 return;
-            double num6 = this.list_7.Max<JumpPoint120>(gclass120_0 => gclass120_0.Distance) * 1.1;
+            double num6 = this.list_7.Max<JumpPoint>(gclass120_0 => gclass120_0.Distance) * 1.1;
             double num7 = num4 / num6;
-            this.list_7 = this.list_7.OrderBy<JumpPoint120, double>(gclass120_0 => gclass120_0.Distance)
-                .ToList<JumpPoint120>();
-            foreach (JumpPoint120 gclass120 in this.list_7)
+            this.list_7 = this.list_7.OrderBy<JumpPoint, double>(gclass120_0 => gclass120_0.Distance)
+                .ToList<JumpPoint>();
+            foreach (JumpPoint gclass120 in this.list_7)
             {
                 SolidBrush solidBrush2 = new SolidBrush(Color.Red);
                 if (gclass120.JumpGateStrength > 0)
@@ -1445,12 +1445,12 @@ public partial class RacialSystemSurvey
                             this.double_10 > this.gclass0_0.double_3 + this.Race.double_1))
                 return;
             SolidBrush solidBrush1 = new SolidBrush(Color.Green);
-            if (this.ActualSystemData.KnownSystemData != null &&
-                this.ActualSystemData.KnownSystemData.dictionary_0[1].SpectralClass == "BH")
+            if (this.ActualSystem.KnownSystemData != null &&
+                this.ActualSystem.KnownSystemData.dictionary_0[1].SpectralClass == "BH")
                 solidBrush1.Color = Color.Purple;
             if (this.bool_7)
                 solidBrush1.Color = Color.Lime;
-            if (this.ActualSystemData.SupernovaElapsedTime > 0.0)
+            if (this.ActualSystem.SupernovaElapsedTime > 0.0)
                 solidBrush1.Color = Color.White;
             Pen pen1 = new Pen(Color.Lime);
             graphics_0.FillEllipse(solidBrush1, (float)this.double_9, (float)this.double_10,
@@ -1459,7 +1459,7 @@ public partial class RacialSystemSurvey
                 (float)this.Race.double_1);
             int num1 = this.list_6.Count<SystemBodyData>(gclass1_0 =>
                 gclass1_0.BodyClass != PlanetBodyClass.Comet && gclass1_0.BodyClass != PlanetBodyClass.Asteroid);
-            if (num1 == 0 && this.ActualSystemData.SupernovaElapsedTime == 0.0)
+            if (num1 == 0 && this.ActualSystem.SupernovaElapsedTime == 0.0)
             {
                 double double_10 = this.Race.double_1 * 0.75;
                 double num2 = this.Race.double_1 * 0.125;
@@ -1582,9 +1582,9 @@ public partial class RacialSystemSurvey
             string str1 = this.Name;
             if (this.Race.chkDistanceFromSelected == CheckState.Checked ||
                 this.Race.chkDistanceFromSelectedMR == CheckState.Checked)
-                str1 = $"{str1}  ({AuroraUtils.smethod_44(this.ActualSystemData.double_7 / 1000000000.0, 1)})";
+                str1 = $"{str1}  ({AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_7 / 1000000000.0, 1)})";
             if (this.Race.chkDistanceRealSpace == CheckState.Checked)
-                str1 = $"{str1}  ({AuroraUtils.smethod_44(this.ActualSystemData.double_7, 1)})";
+                str1 = $"{str1}  ({AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_7, 1)})";
             double num3 = font_0.Size / AuroraUtils.double_2;
             double num4 = AuroraUtils.double_3 * num3;
             double num5 = num4 * 2.0;
@@ -1594,7 +1594,7 @@ public partial class RacialSystemSurvey
             this.gclass0_0.method_528(graphics_0, font_0, AuroraUtils.color_16, this.double_9 - num4,
                 this.double_10 + this.Race.double_1 + 5.0, this.Race.double_1 + num5, int_136_1, str1,
                 StringAlignment.Center, StringAlignment.Center);
-            if (this.Race.chkNumWrecks == CheckState.Checked && this.ActualSystemData.int_10 > 0)
+            if (this.Race.chkNumWrecks == CheckState.Checked && this.ActualSystem.int_10 > 0)
             {
                 Size size = TextRenderer.MeasureText(str1, font_0);
                 SolidBrush solidBrush2 = new SolidBrush(AuroraUtils.color_10);
@@ -1606,7 +1606,7 @@ public partial class RacialSystemSurvey
                 graphics_0.DrawLine(pen2, (float)x1, (float)num7 + AuroraUtils.int_63, (float)x1 + AuroraUtils.int_63,
                     (float)num7);
                 this.gclass0_0.method_528(graphics_0, font_0, AuroraUtils.color_10, x1 + AuroraUtils.int_63 + 2.0,
-                    this.double_10 + this.Race.double_1 + 5.0, 50.0, 25, this.ActualSystemData.int_10.ToString(),
+                    this.double_10 + this.Race.double_1 + 5.0, 50.0, 25, this.ActualSystem.int_10.ToString(),
                     StringAlignment.Near, StringAlignment.Center);
             }
 
@@ -1621,29 +1621,29 @@ public partial class RacialSystemSurvey
 
             if (this.Race.chkSurveyLocationPoints == CheckState.Checked ||
                 this.Race.chkSupernovaImpactTime == CheckState.Checked &&
-                this.ActualSystemData.SupernovaElapsedTime == 0.0)
+                this.ActualSystem.SupernovaElapsedTime == 0.0)
             {
                 string string_10 = "";
                 if (this.Race.chkSurveyLocationPoints == CheckState.Checked)
-                    string_10 = this.ActualSystemData.JumpPointSurveyPoints.ToString();
+                    string_10 = this.ActualSystem.JumpPointSurveyPoints.ToString();
                 if (this.Race.chkSupernovaImpactTime == CheckState.Checked &&
-                    this.ActualSystemData.SupernovaElapsedTime == 0.0)
+                    this.ActualSystem.SupernovaElapsedTime == 0.0)
                 {
                     if (this.Race.chkSurveyLocationPoints == CheckState.Checked)
                         string_10 += "  ";
-                    string str2 = this.ActualSystemData.double_5 <= 1000000.0
-                        ? (this.ActualSystemData.double_5 <= 1000.0
-                            ? AuroraUtils.smethod_43(this.ActualSystemData.double_5)
-                            : AuroraUtils.smethod_43(this.ActualSystemData.double_5 / 1000.0) + "k")
-                        : AuroraUtils.smethod_44(this.ActualSystemData.double_5 / 1000000.0, 1) + "m";
-                    if (this.ActualSystemData.double_4 > 1.0)
-                        string_10 = $"{string_10}[{AuroraUtils.smethod_44(this.ActualSystemData.double_4, 1)}y - {str2}]";
-                    else if (this.ActualSystemData.double_4 > 0.1)
+                    string str2 = this.ActualSystem.double_5 <= 1000000.0
+                        ? (this.ActualSystem.double_5 <= 1000.0
+                            ? AuroraUtils.smethod_43(this.ActualSystem.double_5)
+                            : AuroraUtils.smethod_43(this.ActualSystem.double_5 / 1000.0) + "k")
+                        : AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_5 / 1000000.0, 1) + "m";
+                    if (this.ActualSystem.double_4 > 1.0)
+                        string_10 = $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4, 1)}y - {str2}]";
+                    else if (this.ActualSystem.double_4 > 0.1)
                         string_10 =
-                            $"{string_10}[{AuroraUtils.smethod_44(this.ActualSystemData.double_4 * 12.0, 1)}m - {str2}]";
+                            $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4 * 12.0, 1)}m - {str2}]";
                     else
                         string_10 =
-                            $"{string_10}[{AuroraUtils.smethod_44(this.ActualSystemData.double_4 * 365.0, 1)}d - {str2}]";
+                            $"{string_10}[{AuroraUtils.FormatDoubleToPrecision(this.ActualSystem.double_4 * 365.0, 1)}d - {str2}]";
                 }
 
                 this.gclass0_0.method_528(graphics_0, font_0, AuroraUtils.color_16, this.double_9 - num4,
@@ -1688,7 +1688,7 @@ public partial class RacialSystemSurvey
             }
             else if (this.Race.gclass112_0.int_0 == 0 && this.Race.gclass112_0.gclass110_0 != null)
             {
-                if (this.Race.gclass112_0.gclass110_0.dictionary_1.ContainsKey(this.ActualSystemData.SystemID))
+                if (this.Race.gclass112_0.gclass110_0.dictionary_1.ContainsKey(this.ActualSystem.SystemID))
                     this.method_34(graphics_0, this.Race.gclass112_0.gclass110_0.ActualAlienRace);
                 flag = true;
             }
@@ -1697,13 +1697,13 @@ public partial class RacialSystemSurvey
             {
                 if (this.Race.SelectedClass != null && this.Race.chkClassIcon == CheckState.Checked)
                 {
-                    List<FCTShipData40> list = this.list_0
-                        .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0 == this.Race.SelectedClass)
-                        .ToList<FCTShipData40>();
+                    List<ShipData> list = this.list_0
+                        .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this.Race.SelectedClass)
+                        .ToList<ShipData>();
                     if (this.Race.SelectedAdmin != null && this.Race.chkAdminIcon == CheckState.Checked)
                     {
-                        List<FCTShipData40> second = this.Race.SelectedAdmin.method_1();
-                        list = list.Intersect<FCTShipData40>(second).ToList<FCTShipData40>();
+                        List<ShipData> second = this.Race.SelectedAdmin.method_1();
+                        list = list.Intersect<ShipData>(second).ToList<ShipData>();
                     }
 
                     if (list.Count > 0)
@@ -1716,8 +1716,8 @@ public partial class RacialSystemSurvey
                 }
                 else if (this.Race.SelectedAdmin != null && this.Race.chkAdminIcon == CheckState.Checked)
                 {
-                    if (this.list_0.Intersect<FCTShipData40>(this.Race.SelectedAdmin.method_1())
-                            .Count<FCTShipData40>() > 0)
+                    if (this.list_0.Intersect<ShipData>(this.Race.SelectedAdmin.method_1())
+                            .Count<ShipData>() > 0)
                     {
                         RectangleF rect = new RectangleF((float)(this.double_9 + this.Race.double_1 / 1.8),
                             (float)(this.double_10 - this.Race.double_1 / 1.5), this.Race.float_0,
@@ -1734,11 +1734,11 @@ public partial class RacialSystemSurvey
                     graphics_0.DrawImage(this.Race.ShipIconLoadedImg, rect);
                 }
             }
-            else if (this.gclass0_0.dictionary_28.Values.FirstOrDefault<GClass65>(gclass65_0 =>
-                         gclass65_0.gclass21_1 == this.Race &&
-                         gclass65_0.gclass21_0 == this.Race.gclass112_0.gclass110_0.ActualAlienRace &&
-                         gclass65_0.decimal_3 >= this.gclass0_0.GameTime - this.Race.int_47 &&
-                         gclass65_0.gclass200_0 == this.ActualSystemData) != null)
+            else if (this.gclass0_0.Contacts.Values.FirstOrDefault<Contact>(gclass65_0 =>
+                         gclass65_0.DetectRace == this.Race &&
+                         gclass65_0.ContactRace == this.Race.gclass112_0.gclass110_0.ActualAlienRace &&
+                         gclass65_0.LastUpdate >= this.gclass0_0.GameTime - this.Race.int_47 &&
+                         gclass65_0.System == this.ActualSystem) != null)
             {
                 RectangleF rect = new RectangleF((float)(this.double_9 + this.Race.double_1 / 1.8),
                     (float)(this.double_10 - this.Race.double_1 / 1.5), this.Race.float_0,
@@ -1778,7 +1778,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            List<PopulationData> list = this.gclass0_0.PopulationDataDictionary.Values
+            List<PopulationData> list = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0 == this).ToList<PopulationData>();
             return list.Count == 0
                 ? 0
@@ -1819,10 +1819,10 @@ public partial class RacialSystemSurvey
             // ISSUE: reference to a compiler-generated method
             return this.Race.RacialSystemDictionary.Values.Where<RacialSystemSurvey>(new RacialSystemSurvey.Class1193()
             {
-                list_0 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1192.method_0)
-                    .Where<JumpPoint120>(class1192.method_1)
-                    .Select<JumpPoint120, SystemData200>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
-                    .ToList<SystemData200>()
+                list_0 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1192.method_0)
+                    .Where<JumpPoint>(class1192.method_1)
+                    .Select<JumpPoint, StarSystem>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
+                    .ToList<StarSystem>()
             }.method_0).Where<RacialSystemSurvey>(class1192.method_2).ToList<RacialSystemSurvey>();
         }
         catch (Exception ex)
@@ -1849,10 +1849,10 @@ public partial class RacialSystemSurvey
             // ISSUE: reference to a compiler-generated method
             return this.Race.RacialSystemDictionary.Values.Where<RacialSystemSurvey>(new RacialSystemSurvey.Class1196()
             {
-                list_0 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint120>(class1195.method_0)
-                    .Where<JumpPoint120>(class1195.method_1)
-                    .Select<JumpPoint120, SystemData200>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
-                    .ToList<SystemData200>()
+                list_0 = this.gclass0_0.JumpPointDictionary.Values.Where<JumpPoint>(class1195.method_0)
+                    .Where<JumpPoint>(class1195.method_1)
+                    .Select<JumpPoint, StarSystem>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
+                    .ToList<StarSystem>()
             }.method_0).ToList<RacialSystemSurvey>();
         }
         catch (Exception ex)
@@ -1887,9 +1887,9 @@ public partial class RacialSystemSurvey
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             class1199.list_0 = this.gclass0_0.JumpPointDictionary.Values
-                .Where<JumpPoint120>(class1199.class1198_0.method_0).Where<JumpPoint120>(class1199.class1198_0.method_1)
-                .Select<JumpPoint120, SystemData200>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
-                .ToList<SystemData200>();
+                .Where<JumpPoint>(class1199.class1198_0.method_0).Where<JumpPoint>(class1199.class1198_0.method_1)
+                .Select<JumpPoint, StarSystem>(gclass120_0 => gclass120_0.LinkedJumpPoint.SystemData)
+                .ToList<StarSystem>();
             // ISSUE: reference to a compiler-generated method
             return this.Race.RacialSystemDictionary.Values.Where<RacialSystemSurvey>(class1199.method_0).ToList<RacialSystemSurvey>();
         }
@@ -1906,13 +1906,13 @@ public partial class RacialSystemSurvey
         {
             listView_0.Items.Clear();
             this.gclass0_0.method_603(listView_0, "No.", "Distance", "Bearing", "Destination");
-            List<JumpPoint120> list = this.gclass0_0.JumpPointDictionary.Values
-                .Where<JumpPoint120>(gclass120_0 =>
-                    gclass120_0.SystemData == this.ActualSystemData &&
+            List<JumpPoint> list = this.gclass0_0.JumpPointDictionary.Values
+                .Where<JumpPoint>(gclass120_0 =>
+                    gclass120_0.SystemData == this.ActualSystem &&
                     gclass120_0.RacialJumpPointSurveys.ContainsKey(this.Race.RaceID))
-                .OrderBy<JumpPoint120, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint120>();
+                .OrderBy<JumpPoint, double>(gclass120_0 => gclass120_0.Distance).ToList<JumpPoint>();
             int num = 1;
-            foreach (JumpPoint120 object_1 in list)
+            foreach (JumpPoint object_1 in list)
             {
                 if (object_1.RacialJumpPointSurveys[this.Race.RaceID].Charted == 1)
                 {
@@ -1950,16 +1950,16 @@ public partial class RacialSystemSurvey
             RacialSystemSurvey.Class1201 class1201 = new RacialSystemSurvey.Class1201();
             // ISSUE: reference to a compiler-generated field
             class1201.gclass202_0 = this;
-            label_0.Text = this.ActualSystemData.Age.ToString() + " GY";
+            label_0.Text = this.ActualSystem.Age.ToString() + " GY";
             label_1.Text = this.Discovered;
-            label_2.Text = this.ActualSystemData.JumpPointSurveyPoints.ToString();
-            int num1 = this.ActualSystemData.SurveyLocationDictionary.Values
-                .Where<SurveyLocation213>(gclass213_0 => gclass213_0.list_0.Contains(this.Race.RaceID))
-                .Count<SurveyLocation213>();
+            label_2.Text = this.ActualSystem.JumpPointSurveyPoints.ToString();
+            int num1 = this.ActualSystem.SurveyLocationDictionary.Values
+                .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
+                .Count<SurveyLocation>();
             label_3.Text = AuroraUtils.smethod_38(num1 / 30M * 100M) + "%";
             // ISSUE: reference to a compiler-generated field
             class1201.list_0 = this.gclass0_0.SystemBodyRecordDic.Values
-                .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.ActualSystemData)
+                .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.ActualSystem)
                 .ToList<SystemBodyData>();
             // ISSUE: reference to a compiler-generated field
             if (class1201.list_0.Count == 0)
@@ -1969,7 +1969,7 @@ public partial class RacialSystemSurvey
             else
             {
                 // ISSUE: reference to a compiler-generated method
-                int num2 = this.gclass0_0.list_9.Where<GClass215>(class1201.method_0).Count<GClass215>();
+                int num2 = this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class1201.method_0).Count<RacialSystemBodySurvey>();
                 // ISSUE: reference to a compiler-generated field
                 label_4.Text = AuroraUtils.smethod_38(num2 / (Decimal)class1201.list_0.Count * 100M) + "%";
             }
@@ -1983,7 +1983,7 @@ public partial class RacialSystemSurvey
     public void method_41(
         ListView listView_0,
         GameRace gclass21_1,
-        GClass194 gclass194_0,
+        Species gclass194_0,
         CheckState checkState_0)
     {
         try
@@ -1992,7 +1992,7 @@ public partial class RacialSystemSurvey
             this.gclass0_0.method_628(listView_0, "Name", "Spectral", "Diameter", "Mass", "Luminosity", "Parent",
                 "Period", "Distance", "Perihelion", "Aphelion", "Planets", "Moons", "Asteroids", "Comets", "Habitable",
                 "Near-Hab", "Ecc", null);
-            List<Star197> gclass197List = this.ActualSystemData.method_26();
+            List<Star197> gclass197List = this.ActualSystem.method_26();
             int num1 = 1;
             foreach (Star197 gclass197 in gclass197List)
             {
@@ -2002,7 +2002,7 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated field
                 class1202.gclass197_0 = gclass197;
                 string string_10 = this.Name;
-                if (this.ActualSystemData.Stars > 1)
+                if (this.ActualSystem.Stars > 1)
                     string_10 = $"{string_10}-{char.ConvertFromUtf32(64 /*0x40*/ + num1)}";
                 string string_15 = "-";
                 string string_16 = "-";
@@ -2093,12 +2093,12 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            if (this.ActualSystemData.SurveyLocationDictionary.Values
-                    .Where<SurveyLocation213>(gclass213_0 => gclass213_0.list_0.Contains(this.Race.RaceID))
-                    .Count<SurveyLocation213>() != 30)
+            if (this.ActualSystem.SurveyLocationDictionary.Values
+                    .Where<SurveyLocation>(gclass213_0 => gclass213_0.RaceIDs.Contains(this.Race.RaceID))
+                    .Count<SurveyLocation>() != 30)
                 return false;
             this.gclass0_0.gclass92_0.method_2(EventType.const_22, "Gravitational survey completed in " + this.Name,
-                this.Race, this.ActualSystemData, 0.0, 0.0, AuroraEventCategory.System);
+                this.Race, this.ActualSystem, 0.0, 0.0, AuroraEventCategory.System);
             this.bSurveyComplete = true;
             return true;
         }
@@ -2120,13 +2120,13 @@ public partial class RacialSystemSurvey
             class1203.gclass202_0 = this;
             // ISSUE: reference to a compiler-generated field
             class1203.list_0 = this.gclass0_0.SystemBodyRecordDic.Values
-                .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.ActualSystemData)
+                .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.ActualSystem)
                 .ToList<SystemBodyData>();
             // ISSUE: reference to a compiler-generated field
             if (class1203.list_0.Count == 0)
                 return true;
             // ISSUE: reference to a compiler-generated method
-            this.int_26 = this.gclass0_0.list_9.Where<GClass215>(class1203.method_0).Count<GClass215>();
+            this.int_26 = this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class1203.method_0).Count<RacialSystemBodySurvey>();
             // ISSUE: reference to a compiler-generated field
             return this.int_26 == class1203.list_0.Count;
         }
@@ -2141,7 +2141,7 @@ public partial class RacialSystemSurvey
     {
         try
         {
-            foreach (SurveyLocation213 gclass213 in this.ActualSystemData.SurveyLocationDictionary.Values)
+            foreach (SurveyLocation gclass213 in this.ActualSystem.SurveyLocationDictionary.Values)
             {
                 gclass213.method_0(this.Race);
                 this.method_45(gclass213.LocationNumber, null, null);
@@ -2168,8 +2168,8 @@ public partial class RacialSystemSurvey
         {
             bool flag = false;
             // ISSUE: reference to a compiler-generated method
-            foreach (JumpPoint120 gclass120 in this.gclass0_0.JumpPointDictionary.Values
-                         .Where<JumpPoint120>(class1204.method_0).ToList<JumpPoint120>())
+            foreach (JumpPoint gclass120 in this.gclass0_0.JumpPointDictionary.Values
+                         .Where<JumpPoint>(class1204.method_0).ToList<JumpPoint>())
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -2183,12 +2183,12 @@ public partial class RacialSystemSurvey
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                if (this.ActualSystemData.SurveyLocationDictionary.Values.Where<SurveyLocation213>(new RacialSystemSurvey.Class1206()
+                if (this.ActualSystem.SurveyLocationDictionary.Values.Where<SurveyLocation>(new RacialSystemSurvey.Class1206()
                         {
                             double_0 = Math.Pow(class1205.gclass120_0.XCoord, 2.0) +
                                        Math.Pow(class1205.gclass120_0.YCoord, 2.0)
-                        }.method_0).OrderBy<SurveyLocation213, double>(class1205.method_0)
-                        .FirstOrDefault<SurveyLocation213>().LocationNumber == int_37 &&
+                        }.method_0).OrderBy<SurveyLocation, double>(class1205.method_0)
+                        .FirstOrDefault<SurveyLocation>().LocationNumber == int_37 &&
                     class1205.gclass120_0.RacialJumpPointSurveys.ContainsKey(this.Race.RaceID) &&
                     class1205.gclass120_0.RacialJumpPointSurveys[this.Race.RaceID].Charted == 0)
                 {
@@ -2205,7 +2205,7 @@ public partial class RacialSystemSurvey
                             // ISSUE: reference to a compiler-generated field
                             this.gclass0_0.gclass92_0.method_2(EventType.const_82,
                                 $"{gclass85_1.method_15()} discovered a new jump point in {this.Name}", this.Race,
-                                this.ActualSystemData, class1205.gclass120_0.XCoord, class1205.gclass120_0.YCoord,
+                                this.ActualSystem, class1205.gclass120_0.XCoord, class1205.gclass120_0.YCoord,
                                 AuroraEventCategory.JumpPoint);
                         }
 
@@ -2221,7 +2221,7 @@ public partial class RacialSystemSurvey
                         // ISSUE: reference to a compiler-generated field
                         this.gclass0_0.gclass92_0.method_2(EventType.const_82,
                             $"New jump point detected in {this.Name} as a result of survey data provided by {class1204.gclass21_0.PerceivedAliens.Values.Where<AlienRaceInfo>(class1204.func_0 ?? (class1204.func_0 = class1204.method_1)).Select<AlienRaceInfo, string>(gclass110_0 => gclass110_0.AlienRaceName).FirstOrDefault<string>()}",
-                            this.Race, this.ActualSystemData, class1205.gclass120_0.XCoord,
+                            this.Race, this.ActualSystem, class1205.gclass120_0.XCoord,
                             class1205.gclass120_0.YCoord, AuroraEventCategory.JumpPoint);
                     }
                 }
@@ -2238,9 +2238,9 @@ public partial class RacialSystemSurvey
 
     public List<PopulationData> method_46()
     {
-        return this.gclass0_0.PopulationDataDictionary.Values
+        return this.gclass0_0.Populations.Values
             .Where<PopulationData>(gclass146_0 =>
-                gclass146_0.RaceData == this.Race && gclass146_0.gclass202_0 == this)
+                gclass146_0.Race == this.Race && gclass146_0.gclass202_0 == this)
             .OrderByDescending<PopulationData, Decimal>(gclass146_0 => gclass146_0.decimal_30).ToList<PopulationData>();
     }
 

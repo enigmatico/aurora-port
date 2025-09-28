@@ -15,7 +15,7 @@ public partial class GClass6
     private GClass0 gclass0_0;
     private PopulationData gclass146_0;
     public List<GroundUnitFormationData> list_0 = new List<GroundUnitFormationData>();
-    public Dictionary<RaceMissile, GClass130> dictionary_0 = new Dictionary<RaceMissile, GClass130>();
+    public Dictionary<RaceMissile, PopOrdnanceStock> dictionary_0 = new Dictionary<RaceMissile, PopOrdnanceStock>();
     public GEnum97 genum97_0;
     public int int_0;
     public int int_1;
@@ -40,15 +40,15 @@ public partial class GClass6
         {
             this.method_23();
             this.method_7();
-            if (this.gclass146_0.RaceData.DesignDoctrine.bOrdnanceFactories)
+            if (this.gclass146_0.Race.DesignDoctrine.bOrdnanceFactories)
                 this.method_15();
-            if (this.gclass146_0.RaceData.DesignDoctrine.bFighterFactories)
+            if (this.gclass146_0.Race.DesignDoctrine.bFighterFactories)
                 this.method_16();
-            if (this.gclass146_0.RaceData.WealthPoints < 2500M || this.gclass146_0.Efficiency < 1M)
+            if (this.gclass146_0.Race.WealthPoints < 2500M || this.gclass146_0.Efficiency < 1M)
                 return;
-            if (this.gclass146_0.dictionary_2.Values.Where<GClass156>(gclass156_0 =>
-                    gclass156_0.auroraProductionType_0 != AuroraProductionType.Ordnance &&
-                    gclass156_0.auroraProductionType_0 != AuroraProductionType.Fighter).Count<GClass156>() == 0 &&
+            if (this.gclass146_0.IndustrialProjects.Values.Where<IndustrialProjects>(gclass156_0 =>
+                    gclass156_0.ProductionType != AuroraProductionType.Ordnance &&
+                    gclass156_0.ProductionType != AuroraProductionType.Fighter).Count<IndustrialProjects>() == 0 &&
                 !this.method_22())
                 this.method_18();
             if (this.gclass146_0.method_73(AuroraInstallationType.GFCC) > 0 && this.gclass146_0.dictionary_3.Count == 0)
@@ -69,11 +69,11 @@ public partial class GClass6
         {
             this.method_23();
             this.method_7();
-            if (this.gclass146_0.RaceData.WealthPoints < 1000M || this.gclass146_0.Efficiency < 1M)
+            if (this.gclass146_0.Race.WealthPoints < 1000M || this.gclass146_0.Efficiency < 1M)
                 return;
-            if (this.gclass146_0.dictionary_2.Values.Where<GClass156>(gclass156_0 =>
-                    gclass156_0.auroraProductionType_0 != AuroraProductionType.Ordnance &&
-                    gclass156_0.auroraProductionType_0 != AuroraProductionType.Fighter).Count<GClass156>() == 0)
+            if (this.gclass146_0.IndustrialProjects.Values.Where<IndustrialProjects>(gclass156_0 =>
+                    gclass156_0.ProductionType != AuroraProductionType.Ordnance &&
+                    gclass156_0.ProductionType != AuroraProductionType.Fighter).Count<IndustrialProjects>() == 0)
                 this.method_17();
             if (this.gclass146_0.method_73(AuroraInstallationType.GFCC) <= 0 ||
                 this.gclass146_0.dictionary_3.Count != 0)
@@ -102,13 +102,13 @@ public partial class GClass6
             bool flag = false;
             
             // ISSUE: reference to a compiler-generated field
-            class480.list_0 = this.gclass0_0.PopulationDataDictionary.Values
+            class480.list_0 = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(gclass146_1 =>
                     gclass146_1.SystemBodyData == this.gclass146_0.SystemBodyData && gclass146_1 != this.gclass146_0)
                 .Where<PopulationData>(gclass146_1 =>
-                    this.gclass146_0.RaceData.PerceivedAliens.ContainsKey(gclass146_1.RaceData.RaceID))
+                    this.gclass146_0.Race.PerceivedAliens.ContainsKey(gclass146_1.Race.RaceID))
                 .Where<PopulationData>(gclass146_1 =>
-                    this.gclass146_0.RaceData.PerceivedAliens[gclass146_1.RaceData.RaceID].ContactStatus ==
+                    this.gclass146_0.Race.PerceivedAliens[gclass146_1.Race.RaceID].ContactStatus ==
                     AuroraContactStatus.Hostile).ToList<PopulationData>();
             // ISSUE: reference to a compiler-generated method
             List<GroundUnitFormationData> list2 = this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(class480.method_0)
@@ -211,7 +211,7 @@ public partial class GClass6
                             Decimal num7 = 10M;
                             // ISSUE: reference to a compiler-generated method
                             GClass114 gclass114 =
-                                this.gclass146_0.RaceData.dictionary_14.Values.FirstOrDefault<GClass114>(
+                                this.gclass146_0.Race.dictionary_14.Values.FirstOrDefault<GClass114>(
                                     class481.method_0);
                             if (gclass114 != null)
                             {
@@ -327,7 +327,7 @@ public partial class GClass6
                 }
             }
 
-            if (this.gclass146_0.RaceData.SpecialNPRID == SpecialNPRIDs.Precursor)
+            if (this.gclass146_0.Race.SpecialNPRID == SpecialNPRIDs.Precursor)
             {
                 this.gclass0_0.method_540(this.gclass146_0, AutomatedGroundTemplateDesignType.PrecursorPlanetaryHQ, AutomatedGroundTemplateDesignType.PrecursorMechBattalion);
                 this.gclass0_0.method_540(this.gclass146_0, AutomatedGroundTemplateDesignType.PrecursorPlanetaryHQ, AutomatedGroundTemplateDesignType.PrecursorDefenceRegiment);
@@ -381,11 +381,11 @@ public partial class GClass6
         try
         {
             Dictionary<AutomatedGroundTemplateDesignType, GClass18> dictionary = new Dictionary<AutomatedGroundTemplateDesignType, GClass18>();
-            List<PopulationData> list1 = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this.gclass146_0.RaceData)
+            List<PopulationData> list1 = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_1 => gclass146_1.Race == this.gclass146_0.Race)
                 .ToList<PopulationData>();
             List<GroundUnitFormationData> list2 = this.gclass0_0.FormationDictionary.Values
-                .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.RaceData == this.gclass146_0.RaceData)
+                .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.RaceData == this.gclass146_0.Race)
                 .ToList<GroundUnitFormationData>();
             foreach (PopulationData gclass146 in list1)
             {
@@ -396,7 +396,7 @@ public partial class GClass6
                 class483.gclass146_0 = gclass146;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                foreach (GClass16 gclass16 in class483.gclass146_0.RaceData.DesignDoctrine.NameList_0
+                foreach (GClass16 gclass16 in class483.gclass146_0.Race.DesignDoctrine.NameList_0
                              .Where<GClass16>(class483.method_0).ToList<GClass16>())
                 {
                     if (dictionary.ContainsKey(gclass16.genum116_0))
@@ -501,17 +501,17 @@ public partial class GClass6
         }
     }
 
-    public void method_5(List<GClass130> list_1)
+    public void method_5(List<PopOrdnanceStock> list_1)
     {
         try
         {
-            foreach (GClass130 gclass130 in list_1)
+            foreach (PopOrdnanceStock gclass130 in list_1)
             {
-                if (this.gclass146_0.gclass6_0.dictionary_0.ContainsKey(gclass130.gclass129_0))
+                if (this.gclass146_0.gclass6_0.dictionary_0.ContainsKey(gclass130.RaceMissile))
                 {
-                    this.gclass146_0.gclass6_0.dictionary_0[gclass130.gclass129_0].int_0 -= gclass130.int_0;
-                    if (this.gclass146_0.gclass6_0.dictionary_0[gclass130.gclass129_0].int_0 < 0)
-                        this.gclass146_0.gclass6_0.dictionary_0[gclass130.gclass129_0].int_0 = 0;
+                    this.gclass146_0.gclass6_0.dictionary_0[gclass130.RaceMissile].Amount -= gclass130.Amount;
+                    if (this.gclass146_0.gclass6_0.dictionary_0[gclass130.RaceMissile].Amount < 0)
+                        this.gclass146_0.gclass6_0.dictionary_0[gclass130.RaceMissile].Amount = 0;
                 }
             }
         }
@@ -551,13 +551,13 @@ public partial class GClass6
                 }
 
                 if (this.gclass146_0.SystemBodyData.RuinID > 0 &&
-                    this.gclass146_0.RaceData.SpecialNPRID == SpecialNPRIDs.Precursor)
+                    this.gclass146_0.Race.SpecialNPRID == SpecialNPRIDs.Precursor)
                 {
                     this.genum97_0 = GEnum97.const_4;
                 }
                 else
                 {
-                    this.gclass146_0.SystemBodyData.method_58(this.gclass146_0.RaceData, this.gclass146_0.SpeciesData,
+                    this.gclass146_0.SystemBodyData.method_58(this.gclass146_0.Race, this.gclass146_0.Species,
                         true);
                     if (this.gclass146_0.SystemBodyData.ColonyCost < 0M)
                     {
@@ -568,24 +568,24 @@ public partial class GClass6
                         this.double_0 = !(this.gclass146_0.SystemBodyData.MaxColonyCost > 0M)
                             ? 0.0
                             : this.method_9(this.gclass146_0.SystemBodyData);
-                        this.double_1 = !this.gclass146_0.SystemBodyData.method_77(this.gclass146_0.RaceData)
+                        this.double_1 = !this.gclass146_0.SystemBodyData.method_77(this.gclass146_0.Race)
                             ? 0.0
-                            : this.gclass146_0.RaceData.UnknownNprClass.method_62(this.gclass146_0.SystemBodyData, false);
+                            : this.gclass146_0.Race.UnknownNprClass.method_62(this.gclass146_0.SystemBodyData, false);
                         this.gclass146_0.ColonistDestinationSetting = !(this.gclass146_0.decimal_30 < 25M)
                             ? (!(this.gclass146_0.decimal_30 < 100M) ? PopColonistSetting.Source : PopColonistSetting.Stable)
                             : PopColonistSetting.Destination;
                         if (this.gclass146_0.SystemBodyData.MaxColonyCost < 2M &&
-                            this.gclass146_0.RaceData.SpecialNPRID == SpecialNPRIDs.const_0 &&
+                            this.gclass146_0.Race.SpecialNPRID == SpecialNPRIDs.const_0 &&
                             this.gclass146_0.decimal_30 == 0M && this.gclass146_0.SystemBodyData.RadiationLevel == 0M &&
                             this.gclass146_0.SystemBodyData.DustLevel == 0M)
                         {
                             this.gclass146_0.method_25(0.0001M);
-                            if (this.gclass146_0.SystemBodyData.Gravity < this.gclass146_0.SpeciesData.double_7)
+                            if (this.gclass146_0.SystemBodyData.Gravity < this.gclass146_0.Species.double_7)
                                 this.gclass146_0.method_60(
-                                    this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.Infrastructure], 50, false);
+                                    this.gclass0_0.InstallationTypes[AuroraInstallationType.Infrastructure], 50, false);
                             else
                                 this.gclass146_0.method_60(
-                                    this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.Infrastructure], 100, false);
+                                    this.gclass0_0.InstallationTypes[AuroraInstallationType.Infrastructure], 100, false);
                         }
 
                         this.int_0 = this.gclass146_0.method_73(AuroraInstallationType.Mine) +
@@ -613,22 +613,22 @@ public partial class GClass6
                                             ? GEnum97.const_1
                                             : GEnum97.const_0)));
                         if (this.genum97_0 <= GEnum97.const_1 || !(this.gclass146_0.decimal_30 == 0M) ||
-                            this.gclass146_0.RaceData.SpecialNPRID != SpecialNPRIDs.const_0)
+                            this.gclass146_0.Race.SpecialNPRID != SpecialNPRIDs.const_0)
                             return;
                         if (this.gclass146_0.SystemBodyData.MaxColonyCost >= 0M && this.gclass146_0.SystemBodyData.MaxColonyCost < 2.5M &&
-                            this.gclass146_0.SystemBodyData.Gravity >= this.gclass146_0.SpeciesData.double_7 &&
-                            this.gclass146_0.SystemBodyData.Gravity <= this.gclass146_0.SpeciesData.double_8)
+                            this.gclass146_0.SystemBodyData.Gravity >= this.gclass146_0.Species.double_7 &&
+                            this.gclass146_0.SystemBodyData.Gravity <= this.gclass146_0.Species.double_8)
                         {
                             this.gclass146_0.method_60(
-                                this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.Infrastructure], 50, false);
+                                this.gclass0_0.InstallationTypes[AuroraInstallationType.Infrastructure], 50, false);
                             this.gclass146_0.method_25(0.0001M);
                         }
 
                         if (!(this.gclass146_0.SystemBodyData.MaxColonyCost >= 0M) ||
                             !(this.gclass146_0.SystemBodyData.MaxColonyCost < 2M) || this.gclass146_0.SystemBodyData.Gravity >=
-                            this.gclass146_0.SpeciesData.double_7)
+                            this.gclass146_0.Species.double_7)
                             return;
-                        this.gclass146_0.method_60(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.Infrastructure],
+                        this.gclass146_0.method_60(this.gclass0_0.InstallationTypes[AuroraInstallationType.Infrastructure],
                             100, false);
                         this.gclass146_0.method_25(0.0001M);
                     }
@@ -650,24 +650,24 @@ public partial class GClass6
             GClass6.Class487 class487 = new GClass6.Class487();
             SystemBodyData gclass10 = this.gclass146_0.SystemBodyData;
             // ISSUE: reference to a compiler-generated field
-            class487.gclass194_0 = this.gclass146_0.SpeciesData;
+            class487.gclass194_0 = this.gclass146_0.Species;
             // ISSUE: reference to a compiler-generated method
-            GClass224 gclass224_1 = gclass10.list_0.Where<GClass224>(class487.method_0)
-                .OrderBy<GClass224, double>(gclass224_0 => gclass224_0.double_1).FirstOrDefault<GClass224>();
+            SystemBodyAtmosphericGas gclass224_1 = gclass10.AtmosphericGasList.Where<SystemBodyAtmosphericGas>(class487.method_0)
+                .OrderBy<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm).FirstOrDefault<SystemBodyAtmosphericGas>();
             if (gclass224_1 != null)
             {
-                this.gclass146_0.TerraformingTargetGas = gclass224_1.gclass223_0;
+                this.gclass146_0.TerraformingTargetGas = gclass224_1.Gas;
                 this.gclass146_0.TerraformStatus = TerraformStatus.No;
             }
             else
             {
                 double num1 =
                     this.gclass146_0.SystemBodyData.method_45(
-                        this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen]);
+                        this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen]);
                 // ISSUE: reference to a compiler-generated field
                 if (num1 < class487.gclass194_0.double_9)
                 {
-                    this.gclass146_0.TerraformingTargetGas = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen];
+                    this.gclass146_0.TerraformingTargetGas = this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen];
                     this.gclass146_0.TerraformStatus = TerraformStatus.Yes;
                 }
                 else
@@ -675,7 +675,7 @@ public partial class GClass6
                     // ISSUE: reference to a compiler-generated field
                     if (num1 > class487.gclass194_0.double_10)
                     {
-                        this.gclass146_0.TerraformingTargetGas = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen];
+                        this.gclass146_0.TerraformingTargetGas = this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen];
                         this.gclass146_0.TerraformStatus = TerraformStatus.No;
                     }
                     else
@@ -684,7 +684,7 @@ public partial class GClass6
                         if (gclass10.SurfaceTemp < class487.gclass194_0.double_12)
                         {
                             this.gclass146_0.TerraformingTargetGas =
-                                this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.const_20];
+                                this.gclass0_0.AtmosphericGasDictionary[GasType.Aestusium];
                             this.gclass146_0.TerraformStatus = TerraformStatus.Yes;
                         }
                         else
@@ -692,33 +692,33 @@ public partial class GClass6
                             // ISSUE: reference to a compiler-generated field
                             if (gclass10.SurfaceTemp > class487.gclass194_0.double_11)
                             {
-                                GClass224 gclass224_2 = gclass10.list_0
-                                    .Where<GClass224>(gclass224_0 => gclass224_0.gclass223_0.GHGas)
-                                    .OrderBy<GClass224, double>(gclass224_0 => gclass224_0.double_1)
-                                    .FirstOrDefault<GClass224>();
+                                SystemBodyAtmosphericGas gclass224_2 = gclass10.AtmosphericGasList
+                                    .Where<SystemBodyAtmosphericGas>(gclass224_0 => gclass224_0.Gas.GHGas)
+                                    .OrderBy<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm)
+                                    .FirstOrDefault<SystemBodyAtmosphericGas>();
                                 this.gclass146_0.TerraformingTargetGas = gclass224_2 == null
-                                    ? this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.const_20]
-                                    : gclass224_2.gclass223_0;
+                                    ? this.gclass0_0.AtmosphericGasDictionary[GasType.Aestusium]
+                                    : gclass224_2.Gas;
                                 this.gclass146_0.TerraformStatus = TerraformStatus.No;
                             }
                             else
                             {
                                 double num2 = 0.0;
-                                foreach (GClass224 gclass224_3 in gclass10.list_0)
+                                foreach (SystemBodyAtmosphericGas gclass224_3 in gclass10.AtmosphericGasList)
                                 {
-                                    if (!gclass224_3.bool_0)
+                                    if (!gclass224_3.FrozenOut)
                                     {
-                                        if (gclass224_3.gclass223_0.GHGas)
-                                            num2 += gclass224_3.double_1;
-                                        if (gclass224_3.gclass223_0.AntiGHGas)
-                                            num2 -= gclass224_3.double_1;
+                                        if (gclass224_3.Gas.GHGas)
+                                            num2 += gclass224_3.GasAtm;
+                                        if (gclass224_3.Gas.AntiGHGas)
+                                            num2 -= gclass224_3.GasAtm;
                                     }
                                 }
 
                                 if (num1 / gclass10.AtmospherePressure > 0.3)
                                 {
                                     this.gclass146_0.TerraformingTargetGas =
-                                        this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Nitrogen];
+                                        this.gclass0_0.AtmosphericGasDictionary[GasType.Nitrogen];
                                     this.gclass146_0.TerraformStatus = TerraformStatus.Yes;
                                 }
                                 else
@@ -726,7 +726,7 @@ public partial class GClass6
                                     if (gclass10.HydroExtent >= 20.0)
                                         return;
                                     this.gclass146_0.TerraformingTargetGas =
-                                        this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.const_5];
+                                        this.gclass0_0.AtmosphericGasDictionary[GasType.WaterVapor];
                                     this.gclass146_0.TerraformStatus = TerraformStatus.Yes;
                                 }
                             }
@@ -745,35 +745,35 @@ public partial class GClass6
     {
         try
         {
-            if (gclass1_0.Gravity < this.gclass146_0.SpeciesData.double_7 || gclass1_0.Gravity < 0.1)
+            if (gclass1_0.Gravity < this.gclass146_0.Species.double_7 || gclass1_0.Gravity < 0.1)
                 return 0.0;
             double num1 = 0.0;
             double num2 = 0.0;
             double num3 = 0.0;
-            double num4 = gclass1_0.method_45(this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen]);
-            if (num4 < this.gclass146_0.SpeciesData.double_9)
+            double num4 = gclass1_0.method_45(this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen]);
+            if (num4 < this.gclass146_0.Species.double_9)
             {
-                num1 = this.gclass146_0.SpeciesData.double_9 - num4;
-                num2 = this.gclass146_0.SpeciesData.double_9;
+                num1 = this.gclass146_0.Species.double_9 - num4;
+                num2 = this.gclass146_0.Species.double_9;
                 num3 = num1;
             }
-            else if (num4 > this.gclass146_0.SpeciesData.double_10)
+            else if (num4 > this.gclass146_0.Species.double_10)
             {
-                num1 = num4 - this.gclass146_0.SpeciesData.double_10;
-                num2 = this.gclass146_0.SpeciesData.double_10;
+                num1 = num4 - this.gclass146_0.Species.double_10;
+                num2 = this.gclass146_0.Species.double_10;
                 num3 = -num1;
             }
 
             double num5 = 0.0;
             double num6 = 0.0;
-            foreach (GClass224 gclass224 in gclass1_0.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in gclass1_0.AtmosphericGasList)
             {
-                if (!gclass224.bool_0)
+                if (!gclass224.FrozenOut)
                 {
-                    if (gclass224.gclass223_0.GHGas)
-                        num5 += gclass224.double_1;
-                    if (gclass224.gclass223_0.AntiGHGas)
-                        num6 += gclass224.double_1;
+                    if (gclass224.Gas.GHGas)
+                        num5 += gclass224.GasAtm;
+                    if (gclass224.Gas.AntiGHGas)
+                        num6 += gclass224.GasAtm;
                 }
             }
 
@@ -785,15 +785,15 @@ public partial class GClass6
             if (num9 > 3.0)
                 num9 = 3.0;
             double num10 = gclass1_0.BaseTemp * num8 * gclass1_0.Albedo / num9;
-            if (num10 < this.gclass146_0.SpeciesData.double_12)
+            if (num10 < this.gclass146_0.Species.double_12)
             {
-                double num11 = this.gclass146_0.SpeciesData.double_12 / (gclass1_0.BaseTemp * gclass1_0.Albedo) - num8;
+                double num11 = this.gclass146_0.Species.double_12 / (gclass1_0.BaseTemp * gclass1_0.Albedo) - num8;
                 num1 += num11;
                 num7 += num11;
             }
-            else if (num10 > this.gclass146_0.SpeciesData.double_11)
+            else if (num10 > this.gclass146_0.Species.double_11)
             {
-                double num12 = num10 / this.gclass146_0.SpeciesData.double_11 - 1.0;
+                double num12 = num10 / this.gclass146_0.Species.double_11 - 1.0;
                 num1 += num12;
                 num7 += num12;
             }
@@ -804,10 +804,10 @@ public partial class GClass6
                 num1 += num13 - num7;
             }
 
-            foreach (GClass224 gclass224 in gclass1_0.list_0.Where<GClass224>(gclass224_0 =>
-                         gclass224_0.gclass223_0.Dangerous > 0 &&
-                         gclass224_0.gclass223_0 != this.gclass146_0.SpeciesData.gclass223_0).ToList<GClass224>())
-                num1 += gclass224.double_1;
+            foreach (SystemBodyAtmosphericGas gclass224 in gclass1_0.AtmosphericGasList.Where<SystemBodyAtmosphericGas>(gclass224_0 =>
+                         gclass224_0.Gas.Dangerous > 0 &&
+                         gclass224_0.Gas != this.gclass146_0.Species.gclass223_0).ToList<SystemBodyAtmosphericGas>())
+                num1 += gclass224.GasAtm;
             if (gclass1_0.HydroExtent < 20.0)
             {
                 double num14 = (20.0 - gclass1_0.HydroExtent) / 40.0;
@@ -836,13 +836,13 @@ public partial class GClass6
             // ISSUE: reference to a compiler-generated field
             class488.list_0 = this.gclass0_0.dictionary_32.Values
                 .Where<GClass192>(gclass192_0 =>
-                    gclass192_0.gclass40_0 != null && gclass192_0.gclass21_0 == this.gclass146_0.RaceData)
-                .Select<GClass192, FCTShipData40>(gclass192_0 => gclass192_0.gclass40_0).ToList<FCTShipData40>();
+                    gclass192_0.gclass40_0 != null && gclass192_0.gclass21_0 == this.gclass146_0.Race)
+                .Select<GClass192, ShipData>(gclass192_0 => gclass192_0.gclass40_0).ToList<ShipData>();
             // ISSUE: reference to a compiler-generated method
-            List<FCTShipData40> list2 = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.RaceData)
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.dictionary_5.Count > 0 || gclass40_0.list_12.Count > 0)
-                .Where<FCTShipData40>(class488.method_0).ToList<FCTShipData40>();
+            List<ShipData> list2 = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.Race)
+                .Where<ShipData>(gclass40_0 => gclass40_0.dictionary_5.Count > 0 || gclass40_0.list_12.Count > 0)
+                .Where<ShipData>(class488.method_0).ToList<ShipData>();
             foreach (GClass193 gclass193_0 in list1)
             {
                 int int_3 = gclass193_0.method_1();
@@ -852,7 +852,7 @@ public partial class GClass6
                     if (list2.Count > 0)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        FCTShipData40 gclass40_3 =
+                        ShipData gclass40_3 =
                             this.method_11(this.gclass146_0, gclass193_0, class488.list_0, list2);
                         if (gclass40_3 != null)
                         {
@@ -869,7 +869,7 @@ public partial class GClass6
                     int num2 = this.method_12(gclass193_0.gclass22_0, int_3);
                     if (num2 != 0)
                     {
-                        int num3 = this.gclass146_0.CurrentMinerals.method_0(gclass193_0.gclass22_0.gclass123_0);
+                        int num3 = this.gclass146_0.CurrentMinerals.method_0(gclass193_0.gclass22_0.ClassMaterials);
                         if (num3 != 0)
                         {
                             if (num3 > num1)
@@ -890,11 +890,11 @@ public partial class GClass6
         }
     }
 
-    public FCTShipData40 method_11(
+    public ShipData method_11(
         PopulationData gclass146_1,
         GClass193 gclass193_0,
-        List<FCTShipData40> list_1,
-        List<FCTShipData40> list_2)
+        List<ShipData> list_1,
+        List<ShipData> list_2)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -924,9 +924,9 @@ public partial class GClass6
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            return list_2.Where<FCTShipData40>(class490.method_0).Where<FCTShipData40>(class490.class489_0.method_0)
-                .OrderByDescending<FCTShipData40, Decimal>(gclass40_0 => gclass40_0.gclass22_0.decimal_14)
-                .FirstOrDefault<FCTShipData40>();
+            return list_2.Where<ShipData>(class490.method_0).Where<ShipData>(class490.class489_0.method_0)
+                .OrderByDescending<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                .FirstOrDefault<ShipData>();
         }
         catch (Exception ex)
         {
@@ -935,7 +935,7 @@ public partial class GClass6
         }
     }
 
-    public int method_12(GClass22 gclass22_0, int int_3)
+    public int method_12(ShipClass gclass22_0, int int_3)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -948,49 +948,49 @@ public partial class GClass6
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            int num1 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class491.method_0)
-                .Where<FCTShipData40>(class491.method_1).Count<FCTShipData40>();
+            int num1 = this.gclass0_0.Ships.Values.Where<ShipData>(class491.method_0)
+                .Where<ShipData>(class491.method_1).Count<ShipData>();
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Geosurvey)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxGeo
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Geosurvey)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxGeo
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxGeo - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxGeo - (num1 + int_3);
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Gravsurvey)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxGrav
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Gravsurvey)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxGrav
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxGrav - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxGrav - (num1 + int_3);
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Scout)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxScout
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Scout)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxScout
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxScout - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxScout - (num1 + int_3);
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.DiplomaticShip)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxDiplomatic
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.DiplomaticShip)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxDiplomatic
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxDiplomatic - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxDiplomatic - (num1 + int_3);
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.ConstructionShip)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxStabilisation
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.ConstructionShip)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxStabilisation
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxStabilisation - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxStabilisation - (num1 + int_3);
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Salvager)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxSalvage
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Salvager)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxSalvage
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxSalvage - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxSalvage - (num1 + int_3);
             // ISSUE: reference to a compiler-generated field
-            if (class491.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Tanker)
-                return num1 + int_3 >= this.gclass146_0.RaceData.DesignDoctrine.MaxTanker
+            if (class491.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Tanker)
+                return num1 + int_3 >= this.gclass146_0.Race.DesignDoctrine.MaxTanker
                     ? 0
-                    : this.gclass146_0.RaceData.DesignDoctrine.MaxTanker - (num1 + int_3);
+                    : this.gclass146_0.Race.DesignDoctrine.MaxTanker - (num1 + int_3);
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             int num2 = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(class491.method_2)
                 .Where<FleetData>(gclass85_0 => gclass85_0.NPROperationGroup.OperationalGroupId == OperationalGroupID.ReinforcementGroup)
-                .SelectMany<FleetData, FCTShipData40>(gclass85_0 => gclass85_0.method_176())
-                .Where<FCTShipData40>(class491.method_3).Count<FCTShipData40>();
+                .SelectMany<FleetData, ShipData>(gclass85_0 => gclass85_0.method_176())
+                .Where<ShipData>(class491.method_3).Count<ShipData>();
             return num2 >= 3 ? 0 : 3 - num2;
         }
         catch (Exception ex)
@@ -1012,21 +1012,21 @@ public partial class GClass6
             foreach (GClass193 gclass193 in list1)
                 gclass193.bool_1 = false;
             List<GClass193> list2 = this.gclass0_0.dictionary_31.Values
-                .Where<GClass193>(gclass193_0 => gclass193_0.gclass21_0 == this.gclass146_0.RaceData)
+                .Where<GClass193>(gclass193_0 => gclass193_0.gclass21_0 == this.gclass146_0.Race)
                 .ToList<GClass193>();
             foreach (GClass193 gclass193 in list1.Where<GClass193>(gclass193_0 => gclass193_0.gclass22_0 == null)
                          .OrderByDescending<GClass193, Decimal>(gclass193_0 => gclass193_0.decimal_0)
                          .ToList<GClass193>())
                 gclass193.bool_1 = true;
-            List<GClass22> list3 = list2.Where<GClass193>(gclass193_0 => gclass193_0.gclass22_0 != null)
-                .Select<GClass193, GClass22>(gclass193_0 => gclass193_0.gclass22_0).ToList<GClass22>();
-            List<GClass22> list4 = this.gclass0_0.dictionary_3.Values
-                .Where<GClass22>(gclass22_0 =>
-                    gclass22_0.gclass21_0 == this.gclass146_0.RaceData && gclass22_0.int_38 == 0 &&
-                    gclass22_0.gclass187_0 == null).Except<GClass22>(list3)
-                .OrderByDescending<GClass22, Decimal>(gclass22_0 => gclass22_0.decimal_14).ToList<GClass22>();
-            List<GClass22> source = new List<GClass22>();
-            foreach (GClass22 gclass22_0 in list4)
+            List<ShipClass> list3 = list2.Where<GClass193>(gclass193_0 => gclass193_0.gclass22_0 != null)
+                .Select<GClass193, ShipClass>(gclass193_0 => gclass193_0.gclass22_0).ToList<ShipClass>();
+            List<ShipClass> list4 = this.gclass0_0.ShipClasses.Values
+                .Where<ShipClass>(gclass22_0 =>
+                    gclass22_0.Race == this.gclass146_0.Race && gclass22_0.Obsolete == 0 &&
+                    gclass22_0.gclass187_0 == null).Except<ShipClass>(list3)
+                .OrderByDescending<ShipClass, Decimal>(gclass22_0 => gclass22_0.Size).ToList<ShipClass>();
+            List<ShipClass> source = new List<ShipClass>();
+            foreach (ShipClass gclass22_0 in list4)
             {
                 if (this.method_12(gclass22_0, 0) > 0)
                     source.Add(gclass22_0);
@@ -1041,14 +1041,14 @@ public partial class GClass6
 
             List<GClass193> list5 = list1.Where<GClass193>(gclass193_0 =>
                 gclass193_0.bool_1 && gclass193_0.auroraShipyardType_0 == AuroraShipyardType.Naval).ToList<GClass193>();
-            List<GClass22> list6 = source.Where<GClass22>(gclass22_0 => !gclass22_0.bool_2).ToList<GClass22>();
+            List<ShipClass> list6 = source.Where<ShipClass>(gclass22_0 => !gclass22_0.Commercial).ToList<ShipClass>();
             foreach (GClass193 gclass193 in list5)
             {
-                foreach (GClass22 gclass22 in list6
-                             .OrderByDescending<GClass22, Decimal>(gclass22_0 => gclass22_0.decimal_14)
-                             .ToList<GClass22>())
+                foreach (ShipClass gclass22 in list6
+                             .OrderByDescending<ShipClass, Decimal>(gclass22_0 => gclass22_0.Size)
+                             .ToList<ShipClass>())
                 {
-                    if (gclass22.decimal_14 * AuroraUtils.decimal_17 <= gclass193.decimal_0)
+                    if (gclass22.Size * AuroraUtils.decimal_17 <= gclass193.decimal_0)
                     {
                         gclass193.gclass22_0 = gclass22;
                         list6.Remove(gclass22);
@@ -1060,14 +1060,14 @@ public partial class GClass6
             List<GClass193> list7 = list1.Where<GClass193>(gclass193_0 =>
                     gclass193_0.bool_1 && gclass193_0.auroraShipyardType_0 == AuroraShipyardType.Commercial)
                 .ToList<GClass193>();
-            List<GClass22> list8 = source.Where<GClass22>(gclass22_0 => gclass22_0.bool_2).ToList<GClass22>();
+            List<ShipClass> list8 = source.Where<ShipClass>(gclass22_0 => gclass22_0.Commercial).ToList<ShipClass>();
             foreach (GClass193 gclass193 in list7)
             {
-                foreach (GClass22 gclass22 in list8
-                             .OrderByDescending<GClass22, Decimal>(gclass22_0 => gclass22_0.decimal_14)
-                             .ToList<GClass22>())
+                foreach (ShipClass gclass22 in list8
+                             .OrderByDescending<ShipClass, Decimal>(gclass22_0 => gclass22_0.Size)
+                             .ToList<ShipClass>())
                 {
-                    if (gclass22.decimal_14 * AuroraUtils.decimal_17 <= gclass193.decimal_0)
+                    if (gclass22.Size * AuroraUtils.decimal_17 <= gclass193.decimal_0)
                     {
                         gclass193.gclass22_0 = gclass22;
                         list8.Remove(gclass22);
@@ -1135,15 +1135,15 @@ public partial class GClass6
     {
         try
         {
-            if (this.gclass146_0.method_73(AuroraInstallationType.OrdnanceFactory) == 0 || this.gclass146_0.dictionary_2
-                    .Values.Where<GClass156>(gclass156_0 =>
-                        gclass156_0.auroraProductionType_0 == AuroraProductionType.Ordnance).Count<GClass156>() > 0)
+            if (this.gclass146_0.method_73(AuroraInstallationType.OrdnanceFactory) == 0 || this.gclass146_0.IndustrialProjects
+                    .Values.Where<IndustrialProjects>(gclass156_0 =>
+                        gclass156_0.ProductionType == AuroraProductionType.Ordnance).Count<IndustrialProjects>() > 0)
                 return;
             List<GClass7> source = new List<GClass7>();
-            List<RaceMissile> list = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.RaceData)
-                .SelectMany<FCTShipData40, GClass130>(gclass40_0 => gclass40_0.gclass22_0.list_0)
-                .Select<GClass130, RaceMissile>(gclass130_0 => gclass130_0.gclass129_0).Distinct<RaceMissile>()
+            List<RaceMissile> list = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.Race)
+                .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.gclass22_0.list_0)
+                .Select<PopOrdnanceStock, RaceMissile>(gclass130_0 => gclass130_0.RaceMissile).Distinct<RaceMissile>()
                 .ToList<RaceMissile>();
             if (list.Count == 0)
                 return;
@@ -1155,20 +1155,20 @@ public partial class GClass6
                 // ISSUE: reference to a compiler-generated field
                 class492.gclass129_0 = gclass129;
                 // ISSUE: reference to a compiler-generated method
-                int num1 = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.RaceData)
-                    .SelectMany<FCTShipData40, GClass130>(gclass40_0 => gclass40_0.gclass22_0.list_0)
-                    .Where<GClass130>(class492.method_0).Sum<GClass130>(gclass130_0 => gclass130_0.int_0);
+                int num1 = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.Race)
+                    .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.gclass22_0.list_0)
+                    .Where<PopOrdnanceStock>(class492.method_0).Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount);
                 // ISSUE: reference to a compiler-generated method
-                int num2 = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.RaceData)
-                    .SelectMany<FCTShipData40, GClass130>(gclass40_0 => gclass40_0.list_10)
-                    .Where<GClass130>(class492.method_1).Sum<GClass130>(gclass130_0 => gclass130_0.int_0);
+                int num2 = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.Race)
+                    .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.list_10)
+                    .Where<PopOrdnanceStock>(class492.method_1).Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount);
                 // ISSUE: reference to a compiler-generated method
-                int num3 = this.gclass0_0.PopulationDataDictionary.Values
-                    .Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this.gclass146_0.RaceData)
-                    .SelectMany<PopulationData, GClass130>(gclass146_0 => gclass146_0.list_1)
-                    .Where<GClass130>(class492.method_2).Sum<GClass130>(gclass130_0 => gclass130_0.int_0);
+                int num3 = this.gclass0_0.Populations.Values
+                    .Where<PopulationData>(gclass146_1 => gclass146_1.Race == this.gclass146_0.Race)
+                    .SelectMany<PopulationData, PopOrdnanceStock>(gclass146_0 => gclass146_0.OrdnanceStocks)
+                    .Where<PopOrdnanceStock>(class492.method_2).Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount);
                 // ISSUE: reference to a compiler-generated field
                 GClass7 gclass7 = new GClass7()
                 {
@@ -1183,7 +1183,7 @@ public partial class GClass6
             foreach (GClass7 gclass7 in source.OrderBy<GClass7, Decimal>(gclass7_0 => gclass7_0.decimal_0)
                          .ToList<GClass7>())
             {
-                int int_3 = (int)Math.Floor(this.gclass146_0.decimal_59 / gclass7.gclass129_0.decimal_3 / 4M);
+                int int_3 = (int)Math.Floor(this.gclass146_0.decimal_59 / gclass7.gclass129_0.Cost / 4M);
                 if (this.method_25(gclass7.gclass129_0, int_3) > 0)
                     break;
             }
@@ -1198,19 +1198,19 @@ public partial class GClass6
     {
         try
         {
-            if (this.gclass146_0.method_73(AuroraInstallationType.FighterFactory) == 0 || this.gclass146_0.dictionary_2
-                    .Values.Where<GClass156>(gclass156_0 =>
-                        gclass156_0.auroraProductionType_0 == AuroraProductionType.Fighter).Count<GClass156>() > 0)
+            if (this.gclass146_0.method_73(AuroraInstallationType.FighterFactory) == 0 || this.gclass146_0.IndustrialProjects
+                    .Values.Where<IndustrialProjects>(gclass156_0 =>
+                        gclass156_0.ProductionType == AuroraProductionType.Fighter).Count<IndustrialProjects>() > 0)
                 return;
             List<GClass8> source = new List<GClass8>();
-            List<GClass22> list = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.RaceData)
-                .SelectMany<FCTShipData40, GClass74>(gclass40_0 => gclass40_0.gclass22_0.list_1)
-                .Select<GClass74, GClass22>(gclass74_0 => gclass74_0.gclass22_0).Distinct<GClass22>()
-                .ToList<GClass22>();
+            List<ShipClass> list = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.Race)
+                .SelectMany<ShipData, GClass74>(gclass40_0 => gclass40_0.gclass22_0.list_1)
+                .Select<GClass74, ShipClass>(gclass74_0 => gclass74_0.gclass22_0).Distinct<ShipClass>()
+                .ToList<ShipClass>();
             if (list.Count == 0)
                 return;
-            foreach (GClass22 gclass22 in list)
+            foreach (ShipClass gclass22 in list)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
@@ -1218,12 +1218,12 @@ public partial class GClass6
                 // ISSUE: reference to a compiler-generated field
                 class493.gclass22_0 = gclass22;
                 // ISSUE: reference to a compiler-generated method
-                int num1 = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.RaceData)
-                    .SelectMany<FCTShipData40, GClass74>(gclass40_0 => gclass40_0.gclass22_0.list_1)
+                int num1 = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass146_0.Race)
+                    .SelectMany<ShipData, GClass74>(gclass40_0 => gclass40_0.gclass22_0.list_1)
                     .Where<GClass74>(class493.method_0).Sum<GClass74>(gclass74_0 => gclass74_0.int_0);
                 // ISSUE: reference to a compiler-generated method
-                int num2 = this.gclass0_0.FCTShipDataDictionary.Values.Count<FCTShipData40>(class493.method_1);
+                int num2 = this.gclass0_0.Ships.Values.Count<ShipData>(class493.method_1);
                 // ISSUE: reference to a compiler-generated field
                 GClass8 gclass8 = new GClass8()
                 {
@@ -1238,7 +1238,7 @@ public partial class GClass6
             foreach (GClass8 gclass8 in source.OrderBy<GClass8, Decimal>(gclass8_0 => gclass8_0.decimal_0)
                          .ToList<GClass8>())
             {
-                int int_3 = (int)Math.Floor(this.gclass146_0.decimal_60 / gclass8.gclass22_0.decimal_4 / 4M);
+                int int_3 = (int)Math.Floor(this.gclass146_0.decimal_60 / gclass8.gclass22_0.Cost / 4M);
                 if (this.method_26(gclass8.gclass22_0, int_3) > 0)
                     break;
             }
@@ -1259,14 +1259,14 @@ public partial class GClass6
                     (int)Math.Ceiling(Math.Pow((double)this.gclass146_0.decimal_30, 0.333)), 3) ||
                 this.method_20(AuroraInstallationType.GFCC, int_3, 125M, 1))
                 return;
-            this.gclass146_0.SystemBodyData.method_58(this.gclass146_0.RaceData, this.gclass146_0.SpeciesData, true);
+            this.gclass146_0.SystemBodyData.method_58(this.gclass146_0.Race, this.gclass146_0.Species, true);
             if (this.gclass146_0.SystemBodyData.MaxColonyCost > 0M &&
                 this.method_20(AuroraInstallationType.TerraformingInstallation, int_3, 50M, 1) ||
                 this.gclass146_0.method_73(AuroraInstallationType.Infrastructure) < 100 &&
                 this.method_20(AuroraInstallationType.Infrastructure, int_3, 1M, 50) ||
                 this.method_20(AuroraInstallationType.MilitaryAcademy, int_3, 200M, 1))
                 return;
-            this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConventionalIndustry], 10);
+            this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConventionalIndustry], 10);
         }
         catch (Exception ex)
         {
@@ -1282,8 +1282,8 @@ public partial class GClass6
                           this.gclass146_0.method_73(AuroraInstallationType.ConventionalIndustry);
             if (int_3_1 == 0)
                 return;
-            GClass124 gclass124_1 = this.gclass146_0.SystemBodyData.method_19(AuroraElement.Duranium);
-            GClass124 gclass124_2 = this.gclass146_0.SystemBodyData.method_19(AuroraElement.Gallicite);
+            MineralDeposit gclass124_1 = this.gclass146_0.SystemBodyData.method_19(AuroraElement.Duranium);
+            MineralDeposit gclass124_2 = this.gclass146_0.SystemBodyData.method_19(AuroraElement.Gallicite);
             if (gclass124_1 != null || gclass124_2 != null)
             {
                 Decimal num1 = 0M;
@@ -1292,14 +1292,14 @@ public partial class GClass6
                 Decimal num4 = 0M;
                 if (gclass124_1 != null)
                 {
-                    num2 = gclass124_1.decimal_1;
-                    num4 = gclass124_1.decimal_0;
+                    num2 = gclass124_1.Accessibility;
+                    num4 = gclass124_1.Amount;
                 }
 
                 if (gclass124_2 != null)
                 {
-                    num1 = gclass124_2.decimal_1;
-                    num3 = gclass124_2.decimal_0;
+                    num1 = gclass124_2.Accessibility;
+                    num3 = gclass124_2.Amount;
                 }
 
                 if (num4 > 10000M && num2 > 0.4M || num3 > 10000M && num1 > 0.4M)
@@ -1307,20 +1307,20 @@ public partial class GClass6
                     int num5 = this.gclass146_0.method_73(AuroraInstallationType.Mine) +
                                this.gclass146_0.method_73(AuroraInstallationType.AutomatedMine);
                     if ((num5 * num2 < int_3_1 * 1.2M || num5 * num1 < int_3_1 * 1.2M) && AuroraUtils.smethod_23() &&
-                        this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.Mine], 10) > 0)
+                        this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.Mine], 10) > 0)
                         return;
                 }
             }
 
-            List<GClass148> list1 = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this.gclass146_0.RaceData)
-                .SelectMany<PopulationData, GClass148>(gclass146_0 => gclass146_0.dictionary_5.Values)
-                .Where<GClass148>(gclass148_0 => !gclass148_0.bool_1).ToList<GClass148>();
-            List<GClass148> list2 = list1.Where<GClass148>(gclass148_0 => !gclass148_0.bool_0).ToList<GClass148>();
+            List<PopInstallationDemand> list1 = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_1 => gclass146_1.Race == this.gclass146_0.Race)
+                .SelectMany<PopulationData, PopInstallationDemand>(gclass146_0 => gclass146_0.InstallationDemands.Values)
+                .Where<PopInstallationDemand>(gclass148_0 => !gclass148_0.NonEssential).ToList<PopInstallationDemand>();
+            List<PopInstallationDemand> list2 = list1.Where<PopInstallationDemand>(gclass148_0 => !gclass148_0.Export).ToList<PopInstallationDemand>();
             if (list2.Count > 0)
             {
-                List<GClass148> list3 = list1.Where<GClass148>(gclass148_0 => gclass148_0.bool_0).ToList<GClass148>();
-                List<PlanetaryInstallationType> list4 = list2.Select<GClass148, PlanetaryInstallationType>(gclass148_0 => gclass148_0.gclass157_0)
+                List<PopInstallationDemand> list3 = list1.Where<PopInstallationDemand>(gclass148_0 => gclass148_0.Export).ToList<PopInstallationDemand>();
+                List<PlanetaryInstallationType> list4 = list2.Select<PopInstallationDemand, PlanetaryInstallationType>(gclass148_0 => gclass148_0.InstallationType)
                     .Distinct<PlanetaryInstallationType>().ToList<PlanetaryInstallationType>();
                 foreach (PlanetaryInstallationType gclass157 in list4)
                 {
@@ -1332,13 +1332,13 @@ public partial class GClass6
                     Decimal num6 = 0M;
                     Decimal num7 = 0M;
                     // ISSUE: reference to a compiler-generated method
-                    List<GClass148> list5 = list2.Where<GClass148>(class494.method_0).ToList<GClass148>();
+                    List<PopInstallationDemand> list5 = list2.Where<PopInstallationDemand>(class494.method_0).ToList<PopInstallationDemand>();
                     // ISSUE: reference to a compiler-generated method
-                    List<GClass148> list6 = list3.Where<GClass148>(class494.method_1).ToList<GClass148>();
+                    List<PopInstallationDemand> list6 = list3.Where<PopInstallationDemand>(class494.method_1).ToList<PopInstallationDemand>();
                     if (list5.Count > 0)
-                        num6 = list5.Sum<GClass148>(gclass148_0 => gclass148_0.decimal_0);
+                        num6 = list5.Sum<PopInstallationDemand>(gclass148_0 => gclass148_0.Amount);
                     if (list6.Count > 0)
-                        num7 = list6.Sum<GClass148>(gclass148_0 => gclass148_0.decimal_0);
+                        num7 = list6.Sum<PopInstallationDemand>(gclass148_0 => gclass148_0.Amount);
                     // ISSUE: reference to a compiler-generated field
                     class494.gclass157_0.decimal_25 = num6 - num7;
                 }
@@ -1369,10 +1369,10 @@ public partial class GClass6
             if (this.method_21(AuroraInstallationType.TrackingStation,
                     (int)Math.Ceiling(Math.Pow((double)this.gclass146_0.decimal_30, 0.333)), 3) ||
                 int_3_1 < 100 &&
-                this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConstructionFactory], 10) > 0 ||
-                this.gclass146_0.RaceData.DesignDoctrine.bOrdnanceFactories &&
+                this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConstructionFactory], 10) > 0 ||
+                this.gclass146_0.Race.DesignDoctrine.bOrdnanceFactories &&
                 this.method_20(AuroraInstallationType.OrdnanceFactory, int_3_1, 3M, 10) ||
-                this.gclass146_0.RaceData.DesignDoctrine.bFighterFactories &&
+                this.gclass146_0.Race.DesignDoctrine.bFighterFactories &&
                 this.method_20(AuroraInstallationType.FighterFactory, int_3_1, 3M, 10) ||
                 this.method_20(AuroraInstallationType.ResearchLab, int_3_1, 20M, 1) ||
                 this.method_20(AuroraInstallationType.GFCC, int_3_1, 125M, 1))
@@ -1382,7 +1382,7 @@ public partial class GClass6
                 int num8 = this.gclass146_0.method_73(AuroraInstallationType.RefuellingStation);
                 int num9 = this.gclass146_0.method_73(AuroraInstallationType.Spaceport);
                 if (num8 == 0 && num9 == 0 && this.gclass146_0.FuelStockpile > 1000000M &&
-                    this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.RefuellingStation], 1) > 0)
+                    this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.RefuellingStation], 1) > 0)
                     return;
             }
 
@@ -1392,7 +1392,7 @@ public partial class GClass6
                 int num11 = this.gclass146_0.method_73(AuroraInstallationType.Spaceport);
                 if (num10 == 0 && num11 == 0 &&
                     this.gclass146_0.method_73(AuroraInstallationType.OrdnanceFactory) > 10 &&
-                    this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConstructionFactory], 1) > 0)
+                    this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConstructionFactory], 1) > 0)
                     return;
             }
 
@@ -1401,15 +1401,15 @@ public partial class GClass6
             if (int_3_1 > 300)
             {
                 AuroraInstallationType key = this.method_19();
-                if (key != AuroraInstallationType.NoType && this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[key], 1) > 0)
+                if (key != AuroraInstallationType.NoType && this.method_24(this.gclass0_0.InstallationTypes[key], 1) > 0)
                     return;
             }
 
-            this.gclass146_0.SystemBodyData.method_58(this.gclass146_0.RaceData, this.gclass146_0.SpeciesData, true);
+            this.gclass146_0.SystemBodyData.method_58(this.gclass146_0.Race, this.gclass146_0.Species, true);
             if (this.gclass146_0.SystemBodyData.MaxColonyCost > 0M &&
                 this.method_20(AuroraInstallationType.TerraformingInstallation, int_3_1, 50M, 1) ||
                 this.method_20(AuroraInstallationType.MilitaryAcademy, int_3_1, 200M, 1) ||
-                this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConstructionFactory], 10) > 0)
+                this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConstructionFactory], 10) > 0)
                 return;
             this.method_20(AuroraInstallationType.FinancialCentre, int_3_1, 5M, 10);
         }
@@ -1423,29 +1423,29 @@ public partial class GClass6
     {
         try
         {
-            int num1 = this.gclass0_0.dictionary_3.Values.Count<GClass22>(gclass22_0 =>
-                gclass22_0.gclass21_0 == this.gclass146_0.RaceData && gclass22_0.int_38 == 0 && !gclass22_0.bool_2);
-            int num2 = this.gclass0_0.dictionary_3.Values.Count<GClass22>(gclass22_0 =>
-                gclass22_0.gclass21_0 == this.gclass146_0.RaceData && gclass22_0.int_38 == 0 && gclass22_0.bool_2 &&
+            int num1 = this.gclass0_0.ShipClasses.Values.Count<ShipClass>(gclass22_0 =>
+                gclass22_0.Race == this.gclass146_0.Race && gclass22_0.Obsolete == 0 && !gclass22_0.Commercial);
+            int num2 = this.gclass0_0.ShipClasses.Values.Count<ShipClass>(gclass22_0 =>
+                gclass22_0.Race == this.gclass146_0.Race && gclass22_0.Obsolete == 0 && gclass22_0.Commercial &&
                 gclass22_0.gclass187_0 == null);
             int num3 = this.gclass0_0.dictionary_31.Values.Count<GClass193>(gclass193_0 =>
-                gclass193_0.gclass21_0 == this.gclass146_0.RaceData &&
+                gclass193_0.gclass21_0 == this.gclass146_0.Race &&
                 gclass193_0.auroraShipyardType_0 == AuroraShipyardType.Naval);
             int num4 = this.gclass0_0.dictionary_31.Values.Count<GClass193>(gclass193_0 =>
-                gclass193_0.gclass21_0 == this.gclass146_0.RaceData &&
+                gclass193_0.gclass21_0 == this.gclass146_0.Race &&
                 gclass193_0.auroraShipyardType_0 == AuroraShipyardType.Naval);
-            int num5 = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this.gclass146_0.RaceData)
-                .SelectMany<PopulationData, GClass156>(gclass146_0 => gclass146_0.dictionary_2.Values)
-                .Where<GClass156>(gclass156_0 => gclass156_0.gclass157_0 != null).Where<GClass156>(gclass156_0 =>
-                    gclass156_0.gclass157_0.InstallationType == AuroraInstallationType.NavalShipyard)
-                .Count<GClass156>();
-            int num6 = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_1 => gclass146_1.RaceData == this.gclass146_0.RaceData)
-                .SelectMany<PopulationData, GClass156>(gclass146_0 => gclass146_0.dictionary_2.Values)
-                .Where<GClass156>(gclass156_0 => gclass156_0.gclass157_0 != null).Where<GClass156>(gclass156_0 =>
-                    gclass156_0.gclass157_0.InstallationType == AuroraInstallationType.CommercialShipyard)
-                .Count<GClass156>();
+            int num5 = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_1 => gclass146_1.Race == this.gclass146_0.Race)
+                .SelectMany<PopulationData, IndustrialProjects>(gclass146_0 => gclass146_0.IndustrialProjects.Values)
+                .Where<IndustrialProjects>(gclass156_0 => gclass156_0.InstallationType != null).Where<IndustrialProjects>(gclass156_0 =>
+                    gclass156_0.InstallationType.InstallationType == AuroraInstallationType.NavalShipyard)
+                .Count<IndustrialProjects>();
+            int num6 = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_1 => gclass146_1.Race == this.gclass146_0.Race)
+                .SelectMany<PopulationData, IndustrialProjects>(gclass146_0 => gclass146_0.IndustrialProjects.Values)
+                .Where<IndustrialProjects>(gclass156_0 => gclass156_0.InstallationType != null).Where<IndustrialProjects>(gclass156_0 =>
+                    gclass156_0.InstallationType.InstallationType == AuroraInstallationType.CommercialShipyard)
+                .Count<IndustrialProjects>();
             int num7 = num5;
             if (num3 + num7 < num1)
                 return AuroraInstallationType.NavalShipyard;
@@ -1467,7 +1467,7 @@ public partial class GClass6
         try
         {
             return this.gclass146_0.method_73(auroraInstallationType_0) < int_3 / decimal_2 &&
-                   this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[auroraInstallationType_0], int_4) > 0;
+                   this.method_24(this.gclass0_0.InstallationTypes[auroraInstallationType_0], int_4) > 0;
         }
         catch (Exception ex)
         {
@@ -1486,7 +1486,7 @@ public partial class GClass6
                 int int_3_1 = int_3 - num;
                 if (int_3_1 > int_4)
                     int_3_1 = int_4;
-                if (this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[auroraInstallationType_0], int_3_1) > 0)
+                if (this.method_24(this.gclass0_0.InstallationTypes[auroraInstallationType_0], int_3_1) > 0)
                     return true;
             }
 
@@ -1504,18 +1504,18 @@ public partial class GClass6
         try
         {
             if (this.gclass146_0.method_73(AuroraInstallationType.ConventionalIndustry) == 0 ||
-                !this.gclass146_0.RaceData.method_394(GEnum118.const_45) ||
+                !this.gclass146_0.Race.method_394(GEnum118.const_45) ||
                 !(this.gclass146_0.method_62(AuroraProductionCategory.Construction) > 0M))
                 return false;
             int num = this.gclass146_0.method_73(AuroraInstallationType.ConstructionFactory);
             return this.gclass146_0.method_73(AuroraInstallationType.FuelRefinery) < num / 5.0 &&
-                   this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConvertCItoRefinery], 5) > 0 ||
-                   this.gclass146_0.RaceData.DesignDoctrine.bOrdnanceFactories &&
+                   this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConvertCItoRefinery], 5) > 0 ||
+                   this.gclass146_0.Race.DesignDoctrine.bOrdnanceFactories &&
                    this.gclass146_0.method_73(AuroraInstallationType.OrdnanceFactory) < num / 5.0 &&
-                   this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConvertCItoOrdnance], 5) > 0 ||
+                   this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConvertCItoOrdnance], 5) > 0 ||
                    this.gclass146_0.method_73(AuroraInstallationType.Mine) < num &&
-                   this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConvertCItoMine], 10) > 0 ||
-                   this.method_24(this.gclass0_0.PlanetaryInstallationDictionary[AuroraInstallationType.ConvertCItoCF], 10) > 0;
+                   this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConvertCItoMine], 10) > 0 ||
+                   this.method_24(this.gclass0_0.InstallationTypes[AuroraInstallationType.ConvertCItoCF], 10) > 0;
         }
         catch (Exception ex)
         {
@@ -1568,15 +1568,15 @@ public partial class GClass6
     {
         try
         {
-            int num = this.gclass146_0.CurrentMinerals.method_0(gclass129_0.gclass123_0);
+            int num = this.gclass146_0.CurrentMinerals.method_0(gclass129_0.ProductionMineralCost);
             if (num < 1)
                 return 0;
             if (num < int_3)
                 int_3 = num;
-            this.gclass146_0.gclass123_5 = gclass129_0.gclass123_0;
-            this.gclass146_0.decimal_81 = gclass129_0.decimal_3;
+            this.gclass146_0.gclass123_5 = gclass129_0.ProductionMineralCost;
+            this.gclass146_0.decimal_81 = gclass129_0.Cost;
             this.gclass146_0.auroraProductionType_0 = AuroraProductionType.Ordnance;
-            this.gclass146_0.decimal_82 = gclass129_0.int_4;
+            this.gclass146_0.decimal_82 = gclass129_0.FuelRequired;
             this.gclass146_0.object_0 = gclass129_0;
             this.gclass146_0.method_143(int_3, 100M);
             return int_3;
@@ -1588,19 +1588,19 @@ public partial class GClass6
         }
     }
 
-    public int method_26(GClass22 gclass22_0, int int_3)
+    public int method_26(ShipClass gclass22_0, int int_3)
     {
         try
         {
-            int num = this.gclass146_0.CurrentMinerals.method_0(gclass22_0.gclass123_0);
+            int num = this.gclass146_0.CurrentMinerals.method_0(gclass22_0.ClassMaterials);
             if (num < 1)
                 return 0;
             if (num < int_3)
                 int_3 = num;
-            this.gclass146_0.gclass123_5 = gclass22_0.gclass123_0;
-            this.gclass146_0.decimal_81 = gclass22_0.decimal_4;
+            this.gclass146_0.gclass123_5 = gclass22_0.ClassMaterials;
+            this.gclass146_0.decimal_81 = gclass22_0.Cost;
             this.gclass146_0.auroraProductionType_0 = AuroraProductionType.Fighter;
-            this.gclass146_0.decimal_82 = gclass22_0.int_63;
+            this.gclass146_0.decimal_82 = gclass22_0.FuelCapacity;
             this.gclass146_0.object_0 = gclass22_0;
             this.gclass146_0.method_143(int_3, 100M);
             return int_3;

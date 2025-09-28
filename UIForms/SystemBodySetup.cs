@@ -17,7 +17,7 @@ public class SystemBodySetup : Form
 {
     private GClass0 gclass0_0;
     private SystemBodyData gclass1_0;
-    private GClass194 gclass194_0;
+    private Species gclass194_0;
     private GameRace gclass21_0;
     private IContainer icontainer_0;
     private FlowLayoutPanel flowLayoutPanel16;
@@ -61,7 +61,7 @@ public class SystemBodySetup : Form
     public SystemBodySetup(
         GClass0 gclass0_1,
         SystemBodyData gclass1_1,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         GameRace gclass21_1)
     {
         this.InitializeComponent();
@@ -103,11 +103,11 @@ public class SystemBodySetup : Form
             this.gclass0_0.method_601(this.lstvReadOnly, "Hydrosphere",
                 AuroraUtils.smethod_82(this.gclass1_0.HydrosphereTypeId), null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Gravity",
-                AuroraUtils.smethod_44(this.gclass1_0.Gravity, 2) + " G", null);
+                AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.Gravity, 2) + " G", null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Pressure",
-                AuroraUtils.smethod_44(this.gclass1_0.AtmospherePressure, 2) + " atm", null);
+                AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.AtmospherePressure, 2) + " atm", null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Eccentricity",
-                AuroraUtils.smethod_44(this.gclass1_0.Eccentricity, 2), null);
+                AuroraUtils.FormatDoubleToPrecision(this.gclass1_0.Eccentricity, 2), null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Tidal Lock", string_11_2, null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Year", AuroraUtils.smethod_57(this.gclass1_0.Year), null);
             this.gclass0_0.method_601(this.lstvReadOnly, "Mass", AuroraUtils.smethod_52(this.gclass1_0.Mass), null);
@@ -268,7 +268,7 @@ public class SystemBodySetup : Form
             if (this.gclass0_0.bool_9 || this.lstvAtmosphere.SelectedItems.Count == 0 ||
                 this.lstvAtmosphere.SelectedItems[0].Tag == null)
                 return;
-            this.cboGas.SelectedItem = ((GClass224)this.lstvAtmosphere.SelectedItems[0].Tag).gclass223_0;
+            this.cboGas.SelectedItem = ((SystemBodyAtmosphericGas)this.lstvAtmosphere.SelectedItems[0].Tag).Gas;
         }
         catch (Exception ex)
         {

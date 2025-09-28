@@ -8,7 +8,7 @@
 public class RaceJumpPointSurvey
 {
     public GameRace Race;
-    public JumpPoint120 JumpPoint;
+    public JumpPoint JumpPoint;
     public int JumpPointID;
     public int Explored;
     public int Charted;

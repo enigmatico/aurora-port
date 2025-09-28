@@ -21,7 +21,7 @@ public class Minerals : Form
     [CompilerGenerated]
     private sealed class Class1080
     {
-        public GClass194 gclass194_0;
+        public Species gclass194_0;
         public ParsedDecimal gclass208_0;
         public ParsedDecimal gclass208_1;
         public AuroraElement auroraElement_0;
@@ -51,7 +51,7 @@ public class Minerals : Form
     [CompilerGenerated]
     private sealed class Class1081
     {
-        public List<SystemData200> list_0;
+        public List<StarSystem> list_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -62,7 +62,7 @@ public class Minerals : Form
     [CompilerGenerated]
     private sealed class Class1082
     {
-        public List<SystemData200> list_0;
+        public List<StarSystem> list_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
@@ -94,7 +94,7 @@ public class Minerals : Form
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData == this.class1080_0.minerals_0.gclass21_0 &&
+            return gclass146_0.Race == this.class1080_0.minerals_0.gclass21_0 &&
                    gclass146_0.SystemBodyData == this.gclass1_0;
         }
     }
@@ -371,7 +371,7 @@ public class Minerals : Form
         try
         {
             this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
-            GClass194 gclass194 = this.gclass21_0.method_164();
+            Species gclass194 = this.gclass21_0.method_164();
             this.gclass21_0.method_260(this.cboSpecies);
             this.cboSpecies.SelectedItem = gclass194;
             this.method_3();
@@ -427,7 +427,7 @@ public class Minerals : Form
                 return;
             this.gclass202_0 = (RacialSystemSurvey)this.cboSystems.SelectedValue;
             // ISSUE: reference to a compiler-generated field
-            class1080.gclass194_0 = (GClass194)this.cboSpecies.SelectedValue;
+            class1080.gclass194_0 = (Species)this.cboSpecies.SelectedValue;
             Decimal decimal_1_1 = 0M;
             Decimal decimal_1_2 = 0M;
             Decimal decimal_1_3 = 0M;
@@ -537,14 +537,14 @@ public class Minerals : Form
             class1080.gclass208_0 = AuroraUtils.ParseDecimalString(this.txtMaxDiameter.Text);
             // ISSUE: reference to a compiler-generated field
             class1080.gclass208_1 = AuroraUtils.ParseDecimalString(this.txtMinGravity.Text);
-            List<SystemBodyData> source1 = this.gclass0_0.list_9
-                .Where<GClass215>(gclass215_0 => gclass215_0.gclass21_0 == this.gclass21_0)
-                .Select<GClass215, SystemBodyData>(gclass215_0 => gclass215_0.gclass1_0)
-                .Where<SystemBodyData>(gclass1_0 => gclass1_0.dictionary_0.Count > 0)
+            List<SystemBodyData> source1 = this.gclass0_0.SystemBodySurveys
+                .Where<RacialSystemBodySurvey>(gclass215_0 => gclass215_0.Race == this.gclass21_0)
+                .Select<RacialSystemBodySurvey, SystemBodyData>(gclass215_0 => gclass215_0.SystemBody)
+                .Where<SystemBodyData>(gclass1_0 => gclass1_0.MineralDeposits.Count > 0)
                 .ToList<SystemBodyData>();
             if (this.gclass202_0 != null && this.gclass202_0.int_36 == 0)
                 source1 = source1
-                    .Where<SystemBodyData>(gclass1_0 => gclass1_0.SystemData == this.gclass202_0.ActualSystemData)
+                    .Where<SystemBodyData>(gclass1_0 => gclass1_0.SystemData == this.gclass202_0.ActualSystem)
                     .ToList<SystemBodyData>();
             if (this.chkExcludeAlien.CheckState == CheckState.Checked)
             {
@@ -555,8 +555,8 @@ public class Minerals : Form
                     list_0 = this.gclass21_0.RacialSystemDictionary.Values
                         .Where<RacialSystemSurvey>(gclass202_0 => gclass202_0.gclass110_0 != null)
                         .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.gclass110_0.ActualAlienRace != this.gclass21_0)
-                        .Select<RacialSystemSurvey, SystemData200>(gclass202_0 => gclass202_0.ActualSystemData)
-                        .ToList<SystemData200>()
+                        .Select<RacialSystemSurvey, StarSystem>(gclass202_0 => gclass202_0.ActualSystem)
+                        .ToList<StarSystem>()
                 }.method_0).ToList<SystemBodyData>();
             }
 
@@ -567,8 +567,8 @@ public class Minerals : Form
                 source1 = source1.Where<SystemBodyData>(new Minerals.Class1082()
                 {
                     list_0 = this.gclass21_0.RacialSystemDictionary.Values.Where<RacialSystemSurvey>(gclass202_0 => !gclass202_0.bMineralSearchFlag)
-                        .Select<RacialSystemSurvey, SystemData200>(gclass202_0 => gclass202_0.ActualSystemData)
-                        .ToList<SystemData200>()
+                        .Select<RacialSystemSurvey, StarSystem>(gclass202_0 => gclass202_0.ActualSystem)
+                        .ToList<StarSystem>()
                 }.method_0).ToList<SystemBodyData>();
             }
 
@@ -645,39 +645,39 @@ public class Minerals : Form
             {
                 if
                 (
-                    (!(decimal_1_1 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Duranium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Duranium].decimal_0 < decimal_1_1) &&
-                        !(gclass1.dictionary_0[AuroraElement.Duranium].decimal_1 < num1)) &&
-                    (!(decimal_1_2 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Neutronium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Neutronium].decimal_0 < decimal_1_2) &&
-                        !(gclass1.dictionary_0[AuroraElement.Neutronium].decimal_1 < num2)) &&
-                    (!(decimal_1_3 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Corbomite) &&
-                        !(gclass1.dictionary_0[AuroraElement.Corbomite].decimal_0 < decimal_1_3) &&
-                        !(gclass1.dictionary_0[AuroraElement.Corbomite].decimal_1 < num3)) &&
-                    (!(decimal_1_4 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Tritanium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Tritanium].decimal_0 < decimal_1_4) &&
-                        !(gclass1.dictionary_0[AuroraElement.Tritanium].decimal_1 < num4)) &&
-                    (!(decimal_1_5 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Boronide) &&
-                        !(gclass1.dictionary_0[AuroraElement.Boronide].decimal_0 < decimal_1_5) &&
-                        !(gclass1.dictionary_0[AuroraElement.Boronide].decimal_1 < num5)) &&
-                    (!(decimal_1_6 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Mercassium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Mercassium].decimal_0 < decimal_1_6) &&
-                        !(gclass1.dictionary_0[AuroraElement.Mercassium].decimal_1 < num6)) &&
-                    (!(decimal_1_7 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Vendarite) &&
-                        !(gclass1.dictionary_0[AuroraElement.Vendarite].decimal_0 < decimal_1_7) &&
-                        !(gclass1.dictionary_0[AuroraElement.Vendarite].decimal_1 < num7)) &&
-                    (!(decimal_1_8 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Sorium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Sorium].decimal_0 < decimal_1_8) &&
-                        !(gclass1.dictionary_0[AuroraElement.Sorium].decimal_1 < num8)) &&
-                    (!(decimal_1_9 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Uridium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Uridium].decimal_0 < decimal_1_9) &&
-                        !(gclass1.dictionary_0[AuroraElement.Uridium].decimal_1 < num9)) &&
-                    (!(decimal_1_10 > 0M) || gclass1.dictionary_0.ContainsKey(AuroraElement.Corundium) &&
-                        !(gclass1.dictionary_0[AuroraElement.Corundium].decimal_0 < decimal_1_10) &&
-                        !(gclass1.dictionary_0[AuroraElement.Corundium].decimal_1 < num10)) && (!(decimal_1_11 > 0M) ||
-                        gclass1.dictionary_0.ContainsKey(AuroraElement.Gallicite) &&
-                        !(gclass1.dictionary_0[AuroraElement.Gallicite].decimal_0 < decimal_1_11) &&
-                        !(gclass1.dictionary_0[AuroraElement.Gallicite].decimal_1 < num11)))
+                    (!(decimal_1_1 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Duranium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Duranium].Amount < decimal_1_1) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Duranium].Accessibility < num1)) &&
+                    (!(decimal_1_2 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Neutronium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Neutronium].Amount < decimal_1_2) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Neutronium].Accessibility < num2)) &&
+                    (!(decimal_1_3 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Corbomite) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Corbomite].Amount < decimal_1_3) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Corbomite].Accessibility < num3)) &&
+                    (!(decimal_1_4 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Tritanium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Tritanium].Amount < decimal_1_4) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Tritanium].Accessibility < num4)) &&
+                    (!(decimal_1_5 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Boronide) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Boronide].Amount < decimal_1_5) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Boronide].Accessibility < num5)) &&
+                    (!(decimal_1_6 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Mercassium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Mercassium].Amount < decimal_1_6) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Mercassium].Accessibility < num6)) &&
+                    (!(decimal_1_7 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Vendarite) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Vendarite].Amount < decimal_1_7) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Vendarite].Accessibility < num7)) &&
+                    (!(decimal_1_8 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Sorium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Sorium].Amount < decimal_1_8) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Sorium].Accessibility < num8)) &&
+                    (!(decimal_1_9 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Uridium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Uridium].Amount < decimal_1_9) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Uridium].Accessibility < num9)) &&
+                    (!(decimal_1_10 > 0M) || gclass1.MineralDeposits.ContainsKey(AuroraElement.Corundium) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Corundium].Amount < decimal_1_10) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Corundium].Accessibility < num10)) && (!(decimal_1_11 > 0M) ||
+                        gclass1.MineralDeposits.ContainsKey(AuroraElement.Gallicite) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Gallicite].Amount < decimal_1_11) &&
+                        !(gclass1.MineralDeposits[AuroraElement.Gallicite].Accessibility < num11)))
                     source2.Add(gclass1);
             }
 
@@ -685,8 +685,8 @@ public class Minerals : Form
             {
                 foreach (AuroraElement key in Enum.GetValues(typeof(AuroraElement)))
                 {
-                    if (gclass1.dictionary_0.ContainsKey(key))
-                        gclass1.dictionary_2.Add(key, gclass1.dictionary_0[key].decimal_0);
+                    if (gclass1.MineralDeposits.ContainsKey(key))
+                        gclass1.dictionary_2.Add(key, gclass1.MineralDeposits[key].Amount);
                     else
                         gclass1.dictionary_2.Add(key, 0M);
                 }
@@ -712,7 +712,7 @@ public class Minerals : Form
                 // ISSUE: reference to a compiler-generated field
                 string text1 = class1084.gclass1_0.method_79(this.gclass21_0, true, true);
                 // ISSUE: reference to a compiler-generated method
-                PopulationData gclass146 = this.gclass0_0.PopulationDataDictionary.Values.FirstOrDefault<PopulationData>(class1084.method_0);
+                PopulationData gclass146 = this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(class1084.method_0);
                 if (gclass146 != null)
                     text1 = gclass146.PopName + " (C)";
                 listViewItem_0.SubItems.Add(text1);
@@ -720,20 +720,20 @@ public class Minerals : Form
                 {
                     string text2 = "-";
                     // ISSUE: reference to a compiler-generated field
-                    if (class1084.gclass1_0.list_0.Count > 0)
+                    if (class1084.gclass1_0.AtmosphericGasList.Count > 0)
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        class1084.gclass1_0.list_0 = class1084.gclass1_0.list_0
-                            .OrderByDescending<GClass224, double>(gclass224_0 => gclass224_0.double_1)
-                            .ToList<GClass224>();
+                        class1084.gclass1_0.AtmosphericGasList = class1084.gclass1_0.AtmosphericGasList
+                            .OrderByDescending<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm)
+                            .ToList<SystemBodyAtmosphericGas>();
                         // ISSUE: reference to a compiler-generated field
                         text2 = AuroraUtils.smethod_50(class1084.gclass1_0.AtmospherePressure);
                         // ISSUE: reference to a compiler-generated field
-                        if (class1084.gclass1_0.list_0.Count<GClass224>(gclass224_0 => gclass224_0.bool_0) > 0)
+                        if (class1084.gclass1_0.AtmosphericGasList.Count<SystemBodyAtmosphericGas>(gclass224_0 => gclass224_0.FrozenOut) > 0)
                             text2 += "F";
                         // ISSUE: reference to a compiler-generated field
-                        string text3 = class1084.gclass1_0.method_59();
+                        string text3 = class1084.gclass1_0.GetAtmosphericRepresetationString();
                         listViewItem_0.SubItems.Add(text3);
                     }
                     else
@@ -743,14 +743,14 @@ public class Minerals : Form
                     // ISSUE: reference to a compiler-generated field
                     listViewItem_0.SubItems.Add(AuroraUtils.smethod_43(class1084.gclass1_0.Radius * 2.0));
                     // ISSUE: reference to a compiler-generated field
-                    listViewItem_0.SubItems.Add(AuroraUtils.smethod_44(class1084.gclass1_0.Gravity, 3));
+                    listViewItem_0.SubItems.Add(AuroraUtils.FormatDoubleToPrecision(class1084.gclass1_0.Gravity, 3));
                     // ISSUE: reference to a compiler-generated field
                     if (class1084.gclass1_0.Gravity >= 0.1)
                     {
                         // ISSUE: reference to a compiler-generated field
                         double num12 = 4.0 * AuroraUtils.PI_Apprx * Math.Pow(class1084.gclass1_0.Radius, 2.0);
                         double double_32 = (double)AuroraUtils.decimal_15 / num12;
-                        listViewItem_0.SubItems.Add(AuroraUtils.smethod_44(double_32, 2));
+                        listViewItem_0.SubItems.Add(AuroraUtils.FormatDoubleToPrecision(double_32, 2));
                     }
                     else
                         listViewItem_0.SubItems.Add("-");
@@ -850,11 +850,11 @@ public class Minerals : Form
     {
         try
         {
-            if (gclass1_0.dictionary_0.ContainsKey(auroraElement_0))
+            if (gclass1_0.MineralDeposits.ContainsKey(auroraElement_0))
             {
-                listViewItem_0.SubItems.Add(AuroraUtils.smethod_39(gclass1_0.dictionary_0[auroraElement_0].decimal_0));
+                listViewItem_0.SubItems.Add(AuroraUtils.smethod_39(gclass1_0.MineralDeposits[auroraElement_0].Amount));
                 listViewItem_0.SubItems.Add(
-                    AuroraUtils.smethod_45(gclass1_0.dictionary_0[auroraElement_0].decimal_1, 1));
+                    AuroraUtils.smethod_45(gclass1_0.MineralDeposits[auroraElement_0].Accessibility, 1));
             }
             else
             {
@@ -981,7 +981,7 @@ public class Minerals : Form
                     tag = (SystemBodyData)this.lstvMineralsWide.SelectedItems[0].Tag;
                 }
 
-                GClass194 selectedValue = (GClass194)this.cboSpecies.SelectedValue;
+                Species selectedValue = (Species)this.cboSpecies.SelectedValue;
                 if (tag.BodyTypeId == AuroraSystemBodyType.GasGiant ||
                     tag.BodyTypeId == AuroraSystemBodyType.Superjovian)
                     return;

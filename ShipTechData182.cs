@@ -10,6 +10,6 @@ using System;
 public class ShipTechData182
 {
     public TechSystem TechData;
-    public FCTShipData40 ShipData;
+    public ShipData ShipData;
     public Decimal TechPoints;
 }

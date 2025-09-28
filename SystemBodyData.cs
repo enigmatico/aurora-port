@@ -11,23 +11,24 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using aurora;
 
 #nullable disable
 public partial class SystemBodyData
 {
-    public Dictionary<AuroraElement, GClass124> dictionary_0 = new Dictionary<AuroraElement, GClass124>();
-    public Dictionary<int, GClass218> dictionary_1 = new Dictionary<int, GClass218>();
-    public List<GClass224> list_0 = new List<GClass224>();
+    public Dictionary<AuroraElement, MineralDeposit> MineralDeposits = new Dictionary<AuroraElement, MineralDeposit>();
+    public Dictionary<int, RaceSystemBodyName> dictionary_1 = new Dictionary<int, RaceSystemBodyName>();
+    public List<SystemBodyAtmosphericGas> AtmosphericGasList = new List<SystemBodyAtmosphericGas>();
     public Dictionary<AuroraElement, Decimal> dictionary_2 = new Dictionary<AuroraElement, Decimal>();
     private GClass0 gclass0_0;
     public SystemBodyData ParentBodyData;
     public SystemBodyData FixedBodyParentData;
     public Star197 StarData;
-    public SystemData200 SystemData;
+    public StarSystem SystemData;
     public RuinRaceData RuinRaceData;
     public RuinDefinition RuinData;
-    public GClass220 gclass220_0;
-    public GClass194 gclass194_0;
+    public AncientConstruct AncientConstruct;
+    public Species gclass194_0;
     public PlanetBodyClass BodyClass;
     public AuroraSystemBodyType BodyTypeId;
     public ParentBodyType ParentBodyType;
@@ -80,7 +81,7 @@ public partial class SystemBodyData
     public double MeanOrbitalSpeed;
     public double Eccentricity;
     public double EccentricityDirection;
-    public double double_26;
+    public double OrbitalSemiMinorAxis;
     public double double_27;
     public double double_28;
     public double double_29;
@@ -125,7 +126,7 @@ public partial class SystemBodyData
     public void method_0(
         ListView listView_0,
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         int int_13)
     {
         try
@@ -133,7 +134,8 @@ public partial class SystemBodyData
             listView_0.Items.Clear();
             if (this.Eccentricity == 0.0)
                 return;
-            this.gclass0_0.method_624(listView_0, "Period", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
+            var periodTxt = UITextHelper.GetLocalizedStringFor(LocalizedText.SystemBodyPeriod);
+            this.gclass0_0.method_624(listView_0, periodTxt, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
                 "12", null);
             switch (int_13)
             {
@@ -162,7 +164,8 @@ public partial class SystemBodyData
 
             double num1 = this.Year * 3600.0;
             double double_45_1 = 604800.0;
-            string text = "Week";
+            var timeSpan = LocalizedText.TimeSpanWeek;
+            string text = UITextHelper.GetLocalizedStringFor(timeSpan);
             if (this.BodyClass == PlanetBodyClass.Moon)
                 num1 = this.ParentBodyData.Year * 3600.0;
             do
@@ -188,30 +191,36 @@ public partial class SystemBodyData
                 }
 
                 listView_0.Items.Add(listViewItem);
-                switch (text)
+                switch (timeSpan)
                 {
-                    case "Week":
-                        text = "Month";
+                    case LocalizedText.TimeSpanWeek:
+                        timeSpan = LocalizedText.TimeSpanMonth;
+                        text = UITextHelper.GetLocalizedStringFor(timeSpan);
                         double_45_1 = (double)AuroraUtils.decimal_29 / 12.0;
                         break;
-                    case "Month":
-                        text = "Quarter";
+                    case LocalizedText.TimeSpanMonth:
+                        timeSpan = LocalizedText.TimeSpanQuarter;
+                        text = UITextHelper.GetLocalizedStringFor(timeSpan);
                         double_45_1 = (double)AuroraUtils.decimal_29 / 4.0;
                         break;
-                    case "Quarter":
-                        text = "Year";
+                    case LocalizedText.TimeSpanQuarter:
+                        timeSpan = LocalizedText.TimeSpanYear;
+                        text = UITextHelper.GetLocalizedStringFor(timeSpan);
                         double_45_1 = (double)AuroraUtils.decimal_29;
                         break;
-                    case "Year":
-                        text = "5Y";
+                    case LocalizedText.TimeSpanYear:
+                        timeSpan = LocalizedText.TimeSpan5Y;
+                        text = UITextHelper.GetLocalizedStringFor(timeSpan);
                         double_45_1 = (double)AuroraUtils.decimal_29 * 5.0;
                         break;
-                    case "5Y":
-                        text = "25Y";
+                    case LocalizedText.TimeSpan5Y:
+                        timeSpan = LocalizedText.TimeSpan25Y;
+                        text = UITextHelper.GetLocalizedStringFor(timeSpan);
                         double_45_1 = (double)AuroraUtils.decimal_29 * 25.0;
                         break;
-                    case "25Y":
-                        text = "100Y";
+                    case LocalizedText.TimeSpan25Y:
+                        timeSpan = LocalizedText.TimeSpan100Y;
+                        text = UITextHelper.GetLocalizedStringFor(timeSpan);
                         double_45_1 = (double)AuroraUtils.decimal_29 * 100.0;
                         break;
                     default:
@@ -232,7 +241,7 @@ public partial class SystemBodyData
 
     public List<double> method_1(
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         double double_45,
         int int_13)
     {
@@ -265,15 +274,15 @@ public partial class SystemBodyData
                             num6 = 0.0;
                         if (num6 > 360.0)
                             num6 -= 360.0;
-                        num5 = this.OrbitalDistance * this.double_26 / Math.Sqrt(
-                            Math.Pow(this.double_26 * Math.Cos(num6 * Math.PI / 180.0), 2.0) +
+                        num5 = this.OrbitalDistance * this.OrbitalSemiMinorAxis / Math.Sqrt(
+                            Math.Pow(this.OrbitalSemiMinorAxis * Math.Cos(num6 * Math.PI / 180.0), 2.0) +
                             Math.Pow(this.OrbitalDistance * Math.Sin(num6 * Math.PI / 180.0), 2.0));
                     }
                     else
                         num5 = this.OrbitalDistance;
                 }
                 else
-                    num5 = this.double_26;
+                    num5 = this.OrbitalSemiMinorAxis;
 
                 double num7 = double5 - 90.0;
                 if (num7 < 0.0)
@@ -333,7 +342,7 @@ public partial class SystemBodyData
         {
             this.double_27 = this.OrbitalDistance;
             this.double_28 = this.OrbitalDistance;
-            this.double_26 = this.OrbitalDistance;
+            this.OrbitalSemiMinorAxis = this.OrbitalDistance;
             if (this.gclass0_0.StarEccentricity == 0)
             {
                 this.Eccentricity = 0.0;
@@ -410,7 +419,7 @@ public partial class SystemBodyData
                 this.double_27 = this.OrbitalDistance * (1.0 - this.Eccentricity);
                 this.double_28 = this.OrbitalDistance * (1.0 + this.Eccentricity);
                 label_18:
-                this.double_26 = this.OrbitalDistance * Math.Sqrt(1.0 - this.Eccentricity * this.Eccentricity);
+                this.OrbitalSemiMinorAxis = this.OrbitalDistance * Math.Sqrt(1.0 - this.Eccentricity * this.Eccentricity);
                 this.method_5();
             }
         }
@@ -446,7 +455,7 @@ public partial class SystemBodyData
 
             this.Eccentricity = 0.0;
             label_7:
-            this.double_26 = this.OrbitalDistance * Math.Sqrt(1.0 - this.Eccentricity * this.Eccentricity);
+            this.OrbitalSemiMinorAxis = this.OrbitalDistance * Math.Sqrt(1.0 - this.Eccentricity * this.Eccentricity);
             this.method_5();
         }
         catch (Exception ex)
@@ -480,7 +489,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_7()
+    public void RecalculateDistanceToOrbitCentreFromBearing()
     {
         try
         {
@@ -493,15 +502,15 @@ public partial class SystemBodyData
                         num += 360.0;
                     if (num >= 360.0)
                         num -= 360.0;
-                    this.DistanceToOrbitCentre = this.OrbitalDistance * this.double_26 / Math.Sqrt(
-                        Math.Pow(this.double_26 * Math.Cos(num * Math.PI / 180.0), 2.0) +
+                    this.DistanceToOrbitCentre = this.OrbitalDistance * this.OrbitalSemiMinorAxis / Math.Sqrt(
+                        Math.Pow(this.OrbitalSemiMinorAxis * Math.Cos(num * Math.PI / 180.0), 2.0) +
                         Math.Pow(this.OrbitalDistance * Math.Sin(num * Math.PI / 180.0), 2.0));
                 }
                 else
                     this.DistanceToOrbitCentre = this.OrbitalDistance;
             }
             else
-                this.DistanceToOrbitCentre = this.double_26;
+                this.DistanceToOrbitCentre = this.OrbitalSemiMinorAxis;
         }
         catch (Exception ex)
         {
@@ -561,10 +570,10 @@ public partial class SystemBodyData
             this.method_35();
             this.method_32();
             this.method_41(this.Bearing);
-            GClass212 gclass212 =
-                this.gclass0_0.dictionary_14.Values.FirstOrDefault<GClass212>(gclass212_0 =>
-                    gclass212_0.gclass1_0 == this);
-            gclass212?.method_1(gclass212.gclass1_0.Bearing + 60.0);
+            LagrangePoint gclass212 =
+                this.gclass0_0.LagrangePoints.Values.FirstOrDefault<LagrangePoint>(gclass212_0 =>
+                    gclass212_0.Planet == this);
+            gclass212?.method_1(gclass212.Planet.Bearing + 60.0);
         }
         catch (Exception ex)
         {
@@ -583,36 +592,36 @@ public partial class SystemBodyData
         {
             GameRace gclass21_0 = null;
             // ISSUE: reference to a compiler-generated method
-            GClass224 gclass224 = this.list_0.Where<GClass224>(class308.method_0).FirstOrDefault<GClass224>();
+            SystemBodyAtmosphericGas gclass224 = this.AtmosphericGasList.Where<SystemBodyAtmosphericGas>(class308.method_0).FirstOrDefault<SystemBodyAtmosphericGas>();
             if (double_45 == 0.0)
             {
                 if (gclass224 == null)
                     return;
-                this.list_0.Remove(gclass224);
+                this.AtmosphericGasList.Remove(gclass224);
             }
             else if (gclass224 == null)
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_0.Add(new GClass224()
+                this.AtmosphericGasList.Add(new SystemBodyAtmosphericGas()
                 {
-                    gclass223_0 = class308.gclass223_0,
-                    int_0 = this.SystemBodyID,
-                    double_1 = double_45,
-                    double_0 = 0.0,
-                    bool_0 = false
+                    Gas = class308.gclass223_0,
+                    SystemBodyID = this.SystemBodyID,
+                    GasAtm = double_45,
+                    AtmoGasAmount = 0.0,
+                    FrozenOut = false
                 });
             }
             else
-                gclass224.double_1 = double_45;
+                gclass224.GasAtm = double_45;
 
             this.method_46();
             if (gclass146_0 != null)
             {
-                this.method_58(gclass146_0.RaceData, gclass146_0.SpeciesData, false);
+                this.method_58(gclass146_0.Race, gclass146_0.Species, false);
                 gclass146_0.ColonyCost = this.ColonyCost;
                 gclass146_0.MaxColonyCost = this.MaxColonyCost;
                 gclass146_0.method_184();
-                gclass21_0 = gclass146_0.RaceData;
+                gclass21_0 = gclass146_0.Race;
             }
 
             this.method_36(gclass21_0);
@@ -630,24 +639,24 @@ public partial class SystemBodyData
         try
         {
             double num1 = this.HydroExtent / AuroraUtils.double_27;
-            GClass224 gclass224 = this.list_0.FirstOrDefault<GClass224>(gclass224_0 =>
-                gclass224_0.gclass223_0.AtmosphericGas == AtmosphericGas.const_5);
+            SystemBodyAtmosphericGas gclass224 = this.AtmosphericGasList.FirstOrDefault<SystemBodyAtmosphericGas>(gclass224_0 =>
+                gclass224_0.Gas.Type == GasType.WaterVapor);
             if (gclass224 == null)
             {
-                this.list_0.Add(new GClass224()
+                this.AtmosphericGasList.Add(new SystemBodyAtmosphericGas()
                 {
-                    gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.const_5],
-                    int_0 = this.SystemBodyID,
-                    double_1 = num1,
-                    double_0 = 0.0,
-                    bool_0 = false
+                    Gas = this.gclass0_0.AtmosphericGasDictionary[GasType.WaterVapor],
+                    SystemBodyID = this.SystemBodyID,
+                    GasAtm = num1,
+                    AtmoGasAmount = 0.0,
+                    FrozenOut = false
                 });
                 this.AtmospherePressure += num1;
             }
-            else if (gclass224.double_1 < num1)
+            else if (gclass224.GasAtm < num1)
             {
-                double num2 = num1 - gclass224.double_1;
-                gclass224.double_1 += num2;
+                double num2 = num1 - gclass224.GasAtm;
+                gclass224.GasAtm += num2;
                 this.AtmospherePressure += num2;
                 if (this.AtmospherePressure < 0.0)
                     this.AtmospherePressure = 0.0;
@@ -665,22 +674,22 @@ public partial class SystemBodyData
     {
         try
         {
-            GClass224 gclass224 = this.list_0.FirstOrDefault<GClass224>(gclass224_0 =>
-                gclass224_0.gclass223_0.AtmosphericGas == AtmosphericGas.const_5);
+            SystemBodyAtmosphericGas gclass224 = this.AtmosphericGasList.FirstOrDefault<SystemBodyAtmosphericGas>(gclass224_0 =>
+                gclass224_0.Gas.Type == GasType.WaterVapor);
             if (gclass224 == null)
                 return;
             double num1 = this.AtmospherePressure * (this.HydroExtent / 100.0) * AuroraUtils.double_26;
-            if (gclass224.double_1 <= num1)
+            if (gclass224.GasAtm <= num1)
                 return;
-            double num2 = gclass224.double_1 - num1;
-            gclass224.double_1 -= num2;
+            double num2 = gclass224.GasAtm - num1;
+            gclass224.GasAtm -= num2;
             this.HydroExtent += num2 * AuroraUtils.double_27;
             this.AtmospherePressure -= num2;
             if (this.AtmospherePressure < 0.0)
                 this.AtmospherePressure = 0.0;
-            if (gclass224.double_1 > 0.0)
+            if (gclass224.GasAtm > 0.0)
                 return;
-            this.list_0.Remove(gclass224);
+            this.AtmosphericGasList.Remove(gclass224);
         }
         catch (Exception ex)
         {
@@ -708,7 +717,7 @@ public partial class SystemBodyData
                 case GEnum59.const_4:
                     if (this.method_77(gclass21_0))
                     {
-                        this.decimal_6 = this.dictionary_0.Values.Sum<GClass124>(gclass124_0 => gclass124_0.decimal_0);
+                        this.decimal_6 = this.MineralDeposits.Values.Sum<MineralDeposit>(gclass124_0 => gclass124_0.Amount);
                         break;
                     }
 
@@ -729,7 +738,7 @@ public partial class SystemBodyData
                 case GEnum59.const_4:
                     if (this.method_77(gclass21_0))
                     {
-                        this.decimal_7 = this.dictionary_0.Values.Sum<GClass124>(gclass124_0 => gclass124_0.decimal_0);
+                        this.decimal_7 = this.MineralDeposits.Values.Sum<MineralDeposit>(gclass124_0 => gclass124_0.Amount);
                         break;
                     }
 
@@ -748,9 +757,9 @@ public partial class SystemBodyData
     {
         try
         {
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
+                if (gclass224.Gas.Type == GasType.Oxygen)
                     return true;
             }
 
@@ -763,13 +772,13 @@ public partial class SystemBodyData
         }
     }
 
-    public bool method_14(GClass194 gclass194_1)
+    public bool method_14(Species gclass194_1)
     {
         try
         {
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                if (gclass224.gclass223_0.Dangerous > 0 && gclass224.gclass223_0 != gclass194_1.gclass223_0)
+                if (gclass224.Gas.Dangerous > 0 && gclass224.Gas != gclass194_1.gclass223_0)
                     return true;
             }
 
@@ -787,14 +796,14 @@ public partial class SystemBodyData
         try
         {
             this.OrbitalDistance -= double_45;
-            GClass212 gclass212 =
-                this.gclass0_0.dictionary_14.Values.FirstOrDefault<GClass212>(gclass212_0 =>
-                    gclass212_0.gclass1_0 == this);
+            LagrangePoint gclass212 =
+                this.gclass0_0.LagrangePoints.Values.FirstOrDefault<LagrangePoint>(gclass212_0 =>
+                    gclass212_0.Planet == this);
             if (gclass212 != null)
-                gclass212.double_2 = this.OrbitalDistance;
+                gclass212.Distance = this.OrbitalDistance;
             if (this.OrbitalDistance * AuroraUtils.double_14 < 1000000.0)
             {
-                foreach (PopulationData gclass146_1 in this.gclass0_0.PopulationDataDictionary.Values
+                foreach (PopulationData gclass146_1 in this.gclass0_0.Populations.Values
                              .Where<PopulationData>(gclass146_0 =>
                                  gclass146_0.SystemBodyData == this || gclass146_0.SystemBodyData.ParentBodyData == this)
                              .ToList<PopulationData>())
@@ -802,13 +811,13 @@ public partial class SystemBodyData
                     this.gclass0_0.gclass92_0.method_2(EventType.const_192,
                         gclass146_1.PopName +
                         " has been destroyed due to the destruction of the body on which it is based",
-                        gclass146_1.RaceData, this.SystemData, this.XCoordinate, this.YCoordinate,
+                        gclass146_1.Race, this.SystemData, this.XCoordinate, this.YCoordinate,
                         AuroraEventCategory.PopSummary);
-                    gclass146_1.RaceData.method_132(gclass146_1);
+                    gclass146_1.Race.method_132(gclass146_1);
                 }
 
                 if (gclass212 != null)
-                    this.gclass0_0.dictionary_14.Remove(gclass212.int_0);
+                    this.gclass0_0.LagrangePoints.Remove(gclass212.LaGrangePointID);
                 return -1;
             }
 
@@ -859,20 +868,20 @@ public partial class SystemBodyData
     {
         try
         {
-            if (this.dictionary_0.Count == 0 || this.BodyTypeId == AuroraSystemBodyType.GasGiant ||
+            if (this.MineralDeposits.Count == 0 || this.BodyTypeId == AuroraSystemBodyType.GasGiant ||
                 this.BodyTypeId == AuroraSystemBodyType.Superjovian)
                 return 0.0;
             double num = 0.0;
-            foreach (GClass124 gclass124 in this.dictionary_0.Values)
+            foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
             {
-                if (!(gclass124.decimal_0 < 1000M))
+                if (!(gclass124.Amount < 1000M))
                 {
-                    double decimal1 = (double)gclass124.decimal_1;
-                    if (gclass124.decimal_0 > 1000000M)
+                    double decimal1 = (double)gclass124.Accessibility;
+                    if (gclass124.Amount > 1000000M)
                         decimal1 *= 2.0;
-                    else if (gclass124.decimal_0 > 100000M)
+                    else if (gclass124.Amount > 100000M)
                         decimal1 *= 1.5;
-                    else if (gclass124.decimal_0 > 10000M)
+                    else if (gclass124.Amount > 10000M)
                         decimal1 *= 1.25;
                     num += decimal1;
                 }
@@ -891,7 +900,7 @@ public partial class SystemBodyData
     {
         try
         {
-            return this.dictionary_0.Values.Sum<GClass124>(gclass124_0 => gclass124_0.decimal_1);
+            return this.MineralDeposits.Values.Sum<MineralDeposit>(gclass124_0 => gclass124_0.Accessibility);
         }
         catch (Exception ex)
         {
@@ -900,11 +909,11 @@ public partial class SystemBodyData
         }
     }
 
-    public GClass124 method_19(AuroraElement auroraElement_0)
+    public MineralDeposit method_19(AuroraElement auroraElement_0)
     {
         try
         {
-            return !this.dictionary_0.ContainsKey(auroraElement_0) ? null : this.dictionary_0[auroraElement_0];
+            return !this.MineralDeposits.ContainsKey(auroraElement_0) ? null : this.MineralDeposits[auroraElement_0];
         }
         catch (Exception ex)
         {
@@ -917,7 +926,7 @@ public partial class SystemBodyData
     {
         try
         {
-            return !this.dictionary_0.ContainsKey(auroraElement_0) ? 0M : this.dictionary_0[auroraElement_0].decimal_0;
+            return !this.MineralDeposits.ContainsKey(auroraElement_0) ? 0M : this.MineralDeposits[auroraElement_0].Amount;
         }
         catch (Exception ex)
         {
@@ -930,7 +939,7 @@ public partial class SystemBodyData
     {
         try
         {
-            return !this.dictionary_0.ContainsKey(auroraElement_0) ? 0M : this.dictionary_0[auroraElement_0].decimal_1;
+            return !this.MineralDeposits.ContainsKey(auroraElement_0) ? 0M : this.MineralDeposits[auroraElement_0].Accessibility;
         }
         catch (Exception ex)
         {
@@ -939,7 +948,7 @@ public partial class SystemBodyData
         }
     }
 
-    public GClass194 method_22(
+    public Species method_22(
         bool bool_10,
         GameRace gclass21_0,
         SpecialNPRIDs genum6_0,
@@ -962,202 +971,202 @@ public partial class SystemBodyData
 
             double num3 = (num1 + num2) / 2.0;
             double num4 = num2 - num3 + 1.0;
-            GClass194 gclass194 = new GClass194(this.gclass0_0)
+            Species species = new Species(this.gclass0_0)
             {
                 int_0 = this.gclass0_0.method_26(GEnum0.const_12),
-                gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen]
+                gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen]
             };
-            gclass194.double_0 = this.method_45(gclass194.gclass223_0);
-            gclass194.double_3 = num3;
-            gclass194.double_5 = this.Gravity;
-            gclass194.gclass1_0 = this;
-            gclass194.genum6_0 = genum6_0;
+            species.double_0 = this.method_45(species.gclass223_0);
+            species.double_3 = num3;
+            species.double_5 = this.Gravity;
+            species.gclass1_0 = this;
+            species.genum6_0 = genum6_0;
             if (gclass143_0 != null)
             {
-                gclass194.int_7 = gclass143_0.int_5;
-                gclass194.int_3 = gclass143_0.int_1;
-                gclass194.int_5 = gclass143_0.int_3;
-                gclass194.int_6 = gclass143_0.int_4;
-                gclass194.int_2 = gclass143_0.int_0;
-                gclass194.int_8 = gclass143_0.int_6;
-                gclass194.int_4 = gclass143_0.int_2;
+                species.int_7 = gclass143_0.int_5;
+                species.int_3 = gclass143_0.int_1;
+                species.int_5 = gclass143_0.int_3;
+                species.int_6 = gclass143_0.int_4;
+                species.int_2 = gclass143_0.int_0;
+                species.int_8 = gclass143_0.int_6;
+                species.int_4 = gclass143_0.int_2;
             }
             else
             {
-                gclass194.int_7 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
+                species.int_7 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
                                   AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25);
-                gclass194.int_3 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
+                species.int_3 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
                                   AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25);
-                gclass194.int_5 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
+                species.int_5 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
                                   AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25);
-                gclass194.int_6 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
+                species.int_6 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
                                   AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25);
-                gclass194.int_2 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
+                species.int_2 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
                                   AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25);
-                gclass194.int_8 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
+                species.int_8 = AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25) +
                                   AuroraUtils.GetRandomInteger(25) + AuroraUtils.GetRandomInteger(25);
-                gclass194.int_4 = AuroraUtils.smethod_21(5) + AuroraUtils.GetRandomInteger(6) - 31 /*0x1F*/;
+                species.int_4 = AuroraUtils.smethod_21(5) + AuroraUtils.GetRandomInteger(6) - 31 /*0x1F*/;
             }
 
             if (gclass21_0.NPR && genum6_0 == SpecialNPRIDs.const_0)
             {
-                gclass194.int_2 += this.gclass0_0.HostilityModifier;
-                gclass194.int_5 += this.gclass0_0.HostilityModifier;
-                gclass194.int_8 -= this.gclass0_0.HostilityModifier;
-                gclass194.int_3 -= this.gclass0_0.HostilityModifier;
-                if (gclass194.int_2 > 100)
-                    gclass194.int_2 = 100;
-                if (gclass194.int_5 > 100)
-                    gclass194.int_5 = 100;
-                if (gclass194.int_8 < 1)
-                    gclass194.int_8 = 1;
-                if (gclass194.int_3 < 1)
-                    gclass194.int_3 = 1;
+                species.int_2 += this.gclass0_0.HostilityModifier;
+                species.int_5 += this.gclass0_0.HostilityModifier;
+                species.int_8 -= this.gclass0_0.HostilityModifier;
+                species.int_3 -= this.gclass0_0.HostilityModifier;
+                if (species.int_2 > 100)
+                    species.int_2 = 100;
+                if (species.int_5 > 100)
+                    species.int_5 = 100;
+                if (species.int_8 < 1)
+                    species.int_8 = 1;
+                if (species.int_3 < 1)
+                    species.int_3 = 1;
             }
 
             if (bool_10)
             {
-                gclass194.double_1 = gclass194.double_0 * 0.5;
-                gclass194.double_4 = 24.0;
-                gclass194.double_6 = gclass194.double_5 * 0.9;
-                gclass194.double_2 = 4.0;
-                gclass194.SpeciesName = "Human";
-                gclass194.string_0 = "Race327.bmp";
+                species.double_1 = species.double_0 * 0.5;
+                species.double_4 = 24.0;
+                species.double_6 = species.double_5 * 0.9;
+                species.double_2 = 4.0;
+                species.SpeciesName = UITextHelper.GetLocalizedStringFor(LocalizedText.SpeciesNameHuman);
+                species.RaceImageFileName = "Race327.bmp";
             }
             else
             {
                 switch (genum6_0)
                 {
                     case SpecialNPRIDs.Precursor:
-                        gclass194.double_0 = 0.3;
-                        gclass194.double_1 = gclass194.double_0 * 0.9;
-                        gclass194.double_3 = 280.0;
-                        gclass194.double_4 = 50.0;
-                        gclass194.double_5 = 1.5;
-                        gclass194.double_6 = gclass194.double_5 * 0.95;
-                        gclass194.double_2 = 10.0;
-                        gclass194.SpeciesName = "Precursor";
-                        gclass194.string_0 = "Race087.bmp";
-                        gclass194.int_7 = 100;
-                        gclass194.int_3 = 20;
-                        gclass194.int_5 = 100;
-                        gclass194.int_6 = 50;
-                        gclass194.int_2 = 100;
-                        gclass194.int_8 = 20;
-                        gclass194.int_4 = 0;
+                        species.double_0 = 0.3;
+                        species.double_1 = species.double_0 * 0.9;
+                        species.double_3 = 280.0;
+                        species.double_4 = 50.0;
+                        species.double_5 = 1.5;
+                        species.double_6 = species.double_5 * 0.95;
+                        species.double_2 = 10.0;
+                        species.SpeciesName = UITextHelper.GetLocalizedStringFor(LocalizedText.SpeciesNamePrecursor);
+                        species.RaceImageFileName = "Race087.bmp";
+                        species.int_7 = 100;
+                        species.int_3 = 20;
+                        species.int_5 = 100;
+                        species.int_6 = 50;
+                        species.int_2 = 100;
+                        species.int_8 = 20;
+                        species.int_4 = 0;
                         break;
                     case SpecialNPRIDs.StarSwarm:
-                        gclass194.double_0 = 0.3;
-                        gclass194.double_1 = gclass194.double_0 * 0.9;
-                        gclass194.double_3 = 280.0;
-                        gclass194.double_4 = 100.0;
-                        gclass194.double_5 = 2.0;
-                        gclass194.double_6 = gclass194.double_5 * 0.95;
-                        gclass194.double_2 = 20.0;
-                        gclass194.SpeciesName = "Star Swarm";
-                        gclass194.string_0 = "Race356.bmp";
-                        gclass194.int_7 = 100;
-                        gclass194.int_3 = 1;
-                        gclass194.int_5 = 100;
-                        gclass194.int_6 = 100;
-                        gclass194.int_2 = 100;
-                        gclass194.int_8 = 1;
-                        gclass194.int_4 = 0;
+                        species.double_0 = 0.3;
+                        species.double_1 = species.double_0 * 0.9;
+                        species.double_3 = 280.0;
+                        species.double_4 = 100.0;
+                        species.double_5 = 2.0;
+                        species.double_6 = species.double_5 * 0.95;
+                        species.double_2 = 20.0;
+                        species.SpeciesName = UITextHelper.GetLocalizedStringFor(LocalizedText.SpeciesNameStarSwarm); //;"Star Swarm";
+                        species.RaceImageFileName = "Race356.bmp";
+                        species.int_7 = 100;
+                        species.int_3 = 1;
+                        species.int_5 = 100;
+                        species.int_6 = 100;
+                        species.int_2 = 100;
+                        species.int_8 = 1;
+                        species.int_4 = 0;
                         break;
                     case SpecialNPRIDs.Rakhas:
-                        gclass194.double_0 = 0.15;
-                        gclass194.double_1 = gclass194.double_0 * 0.9;
-                        gclass194.double_3 = 280.0;
-                        gclass194.double_4 = 60.0;
-                        gclass194.double_5 = 1.5;
-                        gclass194.double_6 = gclass194.double_5 * 0.95;
-                        gclass194.double_2 = 10.0;
-                        gclass194.SpeciesName = "Rakhas - #" + this.SystemBodyID.ToString();
-                        gclass194.string_0 = "Race028.bmp";
-                        gclass194.int_7 = 100;
-                        gclass194.int_3 = 0;
-                        gclass194.int_5 = 100;
-                        gclass194.int_6 = 50;
-                        gclass194.int_2 = 100;
-                        gclass194.int_8 = 0;
-                        gclass194.int_4 = 0;
+                        species.double_0 = 0.15;
+                        species.double_1 = species.double_0 * 0.9;
+                        species.double_3 = 280.0;
+                        species.double_4 = 60.0;
+                        species.double_5 = 1.5;
+                        species.double_6 = species.double_5 * 0.95;
+                        species.double_2 = 10.0;
+                        species.SpeciesName = string.Format(UITextHelper.GetLocalizedStringFor(LocalizedText.SpeciesNameRakhas), this.SystemBodyID);
+                        species.RaceImageFileName = "Race028.bmp";
+                        species.int_7 = 100;
+                        species.int_3 = 0;
+                        species.int_5 = 100;
+                        species.int_6 = 50;
+                        species.int_2 = 100;
+                        species.int_8 = 0;
+                        species.int_4 = 0;
                         break;
                     case SpecialNPRIDs.Eldar:
-                        gclass194.double_0 = 0.2;
-                        gclass194.double_1 = gclass194.double_0 * 0.8;
-                        gclass194.double_3 = 280.0;
-                        gclass194.double_4 = 50.0;
-                        gclass194.double_5 = 1.5;
-                        gclass194.double_6 = gclass194.double_5 * 0.95;
-                        gclass194.double_2 = 10.0;
-                        gclass194.SpeciesName = "Eldar";
-                        gclass194.string_0 = "Race156.bmp";
-                        gclass194.int_7 = 100;
-                        gclass194.int_3 = 10;
-                        gclass194.int_5 = 80 /*0x50*/;
-                        gclass194.int_6 = 20;
-                        gclass194.int_2 = 100;
-                        gclass194.int_8 = 10;
-                        gclass194.int_4 = 0;
+                        species.double_0 = 0.2;
+                        species.double_1 = species.double_0 * 0.8;
+                        species.double_3 = 280.0;
+                        species.double_4 = 50.0;
+                        species.double_5 = 1.5;
+                        species.double_6 = species.double_5 * 0.95;
+                        species.double_2 = 10.0;
+                        species.SpeciesName = UITextHelper.GetLocalizedStringFor(LocalizedText.SpeciesNameEldar);
+                        species.RaceImageFileName = "Race156.bmp";
+                        species.int_7 = 100;
+                        species.int_3 = 10;
+                        species.int_5 = 80 /*0x50*/;
+                        species.int_6 = 20;
+                        species.int_2 = 100;
+                        species.int_8 = 10;
+                        species.int_4 = 0;
                         break;
                     default:
-                        gclass194.double_1 = gclass194.double_0 * (AuroraUtils.GetRandomInteger(6) * 0.05 + 0.3);
-                        gclass194.double_4 = 14 + AuroraUtils.GetRandomInteger(16 /*0x10*/);
-                        if (num4 > gclass194.double_4)
-                            gclass194.double_4 = num4 + 1.0;
-                        gclass194.double_6 = gclass194.double_5 * (AuroraUtils.GetRandomInteger(9) * 0.05 + 0.45);
-                        gclass194.double_2 = this.AtmospherePressure * (AuroraUtils.GetRandomInteger(21) * 0.1 + 1.9);
-                        gclass194.SpeciesName = gclass21_0.RaceName;
-                        gclass194.string_0 =
-                            gclass143_0 == null ? AuroraUtils.smethod_19("Races") : gclass143_0.string_3;
+                        species.double_1 = species.double_0 * (AuroraUtils.GetRandomInteger(6) * 0.05 + 0.3);
+                        species.double_4 = 14 + AuroraUtils.GetRandomInteger(16 /*0x10*/);
+                        if (num4 > species.double_4)
+                            species.double_4 = num4 + 1.0;
+                        species.double_6 = species.double_5 * (AuroraUtils.GetRandomInteger(9) * 0.05 + 0.45);
+                        species.double_2 = this.AtmospherePressure * (AuroraUtils.GetRandomInteger(21) * 0.1 + 1.9);
+                        species.SpeciesName = gclass21_0.RaceName;
+                        species.RaceImageFileName =
+                            gclass143_0 == null ? AuroraUtils.GetRandomImageFileNameFromFolder("Races") : gclass143_0.string_3;
                         break;
                 }
             }
 
-            gclass194.gclass194_0 = null;
-            gclass194.double_7 = gclass194.double_5 - gclass194.double_6;
-            gclass194.double_8 = gclass194.double_5 + gclass194.double_6;
-            gclass194.double_9 = gclass194.double_0 - gclass194.double_1;
-            gclass194.double_10 = gclass194.double_0 + gclass194.double_1;
-            gclass194.double_12 = gclass194.double_3 - gclass194.double_4;
-            gclass194.double_11 = gclass194.double_3 + gclass194.double_4;
-            gclass194.decimal_0 = 1M;
-            gclass194.decimal_1 = 1M;
-            gclass194.decimal_2 = 1M;
-            gclass194.decimal_3 = 1M;
+            species.gclass194_0 = null;
+            species.double_7 = species.double_5 - species.double_6;
+            species.double_8 = species.double_5 + species.double_6;
+            species.double_9 = species.double_0 - species.double_1;
+            species.double_10 = species.double_0 + species.double_1;
+            species.double_12 = species.double_3 - species.double_4;
+            species.double_11 = species.double_3 + species.double_4;
+            species.decimal_0 = 1M;
+            species.decimal_1 = 1M;
+            species.decimal_2 = 1M;
+            species.decimal_3 = 1M;
             if (gclass143_0 != null)
             {
-                gclass194.decimal_1 = gclass143_0.decimal_0;
-                gclass194.decimal_2 = gclass143_0.decimal_1;
-                gclass194.decimal_3 = gclass143_0.decimal_2;
+                species.decimal_1 = gclass143_0.decimal_0;
+                species.decimal_2 = gclass143_0.decimal_1;
+                species.decimal_3 = gclass143_0.decimal_2;
             }
             else if (!bool_10)
             {
                 if (AuroraUtils.GetRandomInteger(25) == 1)
-                    gclass194.decimal_0 = 2M + AuroraUtils.GetRandomInteger(30) * 0.1M;
+                    species.decimal_0 = 2M + AuroraUtils.GetRandomInteger(30) * 0.1M;
                 else if (AuroraUtils.GetRandomInteger(10) == 1)
-                    gclass194.decimal_0 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
+                    species.decimal_0 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
                 else if (AuroraUtils.GetRandomInteger(10) == 1)
-                    gclass194.decimal_0 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
+                    species.decimal_0 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
                 if (AuroraUtils.GetRandomInteger(25) == 1)
-                    gclass194.decimal_1 = 2M + AuroraUtils.GetRandomInteger(10) * 0.1M;
+                    species.decimal_1 = 2M + AuroraUtils.GetRandomInteger(10) * 0.1M;
                 else if (AuroraUtils.GetRandomInteger(10) == 1)
-                    gclass194.decimal_1 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
+                    species.decimal_1 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
                 else if (AuroraUtils.GetRandomInteger(10) == 1)
-                    gclass194.decimal_1 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
+                    species.decimal_1 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
                 if (AuroraUtils.GetRandomInteger(10) == 1)
-                    gclass194.decimal_2 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
+                    species.decimal_2 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
                 else if (AuroraUtils.GetRandomInteger(20) == 1)
-                    gclass194.decimal_2 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
+                    species.decimal_2 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
                 if (AuroraUtils.GetRandomInteger(10) == 1)
-                    gclass194.decimal_3 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
+                    species.decimal_3 = 1M + AuroraUtils.GetRandomInteger(10) * 0.1M;
                 else if (AuroraUtils.GetRandomInteger(20) == 1)
-                    gclass194.decimal_3 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
+                    species.decimal_3 = 1M - AuroraUtils.GetRandomInteger(5) * 0.1M;
             }
 
-            gclass194.dictionary_0 = new Dictionary<int, GClass195>();
-            this.gclass194_0 = gclass194;
-            return gclass194;
+            species.dictionary_0 = new Dictionary<int, GClass195>();
+            this.gclass194_0 = species;
+            return species;
         }
         catch (Exception ex)
         {
@@ -1176,11 +1185,11 @@ public partial class SystemBodyData
                     this.HydroExtent < 20.0 || this.HydroExtent > 90.0)
                     return false;
                 double num = 0.0;
-                foreach (GClass224 gclass224 in this.list_0)
+                foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
                 {
-                    if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
-                        num = gclass224.double_1;
-                    else if (gclass224.gclass223_0.Dangerous > 0)
+                    if (gclass224.Gas.Type == GasType.Oxygen)
+                        num = gclass224.GasAtm;
+                    else if (gclass224.Gas.Dangerous > 0)
                         return false;
                 }
 
@@ -1189,56 +1198,54 @@ public partial class SystemBodyData
 
             if (this.Gravity < 0.1)
             {
-                int num = (int)MessageBox.Show(
-                    "The gravity of this planet is too low for it to serve as a homeworld (minimum required 0.1G)");
+                
+                int num = (int)MessageBox.Show(UITextHelper.GetLocalizedStringFor(LocalizedText.GravityTooLowForHomeworld));
                 return false;
             }
 
             if (this.SurfaceTemp < 203.0)
             {
                 int num = (int)MessageBox.Show(
-                    "The surface temperature of this planet is too low for it to serve as a homeworld (minimum required -70C)");
+                    UITextHelper.GetLocalizedStringFor(LocalizedText.SurfaceTemperatureTooLowForHomeworld));
                 return false;
             }
 
             if (this.SurfaceTemp > 343.0)
             {
+                
                 int num = (int)MessageBox.Show(
-                    "The surface temperature of this planet is too high for it to serve as a homeworld (maximum allowed 70C)");
+                    UITextHelper.GetLocalizedStringFor(LocalizedText.SurfaceTemperatureTooHighForHomeworld));
                 return false;
             }
 
             if (this.SurfaceTemp > 350.0)
             {
-                int num = (int)MessageBox.Show(
-                    "This planet has insufficient water to serve as a homeworld (minimum required 20%)");
+                int num = (int)MessageBox.Show(UITextHelper.GetLocalizedStringFor(LocalizedText.InsufficientWaterForHomeworld));
                 return false;
             }
 
-            double num1 = 0.0;
-            foreach (GClass224 gclass224 in this.list_0)
+            double oxygenAtm = 0.0;
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
-                    num1 = gclass224.double_1;
-                else if (gclass224.gclass223_0.Dangerous > 0 && gclass224.double_0 >= gclass224.gclass223_0.DangerousLevel / 10000)
+                if (gclass224.Gas.Type == GasType.Oxygen)
+                    oxygenAtm = gclass224.GasAtm;
+                else if (gclass224.Gas.Dangerous > 0 && gclass224.AtmoGasAmount >= gclass224.Gas.DangerousLevel / 10000)
                 {
-                    int num2 = (int)MessageBox.Show(
-                        "This planet has a dangerous in its atmosphere and is not suitable as a homeworld");
+                    int num2 = (int)MessageBox.Show(UITextHelper.GetLocalizedStringFor(LocalizedText.DangerousAtmosphereForHomeworld));
                     return false;
                 }
             }
 
-            if (num1 < 0.05)
+            if (oxygenAtm < 0.05)
             {
                 int num3 = (int)MessageBox.Show(
-                    "This planet has insufficient oxygen for it to serve as a homeworld (minimum required 0.05 atm)");
+                    UITextHelper.GetLocalizedStringFor(LocalizedText.InsufficientOxygenForHomeworld));
                 return false;
             }
 
-            if (num1 <= this.AtmospherePressure * 0.3)
+            if (oxygenAtm <= this.AtmospherePressure * 0.3)
                 return true;
-            int num4 = (int)MessageBox.Show(
-                "This oxygen content of the atmosphere is too high for the planet to serve as a homeworld (maximum allowed 30%)");
+            int num4 = (int)MessageBox.Show(UITextHelper.GetLocalizedStringFor(LocalizedText.TooMuchOxygenForHomeworld));
             return false;
         }
         catch (Exception ex)
@@ -1252,10 +1259,10 @@ public partial class SystemBodyData
     {
         try
         {
-            if (this.dictionary_0.ContainsKey(auroraElement_0))
+            if (this.MineralDeposits.ContainsKey(auroraElement_0))
             {
-                textBox_0.Text = Math.Round(this.dictionary_0[auroraElement_0].decimal_0).ToString();
-                textBox_1.Text = AuroraUtils.smethod_45(this.dictionary_0[auroraElement_0].decimal_1, 2);
+                textBox_0.Text = Math.Round(this.MineralDeposits[auroraElement_0].Amount).ToString();
+                textBox_1.Text = AuroraUtils.smethod_45(this.MineralDeposits[auroraElement_0].Accessibility, 2);
             }
             else
             {
@@ -1281,36 +1288,36 @@ public partial class SystemBodyData
             ParsedDecimal gclass208_2 = AuroraUtils.ParseDecimalString(textBox_1.Text);
             if (gclass208_2.Succeed)
                 num2 = gclass208_2.Value;
-            if (this.dictionary_0.ContainsKey(auroraElement_0))
+            if (this.MineralDeposits.ContainsKey(auroraElement_0))
             {
                 if (num1 == 0M)
                 {
-                    this.dictionary_0.Remove(auroraElement_0);
+                    this.MineralDeposits.Remove(auroraElement_0);
                 }
                 else
                 {
-                    this.dictionary_0[auroraElement_0].decimal_0 = num1;
-                    this.dictionary_0[auroraElement_0].decimal_1 = num2;
-                    if (this.dictionary_0[auroraElement_0].decimal_1 > 1M)
-                        this.dictionary_0[auroraElement_0].decimal_1 = 1M;
-                    this.dictionary_0[auroraElement_0].decimal_2 = this.dictionary_0[auroraElement_0].decimal_0 / 2M;
-                    this.dictionary_0[auroraElement_0].decimal_3 = this.dictionary_0[auroraElement_0].decimal_1;
+                    this.MineralDeposits[auroraElement_0].Amount = num1;
+                    this.MineralDeposits[auroraElement_0].Accessibility = num2;
+                    if (this.MineralDeposits[auroraElement_0].Accessibility > 1M)
+                        this.MineralDeposits[auroraElement_0].Accessibility = 1M;
+                    this.MineralDeposits[auroraElement_0].HalfOriginalAmount = this.MineralDeposits[auroraElement_0].Amount / 2M;
+                    this.MineralDeposits[auroraElement_0].OriginalAcc = this.MineralDeposits[auroraElement_0].Accessibility;
                 }
             }
             else
             {
                 if (num1 == 0M)
                     return;
-                GClass124 gclass124 = new GClass124();
-                gclass124.int_0 = this.SystemBodyID;
-                gclass124.auroraElement_0 = auroraElement_0;
-                gclass124.decimal_0 = num1;
-                gclass124.decimal_1 = num2;
-                if (gclass124.decimal_1 > 1M)
-                    gclass124.decimal_1 = 1M;
-                gclass124.decimal_2 = gclass124.decimal_0 / 2M;
-                gclass124.decimal_3 = gclass124.decimal_1;
-                this.dictionary_0.Add(gclass124.auroraElement_0, gclass124);
+                MineralDeposit gclass124 = new MineralDeposit();
+                gclass124.SystemBodyID = this.SystemBodyID;
+                gclass124.MaterialID = auroraElement_0;
+                gclass124.Amount = num1;
+                gclass124.Accessibility = num2;
+                if (gclass124.Accessibility > 1M)
+                    gclass124.Accessibility = 1M;
+                gclass124.HalfOriginalAmount = gclass124.Amount / 2M;
+                gclass124.OriginalAcc = gclass124.Accessibility;
+                this.MineralDeposits.Add(gclass124.MaterialID, gclass124);
             }
         }
         catch (Exception ex)
@@ -1324,8 +1331,9 @@ public partial class SystemBodyData
         try
         {
             string str = "";
-            foreach (GClass124 gclass124 in this.dictionary_0.Values)
-                str = $"{str}{AuroraUtils.smethod_82(gclass124.auroraElement_0)}: {gclass124.method_0()}     ";
+            foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
+                str = string.Format("{0}{1}: {2}     ", str, AuroraUtils.smethod_82(gclass124.MaterialID),
+                    gclass124.method_0());
             return str;
         }
         catch (Exception ex)
@@ -1343,14 +1351,14 @@ public partial class SystemBodyData
             {
                 double double_45 = 0.0;
                 double double_46 = 0.0;
-                foreach (GClass224 gclass224 in this.list_0)
+                foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
                 {
-                    if (!gclass224.bool_0)
+                    if (!gclass224.FrozenOut)
                     {
-                        if (gclass224.gclass223_0.GHGas)
-                            double_45 += gclass224.double_1;
-                        if (gclass224.gclass223_0.AntiGHGas)
-                            double_46 += gclass224.double_1;
+                        if (gclass224.Gas.GHGas)
+                            double_45 += gclass224.GasAtm;
+                        if (gclass224.Gas.AntiGHGas)
+                            double_46 += gclass224.GasAtm;
                     }
                 }
 
@@ -1401,13 +1409,13 @@ public partial class SystemBodyData
             // ISSUE: reference to a compiler-generated field
             class309.double_0 = 0.0;
             double num = 0.0;
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                num += gclass224.double_1;
-                if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
+                num += gclass224.GasAtm;
+                if (gclass224.Gas.Type == GasType.Oxygen)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    class309.double_0 = gclass224.double_1;
+                    class309.double_0 = gclass224.GasAtm;
                 }
             }
 
@@ -1454,13 +1462,13 @@ public partial class SystemBodyData
             // ISSUE: reference to a compiler-generated field
             class310.double_0 = 0.0;
             double num = 0.0;
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                num += gclass224.double_1;
-                if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
+                num += gclass224.GasAtm;
+                if (gclass224.Gas.Type == GasType.Oxygen)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    class310.double_0 = gclass224.double_1;
+                    class310.double_0 = gclass224.GasAtm;
                 }
             }
 
@@ -1488,13 +1496,13 @@ public partial class SystemBodyData
             // ISSUE: reference to a compiler-generated field
             class311.double_0 = 0.0;
             double num1 = 0.0;
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                num1 += gclass224.double_1;
-                if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
+                num1 += gclass224.GasAtm;
+                if (gclass224.Gas.Type == GasType.Oxygen)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    class311.double_0 = gclass224.double_1;
+                    class311.double_0 = gclass224.GasAtm;
                 }
             }
 
@@ -1559,6 +1567,8 @@ public partial class SystemBodyData
     {
         try
         {
+            var climateChangeFormatText = UITextHelper.GetLocalizedStringFor(LocalizedText.ClimateChangeEventMsg);
+            
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
             SystemBodyData.Class312 class312 = new SystemBodyData.Class312();
@@ -1570,13 +1580,13 @@ public partial class SystemBodyData
                 // ISSUE: reference to a compiler-generated field
                 class312.double_0 = 0.0;
                 double num1 = 0.0;
-                foreach (GClass224 gclass224 in this.list_0)
+                foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
                 {
-                    num1 += gclass224.double_1;
-                    if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen)
+                    num1 += gclass224.GasAtm;
+                    if (gclass224.Gas.Type == GasType.Oxygen)
                     {
                         // ISSUE: reference to a compiler-generated field
-                        class312.double_0 = gclass224.double_1;
+                        class312.double_0 = gclass224.GasAtm;
                     }
                 }
 
@@ -1641,12 +1651,15 @@ public partial class SystemBodyData
                                     gclass99_1.DominantTerrainType != this.DominantTerrain.BaseTerrainType).ToList<PlanetaryTerrainDefinition>();
                             int index = AuroraUtils.GetRandomInteger(list.Count) - 1;
                             this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[list[index].DominantTerrainType];
-                            foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                            foreach (GameRace gclass21_0 in this.gclass0_0.Populations.Values
                                          .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                         .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                         .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.Race)
                                          .Distinct<GameRace>().ToList<GameRace>())
+                                
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_152,
-                                    $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
+                                    string.Format(
+                                        climateChangeFormatText,
+                                        this.method_78(gclass21_0), gclass990.Name, this.DominantTerrain.Name),
                                     gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
                                     AuroraEventCategory.PopEnvironment);
                         }
@@ -1659,12 +1672,14 @@ public partial class SystemBodyData
                                 return;
                             int index = AuroraUtils.GetRandomInteger(list.Count) - 1;
                             this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[list[index].DominantTerrainType];
-                            foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                            foreach (GameRace gclass21_0 in this.gclass0_0.Populations.Values
                                          .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                         .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                         .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.Race)
                                          .Distinct<GameRace>().ToList<GameRace>())
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_152,
-                                    $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
+                                    string.Format(
+                                        climateChangeFormatText,
+                                        this.method_78(gclass21_0), gclass990.Name, this.DominantTerrain.Name),
                                     gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
                                     AuroraEventCategory.PopEnvironment);
                         }
@@ -1674,12 +1689,14 @@ public partial class SystemBodyData
                         if (this.DominantTerrain == this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType])
                             return;
                         this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType];
-                        foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                        foreach (GameRace gclass21_0 in this.gclass0_0.Populations.Values
                                      .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                     .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                     .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.Race)
                                      .Distinct<GameRace>().ToList<GameRace>())
                             this.gclass0_0.gclass92_0.method_2(EventType.const_152,
-                                $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
+                                string.Format(
+                                    climateChangeFormatText,
+                                    this.method_78(gclass21_0), gclass990.Name, this.DominantTerrain.Name),
                                 gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
                                 AuroraEventCategory.PopEnvironment);
                     }
@@ -1689,12 +1706,14 @@ public partial class SystemBodyData
                     if (this.DominantTerrain == this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType])
                         return;
                     this.DominantTerrain = this.gclass0_0.DominantTerrainTypeDictionary[this.DominantTerrain.BaseTerrainType];
-                    foreach (GameRace gclass21_0 in this.gclass0_0.PopulationDataDictionary.Values
+                    foreach (GameRace gclass21_0 in this.gclass0_0.Populations.Values
                                  .Where<PopulationData>(gclass146_0 => gclass146_0.SystemBodyData == this)
-                                 .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.RaceData)
+                                 .Select<PopulationData, GameRace>(gclass146_0 => gclass146_0.Race)
                                  .Distinct<GameRace>().ToList<GameRace>())
                         this.gclass0_0.gclass92_0.method_2(EventType.const_152,
-                            $"Due to changes in climate, the dominant terrain on {this.method_78(gclass21_0)} has changed from {gclass990.Name} to {this.DominantTerrain.Name}",
+                            string.Format(
+                                climateChangeFormatText,
+                                this.method_78(gclass21_0), gclass990.Name, this.DominantTerrain.Name),
                             gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
                             AuroraEventCategory.PopEnvironment);
                 }
@@ -1752,13 +1771,13 @@ public partial class SystemBodyData
     {
         try
         {
-            if (this.list_0.Count == 0)
+            if (this.AtmosphericGasList.Count == 0)
                 return;
             double double15 = this.AtmospherePressure;
-            foreach (GClass224 gclass224 in this.list_0)
-                gclass224.bool_0 = this.SurfaceTemp < gclass224.gclass223_0.BoilingPoint;
-            this.AtmospherePressure = this.list_0.Where<GClass224>(gclass224_0 => !gclass224_0.bool_0)
-                .Sum<GClass224>(gclass224_0 => gclass224_0.double_1);
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
+                gclass224.FrozenOut = this.SurfaceTemp < gclass224.Gas.BoilingPoint;
+            this.AtmospherePressure = this.AtmosphericGasList.Where<SystemBodyAtmosphericGas>(gclass224_0 => !gclass224_0.FrozenOut)
+                .Sum<SystemBodyAtmosphericGas>(gclass224_0 => gclass224_0.GasAtm);
             if (this.AtmospherePressure == 0.0)
                 this.AtmospherePressure = double15 / 20.0;
             if (this.AtmospherePressure < 0.0)
@@ -1792,7 +1811,11 @@ public partial class SystemBodyData
                 if (gclass21_0 == null || this.Albedo == double16)
                     return;
                 this.gclass0_0.gclass92_0.method_2(EventType.const_50,
-                    $"Due to increasing temperature the ice sheet on {this.method_78(gclass21_0)} has melted, raising the Albedo from {AuroraUtils.smethod_44(double16, 3)} to {AuroraUtils.smethod_44(this.Albedo, 3)}. This has caused a sudden temperature increase from {AuroraUtils.smethod_44(double4 - AuroraUtils.int_17, 1)}C to {AuroraUtils.smethod_44(this.SurfaceTemp - AuroraUtils.int_17, 1)}C.",
+                    string.Format(
+                        UITextHelper.GetLocalizedStringFor(LocalizedText.IceSheetMeltEventMsg),
+                        this.method_78(gclass21_0), AuroraUtils.FormatDoubleToPrecision(double16, 3),
+                        AuroraUtils.FormatDoubleToPrecision(this.Albedo, 3), AuroraUtils.FormatDoubleToPrecision(double4 - AuroraUtils.int_17, 1),
+                        AuroraUtils.FormatDoubleToPrecision(this.SurfaceTemp - AuroraUtils.int_17, 1)),
                     gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
                     AuroraEventCategory.PopEnvironment);
             }
@@ -1806,7 +1829,11 @@ public partial class SystemBodyData
                 if (gclass21_0 == null)
                     return;
                 this.gclass0_0.gclass92_0.method_2(EventType.const_184,
-                    $"Due to decreasing temperature the ice sheet on {this.Name} has frozen, lowering the Albedo from {AuroraUtils.smethod_44(double16, 3)} to {AuroraUtils.smethod_44(this.Albedo, 3)}. This has caused a sudden temperature decrease from {AuroraUtils.smethod_44(double4 - AuroraUtils.int_17, 1)}C to {AuroraUtils.smethod_44(this.SurfaceTemp - AuroraUtils.int_17, 1)}C.",
+                    string.Format(
+                        UITextHelper.GetLocalizedStringFor(LocalizedText.IceSheetFrozenEventMsg),
+                        this.Name, AuroraUtils.FormatDoubleToPrecision(double16, 3), AuroraUtils.FormatDoubleToPrecision(this.Albedo, 3),
+                        AuroraUtils.FormatDoubleToPrecision(double4 - AuroraUtils.int_17, 1),
+                        AuroraUtils.FormatDoubleToPrecision(this.SurfaceTemp - AuroraUtils.int_17, 1)),
                     gclass21_0, this.SystemData, this.XCoordinate, this.YCoordinate,
                     AuroraEventCategory.PopEnvironment);
             }
@@ -1852,14 +1879,14 @@ public partial class SystemBodyData
         try
         {
             // ISSUE: reference to a compiler-generated method
-            if (this.gclass0_0.list_9.Where<GClass215>(class313.method_0).FirstOrDefault<GClass215>() != null)
+            if (this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class313.method_0).FirstOrDefault<RacialSystemBodySurvey>() != null)
                 return;
             // ISSUE: reference to a compiler-generated field
-            this.gclass0_0.list_9.Add(new GClass215()
+            this.gclass0_0.SystemBodySurveys.Add(new RacialSystemBodySurvey()
             {
-                gclass21_0 = class313.gclass21_0,
-                gclass1_0 = this,
-                genum5_0 = Unknown_SystemBodyDataUpdateLevel.FullUpdate
+                Race = class313.gclass21_0,
+                SystemBody = this,
+                UnknownEnumFlag = Unknown_SystemBodyDataUpdateLevel.FullUpdate
             });
         }
         catch (Exception ex)
@@ -1880,10 +1907,10 @@ public partial class SystemBodyData
         try
         {
             // ISSUE: reference to a compiler-generated method
-            GClass215 gclass215 = this.gclass0_0.list_9.Where<GClass215>(class314.method_0).FirstOrDefault<GClass215>();
+            RacialSystemBodySurvey gclass215 = this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(class314.method_0).FirstOrDefault<RacialSystemBodySurvey>();
             if (gclass215 == null)
                 return;
-            this.gclass0_0.list_9.Remove(gclass215);
+            this.gclass0_0.SystemBodySurveys.Remove(gclass215);
         }
         catch (Exception ex)
         {
@@ -1916,7 +1943,7 @@ public partial class SystemBodyData
         {
             this.double_27 = this.OrbitalDistance * (1.0 - this.Eccentricity);
             this.double_28 = this.OrbitalDistance * (1.0 + this.Eccentricity);
-            this.double_26 = this.OrbitalDistance * Math.Sqrt(1.0 - this.Eccentricity * this.Eccentricity);
+            this.OrbitalSemiMinorAxis = this.OrbitalDistance * Math.Sqrt(1.0 - this.Eccentricity * this.Eccentricity);
             this.method_41(this.Bearing);
             this.DistanceToParent =
                 this.gclass0_0.GetDistanceBetween(this.XCoordinate, this.YCoordinate, this.StarData.XCoord,
@@ -1941,7 +1968,7 @@ public partial class SystemBodyData
     {
         try
         {
-            this.method_7();
+            this.RecalculateDistanceToOrbitCentreFromBearing();
             double_45 -= 90.0;
             if (double_45 < 0.0)
                 double_45 += 360.0;
@@ -2002,19 +2029,19 @@ public partial class SystemBodyData
         }
     }
 
-    public int method_43(GClass194 gclass194_1)
+    public int method_43(Species gclass194_1)
     {
         try
         {
             int num1 = 0;
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                if (gclass224.gclass223_0.Dangerous > num1 && gclass224.gclass223_0 != gclass194_1.gclass223_0 &&
-                    !gclass224.bool_0)
+                if (gclass224.Gas.Dangerous > num1 && gclass224.Gas != gclass194_1.gclass223_0 &&
+                    !gclass224.FrozenOut)
                 {
-                    double num2 = gclass224.gclass223_0.DangerousLevel / 10000.0;
-                    if (gclass224.double_0 > num2)
-                        num1 = gclass224.gclass223_0.Dangerous;
+                    double num2 = gclass224.Gas.DangerousLevel / 10000.0;
+                    if (gclass224.AtmoGasAmount > num2)
+                        num1 = gclass224.Gas.Dangerous;
                 }
             }
 
@@ -2031,10 +2058,10 @@ public partial class SystemBodyData
     {
         try
         {
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                if (gclass224.gclass223_0 == gclass223_0)
-                    return gclass224.double_0;
+                if (gclass224.Gas == gclass223_0)
+                    return gclass224.AtmoGasAmount;
             }
 
             return 0.0;
@@ -2050,10 +2077,10 @@ public partial class SystemBodyData
     {
         try
         {
-            foreach (GClass224 gclass224 in this.list_0)
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
             {
-                if (gclass224.gclass223_0 == gclass223_0)
-                    return gclass224.double_1;
+                if (gclass224.Gas == gclass223_0)
+                    return gclass224.GasAtm;
             }
 
             return 0.0;
@@ -2070,8 +2097,8 @@ public partial class SystemBodyData
         try
         {
             this.AtmospherePressure = 0.0;
-            foreach (GClass224 gclass224 in this.list_0)
-                this.AtmospherePressure += gclass224.double_1;
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
+                this.AtmospherePressure += gclass224.GasAtm;
             if (this.AtmospherePressure < 0.0)
                 this.AtmospherePressure = 0.0;
             return this.AtmospherePressure;
@@ -2083,7 +2110,7 @@ public partial class SystemBodyData
         }
     }
 
-    public string method_47(GClass194 gclass194_1, GEnum80 genum80_0)
+    public string method_47(Species gclass194_1, GEnum80 genum80_0)
     {
         try
         {
@@ -2096,7 +2123,7 @@ public partial class SystemBodyData
         }
     }
 
-    public string method_48(GClass194 gclass194_1, int int_13, GEnum80 genum80_0)
+    public string method_48(Species gclass194_1, int int_13, GEnum80 genum80_0)
     {
         try
         {
@@ -2137,7 +2164,7 @@ public partial class SystemBodyData
         }
     }
 
-    public bool method_49(GClass194 gclass194_1)
+    public bool method_49(Species gclass194_1)
     {
         try
         {
@@ -2152,7 +2179,7 @@ public partial class SystemBodyData
         }
     }
 
-    public bool method_50(GClass194 gclass194_1)
+    public bool method_50(Species gclass194_1)
     {
         try
         {
@@ -2185,7 +2212,7 @@ public partial class SystemBodyData
 
     public double method_52(
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         double double_45,
         GEnum81 genum81_0)
     {
@@ -2268,18 +2295,18 @@ public partial class SystemBodyData
             double num3 = num1 * this.Albedo * num2;
             double num4 = 1.0;
             double num5 = 1.0;
-            if (this.list_0.Count > 0)
+            if (this.AtmosphericGasList.Count > 0)
             {
                 double num6 = 0.0;
                 double num7 = 0.0;
-                foreach (GClass224 gclass224 in this.list_0)
+                foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
                 {
-                    if (num3 >= gclass224.gclass223_0.BoilingPoint)
+                    if (num3 >= gclass224.Gas.BoilingPoint)
                     {
-                        if (gclass224.gclass223_0.GHGas)
-                            num6 += gclass224.double_1;
-                        if (gclass224.gclass223_0.AntiGHGas)
-                            num7 += gclass224.double_1;
+                        if (gclass224.Gas.GHGas)
+                            num6 += gclass224.GasAtm;
+                        if (gclass224.Gas.AntiGHGas)
+                            num7 += gclass224.GasAtm;
                     }
                 }
 
@@ -2322,7 +2349,7 @@ public partial class SystemBodyData
 
     public double method_54(
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         double double_45,
         double double_46)
     {
@@ -2335,13 +2362,13 @@ public partial class SystemBodyData
         {
             double num = 0.0;
             // ISSUE: reference to a compiler-generated method
-            foreach (GClass224 gclass224 in this.list_0.Where<GClass224>(class315.method_0)
-                         .OrderByDescending<GClass224, double>(gclass224_0 => gclass224_0.double_1).ToList<GClass224>())
+            foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList.Where<SystemBodyAtmosphericGas>(class315.method_0)
+                         .OrderByDescending<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm).ToList<SystemBodyAtmosphericGas>())
             {
-                if (gclass224.double_1 <= double_45)
+                if (gclass224.GasAtm <= double_45)
                 {
-                    num += gclass224.double_1;
-                    this.list_0.Remove(gclass224);
+                    num += gclass224.GasAtm;
+                    this.AtmosphericGasList.Remove(gclass224);
                 }
                 else
                     break;
@@ -2358,56 +2385,56 @@ public partial class SystemBodyData
         }
     }
 
-    public double method_55(GameRace gclass21_0, GClass194 gclass194_1, double double_45)
+    public double method_55(GameRace gclass21_0, Species gclass194_1, double double_45)
     {
         try
         {
             double num1 = 0.0;
-            GClass224 gclass224_1 = this.list_0.FirstOrDefault<GClass224>(gclass224_0 =>
-                gclass224_0.gclass223_0 == this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen]);
+            SystemBodyAtmosphericGas gclass224_1 = this.AtmosphericGasList.FirstOrDefault<SystemBodyAtmosphericGas>(gclass224_0 =>
+                gclass224_0.Gas == this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen]);
             if (gclass224_1 == null)
             {
-                gclass224_1 = new GClass224();
-                gclass224_1.gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Oxygen];
-                gclass224_1.int_0 = this.SystemBodyID;
-                gclass224_1.double_1 = 0.0;
-                gclass224_1.double_0 = 0.0;
-                gclass224_1.bool_0 = false;
-                this.list_0.Add(gclass224_1);
+                gclass224_1 = new SystemBodyAtmosphericGas();
+                gclass224_1.Gas = this.gclass0_0.AtmosphericGasDictionary[GasType.Oxygen];
+                gclass224_1.SystemBodyID = this.SystemBodyID;
+                gclass224_1.GasAtm = 0.0;
+                gclass224_1.AtmoGasAmount = 0.0;
+                gclass224_1.FrozenOut = false;
+                this.AtmosphericGasList.Add(gclass224_1);
             }
 
-            if (gclass224_1.double_1 < gclass194_1.double_9)
+            if (gclass224_1.GasAtm < gclass194_1.double_9)
             {
-                num1 = gclass194_1.double_9 - gclass224_1.double_1 + 0.01;
-                gclass224_1.double_1 = gclass194_1.double_9 + 0.01;
+                num1 = gclass194_1.double_9 - gclass224_1.GasAtm + 0.01;
+                gclass224_1.GasAtm = gclass194_1.double_9 + 0.01;
             }
-            else if (gclass224_1.double_1 > gclass194_1.double_10)
+            else if (gclass224_1.GasAtm > gclass194_1.double_10)
             {
-                num1 = gclass224_1.double_1 - gclass194_1.double_10 + 0.01;
-                gclass224_1.double_1 = gclass194_1.double_10 - 0.01;
+                num1 = gclass224_1.GasAtm - gclass194_1.double_10 + 0.01;
+                gclass224_1.GasAtm = gclass194_1.double_10 - 0.01;
             }
 
             this.method_57(gclass21_0, gclass194_1);
-            if (gclass224_1.double_1 > this.AtmospherePressure * 0.3)
+            if (gclass224_1.GasAtm > this.AtmospherePressure * 0.3)
             {
-                GClass224 gclass224_2 = this.list_0.FirstOrDefault<GClass224>(gclass224_0 =>
-                    gclass224_0.gclass223_0 == this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Nitrogen]);
+                SystemBodyAtmosphericGas gclass224_2 = this.AtmosphericGasList.FirstOrDefault<SystemBodyAtmosphericGas>(gclass224_0 =>
+                    gclass224_0.Gas == this.gclass0_0.AtmosphericGasDictionary[GasType.Nitrogen]);
                 if (gclass224_2 == null)
                 {
-                    gclass224_2 = new GClass224();
-                    gclass224_2.gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.Nitrogen];
-                    gclass224_2.int_0 = this.SystemBodyID;
-                    gclass224_2.double_1 = 0.0;
-                    gclass224_2.double_0 = 0.0;
-                    gclass224_2.bool_0 = false;
-                    this.list_0.Add(gclass224_1);
+                    gclass224_2 = new SystemBodyAtmosphericGas();
+                    gclass224_2.Gas = this.gclass0_0.AtmosphericGasDictionary[GasType.Nitrogen];
+                    gclass224_2.SystemBodyID = this.SystemBodyID;
+                    gclass224_2.GasAtm = 0.0;
+                    gclass224_2.AtmoGasAmount = 0.0;
+                    gclass224_2.FrozenOut = false;
+                    this.AtmosphericGasList.Add(gclass224_1);
                 }
 
-                double num2 = gclass224_1.double_1 / 0.3 + 0.01;
+                double num2 = gclass224_1.GasAtm / 0.3 + 0.01;
                 double num3 = num2 - this.AtmospherePressure;
                 if (num3 + this.AtmospherePressure < gclass194_1.double_2)
                 {
-                    gclass224_2.double_1 = num2;
+                    gclass224_2.GasAtm = num2;
                     num1 += num3;
                     this.method_57(gclass21_0, gclass194_1);
                 }
@@ -2422,7 +2449,7 @@ public partial class SystemBodyData
         }
     }
 
-    public double method_56(GameRace gclass21_0, GClass194 gclass194_1, double double_45)
+    public double method_56(GameRace gclass21_0, Species gclass194_1, double double_45)
     {
         try
         {
@@ -2443,34 +2470,34 @@ public partial class SystemBodyData
             if (num2 > 0.0 && num2 > num3)
             {
                 // ISSUE: reference to a compiler-generated field
-                class316.gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.const_21];
+                class316.gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[GasType.Frigusium];
             }
             else
             {
                 if (num3 <= 0.0 || num3 <= num2)
                     return 0.0;
                 // ISSUE: reference to a compiler-generated field
-                class316.gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[AtmosphericGas.const_20];
+                class316.gclass223_0 = this.gclass0_0.AtmosphericGasDictionary[GasType.Aestusium];
             }
 
             // ISSUE: reference to a compiler-generated method
-            GClass224 gclass224 = this.list_0.Where<GClass224>(class316.method_0).FirstOrDefault<GClass224>();
+            SystemBodyAtmosphericGas gclass224 = this.AtmosphericGasList.Where<SystemBodyAtmosphericGas>(class316.method_0).FirstOrDefault<SystemBodyAtmosphericGas>();
             if (gclass224 == null)
             {
-                gclass224 = new GClass224();
+                gclass224 = new SystemBodyAtmosphericGas();
                 // ISSUE: reference to a compiler-generated field
-                gclass224.gclass223_0 = class316.gclass223_0;
-                gclass224.int_0 = this.SystemBodyID;
-                gclass224.double_1 = 0.0;
-                gclass224.double_0 = 0.0;
-                gclass224.bool_0 = false;
-                this.list_0.Add(gclass224);
+                gclass224.Gas = class316.gclass223_0;
+                gclass224.SystemBodyID = this.SystemBodyID;
+                gclass224.GasAtm = 0.0;
+                gclass224.AtmoGasAmount = 0.0;
+                gclass224.FrozenOut = false;
+                this.AtmosphericGasList.Add(gclass224);
             }
 
             Decimal decimal1 = this.MaxColonyCost;
             while (true)
             {
-                gclass224.double_1 += 0.001;
+                gclass224.GasAtm += 0.001;
                 num1 += 0.001;
                 this.method_57(gclass21_0, gclass194_1);
                 if (!(this.MaxColonyCost == 0M))
@@ -2484,10 +2511,10 @@ public partial class SystemBodyData
                     goto label_19;
             }
 
-            gclass224.double_1 -= 0.001;
+            gclass224.GasAtm -= 0.001;
             num1 -= 0.001;
-            if (gclass224.double_1 == 0.0)
-                this.list_0.Remove(gclass224);
+            if (gclass224.GasAtm == 0.0)
+                this.AtmosphericGasList.Remove(gclass224);
             this.method_57(gclass21_0, gclass194_1);
             label_19:
             return num1 / double_45;
@@ -2499,7 +2526,7 @@ public partial class SystemBodyData
         }
     }
 
-    public void method_57(GameRace gclass21_0, GClass194 gclass194_1)
+    public void method_57(GameRace gclass21_0, Species gclass194_1)
     {
         try
         {
@@ -2515,7 +2542,7 @@ public partial class SystemBodyData
         }
     }
 
-    public Decimal method_58(GameRace gclass21_0, GClass194 gclass194_1, bool bool_10)
+    public Decimal method_58(GameRace gclass21_0, Species gclass194_1, bool bool_10)
     {
         try
         {
@@ -2639,43 +2666,52 @@ public partial class SystemBodyData
         }
     }
 
-    public string method_59()
+    public string GetAtmosphericRepresetationString()
     {
+        //TODO: stringbuilder would be better...
         try
         {
-            string str1 = "-";
-            string str2 = "";
-            string str3;
             if (this.AtmospherePressure > 20.0 && this.SurfaceTemp > 500.0)
             {
-                str3 = "Venusian";
+                return UITextHelper.GetLocalizedStringFor(LocalizedText.VenusianAtmosphere);
             }
-            else
+
+            if (!AtmosphericGasList.Any())
             {
-                int num = 1;
-                foreach (GClass224 gclass224 in this.list_0)
-                {
-                    if (num == 1)
-                        str1 = gclass224.gclass223_0.AtmosphericGas != AtmosphericGas.CarbonDioxide
-                            ? (gclass224.gclass223_0.AtmosphericGas != AtmosphericGas.const_5
-                                ? gclass224.gclass223_0.Name
-                                : "Water")
-                            : "CO2";
-                    if (num == 2)
-                        str2 = gclass224.gclass223_0.AtmosphericGas != AtmosphericGas.CarbonDioxide
-                            ? (gclass224.gclass223_0.AtmosphericGas != AtmosphericGas.const_5
-                                ? " - " + gclass224.gclass223_0.Name
-                                : " - Water")
-                            : " - CO2";
-                    if (gclass224.gclass223_0.AtmosphericGas == AtmosphericGas.Oxygen && str1 != "Oxygen")
-                        str2 = $" - Oxygen ({AuroraUtils.smethod_44(gclass224.double_1, 2)})";
-                    ++num;
-                }
-
-                str3 = str1 + str2;
+                return "-";
             }
 
-            return str3;
+            var majorGas = AtmosphericGasList[0];
+            var secondGas = AtmosphericGasList.Count > 1 ? AtmosphericGasList[1] : null;
+            
+            string basePart = majorGas.Gas.Type switch
+            {
+                GasType.CarbonDioxide => "CO2",
+                GasType.WaterVapor => UITextHelper.GetLocalizedStringFor(LocalizedText.VaporFormWater),
+                _ => majorGas.Gas.Type.ToLocalizedString()
+            };
+
+            string formPart = string.Empty;
+
+            
+            var oxygenComponent = AtmosphericGasList
+                .FirstOrDefault(gas => gas.Gas.Type == GasType.Oxygen);
+            // If Oxygen exists and it's NOT the major gas, it takes priority for the second slot
+            if (oxygenComponent != null && majorGas.Gas.Type != GasType.Oxygen)
+            {
+                formPart = $" - {GasType.Oxygen.ToLocalizedString()} ({AuroraUtils.FormatDoubleToPrecision(oxygenComponent.AtmoGasAmount, 2)})"; 
+            }
+            else if (secondGas != null)
+            {
+                formPart = " - " + (secondGas.Gas.Type switch
+                {
+                    GasType.CarbonDioxide => "CO2",
+                    GasType.WaterVapor => UITextHelper.GetLocalizedStringFor(LocalizedText.VaporFormWater),
+                    _ => secondGas.Gas.Type.ToLocalizedString()
+                });
+            }
+
+            return basePart + formPart;
         }
         catch (Exception ex)
         {
@@ -2692,7 +2728,7 @@ public partial class SystemBodyData
         CheckState checkState_3,
         CheckState checkState_4,
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         bool bool_10)
     {
         // ISSUE: object of a compiler-generated type is created
@@ -2717,25 +2753,26 @@ public partial class SystemBodyData
             List<string> stringList = new List<string>();
             // ISSUE: reference to a compiler-generated field
             string str3 = this.method_78(class317.gclass21_0);
-            this.list_0 = this.list_0.OrderByDescending<GClass224, double>(gclass224_0 => gclass224_0.double_1)
-                .ToList<GClass224>();
-            if (this.list_0.Count > 0)
+            this.AtmosphericGasList = this.AtmosphericGasList.OrderByDescending<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm)
+                .ToList<SystemBodyAtmosphericGas>();
+            if (this.AtmosphericGasList.Count > 0)
             {
                 string_18 = AuroraUtils.smethod_50(this.AtmospherePressure);
-                if (this.list_0.Count<GClass224>(gclass224_0 => gclass224_0.bool_0) > 0)
+                if (this.AtmosphericGasList.Count<SystemBodyAtmosphericGas>(gclass224_0 => gclass224_0.FrozenOut) > 0)
                     string_18 += "F";
-                string_17 = this.method_59();
+                string_17 = this.GetAtmosphericRepresetationString();
             }
 
             // ISSUE: reference to a compiler-generated method
-            foreach (PopulationData gclass146 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class317.method_0)
+            foreach (PopulationData gclass146 in this.gclass0_0.Populations.Values.Where<PopulationData>(class317.method_0)
                          .OrderByDescending<PopulationData, Decimal>(gclass146_0 => gclass146_0.decimal_30)
                          .ToList<PopulationData>())
             {
                 // ISSUE: reference to a compiler-generated field
                 str1 = !(gclass146.PopName == str3)
-                    ? $"{gclass146.PopName} {AuroraUtils.smethod_61(gclass146.decimal_30, "m")}"
-                    : $"{class317.gclass21_0.RaceName} {AuroraUtils.smethod_61(gclass146.decimal_30, "m")}";
+                    ? string.Format("{0} {1}", gclass146.PopName, AuroraUtils.smethod_61(gclass146.decimal_30, "m"))
+                    : string.Format("{0} {1}", class317.gclass21_0.RaceName,
+                        AuroraUtils.smethod_61(gclass146.decimal_30, "m"));
                 stringList.Add(str1);
             }
 
@@ -2743,19 +2780,20 @@ public partial class SystemBodyData
             bool flag = this.method_77(class317.gclass21_0);
             if (this.RuinData != null && flag)
                 stringList.Add(this.RuinData.Description);
-            if (this.gclass220_0 != null && flag)
-                stringList.Add(this.gclass220_0.method_0());
+            if (this.AncientConstruct != null && flag)
+                stringList.Add(this.AncientConstruct.method_0());
             if (stringList.Count == 0)
                 stringList.Add(str1);
             if (this.HydroExtent > 0.0)
                 string_16 =
-                    $"{AuroraUtils.smethod_82(this.HydrosphereTypeId)} {AuroraUtils.smethod_44(this.HydroExtent, 1)}%";
+                    string.Format("{0} {1}%", AuroraUtils.smethod_82(this.HydrosphereTypeId),
+                        AuroraUtils.FormatDoubleToPrecision(this.HydroExtent, 1));
             if (this.TectonicActivity != AuroraTectonics.Dead)
                 string_30 = AuroraUtils.smethod_82(this.TectonicActivity);
             if (this.MagneticField > 0.0)
                 string_31 = AuroraUtils.smethod_52(this.MagneticField);
             if (this.TidalLock)
-                string_23 = this.BodyClass != PlanetBodyClass.Moon ? "Yes" : "Yes - M";
+                string_23 = this.BodyClass != PlanetBodyClass.Moon ? UITextHelper.GetLocalizedStringFor(LocalizedText.TidalLockYes) : UITextHelper.GetLocalizedStringFor(LocalizedText.TidalLockYesMoon);
             // ISSUE: reference to a compiler-generated field
             Decimal num1 = this.method_58(class317.gclass21_0, gclass194_1, true);
             if (checkState_3 == CheckState.Checked && this.MaxColonyCost > 0M)
@@ -2780,14 +2818,14 @@ public partial class SystemBodyData
             if (this.PopulationCapacity_Probably > 0M)
                 string_24 = AuroraUtils.smethod_53(this.PopulationCapacity_Probably);
             string string_11 = "";
-            if (checkState_0 == CheckState.Checked && this.dictionary_0.Count > 0 && flag)
+            if (checkState_0 == CheckState.Checked && this.MineralDeposits.Count > 0 && flag)
                 string_11 = "M";
             if (checkState_1 == CheckState.Checked && !flag)
                 string_11 = "U";
             // ISSUE: reference to a compiler-generated field
             if (checkState_4 == CheckState.Checked &&
                 this.Radius * 2.0 <= class317.gclass21_0.MaximumOrbitalMiningDiameter &&
-                (this.dictionary_0.Count > 0 || !flag))
+                (this.MineralDeposits.Count > 0 || !flag))
                 string_11 += "E";
             if (checkState_2 == CheckState.Checked &&
                 this.GroundMineralSurveyState != AuroraGroundMineralSurvey.Completed && flag)
@@ -2826,11 +2864,11 @@ public partial class SystemBodyData
             string string_26 = "-";
             if (this.Eccentricity > 0.0)
             {
-                string_27 = AuroraUtils.smethod_44(this.Eccentricity, 3);
+                string_27 = AuroraUtils.FormatDoubleToPrecision(this.Eccentricity, 3);
                 double double_32 = this.EccentricityDirection + 90.0;
                 if (double_32 >= 360.0)
                     double_32 -= 360.0;
-                string_28 = AuroraUtils.smethod_44(double_32, 1);
+                string_28 = AuroraUtils.FormatDoubleToPrecision(double_32, 1);
                 string_25 = this.method_65();
                 string_26 = this.method_66();
             }
@@ -2864,10 +2902,10 @@ public partial class SystemBodyData
         {
             if (this.Mass < 0.25 || this.BodyTypeId == AuroraSystemBodyType.Comet)
                 return "-";
-            if (this.gclass0_0.dictionary_14.Values.Count<GClass212>(gclass212_0 => gclass212_0.gclass1_0 == this) >
+            if (this.gclass0_0.LagrangePoints.Values.Count<LagrangePoint>(gclass212_0 => gclass212_0.Planet == this) >
                 0 && bool_10)
                 return "Existing LP";
-            string str = AuroraUtils.smethod_44(60.0 / Math.Sqrt(this.Mass) / 12.0, 2);
+            string str = AuroraUtils.FormatDoubleToPrecision(60.0 / Math.Sqrt(this.Mass) / 12.0, 2);
             return bool_11 ? str + " years" : str;
         }
         catch (Exception ex)
@@ -2877,7 +2915,7 @@ public partial class SystemBodyData
         }
     }
 
-    public Decimal method_62(GClass194 gclass194_1)
+    public Decimal method_62(Species gclass194_1)
     {
         try
         {
@@ -2982,50 +3020,60 @@ public partial class SystemBodyData
         {
             listView_0.Items.Clear();
             listView_1.Items.Clear();
-            GClass194 gclass194_1 = gclass21_0.method_164();
+            Species gclass194_1 = gclass21_0.method_164();
             this.method_27();
             this.method_58(gclass21_0, gclass194_1, true);
-            this.gclass0_0.method_597(listView_0, "Name", this.method_78(gclass21_0));
-            this.gclass0_0.method_597(listView_0, "Colony Cost",
+            this.gclass0_0.method_597(listView_0, LocalizedText.NameLiteral.GetText(), this.method_78(gclass21_0));
+            this.gclass0_0.method_597(listView_0, LocalizedText.ColonyCost.GetText(),
                 this.method_47(gclass21_0.method_164(), GEnum80.const_0));
             if (this.IsFixedBody)
             {
-                this.gclass0_0.method_597(listView_0, "Orbital Distance",
-                    $"{AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km")}  ({AuroraUtils.smethod_59(this.OrbitalDistance, "AU")})");
+                this.gclass0_0.method_597(listView_0, LocalizedText.OrbitalDistance.GetText(),
+                    string.Format("{0}  ({1})",
+                        AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km"),
+                        AuroraUtils.smethod_59(this.OrbitalDistance, "AU")));
                 this.gclass0_0.method_597(listView_0, "Temperature",
                     AuroraUtils.smethod_59(this.BaseTemp - AuroraUtils.int_17, "C"));
             }
             else
             {
                 if (this.MaxColonyCost > this.ColonyCost && this.MaxColonyCost > 0M)
-                    this.gclass0_0.method_597(listView_0, "Max Colony Cost",
+                    this.gclass0_0.method_597(listView_0, LocalizedText.MaxColonyCost.GetText(),
                         this.method_47(gclass21_0.method_164(), GEnum80.const_1));
-                this.gclass0_0.method_597(listView_0, "Body Type", AuroraUtils.smethod_82(this.BodyTypeId));
-                this.gclass0_0.method_597(listView_0, "Diameter", AuroraUtils.smethod_59(this.Radius * 2.0, "km"));
+                this.gclass0_0.method_597(listView_0, LocalizedText.BodyType.GetText(), AuroraUtils.smethod_82(this.BodyTypeId));
+                this.gclass0_0.method_597(listView_0, LocalizedText.Diameter.GetText(), AuroraUtils.smethod_59(this.Radius * 2.0, "km"));
                 if (this.BodyClass == PlanetBodyClass.Moon)
-                    this.gclass0_0.method_597(listView_0, "Orbital Distance",
+                    this.gclass0_0.method_597(listView_0, LocalizedText.OrbitalDistance.GetText(),
                         AuroraUtils.smethod_59(this.OrbitalDistance, "km"));
                 else if (this.Eccentricity > 0.0)
                 {
-                    this.gclass0_0.method_597(listView_0, "Current Distance",
-                        $"{AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km")}  ({AuroraUtils.smethod_59(this.OrbitalDistance, "AU")})");
-                    this.gclass0_0.method_597(listView_0, "Perihelion",
-                        $"{AuroraUtils.smethod_59(this.double_27 * AuroraUtils.double_14, "km")}  ({AuroraUtils.smethod_59(this.double_27, "AU")})");
-                    this.gclass0_0.method_597(listView_0, "Aphelion",
-                        $"{AuroraUtils.smethod_59(this.double_28 * AuroraUtils.double_14, "km")}  ({AuroraUtils.smethod_59(this.double_28, "AU")})");
-                    this.gclass0_0.method_597(listView_0, "Eccentricity", AuroraUtils.smethod_44(this.Eccentricity, 4));
+                    this.gclass0_0.method_597(listView_0, LocalizedText.CurrentDistance.GetText(),
+                        string.Format("{0}  ({1})",
+                            AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km"),
+                            AuroraUtils.smethod_59(this.OrbitalDistance, "AU")));
+                    this.gclass0_0.method_597(listView_0, LocalizedText.Perihelion.GetText(),
+                        string.Format("{0}  ({1})",
+                            AuroraUtils.smethod_59(this.double_27 * AuroraUtils.double_14, "km"),
+                            AuroraUtils.smethod_59(this.double_27, "AU")));
+                    this.gclass0_0.method_597(listView_0, LocalizedText.Aphelion.GetText(),
+                        string.Format("{0}  ({1})",
+                            AuroraUtils.smethod_59(this.double_28 * AuroraUtils.double_14, "km"),
+                            AuroraUtils.smethod_59(this.double_28, "AU")));
+                    this.gclass0_0.method_597(listView_0, LocalizedText.Eccentricity.GetText(), AuroraUtils.FormatDoubleToPrecision(this.Eccentricity, 4));
                     double double_32 = this.EccentricityDirection + 90.0;
                     if (double_32 >= 360.0)
                         double_32 -= 360.0;
-                    this.gclass0_0.method_597(listView_0, "Inclination",
-                        AuroraUtils.smethod_44(double_32, 4) + char.ConvertFromUtf32(176 /*0xB0*/));
+                    this.gclass0_0.method_597(listView_0, LocalizedText.Inclination.GetText(),
+                        AuroraUtils.FormatDoubleToPrecision(double_32, 4) + char.ConvertFromUtf32(176 /*0xB0*/));
                 }
                 else
-                    this.gclass0_0.method_597(listView_0, "Orbital Distance",
-                        $"{AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km")}  ({AuroraUtils.smethod_59(this.OrbitalDistance, "AU")})");
+                    this.gclass0_0.method_597(listView_0, LocalizedText.OrbitalDistance.GetText(),
+                        string.Format("{0}  ({1})",
+                            AuroraUtils.smethod_59(this.OrbitalDistance * AuroraUtils.double_14, "km"),
+                            AuroraUtils.smethod_59(this.OrbitalDistance, "AU")));
 
                 this.gclass0_0.method_597(listView_0, "Gravity", AuroraUtils.smethod_59(this.Gravity, "G"));
-                if (this.list_0.Count == 0)
+                if (this.AtmosphericGasList.Count == 0)
                 {
                     this.gclass0_0.method_597(listView_0, "Atmosphere", "None");
                 }
@@ -3033,11 +3081,12 @@ public partial class SystemBodyData
                 {
                     this.gclass0_0.method_597(listView_0, "Atmosphere",
                         "Atmospheric Pressure " + AuroraUtils.smethod_59(this.AtmospherePressure, "atm"));
-                    this.list_0 = this.list_0.OrderByDescending<GClass224, double>(gclass224_0 => gclass224_0.double_1)
-                        .ToList<GClass224>();
-                    foreach (GClass224 gclass224 in this.list_0)
+                    this.AtmosphericGasList = this.AtmosphericGasList.OrderByDescending<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm)
+                        .ToList<SystemBodyAtmosphericGas>();
+                    foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
                         this.gclass0_0.method_597(listView_0, "",
-                            $"{gclass224.gclass223_0.Name} {AuroraUtils.smethod_59(gclass224.double_0, "%")}");
+                            string.Format("{0} {1}", gclass224.Gas.Name,
+                                AuroraUtils.smethod_59(gclass224.AtmoGasAmount, "%")));
                 }
 
                 this.gclass0_0.method_597(listView_0, "Hydrosphere", AuroraUtils.smethod_82(this.HydrosphereTypeId));
@@ -3056,18 +3105,18 @@ public partial class SystemBodyData
                     this.gclass0_0.method_597(listView_0, "Tidal Lock", "No");
                 this.gclass0_0.method_597(listView_0, "Base Temperature",
                     AuroraUtils.smethod_59(this.BaseTemp - AuroraUtils.int_17, "C"));
-                this.gclass0_0.method_597(listView_0, "Albedo", AuroraUtils.smethod_44(this.Albedo, 2));
+                this.gclass0_0.method_597(listView_0, "Albedo", AuroraUtils.FormatDoubleToPrecision(this.Albedo, 2));
                 this.gclass0_0.method_597(listView_0, "Greenhouse Factor",
-                    AuroraUtils.smethod_44(this.GreenhouseFactor, 2));
-                this.gclass0_0.method_597(listView_0, "Anti-GH Factor", AuroraUtils.smethod_44(this.AntiGreenhouseFactor, 2));
+                    AuroraUtils.FormatDoubleToPrecision(this.GreenhouseFactor, 2));
+                this.gclass0_0.method_597(listView_0, "Anti-GH Factor", AuroraUtils.FormatDoubleToPrecision(this.AntiGreenhouseFactor, 2));
                 if (this.method_77(gclass21_0))
                 {
-                    if (this.dictionary_0.Count > 0)
+                    if (this.MineralDeposits.Count > 0)
                     {
-                        foreach (GClass124 gclass124 in this.dictionary_0.Values)
-                            this.gclass0_0.method_601(listView_1, gclass124.auroraElement_0.ToString(),
-                                string.Format("{0:0,0}", gclass124.decimal_0) + "  tons",
-                                "Acc  " + gclass124.decimal_1.ToString());
+                        foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
+                            this.gclass0_0.method_601(listView_1, gclass124.MaterialID.ToString(),
+                                string.Format("{0:0,0}", gclass124.Amount) + "  tons",
+                                "Acc  " + gclass124.Accessibility.ToString());
                     }
                 }
                 else
@@ -3091,16 +3140,16 @@ public partial class SystemBodyData
             listView_0.Items.Clear();
             if (this.method_77(gclass21_0))
             {
-                if (this.dictionary_0.Count <= 0)
+                if (this.MineralDeposits.Count <= 0)
                     return;
-                this.dictionary_0 = this.dictionary_0
-                    .OrderBy<KeyValuePair<AuroraElement, GClass124>,
-                        AuroraElement>(keyValuePair_0 => keyValuePair_0.Value.auroraElement_0)
-                    .ToDictionary<KeyValuePair<AuroraElement, GClass124>, AuroraElement, GClass124>(
+                this.MineralDeposits = this.MineralDeposits
+                    .OrderBy<KeyValuePair<AuroraElement, MineralDeposit>,
+                        AuroraElement>(keyValuePair_0 => keyValuePair_0.Value.MaterialID)
+                    .ToDictionary<KeyValuePair<AuroraElement, MineralDeposit>, AuroraElement, MineralDeposit>(
                         keyValuePair_0 => keyValuePair_0.Key, keyValuePair_0 => keyValuePair_0.Value);
-                foreach (GClass124 gclass124 in this.dictionary_0.Values)
-                    this.gclass0_0.method_601(listView_0, gclass124.auroraElement_0.ToString(),
-                        string.Format("{0:0,0}", gclass124.decimal_0), AuroraUtils.smethod_45(gclass124.decimal_1, 2));
+                foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
+                    this.gclass0_0.method_601(listView_0, gclass124.MaterialID.ToString(),
+                        string.Format("{0:0,0}", gclass124.Amount), AuroraUtils.smethod_45(gclass124.Accessibility, 2));
             }
             else
                 this.gclass0_0.method_594(listView_0, "No Survey");
@@ -3115,14 +3164,16 @@ public partial class SystemBodyData
     {
         try
         {
-            string str = $"{this.method_78(gclass21_0)} Survey Report{Environment.NewLine}";
+            string str = string.Format("{0} Survey Report{1}", this.method_78(gclass21_0), Environment.NewLine);
             if (this.method_77(gclass21_0))
             {
-                if (this.dictionary_0.Count > 0)
+                if (this.MineralDeposits.Count > 0)
                 {
-                    foreach (GClass124 gclass124 in this.dictionary_0.Values)
+                    foreach (MineralDeposit gclass124 in this.MineralDeposits.Values)
                         str =
-                            $"{str}{gclass124.auroraElement_0.ToString()}:   {string.Format("{0:0,0}", gclass124.decimal_0)}   {AuroraUtils.smethod_45(gclass124.decimal_1, 2)}{Environment.NewLine}";
+                            string.Format("{0}{1}:   {2}   {3}{4}", str, gclass124.MaterialID.ToString(),
+                                string.Format("{0:0,0}", gclass124.Amount),
+                                AuroraUtils.smethod_45(gclass124.Accessibility, 2), Environment.NewLine);
                 }
             }
             else
@@ -3151,34 +3202,34 @@ public partial class SystemBodyData
             double double_46 = 0.0;
             double double_32_1 = 0.0;
             double double_32_2 = 0.0;
-            this.list_0 = this.list_0.OrderByDescending<GClass224, double>(gclass224_0 => gclass224_0.double_1)
-                .ToList<GClass224>();
-            if (this.list_0.Count > 0)
+            this.AtmosphericGasList = this.AtmosphericGasList.OrderByDescending<SystemBodyAtmosphericGas, double>(gclass224_0 => gclass224_0.GasAtm)
+                .ToList<SystemBodyAtmosphericGas>();
+            if (this.AtmosphericGasList.Count > 0)
             {
                 this.gclass0_0.method_601(listView_0, "Gas", "%", "atm");
-                if (this.list_0.Count > 0)
+                if (this.AtmosphericGasList.Count > 0)
                 {
-                    foreach (GClass224 gclass224 in this.list_0)
-                        num1 += gclass224.double_1;
-                    foreach (GClass224 object_1 in this.list_0)
+                    foreach (SystemBodyAtmosphericGas gclass224 in this.AtmosphericGasList)
+                        num1 += gclass224.GasAtm;
+                    foreach (SystemBodyAtmosphericGas object_1 in this.AtmosphericGasList)
                     {
-                        string name = object_1.gclass223_0.Name;
-                        if (object_1.bool_0)
+                        string name = object_1.Gas.Name;
+                        if (object_1.FrozenOut)
                             name += " (F)";
-                        else if (object_1.gclass223_0.GHGas)
+                        else if (object_1.Gas.GHGas)
                         {
-                            double_45 += object_1.double_1;
-                            double_32_1 += object_1.double_1;
+                            double_45 += object_1.GasAtm;
+                            double_32_1 += object_1.GasAtm;
                         }
-                        else if (object_1.gclass223_0.AntiGHGas)
+                        else if (object_1.Gas.AntiGHGas)
                         {
-                            double_46 += object_1.double_1;
-                            double_32_2 += object_1.double_1;
+                            double_46 += object_1.GasAtm;
+                            double_32_2 += object_1.GasAtm;
                         }
 
-                        object_1.double_0 = object_1.double_1 / num1 * 100.0;
-                        this.gclass0_0.method_602(listView_0, name, AuroraUtils.smethod_46(object_1.double_0, 3),
-                            AuroraUtils.smethod_46(object_1.double_1, int_72), object_1);
+                        object_1.AtmoGasAmount = object_1.GasAtm / num1 * 100.0;
+                        this.gclass0_0.method_602(listView_0, name, AuroraUtils.smethod_46(object_1.AtmoGasAmount, 3),
+                            AuroraUtils.smethod_46(object_1.GasAtm, int_72), object_1);
                     }
                 }
 
@@ -3206,18 +3257,18 @@ public partial class SystemBodyData
                 double double_32_3 = 0.0;
                 double double_32_4 = 0.0;
                 double double_32_5 = 0.0;
-                if (gclass146_0.SpeciesData.double_12 > this.SurfaceTemp)
-                    double_32_3 = this.SurfaceTemp - gclass146_0.SpeciesData.double_12;
-                else if (this.SurfaceTemp > gclass146_0.SpeciesData.double_11)
-                    double_32_3 = this.SurfaceTemp - gclass146_0.SpeciesData.double_11;
-                if (gclass146_0.SpeciesData.double_12 > this.double_32)
-                    double_32_4 = this.double_32 - gclass146_0.SpeciesData.double_12;
-                else if (this.double_32 > gclass146_0.SpeciesData.double_11)
-                    double_32_4 = this.double_32 - gclass146_0.SpeciesData.double_11;
-                if (gclass146_0.SpeciesData.double_12 > this.double_31)
-                    double_32_5 = this.double_31 - gclass146_0.SpeciesData.double_12;
-                else if (this.double_31 > gclass146_0.SpeciesData.double_11)
-                    double_32_5 = this.double_31 - gclass146_0.SpeciesData.double_11;
+                if (gclass146_0.Species.double_12 > this.SurfaceTemp)
+                    double_32_3 = this.SurfaceTemp - gclass146_0.Species.double_12;
+                else if (this.SurfaceTemp > gclass146_0.Species.double_11)
+                    double_32_3 = this.SurfaceTemp - gclass146_0.Species.double_11;
+                if (gclass146_0.Species.double_12 > this.double_32)
+                    double_32_4 = this.double_32 - gclass146_0.Species.double_12;
+                else if (this.double_32 > gclass146_0.Species.double_11)
+                    double_32_4 = this.double_32 - gclass146_0.Species.double_11;
+                if (gclass146_0.Species.double_12 > this.double_31)
+                    double_32_5 = this.double_31 - gclass146_0.Species.double_12;
+                else if (this.double_31 > gclass146_0.Species.double_11)
+                    double_32_5 = this.double_31 - gclass146_0.Species.double_11;
                 this.gclass0_0.method_601(listView_0, "Base Temperature (Celsius)",
                     AuroraUtils.smethod_46(this.BaseTemp - AuroraUtils.int_17, 3), null);
                 this.gclass0_0.method_601(listView_0, "Surface Temperature (Celsius)",
@@ -3272,7 +3323,7 @@ public partial class SystemBodyData
                     this.gclass0_0.method_601(listView_0, "Orbital Terraforming Modules", num4.ToString(), null);
                 else
                     this.gclass0_0.method_601(listView_0, "Terraforming Modules (S/O)",
-                        $"{num3.ToString()} / {num4.ToString()}", null);
+                        string.Format("{0} / {1}", num3.ToString(), num4.ToString()), null);
                 double double_32_7 = (double)gclass146_0.decimal_24 * double_32_6;
                 this.gclass0_0.method_601(listView_0, "Annual Terraform Capacity (atm)",
                     AuroraUtils.smethod_46(double_32_7, 4), null);
@@ -3299,7 +3350,7 @@ public partial class SystemBodyData
 
     public void method_71(
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         CheckState checkState_0,
         Label label_0,
         Label label_1,
@@ -3331,15 +3382,15 @@ public partial class SystemBodyData
             if (this.BodyTypeId != AuroraSystemBodyType.GasGiant && this.BodyTypeId != AuroraSystemBodyType.Superjovian)
             {
                 if (this.Gravity < 0.1)
-                    label_0.Text = "No";
+                    label_0.Text = UITextHelper.GetLocalizedStringFor(LocalizedText.CanRetainAtmoSphereNo);
                 else
-                    label_0.Text = "Yes";
+                    label_0.Text = UITextHelper.GetLocalizedStringFor(LocalizedText.CanRetainAtmoSphereYes);
                 if (this.Gravity < gclass194_1.double_7)
                     label_1.Text = str3;
                 else if (this.Gravity > gclass194_1.double_8)
-                    label_1.Text = "No";
+                    label_1.Text = UITextHelper.GetLocalizedStringFor(LocalizedText.CanRetainAtmoSphereNo);
                 else
-                    label_1.Text = "Yes";
+                    label_1.Text = UITextHelper.GetLocalizedStringFor(LocalizedText.CanRetainAtmoSphereYes);
                 double double_32_1 = 0.0;
                 if (this.SurfaceTemp >= gclass194_1.double_12 && this.SurfaceTemp <= gclass194_1.double_11)
                 {
@@ -3404,7 +3455,7 @@ public partial class SystemBodyData
 
     public void method_72(
         GameRace gclass21_0,
-        GClass194 gclass194_1,
+        Species gclass194_1,
         ListView listView_0,
         int int_13)
     {
@@ -3544,7 +3595,7 @@ public partial class SystemBodyData
                 this.BodyClass == PlanetBodyClass.Planet && this.BodyTypeId != AuroraSystemBodyType.DwarfPlanet ||
                 class318.gclass202_0.Race.chkAstMinOnly == CheckState.Checked &&
                 this.BodyTypeId == AuroraSystemBodyType.Asteroid && !this.IsFixedBody &&
-                (!flag || this.dictionary_0.Count == 0) ||
+                (!flag || this.MineralDeposits.Count == 0) ||
                 class318.gclass202_0.Race.chkAstColOnly == CheckState.Checked &&
                 this.BodyTypeId == AuroraSystemBodyType.Asteroid && !this.IsFixedBody &&
                 !class318.gclass202_0.list_4.Contains(this) || this.BodyClass == PlanetBodyClass.Moon &&
@@ -3563,7 +3614,7 @@ public partial class SystemBodyData
 
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            if (class318.gclass202_0.Race.chkMinerals == CheckState.Checked && this.dictionary_0.Count > 0 &&
+            if (class318.gclass202_0.Race.chkMinerals == CheckState.Checked && this.MineralDeposits.Count > 0 &&
                 this.method_77(class318.gclass202_0.Race))
             {
                 Pen pen = new Pen(Color.Yellow);
@@ -3619,7 +3670,7 @@ public partial class SystemBodyData
                 {
                     // ISSUE: reference to a compiler-generated method
                     PopulationData gclass146 =
-                        this.gclass0_0.PopulationDataDictionary.Values.FirstOrDefault<PopulationData>(class318.method_0);
+                        this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(class318.method_0);
                     if (gclass146 != null)
                         text = gclass146.PopName;
                 }
@@ -3649,7 +3700,7 @@ public partial class SystemBodyData
                         : this.Radius / 10.0;
                 if (num5 < 1.0)
                     num5 = 1.0;
-                str = $" ({Math.Round(num5, 0).ToString()})";
+                str = string.Format(" ({0})", Math.Round(num5, 0).ToString());
             }
 
             solidBrush.Color = Color.LimeGreen;
@@ -3701,7 +3752,7 @@ public partial class SystemBodyData
                 float width = (float)(this.OrbitalDistance * AuroraUtils.double_14 * 2.0 / gclass202_0.KmPerPixel);
                 if (width < (double)AuroraUtils.int_61)
                     return;
-                float height = (float)(this.double_26 * AuroraUtils.double_14 * 2.0 / gclass202_0.KmPerPixel);
+                float height = (float)(this.OrbitalSemiMinorAxis * AuroraUtils.double_14 * 2.0 / gclass202_0.KmPerPixel);
                 float num = (float)(this.double_27 * AuroraUtils.double_14 / gclass202_0.KmPerPixel);
                 float x = (float)gclass221.double_0 - num;
                 float y = (float)(gclass221.double_1 - height / 2.0);
@@ -3746,11 +3797,11 @@ public partial class SystemBodyData
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: reference to a compiler-generated method
-        return this.gclass0_0.list_9.Where<GClass215>(new SystemBodyData.Class319()
+        return this.gclass0_0.SystemBodySurveys.Where<RacialSystemBodySurvey>(new SystemBodyData.Class319()
         {
             gclass21_0 = gclass21_0,
             gclass1_0 = this
-        }.method_0).FirstOrDefault<GClass215>() != null;
+        }.method_0).FirstOrDefault<RacialSystemBodySurvey>() != null;
     }
 
     public string method_78(GameRace gclass21_0)
@@ -3777,8 +3828,8 @@ public partial class SystemBodyData
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated field
-            return this.dictionary_1.Values.Where<GClass218>(class320.method_0)
-                       .Select<GClass218, string>(gclass218_0 => gclass218_0.string_0).FirstOrDefault<string>() ??
+            return this.dictionary_1.Values.Where<RaceSystemBodyName>(class320.method_0)
+                       .Select<RaceSystemBodyName, string>(gclass218_0 => gclass218_0.Name).FirstOrDefault<string>() ??
                    this.method_81(class320.gclass21_0, bool_10, bool_11);
         }
         catch (Exception ex)
@@ -3798,21 +3849,21 @@ public partial class SystemBodyData
         try
         {
             // ISSUE: reference to a compiler-generated method
-            GClass218 gclass218 = this.dictionary_1.Values.Where<GClass218>(class321.method_0)
-                .FirstOrDefault<GClass218>();
+            RaceSystemBodyName gclass218 = this.dictionary_1.Values.Where<RaceSystemBodyName>(class321.method_0)
+                .FirstOrDefault<RaceSystemBodyName>();
             if (gclass218 != null)
             {
-                gclass218.string_0 = string_3;
+                gclass218.Name = string_3;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                this.dictionary_1.Add(class321.gclass21_0.RaceID, new GClass218()
+                this.dictionary_1.Add(class321.gclass21_0.RaceID, new RaceSystemBodyName()
                 {
-                    string_0 = string_3,
-                    int_0 = this.SystemBodyID,
-                    gclass21_0 = class321.gclass21_0
+                    Name = string_3,
+                    SystemBodyID = this.SystemBodyID,
+                    Race = class321.gclass21_0
                 });
             }
         }
@@ -3835,11 +3886,14 @@ public partial class SystemBodyData
                     return str + AuroraUtils.smethod_79(this.PlanetNumber);
                 case PlanetBodyClass.Moon:
                     if (!bool_10)
-                        return $"{this.ParentBodyData.method_78(gclass21_0)} - Moon {this.OrbitNumber.ToString()}";
+                        return string.Format("{0} - Moon {1}", this.ParentBodyData.method_78(gclass21_0),
+                            this.OrbitNumber.ToString());
                     if (this.SystemData.Stars == 1)
-                        return $"Moon {AuroraUtils.smethod_79(this.PlanetNumber)} {this.OrbitNumber.ToString()}";
+                        return string.Format("Moon {0} {1}", AuroraUtils.smethod_79(this.PlanetNumber),
+                            this.OrbitNumber.ToString());
                     return
-                        $"Moon {this.StarData.method_19()}-{AuroraUtils.smethod_79(this.PlanetNumber)} {this.OrbitNumber.ToString()}";
+                        string.Format("Moon {0}-{1} {2}", this.StarData.method_19(),
+                            AuroraUtils.smethod_79(this.PlanetNumber), this.OrbitNumber.ToString());
                 case PlanetBodyClass.Asteroid:
                     return "Asteroid #" + this.OrbitNumber.ToString();
                 case PlanetBodyClass.Comet:

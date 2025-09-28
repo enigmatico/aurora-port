@@ -95,7 +95,7 @@ public class GClass62
     {
         try
         {
-            List<PopulationData> list = this.gclass0_0.PopulationDataDictionary.Values
+            List<PopulationData> list = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(gclass146_1 => gclass146_1.gclass202_0.gclass62_0 == this).ToList<PopulationData>();
             int num = 1;
             foreach (PopulationData gclass146 in list)

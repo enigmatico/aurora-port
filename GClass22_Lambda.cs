@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 #nullable disable
-public partial class GClass22
+public partial class ShipClass
 {
     [CompilerGenerated]
     [Serializable]
     private sealed class staticCompMem
     {
-        internal Decimal method_0(GClass22 gclass22_0)
+        internal Decimal method_0(ShipClass gclass22_0)
         {
-            return gclass22_0.decimal_14;
+            return gclass22_0.Size;
         }
 
-        internal Decimal method_1(GClass22 gclass22_0)
+        internal Decimal method_1(ShipClass gclass22_0)
         {
-            return gclass22_0.decimal_14;
+            return gclass22_0.Size;
         }
 
         internal bool method_2(GClass228 gclass228_0)
@@ -35,22 +35,22 @@ public partial class GClass22
             return gclass228_0.gclass230_0.gclass231_0.ComponentTypeID == AuroraComponentType.CIWS;
         }
 
-        internal string method_5(GClass22 gclass22_0)
+        internal string method_5(ShipClass gclass22_0)
         {
             return gclass22_0.ClassName;
         }
 
-        internal string method_6(GClass22 gclass22_0)
+        internal string method_6(ShipClass gclass22_0)
         {
             return gclass22_0.ClassName;
         }
 
-        internal string method_7(GClass22 gclass22_0)
+        internal string method_7(ShipClass gclass22_0)
         {
             return gclass22_0.ClassName;
         }
 
-        internal string method_8(GClass22 gclass22_0)
+        internal string method_8(ShipClass gclass22_0)
         {
             return gclass22_0.ClassName;
         }
@@ -60,14 +60,14 @@ public partial class GClass22
             return gclass228_0.gclass230_0.genum86_0 != 0;
         }
 
-        internal Decimal method_10(GClass73 gclass73_0)
+        internal Decimal method_10(TransportedComponent gclass73_0)
         {
-            return gclass73_0.decimal_0;
+            return gclass73_0.Amount;
         }
 
-        internal Decimal method_11(GClass73 gclass73_0)
+        internal Decimal method_11(TransportedComponent gclass73_0)
         {
-            return gclass73_0.decimal_0;
+            return gclass73_0.Amount;
         }
 
         internal ShipComponent method_12(GClass228 gclass228_0)
@@ -115,19 +115,19 @@ public partial class GClass22
             return gclass228_0.gclass230_0;
         }
 
-        internal bool method_21(GClass130 gclass130_0)
+        internal bool method_21(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.int_14 == 1;
+            return gclass130_0.RaceMissile.ShipDecoy == 1;
         }
 
-        internal bool method_22(GClass130 gclass130_0)
+        internal bool method_22(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.int_14 == 0;
+            return gclass130_0.RaceMissile.ShipDecoy == 0;
         }
 
-        internal bool method_23(GClass130 gclass130_0)
+        internal bool method_23(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.int_14 == 1;
+            return gclass130_0.RaceMissile.ShipDecoy == 1;
         }
 
         internal bool method_24(GClass228 gclass228_0)
@@ -218,14 +218,14 @@ public partial class GClass22
             return gclass75_0.gclass102_0.Name;
         }
 
-        internal string method_41(GClass130 gclass130_0)
+        internal string method_41(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.Name;
+            return gclass130_0.RaceMissile.Name;
         }
 
-        internal string method_42(GClass130 gclass130_0)
+        internal string method_42(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.Name;
+            return gclass130_0.RaceMissile.Name;
         }
 
         internal int method_43(GClass228 gclass228_0)
@@ -313,22 +313,22 @@ public partial class GClass22
             return gclass178_0.int_0;
         }
 
-        internal string method_60(FCTShipData40 gclass40_0)
+        internal string method_60(ShipData gclass40_0)
         {
             return gclass40_0.ShipName;
         }
 
-        internal GClass22 method_61(FCTShipData40 gclass40_0)
+        internal ShipClass method_61(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0;
         }
 
-        internal string method_62(GClass22 gclass22_0)
+        internal string method_62(ShipClass gclass22_0)
         {
             return gclass22_0.ClassName;
         }
 
-        internal IEnumerable<FCTSquadronData70> method_63(FCTShipData40 gclass40_0)
+        internal IEnumerable<FCTSquadronData70> method_63(ShipData gclass40_0)
         {
             return gclass40_0.ChildSquadronDictionary.Values;
         }
@@ -338,37 +338,37 @@ public partial class GClass22
             return gclass70_0.SquadronName;
         }
 
-        internal string method_65(FCTShipData40 gclass40_0)
+        internal string method_65(ShipData gclass40_0)
         {
             return gclass40_0.ShipName;
         }
 
-        internal string method_66(FCTShipData40 gclass40_0)
+        internal string method_66(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.FleetName;
         }
 
-        internal string method_67(FCTShipData40 gclass40_0)
+        internal string method_67(ShipData gclass40_0)
         {
             return gclass40_0.gclass85_0.System.Name;
         }
 
-        internal Decimal method_68(FCTShipData40 gclass40_0)
+        internal Decimal method_68(ShipData gclass40_0)
         {
             return gclass40_0.decimal_1;
         }
 
-        internal Decimal method_69(FCTShipData40 gclass40_0)
+        internal Decimal method_69(ShipData gclass40_0)
         {
             return gclass40_0.decimal_6;
         }
 
-        internal Decimal method_70(FCTShipData40 gclass40_0)
+        internal Decimal method_70(ShipData gclass40_0)
         {
             return gclass40_0.decimal_7;
         }
 
-        internal Decimal method_71(FCTShipData40 gclass40_0)
+        internal Decimal method_71(ShipData gclass40_0)
         {
             return gclass40_0.decimal_14;
         }
@@ -577,9 +577,9 @@ public partial class GClass22
     {
         public GClass228 gclass228_0;
 
-        internal bool method_0(GClass73 gclass73_0)
+        internal bool method_0(TransportedComponent gclass73_0)
         {
-            return gclass73_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass73_0.Component == this.gclass228_0.gclass230_0;
         }
     }
 
@@ -593,9 +593,9 @@ public partial class GClass22
             return gclass228_1.int_0 == this.gclass228_0.int_0;
         }
 
-        internal bool method_1(GClass73 gclass73_0)
+        internal bool method_1(TransportedComponent gclass73_0)
         {
-            return gclass73_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass73_0.Component == this.gclass228_0.gclass230_0;
         }
     }
 
@@ -613,11 +613,11 @@ public partial class GClass22
     [CompilerGenerated]
     private sealed class Class770
     {
-        public GClass130 gclass130_0;
+        public PopOrdnanceStock gclass130_0;
 
-        internal bool method_0(GClass130 gclass130_1)
+        internal bool method_0(PopOrdnanceStock gclass130_1)
         {
-            return gclass130_1.gclass129_0 == this.gclass130_0.gclass129_0;
+            return gclass130_1.RaceMissile == this.gclass130_0.RaceMissile;
         }
     }
 
@@ -648,18 +648,18 @@ public partial class GClass22
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(GClass130 gclass130_0)
+        internal bool method_0(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0 == this.gclass129_0;
+            return gclass130_0.RaceMissile == this.gclass129_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class774
     {
-        public GClass130 gclass130_0;
+        public PopOrdnanceStock gclass130_0;
 
-        internal bool method_0(GClass130 gclass130_1)
+        internal bool method_0(PopOrdnanceStock gclass130_1)
         {
             return gclass130_1 == this.gclass130_0;
         }
@@ -668,7 +668,7 @@ public partial class GClass22
     [CompilerGenerated]
     private sealed class Class775
     {
-        public GClass22 gclass22_0;
+        public ShipClass gclass22_0;
 
         internal bool method_0(GClass74 gclass74_0)
         {
@@ -803,9 +803,9 @@ public partial class GClass22
     {
         public DesignDoctrine gclass20_0;
 
-        internal bool method_0(GClass22 gclass22_0)
+        internal bool method_0(ShipClass gclass22_0)
         {
-            return gclass22_0.gclass21_0 == this.gclass20_0.Race && gclass22_0.bool_2;
+            return gclass22_0.Race == this.gclass20_0.Race && gclass22_0.Commercial;
         }
     }
 }

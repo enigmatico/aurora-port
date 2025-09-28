@@ -10,8 +10,8 @@ using System.Collections.Generic;
 #nullable disable
 public class GClass72
 {
-    public List<FCTShipData40> list_0 = new List<FCTShipData40>();
-    public List<FCTShipData40> list_1 = new List<FCTShipData40>();
+    public List<ShipData> list_0 = new List<ShipData>();
+    public List<ShipData> list_1 = new List<ShipData>();
     public int int_0;
     public int int_1;
     public Decimal decimal_0;

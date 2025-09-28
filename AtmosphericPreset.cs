@@ -9,8 +9,8 @@ public class AtmosphericPreset
 {
     public int TemperatureBand;
     public int MaxChance;
-    public AtmosphericGas Gas1;
-    public AtmosphericGas Gas2;
-    public AtmosphericGas Gas3;
+    public GasType Gas1;
+    public GasType Gas2;
+    public GasType Gas3;
     public string Description;
 }

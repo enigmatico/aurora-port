@@ -10,6 +10,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using aurora;
+using Aurora;
 
 #nullable disable
 public class Star197
@@ -30,22 +32,22 @@ public class Star197
         public Star197 gclass197_0;
         public int int_0;
 
-        internal bool method_0(GClass212 gclass212_0)
+        internal bool method_0(LagrangePoint gclass212_0)
         {
-            return gclass212_0.gclass200_0 == this.gclass197_0.SystemData &&
-                   gclass212_0.gclass197_0.OrbitingComponent == 0 && gclass212_0.gclass1_0.double_28 < this.int_0;
+            return gclass212_0.System == this.gclass197_0.SystemData &&
+                   gclass212_0.Star.OrbitingComponent == 0 && gclass212_0.Planet.double_28 < this.int_0;
         }
 
-        internal bool method_1(GClass212 gclass212_0)
+        internal bool method_1(LagrangePoint gclass212_0)
         {
-            return gclass212_0.gclass197_0 == this.gclass197_0 && gclass212_0.gclass1_0.double_28 < this.int_0;
+            return gclass212_0.Star == this.gclass197_0 && gclass212_0.Planet.double_28 < this.int_0;
         }
 
-        internal bool method_2(GClass212 gclass212_0)
+        internal bool method_2(LagrangePoint gclass212_0)
         {
-            return (gclass212_0.gclass197_0 == this.gclass197_0 ||
-                    gclass212_0.gclass197_0 == this.gclass197_0.OrbitingStar) &&
-                   gclass212_0.gclass1_0.double_28 < this.int_0;
+            return (gclass212_0.Star == this.gclass197_0 ||
+                    gclass212_0.Star == this.gclass197_0.OrbitingStar) &&
+                   gclass212_0.Planet.double_28 < this.int_0;
         }
     }
 
@@ -95,7 +97,7 @@ public class Star197
         }
     }
 
-    public SystemData200 SystemData;
+    public StarSystem SystemData;
     public Star197 OrbitingStar;
     public StellarType StellarType;
     public GClass0 gclass0_0;
@@ -342,16 +344,16 @@ public class Star197
             if (this.Component == 1)
                 return true;
             // ISSUE: reference to a compiler-generated method
-            int num = this.gclass0_0.dictionary_14.Values.Where<GClass212>(class1164.method_0).Count<GClass212>();
+            int num = this.gclass0_0.LagrangePoints.Values.Where<LagrangePoint>(class1164.method_0).Count<LagrangePoint>();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             return this.OrbitingComponent == 1
-                ? this.double_11 < class1164.int_0 || num > 0 && this.gclass0_0.dictionary_14.Values
-                    .Where<GClass212>(class1164.method_1).Count<GClass212>() > 0
-                : this.OrbitingStar.double_11 < class1164.int_0 || num > 0 && this.gclass0_0.dictionary_14.Values
-                    .Where<GClass212>(class1164.method_2).Count<GClass212>() > 0;
+                ? this.double_11 < class1164.int_0 || num > 0 && this.gclass0_0.LagrangePoints.Values
+                    .Where<LagrangePoint>(class1164.method_1).Count<LagrangePoint>() > 0
+                : this.OrbitingStar.double_11 < class1164.int_0 || num > 0 && this.gclass0_0.LagrangePoints.Values
+                    .Where<LagrangePoint>(class1164.method_2).Count<LagrangePoint>() > 0;
         }
         catch (Exception ex)
         {
@@ -471,8 +473,9 @@ public class Star197
                 return;
             if (!this.gclass0_0.SystemAgeDictionary.ContainsKey(this.StellarType.AgeRangeID))
             {
+                var formatText = UITextHelper.GetLocalizedStringFor(LocalizedText.StarTypeRangeIDNotFoundErrMsg);
                 int num1 = (int)MessageBox.Show(
-                    $"Error: Star Type Age Range ID {AuroraUtils.smethod_82(this.StellarType.AgeRangeID)} not found");
+                    string.Format(formatText, AuroraUtils.smethod_82(this.StellarType.AgeRangeID)));
             }
             else
             {
@@ -490,7 +493,8 @@ public class Star197
 
                 if (key > 10)
                 {
-                    int num3 = (int)MessageBox.Show("Error: Luminosity Key Count is " + key.ToString());
+                    var formatText = UITextHelper.GetLocalizedStringFor(LocalizedText.LuminosityKeyCountErrMsg);
+                    int num3 = (int)MessageBox.Show(string.Format(formatText, key));
                     key = 10;
                 }
 
@@ -693,7 +697,7 @@ public class Star197
                 return "System Not Found";
             return this.SystemData.Stars == 1
                 ? gclass21_0.RacialSystemDictionary[this.SystemID].Name
-                : $"{gclass21_0.RacialSystemDictionary[this.SystemID].Name}-{this.method_19()}";
+                : string.Format("{0}-{1}", gclass21_0.RacialSystemDictionary[this.SystemID].Name, this.method_19());
         }
         catch (Exception ex)
         {
@@ -747,7 +751,8 @@ public class Star197
             int blue = int8;
             SolidBrush solidBrush = new SolidBrush(Color.FromArgb(int6, green, blue));
             GClass221 gclass221 = new GClass221();
-            string str = $"{this.method_18(gclass202_0.Race)} {this.StellarType.StellarDescription}";
+            string str = string.Format("{0} {1}", this.method_18(gclass202_0.Race),
+                this.StellarType.StellarDescription);
             int num1 = AuroraUtils.int_61;
             int num2 = (int)(AuroraUtils.double_31 * this.StellarType.Radius / gclass202_0.KmPerPixel);
             if (num2 > num1)

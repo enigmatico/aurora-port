@@ -48,7 +48,7 @@ public class Species
     public Decimal decimal_1 = 1M;
     public Decimal decimal_2 = 1M;
     public Decimal decimal_3 = 1M;
-    public string string_0;
+    public string RaceImageFileName;
     public Decimal decimal_4;
     public Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition> dictionary_1 = new Dictionary<GroundUnitCapability, GroundUnitCapabilityDefinition>();
 

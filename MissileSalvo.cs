@@ -210,7 +210,7 @@ public class MissileSalvo
             foreach (int key in this.RemainingDecoys.Keys.ToList<int>())
             {
                 bool flag = false;
-                for (int index = 1; index <= this.RaceMissile.int_13; ++index)
+                for (int index = 1; index <= this.RaceMissile.MultipleWarheads; ++index)
                 {
                     if (AuroraUtils.GetRandomInteger(100) <= double_12)
                     {
@@ -278,7 +278,7 @@ public class MissileSalvo
         {
             this.RemainingDecoys.Add(
                 this.RemainingDecoys.Max<KeyValuePair<int, int>>(keyValuePair_0 => keyValuePair_0.Key) + 1,
-                this.RaceMissile.int_7);
+                this.RaceMissile.NumDecoys);
         }
         catch (Exception ex)
         {
@@ -301,7 +301,7 @@ public class MissileSalvo
             if (source.Count == 0)
                 return;
             // ISSUE: reference to a compiler-generated field
-            class1085.decimal_0 = this.RaceMissile.decimal_5 * this.decimal_1;
+            class1085.decimal_0 = this.RaceMissile.Speed * this.decimal_1;
             // ISSUE: reference to a compiler-generated field
             if (class1085.decimal_0 == 0M)
                 return;
@@ -386,8 +386,8 @@ public class MissileSalvo
             graphics_0.DrawEllipse(pen_0, (float)(gclass222_0.double_2 - key), (float)(gclass222_0.double_3 - key),
                 (float)key * 2f, (float)key * 2f);
             string str1 = num1 <= 10000000.0
-                ? AuroraUtils.smethod_44(num1 / 1000000.0, 1)
-                : AuroraUtils.smethod_44(num1 / 1000000.0, 0);
+                ? AuroraUtils.FormatDoubleToPrecision(num1 / 1000000.0, 1)
+                : AuroraUtils.FormatDoubleToPrecision(num1 / 1000000.0, 0);
             string str2 = $"{this.string_0} vs {string_3} Signature-{int_6.ToString()}   {str1}m";
             float num2 = graphics_0.MeasureString(str2, font_0).Width / 2f;
             if (gclass222_0.dictionary_0.ContainsKey(key))
@@ -486,14 +486,14 @@ public class MissileSalvo
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: variable of a compiler-generated type
             MissileSalvo.Class1086 class1086 = new MissileSalvo.Class1086();
-            if (this.RaceMissile.gclass129_0 == null)
+            if (this.RaceMissile.SecondStageMissile == null)
                 return;
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0 = (MissileSalvo)this.MemberwiseClone();
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.int_1 = this.gclass0_0.method_26(GEnum0.const_38);
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.RaceMissile = this.RaceMissile.gclass129_0;
+            class1086.gclass132_0.RaceMissile = this.RaceMissile.SecondStageMissile;
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.decimal_0 = this.gclass0_0.GameTime;
             // ISSUE: reference to a compiler-generated field
@@ -501,10 +501,10 @@ public class MissileSalvo
             class1086.gclass132_0.string_0 = class1086.gclass132_0.RaceMissile.Name;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.double_9 = (double)class1086.gclass132_0.RaceMissile.decimal_5;
+            class1086.gclass132_0.double_9 = (double)class1086.gclass132_0.RaceMissile.Speed;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated field
-            class1086.gclass132_0.decimal_1 = class1086.gclass132_0.RaceMissile.decimal_21;
+            class1086.gclass132_0.decimal_1 = class1086.gclass132_0.RaceMissile.Endurance;
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.double_0 = this.double_0;
             // ISSUE: reference to a compiler-generated field
@@ -521,12 +521,12 @@ public class MissileSalvo
             class1086.gclass132_0.int_2 = this.int_2;
             // ISSUE: reference to a compiler-generated field
             class1086.gclass132_0.RemainingDecoys = new Dictionary<int, int>();
-            int num = this.RemainingDecoys.Count * this.RaceMissile.int_16;
+            int num = this.RemainingDecoys.Count * this.RaceMissile.NumSS;
             for (int key = 1; key <= num; ++key)
             {
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                class1086.gclass132_0.RemainingDecoys.Add(key, class1086.gclass132_0.RaceMissile.int_7);
+                class1086.gclass132_0.RemainingDecoys.Add(key, class1086.gclass132_0.RaceMissile.NumDecoys);
             }
 
             if (this.gclass230_0 != null)
@@ -543,7 +543,7 @@ public class MissileSalvo
             }
 
             // ISSUE: reference to a compiler-generated field
-            if (class1086.gclass132_0.RaceMissile.decimal_5 == 0M)
+            if (class1086.gclass132_0.RaceMissile.Speed == 0M)
             {
                 // ISSUE: reference to a compiler-generated field
                 class1086.gclass132_0.int_0 = 0;
@@ -578,8 +578,8 @@ public class MissileSalvo
     {
         try
         {
-            return this.RaceMissile.double_2 != 0.0 || this.RaceMissile.double_1 != 0.0 ||
-                   this.RaceMissile.double_0 != 0.0 || bool_4 && this.RaceMissile.decimal_16 > 0M;
+            return this.RaceMissile.EMStrength != 0.0 || this.RaceMissile.ThermalStrength != 0.0 ||
+                   this.RaceMissile.SensorStrength != 0.0 || bool_4 && this.RaceMissile.GeoStrength > 0M;
         }
         catch (Exception ex)
         {
@@ -593,7 +593,7 @@ public class MissileSalvo
         try
         {
             List<ShipData> source = new List<ShipData>();
-            if (this.RaceMissile.double_0 > 0.0)
+            if (this.RaceMissile.SensorStrength > 0.0)
             {
                 foreach (Contact gclass65 in this.gclass0_0.Contacts.Values
                              .Where<Contact>(gclass65_0 =>
@@ -606,12 +606,12 @@ public class MissileSalvo
                 {
                     double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
                         gclass65.Ycor);
-                    double int6 = this.RaceMissile.int_6;
+                    double int6 = this.RaceMissile.SensorRange;
                     if (num <= int6)
                     {
-                        if (gclass65.TargetShip.method_51() < this.RaceMissile.int_5)
+                        if (gclass65.TargetShip.method_51() < this.RaceMissile.SensorResolution)
                             int6 *= (double)AuroraUtils.smethod_64(
-                                gclass65.TargetShip.method_51() / this.RaceMissile.int_5, 2);
+                                gclass65.TargetShip.method_51() / this.RaceMissile.SensorResolution, 2);
                         if (num <= int6)
                             source.Add(gclass65.TargetShip);
                     }
@@ -620,7 +620,7 @@ public class MissileSalvo
                 }
             }
 
-            if (this.RaceMissile.double_1 > 0.0)
+            if (this.RaceMissile.ThermalStrength > 0.0)
             {
                 foreach (Contact gclass65 in this.gclass0_0.Contacts.Values
                              .Where<Contact>(gclass65_0 =>
@@ -633,13 +633,13 @@ public class MissileSalvo
                 {
                     double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
                         gclass65.Ycor);
-                    if (Math.Sqrt(this.RaceMissile.double_1 * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
+                    if (Math.Sqrt(this.RaceMissile.ThermalStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
                         source.Add(gclass65.TargetShip);
                 }
             }
 
-            if (this.RaceMissile.double_2 > 0.0)
+            if (this.RaceMissile.EMStrength > 0.0)
             {
                 foreach (Contact gclass65 in this.gclass0_0.Contacts.Values
                              .Where<Contact>(gclass65_0 => gclass65_0.DetectRace == this.Race &&
@@ -652,7 +652,7 @@ public class MissileSalvo
                 {
                     double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
                         gclass65.Ycor);
-                    if (Math.Sqrt(this.RaceMissile.double_2 * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
+                    if (Math.Sqrt(this.RaceMissile.EMStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
                         source.Add(gclass65.TargetShip);
                 }
@@ -677,7 +677,7 @@ public class MissileSalvo
     {
         try
         {
-            if (this.RaceMissile.double_0 > 0.0)
+            if (this.RaceMissile.SensorStrength > 0.0)
             {
                 foreach (Contact gclass65 in this.gclass0_0.Contacts.Values
                              .Where<Contact>(gclass65_0 =>
@@ -690,12 +690,12 @@ public class MissileSalvo
                 {
                     double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
                         gclass65.Ycor);
-                    double int6 = this.RaceMissile.int_6;
+                    double int6 = this.RaceMissile.SensorRange;
                     if (num <= int6)
                     {
-                        if (gclass65.TargetShip.method_51() < this.RaceMissile.int_5)
+                        if (gclass65.TargetShip.method_51() < this.RaceMissile.SensorResolution)
                             int6 *= (double)AuroraUtils.smethod_64(
-                                gclass65.TargetShip.method_51() / this.RaceMissile.int_5, 2);
+                                gclass65.TargetShip.method_51() / this.RaceMissile.SensorResolution, 2);
                         if (num <= int6)
                         {
                             this.auroraContactType_0 = AuroraContactType.Ship;
@@ -710,7 +710,7 @@ public class MissileSalvo
                 }
             }
 
-            if (this.RaceMissile.double_1 > 0.0)
+            if (this.RaceMissile.ThermalStrength > 0.0)
             {
                 foreach (Contact gclass65 in this.gclass0_0.Contacts.Values
                              .Where<Contact>(gclass65_0 =>
@@ -723,7 +723,7 @@ public class MissileSalvo
                 {
                     double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
                         gclass65.Ycor);
-                    if (Math.Sqrt(this.RaceMissile.double_1 * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
+                    if (Math.Sqrt(this.RaceMissile.ThermalStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
                     {
                         this.auroraContactType_0 = AuroraContactType.Ship;
@@ -735,7 +735,7 @@ public class MissileSalvo
                 }
             }
 
-            if (this.RaceMissile.double_2 > 0.0)
+            if (this.RaceMissile.EMStrength > 0.0)
             {
                 foreach (Contact gclass65 in this.gclass0_0.Contacts.Values
                              .Where<Contact>(gclass65_0 => gclass65_0.DetectRace == this.Race &&
@@ -748,7 +748,7 @@ public class MissileSalvo
                 {
                     double num = this.gclass0_0.GetDistanceBetween(this.double_0, this.double_1, gclass65.Xcor,
                         gclass65.Ycor);
-                    if (Math.Sqrt(this.RaceMissile.double_2 * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
+                    if (Math.Sqrt(this.RaceMissile.EMStrength * (double)gclass65.ContactStrength) * AuroraUtils.double_18 >=
                         num)
                     {
                         this.auroraContactType_0 = AuroraContactType.Ship;
@@ -789,8 +789,8 @@ public class MissileSalvo
     {
         try
         {
-            if (this.RaceMissile.double_2 == 0.0 && this.RaceMissile.double_1 == 0.0 &&
-                this.RaceMissile.double_0 == 0.0)
+            if (this.RaceMissile.EMStrength == 0.0 && this.RaceMissile.ThermalStrength == 0.0 &&
+                this.RaceMissile.SensorStrength == 0.0)
             {
                 this.gclass0_0.MissileSalvoes.Remove(this.int_1);
             }
@@ -981,12 +981,12 @@ public class MissileSalvo
         try
         {
             this.string_0 = $"{this.RemainingDecoys.Count.ToString()}x {this.RaceMissile.Name}";
-            if (this.RaceMissile.int_7 > 0)
+            if (this.RaceMissile.NumDecoys > 0)
                 this.string_0 =
                     $"{this.string_0} ({this.RemainingDecoys.Values.Sum<int>(int_0 => int_0).ToString()} Decoys)";
             string str1 = "";
-            if (this.RaceMissile.decimal_5 > 0M)
-                str1 = $"  {this.RaceMissile.decimal_5.ToString()} km/s";
+            if (this.RaceMissile.Speed > 0M)
+                str1 = $"  {this.RaceMissile.Speed.ToString()} km/s";
             string str2 = "";
             string str3 = "";
             SolidBrush solidBrush_0 = new SolidBrush(AuroraUtils.color_12);
@@ -1008,18 +1008,18 @@ public class MissileSalvo
             gclass221_3.double_1 = y - 3.0 - int_6 * 15;
             graphics_0.DrawString(this.string_0 + str3 + str1 + str2, font_0, solidBrush_0, (float)gclass221_3.double_0,
                 (float)gclass221_3.double_1);
-            if (gclass202_0.Race.chkActiveSensors == CheckState.Checked && this.RaceMissile.double_0 > 0.0)
+            if (gclass202_0.Race.chkActiveSensors == CheckState.Checked && this.RaceMissile.SensorStrength > 0.0)
             {
                 pen.DashStyle = DashStyle.Dash;
                 pen.DashPattern = new float[2] { 15f, 5f };
                 pen.Color = Color.FromArgb(176 /*0xB0*/, 226, byte.MaxValue);
                 solidBrush_0.Color = Color.FromArgb(176 /*0xB0*/, 226, byte.MaxValue);
-                double num1 = this.RaceMissile.int_6 / gclass202_0.KmPerPixel;
+                double num1 = this.RaceMissile.SensorRange / gclass202_0.KmPerPixel;
                 if (num1 > 1.0)
                     graphics_0.DrawEllipse(pen, (float)(gclass222_0.double_2 - num1),
                         (float)(gclass222_0.double_3 - num1), (float)num1 * 2f, (float)num1 * 2f);
                 string str4 =
-                    $"Active: {(this.RaceMissile.int_6 <= 10000000 ? AuroraUtils.smethod_44(this.RaceMissile.int_6 / 1000000, 1) : AuroraUtils.smethod_44(this.RaceMissile.int_6 / 1000000, 0))}m  R{this.RaceMissile.int_5.ToString()}";
+                    $"Active: {(this.RaceMissile.SensorRange <= 10000000 ? AuroraUtils.FormatDoubleToPrecision(this.RaceMissile.SensorRange / 1000000, 1) : AuroraUtils.FormatDoubleToPrecision(this.RaceMissile.SensorRange / 1000000, 0))}m  R{this.RaceMissile.SensorResolution.ToString()}";
                 int num2 = (int)graphics_0.MeasureString(str4, font_0).Width / 2;
                 graphics_0.DrawString(str4, font_0, solidBrush_0, (float)gclass222_0.double_2 - num2,
                     (float)(gclass222_0.double_3 - num1 - 20.0));
@@ -1030,36 +1030,36 @@ public class MissileSalvo
                 this.Race.chkPassive1000 == CheckState.Checked ||
                 this.Race.chkPassive10000 == CheckState.Checked)
             {
-                if (this.RaceMissile.double_1 > 0.0)
+                if (this.RaceMissile.ThermalStrength > 0.0)
                 {
                     if (this.Race.chkPassive10 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_1, 10, "Thermal");
+                            this.RaceMissile.ThermalStrength, 10, "Thermal");
                     if (this.Race.chkPassive100 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_1, 100, "Thermal");
+                            this.RaceMissile.ThermalStrength, 100, "Thermal");
                     if (this.Race.chkPassive1000 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_1, 1000, "Thermal");
+                            this.RaceMissile.ThermalStrength, 1000, "Thermal");
                     if (this.Race.chkPassive10000 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_1, 10000, "Thermal");
+                            this.RaceMissile.ThermalStrength, 10000, "Thermal");
                 }
 
-                if (this.RaceMissile.double_2 > 0.0)
+                if (this.RaceMissile.EMStrength > 0.0)
                 {
                     if (this.Race.chkPassive10 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_2, 10, "EM");
+                            this.RaceMissile.EMStrength, 10, "EM");
                     if (this.Race.chkPassive100 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_2, 100, "EM");
+                            this.RaceMissile.EMStrength, 100, "EM");
                     if (this.Race.chkPassive1000 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_2, 1000, "EM");
+                            this.RaceMissile.EMStrength, 1000, "EM");
                     if (this.Race.chkPassive10000 == CheckState.Checked)
                         this.method_9(graphics_0, solidBrush_0, pen, font_0, gclass222_0, gclass202_0,
-                            this.RaceMissile.double_2, 10000, "EM");
+                            this.RaceMissile.EMStrength, 10000, "EM");
                 }
             }
 
@@ -1145,9 +1145,9 @@ public class MissileSalvo
     {
         try
         {
-            return this.RaceMissile.gclass230_0 == null
-                ? this.RaceMissile.decimal_4 / 400M
-                : this.RaceMissile.gclass230_0.decimal_3 * this.RaceMissile.int_9;
+            return this.RaceMissile.EngineComponent == null
+                ? this.RaceMissile.Size / 400M
+                : this.RaceMissile.EngineComponent.decimal_3 * this.RaceMissile.NumEngines;
         }
         catch (Exception ex)
         {

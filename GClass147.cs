@@ -9,7 +9,7 @@ public class GClass147
 {
     public GameRace gclass21_0;
     public PopulationData gclass146_0;
-    public GClass194 gclass194_0;
+    public Species gclass194_0;
     public int int_0;
     public int int_1;
     public AlienRaceInfo gclass110_0;

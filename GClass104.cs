@@ -9,7 +9,7 @@ public class GClass104
 {
     public GameRace gclass21_0;
     public SystemBodyData gclass1_0;
-    public FCTShipData40 gclass40_0;
+    public ShipData gclass40_0;
     public GroundUnitClass101 gclass101_0;
     public GroundUnitClass101 gclass101_1;
     public string string_0 = "";

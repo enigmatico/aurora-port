@@ -104,7 +104,7 @@ public class GroundUnitFormationElement
     public GroundUnitClass101 GroundUnitClass;
     public GroundUnitFormationData Formation;
     public GroundUnitFormationTemplateData FormationTemplate;
-    public GClass194 RaceData;
+    public Species RaceData;
     public AuroraTargetSelection TargetSelectionType = AuroraTargetSelection.RandomShip;
     public int ElementID;
     public int UnitCount;
@@ -197,74 +197,74 @@ public class GroundUnitFormationElement
                 PopulationData gclass146 = null;
                 AuroraContactType auroraContactType_0 = AuroraContactType.Population;
                 if (this.TargetSelectionType == AuroraTargetSelection.Population)
-                    gclass146 = this.gclass0_0.dictionary_28.Values
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.gclass200_0 == this.Formation.PopulationData.gclass202_0.ActualSystemData &&
-                            gclass65_0.gclass21_1 == this.Formation.RaceData &&
-                            gclass65_0.auroraContactType_0 == AuroraContactType.Population)
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.gclass146_0.SystemBodyData !=
+                    gclass146 = this.gclass0_0.Contacts.Values
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.System == this.Formation.PopulationData.gclass202_0.ActualSystem &&
+                            gclass65_0.DetectRace == this.Formation.RaceData &&
+                            gclass65_0.ContactType == AuroraContactType.Population)
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.TargetPopulation.SystemBodyData !=
                             this.Formation.PopulationData.SystemBodyData)
-                        .Where<GClass65>(gclass65_0 =>
-                            this.gclass0_0.GetDistanceBetween(gclass65_0.double_0, gclass65_0.double_1,
+                        .Where<Contact>(gclass65_0 =>
+                            this.gclass0_0.GetDistanceBetween(gclass65_0.Xcor, gclass65_0.Ycor,
                                 this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88()) <=
                             this.GroundUnitClass.int_1)
-                        .OrderByDescending<GClass65, Decimal>(gclass65_0 => gclass65_0.decimal_0)
-                        .Select<GClass65, PopulationData>(gclass65_0 => gclass65_0.gclass146_0).FirstOrDefault<PopulationData>();
+                        .OrderByDescending<Contact, Decimal>(gclass65_0 => gclass65_0.ContactStrength)
+                        .Select<Contact, PopulationData>(gclass65_0 => gclass65_0.TargetPopulation).FirstOrDefault<PopulationData>();
                 else if (this.TargetSelectionType == AuroraTargetSelection.Shipyards)
                 {
                     auroraContactType_0 = AuroraContactType.Shipyard;
-                    gclass146 = this.gclass0_0.dictionary_28.Values
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.gclass200_0 == this.Formation.PopulationData.gclass202_0.ActualSystemData &&
-                            gclass65_0.gclass21_1 == this.Formation.RaceData &&
-                            gclass65_0.genum10_0 == GEnum10.const_0 &&
-                            gclass65_0.auroraContactType_0 == AuroraContactType.Shipyard)
-                        .Where<GClass65>(gclass65_0 => gclass65_0.method_5() == AuroraContactStatus.Hostile)
-                        .Where<GClass65>(gclass65_0 =>
-                            this.gclass0_0.GetDistanceBetween(gclass65_0.double_0, gclass65_0.double_1,
+                    gclass146 = this.gclass0_0.Contacts.Values
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.System == this.Formation.PopulationData.gclass202_0.ActualSystem &&
+                            gclass65_0.DetectRace == this.Formation.RaceData &&
+                            gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
+                            gclass65_0.ContactType == AuroraContactType.Shipyard)
+                        .Where<Contact>(gclass65_0 => gclass65_0.method_5() == AuroraContactStatus.Hostile)
+                        .Where<Contact>(gclass65_0 =>
+                            this.gclass0_0.GetDistanceBetween(gclass65_0.Xcor, gclass65_0.Ycor,
                                 this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88()) <=
                             this.GroundUnitClass.int_1)
-                        .OrderByDescending<GClass65, Decimal>(gclass65_0 => gclass65_0.decimal_0)
-                        .Select<GClass65, PopulationData>(gclass65_0 => gclass65_0.gclass146_0).FirstOrDefault<PopulationData>();
+                        .OrderByDescending<Contact, Decimal>(gclass65_0 => gclass65_0.ContactStrength)
+                        .Select<Contact, PopulationData>(gclass65_0 => gclass65_0.TargetPopulation).FirstOrDefault<PopulationData>();
                 }
                 else if (this.TargetSelectionType == AuroraTargetSelection.GroundForces)
                 {
                     auroraContactType_0 = AuroraContactType.GroundUnit;
-                    gclass146 = this.gclass0_0.dictionary_28.Values
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.gclass200_0 == this.Formation.PopulationData.gclass202_0.ActualSystemData &&
-                            gclass65_0.gclass21_1 == this.Formation.RaceData &&
-                            gclass65_0.genum10_0 == GEnum10.const_0 &&
-                            gclass65_0.auroraContactType_0 == AuroraContactType.GroundUnit)
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.gclass146_0.SystemBodyData !=
+                    gclass146 = this.gclass0_0.Contacts.Values
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.System == this.Formation.PopulationData.gclass202_0.ActualSystem &&
+                            gclass65_0.DetectRace == this.Formation.RaceData &&
+                            gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
+                            gclass65_0.ContactType == AuroraContactType.GroundUnit)
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.TargetPopulation.SystemBodyData !=
                             this.Formation.PopulationData.SystemBodyData)
-                        .Where<GClass65>(gclass65_0 =>
-                            this.gclass0_0.GetDistanceBetween(gclass65_0.double_0, gclass65_0.double_1,
+                        .Where<Contact>(gclass65_0 =>
+                            this.gclass0_0.GetDistanceBetween(gclass65_0.Xcor, gclass65_0.Ycor,
                                 this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88()) <=
                             this.GroundUnitClass.int_1)
-                        .OrderByDescending<GClass65, Decimal>(gclass65_0 => gclass65_0.decimal_0)
-                        .Select<GClass65, PopulationData>(gclass65_0 => gclass65_0.gclass146_0).FirstOrDefault<PopulationData>();
+                        .OrderByDescending<Contact, Decimal>(gclass65_0 => gclass65_0.ContactStrength)
+                        .Select<Contact, PopulationData>(gclass65_0 => gclass65_0.TargetPopulation).FirstOrDefault<PopulationData>();
                 }
                 else if (this.TargetSelectionType == AuroraTargetSelection.STOGroundForces)
                 {
                     auroraContactType_0 = AuroraContactType.STOGroundUnit;
-                    gclass146 = this.gclass0_0.dictionary_28.Values
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.gclass200_0 == this.Formation.PopulationData.gclass202_0.ActualSystemData &&
-                            gclass65_0.gclass21_1 == this.Formation.RaceData &&
-                            gclass65_0.genum10_0 == GEnum10.const_0 &&
-                            gclass65_0.auroraContactType_0 == AuroraContactType.STOGroundUnit)
-                        .Where<GClass65>(gclass65_0 =>
-                            gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.gclass146_0.SystemBodyData !=
+                    gclass146 = this.gclass0_0.Contacts.Values
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.System == this.Formation.PopulationData.gclass202_0.ActualSystem &&
+                            gclass65_0.DetectRace == this.Formation.RaceData &&
+                            gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
+                            gclass65_0.ContactType == AuroraContactType.STOGroundUnit)
+                        .Where<Contact>(gclass65_0 =>
+                            gclass65_0.method_5() == AuroraContactStatus.Hostile && gclass65_0.TargetPopulation.SystemBodyData !=
                             this.Formation.PopulationData.SystemBodyData)
-                        .Where<GClass65>(gclass65_0 =>
-                            this.gclass0_0.GetDistanceBetween(gclass65_0.double_0, gclass65_0.double_1,
+                        .Where<Contact>(gclass65_0 =>
+                            this.gclass0_0.GetDistanceBetween(gclass65_0.Xcor, gclass65_0.Ycor,
                                 this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88()) <=
                             this.GroundUnitClass.int_1)
-                        .OrderByDescending<GClass65, Decimal>(gclass65_0 => gclass65_0.decimal_0)
-                        .Select<GClass65, PopulationData>(gclass65_0 => gclass65_0.gclass146_0).FirstOrDefault<PopulationData>();
+                        .OrderByDescending<Contact, Decimal>(gclass65_0 => gclass65_0.ContactStrength)
+                        .Select<Contact, PopulationData>(gclass65_0 => gclass65_0.TargetPopulation).FirstOrDefault<PopulationData>();
                 }
 
                 if (gclass146 == null)
@@ -291,33 +291,33 @@ public class GroundUnitFormationElement
                 string string0 = this.Formation.RaceData.dictionary_13[gclass146.PopulationID].string_0;
                 this.gclass0_0.method_1(this.Formation.RaceData, null, this.GroundUnitClass.gclass230_0, null, this,
                     auroraContactType_0, gclass146.PopulationID, int_137, num3, 0, 0, 0, decimal_13, 0M, num2, double_9,
-                    string0, gclass146.RaceData, false, false, false, false, false, GEnum62.const_0);
+                    string0, gclass146.Race, false, false, false, false, false, GEnum62.const_0);
                 this.gclass0_0.method_19(AuroraContactType.EWImpact, decimal_13, num3,
-                    this.Formation.PopulationData.gclass202_0.ActualSystemData, gclass146.method_87(), gclass146.method_88(),
+                    this.Formation.PopulationData.gclass202_0.ActualSystem, gclass146.method_87(), gclass146.method_88(),
                     false);
             }
             else
             {
-                List<FCTShipData40> list1 = this.gclass0_0.FleetDictionary.Values
+                List<ShipData> list1 = this.gclass0_0.FleetDictionary.Values
                     .Where<FleetData>(gclass85_0 => gclass85_0.OrbitingBody != null && gclass85_0.method_35())
-                    .SelectMany<FleetData, FCTShipData40>(gclass85_0 => gclass85_0.method_176()).ToList<FCTShipData40>();
-                List<FCTShipData40> list2 = this.gclass0_0.dictionary_28.Values
-                    .Where<GClass65>(gclass65_0 =>
-                        gclass65_0.gclass200_0 == this.Formation.PopulationData.gclass202_0.ActualSystemData &&
-                        gclass65_0.gclass21_1 == this.Formation.RaceData &&
-                        gclass65_0.genum10_0 == GEnum10.const_0 &&
-                        gclass65_0.auroraContactType_0 == AuroraContactType.Ship && gclass65_0.gclass40_0 != null &&
-                        gclass65_0.decimal_3 == this.gclass0_0.GameTime)
-                    .Where<GClass65>(gclass65_0 =>
+                    .SelectMany<FleetData, ShipData>(gclass85_0 => gclass85_0.method_176()).ToList<ShipData>();
+                List<ShipData> list2 = this.gclass0_0.Contacts.Values
+                    .Where<Contact>(gclass65_0 =>
+                        gclass65_0.System == this.Formation.PopulationData.gclass202_0.ActualSystem &&
+                        gclass65_0.DetectRace == this.Formation.RaceData &&
+                        gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
+                        gclass65_0.ContactType == AuroraContactType.Ship && gclass65_0.TargetShip != null &&
+                        gclass65_0.LastUpdate == this.gclass0_0.GameTime)
+                    .Where<Contact>(gclass65_0 =>
                         gclass65_0.method_5() == AuroraContactStatus.Hostile &&
-                        gclass65_0.gclass40_0.gclass40_0 == null).Where<GClass65>(gclass65_0 =>
-                        this.gclass0_0.GetDistanceBetween(gclass65_0.double_0, gclass65_0.double_1,
+                        gclass65_0.TargetShip.gclass40_0 == null).Where<Contact>(gclass65_0 =>
+                        this.gclass0_0.GetDistanceBetween(gclass65_0.Xcor, gclass65_0.Ycor,
                             this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88()) <=
-                        this.GroundUnitClass.int_1).Select<GClass65, FCTShipData40>(gclass65_0 => gclass65_0.gclass40_0)
-                    .Except<FCTShipData40>(list1).ToList<FCTShipData40>();
+                        this.GroundUnitClass.int_1).Select<Contact, ShipData>(gclass65_0 => gclass65_0.TargetShip)
+                    .Except<ShipData>(list1).ToList<ShipData>();
                 if (list2.Count == 0)
                     return;
-                foreach (FCTShipData40 gclass40 in list2)
+                foreach (ShipData gclass40 in list2)
                     gclass40.method_55(this.Formation.RaceData);
                 this.bool_1 = true;
                 if (list2.Count > 1)
@@ -326,28 +326,28 @@ public class GroundUnitFormationElement
                     {
                         if (this.TargetSelectionType == AuroraTargetSelection.LargestShip)
                             list2 = list2
-                                .OrderByDescending<FCTShipData40, Decimal>(gclass40_0 =>
-                                    gclass40_0.gclass22_0.decimal_14).ToList<FCTShipData40>();
+                                .OrderByDescending<ShipData, Decimal>(gclass40_0 =>
+                                    gclass40_0.gclass22_0.Size).ToList<ShipData>();
                         else if (this.TargetSelectionType == AuroraTargetSelection.SmallestShip)
                             list2 = list2
-                                .OrderBy<FCTShipData40, Decimal>(gclass40_0 => gclass40_0.gclass22_0.decimal_14)
-                                .ToList<FCTShipData40>();
+                                .OrderBy<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                                .ToList<ShipData>();
                         else if (this.TargetSelectionType == AuroraTargetSelection.Fastest)
-                            list2 = list2.OrderByDescending<FCTShipData40, int>(gclass40_0 => gclass40_0.int_35)
-                                .ToList<FCTShipData40>();
+                            list2 = list2.OrderByDescending<ShipData, int>(gclass40_0 => gclass40_0.int_35)
+                                .ToList<ShipData>();
                         else if (this.TargetSelectionType == AuroraTargetSelection.SlowestShip)
-                            list2 = list2.OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.int_35)
-                                .ToList<FCTShipData40>();
+                            list2 = list2.OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_35)
+                                .ToList<ShipData>();
                         else if (this.TargetSelectionType == AuroraTargetSelection.RandomShip)
                         {
-                            foreach (FCTShipData40 gclass40 in list2)
+                            foreach (ShipData gclass40 in list2)
                                 gclass40.int_36 = AuroraUtils.GetRandomInteger(1000);
-                            list2 = list2.OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.int_36)
-                                .ToList<FCTShipData40>();
+                            list2 = list2.OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_36)
+                                .ToList<ShipData>();
                         }
                         else if (this.TargetSelectionType == AuroraTargetSelection.HighestToHit)
                         {
-                            foreach (FCTShipData40 gclass40 in list2)
+                            foreach (ShipData gclass40 in list2)
                             {
                                 double double_2 = this.method_0((int)gclass40.method_156(AuroraJammerType.FireControl));
                                 double double_0 = this.gclass0_0.GetDistanceBetween(gclass40.gclass85_0.XCoord,
@@ -357,13 +357,13 @@ public class GroundUnitFormationElement
                                     1M);
                             }
 
-                            list2 = list2.OrderByDescending<FCTShipData40, double>(gclass40_0 => gclass40_0.double_1)
-                                .ToList<FCTShipData40>();
+                            list2 = list2.OrderByDescending<ShipData, double>(gclass40_0 => gclass40_0.double_1)
+                                .ToList<ShipData>();
                         }
                     }
                     else
                     {
-                        foreach (FCTShipData40 gclass40 in list2)
+                        foreach (ShipData gclass40 in list2)
                         {
                             gclass40.int_36 = AuroraUtils.GetRandomInteger(1000);
                             double num4 = this.gclass0_0.GetDistanceBetween(gclass40.gclass85_0.XCoord,
@@ -374,8 +374,8 @@ public class GroundUnitFormationElement
                             gclass40.double_3 /= num4;
                         }
 
-                        list2 = list2.OrderByDescending<FCTShipData40, double>(gclass40_0 => gclass40_0.double_3)
-                            .ThenBy<FCTShipData40, int>(gclass40_0 => gclass40_0.int_36).ToList<FCTShipData40>();
+                        list2 = list2.OrderByDescending<ShipData, double>(gclass40_0 => gclass40_0.double_3)
+                            .ThenBy<ShipData, int>(gclass40_0 => gclass40_0.int_36).ToList<ShipData>();
                     }
                 }
 
@@ -384,19 +384,19 @@ public class GroundUnitFormationElement
                     num5 = num1;
                 if (this.Formation.RaceData.NPR)
                 {
-                    if (list2[0].gclass22_0.decimal_14 < 10M)
+                    if (list2[0].gclass22_0.Size < 10M)
                         num5 = 1;
-                    else if (list2[0].gclass22_0.decimal_14 < 20M)
+                    else if (list2[0].gclass22_0.Size < 20M)
                         num5 = 2;
                 }
 
                 int num6 = 0;
                 label_87:
-                using (List<FCTShipData40>.Enumerator enumerator = list2.GetEnumerator())
+                using (List<ShipData>.Enumerator enumerator = list2.GetEnumerator())
                 {
                     while (enumerator.MoveNext())
                     {
-                        FCTShipData40 current = enumerator.Current;
+                        ShipData current = enumerator.Current;
                         double num7 = this.gclass0_0.GetDistanceBetween(current.gclass85_0.XCoord, current.gclass85_0.YCoord,
                             this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88());
                         if (num7 > this.GroundUnitClass.int_1)
@@ -427,7 +427,7 @@ public class GroundUnitFormationElement
                             double_9, string_10, current.gclass21_0, false, false, false, false, false,
                             GEnum62.const_0);
                         this.gclass0_0.method_19(AuroraContactType.EWImpact, decimal_13, num8,
-                            this.Formation.PopulationData.gclass202_0.ActualSystemData, current.gclass85_0.XCoord,
+                            this.Formation.PopulationData.gclass202_0.ActualSystem, current.gclass85_0.XCoord,
                             current.gclass85_0.YCoord, false);
                         if (num6 >= num1)
                             return;
@@ -484,7 +484,7 @@ public class GroundUnitFormationElement
 
     public void method_5(
         SystemBodyData gclass1_0,
-        FCTShipData40 gclass40_0,
+        ShipData gclass40_0,
         GroundUnitClass101 gclass101_1,
         int int_9,
         int int_10,
@@ -524,9 +524,9 @@ public class GroundUnitFormationElement
 
     public Decimal method_6(
         GroundUnitFormationElement gclass39_0_1,
-        FCTShipData40 gclass40_0,
+        ShipData gclass40_0,
         SystemBodyData gclass1_0,
-        FCTShipData40 gclass40_1,
+        ShipData gclass40_1,
         Decimal decimal_5,
         Decimal decimal_6,
         bool bool_6)
@@ -590,7 +590,7 @@ public class GroundUnitFormationElement
                         {
                             this.gclass0_0.gclass92_0.method_2(EventType.const_63,
                                 $"{gclass550.method_17(false)} has been killed due to the destruction of {this.GroundUnitClass.ClassName} on {this.Formation.PopulationData.PopName}",
-                                this.Formation.RaceData, this.Formation.PopulationData.gclass202_0.ActualSystemData,
+                                this.Formation.RaceData, this.Formation.PopulationData.gclass202_0.ActualSystem,
                                 this.Formation.PopulationData.method_87(), this.Formation.PopulationData.method_88(),
                                 AuroraEventCategory.Combat);
                             gclass550.method_46(
@@ -602,7 +602,7 @@ public class GroundUnitFormationElement
                             this.gclass0_0.gclass92_0.method_2(EventType.const_63,
                                 $"{gclass550.method_17(false)} has been killed due to the destruction of {this.GroundUnitClass.ClassName} on {gclass550.gclass21_0.method_267(this.Formation.ShipData).string_0}",
                                 this.Formation.RaceData,
-                                this.Formation.ShipData.gclass85_0.System.ActualSystemData,
+                                this.Formation.ShipData.gclass85_0.System.ActualSystem,
                                 this.Formation.ShipData.gclass85_0.XCoord,
                                 this.Formation.ShipData.gclass85_0.YCoord, AuroraEventCategory.Combat);
                             gclass550.method_46(
@@ -776,7 +776,7 @@ public class GroundUnitFormationElement
         }
     }
 
-    public double method_10(FCTShipData40 gclass40_0, List<GroundUnitFormationElement> list_2, int int_9, int int_10)
+    public double method_10(ShipData gclass40_0, List<GroundUnitFormationElement> list_2, int int_9, int int_10)
     {
         try
         {
@@ -929,7 +929,7 @@ public class GroundUnitFormationElement
         }
     }
 
-    public void method_12(List<FCTShipData40> list_2, SystemBodyData gclass1_0, AntiAirWeaponClass genum54_0)
+    public void method_12(List<ShipData> list_2, SystemBodyData gclass1_0, AntiAirWeaponClass genum54_0)
     {
         try
         {
@@ -952,8 +952,8 @@ public class GroundUnitFormationElement
                 Math.Floor(this.UnitCount / 4.0);
             for (int index = 1; index <= this.UnitCount; ++index)
             {
-                FCTShipData40 gclass40 =
-                    list_2.ElementAt<FCTShipData40>(AuroraUtils.GetRandomInteger(list_2.Count) - 1);
+                ShipData gclass40 =
+                    list_2.ElementAt<ShipData>(AuroraUtils.GetRandomInteger(list_2.Count) - 1);
                 Decimal num3 = this.GroundUnitClass.int_4 / gclass40.method_171(true);
                 if (num3 > 1M)
                     num3 = 1M;

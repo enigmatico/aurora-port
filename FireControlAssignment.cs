@@ -28,16 +28,16 @@ public class FireControlAssignment
     private sealed class Class793
     {
         public GameRace gclass21_0;
-        public GClass132 gclass132_0;
+        public MissileSalvo gclass132_0;
 
-        internal bool method_0(GClass132 gclass132_1)
+        internal bool method_0(MissileSalvo gclass132_1)
         {
-            return gclass132_1.gclass21_0 == this.gclass21_0 && gclass132_1.gclass132_0 == this.gclass132_0;
+            return gclass132_1.Race == this.gclass21_0 && gclass132_1.gclass132_0 == this.gclass132_0;
         }
     }
 
     private GClass0 gclass0_0;
-    public FCTShipData40 Ship;
+    public ShipData Ship;
     public ShipComponent FCComponent;
     public AuroraContactType TargetContactType;
     public AuroraPointDefenceMode PointDefenceMode;
@@ -69,7 +69,7 @@ public class FireControlAssignment
         }
     }
 
-    public string method_1(FCTShipData40 gclass40_1)
+    public string method_1(ShipData gclass40_1)
     {
         try
         {
@@ -79,8 +79,8 @@ public class FireControlAssignment
                 ? (num >= 10000000.0
                     ? (num >= 100000000.0
                         ? $"{str}  (Max {AuroraUtils.smethod_43(num / 1000000.0)}m km)"
-                        : $"{str}  (Max {AuroraUtils.smethod_44(num / 1000000.0, 1)}m km)")
-                    : $"{str}  (Max {AuroraUtils.smethod_44(num / 1000000.0, 2)}m km)")
+                        : $"{str}  (Max {AuroraUtils.FormatDoubleToPrecision(num / 1000000.0, 1)}m km)")
+                    : $"{str}  (Max {AuroraUtils.FormatDoubleToPrecision(num / 1000000.0, 2)}m km)")
                 : $"{str}  (Max {AuroraUtils.smethod_43(num / 1000.0)}k km)";
         }
         catch (Exception ex)
@@ -96,18 +96,18 @@ public class FireControlAssignment
         {
             if (this.TargetContactType == AuroraContactType.Ship)
             {
-                if (!this.gclass0_0.FCTShipDataDictionary.ContainsKey(this.TargetID))
+                if (!this.gclass0_0.Ships.ContainsKey(this.TargetID))
                     return -1.0;
-                FleetData gclass850 = this.gclass0_0.FCTShipDataDictionary[this.TargetID].gclass85_0;
+                FleetData gclass850 = this.gclass0_0.Ships[this.TargetID].gclass85_0;
                 return this.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord, gclass850.XCoord,
                     gclass850.YCoord);
             }
 
             if (this.TargetContactType == AuroraContactType.Salvo)
             {
-                if (!this.gclass0_0.dictionary_6.ContainsKey(this.TargetID))
+                if (!this.gclass0_0.MissileSalvoes.ContainsKey(this.TargetID))
                     return -1.0;
-                GClass132 gclass132 = this.gclass0_0.dictionary_6[this.TargetID];
+                MissileSalvo gclass132 = this.gclass0_0.MissileSalvoes[this.TargetID];
                 return this.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord, gclass132.double_0,
                     gclass132.double_1);
             }
@@ -117,9 +117,9 @@ public class FireControlAssignment
                 this.TargetContactType != AuroraContactType.STOGroundUnit &&
                 this.TargetContactType != AuroraContactType.Shipyard)
                 return 0.0;
-            if (!this.gclass0_0.PopulationDataDictionary.ContainsKey(this.TargetID))
+            if (!this.gclass0_0.Populations.ContainsKey(this.TargetID))
                 return -1.0;
-            PopulationData gclass146 = this.gclass0_0.PopulationDataDictionary[this.TargetID];
+            PopulationData gclass146 = this.gclass0_0.Populations[this.TargetID];
             return this.gclass0_0.GetDistanceBetween(gclass85_0.XCoord, gclass85_0.YCoord, gclass146.method_87(),
                 gclass146.method_88());
         }
@@ -130,7 +130,7 @@ public class FireControlAssignment
         }
     }
 
-    public double method_3(FCTShipData40 gclass40_1)
+    public double method_3(ShipData gclass40_1)
     {
         try
         {
@@ -139,14 +139,14 @@ public class FireControlAssignment
             {
                 if (this.TargetContactType == AuroraContactType.Ship)
                 {
-                    if (this.gclass0_0.FCTShipDataDictionary.ContainsKey(this.TargetID))
-                        num1 = this.method_4(gclass40_1, this.gclass0_0.FCTShipDataDictionary[this.TargetID],
+                    if (this.gclass0_0.Ships.ContainsKey(this.TargetID))
+                        num1 = this.method_4(gclass40_1, this.gclass0_0.Ships[this.TargetID],
                             this.FCComponent);
                 }
                 else if (this.TargetContactType == AuroraContactType.Salvo)
                 {
-                    if (this.gclass0_0.dictionary_6.ContainsKey(this.TargetID))
-                        num1 = this.method_5(gclass40_1, this.gclass0_0.dictionary_6[this.TargetID].gclass129_0,
+                    if (this.gclass0_0.MissileSalvoes.ContainsKey(this.TargetID))
+                        num1 = this.method_5(gclass40_1, this.gclass0_0.MissileSalvoes[this.TargetID].RaceMissile,
                             this.FCComponent);
                 }
                 else
@@ -173,8 +173,8 @@ public class FireControlAssignment
                 MissileAssignment gclass30 = gclass40_1.FiredMissiles.Where<MissileAssignment>(class792.method_0).FirstOrDefault<MissileAssignment>();
                 if (gclass30 != null)
                 {
-                    if (gclass30.Missile.double_4 > num2)
-                        num2 = gclass30.Missile.double_4;
+                    if (gclass30.Missile.CombinatedMaxRange > num2)
+                        num2 = gclass30.Missile.CombinatedMaxRange;
                 }
                 else
                 {
@@ -209,7 +209,7 @@ public class FireControlAssignment
         }
     }
 
-    public double method_4(FCTShipData40 gclass40_1, FCTShipData40 gclass40_2, ShipComponent gclass230_1)
+    public double method_4(ShipData gclass40_1, ShipData gclass40_2, ShipComponent gclass230_1)
     {
         try
         {
@@ -231,12 +231,12 @@ public class FireControlAssignment
         }
     }
 
-    public double method_5(FCTShipData40 gclass40_1, RaceMissile gclass129_0, ShipComponent gclass230_1)
+    public double method_5(ShipData gclass40_1, RaceMissile gclass129_0, ShipComponent gclass230_1)
     {
         try
         {
             double num1 = 1.0;
-            double num2 = (double)gclass129_0.decimal_4;
+            double num2 = (double)gclass129_0.Size;
             if (num2 < 0.33)
                 num2 = 0.33;
             if ((double)gclass230_1.decimal_6 > num2)
@@ -250,7 +250,7 @@ public class FireControlAssignment
         }
     }
 
-    public double method_6(FCTShipData40 gclass40_1, int int_3, ShipComponent gclass230_1)
+    public double method_6(ShipData gclass40_1, int int_3, ShipComponent gclass230_1)
     {
         try
         {
@@ -272,7 +272,7 @@ public class FireControlAssignment
         }
     }
 
-    public int method_7(GameRace gclass21_0, GClass132 gclass132_0_1)
+    public int method_7(GameRace gclass21_0, MissileSalvo gclass132_0_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -296,9 +296,9 @@ public class FireControlAssignment
                 num1 = 1;
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
-            int num2 = num1 * class793.gclass132_0.dictionary_2.Count - this.gclass0_0.dictionary_6.Values
-                .Where<GClass132>(class793.method_0)
-                .Select<GClass132, int>(gclass132_0_2 => gclass132_0_2.dictionary_2.Count).DefaultIfEmpty<int>(0).Sum();
+            int num2 = num1 * class793.gclass132_0.RemainingDecoys.Count - this.gclass0_0.MissileSalvoes.Values
+                .Where<MissileSalvo>(class793.method_0)
+                .Select<MissileSalvo, int>(gclass132_0_2 => gclass132_0_2.RemainingDecoys.Count).DefaultIfEmpty<int>(0).Sum();
             if (num2 < 0)
                 num2 = 0;
             return num2;

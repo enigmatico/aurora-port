@@ -14,18 +14,18 @@ public class GClass222
     public Dictionary<double, int> dictionary_0 = new Dictionary<double, int>();
     public List<Star197> list_0 = new List<Star197>();
     public List<SystemBodyData> list_1 = new List<SystemBodyData>();
-    public List<JumpPoint120> list_2 = new List<JumpPoint120>();
-    public List<GClass214> list_3 = new List<GClass214>();
+    public List<JumpPoint> list_2 = new List<JumpPoint>();
+    public List<Waypoint> list_3 = new List<Waypoint>();
     public List<FleetData> list_4 = new List<FleetData>();
-    public List<GClass132> list_5 = new List<GClass132>();
-    public List<GClass233> list_6 = new List<GClass233>();
+    public List<MissileSalvo> list_5 = new List<MissileSalvo>();
+    public List<Wreck> list_6 = new List<Wreck>();
     public List<GClass59> list_7 = new List<GClass59>();
-    public List<GClass65> list_8 = new List<GClass65>();
-    public List<FCTShipData40> list_9 = new List<FCTShipData40>();
-    public List<GClass132> list_10 = new List<GClass132>();
+    public List<Contact> list_8 = new List<Contact>();
+    public List<ShipData> list_9 = new List<ShipData>();
+    public List<MissileSalvo> list_10 = new List<MissileSalvo>();
     public List<PopulationData> list_11 = new List<PopulationData>();
-    public List<GClass212> list_12 = new List<GClass212>();
-    public List<SurveyLocation213> list_13 = new List<SurveyLocation213>();
+    public List<LagrangePoint> list_12 = new List<LagrangePoint>();
+    public List<SurveyLocation> list_13 = new List<SurveyLocation>();
     public List<FCTMassDriverPacket126> list_14 = new List<FCTMassDriverPacket126>();
     public List<PopulationData> list_15 = new List<PopulationData>();
     public GClass211 gclass211_0;
@@ -44,14 +44,14 @@ public class GClass222
         {
             if (this.list_4.Count > 0)
                 return this.list_4.OrderByDescending<FleetData, Decimal>(gclass85_0 =>
-                        gclass85_0.method_176().Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_14))
+                        gclass85_0.method_176().Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size))
                     .FirstOrDefault<FleetData>();
             if (this.list_1.Count > 0)
                 return this.list_1.OrderByDescending<SystemBodyData, double>(gclass1_0 => gclass1_0.Mass)
                     .FirstOrDefault<SystemBodyData>();
             return this.list_5.Count > 0
-                ? this.list_5.OrderByDescending<GClass132, Decimal>(gclass132_0 => gclass132_0.gclass129_0.decimal_4)
-                    .FirstOrDefault<GClass132>()
+                ? this.list_5.OrderByDescending<MissileSalvo, Decimal>(gclass132_0 => gclass132_0.RaceMissile.Size)
+                    .FirstOrDefault<MissileSalvo>()
                 : (object)null;
         }
         catch (Exception ex)

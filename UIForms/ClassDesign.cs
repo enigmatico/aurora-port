@@ -46,9 +46,9 @@ public class ClassDesign : Form
 
     private sealed class Class907
     {
-        public GClass22 gclass22_0;
+        public ShipClass gclass22_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0 == this.gclass22_0;
         }
@@ -56,8 +56,8 @@ public class ClassDesign : Form
 
     public GClass0 gclass0_0;
     private GameRace gclass21_0;
-    private GClass22 gclass22_0;
-    private GClass22 gclass22_1;
+    private ShipClass gclass22_0;
+    private ShipClass gclass22_1;
     private ShipClassTemplate184 gclass184_0;
     private GroundUnitFormationTemplateData gclass102_0;
     private TreeNode treeNode_0;
@@ -491,8 +491,8 @@ public class ClassDesign : Form
         {
             if (this.gclass0_0.bool_9 || this.gclass22_0 == null)
                 return;
-            this.gclass22_0.gclass76_0 = (ShipHull)this.cboHullDescription.SelectedItem;
-            TreeNode treeNode = this.method_3(this.gclass22_0.gclass76_0);
+            this.gclass22_0.ShipHull = (ShipHull)this.cboHullDescription.SelectedItem;
+            TreeNode treeNode = this.method_3(this.gclass22_0.ShipHull);
             if (treeNode != null)
             {
                 this.bool_2 = true;
@@ -519,13 +519,13 @@ public class ClassDesign : Form
     {
         try
         {
-            if (this.bool_2 || !(e.Node.Tag is GClass22))
+            if (this.bool_2 || !(e.Node.Tag is ShipClass))
                 return;
             this.treeNode_0 = e.Node;
-            this.gclass22_0 = (GClass22)e.Node.Tag;
+            this.gclass22_0 = (ShipClass)e.Node.Tag;
             if (this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
                 this.cmdLock.Text = "Unlock Design";
             else
                 this.cmdLock.Text = "Lock Design";
@@ -565,45 +565,45 @@ public class ClassDesign : Form
             this.gclass21_0.method_315(this.lstvFighters, this.gclass22_0, this.chkObsoleteFighters.CheckState,
                 this.chkLargerParasites.CheckState);
             this.gclass0_0.bool_9 = true;
-            this.chkTanker.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_23);
-            this.chkSupplyShip.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_52);
-            this.chkCollier.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_5);
-            this.chkSeniorCO.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_6);
-            this.chkConscript.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_10);
-            this.chkNoOfficers.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_15);
-            this.chkObsolete.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_38);
-            this.chkNoArmour.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_37);
+            this.chkTanker.CheckState = AuroraUtils.smethod_26(this.gclass22_0.FuelTanker);
+            this.chkSupplyShip.CheckState = AuroraUtils.smethod_26(this.gclass22_0.SupplyShip);
+            this.chkCollier.CheckState = AuroraUtils.smethod_26(this.gclass22_0.Collier);
+            this.chkSeniorCO.CheckState = AuroraUtils.smethod_26(this.gclass22_0.SeniorCO);
+            this.chkConscript.CheckState = AuroraUtils.smethod_26(this.gclass22_0.ConscriptOnly);
+            this.chkNoOfficers.CheckState = AuroraUtils.smethod_26(this.gclass22_0.NoOfficers);
+            this.chkObsolete.CheckState = AuroraUtils.smethod_26(this.gclass22_0.Obsolete);
+            this.chkNoArmour.CheckState = AuroraUtils.smethod_26(this.gclass22_0.NoArmour);
             this.chkShowBands.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_49);
-            this.chkRandomName.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_35);
-            this.chkHullNumbers.CheckState = AuroraUtils.smethod_26(this.gclass22_0.int_65);
-            this.txtMonths.Text = this.gclass22_0.decimal_9.ToString();
-            this.txtArmourRequired.Text = this.gclass22_0.int_2.ToString();
-            this.txtSize.Text = AuroraUtils.FormatNumberToDigits(this.gclass22_0.decimal_14, 4).ToString();
+            this.chkRandomName.CheckState = AuroraUtils.smethod_26(this.gclass22_0.RandomShipNameFromTheme);
+            this.chkHullNumbers.CheckState = AuroraUtils.smethod_26(this.gclass22_0.ClassHullNumbers);
+            this.txtMonths.Text = this.gclass22_0.PlannedDeployment.ToString();
+            this.txtArmourRequired.Text = this.gclass22_0.ArmourThickness.ToString();
+            this.txtSize.Text = AuroraUtils.FormatNumberToDigits(this.gclass22_0.Size, 4).ToString();
             this.txtLoadTime.Text = AuroraUtils.smethod_71(this.gclass22_0.method_93()).ToString();
             this.txtBuildTime.Text = AuroraUtils.FormatNumberToDigits(this.gclass22_0.method_92(), 2).ToString();
-            this.txtDetails.Text = this.gclass22_0.string_1;
-            this.txtPriority.Text = this.gclass22_0.int_8.ToString();
-            this.txtMinFuel.Text = this.gclass22_0.int_46.ToString();
-            this.txtMinSupplies.Text = this.gclass22_0.int_47.ToString();
-            this.txtMaintPriority.Text = this.gclass22_0.int_34.ToString();
-            this.txtFuelPriority.Text = this.gclass22_0.int_44.ToString();
-            this.txtSupplyPriority.Text = this.gclass22_0.int_45.ToString();
-            this.txtPDProtectionPriority.Text = this.gclass22_0.int_16.ToString();
-            if (this.gclass22_0.string_3 == "")
+            this.txtDetails.Text = this.gclass22_0.Notes;
+            this.txtPriority.Text = this.gclass22_0.CommanderPriority.ToString();
+            this.txtMinFuel.Text = this.gclass22_0.MinimumFuel.ToString();
+            this.txtMinSupplies.Text = this.gclass22_0.MinimumSupplies.ToString();
+            this.txtMaintPriority.Text = this.gclass22_0.MaintPriority.ToString();
+            this.txtFuelPriority.Text = this.gclass22_0.RefuelPriority.ToString();
+            this.txtSupplyPriority.Text = this.gclass22_0.ResupplyPriority.ToString();
+            this.txtPDProtectionPriority.Text = this.gclass22_0.PDProtectionPriority.ToString();
+            if (this.gclass22_0.PrefixName == "")
                 this.txtPrefix.Text = "None";
             else
-                this.txtPrefix.Text = this.gclass22_0.string_3;
-            if (this.gclass22_0.string_4 == "")
+                this.txtPrefix.Text = this.gclass22_0.PrefixName;
+            if (this.gclass22_0.SuffixName == "")
                 this.txtSuffix.Text = "None";
             else
-                this.txtSuffix.Text = this.gclass22_0.string_4;
-            this.cboHullDescription.SelectedItem = this.gclass22_0.gclass76_0;
+                this.txtSuffix.Text = this.gclass22_0.SuffixName;
+            this.cboHullDescription.SelectedItem = this.gclass22_0.ShipHull;
             this.gclass22_0.method_62(this.lstClassOrdnance, this.lblOrdnanceCapacity);
             this.gclass22_0.method_60(this.lstClassFighters, this.lblHangarCapacity);
             this.gclass22_0.method_61(this.lstClassGround, this.lblTroopCapacity);
-            if (this.gclass22_0.gclass21_0.SpecialNPRID != SpecialNPRIDs.StarSwarm)
+            if (this.gclass22_0.Race.SpecialNPRID != SpecialNPRIDs.StarSwarm)
                 this.gclass22_0.method_79(this.lstvCrew);
-            this.cboNamingTheme.SelectedItem = this.gclass22_0.gclass140_0;
+            this.cboNamingTheme.SelectedItem = this.gclass22_0.NameTheme;
             this.gclass0_0.bool_9 = false;
         }
         catch (Exception ex)
@@ -634,7 +634,7 @@ public class ClassDesign : Form
         try
         {
             this.gclass22_0 = this.gclass21_0.method_310(this.gclass22_0, null, false);
-            if (this.gclass22_0.int_38 == 1 && this.chkShowObsoleteClasses.CheckState == CheckState.Unchecked)
+            if (this.gclass22_0.Obsolete == 1 && this.chkShowObsoleteClasses.CheckState == CheckState.Unchecked)
                 this.chkShowObsoleteClasses.CheckState = CheckState.Checked;
             this.gclass21_0.method_378(this.tvClassList, this.chkShowCivilian.CheckState,
                 this.chkShowObsoleteClasses.CheckState, this.chkObsoleteComp.CheckState,
@@ -671,7 +671,7 @@ public class ClassDesign : Form
         }
     }
 
-    private void method_2(GClass22 gclass22_2)
+    private void method_2(ShipClass gclass22_2)
     {
         try
         {
@@ -679,7 +679,7 @@ public class ClassDesign : Form
             {
                 foreach (TreeNode node2 in node1.Nodes)
                 {
-                    if (node2.Tag is GClass22 && node2.Tag == gclass22_2)
+                    if (node2.Tag is ShipClass && node2.Tag == gclass22_2)
                     {
                         node2.Parent.Expand();
                         this.tvClassList.SelectedNode = node2;
@@ -722,7 +722,7 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
             {
                 int num = (int)MessageBox.Show("Class cannot be modified while locked");
             }
@@ -746,7 +746,7 @@ public class ClassDesign : Form
             this.txtComponentDetail.Text = this.gclass230_0.method_14();
             if (this.gclass230_0 == null || this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
             {
                 int num = (int)MessageBox.Show("Class cannot be modified while locked");
             }
@@ -788,7 +788,7 @@ public class ClassDesign : Form
             TreeNode selectedNode = this.tvInClass.SelectedNode;
             if (this.gclass230_0 == null || this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
             {
                 int num = (int)MessageBox.Show("Class cannot be modified while locked");
             }
@@ -834,7 +834,7 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
             {
                 int num = (int)MessageBox.Show("Class cannot be modified while locked");
             }
@@ -962,13 +962,13 @@ public class ClassDesign : Form
                     case 9:
                         if (name == "chkTanker")
                         {
-                            this.gclass22_0.int_23 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
-                            if (this.gclass22_0.int_46 == 0 && this.gclass22_0.int_23 == 1)
+                            this.gclass22_0.FuelTanker = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                            if (this.gclass22_0.MinimumFuel == 0 && this.gclass22_0.FuelTanker == 1)
                             {
-                                this.gclass22_0.int_46 = (int)Math.Ceiling(this.gclass22_0.int_63 * 0.1);
-                                this.txtMinFuel.Text = this.gclass22_0.int_46.ToString();
+                                this.gclass22_0.MinimumFuel = (int)Math.Ceiling(this.gclass22_0.FuelCapacity * 0.1);
+                                this.txtMinFuel.Text = this.gclass22_0.MinimumFuel.ToString();
                                 int num = (int)MessageBox.Show(
-                                    $"Minimum fuel capacity set to {AuroraUtils.smethod_37(this.gclass22_0.int_46)}. This can be adjusted on the Miscellaneous tab");
+                                    $"Minimum fuel capacity set to {AuroraUtils.smethod_37(this.gclass22_0.MinimumFuel)}. This can be adjusted on the Miscellaneous tab");
                                 break;
                             }
 
@@ -979,7 +979,7 @@ public class ClassDesign : Form
                     case 10:
                         if (name == "chkCollier")
                         {
-                            this.gclass22_0.int_5 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                            this.gclass22_0.Collier = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                             break;
                         }
 
@@ -990,14 +990,14 @@ public class ClassDesign : Form
                             case 'N':
                                 if (name == "chkNoArmour")
                                 {
-                                    if (this.gclass22_0.bool_3)
+                                    if (this.gclass22_0.Locked)
                                     {
                                         int num = (int)MessageBox.Show("Class cannot be modified while locked");
                                         return;
                                     }
 
-                                    this.gclass22_0.int_37 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
-                                    if (this.gclass22_0.int_37 == 1)
+                                    this.gclass22_0.NoArmour = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    if (this.gclass22_0.NoArmour == 1)
                                     {
                                         this.gclass22_0.method_83();
                                         break;
@@ -1010,7 +1010,7 @@ public class ClassDesign : Form
                             case 'O':
                                 if (name == "chkObsolete")
                                 {
-                                    this.gclass22_0.int_38 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    this.gclass22_0.Obsolete = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1018,7 +1018,7 @@ public class ClassDesign : Form
                             case 'S':
                                 if (name == "chkSeniorCO")
                                 {
-                                    this.gclass22_0.int_6 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    this.gclass22_0.SeniorCO = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1032,7 +1032,7 @@ public class ClassDesign : Form
                             case 'C':
                                 if (name == "chkConscript")
                                 {
-                                    this.gclass22_0.int_10 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    this.gclass22_0.ConscriptOnly = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1054,7 +1054,7 @@ public class ClassDesign : Form
                             case 'N':
                                 if (name == "chkNoOfficers")
                                 {
-                                    this.gclass22_0.int_15 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    this.gclass22_0.NoOfficers = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1062,7 +1062,7 @@ public class ClassDesign : Form
                             case 'R':
                                 if (name == "chkRandomName")
                                 {
-                                    this.gclass22_0.int_35 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    this.gclass22_0.RandomShipNameFromTheme = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1070,7 +1070,7 @@ public class ClassDesign : Form
                             case 'S':
                                 if (name == "chkSupplyShip")
                                 {
-                                    this.gclass22_0.int_52 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                                    this.gclass22_0.SupplyShip = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                                     break;
                                 }
 
@@ -1081,7 +1081,7 @@ public class ClassDesign : Form
                     case 14:
                         if (name == "chkHullNumbers")
                         {
-                            this.gclass22_0.int_65 = AuroraUtils.CheckStateToInt(checkBox.CheckState);
+                            this.gclass22_0.ClassHullNumbers = AuroraUtils.CheckStateToInt(checkBox.CheckState);
                             this.method_1();
                             break;
                         }
@@ -1170,7 +1170,7 @@ public class ClassDesign : Form
             gclass76.Abbreviation = this.gclass0_0.string_4;
             gclass76.Combined = $"{gclass76.Description}  {gclass76.Abbreviation}";
             if (this.gclass22_0 != null)
-                this.gclass22_0.gclass76_0 = gclass76;
+                this.gclass22_0.ShipHull = gclass76;
             this.gclass0_0.ShipHullDictionary.Add(gclass76.ShipHullDescriptionID, gclass76);
             this.gclass0_0.bool_9 = true;
             this.gclass0_0.method_570(this.cboHullDescription);
@@ -1246,8 +1246,8 @@ public class ClassDesign : Form
             }
             else
             {
-                this.gclass129_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                    !this.gclass129_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 =
+                    !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0;
                 this.gclass21_0.method_316(this.lstvOrdnance, this.chkObsoleteMissiles.CheckState, false);
             }
         }
@@ -1261,7 +1261,7 @@ public class ClassDesign : Form
     {
         try
         {
-            this.gclass22_1.int_38 = this.gclass22_1.int_38 != 1 ? 1 : 0;
+            this.gclass22_1.Obsolete = this.gclass22_1.Obsolete != 1 ? 1 : 0;
             this.gclass21_0.method_315(this.lstvFighters, this.gclass22_0, this.chkObsoleteMissiles.CheckState,
                 this.chkLargerParasites.CheckState);
         }
@@ -1291,7 +1291,7 @@ public class ClassDesign : Form
         {
             if (this.lstvFighters.SelectedItems.Count <= 0)
                 return;
-            this.gclass22_1 = (GClass22)this.lstvFighters.SelectedItems[0].Tag;
+            this.gclass22_1 = (ShipClass)this.lstvFighters.SelectedItems[0].Tag;
         }
         catch (Exception ex)
         {
@@ -1335,7 +1335,7 @@ public class ClassDesign : Form
         {
             if (this.lstClassOrdnance.SelectedItems.Count <= 0 || this.gclass22_0 == null)
                 return;
-            this.gclass22_0.method_55((GClass130)this.lstClassOrdnance.SelectedItem, this.method_8());
+            this.gclass22_0.method_55((PopOrdnanceStock)this.lstClassOrdnance.SelectedItem, this.method_8());
             this.method_1();
         }
         catch (Exception ex)
@@ -1449,7 +1449,7 @@ public class ClassDesign : Form
         {
             if (this.gclass0_0.bool_9 || this.gclass22_0 == null || !(this.txtArmourRequired.Text != ""))
                 return;
-            if (this.gclass22_0.bool_3 && !this.gclass0_0.bool_9)
+            if (this.gclass22_0.Locked && !this.gclass0_0.bool_9)
             {
                 int num = (int)MessageBox.Show("Class cannot be modified while locked");
             }
@@ -1458,13 +1458,13 @@ public class ClassDesign : Form
                 int result = 1;
                 if (!int.TryParse(this.txtArmourRequired.Text, out result))
                     return;
-                if (result < 1 && this.gclass22_0.int_37 == 0)
+                if (result < 1 && this.gclass22_0.NoArmour == 0)
                 {
                     result = 1;
                     this.txtArmourRequired.Text = "1";
                 }
 
-                this.gclass22_0.int_2 = result;
+                this.gclass22_0.ArmourThickness = result;
                 this.method_1();
             }
         }
@@ -1480,9 +1480,9 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtPriority.Text != ""))
                 return;
-            this.gclass22_0.int_8 = Convert.ToInt32(this.txtPriority.Text);
-            if (this.gclass22_0.int_8 < 1)
-                this.gclass22_0.int_8 = 1;
+            this.gclass22_0.CommanderPriority = Convert.ToInt32(this.txtPriority.Text);
+            if (this.gclass22_0.CommanderPriority < 1)
+                this.gclass22_0.CommanderPriority = 1;
             this.method_1();
         }
         catch (Exception ex)
@@ -1497,7 +1497,7 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtMinFuel.Text != ""))
                 return;
-            this.gclass22_0.int_46 = Convert.ToInt32(this.txtMinFuel.Text);
+            this.gclass22_0.MinimumFuel = Convert.ToInt32(this.txtMinFuel.Text);
             this.method_1();
         }
         catch (Exception ex)
@@ -1512,9 +1512,9 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtFuelPriority.Text != ""))
                 return;
-            this.gclass22_0.int_44 = Convert.ToInt32(this.txtFuelPriority.Text);
-            if (this.gclass22_0.int_44 < 1)
-                this.gclass22_0.int_44 = 1;
+            this.gclass22_0.RefuelPriority = Convert.ToInt32(this.txtFuelPriority.Text);
+            if (this.gclass22_0.RefuelPriority < 1)
+                this.gclass22_0.RefuelPriority = 1;
             this.method_1();
         }
         catch (Exception ex)
@@ -1556,16 +1556,16 @@ public class ClassDesign : Form
     {
         if (this.gclass22_0 == null || !(this.txtMonths.Text != ""))
             return;
-        if (this.gclass22_0.bool_3 && !this.gclass0_0.bool_9)
+        if (this.gclass22_0.Locked && !this.gclass0_0.bool_9)
         {
             int num = (int)MessageBox.Show("Class cannot be modified while locked");
         }
         else
         {
             ParsedDecimal gclass208 = AuroraUtils.ParseDecimalString(this.txtMonths.Text);
-            if (!gclass208.Succeed || gclass208.Value <= 0M || gclass208.Value == this.gclass22_0.decimal_9)
+            if (!gclass208.Succeed || gclass208.Value <= 0M || gclass208.Value == this.gclass22_0.PlannedDeployment)
                 return;
-            this.gclass22_0.decimal_9 = gclass208.Value;
+            this.gclass22_0.PlannedDeployment = gclass208.Value;
             this.method_1();
         }
     }
@@ -1576,9 +1576,9 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtMaintPriority.Text != ""))
                 return;
-            this.gclass22_0.int_34 = Convert.ToInt32(this.txtMaintPriority.Text);
-            if (this.gclass22_0.int_34 < 1)
-                this.gclass22_0.int_34 = 1;
+            this.gclass22_0.MaintPriority = Convert.ToInt32(this.txtMaintPriority.Text);
+            if (this.gclass22_0.MaintPriority < 1)
+                this.gclass22_0.MaintPriority = 1;
             this.method_1();
         }
         catch (Exception ex)
@@ -1605,18 +1605,18 @@ public class ClassDesign : Form
                     gclass85_0 = (FleetData)this.cboFleets.SelectedItem;
                 else
                     gclass83_1 = (NavalAdminCommand)this.cboAdminCommands.SelectedItem;
-                GClass194 gclass194_1 = this.gclass21_0.method_164();
+                Species gclass194_1 = this.gclass21_0.method_164();
                 int int32 = Convert.ToInt32(this.txtNumInstantBuild.Text);
                 if (int32 == 0)
                     return;
                 for (int index1 = 1; index1 <= int32; ++index1)
                 {
-                    FCTShipData40 gclass40_2_1 = null;
+                    ShipData gclass40_2_1 = null;
                     FCTSquadronData70 gclass70_1 = null;
                     if (this.chkMothership.CheckState == CheckState.Checked)
                     {
-                        gclass40_2_1 = (FCTShipData40)this.cboMothership.SelectedValue;
-                        if (gclass40_2_1.method_125() < this.gclass22_0.decimal_14)
+                        gclass40_2_1 = (ShipData)this.cboMothership.SelectedValue;
+                        if (gclass40_2_1.method_125() < this.gclass22_0.Size)
                             gclass40_2_1 = null;
                     }
 
@@ -1626,7 +1626,7 @@ public class ClassDesign : Form
                         if (gclass70_1 != null)
                         {
                             gclass40_2_1 = gclass70_1.ParentShipData;
-                            if (gclass40_2_1.method_125() < this.gclass22_0.decimal_14)
+                            if (gclass40_2_1.method_125() < this.gclass22_0.Size)
                             {
                                 gclass40_2_1 = null;
                                 gclass70_1 = null;
@@ -1644,30 +1644,30 @@ public class ClassDesign : Form
                             string_10_1 = this.gclass0_0.string_4;
                     }
 
-                    FCTShipData40 gclass40_2_2 = this.gclass21_0.method_304(null, null, null, this.gclass22_0,
+                    ShipData gclass40_2_2 = this.gclass21_0.method_304(null, null, null, this.gclass22_0,
                         gclass85_0, gclass83_1, gclass194_1, gclass40_2_1, null, string_10_1, AuroraUtils.int_26, true,
                         true, GEnum20.const_2);
                     gclass40_2_2.SquadronData = gclass70_1;
-                    this.gclass21_0.StartBuildPoints -= (int)this.gclass22_0.decimal_4;
+                    this.gclass21_0.StartBuildPoints -= (int)this.gclass22_0.Cost;
                     if (this.chkIncludeGround.CheckState == CheckState.Checked && this.gclass22_0.list_2.Count > 0)
                         gclass40_2_2.method_50();
                     if (this.chkIncludeParasites.CheckState == CheckState.Checked &&
-                        gclass40_2_2.gclass22_0.list_1.Count > 0 && gclass40_2_2.gclass22_0.decimal_8 > 0M)
+                        gclass40_2_2.gclass22_0.list_1.Count > 0 && gclass40_2_2.gclass22_0.ParasiteCapacity > 0M)
                     {
                         FCTSquadronData70 gclass70_2 = gclass40_2_2.method_186(gclass40_2_2.ShipName + " Strikegroup");
                         foreach (GClass74 gclass74 in this.gclass22_0.list_1)
                         {
                             for (int index2 = 1; index2 <= gclass74.int_0; ++index2)
                             {
-                                if (gclass40_2_2.method_125() >= gclass74.gclass22_0.decimal_14)
+                                if (gclass40_2_2.method_125() >= gclass74.gclass22_0.Size)
                                 {
                                     string string_10_2 = gclass74.gclass22_0.method_39();
-                                    FCTShipData40 gclass40 = this.gclass21_0.method_304(null, null, null,
+                                    ShipData gclass40 = this.gclass21_0.method_304(null, null, null,
                                         gclass74.gclass22_0, gclass40_2_2.gclass85_0, null, gclass194_1, gclass40_2_2,
                                         null, string_10_2, AuroraUtils.int_26, true, true, GEnum20.const_2);
                                     gclass40.SquadronData = gclass70_2;
                                     gclass40.LinkedSquadronID = gclass70_2.SquadronID;
-                                    this.gclass21_0.StartBuildPoints -= gclass40.gclass22_0.decimal_4;
+                                    this.gclass21_0.StartBuildPoints -= gclass40.gclass22_0.Cost;
                                     if (this.chkIncludeGround.CheckState == CheckState.Checked &&
                                         gclass74.gclass22_0.list_2.Count > 0)
                                         gclass40.method_50();
@@ -1682,7 +1682,7 @@ public class ClassDesign : Form
                     this.cmdInstantBuild.Visible = false;
                 else
                     this.cmdInstantBuild.Visible = true;
-                this.gclass22_0.bool_3 = true;
+                this.gclass22_0.Locked = true;
             }
         }
         catch (Exception ex)
@@ -1719,7 +1719,7 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtMinSupplies.Text != ""))
                 return;
-            this.gclass22_0.int_47 = Convert.ToInt32(this.txtMinSupplies.Text);
+            this.gclass22_0.MinimumSupplies = Convert.ToInt32(this.txtMinSupplies.Text);
             this.method_1();
         }
         catch (Exception ex)
@@ -1734,9 +1734,9 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtSupplyPriority.Text != ""))
                 return;
-            this.gclass22_0.int_45 = Convert.ToInt32(this.txtSupplyPriority.Text);
-            if (this.gclass22_0.int_45 < 1)
-                this.gclass22_0.int_45 = 1;
+            this.gclass22_0.ResupplyPriority = Convert.ToInt32(this.txtSupplyPriority.Text);
+            if (this.gclass22_0.ResupplyPriority < 1)
+                this.gclass22_0.ResupplyPriority = 1;
             this.method_1();
         }
         catch (Exception ex)
@@ -1751,7 +1751,7 @@ public class ClassDesign : Form
         {
             if (this.gclass0_0.bool_9 || this.gclass22_0 == null)
                 return;
-            this.gclass22_0.gclass140_0 = (NamingTheme)this.cboNamingTheme.SelectedValue;
+            this.gclass22_0.NameTheme = (NamingTheme)this.cboNamingTheme.SelectedValue;
         }
         catch (Exception ex)
         {
@@ -1765,11 +1765,11 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
             {
                 if (this.gclass0_0.bool_8)
                 {
-                    this.gclass22_0.bool_3 = false;
+                    this.gclass22_0.Locked = false;
                     this.cmdLock.Text = "Lock Class";
                 }
                 else
@@ -1779,7 +1779,7 @@ public class ClassDesign : Form
             }
             else
             {
-                this.gclass22_0.bool_3 = true;
+                this.gclass22_0.Locked = true;
                 this.cmdLock.Text = "Unlock Class";
             }
         }
@@ -2009,9 +2009,9 @@ public class ClassDesign : Form
             if (this.gclass22_0 == null)
                 return;
             if (this.txtPrefix.Text == "None")
-                this.gclass22_0.string_3 = "";
+                this.gclass22_0.PrefixName = "";
             else
-                this.gclass22_0.string_3 = this.txtPrefix.Text;
+                this.gclass22_0.PrefixName = this.txtPrefix.Text;
         }
         catch (Exception ex)
         {
@@ -2026,9 +2026,9 @@ public class ClassDesign : Form
             if (this.gclass22_0 == null)
                 return;
             if (this.txtSuffix.Text == "None")
-                this.gclass22_0.string_4 = "";
+                this.gclass22_0.SuffixName = "";
             else
-                this.gclass22_0.string_4 = this.txtSuffix.Text;
+                this.gclass22_0.SuffixName = this.txtSuffix.Text;
         }
         catch (Exception ex)
         {
@@ -2042,12 +2042,12 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0 == this.gclass22_0)
-                .OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.int_8).ToList<FCTShipData40>();
-            foreach (FCTShipData40 gclass40 in list)
+            List<ShipData> list = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this.gclass22_0)
+                .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_8).ToList<ShipData>();
+            foreach (ShipData gclass40 in list)
                 gclass40.ShipName = "";
-            foreach (FCTShipData40 gclass40 in list)
+            foreach (ShipData gclass40 in list)
                 gclass40.ShipName = this.gclass22_0.method_39();
             this.method_1();
         }
@@ -2105,12 +2105,12 @@ public class ClassDesign : Form
         {
             // ISSUE: object of a compiler-generated type is created
             // ISSUE: reference to a compiler-generated method
-            this.cboMothership.DataSource = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(
+            this.cboMothership.DataSource = this.gclass0_0.Ships.Values.Where<ShipData>(
                     new ClassDesign.Class907()
                     {
-                        gclass22_0 = (GClass22)this.cboMothershipClass.SelectedValue
-                    }.method_0).Where<FCTShipData40>(gclass40_0 => gclass40_0.method_125() > this.gclass22_0.decimal_14)
-                .OrderBy<FCTShipData40, string>(gclass40_0 => gclass40_0.ShipName).ToList<FCTShipData40>();
+                        gclass22_0 = (ShipClass)this.cboMothershipClass.SelectedValue
+                    }.method_0).Where<ShipData>(gclass40_0 => gclass40_0.method_125() > this.gclass22_0.Size)
+                .OrderBy<ShipData, string>(gclass40_0 => gclass40_0.ShipName).ToList<ShipData>();
             this.cboMothership.DisplayMember = "ShipName";
         }
         catch (Exception ex)
@@ -2143,25 +2143,25 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 =>
-                    gclass40_0.gclass22_0.gclass76_0 == this.gclass22_0.gclass76_0 &&
+            List<ShipData> list = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 =>
+                    gclass40_0.gclass22_0.ShipHull == this.gclass22_0.ShipHull &&
                     gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass187_0 == null)
-                .OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.int_8).ToList<FCTShipData40>();
+                .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_8).ToList<ShipData>();
             if (list.Count == 0)
                 return;
             int num1 = 0;
-            foreach (FCTShipData40 gclass40 in list)
+            foreach (ShipData gclass40 in list)
             {
                 ++num1;
                 int num2 = num1;
                 gclass40.int_20 = num2;
             }
 
-            if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(this.gclass22_0.gclass76_0))
-                this.gclass21_0.ShipHullCountDictionary.Add(this.gclass22_0.gclass76_0, num1);
+            if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(this.gclass22_0.ShipHull))
+                this.gclass21_0.ShipHullCountDictionary.Add(this.gclass22_0.ShipHull, num1);
             else
-                this.gclass21_0.ShipHullCountDictionary[this.gclass22_0.gclass76_0] = num1;
+                this.gclass21_0.ShipHullCountDictionary[this.gclass22_0.ShipHull] = num1;
             this.method_1();
         }
         catch (Exception ex)
@@ -2313,9 +2313,9 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null || !(this.txtPDProtectionPriority.Text != ""))
                 return;
-            this.gclass22_0.int_16 = Convert.ToInt32(this.txtPDProtectionPriority.Text);
-            if (this.gclass22_0.int_16 < 1)
-                this.gclass22_0.int_16 = 1;
+            this.gclass22_0.PDProtectionPriority = Convert.ToInt32(this.txtPDProtectionPriority.Text);
+            if (this.gclass22_0.PDProtectionPriority < 1)
+                this.gclass22_0.PDProtectionPriority = 1;
             this.method_1();
         }
         catch (Exception ex)
@@ -2608,7 +2608,7 @@ public class ClassDesign : Form
         {
             if (this.lstvShips.SelectedItems.Count == 0)
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.lstvShips.SelectedItems[0].Tag;
+            ShipData tag = (ShipData)this.lstvShips.SelectedItems[0].Tag;
             if (tag == null)
                 return;
             if (this.rdoShip.Checked)
@@ -2667,13 +2667,13 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            if (this.gclass22_0.bool_3)
+            if (this.gclass22_0.Locked)
             {
                 int num = (int)MessageBox.Show("Class cannot be modified while locked");
             }
             else
             {
-                this.gclass22_0.decimal_21 = this.gclass21_0.CrewDesignEfficiency;
+                this.gclass22_0.CrewDesignEfficiency = this.gclass21_0.CrewDesignEfficiency;
                 this.method_1();
             }
         }
@@ -2787,11 +2787,11 @@ public class ClassDesign : Form
         {
             if (this.gclass22_0 == null)
                 return;
-            List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0 == this.gclass22_0)
-                .OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.int_8).ToList<FCTShipData40>();
+            List<ShipData> list = this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass22_0 == this.gclass22_0)
+                .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.int_8).ToList<ShipData>();
             int int_72 = 1;
-            foreach (FCTShipData40 gclass40 in list)
+            foreach (ShipData gclass40 in list)
             {
                 gclass40.ShipName = $"{this.gclass22_0.ClassName} {AuroraUtils.smethod_33(int_72)}";
                 ++int_72;

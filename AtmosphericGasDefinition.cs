@@ -7,7 +7,7 @@
 #nullable disable
 public class AtmosphericGasDefinition
 {
-    public AtmosphericGas AtmosphericGas;
+    public GasType Type;
     public int Dangerous;
     public int BoilingPoint;
     public int DangerousLevel;

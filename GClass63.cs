@@ -7,12 +7,12 @@
 #nullable disable
 public class GClass63
 {
-    public GClass233 gclass233_0;
+    public Wreck gclass233_0;
     public int int_0;
     public int int_1;
     public string string_0 = "";
 
-    public GClass63(GClass233 gclass233_1, string string_1)
+    public GClass63(Wreck gclass233_1, string string_1)
     {
         this.gclass233_0 = gclass233_1;
         this.string_0 = string_1;

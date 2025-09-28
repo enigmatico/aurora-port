@@ -10,8 +10,8 @@ using System;
 public class ShippingWealthData
 {
     public ShippingLineData ShippingLine;
-    public FCTShipData40 Ship;
-    public TradeGoodsDefinition TradeGood;
+    public ShipData Ship;
+    public TradeGood TradeGood;
     public PopulationData OriginPop;
     public PopulationData DestinationPop;
     public Decimal TradeTime;

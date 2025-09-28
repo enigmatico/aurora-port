@@ -18,7 +18,7 @@ public class RuinDefinition
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
-            return gclass202_0.ActualSystemData == this.gclass1_0.SystemData;
+            return gclass202_0.ActualSystem == this.gclass1_0.SystemData;
         }
 
         internal bool method_1(SystemBodyData gclass1_1)
@@ -32,9 +32,9 @@ public class RuinDefinition
     {
         public GameRace gclass21_0;
 
-        internal bool method_0(GClass22 gclass22_0)
+        internal bool method_0(ShipClass gclass22_0)
         {
-            return gclass22_0.gclass21_0 == this.gclass21_0;
+            return gclass22_0.Race == this.gclass21_0;
         }
 
         internal bool method_1(GroundUnitFormationTemplateData gclass102_0)
@@ -55,7 +55,7 @@ public class RuinDefinition
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
-            return gclass202_0.ActualSystemData == this.gclass1_0.SystemData;
+            return gclass202_0.ActualSystem == this.gclass1_0.SystemData;
         }
 
         internal bool method_1(SystemBodyData gclass1_1)
@@ -76,18 +76,18 @@ public class RuinDefinition
             return gclass83_0.Race == this.gclass21_0 && gclass83_0.ParentAdminCommand == null;
         }
 
-        internal bool method_1(GClass22 gclass22_0)
+        internal bool method_1(ShipClass gclass22_0)
         {
-            return gclass22_0.gclass21_0 == this.gclass21_0;
+            return gclass22_0.Race == this.gclass21_0;
         }
 
-        internal bool method_2(FCTShipData40 gclass40_0)
+        internal bool method_2(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0 &&
-                   gclass40_0.gclass22_0.int_32 > 1;
+                   gclass40_0.gclass22_0.MaxSpeed > 1;
         }
 
-        internal bool method_3(FCTShipData40 gclass40_0)
+        internal bool method_3(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
         }
@@ -97,12 +97,12 @@ public class RuinDefinition
             return gclass103_0.RaceData == this.gclass21_0 && gclass103_0.PopulationData == this.gclass146_0;
         }
 
-        internal bool method_5(FCTShipData40 gclass40_0)
+        internal bool method_5(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
         }
 
-        internal bool method_6(FCTShipData40 gclass40_0)
+        internal bool method_6(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.gclass21_0 && gclass40_0.gclass85_0.System == this.gclass202_0;
         }
@@ -166,7 +166,7 @@ public class RuinDefinition
         OperationalGroup gclass9_0,
         GroundUnitFormationTemplateData gclass102_0,
         int int_14,
-        List<GClass22> list_0)
+        List<ShipClass> list_0)
     {
         try
         {
@@ -226,11 +226,11 @@ public class RuinDefinition
                 this.EmergenceModifier;
             // ISSUE: reference to a compiler-generated field
             class1152.gclass21_0 =
-                this.gclass0_0.FCTRaceRecordDic.Values.FirstOrDefault<GameRace>(gclass21_0 =>
+                this.gclass0_0.GameRaces.Values.FirstOrDefault<GameRace>(gclass21_0 =>
                     gclass21_0.SpecialNPRID == SpecialNPRIDs.Precursor);
             // ISSUE: reference to a compiler-generated method
-            List<GClass22> list = this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1152.method_0)
-                .ToList<GClass22>();
+            List<ShipClass> list = this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1152.method_0)
+                .ToList<ShipClass>();
             // ISSUE: reference to a compiler-generated field
             // ISSUE: reference to a compiler-generated method
             if (class1152.gclass21_0.RacialSystemDictionary.Values.FirstOrDefault<RacialSystemSurvey>(class1151.method_0) == null)
@@ -346,9 +346,9 @@ public class RuinDefinition
                         gclass1_0_2.BodyTypeId == AuroraSystemBodyType.GasGiant ||
                         gclass1_0_2.BodyTypeId == AuroraSystemBodyType.Superjovian)
                     .Where<SystemBodyData>(gclass1_0_3 =>
-                        gclass1_0_3.dictionary_0.ContainsKey(AuroraElement.Sorium))
+                        gclass1_0_3.MineralDeposits.ContainsKey(AuroraElement.Sorium))
                     .OrderByDescending<SystemBodyData, Decimal>(gclass1_0_4 =>
-                        gclass1_0_4.dictionary_0[AuroraElement.Sorium].decimal_1)
+                        gclass1_0_4.MineralDeposits[AuroraElement.Sorium].Accessibility)
                     .FirstOrDefault<SystemBodyData>() != null)
             {
                 int num = (int)Math.Floor(this.decimal_2 / 5000000M);
@@ -422,10 +422,10 @@ public class RuinDefinition
             {
                 // ISSUE: reference to a compiler-generated field
                 class1154.gclass21_0 =
-                    this.gclass0_0.FCTRaceRecordDic.Values.FirstOrDefault<GameRace>(gclass21_0 =>
+                    this.gclass0_0.GameRaces.Values.FirstOrDefault<GameRace>(gclass21_0 =>
                         gclass21_0.SpecialNPRID == SpecialNPRIDs.Precursor);
                 // ISSUE: reference to a compiler-generated field
-                GClass194 gclass194_1 = class1154.gclass21_0.method_165(SpecialNPRIDs.Precursor);
+                Species gclass194_1 = class1154.gclass21_0.method_165(SpecialNPRIDs.Precursor);
                 // ISSUE: reference to a compiler-generated field
                 class1154.gclass146_0 = null;
                 // ISSUE: reference to a compiler-generated field
@@ -453,8 +453,8 @@ public class RuinDefinition
                 // ISSUE: reference to a compiler-generated method
                 NavalAdminCommand gclass83_0 = this.gclass0_0.NavalAdminCommands.Values.FirstOrDefault<NavalAdminCommand>(class1154.method_0);
                 // ISSUE: reference to a compiler-generated method
-                List<GClass22> list1 = this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1154.method_1)
-                    .ToList<GClass22>();
+                List<ShipClass> list1 = this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1154.method_1)
+                    .ToList<ShipClass>();
                 // ISSUE: reference to a compiler-generated field
                 class1154.gclass21_0.DesignDoctrine.NameList_3.OrderBy<GClass12, int>(gclass12_0 => gclass12_0.int_0)
                     .ToList<GClass12>();
@@ -551,8 +551,8 @@ public class RuinDefinition
                 }
 
                 // ISSUE: reference to a compiler-generated method
-                Decimal num1 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1154.method_2)
-                    .Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_14 * AuroraUtils.decimal_17);
+                Decimal num1 = this.gclass0_0.Ships.Values.Where<ShipData>(class1154.method_2)
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size * AuroraUtils.decimal_17);
                 if (num1 > 100000M)
                 {
                     int int_136_9 = (int)Math.Floor(num1 / 100000M);
@@ -568,8 +568,8 @@ public class RuinDefinition
                 }
 
                 // ISSUE: reference to a compiler-generated method
-                int num2 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1154.method_3)
-                    .Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.int_63);
+                int num2 = this.gclass0_0.Ships.Values.Where<ShipData>(class1154.method_3)
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.FuelCapacity);
                 if (num2 > 5000000)
                 {
                     // ISSUE: reference to a compiler-generated method
@@ -579,9 +579,9 @@ public class RuinDefinition
                             gclass1_0_2.BodyTypeId == AuroraSystemBodyType.GasGiant ||
                             gclass1_0_2.BodyTypeId == AuroraSystemBodyType.Superjovian)
                         .Where<SystemBodyData>(gclass1_0_3 =>
-                            gclass1_0_3.dictionary_0.ContainsKey(AuroraElement.Sorium))
+                            gclass1_0_3.MineralDeposits.ContainsKey(AuroraElement.Sorium))
                         .OrderByDescending<SystemBodyData, Decimal>(gclass1_0_4 =>
-                            gclass1_0_4.dictionary_0[AuroraElement.Sorium].decimal_1)
+                            gclass1_0_4.MineralDeposits[AuroraElement.Sorium].Accessibility)
                         .FirstOrDefault<SystemBodyData>();
                     if (gclass1_1 != null)
                     {
@@ -686,13 +686,13 @@ public class RuinDefinition
                 }
 
                 // ISSUE: reference to a compiler-generated method
-                Decimal num7 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1154.method_5)
-                    .Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_14);
+                Decimal num7 = this.gclass0_0.Ships.Values.Where<ShipData>(class1154.method_5)
+                    .Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size);
                 // ISSUE: reference to a compiler-generated method
-                List<GClass130> list2 = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(class1154.method_6)
-                    .SelectMany<FCTShipData40, GClass130>(gclass40_0 => gclass40_0.gclass22_0.list_0)
-                    .ToList<GClass130>();
+                List<PopOrdnanceStock> list2 = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(class1154.method_6)
+                    .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.gclass22_0.list_0)
+                    .ToList<PopOrdnanceStock>();
                 if (num7 > 0M)
                 {
                     // ISSUE: reference to a compiler-generated field
@@ -715,7 +715,7 @@ public class RuinDefinition
                         // ISSUE: reference to a compiler-generated field
                         class1154.gclass146_0.method_65(AuroraInstallationType.OrdnanceTransferStation, 1M);
                         // ISSUE: reference to a compiler-generated field
-                        class1154.gclass146_0.list_1 = this.gclass0_0.method_399(list2, 4);
+                        class1154.gclass146_0.OrdnanceStocks = this.gclass0_0.method_399(list2, 4);
                     }
 
                     int decimal_90 = this.FixedDSTS + AuroraUtils.GetRandomInteger(this.RandomDSTS);

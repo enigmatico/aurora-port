@@ -15,7 +15,7 @@ public class TMoveOrder
     public RacialSystemSurvey NewSystem;
     public PopulationData Population;
     public MoveActionDefinition MoveAction;
-    public JumpPoint120 NewJumpPoint;
+    public JumpPoint NewJumpPoint;
     public DestinationType DestinationType = DestinationType.const_1;
     public DestinationItemType DestinationItemType;
     public int MoveIndex;

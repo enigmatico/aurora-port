@@ -13,10 +13,10 @@ public class GClass192
     public GameRace gclass21_0;
     public PopulationData gclass146_0;
     public GClass193 gclass193_0;
-    public FCTShipData40 gclass40_0;
+    public ShipData gclass40_0;
     public NavalAdminCommand gclass83_0;
-    public GClass22 gclass22_0;
-    public GClass22 gclass22_1;
+    public ShipClass gclass22_0;
+    public ShipClass gclass22_1;
     public FleetData gclass85_0;
     public AllMineralsValue gclass123_0;
     public AuroraSYTaskType auroraSYTaskType_0;
@@ -39,7 +39,7 @@ public class GClass192
             switch (this.auroraSYTaskType_0)
             {
                 case AuroraSYTaskType.Construction:
-                    return $"Build {this.gclass22_0.gclass76_0.Abbreviation} {this.gclass22_0.ClassName}";
+                    return $"Build {this.gclass22_0.ShipHull.Abbreviation} {this.gclass22_0.ClassName}";
                 case AuroraSYTaskType.Repair:
                     return "Repair";
                 case AuroraSYTaskType.Refit:

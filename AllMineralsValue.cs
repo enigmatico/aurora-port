@@ -294,19 +294,19 @@ public class AllMineralsValue
                this.Vendarite + this.Sorium + this.Uridium + this.Corundium + this.Gallicite;
     }
 
-    public void method_8(GClass156 gclass156_0)
+    public void method_8(IndustrialProjects gclass156_0)
     {
-        this.Duranium += gclass156_0.gclass123_0.Duranium * gclass156_0.decimal_0;
-        this.Neutronium += gclass156_0.gclass123_0.Neutronium * gclass156_0.decimal_0;
-        this.Corbomite += gclass156_0.gclass123_0.Corbomite * gclass156_0.decimal_0;
-        this.Tritanium += gclass156_0.gclass123_0.Tritanium * gclass156_0.decimal_0;
-        this.Boronide += gclass156_0.gclass123_0.Boronide * gclass156_0.decimal_0;
-        this.Mercassium += gclass156_0.gclass123_0.Mercassium * gclass156_0.decimal_0;
-        this.Vendarite += gclass156_0.gclass123_0.Vendarite * gclass156_0.decimal_0;
-        this.Sorium += gclass156_0.gclass123_0.Sorium * gclass156_0.decimal_0;
-        this.Uridium += gclass156_0.gclass123_0.Uridium * gclass156_0.decimal_0;
-        this.Corundium += gclass156_0.gclass123_0.Corundium * gclass156_0.decimal_0;
-        this.Gallicite += gclass156_0.gclass123_0.Gallicite * gclass156_0.decimal_0;
+        this.Duranium += gclass156_0.MineralCost.Duranium * gclass156_0.Amount;
+        this.Neutronium += gclass156_0.MineralCost.Neutronium * gclass156_0.Amount;
+        this.Corbomite += gclass156_0.MineralCost.Corbomite * gclass156_0.Amount;
+        this.Tritanium += gclass156_0.MineralCost.Tritanium * gclass156_0.Amount;
+        this.Boronide += gclass156_0.MineralCost.Boronide * gclass156_0.Amount;
+        this.Mercassium += gclass156_0.MineralCost.Mercassium * gclass156_0.Amount;
+        this.Vendarite += gclass156_0.MineralCost.Vendarite * gclass156_0.Amount;
+        this.Sorium += gclass156_0.MineralCost.Sorium * gclass156_0.Amount;
+        this.Uridium += gclass156_0.MineralCost.Uridium * gclass156_0.Amount;
+        this.Corundium += gclass156_0.MineralCost.Corundium * gclass156_0.Amount;
+        this.Gallicite += gclass156_0.MineralCost.Gallicite * gclass156_0.Amount;
     }
 
     public void method_9(GClass192 gclass192_0)
@@ -401,21 +401,21 @@ public class AllMineralsValue
     }
 
     // TODO: Probably Wreck/scrap mineral generation (0~50% cost of minerals)
-    public void method_13(GClass22 gclass22_0)
+    public void method_13(ShipClass gclass22_0)
     {
         try
         {
-            this.Duranium = gclass22_0.gclass123_0.Duranium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Neutronium = gclass22_0.gclass123_0.Neutronium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Corbomite = gclass22_0.gclass123_0.Corbomite * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Tritanium = gclass22_0.gclass123_0.Tritanium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Boronide = gclass22_0.gclass123_0.Boronide * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Mercassium = gclass22_0.gclass123_0.Mercassium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Vendarite = gclass22_0.gclass123_0.Vendarite * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Sorium = gclass22_0.gclass123_0.Sorium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Uridium = gclass22_0.gclass123_0.Uridium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Corundium = gclass22_0.gclass123_0.Corundium * AuroraUtils.GetRandomInteger(5) / 10M;
-            this.Gallicite = gclass22_0.gclass123_0.Gallicite * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Duranium = gclass22_0.ClassMaterials.Duranium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Neutronium = gclass22_0.ClassMaterials.Neutronium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Corbomite = gclass22_0.ClassMaterials.Corbomite * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Tritanium = gclass22_0.ClassMaterials.Tritanium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Boronide = gclass22_0.ClassMaterials.Boronide * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Mercassium = gclass22_0.ClassMaterials.Mercassium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Vendarite = gclass22_0.ClassMaterials.Vendarite * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Sorium = gclass22_0.ClassMaterials.Sorium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Uridium = gclass22_0.ClassMaterials.Uridium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Corundium = gclass22_0.ClassMaterials.Corundium * AuroraUtils.GetRandomInteger(5) / 10M;
+            this.Gallicite = gclass22_0.ClassMaterials.Gallicite * AuroraUtils.GetRandomInteger(5) / 10M;
         }
         catch (Exception ex)
         {
@@ -551,93 +551,93 @@ public class AllMineralsValue
         }
     }
 
-    public Decimal DetectShortage(GClass156 gclass156_0, Decimal decimal_11)
+    public Decimal DetectShortage(IndustrialProjects gclass156_0, Decimal decimal_11)
     {
         try
         {
             string str = "";
-            if (gclass156_0.gclass123_0.Duranium > 0M &&
-                this.Duranium < gclass156_0.gclass123_0.Duranium * decimal_11)
+            if (gclass156_0.MineralCost.Duranium > 0M &&
+                this.Duranium < gclass156_0.MineralCost.Duranium * decimal_11)
             {
-                decimal_11 = this.Duranium / gclass156_0.gclass123_0.Duranium;
+                decimal_11 = this.Duranium / gclass156_0.MineralCost.Duranium;
                 str = "Duranium";
             }
 
-            if (gclass156_0.gclass123_0.Neutronium > 0M &&
-                this.Neutronium < gclass156_0.gclass123_0.Neutronium * decimal_11)
+            if (gclass156_0.MineralCost.Neutronium > 0M &&
+                this.Neutronium < gclass156_0.MineralCost.Neutronium * decimal_11)
             {
-                decimal_11 = this.Neutronium / gclass156_0.gclass123_0.Neutronium;
+                decimal_11 = this.Neutronium / gclass156_0.MineralCost.Neutronium;
                 str = "Neutronium";
             }
 
-            if (gclass156_0.gclass123_0.Corbomite > 0M &&
-                this.Corbomite < gclass156_0.gclass123_0.Corbomite * decimal_11)
+            if (gclass156_0.MineralCost.Corbomite > 0M &&
+                this.Corbomite < gclass156_0.MineralCost.Corbomite * decimal_11)
             {
-                decimal_11 = this.Corbomite / gclass156_0.gclass123_0.Corbomite;
+                decimal_11 = this.Corbomite / gclass156_0.MineralCost.Corbomite;
                 str = "Corbomite";
             }
 
-            if (gclass156_0.gclass123_0.Tritanium > 0M &&
-                this.Tritanium < gclass156_0.gclass123_0.Tritanium * decimal_11)
+            if (gclass156_0.MineralCost.Tritanium > 0M &&
+                this.Tritanium < gclass156_0.MineralCost.Tritanium * decimal_11)
             {
-                decimal_11 = this.Tritanium / gclass156_0.gclass123_0.Tritanium;
+                decimal_11 = this.Tritanium / gclass156_0.MineralCost.Tritanium;
                 str = "Tritanium";
             }
 
-            if (gclass156_0.gclass123_0.Boronide > 0M &&
-                this.Boronide < gclass156_0.gclass123_0.Boronide * decimal_11)
+            if (gclass156_0.MineralCost.Boronide > 0M &&
+                this.Boronide < gclass156_0.MineralCost.Boronide * decimal_11)
             {
-                decimal_11 = this.Boronide / gclass156_0.gclass123_0.Boronide;
+                decimal_11 = this.Boronide / gclass156_0.MineralCost.Boronide;
                 str = "Boronide";
             }
 
-            if (gclass156_0.gclass123_0.Mercassium > 0M &&
-                this.Mercassium < gclass156_0.gclass123_0.Mercassium * decimal_11)
+            if (gclass156_0.MineralCost.Mercassium > 0M &&
+                this.Mercassium < gclass156_0.MineralCost.Mercassium * decimal_11)
             {
-                decimal_11 = this.Mercassium / gclass156_0.gclass123_0.Mercassium;
+                decimal_11 = this.Mercassium / gclass156_0.MineralCost.Mercassium;
                 str = "Mercassium";
             }
 
-            if (gclass156_0.gclass123_0.Vendarite > 0M &&
-                this.Vendarite < gclass156_0.gclass123_0.Vendarite * decimal_11)
+            if (gclass156_0.MineralCost.Vendarite > 0M &&
+                this.Vendarite < gclass156_0.MineralCost.Vendarite * decimal_11)
             {
-                decimal_11 = this.Vendarite / gclass156_0.gclass123_0.Vendarite;
+                decimal_11 = this.Vendarite / gclass156_0.MineralCost.Vendarite;
                 str = "Vendarite";
             }
 
-            if (gclass156_0.gclass123_0.Sorium > 0M &&
-                this.Sorium < gclass156_0.gclass123_0.Sorium * decimal_11)
+            if (gclass156_0.MineralCost.Sorium > 0M &&
+                this.Sorium < gclass156_0.MineralCost.Sorium * decimal_11)
             {
-                decimal_11 = this.Sorium / gclass156_0.gclass123_0.Sorium;
+                decimal_11 = this.Sorium / gclass156_0.MineralCost.Sorium;
                 str = "Sorium";
             }
 
-            if (gclass156_0.gclass123_0.Uridium > 0M &&
-                this.Uridium < gclass156_0.gclass123_0.Uridium * decimal_11)
+            if (gclass156_0.MineralCost.Uridium > 0M &&
+                this.Uridium < gclass156_0.MineralCost.Uridium * decimal_11)
             {
-                decimal_11 = this.Uridium / gclass156_0.gclass123_0.Uridium;
+                decimal_11 = this.Uridium / gclass156_0.MineralCost.Uridium;
                 str = "Uridium";
             }
 
-            if (gclass156_0.gclass123_0.Corundium > 0M &&
-                this.Corundium < gclass156_0.gclass123_0.Corundium * decimal_11)
+            if (gclass156_0.MineralCost.Corundium > 0M &&
+                this.Corundium < gclass156_0.MineralCost.Corundium * decimal_11)
             {
-                decimal_11 = this.Corundium / gclass156_0.gclass123_0.Corundium;
+                decimal_11 = this.Corundium / gclass156_0.MineralCost.Corundium;
                 str = "Corundium";
             }
 
-            if (gclass156_0.gclass123_0.Gallicite > 0M &&
-                this.Gallicite < gclass156_0.gclass123_0.Gallicite * decimal_11)
+            if (gclass156_0.MineralCost.Gallicite > 0M &&
+                this.Gallicite < gclass156_0.MineralCost.Gallicite * decimal_11)
             {
-                decimal_11 = this.Gallicite / gclass156_0.gclass123_0.Gallicite;
+                decimal_11 = this.Gallicite / gclass156_0.MineralCost.Gallicite;
                 str = "Gallicite";
             }
 
             if (str != "")
                 this.gclass0_0.gclass92_0.method_3(EventType.const_41,
-                    $"Shortage of {str} in Production of {gclass156_0.string_0} at {gclass156_0.gclass146_0.PopName}",
-                    gclass156_0.gclass21_0, gclass156_0.gclass146_0.SystemBodyData.SystemData, gclass156_0.gclass146_0,
-                    gclass156_0.gclass146_0.method_87(), gclass156_0.gclass146_0.method_88(),
+                    $"Shortage of {str} in Production of {gclass156_0.Description} at {gclass156_0.Population.PopName}",
+                    gclass156_0.Race, gclass156_0.Population.SystemBodyData.SystemData, gclass156_0.Population,
+                    gclass156_0.Population.method_87(), gclass156_0.Population.method_88(),
                     AuroraEventCategory.PopProduction);
             return Math.Round(decimal_11, 4);
         }
@@ -833,21 +833,21 @@ public class AllMineralsValue
         }
     }
 
-    public void method_20(GClass156 gclass156_0, Decimal decimal_11)
+    public void method_20(IndustrialProjects gclass156_0, Decimal decimal_11)
     {
         try
         {
-            this.Duranium -= gclass156_0.gclass123_0.Duranium * decimal_11;
-            this.Neutronium -= gclass156_0.gclass123_0.Neutronium * decimal_11;
-            this.Corbomite -= gclass156_0.gclass123_0.Corbomite * decimal_11;
-            this.Tritanium -= gclass156_0.gclass123_0.Tritanium * decimal_11;
-            this.Boronide -= gclass156_0.gclass123_0.Boronide * decimal_11;
-            this.Mercassium -= gclass156_0.gclass123_0.Mercassium * decimal_11;
-            this.Vendarite -= gclass156_0.gclass123_0.Vendarite * decimal_11;
-            this.Sorium -= gclass156_0.gclass123_0.Sorium * decimal_11;
-            this.Uridium -= gclass156_0.gclass123_0.Uridium * decimal_11;
-            this.Corundium -= gclass156_0.gclass123_0.Corundium * decimal_11;
-            this.Gallicite -= gclass156_0.gclass123_0.Gallicite * decimal_11;
+            this.Duranium -= gclass156_0.MineralCost.Duranium * decimal_11;
+            this.Neutronium -= gclass156_0.MineralCost.Neutronium * decimal_11;
+            this.Corbomite -= gclass156_0.MineralCost.Corbomite * decimal_11;
+            this.Tritanium -= gclass156_0.MineralCost.Tritanium * decimal_11;
+            this.Boronide -= gclass156_0.MineralCost.Boronide * decimal_11;
+            this.Mercassium -= gclass156_0.MineralCost.Mercassium * decimal_11;
+            this.Vendarite -= gclass156_0.MineralCost.Vendarite * decimal_11;
+            this.Sorium -= gclass156_0.MineralCost.Sorium * decimal_11;
+            this.Uridium -= gclass156_0.MineralCost.Uridium * decimal_11;
+            this.Corundium -= gclass156_0.MineralCost.Corundium * decimal_11;
+            this.Gallicite -= gclass156_0.MineralCost.Gallicite * decimal_11;
         }
         catch (Exception ex)
         {
@@ -1219,7 +1219,7 @@ public class AllMineralsValue
         }
     }
 
-    public void method_33(AuroraElement auroraElement_0, Decimal decimal_11)
+    public void AddSpecific(AuroraElement auroraElement_0, Decimal decimal_11)
     {
         try
         {

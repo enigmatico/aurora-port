@@ -21,13 +21,13 @@ public class GClass121
     public double double_0;
     public double double_1;
     public List<PopulationData> list_0 = new List<PopulationData>();
-    public List<FCTShipData40> list_1 = new List<FCTShipData40>();
-    public List<FCTShipData40> list_2 = new List<FCTShipData40>();
-    public List<FCTShipData40> list_3 = new List<FCTShipData40>();
+    public List<ShipData> list_1 = new List<ShipData>();
+    public List<ShipData> list_2 = new List<ShipData>();
+    public List<ShipData> list_3 = new List<ShipData>();
 
     public GClass121(GClass0 gclass0_1) => this.gclass0_0 = gclass0_1;
 
-    public Decimal method_0(Decimal decimal_2, FCTShipData40 gclass40_0_1)
+    public Decimal method_0(Decimal decimal_2, ShipData gclass40_0_1)
     {
         try
         {
@@ -52,9 +52,9 @@ public class GClass121
                 }
             }
 
-            this.list_3 = this.list_3.OrderByDescending<FCTShipData40, Decimal>(gclass40_0_2 => gclass40_0_2.decimal_4)
-                .ToList<FCTShipData40>();
-            foreach (FCTShipData40 gclass40 in this.list_3)
+            this.list_3 = this.list_3.OrderByDescending<ShipData, Decimal>(gclass40_0_2 => gclass40_0_2.decimal_4)
+                .ToList<ShipData>();
+            foreach (ShipData gclass40 in this.list_3)
             {
                 if (num1 + gclass40.method_167(AuroraComponentType.CargoShuttleBay) != 0)
                 {

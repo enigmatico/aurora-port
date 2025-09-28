@@ -19,7 +19,7 @@ public class NavalAdminCommand
     public NavalAdminCommand ParentAdminCommand;
     public GClass55 gclass55_0;
     public PopulationData gclass146_0;
-    public FCTShipData40 gclass40_0;
+    public ShipData gclass40_0;
     public NavalAdminCommandType gclass79_0;
     public CommanderBonusType genum121_0 = CommanderBonusType.PopulationGrowth;
     public CommanderBonusType genum121_1 = CommanderBonusType.WealthCreation;
@@ -84,7 +84,7 @@ public class NavalAdminCommand
                 gclass55_1_1.gclass40_0 = null;
                 gclass0_0.gclass92_0.method_2(EventType.const_78,
                     $"{gclass55_1_1.method_36()} assigned as commander of {AdminCommandName}", gclass55_1_1.gclass21_0,
-                    gclass146_0.gclass202_0.ActualSystemData, gclass146_0.method_87(), gclass146_0.method_88(),
+                    gclass146_0.gclass202_0.ActualSystem, gclass146_0.method_87(), gclass146_0.method_88(),
                     AuroraEventCategory.Commander);
             }
             else if (gclass40_0 != null)
@@ -93,7 +93,7 @@ public class NavalAdminCommand
                 gclass55_1_1.gclass40_0 = gclass40_0;
                 gclass0_0.gclass92_0.method_2(EventType.const_78,
                     $"{gclass55_1_1.method_36()} assigned as commander of {AdminCommandName}", gclass55_1_1.gclass21_0,
-                    gclass40_0.gclass85_0.System.ActualSystemData, gclass40_0.gclass85_0.XCoord,
+                    gclass40_0.gclass85_0.System.ActualSystem, gclass40_0.gclass85_0.XCoord,
                     gclass40_0.gclass85_0.YCoord, AuroraEventCategory.Commander);
             }
 
@@ -105,15 +105,15 @@ public class NavalAdminCommand
         }
     }
 
-    public List<FCTShipData40> method_1()
+    public List<ShipData> method_1()
     {
         try
         {
             var list = this.method_12();
             list.AddRange(this.method_2());
             // ISSUE: reference to a compiler-generated method
-            return this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(v => list.Contains(v.gclass85_0))
-                .ToList<FCTShipData40>();
+            return this.gclass0_0.Ships.Values.Where<ShipData>(v => list.Contains(v.gclass85_0))
+                .ToList<ShipData>();
         }
         catch (Exception ex)
         {
@@ -147,9 +147,9 @@ public class NavalAdminCommand
     {
         try
         {
-            PopulationData gclass146 = this.gclass0_0.PopulationDataDictionary.Values
+            PopulationData gclass146 = this.gclass0_0.Populations.Values
                 .Where<PopulationData>(gclass146_1 =>
-                    gclass146_1.RaceData == this.Race &&
+                    gclass146_1.Race == this.Race &&
                     gclass146_1.method_62(AuroraProductionCategory.NavalHeadquarters) > 0M)
                 .OrderByDescending<PopulationData, Decimal>(gclass146_0 =>
                     gclass146_0.method_62(AuroraProductionCategory.NavalHeadquarters)).FirstOrDefault<PopulationData>();
@@ -157,7 +157,7 @@ public class NavalAdminCommand
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_154,
                     $"Due to the destruction of its current headquarters on {this.gclass146_0.PopName}, {this.AdminCommandName} has been moved to {gclass146.PopName}",
-                    this.Race, gclass146.gclass202_0.ActualSystemData, gclass146.method_87(), gclass146.method_88(),
+                    this.Race, gclass146.gclass202_0.ActualSystem, gclass146.method_87(), gclass146.method_88(),
                     AuroraEventCategory.PopSummary);
                 this.gclass146_0 = gclass146;
             }
@@ -165,7 +165,7 @@ public class NavalAdminCommand
                 this.gclass0_0.gclass92_0.method_2(EventType.const_154,
                     this.AdminCommandName +
                     " is currently ineffective due to the destruction of its current headquarters. No other headquarters facilities are currently available",
-                    this.Race, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                    this.Race, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                     this.gclass146_0.method_88(), AuroraEventCategory.PopSummary);
         }
         catch (Exception ex)
@@ -233,9 +233,9 @@ public class NavalAdminCommand
             if (this.ParentAdminCommand != null)
             {
                 if (this.gclass146_0 != null)
-                    num *= this.ParentAdminCommand.method_5(this.gclass146_0.gclass202_0.ActualSystemData.SystemID, genum121_3);
+                    num *= this.ParentAdminCommand.method_5(this.gclass146_0.gclass202_0.ActualSystem.SystemID, genum121_3);
                 else if (this.gclass40_0 != null)
-                    num *= this.ParentAdminCommand.method_5(this.gclass40_0.gclass85_0.System.ActualSystemData.SystemID,
+                    num *= this.ParentAdminCommand.method_5(this.gclass40_0.gclass85_0.System.ActualSystem.SystemID,
                         genum121_3);
             }
 
@@ -289,7 +289,7 @@ public class NavalAdminCommand
             this.dictionary_0.Clear();
             if (this.gclass40_0 != null)
             {
-                this.dictionary_0.Add(this.gclass40_0.gclass85_0.System.ActualSystemData.SystemID,
+                this.dictionary_0.Add(this.gclass40_0.gclass85_0.System.ActualSystem.SystemID,
                     this.gclass40_0.gclass85_0.System);
             }
             else
@@ -341,7 +341,7 @@ public class NavalAdminCommand
             RankThemeEntry gclass61_1 = this.method_13();
             if (gclass61_1 == null)
             {
-                this.gclass61_0 = this.Race.method_253(GEnum15.const_1, AuroraCommanderType.Naval);
+                this.gclass61_0 = this.Race.GetRankThemeForCommanderLevel(CommanderLevel.LVL2, AuroraCommanderType.Naval);
             }
             else
             {
@@ -407,7 +407,7 @@ public class NavalAdminCommand
                 .Select<FleetData, GClass55>(gclass85_0 => gclass85_0.method_162())
                 .Where<GClass55>(gclass55_0 => gclass55_0 != null).ToList<GClass55>();
             return list.Count == 0
-                ? this.Race.method_253(GEnum15.const_0, AuroraCommanderType.Naval)
+                ? this.Race.GetRankThemeForCommanderLevel(CommanderLevel.LVL1, AuroraCommanderType.Naval)
                 : list.Select<GClass55, RankThemeEntry>(gclass55_0 => gclass55_0.gclass61_0)
                     .OrderBy<RankThemeEntry, int>(gclass61_0 => gclass61_0.RankNum).FirstOrDefault<RankThemeEntry>();
         }

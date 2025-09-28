@@ -135,7 +135,7 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (SystemData200 gclass200 in this.SystemDataDictionary.Values)
+                foreach (StarSystem gclass200 in this.StarSystemDictionary.Values)
                 {
                     try
                     {
@@ -235,8 +235,8 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (FCTSquadronData70 gclass70 in this.FCTShipDataDictionary.Values
-                             .SelectMany<FCTShipData40, FCTSquadronData70>(gclass40_0 =>
+                foreach (FCTSquadronData70 gclass70 in this.Ships.Values
+                             .SelectMany<ShipData, FCTSquadronData70>(gclass40_0 =>
                                  gclass40_0.ChildSquadronDictionary.Values).ToList<FCTSquadronData70>())
                 {
                     sqLiteCommand.CommandText =
@@ -555,7 +555,7 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (MapLabelData122 gclass122 in this.FCTRaceRecordDic.Values
+                foreach (MapLabelData122 gclass122 in this.GameRaces.Values
                              .SelectMany<GameRace, MapLabelData122>(
                                  gclass21_0 => gclass21_0.MapLabelList).ToList<MapLabelData122>())
                 {
@@ -591,9 +591,9 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (SurveyLocation213 gclass213 in this.SystemDataDictionary.Values
-                             .SelectMany<SystemData200, SurveyLocation213>(gclass200_0 =>
-                                 gclass200_0.SurveyLocationDictionary.Values).ToList<SurveyLocation213>())
+                foreach (SurveyLocation gclass213 in this.StarSystemDictionary.Values
+                             .SelectMany<StarSystem, SurveyLocation>(gclass200_0 =>
+                                 gclass200_0.SurveyLocationDictionary.Values).ToList<SurveyLocation>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_SurveyLocation (SurveyLocationID, GameID, SystemID, LocationNumber, Xcor, Ycor ) VALUES ( @SurveyLocationID, @GameID, @SystemID, @LocationNumber, @Xcor, @Ycor)";
@@ -604,7 +604,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass213.XCoord);
                     sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass213.YCoord);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (int num in gclass213.list_0)
+                    foreach (int num in gclass213.RaceIDs)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_RaceSurveyLocation ( RaceID, GameID, SystemID, LocationNumber ) VALUES ( @RaceID, @GameID, @SystemID, @LocationNumber )";
@@ -674,7 +674,7 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (JumpPoint120 gclass120 in this.JumpPointDictionary.Values)
+                foreach (JumpPoint gclass120 in this.JumpPointDictionary.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_JumpPoint (WarpPointID, GameID, SystemID, Distance, Bearing, WPLink, Xcor, Ycor, JumpGateStrength, JumpGateRaceID ) VALUES ( @WarpPointID, @GameID, @SystemID, @Distance, @Bearing, @WPLink, @Xcor, @Ycor, @JumpGateStrength, @JumpGateRaceID)";
@@ -713,7 +713,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@OrderTemplateID", gclass144.OrderTemplateID);
                     sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass144.RaceData.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@StartSystemID", gclass144.RaceSystem.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@StartSystemID", gclass144.RaceSystem.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@TemplateName", gclass144.TemplateName);
                     sqLiteCommand.ExecuteNonQuery();
                 }
@@ -761,8 +761,8 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (ShipTechData182 gclass182 in this.FCTShipDataDictionary.Values
-                             .SelectMany<FCTShipData40, ShipTechData182>(gclass40_0 => gclass40_0.ShipTechDataList)
+                foreach (ShipTechData182 gclass182 in this.Ships.Values
+                             .SelectMany<ShipData, ShipTechData182>(gclass40_0 => gclass40_0.ShipTechDataList)
                              .ToList<ShipTechData182>())
                 {
                     sqLiteCommand.CommandText =
@@ -817,23 +817,23 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass214 gclass214 in this.dictionary_13.Values)
+                foreach (Waypoint gclass214 in this.Waypoints.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Waypoint (WaypointID, GameID, RaceID, SystemID, OrbitBodyID, CreationTime, Xcor, Ycor, Number, WaypointType, Name, JumpPointID, FleetID ) \r\n                                VALUES ( @WaypointID, @GameID, @RaceID, @SystemID, @OrbitBodyID, @CreationTime, @Xcor, @Ycor, @Number, @WaypointType, @Name, @JumpPointID, @FleetID)";
-                    sqLiteCommand.Parameters.AddWithValue("@WaypointID", gclass214.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@WaypointID", gclass214.WaypointID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass214.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass214.gclass200_0.SystemID);
-                    sqLiteCommand.Parameters.AddWithValue("@OrbitBodyID", gclass214.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@CreationTime", gclass214.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass214.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass214.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Number", gclass214.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@WaypointType", gclass214.wayPointType_0);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass214.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass214.System.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@OrbitBodyID", gclass214.OrbitBodyID);
+                    sqLiteCommand.Parameters.AddWithValue("@CreationTime", gclass214.CreationTime);
+                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass214.Xcor);
+                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass214.Ycor);
+                    sqLiteCommand.Parameters.AddWithValue("@Number", gclass214.Number);
+                    sqLiteCommand.Parameters.AddWithValue("@WaypointType", gclass214.WaypointType);
                     sqLiteCommand.Parameters.AddWithValue("@Name", gclass214.Name);
                     sqLiteCommand.Parameters.AddWithValue("@JumpPointID", gclass214.method_0());
-                    sqLiteCommand.Parameters.AddWithValue("@FleetID", gclass214.int_2);
+                    sqLiteCommand.Parameters.AddWithValue("@FleetID", gclass214.FleetID);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -898,19 +898,19 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass212 gclass212 in this.dictionary_14.Values)
+                foreach (LagrangePoint gclass212 in this.LagrangePoints.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_LagrangePoint (LaGrangePointID, GameID, SystemID, StarID, PlanetID, Xcor, Ycor, Distance, Bearing ) VALUES ( @LaGrangePointID, @GameID, @SystemID, @StarID, @PlanetID, @Xcor, @Ycor, @Distance, @Bearing)";
-                    sqLiteCommand.Parameters.AddWithValue("@LaGrangePointID", gclass212.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@LaGrangePointID", gclass212.LaGrangePointID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass212.gclass200_0.SystemID);
-                    sqLiteCommand.Parameters.AddWithValue("@StarID", gclass212.gclass197_0.StarID);
-                    sqLiteCommand.Parameters.AddWithValue("@PlanetID", gclass212.gclass1_0.SystemBodyID);
-                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass212.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass212.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Distance", gclass212.double_2);
-                    sqLiteCommand.Parameters.AddWithValue("@Bearing", gclass212.double_3);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass212.System.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@StarID", gclass212.Star.StarID);
+                    sqLiteCommand.Parameters.AddWithValue("@PlanetID", gclass212.Planet.SystemBodyID);
+                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass212.XCor);
+                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass212.Ycor);
+                    sqLiteCommand.Parameters.AddWithValue("@Distance", gclass212.Distance);
+                    sqLiteCommand.Parameters.AddWithValue("@Bearing", gclass212.Bearing);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -929,18 +929,18 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass190 gclass190 in this.PopulationDataDictionary.Values
-                             .SelectMany<PopulationData, GClass190>(gclass146_0 => gclass146_0.dictionary_4.Values)
-                             .ToList<GClass190>())
+                foreach (PopTradeBalance gclass190 in this.Populations.Values
+                             .SelectMany<PopulationData, PopTradeBalance>(gclass146_0 => gclass146_0.TradeBalances.Values)
+                             .ToList<PopTradeBalance>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_PopTradeBalance (PopulationID, TradeGoodID, GameID, ProductionRate, TradeBalance, LastTradeBalance ) VALUES ( @PopulationID, @TradeGoodID, @GameID, @ProductionRate, @TradeBalance, @LastTradeBalance )";
-                    sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass190.gclass146_0.PopulationID);
-                    sqLiteCommand.Parameters.AddWithValue("@TradeGoodID", gclass190.gclass189_0.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass190.Population.PopulationID);
+                    sqLiteCommand.Parameters.AddWithValue("@TradeGoodID", gclass190.TradeGood.TradeGoodID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@ProductionRate", gclass190.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@TradeBalance", gclass190.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@LastTradeBalance", gclass190.decimal_2);
+                    sqLiteCommand.Parameters.AddWithValue("@ProductionRate", gclass190.ProductionRate);
+                    sqLiteCommand.Parameters.AddWithValue("@TradeBalance", gclass190.TradeBalance);
+                    sqLiteCommand.Parameters.AddWithValue("@LastTradeBalance", gclass190.LastTradeBalance);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -969,7 +969,7 @@ public partial class GClass0
                     if (gclass188.Ship != null)
                         num1 = gclass188.Ship.int_8;
                     if (gclass188.TradeGood != null)
-                        num2 = gclass188.TradeGood.int_0;
+                        num2 = gclass188.TradeGood.TradeGoodID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_ShippingWealthData (GameID, ShippingLineID, ShipID, Contract, Colonist, Fuel, Amount, TradeGood, TradeTime, OriginPop, DestinationPop ) VALUES ( @GameID, @ShippingLineID, @ShipID, @Contract, @Colonist, @Fuel, @Amount, @TradeGood, @TradeTime, @OriginPop, @DestinationPop )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
@@ -1052,7 +1052,7 @@ public partial class GClass0
                     if (gclass139.Population != null)
                         num1 = gclass139.Population.PopulationID;
                     if (gclass139.NewSystem != null)
-                        num2 = gclass139.NewSystem.ActualSystemData.SystemID;
+                        num2 = gclass139.NewSystem.ActualSystem.SystemID;
                     if (gclass139.NewJumpPoint != null)
                         num3 = gclass139.NewJumpPoint.WarpPointID;
                     sqLiteCommand.CommandText =
@@ -1063,7 +1063,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@FleetID", gclass139.Fleet.FleetID);
                     sqLiteCommand.Parameters.AddWithValue("@MoveActionID", gclass139.MoveActionType.MoveActionType);
                     sqLiteCommand.Parameters.AddWithValue("@MoveOrder", gclass139.OrderValue);
-                    sqLiteCommand.Parameters.AddWithValue("@StartSystemID", gclass139.StartSystem.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@StartSystemID", gclass139.StartSystem.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@DestinationType", gclass139.DestinationType);
                     sqLiteCommand.Parameters.AddWithValue("@DestinationID", gclass139.DestinationID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", num1);
@@ -1110,7 +1110,7 @@ public partial class GClass0
                     if (gclass145.Population != null)
                         num1 = gclass145.Population.PopulationID;
                     if (gclass145.NewSystem != null)
-                        num2 = gclass145.NewSystem.ActualSystemData.SystemID;
+                        num2 = gclass145.NewSystem.ActualSystem.SystemID;
                     if (gclass145.NewJumpPoint != null)
                         num3 = gclass145.NewJumpPoint.WarpPointID;
                     sqLiteCommand.CommandText =
@@ -1119,7 +1119,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@MoveIndex", gclass145.MoveIndex);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@MoveActionID", gclass145.MoveAction.MoveActionType);
-                    sqLiteCommand.Parameters.AddWithValue("@StartSystemID", gclass145.StartSystem.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@StartSystemID", gclass145.StartSystem.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@DestinationType", gclass145.DestinationType);
                     sqLiteCommand.Parameters.AddWithValue("@DestinationID", gclass145.DestinationID);
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", num1);
@@ -1345,16 +1345,16 @@ public partial class GClass0
             {
                 using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
                 {
-                    foreach (GClass215 gclass215 in this.list_9
-                                 .Where<GClass215>(gclass215_0 => gclass215_0.genum5_0 == Unknown_SystemBodyDataUpdateLevel.FullUpdate)
-                                 .ToList<GClass215>())
+                    foreach (RacialSystemBodySurvey gclass215 in this.SystemBodySurveys
+                                 .Where<RacialSystemBodySurvey>(gclass215_0 => gclass215_0.UnknownEnumFlag == Unknown_SystemBodyDataUpdateLevel.FullUpdate)
+                                 .ToList<RacialSystemBodySurvey>())
                     {
-                        gclass215.genum5_0 = Unknown_SystemBodyDataUpdateLevel.BasicUpdate;
+                        gclass215.UnknownEnumFlag = Unknown_SystemBodyDataUpdateLevel.BasicUpdate;
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_SystemBodySurveys ( GameID, RaceID, SystemBodyID) VALUES ( @GameID, @RaceID, @SystemBodyID )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass215.gclass21_0.RaceID);
-                        sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass215.gclass1_0.SystemBodyID);
+                        sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass215.Race.RaceID);
+                        sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass215.SystemBody.SystemBodyID);
                         sqLiteCommand.ExecuteNonQuery();
                     }
                 }
@@ -1365,14 +1365,14 @@ public partial class GClass0
                     sqliteConnection_0).ExecuteNonQuery();
                 using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
                 {
-                    foreach (GClass215 gclass215 in this.list_9)
+                    foreach (RacialSystemBodySurvey gclass215 in this.SystemBodySurveys)
                     {
-                        gclass215.genum5_0 = Unknown_SystemBodyDataUpdateLevel.BasicUpdate;
+                        gclass215.UnknownEnumFlag = Unknown_SystemBodyDataUpdateLevel.BasicUpdate;
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_SystemBodySurveys ( GameID, RaceID, SystemBodyID) VALUES ( @GameID, @RaceID, @SystemBodyID )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass215.gclass21_0.RaceID);
-                        sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass215.gclass1_0.SystemBodyID);
+                        sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass215.Race.RaceID);
+                        sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass215.SystemBody.SystemBodyID);
                         sqLiteCommand.ExecuteNonQuery();
                     }
                 }
@@ -1440,7 +1440,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GameRace gclass21 in this.FCTRaceRecordDic.Values)
+                foreach (GameRace gclass21 in this.GameRaces.Values)
                 {
                     foreach (GClass135 gclass135 in gclass21.dictionary_9.Values)
                     {
@@ -1539,7 +1539,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@OrbitDistance", gclass85.OrbitDistance);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitBearing", gclass85.OrbitBearing);
                     sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass85.Race.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass85.System.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass85.System.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@TradeLocation", gclass85.TradeLocation);
                     sqLiteCommand.Parameters.AddWithValue("@CivilianFunction", gclass85.CivilianFunction);
                     sqLiteCommand.Parameters.AddWithValue("@NPRHomeGuard", gclass85.IsNPRHomeguard);
@@ -1639,17 +1639,17 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass158 gclass158 in this.PopulationDataDictionary.Values
-                             .SelectMany<PopulationData, GClass158>(gclass146_0 => gclass146_0.dictionary_0.Values)
-                             .ToList<GClass158>())
+                foreach (PopulationInstallation gclass158 in this.Populations.Values
+                             .SelectMany<PopulationData, PopulationInstallation>(gclass146_0 => gclass146_0.dictionary_0.Values)
+                             .ToList<PopulationInstallation>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_PopulationInstallations ( GameID, PopID, PlanetaryInstallationID, Amount ) VALUES ( @GameID, @PopID, @PlanetaryInstallationID, @Amount )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@PopID", gclass158.gclass146_0.PopulationID);
+                    sqLiteCommand.Parameters.AddWithValue("@PopID", gclass158.Population.PopulationID);
                     sqLiteCommand.Parameters.AddWithValue("@PlanetaryInstallationID",
-                        gclass158.gclass157_0.InstallationType);
-                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass158.decimal_0);
+                        gclass158.InstallationType.InstallationType);
+                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass158.Amount);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -1668,23 +1668,23 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (FCTShipData40 gclass40 in this.FCTShipDataDictionary.Values)
+                foreach (ShipData gclass40 in this.Ships.Values)
                 {
-                    foreach (GClass158 gclass158 in gclass40.dictionary_2.Values)
+                    foreach (PopulationInstallation gclass158 in gclass40.TransportedInstallations.Values)
                     {
                         try
                         {
                             int num = 0;
-                            if (gclass158.gclass146_1 != null)
-                                num = gclass158.gclass146_1.PopulationID;
+                            if (gclass158.PopOrigin != null)
+                                num = gclass158.PopOrigin.PopulationID;
                             sqLiteCommand.CommandText =
                                 "INSERT INTO FCT_ShipCargo ( GameID, ShipID, CargoTypeID, CargoID, Amount, SpeciesID, StartingPop, Neutral ) VALUES ( @GameID, @ShipID, @CargoTypeID, @CargoID, @Amount, @SpeciesID, @StartingPop, @Neutral )";
                             sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                             sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
                             sqLiteCommand.Parameters.AddWithValue("@CargoTypeID", 2);
                             sqLiteCommand.Parameters.AddWithValue("@CargoID",
-                                gclass158.gclass157_0.InstallationType);
-                            sqLiteCommand.Parameters.AddWithValue("@Amount", gclass158.decimal_0);
+                                gclass158.InstallationType.InstallationType);
+                            sqLiteCommand.Parameters.AddWithValue("@Amount", gclass158.Amount);
                             sqLiteCommand.Parameters.AddWithValue("@SpeciesID", 0);
                             sqLiteCommand.Parameters.AddWithValue("@StartingPop", num);
                             sqLiteCommand.Parameters.AddWithValue("@Neutral", false);
@@ -1696,61 +1696,61 @@ public partial class GClass0
                         }
                     }
 
-                    foreach (GClass191 gclass191 in gclass40.dictionary_3.Values)
+                    foreach (TransportedTradeGood gclass191 in gclass40.TransportedTradeGoods.Values)
                     {
                         int num = 0;
-                        if (gclass191.gclass146_0 != null)
-                            num = gclass191.gclass146_0.PopulationID;
+                        if (gclass191.PopOrigin != null)
+                            num = gclass191.PopOrigin.PopulationID;
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipCargo ( GameID, ShipID, CargoTypeID, CargoID, Amount, SpeciesID, StartingPop, Neutral ) VALUES ( @GameID, @ShipID, @CargoTypeID, @CargoID, @Amount, @SpeciesID, @StartingPop, @Neutral )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
                         sqLiteCommand.Parameters.AddWithValue("@CargoTypeID", 7);
-                        sqLiteCommand.Parameters.AddWithValue("@CargoID", gclass191.gclass189_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass191.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CargoID", gclass191.TradeGood.TradeGoodID);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass191.Amount);
                         sqLiteCommand.Parameters.AddWithValue("@SpeciesID", 0);
                         sqLiteCommand.Parameters.AddWithValue("@StartingPop", num);
                         sqLiteCommand.Parameters.AddWithValue("@Neutral", false);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass181 gclass181 in gclass40.list_18)
+                    foreach (TransportedColonist gclass181 in gclass40.TransportedColonists)
                     {
                         int num = 0;
-                        if (gclass181.gclass146_0 != null)
-                            num = gclass181.gclass146_0.PopulationID;
+                        if (gclass181.PopOrigin != null)
+                            num = gclass181.PopOrigin.PopulationID;
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipCargo ( GameID, ShipID, CargoTypeID, CargoID, Amount, SpeciesID, StartingPop, Neutral ) VALUES ( @GameID, @ShipID, @CargoTypeID, @CargoID, @Amount, @SpeciesID, @StartingPop, @Neutral )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
                         sqLiteCommand.Parameters.AddWithValue("@CargoTypeID", GEnum26.const_0);
                         sqLiteCommand.Parameters.AddWithValue("@CargoID", 0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass181.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass181.gclass194_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass181.Amount);
+                        sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass181.Species.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@StartingPop", num);
-                        sqLiteCommand.Parameters.AddWithValue("@Neutral", gclass181.bool_0);
+                        sqLiteCommand.Parameters.AddWithValue("@Neutral", gclass181.Neutral);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass73 gclass73 in gclass40.list_17)
+                    foreach (TransportedComponent gclass73 in gclass40.TransportedComponents)
                     {
                         int num = 0;
-                        if (gclass73.gclass146_0 != null)
-                            num = gclass73.gclass146_0.PopulationID;
+                        if (gclass73.PopOrigin != null)
+                            num = gclass73.PopOrigin.PopulationID;
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipCargo ( GameID, ShipID, CargoTypeID, CargoID, Amount, SpeciesID, StartingPop, Neutral ) VALUES ( @GameID, @ShipID, @CargoTypeID, @CargoID, @Amount, @SpeciesID, @StartingPop, @Neutral )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
                         sqLiteCommand.Parameters.AddWithValue("@CargoTypeID", GEnum26.const_4);
-                        sqLiteCommand.Parameters.AddWithValue("@CargoID", gclass73.gclass230_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass73.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@CargoID", gclass73.Component.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass73.Amount);
                         sqLiteCommand.Parameters.AddWithValue("@SpeciesID", 0);
                         sqLiteCommand.Parameters.AddWithValue("@StartingPop", num);
                         sqLiteCommand.Parameters.AddWithValue("@Neutral", false);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (SingleMineralValue gclass125 in gclass40.gclass123_0.GetAsSingleMineralValueList())
+                    foreach (SingleMineralValue gclass125 in gclass40.TransportedMineral.GetAsSingleMineralValueList())
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipCargo ( GameID, ShipID, CargoTypeID, CargoID, Amount, SpeciesID, StartingPop, Neutral ) VALUES ( @GameID, @ShipID, @CargoTypeID, @CargoID, @Amount, @SpeciesID, @StartingPop, @Neutral )";
@@ -1791,13 +1791,13 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (PopulationData gclass146 in this.PopulationDataDictionary.Values)
+                foreach (PopulationData gclass146 in this.Populations.Values)
                 {
                     int num1 = 0;
                     int num2 = 0;
                     int num3 = 0;
                     int num4 = 0;
-                    AtmosphericGas genum47 = AtmosphericGas.const_0;
+                    GasType genum47 = GasType.None;
                     int num5 = 0;
                     int num6 = 0;
                     int num7 = 0;
@@ -1810,7 +1810,7 @@ public partial class GClass0
                     if (gclass146.GenModSpeciesData != null)
                         num4 = gclass146.GenModSpeciesData.int_0;
                     if (gclass146.TerraformingTargetGas != null)
-                        genum47 = gclass146.TerraformingTargetGas.AtmosphericGas;
+                        genum47 = gclass146.TerraformingTargetGas.Type;
                     if (gclass146.MassDriverDestPopulation != null)
                         num5 = gclass146.MassDriverDestPopulation.PopulationID;
                     if (gclass146.gclass6_0 != null)
@@ -1821,8 +1821,8 @@ public partial class GClass0
                         "INSERT INTO FCT_Population ( PopulationID, GameID, RaceID, SpeciesID, PopName, AcademyOfficers, Capital, TerraformStatus, PurchaseCivilianMinerals, ColonistDestination, Efficiency, FighterDestFleetID, SpaceStationDestFleetID, ParasiteSourceID, FuelProdStatus, GeneticProdStatus, FuelStockpile, GenModSpeciesID, GroundAttackID, LastColonyCost, MaintenanceStockpile, MaintProdStatus, MassDriverDest, MaxAtm,\r\n                        NoStatusChange, PoliticalStatus, Population, PreviousUnrest, ProvideColonists, ReqInf, StatusPoints, SystemID, SystemBodyID, TempMF, TerraformingGasID, UnrestPoints, GroundGeoSurvey, DestroyedInstallationSize, Duranium, Neutronium, Corbomite, Tritanium, Boronide, Mercassium, Vendarite, Sorium, Uridium, Corundium, Gallicite,\r\n                        LastDuranium, LastNeutronium, LastCorbomite, LastTritanium, LastBoronide, LastMercassium, LastVendarite, LastSorium, LastUridium, LastCorundium, LastGallicite, ReserveDuranium, ReserveNeutronium, ReserveCorbomite, ReserveTritanium, ReserveBoronide, ReserveMercassium, ReserveVendarite, ReserveSorium, ReserveUridium, ReserveCorundium, ReserveGallicite, \r\n                        AIValue, InvasionStagingPoint, OriginalRaceID, DoNotDelete, MilitaryRestrictedColony, AutoRefuel, AcademyName, BonusOne, BonusTwo, BonusThree, AutoAssign, Importance, AvailableColonists, ColonizationPressure, WarningFuel, WarningMSP, WarningConstant) \r\n                        VALUES ( @PopulationID, @GameID, @RaceID, @SpeciesID, @PopName, @AcademyOfficers, @Capital, @TerraformStatus, @PurchaseCivilianMinerals, @ColonistDestination, @Efficiency, @FighterDestFleetID, @SpaceStationDestFleetID, @ParasiteSourceID, @FuelProdStatus, @GeneticProdStatus, @FuelStockpile, @GenModSpeciesID, @GroundAttackID, @LastColonyCost, @MaintenanceStockpile, @MaintProdStatus, @MassDriverDest, @MaxAtm,\r\n                        @NoStatusChange, @PoliticalStatus, @Population, @PreviousUnrest, @ProvideColonists, @ReqInf, @StatusPoints, @SystemID, @SystemBodyID, @TempMF, @TerraformingGasID, @UnrestPoints, @GroundGeoSurvey, @DestroyedInstallationSize, @Duranium, @Neutronium, @Corbomite, @Tritanium, @Boronide, @Mercassium, @Vendarite, @Sorium, @Uridium, @Corundium, @Gallicite,\r\n                        @LastDuranium, @LastNeutronium, @LastCorbomite, @LastTritanium, @LastBoronide, @LastMercassium, @LastVendarite, @LastSorium, @LastUridium, @LastCorundium, @LastGallicite, @ReserveDuranium, @ReserveNeutronium, @ReserveCorbomite, @ReserveTritanium, @ReserveBoronide, @ReserveMercassium, @ReserveVendarite, @ReserveSorium, @ReserveUridium, @ReserveCorundium, @ReserveGallicite, \r\n                        @AIValue, @InvasionStagingPoint, @OriginalRaceID, @DoNotDelete, @MilitaryRestrictedColony, @AutoRefuel, @AcademyName, @BonusOne, @BonusTwo, @BonusThree, @AutoAssign, @Importance, @AvailableColonists, @ColonizationPressure, @WarningFuel, @WarningMSP, @WarningConstant)";
                     sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass146.PopulationID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass146.RaceData.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass146.SpeciesData.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass146.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass146.Species.int_0);
                     sqLiteCommand.Parameters.AddWithValue("@PopName", gclass146.PopName);
                     sqLiteCommand.Parameters.AddWithValue("@AcademyOfficers", gclass146.AcademyOfficers);
                     sqLiteCommand.Parameters.AddWithValue("@Capital", gclass146.bIsCapital);
@@ -1850,7 +1850,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@ProvideColonists", gclass146.ProvideColonists);
                     sqLiteCommand.Parameters.AddWithValue("@ReqInf", gclass146.ReqInf);
                     sqLiteCommand.Parameters.AddWithValue("@StatusPoints", gclass146.StatusPoints);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass146.gclass202_0.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass146.gclass202_0.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass146.SystemBodyData.SystemBodyID);
                     sqLiteCommand.Parameters.AddWithValue("@TempMF", gclass146.TempMF);
                     sqLiteCommand.Parameters.AddWithValue("@TerraformingGasID", genum47);
@@ -1908,14 +1908,14 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@WarningMSP", gclass146.WarningMSP);
                     sqLiteCommand.Parameters.AddWithValue("@WarningConstant", gclass146.WarningConstant);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (GClass130 gclass130 in gclass146.list_1)
+                    foreach (PopOrdnanceStock gclass130 in gclass146.OrdnanceStocks)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PopulationWeapon (GameID, PopulationID, MissileID, Amount ) VALUES ( @GameID, @PopulationID, @MissileID, @Amount )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass146.PopulationID);
-                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.gclass129_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.RaceMissile.MissileID);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.Amount);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
@@ -1932,28 +1932,28 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass73 gclass73 in gclass146.list_2)
+                    foreach (TransportedComponent gclass73 in gclass146.list_2)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PopComponent (ComponentID, PopulationID, GameID, Amount ) VALUES ( @ComponentID, @PopulationID, @GameID, @Amount )";
-                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass73.gclass230_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass73.Component.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass146.PopulationID);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass73.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass73.Amount);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass148 gclass148 in gclass146.dictionary_5.Values)
+                    foreach (PopInstallationDemand gclass148 in gclass146.InstallationDemands.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_PopInstallationDemand (PopulationID, InstallationID, Amount, GameID, Export, NonEssential ) VALUES ( @PopulationID, @InstallationID, @Amount, @GameID, @Export, @NonEssential )";
                         sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass146.PopulationID);
                         sqLiteCommand.Parameters.AddWithValue("@InstallationID",
-                            gclass148.gclass157_0.InstallationType);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass148.decimal_0);
+                            gclass148.InstallationType.InstallationType);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass148.Amount);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@Export", gclass148.bool_0);
-                        sqLiteCommand.Parameters.AddWithValue("@NonEssential", gclass148.bool_1);
+                        sqLiteCommand.Parameters.AddWithValue("@Export", gclass148.Export);
+                        sqLiteCommand.Parameters.AddWithValue("@NonEssential", gclass148.NonEssential);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
@@ -1993,20 +1993,20 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass124 gclass124 in this.SystemBodyRecordDic.Values
-                             .SelectMany<SystemBodyData, GClass124>(gclass1_0 =>
-                                 this.gclass1_0.dictionary_0.Values).ToList<GClass124>())
+                foreach (MineralDeposit gclass124 in this.SystemBodyRecordDic.Values
+                             .SelectMany<SystemBodyData, MineralDeposit>(gclass1_0 =>
+                                 this.gclass1_0.MineralDeposits.Values).ToList<MineralDeposit>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_MineralDeposit ( GameID, MaterialID, SystemID, SystemBodyID, Amount, Accessibility, HalfOriginalAmount, OriginalAcc ) VALUES ( @GameID, @MaterialID, @SystemID, @SystemBodyID, @Amount, @Accessibility, @HalfOriginalAmount, @OriginalAcc )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@MaterialID", gclass124.auroraElement_0);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", this.SystemBodyRecordDic[gclass124.int_0].SystemID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass124.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass124.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Accessibility", gclass124.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@HalfOriginalAmount", gclass124.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@OriginalAcc", gclass124.decimal_3);
+                    sqLiteCommand.Parameters.AddWithValue("@MaterialID", gclass124.MaterialID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", this.SystemBodyRecordDic[gclass124.SystemBodyID].SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass124.SystemBodyID);
+                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass124.Amount);
+                    sqLiteCommand.Parameters.AddWithValue("@Accessibility", gclass124.Accessibility);
+                    sqLiteCommand.Parameters.AddWithValue("@HalfOriginalAmount", gclass124.HalfOriginalAmount);
+                    sqLiteCommand.Parameters.AddWithValue("@OriginalAcc", gclass124.OriginalAcc);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -2036,7 +2036,7 @@ public partial class GClass0
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
                 int num1 = 0;
-                foreach (GClass22 gclass22 in this.dictionary_3.Values)
+                foreach (ShipClass gclass22 in this.ShipClasses.Values)
                 {
                     int num2 = 0;
                     num1 = 0;
@@ -2048,140 +2048,140 @@ public partial class GClass0
                         num2 = gclass22.gclass187_0.int_0;
                     if (gclass22.gclass163_0 != null)
                         num3 = (int)gclass22.gclass163_0.TechType;
-                    if (gclass22.gclass14_0 != null)
-                        genum120 = gclass22.gclass14_0.AutomatedClassDesignTypeID;
-                    if (gclass22.gclass140_0 != null)
-                        num4 = gclass22.gclass140_0.ThemeID;
-                    if (gclass22.gclass76_0 != null)
-                        num5 = gclass22.gclass76_0.ShipHullDescriptionID;
-                    int num6 = gclass22.gclass61_0 != null
-                        ? gclass22.gclass21_0.method_254(gclass22.gclass61_0, AuroraCommanderType.Naval)
-                        : gclass22.int_18;
+                    if (gclass22.AutomatedClassDesign != null)
+                        genum120 = gclass22.AutomatedClassDesign.AutomatedClassDesignTypeID;
+                    if (gclass22.NameTheme != null)
+                        num4 = gclass22.NameTheme.ThemeID;
+                    if (gclass22.ShipHull != null)
+                        num5 = gclass22.ShipHull.ShipHullDescriptionID;
+                    int num6 = gclass22.RankTheme != null
+                        ? gclass22.Race.method_254(gclass22.RankTheme, AuroraCommanderType.Naval)
+                        : gclass22.RankRequired;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_ShipClass (ShipClassID, ClassShippingLineID, AutomatedDesignID, ClassName, GameID, RaceID, ActiveSensorStrength, ArmourThickness, ArmourWidth, BaseFailureChance, CargoCapacity, ClassCrossSection, ClassThermal, Collier, ColonistCapacity, CommanderPriority, CommercialJumpDrive, MilitaryEngines, ControlRating, ConscriptOnly, \r\n                        Cost, Crew, CrewQuartersHS, TroopTransportType, DCRating, ActiveJammerStrength, FireControlJammerStrength, MissileJammerStrength, MissileJammerCount, ELINTRating, DiplomacyRating, BioEnergyCapacity, ClassHullNumbers, NoOfficers, RepairYardCapacity, ArkShip, FlagBridge,\r\n                        EMSensorStrength, EnginePower, ESMaxDACRoll, FighterClass, Commercial, FuelCapacity, FuelEfficiency, FuelTanker, GeoSurvey, GravSurvey, Harvesters, HullDescriptionID, JGConstructionTime, JumpDistance, JumpRating, Locked, MagazineCapacity, DecoyCapacity, MaxChance, MaxDACRoll, MaxSpeed, MaintModules, MinimumFuel, MinimumSupplies, MiningModules, NameThemeID, NoArmour, \r\n                        Notes, MainFunction, Obsolete, OtherRaceClassID, ParasiteCapacity, PassiveSensorStrength, PlannedDeployment, PreTNT, ProtectionValue, RankRequired, ReactorPower, RecreationalModule, MoraleCheckRequired, RefuelPriority, ResupplyPriority, RefuellingRate, RequiredPower, SalvageRate, SensorReduction, ShieldStrength, Size, MaintSupplies, STSTractor, \r\n                        SupplyShip, Terraformers, TotalNumber, CargoShuttleStrength, TroopCapacity, WorkerCapacity, MaintPriority, CommercialHangar, OrdnanceTransferRate, OrdnanceTransferHub, SeniorCO, PrefixName, SuffixName, RandomShipNameFromTheme, PDProtectionPriority, CrewDesignEfficiency) \r\n                        VALUES ( @ShipClassID, @ClassShippingLineID, @AutomatedDesignID, @ClassName, @GameID, @RaceID, @ActiveSensorStrength, @ArmourThickness, @ArmourWidth, @BaseFailureChance, @CargoCapacity, @ClassCrossSection, @ClassThermal, @Collier, @ColonistCapacity, @CommanderPriority, @CommercialJumpDrive, @MilitaryEngines, @ControlRating, @ConscriptOnly, \r\n                        @Cost, @Crew, @CrewQuartersHS, @TroopTransportType, @DCRating, @ActiveJammerStrength, @FireControlJammerStrength, @MissileJammerStrength, @MissileJammerCount,@ELINTRating, @DiplomacyRating, @BioEnergyCapacity, @ClassHullNumbers, @NoOfficers, @RepairYardCapacity, @ArkShip, @FlagBridge,\r\n                        @EMSensorStrength, @EnginePower, @ESMaxDACRoll, @FighterClass, @Commercial, @FuelCapacity, @FuelEfficiency, @FuelTanker, @GeoSurvey, @GravSurvey, @Harvesters, @HullDescriptionID, @JGConstructionTime, @JumpDistance, @JumpRating, @Locked, @MagazineCapacity, @DecoyCapacity, @MaxChance, @MaxDACRoll, @MaxSpeed, @MaintModules, @MinimumFuel, @MinimumSupplies, @MiningModules, @NameThemeID, @NoArmour,\r\n                        @Notes, @MainFunction, @Obsolete, @OtherRaceClassID, @ParasiteCapacity, @PassiveSensorStrength, @PlannedDeployment, @PreTNT, @ProtectionValue, @RankRequired, @ReactorPower, @RecreationalModule, @MoraleCheckRequired, @RefuelPriority, @ResupplyPriority, @RefuellingRate, @RequiredPower, @SalvageRate, @SensorReduction, @ShieldStrength, @Size, @MaintSupplies, @STSTractor, \r\n                        @SupplyShip, @Terraformers, @TotalNumber, @CargoShuttleStrength, @TroopCapacity, @WorkerCapacity, @MaintPriority, @CommercialHangar, @OrdnanceTransferRate, @OrdnanceTransferHub, @SeniorCO, @PrefixName, @SuffixName, @RandomShipNameFromTheme, @PDProtectionPriority, @CrewDesignEfficiency)";
-                    sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
                     sqLiteCommand.Parameters.AddWithValue("@ClassShippingLineID", num2);
                     sqLiteCommand.Parameters.AddWithValue("@AutomatedDesignID", genum120);
                     sqLiteCommand.Parameters.AddWithValue("@ClassName", gclass22.ClassName);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass22.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@ActiveSensorStrength", gclass22.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@ArmourThickness", gclass22.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@ArmourWidth", gclass22.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@BaseFailureChance", gclass22.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@CargoCapacity", gclass22.int_62);
-                    sqLiteCommand.Parameters.AddWithValue("@ClassCrossSection", gclass22.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@ClassThermal", gclass22.decimal_3);
-                    sqLiteCommand.Parameters.AddWithValue("@Collier", gclass22.int_5);
-                    sqLiteCommand.Parameters.AddWithValue("@SeniorCO", gclass22.int_6);
-                    sqLiteCommand.Parameters.AddWithValue("@ColonistCapacity", gclass22.int_7);
-                    sqLiteCommand.Parameters.AddWithValue("@CommanderPriority", gclass22.int_8);
-                    sqLiteCommand.Parameters.AddWithValue("@CommercialJumpDrive", gclass22.int_14);
-                    sqLiteCommand.Parameters.AddWithValue("@MilitaryEngines", gclass22.bool_8);
-                    sqLiteCommand.Parameters.AddWithValue("@ControlRating", gclass22.int_9);
-                    sqLiteCommand.Parameters.AddWithValue("@ConscriptOnly", gclass22.int_10);
-                    sqLiteCommand.Parameters.AddWithValue("@NoOfficers", gclass22.int_15);
-                    sqLiteCommand.Parameters.AddWithValue("@Cost", gclass22.decimal_4);
-                    sqLiteCommand.Parameters.AddWithValue("@Crew", gclass22.int_11);
-                    sqLiteCommand.Parameters.AddWithValue("@CrewQuartersHS", gclass22.decimal_5);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass22.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@ActiveSensorStrength", gclass22.ActiveSensorStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@ArmourThickness", gclass22.ArmourThickness);
+                    sqLiteCommand.Parameters.AddWithValue("@ArmourWidth", gclass22.ArmourWidth);
+                    sqLiteCommand.Parameters.AddWithValue("@BaseFailureChance", gclass22.BaseFailureChance);
+                    sqLiteCommand.Parameters.AddWithValue("@CargoCapacity", gclass22.CargoCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@ClassCrossSection", gclass22.ClassCrossSection);
+                    sqLiteCommand.Parameters.AddWithValue("@ClassThermal", gclass22.ClassThermal);
+                    sqLiteCommand.Parameters.AddWithValue("@Collier", gclass22.Collier);
+                    sqLiteCommand.Parameters.AddWithValue("@SeniorCO", gclass22.SeniorCO);
+                    sqLiteCommand.Parameters.AddWithValue("@ColonistCapacity", gclass22.ColonistCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@CommanderPriority", gclass22.CommanderPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@CommercialJumpDrive", gclass22.CommercialJumpDrive);
+                    sqLiteCommand.Parameters.AddWithValue("@MilitaryEngines", gclass22.MilitaryEngines);
+                    sqLiteCommand.Parameters.AddWithValue("@ControlRating", gclass22.ControlRating);
+                    sqLiteCommand.Parameters.AddWithValue("@ConscriptOnly", gclass22.ConscriptOnly);
+                    sqLiteCommand.Parameters.AddWithValue("@NoOfficers", gclass22.NoOfficers);
+                    sqLiteCommand.Parameters.AddWithValue("@Cost", gclass22.Cost);
+                    sqLiteCommand.Parameters.AddWithValue("@Crew", gclass22.Crew);
+                    sqLiteCommand.Parameters.AddWithValue("@CrewQuartersHS", gclass22.CrewQuartersHS);
                     sqLiteCommand.Parameters.AddWithValue("@TroopTransportType", num3);
-                    sqLiteCommand.Parameters.AddWithValue("@DCRating", gclass22.int_17);
-                    sqLiteCommand.Parameters.AddWithValue("@ActiveJammerStrength", gclass22.decimal_18);
-                    sqLiteCommand.Parameters.AddWithValue("@FireControlJammerStrength", gclass22.decimal_19);
-                    sqLiteCommand.Parameters.AddWithValue("@MissileJammerStrength", gclass22.decimal_20);
+                    sqLiteCommand.Parameters.AddWithValue("@DCRating", gclass22.DCRating);
+                    sqLiteCommand.Parameters.AddWithValue("@ActiveJammerStrength", gclass22.ActiveJammerStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@FireControlJammerStrength", gclass22.FireControlJammerStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileJammerStrength", gclass22.MissileJammerStrength);
                     sqLiteCommand.Parameters.AddWithValue("@MissileJammerCount", gclass22.int_20);
-                    sqLiteCommand.Parameters.AddWithValue("@ELINTRating", gclass22.int_12);
-                    sqLiteCommand.Parameters.AddWithValue("@DiplomacyRating", gclass22.int_13);
-                    sqLiteCommand.Parameters.AddWithValue("@EMSensorStrength", gclass22.int_21);
-                    sqLiteCommand.Parameters.AddWithValue("@EnginePower", gclass22.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ESMaxDACRoll", gclass22.int_22);
-                    sqLiteCommand.Parameters.AddWithValue("@FighterClass", gclass22.bool_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Commercial", gclass22.bool_2);
-                    sqLiteCommand.Parameters.AddWithValue("@FuelCapacity", gclass22.int_63);
-                    sqLiteCommand.Parameters.AddWithValue("@FuelEfficiency", gclass22.decimal_6);
-                    sqLiteCommand.Parameters.AddWithValue("@FuelTanker", gclass22.int_23);
-                    sqLiteCommand.Parameters.AddWithValue("@GeoSurvey", gclass22.decimal_17);
-                    sqLiteCommand.Parameters.AddWithValue("@GravSurvey", gclass22.int_24);
-                    sqLiteCommand.Parameters.AddWithValue("@Harvesters", gclass22.int_25);
+                    sqLiteCommand.Parameters.AddWithValue("@ELINTRating", gclass22.ELINTRating);
+                    sqLiteCommand.Parameters.AddWithValue("@DiplomacyRating", gclass22.DiplomacyRating);
+                    sqLiteCommand.Parameters.AddWithValue("@EMSensorStrength", gclass22.EMSensorStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@EnginePower", gclass22.EnginePower);
+                    sqLiteCommand.Parameters.AddWithValue("@ESMaxDACRoll", gclass22.ESMaxDACRoll);
+                    sqLiteCommand.Parameters.AddWithValue("@FighterClass", gclass22.FighterClass);
+                    sqLiteCommand.Parameters.AddWithValue("@Commercial", gclass22.Commercial);
+                    sqLiteCommand.Parameters.AddWithValue("@FuelCapacity", gclass22.FuelCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@FuelEfficiency", gclass22.FuelEfficiency);
+                    sqLiteCommand.Parameters.AddWithValue("@FuelTanker", gclass22.FuelTanker);
+                    sqLiteCommand.Parameters.AddWithValue("@GeoSurvey", gclass22.GeoSurvey);
+                    sqLiteCommand.Parameters.AddWithValue("@GravSurvey", gclass22.GravSurvey);
+                    sqLiteCommand.Parameters.AddWithValue("@Harvesters", gclass22.Harvesters);
                     sqLiteCommand.Parameters.AddWithValue("@HullDescriptionID", num5);
-                    sqLiteCommand.Parameters.AddWithValue("@JGConstructionTime", gclass22.int_27);
-                    sqLiteCommand.Parameters.AddWithValue("@JumpDistance", gclass22.int_28);
-                    sqLiteCommand.Parameters.AddWithValue("@JumpRating", gclass22.int_29);
-                    sqLiteCommand.Parameters.AddWithValue("@Locked", gclass22.bool_3);
-                    sqLiteCommand.Parameters.AddWithValue("@MagazineCapacity", gclass22.decimal_11);
-                    sqLiteCommand.Parameters.AddWithValue("@DecoyCapacity", gclass22.decimal_12);
-                    sqLiteCommand.Parameters.AddWithValue("@MaxChance", gclass22.int_30);
-                    sqLiteCommand.Parameters.AddWithValue("@MaxDACRoll", gclass22.int_31);
-                    sqLiteCommand.Parameters.AddWithValue("@MaxSpeed", gclass22.int_32);
-                    sqLiteCommand.Parameters.AddWithValue("@MaintModules", gclass22.int_33);
-                    sqLiteCommand.Parameters.AddWithValue("@MinimumFuel", gclass22.int_46);
-                    sqLiteCommand.Parameters.AddWithValue("@MinimumSupplies", gclass22.int_47);
-                    sqLiteCommand.Parameters.AddWithValue("@MiningModules", gclass22.int_36);
+                    sqLiteCommand.Parameters.AddWithValue("@JGConstructionTime", gclass22.JGConstructionTime);
+                    sqLiteCommand.Parameters.AddWithValue("@JumpDistance", gclass22.JumpDistance);
+                    sqLiteCommand.Parameters.AddWithValue("@JumpRating", gclass22.JumpRating);
+                    sqLiteCommand.Parameters.AddWithValue("@Locked", gclass22.Locked);
+                    sqLiteCommand.Parameters.AddWithValue("@MagazineCapacity", gclass22.MagazineCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@DecoyCapacity", gclass22.DecoyCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@MaxChance", gclass22.MaxChance);
+                    sqLiteCommand.Parameters.AddWithValue("@MaxDACRoll", gclass22.MaxDACRoll);
+                    sqLiteCommand.Parameters.AddWithValue("@MaxSpeed", gclass22.MaxSpeed);
+                    sqLiteCommand.Parameters.AddWithValue("@MaintModules", gclass22.MaintModules);
+                    sqLiteCommand.Parameters.AddWithValue("@MinimumFuel", gclass22.MinimumFuel);
+                    sqLiteCommand.Parameters.AddWithValue("@MinimumSupplies", gclass22.MinimumSupplies);
+                    sqLiteCommand.Parameters.AddWithValue("@MiningModules", gclass22.MiningModules);
                     sqLiteCommand.Parameters.AddWithValue("@NameThemeID", num4);
-                    sqLiteCommand.Parameters.AddWithValue("@NoArmour", gclass22.int_37);
-                    sqLiteCommand.Parameters.AddWithValue("@Notes", gclass22.string_1);
-                    sqLiteCommand.Parameters.AddWithValue("@MainFunction", gclass22.auroraClassMainFunction_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Obsolete", gclass22.int_38);
-                    sqLiteCommand.Parameters.AddWithValue("@OtherRaceClassID", gclass22.int_39);
-                    sqLiteCommand.Parameters.AddWithValue("@ParasiteCapacity", gclass22.decimal_8);
-                    sqLiteCommand.Parameters.AddWithValue("@PassiveSensorStrength", gclass22.int_40);
-                    sqLiteCommand.Parameters.AddWithValue("@PlannedDeployment", gclass22.decimal_9);
-                    sqLiteCommand.Parameters.AddWithValue("@PreTNT", gclass22.bool_4);
-                    sqLiteCommand.Parameters.AddWithValue("@ProtectionValue", gclass22.decimal_10);
+                    sqLiteCommand.Parameters.AddWithValue("@NoArmour", gclass22.NoArmour);
+                    sqLiteCommand.Parameters.AddWithValue("@Notes", gclass22.Notes);
+                    sqLiteCommand.Parameters.AddWithValue("@MainFunction", gclass22.MainFunction);
+                    sqLiteCommand.Parameters.AddWithValue("@Obsolete", gclass22.Obsolete);
+                    sqLiteCommand.Parameters.AddWithValue("@OtherRaceClassID", gclass22.OtherRaceClassID);
+                    sqLiteCommand.Parameters.AddWithValue("@ParasiteCapacity", gclass22.ParasiteCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@PassiveSensorStrength", gclass22.PassiveSensorStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@PlannedDeployment", gclass22.PlannedDeployment);
+                    sqLiteCommand.Parameters.AddWithValue("@PreTNT", gclass22.PreTNT);
+                    sqLiteCommand.Parameters.AddWithValue("@ProtectionValue", gclass22.ProtectionValue);
                     sqLiteCommand.Parameters.AddWithValue("@RankRequired", num6);
-                    sqLiteCommand.Parameters.AddWithValue("@ReactorPower", gclass22.decimal_15);
-                    sqLiteCommand.Parameters.AddWithValue("@RecreationalModule", gclass22.bool_5);
-                    sqLiteCommand.Parameters.AddWithValue("@MoraleCheckRequired", gclass22.bool_7);
-                    sqLiteCommand.Parameters.AddWithValue("@RefuelPriority", gclass22.int_44);
-                    sqLiteCommand.Parameters.AddWithValue("@ResupplyPriority", gclass22.int_45);
-                    sqLiteCommand.Parameters.AddWithValue("@RefuellingRate", gclass22.int_43);
-                    sqLiteCommand.Parameters.AddWithValue("@RequiredPower", gclass22.decimal_16);
-                    sqLiteCommand.Parameters.AddWithValue("@SalvageRate", gclass22.int_41);
-                    sqLiteCommand.Parameters.AddWithValue("@SensorReduction", gclass22.decimal_13);
-                    sqLiteCommand.Parameters.AddWithValue("@ShieldStrength", gclass22.int_42);
-                    sqLiteCommand.Parameters.AddWithValue("@Size", gclass22.decimal_14);
-                    sqLiteCommand.Parameters.AddWithValue("@MaintSupplies", gclass22.int_50);
-                    sqLiteCommand.Parameters.AddWithValue("@STSTractor", gclass22.int_51);
-                    sqLiteCommand.Parameters.AddWithValue("@SupplyShip", gclass22.int_52);
-                    sqLiteCommand.Parameters.AddWithValue("@Terraformers", gclass22.int_53);
-                    sqLiteCommand.Parameters.AddWithValue("@TotalNumber", gclass22.int_55);
-                    sqLiteCommand.Parameters.AddWithValue("@CargoShuttleStrength", gclass22.int_56);
-                    sqLiteCommand.Parameters.AddWithValue("@TroopCapacity", gclass22.int_57);
-                    sqLiteCommand.Parameters.AddWithValue("@WorkerCapacity", gclass22.int_58);
-                    sqLiteCommand.Parameters.AddWithValue("@MaintPriority", gclass22.int_34);
-                    sqLiteCommand.Parameters.AddWithValue("@CommercialHangar", gclass22.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@OrdnanceTransferRate", gclass22.int_48);
-                    sqLiteCommand.Parameters.AddWithValue("@OrdnanceTransferHub", gclass22.int_54);
-                    sqLiteCommand.Parameters.AddWithValue("@BioEnergyCapacity", gclass22.int_64);
-                    sqLiteCommand.Parameters.AddWithValue("@PrefixName", gclass22.string_3);
-                    sqLiteCommand.Parameters.AddWithValue("@SuffixName", gclass22.string_4);
-                    sqLiteCommand.Parameters.AddWithValue("@RandomShipNameFromTheme", gclass22.int_35);
-                    sqLiteCommand.Parameters.AddWithValue("@ClassHullNumbers", gclass22.int_65);
-                    sqLiteCommand.Parameters.AddWithValue("@RepairYardCapacity", gclass22.int_19);
-                    sqLiteCommand.Parameters.AddWithValue("@ArkShip", gclass22.bool_9);
-                    sqLiteCommand.Parameters.AddWithValue("@PDProtectionPriority", gclass22.int_16);
-                    sqLiteCommand.Parameters.AddWithValue("@CrewDesignEfficiency", gclass22.decimal_21);
-                    sqLiteCommand.Parameters.AddWithValue("@FlagBridge", gclass22.bool_10);
+                    sqLiteCommand.Parameters.AddWithValue("@ReactorPower", gclass22.ReactorPower);
+                    sqLiteCommand.Parameters.AddWithValue("@RecreationalModule", gclass22.RecreationalModule);
+                    sqLiteCommand.Parameters.AddWithValue("@MoraleCheckRequired", gclass22.MoraleCheckRequired);
+                    sqLiteCommand.Parameters.AddWithValue("@RefuelPriority", gclass22.RefuelPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@ResupplyPriority", gclass22.ResupplyPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@RefuellingRate", gclass22.RefuellingRate);
+                    sqLiteCommand.Parameters.AddWithValue("@RequiredPower", gclass22.RequiredPower);
+                    sqLiteCommand.Parameters.AddWithValue("@SalvageRate", gclass22.SalvageRate);
+                    sqLiteCommand.Parameters.AddWithValue("@SensorReduction", gclass22.SensorReduction);
+                    sqLiteCommand.Parameters.AddWithValue("@ShieldStrength", gclass22.ShieldStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@Size", gclass22.Size);
+                    sqLiteCommand.Parameters.AddWithValue("@MaintSupplies", gclass22.MaintSupplies);
+                    sqLiteCommand.Parameters.AddWithValue("@STSTractor", gclass22.STSTractor);
+                    sqLiteCommand.Parameters.AddWithValue("@SupplyShip", gclass22.SupplyShip);
+                    sqLiteCommand.Parameters.AddWithValue("@Terraformers", gclass22.Terraformers);
+                    sqLiteCommand.Parameters.AddWithValue("@TotalNumber", gclass22.TotalNumber);
+                    sqLiteCommand.Parameters.AddWithValue("@CargoShuttleStrength", gclass22.CargoShuttleStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@TroopCapacity", gclass22.TroopCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@WorkerCapacity", gclass22.WorkerCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@MaintPriority", gclass22.MaintPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@CommercialHangar", gclass22.CommercialHangar);
+                    sqLiteCommand.Parameters.AddWithValue("@OrdnanceTransferRate", gclass22.OrdnanceTransferRate);
+                    sqLiteCommand.Parameters.AddWithValue("@OrdnanceTransferHub", gclass22.OrdnanceTransferHub);
+                    sqLiteCommand.Parameters.AddWithValue("@BioEnergyCapacity", gclass22.BioEnergyCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@PrefixName", gclass22.PrefixName);
+                    sqLiteCommand.Parameters.AddWithValue("@SuffixName", gclass22.SuffixName);
+                    sqLiteCommand.Parameters.AddWithValue("@RandomShipNameFromTheme", gclass22.RandomShipNameFromTheme);
+                    sqLiteCommand.Parameters.AddWithValue("@ClassHullNumbers", gclass22.ClassHullNumbers);
+                    sqLiteCommand.Parameters.AddWithValue("@RepairYardCapacity", gclass22.RepairYardCapacity);
+                    sqLiteCommand.Parameters.AddWithValue("@ArkShip", gclass22.ArkShip);
+                    sqLiteCommand.Parameters.AddWithValue("@PDProtectionPriority", gclass22.PDProtectionPriority);
+                    sqLiteCommand.Parameters.AddWithValue("@CrewDesignEfficiency", gclass22.CrewDesignEfficiency);
+                    sqLiteCommand.Parameters.AddWithValue("@FlagBridge", gclass22.FlagBridge);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (SingleMineralValue gclass125 in gclass22.gclass123_0.GetAsSingleMineralValueList())
+                    foreach (SingleMineralValue gclass125 in gclass22.ClassMaterials.GetAsSingleMineralValueList())
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassMaterials ( GameID, ClassID, MaterialID, Amount ) VALUES ( @GameID, @ClassID, @MaterialID, @Amount )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@ClassID", gclass22.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ClassID", gclass22.ShipClassID);
                         sqLiteCommand.Parameters.AddWithValue("@MaterialID", gclass125.auroraElement_0);
                         sqLiteCommand.Parameters.AddWithValue("@Amount", gclass125.decimal_0);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass130 gclass130 in gclass22.list_0)
+                    foreach (PopOrdnanceStock gclass130 in gclass22.list_0)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassOrdnanceTemplate (GameID, ShipClassID, MissileID, Amount ) VALUES ( @GameID, @ShipClassID, @MissileID, @Amount )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.gclass129_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
+                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.RaceMissile.MissileID);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.Amount);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
@@ -2190,7 +2190,7 @@ public partial class GClass0
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassComponent (GameID, ClassID, ComponentID, NumComponent, ChanceToHit, ElectronicCTH ) VALUES ( @GameID, @ClassID, @ComponentID, @NumComponent, @ChanceToHit, @ElectronicCTH )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
                         sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass228.gclass230_0.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@NumComponent", gclass228.decimal_0);
                         sqLiteCommand.Parameters.AddWithValue("@ChanceToHit", gclass228.int_2);
@@ -2203,8 +2203,8 @@ public partial class GClass0
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassSC (GameID, ShipClassID, FighterClassID, Number ) VALUES ( @GameID, @ShipClassID, @FighterClassID, @Number )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@FighterClassID", gclass74.gclass22_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
+                        sqLiteCommand.Parameters.AddWithValue("@FighterClassID", gclass74.gclass22_0.ShipClassID);
                         sqLiteCommand.Parameters.AddWithValue("@Number", gclass74.int_0);
                         sqLiteCommand.ExecuteNonQuery();
                     }
@@ -2214,7 +2214,7 @@ public partial class GClass0
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ClassGroundTemplates (GameID, ShipClassID, TemplateID, Number ) VALUES ( @GameID, @ShipClassID, @TemplateID, @Number )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass22.ShipClassID);
                         sqLiteCommand.Parameters.AddWithValue("@TemplateID", gclass75.gclass102_0.TemplateID);
                         sqLiteCommand.Parameters.AddWithValue("@Number", gclass75.int_0);
                         sqLiteCommand.ExecuteNonQuery();
@@ -2236,17 +2236,17 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass218 gclass218 in this.SystemBodyRecordDic.Values
-                             .SelectMany<SystemBodyData, GClass218>(gclass1_0 =>
-                                 this.gclass1_0.dictionary_1.Values).ToList<GClass218>())
+                foreach (RaceSystemBodyName gclass218 in this.SystemBodyRecordDic.Values
+                             .SelectMany<SystemBodyData, RaceSystemBodyName>(gclass1_0 =>
+                                 this.gclass1_0.dictionary_1.Values).ToList<RaceSystemBodyName>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_SystemBodyName ( RaceID, SystemBodyID, GameID, SystemID, Name ) VALUES ( @RaceID, @SystemBodyID, @GameID, @SystemID, @Name )";
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass218.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass218.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass218.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass218.SystemBodyID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", this.SystemBodyRecordDic[gclass218.int_0].SystemID);
-                    sqLiteCommand.Parameters.AddWithValue("@Name", gclass218.string_0);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", this.SystemBodyRecordDic[gclass218.SystemBodyID].SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@Name", gclass218.Name);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -2265,16 +2265,16 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass180 gclass180 in this.FCTShipDataDictionary.Values
-                             .SelectMany<FCTShipData40, GClass180>(gclass40_0 => gclass40_0.list_1).ToList<GClass180>())
+                foreach (Survivors gclass180 in this.Ships.Values
+                             .SelectMany<ShipData, Survivors>(gclass40_0 => gclass40_0.SurvivorsList).ToList<Survivors>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Survivors ( GameID, RaceID, SpeciesID, ShipID, Crew ) VALUES ( @GameID, @RaceID, @SpeciesID, @ShipID, @Crew )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass180.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass180.gclass194_0.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass180.gclass40_0.int_8);
-                    sqLiteCommand.Parameters.AddWithValue("@Crew", gclass180.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass180.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass180.Species.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass180.Ship.int_8);
+                    sqLiteCommand.Parameters.AddWithValue("@Crew", gclass180.Crew);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -2293,17 +2293,17 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass220 gclass220 in this.dictionary_27.Values)
+                foreach (AncientConstruct gclass220 in this.AncientConstructsOnSystemBodies.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AncientConstruct ( AncientConstructID, GameID, SystemBodyID, AncientConstructTypeID, ResearchField, ResearchBonus, Active ) VALUES ( @AncientConstructID, @GameID, @SystemBodyID, @AncientConstructTypeID, @ResearchField, @ResearchBonus, @Active )";
-                    sqLiteCommand.Parameters.AddWithValue("@AncientConstructID", gclass220.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@AncientConstructID", gclass220.AncientConstructID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass220.gclass1_0.SystemBodyID);
-                    sqLiteCommand.Parameters.AddWithValue("@AncientConstructTypeID", gclass220.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@ResearchField", gclass220.gclass162_0.ResearchFieldID);
-                    sqLiteCommand.Parameters.AddWithValue("@ResearchBonus", gclass220.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Active", gclass220.bool_0);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass220.SystemBody.SystemBodyID);
+                    sqLiteCommand.Parameters.AddWithValue("@AncientConstructTypeID", gclass220.AncientConstructTypeID);
+                    sqLiteCommand.Parameters.AddWithValue("@ResearchField", gclass220.ResearchField.ResearchFieldID);
+                    sqLiteCommand.Parameters.AddWithValue("@ResearchBonus", gclass220.ResearchBonus);
+                    sqLiteCommand.Parameters.AddWithValue("@Active", gclass220.Active);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -2322,13 +2322,13 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass216 gclass216 in this.list_10)
+                foreach (MissileGeoSurvey gclass216 in this.MissileGeoSurveys)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_MissileGeoSurvey ( SystemBodyID, RaceID, SurveyPoints, GameID ) VALUES ( @SystemBodyID, @RaceID, @SurveyPoints, @GameID )";
-                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass216.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass216.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@SurveyPoints", gclass216.decimal_0);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass216.SystemBodyID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass216.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SurveyPoints", gclass216.SurveyPoints);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.ExecuteNonQuery();
                 }
@@ -2399,7 +2399,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (FCTShipData40 gclass40 in this.FCTShipDataDictionary.Values)
+                foreach (ShipData gclass40 in this.Ships.Values)
                 {
                     try
                     {
@@ -2472,7 +2472,7 @@ public partial class GClass0
                         sqLiteCommand.Parameters.AddWithValue("@ScrapFlag", gclass40.bool_11);
                         sqLiteCommand.Parameters.AddWithValue("@SensorDelay", gclass40.int_15);
                         sqLiteCommand.Parameters.AddWithValue("@ShieldsActive", gclass40.bool_10);
-                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass40.gclass22_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@ShipClassID", gclass40.gclass22_0.ShipClassID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipNotes", gclass40.string_0);
                         sqLiteCommand.Parameters.AddWithValue("@ShippingLineID", num4);
                         sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass40.gclass194_0.int_0);
@@ -2504,14 +2504,14 @@ public partial class GClass0
                         break;
                     }
 
-                    foreach (GClass130 gclass130 in gclass40.list_9)
+                    foreach (PopOrdnanceStock gclass130 in gclass40.list_9)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipOrdnanceTemplate (GameID, ShipID, MissileID, Amount ) VALUES ( @GameID, @ShipID, @MissileID, @Amount )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
-                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.gclass129_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.RaceMissile.MissileID);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.Amount);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
@@ -2535,14 +2535,14 @@ public partial class GClass0
                         break;
                     }
 
-                    foreach (GClass130 gclass130 in gclass40.list_10)
+                    foreach (PopOrdnanceStock gclass130 in gclass40.list_10)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_ShipWeapon (GameID, ShipID, MissileID, Amount ) VALUES ( @GameID, @ShipID, @MissileID, @Amount )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
-                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.gclass129_0.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass130.RaceMissile.MissileID);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass130.Amount);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
@@ -2664,7 +2664,7 @@ public partial class GClass0
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_MissileAssignment (ShipID, MissileID, WeaponID, WeaponNum, GameID ) VALUES ( @ShipID, @MissileID, @WeaponID, @WeaponNum, @GameID )";
                         sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass40.int_8);
-                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass30.Missile.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass30.Missile.MissileID);
                         sqLiteCommand.Parameters.AddWithValue("@WeaponID", gclass30.FiringWeaponComponent.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@WeaponNum", gclass30.WeaponNum);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
@@ -2706,62 +2706,62 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass65 gclass65 in this.dictionary_28.Values)
+                foreach (Contact gclass65 in this.Contacts.Values)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Contacts (UniqueID, ContactID, GameID, SystemID, DetectRaceID, ContactRaceID, ContactName, CreationTime, Reestablished, LastUpdate, ContactMethod, ContactType, ContactStrength, ContactNumber, Resolution, ContinualContactTime, Xcor, Ycor, LastXcor, LastYcor, Speed, Msg, IncrementStartX, IncrementStartY ) \r\n                        VALUES ( @UniqueID, @ContactID, @GameID, @SystemID, @DetectRaceID, @ContactRaceID, @ContactName, @CreationTime, @Reestablished, @LastUpdate, @ContactMethod, @ContactType, @ContactStrength, @ContactNumber, @Resolution, @ContinualContactTime, @Xcor, @Ycor, @LastXcor, @LastYcor, @Speed, @Msg, @IncrementStartX, @IncrementStartY)";
-                    switch (gclass65.auroraContactType_0)
+                    switch (gclass65.ContactType)
                     {
                         case AuroraContactType.Ship:
-                            if (this.FCTShipDataDictionary.ContainsKey(gclass65.int_1))
+                            if (this.Ships.ContainsKey(gclass65.ContactID))
                             {
-                                gclass65.gclass40_0 = this.FCTShipDataDictionary[gclass65.int_1];
+                                gclass65.TargetShip = this.Ships[gclass65.ContactID];
                                 break;
                             }
 
                             break;
                         case AuroraContactType.Salvo:
-                            if (this.dictionary_6.ContainsKey(gclass65.int_1))
+                            if (this.MissileSalvoes.ContainsKey(gclass65.ContactID))
                             {
-                                gclass65.gclass132_0 = this.dictionary_6[gclass65.int_1];
+                                gclass65.TargetSalvo = this.MissileSalvoes[gclass65.ContactID];
                                 break;
                             }
 
                             break;
                         case AuroraContactType.Population:
-                            if (this.PopulationDataDictionary.ContainsKey(gclass65.int_1))
+                            if (this.Populations.ContainsKey(gclass65.ContactID))
                             {
-                                gclass65.gclass146_0 = this.PopulationDataDictionary[gclass65.int_1];
+                                gclass65.TargetPopulation = this.Populations[gclass65.ContactID];
                                 break;
                             }
 
                             break;
                     }
 
-                    sqLiteCommand.Parameters.AddWithValue("@UniqueID", gclass65.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ContactID", gclass65.int_1);
+                    sqLiteCommand.Parameters.AddWithValue("@UniqueID", gclass65.UniqueID);
+                    sqLiteCommand.Parameters.AddWithValue("@ContactID", gclass65.ContactID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass65.gclass200_0.SystemID);
-                    sqLiteCommand.Parameters.AddWithValue("@DetectRaceID", gclass65.gclass21_1.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass65.System.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@DetectRaceID", gclass65.DetectRace.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@ContactRaceID", gclass65.method_3());
-                    sqLiteCommand.Parameters.AddWithValue("@ContactName", gclass65.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@CreationTime", gclass65.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Reestablished", gclass65.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@LastUpdate", gclass65.decimal_3);
-                    sqLiteCommand.Parameters.AddWithValue("@ContactMethod", gclass65.genum10_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ContactType", gclass65.auroraContactType_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ContactStrength", gclass65.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ContactNumber", gclass65.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@Resolution", gclass65.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@ContinualContactTime", gclass65.int_4);
-                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass65.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass65.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@LastXcor", gclass65.double_2);
-                    sqLiteCommand.Parameters.AddWithValue("@LastYcor", gclass65.double_3);
-                    sqLiteCommand.Parameters.AddWithValue("@Speed", gclass65.int_5);
-                    sqLiteCommand.Parameters.AddWithValue("@Msg", gclass65.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartX", gclass65.double_4);
-                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartY", gclass65.double_5);
+                    sqLiteCommand.Parameters.AddWithValue("@ContactName", gclass65.ContactName);
+                    sqLiteCommand.Parameters.AddWithValue("@CreationTime", gclass65.CreationTime);
+                    sqLiteCommand.Parameters.AddWithValue("@Reestablished", gclass65.Reestablished);
+                    sqLiteCommand.Parameters.AddWithValue("@LastUpdate", gclass65.LastUpdate);
+                    sqLiteCommand.Parameters.AddWithValue("@ContactMethod", gclass65.ContactMethod);
+                    sqLiteCommand.Parameters.AddWithValue("@ContactType", gclass65.ContactType);
+                    sqLiteCommand.Parameters.AddWithValue("@ContactStrength", gclass65.ContactStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@ContactNumber", gclass65.ContactNumber);
+                    sqLiteCommand.Parameters.AddWithValue("@Resolution", gclass65.Resolution);
+                    sqLiteCommand.Parameters.AddWithValue("@ContinualContactTime", gclass65.ContinualContactTime);
+                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass65.Xcor);
+                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass65.Ycor);
+                    sqLiteCommand.Parameters.AddWithValue("@LastXcor", gclass65.LastXcor);
+                    sqLiteCommand.Parameters.AddWithValue("@LastYcor", gclass65.LastYcor);
+                    sqLiteCommand.Parameters.AddWithValue("@Speed", gclass65.Speed);
+                    sqLiteCommand.Parameters.AddWithValue("@Msg", gclass65.Msg);
+                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartX", gclass65.IncrementStartX);
+                    sqLiteCommand.Parameters.AddWithValue("@IncrementStartY", gclass65.IncrementStartY);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -2784,57 +2784,57 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass233 gclass233 in this.dictionary_29.Values)
+                foreach (Wreck gclass233 in this.Wrecks.Values)
                 {
                     int num = 0;
-                    if (gclass233.gclass1_0 != null)
-                        num = gclass233.gclass1_0.SystemBodyID;
+                    if (gclass233.OrbitingBody != null)
+                        num = gclass233.OrbitingBody.SystemBodyID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Wrecks (WreckID, GameID, RaceID, SystemID, OrbitBodyID, ClassID, Size, EffectiveSize, StarSwarmHatching, QueenStatus, Xcor, Ycor, Duranium, Neutronium, Corbomite, Tritanium, Boronide, Mercassium, Vendarite, Sorium, Uridium, Corundium, Gallicite, ShipID ) \r\n                        VALUES ( @WreckID, @GameID, @RaceID, @SystemID, @OrbitBodyID, @ClassID, @Size, @EffectiveSize, @StarSwarmHatching, @QueenStatus, @Xcor, @Ycor, @Duranium, @Neutronium, @Corbomite, @Tritanium, @Boronide, @Mercassium, @Vendarite, @Sorium, @Uridium, @Corundium, @Gallicite, @ShipID )";
-                    sqLiteCommand.Parameters.AddWithValue("@WreckID", gclass233.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@WreckID", gclass233.WreckID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass233.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass233.gclass200_0.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass233.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass233.System.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitBodyID", num);
-                    sqLiteCommand.Parameters.AddWithValue("@ClassID", gclass233.gclass22_0.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Size", gclass233.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@EffectiveSize", gclass233.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@StarSwarmHatching", gclass233.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@QueenStatus", gclass233.int_4);
-                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass233.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass233.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Duranium", gclass233.gclass123_0.Duranium);
-                    sqLiteCommand.Parameters.AddWithValue("@Neutronium", gclass233.gclass123_0.Neutronium);
-                    sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass233.gclass123_0.Corbomite);
-                    sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass233.gclass123_0.Tritanium);
-                    sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass233.gclass123_0.Boronide);
-                    sqLiteCommand.Parameters.AddWithValue("@Mercassium", gclass233.gclass123_0.Mercassium);
-                    sqLiteCommand.Parameters.AddWithValue("@Vendarite", gclass233.gclass123_0.Vendarite);
-                    sqLiteCommand.Parameters.AddWithValue("@Sorium", gclass233.gclass123_0.Sorium);
-                    sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass233.gclass123_0.Uridium);
-                    sqLiteCommand.Parameters.AddWithValue("@Corundium", gclass233.gclass123_0.Corundium);
-                    sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass233.gclass123_0.Gallicite);
-                    sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass233.int_1);
+                    sqLiteCommand.Parameters.AddWithValue("@ClassID", gclass233.ShipClass.ShipClassID);
+                    sqLiteCommand.Parameters.AddWithValue("@Size", gclass233.Size);
+                    sqLiteCommand.Parameters.AddWithValue("@EffectiveSize", gclass233.EffectiveSize);
+                    sqLiteCommand.Parameters.AddWithValue("@StarSwarmHatching", gclass233.StarSwarmHatching);
+                    sqLiteCommand.Parameters.AddWithValue("@QueenStatus", gclass233.QueenStatus);
+                    sqLiteCommand.Parameters.AddWithValue("@Xcor", gclass233.Xcor);
+                    sqLiteCommand.Parameters.AddWithValue("@Ycor", gclass233.Ycor);
+                    sqLiteCommand.Parameters.AddWithValue("@Duranium", gclass233.ContainingMineral.Duranium);
+                    sqLiteCommand.Parameters.AddWithValue("@Neutronium", gclass233.ContainingMineral.Neutronium);
+                    sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass233.ContainingMineral.Corbomite);
+                    sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass233.ContainingMineral.Tritanium);
+                    sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass233.ContainingMineral.Boronide);
+                    sqLiteCommand.Parameters.AddWithValue("@Mercassium", gclass233.ContainingMineral.Mercassium);
+                    sqLiteCommand.Parameters.AddWithValue("@Vendarite", gclass233.ContainingMineral.Vendarite);
+                    sqLiteCommand.Parameters.AddWithValue("@Sorium", gclass233.ContainingMineral.Sorium);
+                    sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass233.ContainingMineral.Uridium);
+                    sqLiteCommand.Parameters.AddWithValue("@Corundium", gclass233.ContainingMineral.Corundium);
+                    sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass233.ContainingMineral.Gallicite);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass233.ShipID);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (GClass234 gclass234 in gclass233.list_0)
+                    foreach (WreckTech gclass234 in gclass233.ContainingTechs)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_WreckTech ( GameID, WreckID, TechID, Percentage ) VALUES ( @GameID, @WreckID, @TechID, @Percentage )";
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@WreckID", gclass233.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@TechID", gclass234.gclass164_0.TechSystemID);
-                        sqLiteCommand.Parameters.AddWithValue("@Percentage", gclass234.decimal_0);
+                        sqLiteCommand.Parameters.AddWithValue("@WreckID", gclass233.WreckID);
+                        sqLiteCommand.Parameters.AddWithValue("@TechID", gclass234.TechData.TechSystemID);
+                        sqLiteCommand.Parameters.AddWithValue("@Percentage", gclass234.Percentage);
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (GClass235 gclass235 in gclass233.list_1)
+                    foreach (WreckComponents gclass235 in gclass233.ContainingComponents)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_WreckComponents ( WreckID, ComponentID, GameID, Amount ) VALUES ( @WreckID, @ComponentID, @GameID, @Amount )";
-                        sqLiteCommand.Parameters.AddWithValue("@WreckID", gclass233.int_0);
-                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass235.gclass230_0.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@WreckID", gclass233.WreckID);
+                        sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass235.Component.int_0);
                         sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass235.int_0);
+                        sqLiteCommand.Parameters.AddWithValue("@Amount", gclass235.Amount);
                         sqLiteCommand.ExecuteNonQuery();
                     }
                 }
@@ -2854,62 +2854,62 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                List<GClass156> list = this.PopulationDataDictionary.Values
-                    .SelectMany<PopulationData, GClass156>(gclass146_0 => gclass146_0.dictionary_2.Values)
-                    .ToList<GClass156>();
+                List<IndustrialProjects> list = this.Populations.Values
+                    .SelectMany<PopulationData, IndustrialProjects>(gclass146_0 => gclass146_0.IndustrialProjects.Values)
+                    .ToList<IndustrialProjects>();
                 int num1 = 0;
-                foreach (GClass156 gclass156 in list)
+                foreach (IndustrialProjects gclass156 in list)
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_IndustrialProjects (ProjectID, GameID, RaceID, PopulationID, SpeciesID, Percentage, ProductionType, ProductionID, RefitClassID, WealthUse, Amount, PartialCompletion, ProdPerUnit, Description, Pause, Queue, FuelRequired, Duranium, Neutronium, Corbomite, Tritanium, Boronide, Mercassium, Vendarite, Sorium, Uridium, Corundium, Gallicite) \r\n                        VALUES ( @ProjectID, @GameID, @RaceID, @PopulationID, @SpeciesID, @Percentage, @ProductionType, @ProductionID, @RefitClassID, @WealthUse, @Amount, @PartialCompletion, @ProdPerUnit, @Description, @Pause, @Queue, @FuelRequired, @Duranium, @Neutronium, @Corbomite, @Tritanium, @Boronide, @Mercassium, @Vendarite, @Sorium, @Uridium, @Corundium, @Gallicite)";
                     int num2 = 0;
-                    if (gclass156.gclass22_1 != null)
-                        num2 = gclass156.gclass22_1.int_0;
-                    switch (gclass156.auroraProductionType_0)
+                    if (gclass156.RefitClass != null)
+                        num2 = gclass156.RefitClass.ShipClassID;
+                    switch (gclass156.ProductionType)
                     {
                         case AuroraProductionType.Construction:
-                            num1 = (int)gclass156.gclass157_0.InstallationType;
+                            num1 = (int)gclass156.InstallationType.InstallationType;
                             break;
                         case AuroraProductionType.Ordnance:
-                            num1 = gclass156.gclass129_0.int_0;
+                            num1 = gclass156.RaceMissile.MissileID;
                             break;
                         case AuroraProductionType.Fighter:
                         case AuroraProductionType.SpaceStation:
-                            num1 = gclass156.gclass22_0.int_0;
+                            num1 = gclass156.ShipClass.ShipClassID;
                             break;
                         case AuroraProductionType.Components:
-                            num1 = gclass156.gclass230_0.int_0;
+                            num1 = gclass156.Component.int_0;
                             break;
                     }
 
-                    sqLiteCommand.Parameters.AddWithValue("@ProjectID", gclass156.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ProjectID", gclass156.ProjectID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass156.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass156.gclass146_0.PopulationID);
-                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass156.gclass194_0.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Percentage", gclass156.decimal_3);
-                    sqLiteCommand.Parameters.AddWithValue("@ProductionType", gclass156.auroraProductionType_0);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass156.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@PopulationID", gclass156.Population.PopulationID);
+                    sqLiteCommand.Parameters.AddWithValue("@SpeciesID", gclass156.Species.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@Percentage", gclass156.Percentage);
+                    sqLiteCommand.Parameters.AddWithValue("@ProductionType", gclass156.ProductionType);
                     sqLiteCommand.Parameters.AddWithValue("@ProductionID", num1);
                     sqLiteCommand.Parameters.AddWithValue("@RefitClassID", num2);
-                    sqLiteCommand.Parameters.AddWithValue("@WealthUse", gclass156.gclass150_0.WealthUsage);
-                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass156.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@PartialCompletion", gclass156.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@ProdPerUnit", gclass156.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@Description", gclass156.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Pause", gclass156.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@Queue", gclass156.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@FuelRequired", gclass156.int_1);
-                    sqLiteCommand.Parameters.AddWithValue("@Duranium", gclass156.gclass123_0.Duranium);
-                    sqLiteCommand.Parameters.AddWithValue("@Neutronium", gclass156.gclass123_0.Neutronium);
-                    sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass156.gclass123_0.Corbomite);
-                    sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass156.gclass123_0.Tritanium);
-                    sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass156.gclass123_0.Boronide);
-                    sqLiteCommand.Parameters.AddWithValue("@Mercassium", gclass156.gclass123_0.Mercassium);
-                    sqLiteCommand.Parameters.AddWithValue("@Vendarite", gclass156.gclass123_0.Vendarite);
-                    sqLiteCommand.Parameters.AddWithValue("@Sorium", gclass156.gclass123_0.Sorium);
-                    sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass156.gclass123_0.Uridium);
-                    sqLiteCommand.Parameters.AddWithValue("@Corundium", gclass156.gclass123_0.Corundium);
-                    sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass156.gclass123_0.Gallicite);
+                    sqLiteCommand.Parameters.AddWithValue("@WealthUse", gclass156.WealthUsage.WealthUsage);
+                    sqLiteCommand.Parameters.AddWithValue("@Amount", gclass156.Amount);
+                    sqLiteCommand.Parameters.AddWithValue("@PartialCompletion", gclass156.PartialCompletion);
+                    sqLiteCommand.Parameters.AddWithValue("@ProdPerUnit", gclass156.ProdPerUnit);
+                    sqLiteCommand.Parameters.AddWithValue("@Description", gclass156.Description);
+                    sqLiteCommand.Parameters.AddWithValue("@Pause", gclass156.Pause);
+                    sqLiteCommand.Parameters.AddWithValue("@Queue", gclass156.Queue);
+                    sqLiteCommand.Parameters.AddWithValue("@FuelRequired", gclass156.FuelRequired);
+                    sqLiteCommand.Parameters.AddWithValue("@Duranium", gclass156.MineralCost.Duranium);
+                    sqLiteCommand.Parameters.AddWithValue("@Neutronium", gclass156.MineralCost.Neutronium);
+                    sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass156.MineralCost.Corbomite);
+                    sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass156.MineralCost.Tritanium);
+                    sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass156.MineralCost.Boronide);
+                    sqLiteCommand.Parameters.AddWithValue("@Mercassium", gclass156.MineralCost.Mercassium);
+                    sqLiteCommand.Parameters.AddWithValue("@Vendarite", gclass156.MineralCost.Vendarite);
+                    sqLiteCommand.Parameters.AddWithValue("@Sorium", gclass156.MineralCost.Sorium);
+                    sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass156.MineralCost.Uridium);
+                    sqLiteCommand.Parameters.AddWithValue("@Corundium", gclass156.MineralCost.Corundium);
+                    sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass156.MineralCost.Gallicite);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -2930,13 +2930,13 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass132 gclass132 in this.dictionary_6.Values)
+                foreach (MissileSalvo gclass132 in this.MissileSalvoes.Values)
                 {
                     int num1 = 0;
                     int num2 = 0;
                     int num3 = 0;
-                    if (gclass132.gclass40_0 != null)
-                        num1 = gclass132.gclass40_0.int_8;
+                    if (gclass132.Ship != null)
+                        num1 = gclass132.Ship.int_8;
                     if (gclass132.gclass1_0 != null)
                         num2 = gclass132.gclass1_0.SystemBodyID;
                     if (gclass132.gclass230_0 != null)
@@ -2949,10 +2949,10 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@MissileSalvoID", gclass132.int_1);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@ShipID", num1);
-                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass132.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass132.gclass200_0.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass132.Race.RaceID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass132.System.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@OrbitBodyID", num2);
-                    sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass132.gclass129_0.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass132.RaceMissile.MissileID);
                     sqLiteCommand.Parameters.AddWithValue("@LaunchTime", gclass132.decimal_0);
                     sqLiteCommand.Parameters.AddWithValue("@FireControlID", num3);
                     sqLiteCommand.Parameters.AddWithValue("@FCNum", gclass132.int_2);
@@ -2972,7 +2972,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@HomingMethod", gclass132.genum58_0);
                     sqLiteCommand.Parameters.AddWithValue("@CurrentDetonationRange", gclass132.decimal_2);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (KeyValuePair<int, int> keyValuePair in gclass132.dictionary_2)
+                    foreach (KeyValuePair<int, int> keyValuePair in gclass132.RemainingDecoys)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_Missile (MissileNumber, RemainingDecoys, SalvoID, GameID ) VALUES ( @MissileNumber, @RemainingDecoys, @SalvoID, @GameID )";
@@ -3003,72 +3003,72 @@ public partial class GClass0
                 {
                     int num1 = 0;
                     int num2 = 0;
-                    if (gclass129.gclass230_0 != null)
-                        num1 = gclass129.gclass230_0.int_0;
-                    if (gclass129.gclass129_0 != null)
-                        num2 = gclass129.gclass129_0.int_0;
+                    if (gclass129.EngineComponent != null)
+                        num1 = gclass129.EngineComponent.int_0;
+                    if (gclass129.SecondStageMissile != null)
+                        num2 = gclass129.SecondStageMissile.MissileID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_MissileType (MissileID, GameID,  Name, MissileSeriesID, EngineID, NumEngines, PrecursorMissile, MissilesRequired, MissilesAvailable, Cost, Size, Speed, RadDamage, FuelRequired, Endurance, MaxRange, WarheadStrength, SensorStrength, SensorResolution, SensorRange, ThermalStrength, EMStrength, EMSensitivity, GeoStrength, TotalFlightTime, \r\n                        NumDecoys, MissileECM, MultipleWarheads, MSPMultipleWarheads, SecondStageID, NumSS, SeparationRange, Corbomite, Tritanium, Boronide, Uridium, Gallicite, PreTNT, MSPReactor, MSPWarhead, MSPEngine, MSPFuel, MSPActive, MSPThermal, MSPEM, MSPGeo, MSPDecoys, ECCM, GroundAP, GroundDamage, GroundBaseDamage, GroundShots, PowerMod, ATG, Retargeting, \r\n                        LaserWarhead, MinDetonationRange, MaxDetonationRange, LaserWarheadRangeModifier, ShipDecoy ) \r\n                        VALUES ( @MissileID, @GameID, @Name, @MissileSeriesID, @EngineID, @NumEngines, @PrecursorMissile, @MissilesRequired, @MissilesAvailable, @Cost, @Size, @Speed, @RadDamage, @FuelRequired, @Endurance, @MaxRange, @WarheadStrength, @SensorStrength, @SensorResolution, @SensorRange, @ThermalStrength, @EMStrength, @EMSensitivity, @GeoStrength, @TotalFlightTime, \r\n                        @NumDecoys, @MissileECM, @MultipleWarheads, @MSPMultipleWarheads, @SecondStageID, @NumSS, @SeparationRange, @Corbomite, @Tritanium, @Boronide, @Uridium, @Gallicite, @PreTNT, @MSPReactor, @MSPWarhead, @MSPEngine, @MSPFuel, @MSPActive, @MSPThermal, @MSPEM, @MSPGeo, @MSPDecoys, @ECCM, @GroundAP, @GroundDamage, @GroundBaseDamage, @GroundShots, @PowerMod, @ATG, @Retargeting, \r\n                        @LaserWarhead, @MinDetonationRange, @MaxDetonationRange, @LaserWarheadRangeModifier, @ShipDecoy )";
-                    sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass129.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileID", gclass129.MissileID);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@Name", gclass129.Name);
-                    sqLiteCommand.Parameters.AddWithValue("@MissileSeriesID", gclass129.int_1);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileSeriesID", gclass129.MissileSeriesID);
                     sqLiteCommand.Parameters.AddWithValue("@EngineID", num1);
-                    sqLiteCommand.Parameters.AddWithValue("@NumEngines", gclass129.int_9);
-                    sqLiteCommand.Parameters.AddWithValue("@PrecursorMissile", gclass129.bool_0);
-                    sqLiteCommand.Parameters.AddWithValue("@MissilesRequired", gclass129.int_2);
-                    sqLiteCommand.Parameters.AddWithValue("@MissilesAvailable", gclass129.int_3);
-                    sqLiteCommand.Parameters.AddWithValue("@Cost", gclass129.decimal_3);
-                    sqLiteCommand.Parameters.AddWithValue("@Size", gclass129.decimal_4);
-                    sqLiteCommand.Parameters.AddWithValue("@Speed", gclass129.decimal_5);
-                    sqLiteCommand.Parameters.AddWithValue("@RadDamage", gclass129.decimal_2);
-                    sqLiteCommand.Parameters.AddWithValue("@FuelRequired", gclass129.int_4);
-                    sqLiteCommand.Parameters.AddWithValue("@Endurance", gclass129.decimal_21);
-                    sqLiteCommand.Parameters.AddWithValue("@MaxRange", gclass129.double_5);
-                    sqLiteCommand.Parameters.AddWithValue("@WarheadStrength", gclass129.decimal_0);
-                    sqLiteCommand.Parameters.AddWithValue("@SensorStrength", gclass129.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@SensorResolution", gclass129.int_5);
-                    sqLiteCommand.Parameters.AddWithValue("@SensorRange", gclass129.int_6);
-                    sqLiteCommand.Parameters.AddWithValue("@ThermalStrength", gclass129.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@EMStrength", gclass129.double_2);
-                    sqLiteCommand.Parameters.AddWithValue("@EMSensitivity", gclass129.double_3);
-                    sqLiteCommand.Parameters.AddWithValue("@GeoStrength", gclass129.decimal_16);
-                    sqLiteCommand.Parameters.AddWithValue("@TotalFlightTime", gclass129.decimal_22);
-                    sqLiteCommand.Parameters.AddWithValue("@NumDecoys", gclass129.int_7);
-                    sqLiteCommand.Parameters.AddWithValue("@MissileECM", gclass129.int_12);
+                    sqLiteCommand.Parameters.AddWithValue("@NumEngines", gclass129.NumEngines);
+                    sqLiteCommand.Parameters.AddWithValue("@PrecursorMissile", gclass129.PrecursorMissile);
+                    sqLiteCommand.Parameters.AddWithValue("@MissilesRequired", gclass129.MissilesRequired);
+                    sqLiteCommand.Parameters.AddWithValue("@MissilesAvailable", gclass129.MissilesAvailable);
+                    sqLiteCommand.Parameters.AddWithValue("@Cost", gclass129.Cost);
+                    sqLiteCommand.Parameters.AddWithValue("@Size", gclass129.Size);
+                    sqLiteCommand.Parameters.AddWithValue("@Speed", gclass129.Speed);
+                    sqLiteCommand.Parameters.AddWithValue("@RadDamage", gclass129.RadDamage);
+                    sqLiteCommand.Parameters.AddWithValue("@FuelRequired", gclass129.FuelRequired);
+                    sqLiteCommand.Parameters.AddWithValue("@Endurance", gclass129.Endurance);
+                    sqLiteCommand.Parameters.AddWithValue("@MaxRange", gclass129.MaxRange);
+                    sqLiteCommand.Parameters.AddWithValue("@WarheadStrength", gclass129.WarheadStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@SensorStrength", gclass129.SensorStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@SensorResolution", gclass129.SensorResolution);
+                    sqLiteCommand.Parameters.AddWithValue("@SensorRange", gclass129.SensorRange);
+                    sqLiteCommand.Parameters.AddWithValue("@ThermalStrength", gclass129.ThermalStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@EMStrength", gclass129.EMStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@EMSensitivity", gclass129.EMSensitivity);
+                    sqLiteCommand.Parameters.AddWithValue("@GeoStrength", gclass129.GeoStrength);
+                    sqLiteCommand.Parameters.AddWithValue("@TotalFlightTime", gclass129.TotalFlightTime);
+                    sqLiteCommand.Parameters.AddWithValue("@NumDecoys", gclass129.NumDecoys);
+                    sqLiteCommand.Parameters.AddWithValue("@MissileECM", gclass129.MissileECM);
                     sqLiteCommand.Parameters.AddWithValue("@SecondStageID", num2);
-                    sqLiteCommand.Parameters.AddWithValue("@NumSS", gclass129.int_16);
-                    sqLiteCommand.Parameters.AddWithValue("@SeparationRange", gclass129.int_17);
-                    sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass129.gclass123_0.Corbomite);
-                    sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass129.gclass123_0.Tritanium);
-                    sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass129.gclass123_0.Boronide);
-                    sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass129.gclass123_0.Uridium);
-                    sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass129.gclass123_0.Gallicite);
-                    sqLiteCommand.Parameters.AddWithValue("@PreTNT", gclass129.bool_1);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPReactor", gclass129.decimal_6);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPWarhead", gclass129.decimal_7);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPEngine", gclass129.decimal_8);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPFuel", gclass129.decimal_9);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPActive", gclass129.decimal_10);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPThermal", gclass129.decimal_11);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPEM", gclass129.decimal_12);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPGeo", gclass129.decimal_13);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPDecoys", gclass129.decimal_14);
-                    sqLiteCommand.Parameters.AddWithValue("@ECCM", gclass129.int_8);
-                    sqLiteCommand.Parameters.AddWithValue("@GroundAP", gclass129.decimal_17);
-                    sqLiteCommand.Parameters.AddWithValue("@GroundDamage", gclass129.decimal_18);
-                    sqLiteCommand.Parameters.AddWithValue("@GroundBaseDamage", gclass129.decimal_20);
-                    sqLiteCommand.Parameters.AddWithValue("@GroundShots", gclass129.decimal_19);
-                    sqLiteCommand.Parameters.AddWithValue("@PowerMod", gclass129.decimal_23);
-                    sqLiteCommand.Parameters.AddWithValue("@ATG", gclass129.decimal_26);
-                    sqLiteCommand.Parameters.AddWithValue("@Retargeting", gclass129.int_10);
-                    sqLiteCommand.Parameters.AddWithValue("@LaserWarhead", gclass129.decimal_1);
-                    sqLiteCommand.Parameters.AddWithValue("@MinDetonationRange", gclass129.decimal_24);
-                    sqLiteCommand.Parameters.AddWithValue("@MaxDetonationRange", gclass129.decimal_25);
-                    sqLiteCommand.Parameters.AddWithValue("@LaserWarheadRangeModifier", gclass129.int_11);
-                    sqLiteCommand.Parameters.AddWithValue("@MultipleWarheads", gclass129.int_13);
-                    sqLiteCommand.Parameters.AddWithValue("@MSPMultipleWarheads", gclass129.decimal_15);
-                    sqLiteCommand.Parameters.AddWithValue("@ShipDecoy", gclass129.int_14);
+                    sqLiteCommand.Parameters.AddWithValue("@NumSS", gclass129.NumSS);
+                    sqLiteCommand.Parameters.AddWithValue("@SeparationRange", gclass129.SeparationRange);
+                    sqLiteCommand.Parameters.AddWithValue("@Corbomite", gclass129.ProductionMineralCost.Corbomite);
+                    sqLiteCommand.Parameters.AddWithValue("@Tritanium", gclass129.ProductionMineralCost.Tritanium);
+                    sqLiteCommand.Parameters.AddWithValue("@Boronide", gclass129.ProductionMineralCost.Boronide);
+                    sqLiteCommand.Parameters.AddWithValue("@Uridium", gclass129.ProductionMineralCost.Uridium);
+                    sqLiteCommand.Parameters.AddWithValue("@Gallicite", gclass129.ProductionMineralCost.Gallicite);
+                    sqLiteCommand.Parameters.AddWithValue("@PreTNT", gclass129.PreTNT);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPReactor", gclass129.MSPReactor);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPWarhead", gclass129.MSPWarhead);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPEngine", gclass129.MSPEngine);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPFuel", gclass129.MSPFuel);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPActive", gclass129.MSPActive);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPThermal", gclass129.MSPThermal);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPEM", gclass129.MSPEM);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPGeo", gclass129.MSPGeo);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPDecoys", gclass129.MSPDecoys);
+                    sqLiteCommand.Parameters.AddWithValue("@ECCM", gclass129.ECCM);
+                    sqLiteCommand.Parameters.AddWithValue("@GroundAP", gclass129.GroundAP);
+                    sqLiteCommand.Parameters.AddWithValue("@GroundDamage", gclass129.GroundDamage);
+                    sqLiteCommand.Parameters.AddWithValue("@GroundBaseDamage", gclass129.GroundBaseDamage);
+                    sqLiteCommand.Parameters.AddWithValue("@GroundShots", gclass129.GroundShots);
+                    sqLiteCommand.Parameters.AddWithValue("@PowerMod", gclass129.PowerMod);
+                    sqLiteCommand.Parameters.AddWithValue("@ATG", gclass129.ATG);
+                    sqLiteCommand.Parameters.AddWithValue("@Retargeting", gclass129.Retargeting);
+                    sqLiteCommand.Parameters.AddWithValue("@LaserWarhead", gclass129.LaserWarhead);
+                    sqLiteCommand.Parameters.AddWithValue("@MinDetonationRange", gclass129.MinDetonationRange);
+                    sqLiteCommand.Parameters.AddWithValue("@MaxDetonationRange", gclass129.MaxDetonationRange);
+                    sqLiteCommand.Parameters.AddWithValue("@LaserWarheadRangeModifier", gclass129.LaserWarheadRangeModifier);
+                    sqLiteCommand.Parameters.AddWithValue("@MultipleWarheads", gclass129.MultipleWarheads);
+                    sqLiteCommand.Parameters.AddWithValue("@MSPMultipleWarheads", gclass129.MSPMultipleWarheads);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipDecoy", gclass129.ShipDecoy);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3087,18 +3087,18 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass224 gclass224 in this.SystemBodyRecordDic.Values
-                             .SelectMany<SystemBodyData, GClass224>(gclass1_0 => gclass1_0.list_0)
-                             .Where<GClass224>(gclass224_0 => gclass224_0.double_0 > 0.0).ToList<GClass224>())
+                foreach (SystemBodyAtmosphericGas gclass224 in this.SystemBodyRecordDic.Values
+                             .SelectMany<SystemBodyData, SystemBodyAtmosphericGas>(gclass1_0 => gclass1_0.AtmosphericGasList)
+                             .Where<SystemBodyAtmosphericGas>(gclass224_0 => gclass224_0.AtmoGasAmount > 0.0).ToList<SystemBodyAtmosphericGas>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AtmosphericGas (GameID, SystemBodyID, AtmosGasID, AtmosGasAmount, GasAtm, FrozenOut ) VALUES ( @GameID, @SystemBodyID, @AtmosGasID, @AtmosGasAmount, @GasAtm, @FrozenOut )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass224.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@AtmosGasID", gclass224.gclass223_0.AtmosphericGas);
-                    sqLiteCommand.Parameters.AddWithValue("@AtmosGasAmount", gclass224.double_0);
-                    sqLiteCommand.Parameters.AddWithValue("@GasAtm", gclass224.double_1);
-                    sqLiteCommand.Parameters.AddWithValue("@FrozenOut", gclass224.bool_0);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemBodyID", gclass224.SystemBodyID);
+                    sqLiteCommand.Parameters.AddWithValue("@AtmosGasID", gclass224.Gas.Type);
+                    sqLiteCommand.Parameters.AddWithValue("@AtmosGasAmount", gclass224.AtmoGasAmount);
+                    sqLiteCommand.Parameters.AddWithValue("@GasAtm", gclass224.GasAtm);
+                    sqLiteCommand.Parameters.AddWithValue("@FrozenOut", gclass224.FrozenOut);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3117,15 +3117,15 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass26 gclass26 in this.FCTShipDataDictionary.Values
-                             .SelectMany<FCTShipData40, GClass26>(gclass40_0 => gclass40_0.list_13).ToList<GClass26>())
+                foreach (DamageControlQueue gclass26 in this.Ships.Values
+                             .SelectMany<ShipData, DamageControlQueue>(gclass40_0 => gclass40_0.DamageControlQueue).ToList<DamageControlQueue>())
                 {
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_DamageControlQueue (ComponentID, GameID, RepairOrder, ShipID ) VALUES ( @ComponentID, @GameID, @RepairOrder, @ShipID )";
-                    sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass26.gclass230_0.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ComponentID", gclass26.Component.int_0);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
-                    sqLiteCommand.Parameters.AddWithValue("@RepairOrder", gclass26.int_0);
-                    sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass26.gclass40_0.int_8);
+                    sqLiteCommand.Parameters.AddWithValue("@RepairOrder", gclass26.RepairOrder);
+                    sqLiteCommand.Parameters.AddWithValue("@ShipID", gclass26.Ship.int_8);
                     sqLiteCommand.ExecuteNonQuery();
                 }
             }
@@ -3366,9 +3366,9 @@ public partial class GClass0
                     int num6 = 0;
                     int num7 = 0;
                     if (gclass193.gclass22_0 != null)
-                        num1 = gclass193.gclass22_0.int_0;
+                        num1 = gclass193.gclass22_0.ShipClassID;
                     if (gclass193.gclass22_1 != null)
-                        num2 = gclass193.gclass22_1.int_0;
+                        num2 = gclass193.gclass22_1.ShipClassID;
                     if (gclass193.gclass85_0 != null)
                         num3 = gclass193.gclass85_0.FleetID;
                     if (gclass193.gclass40_0 != null)
@@ -3435,9 +3435,9 @@ public partial class GClass0
                         if (gclass192.gclass83_0 != null)
                             num2 = gclass192.gclass83_0.int_0;
                         if (gclass192.gclass22_0 != null)
-                            num3 = gclass192.gclass22_0.int_0;
+                            num3 = gclass192.gclass22_0.ShipClassID;
                         if (gclass192.gclass22_1 != null)
-                            num4 = gclass192.gclass22_1.int_0;
+                            num4 = gclass192.gclass22_1.ShipClassID;
                         if (gclass192.gclass85_0 != null)
                             num5 = gclass192.gclass85_0.FleetID;
                         sqLiteCommand.CommandText =
@@ -3492,7 +3492,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass194 gclass194 in this.SpeciesDictionary.Values)
+                foreach (Species gclass194 in this.SpeciesDictionary.Values)
                 {
                     int num1 = 0;
                     int num2 = 0;
@@ -3508,8 +3508,8 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@HomeworldID", num2);
                     sqLiteCommand.Parameters.AddWithValue("@DerivedSpeciesID", gclass194.int_1);
                     sqLiteCommand.Parameters.AddWithValue("@SpeciesName", gclass194.SpeciesName);
-                    sqLiteCommand.Parameters.AddWithValue("@RacePic", gclass194.string_0);
-                    sqLiteCommand.Parameters.AddWithValue("@BreatheID", gclass194.gclass223_0.AtmosphericGas);
+                    sqLiteCommand.Parameters.AddWithValue("@RacePic", gclass194.RaceImageFileName);
+                    sqLiteCommand.Parameters.AddWithValue("@BreatheID", gclass194.gclass223_0.Type);
                     sqLiteCommand.Parameters.AddWithValue("@Oxygen", gclass194.double_0);
                     sqLiteCommand.Parameters.AddWithValue("@OxyDev", gclass194.double_1);
                     sqLiteCommand.Parameters.AddWithValue("@PressMax", gclass194.double_2);
@@ -3558,7 +3558,7 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass151 gclass151 in this.FCTRaceRecordDic.Values
+                foreach (GClass151 gclass151 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass151>(gclass21_0 => gclass21_0.list_3)
                              .Where<GClass151>(gclass151_0 =>
                                  gclass151_0.decimal_1 - this.GameTime < AuroraUtils.decimal_29).ToList<GClass151>())
@@ -3588,7 +3588,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass153 gclass153 in this.FCTRaceRecordDic.Values
+                foreach (GClass153 gclass153 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass153>(gclass21_0 => gclass21_0.list_4)
                              .Where<GClass153>(gclass153_0 =>
                                  gclass153_0.decimal_1 - this.GameTime < AuroraUtils.decimal_29).ToList<GClass153>())
@@ -3710,7 +3710,7 @@ public partial class GClass0
                 {
                     int num = 0;
                     if (gclass59.gclass22_0 != null)
-                        num = gclass59.gclass22_0.int_0;
+                        num = gclass59.gclass22_0.ShipClassID;
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_Lifepods (LifepodID, GameID, RaceID, SpeciesID, SystemID, ClassID, ShipName, Crew, Xcor, Ycor, CreationTime, GradePoints ) VALUES ( @LifepodID, @GameID, @RaceID, @SpeciesID, @SystemID, @ClassID, @ShipName, @Crew, @Xcor, @Ycor, @CreationTime, @GradePoints )";
                     sqLiteCommand.Parameters.AddWithValue("@LifepodID", gclass59.int_0);
@@ -3743,7 +3743,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass106 gclass106 in this.PopulationDataDictionary.Values
+                foreach (GClass106 gclass106 in this.Populations.Values
                              .SelectMany<PopulationData, GClass106>(gclass146_0 => gclass146_0.dictionary_3.Values)
                              .ToList<GClass106>())
                 {
@@ -3780,7 +3780,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass107 gclass107 in this.PopulationDataDictionary.Values
+                foreach (GClass107 gclass107 in this.Populations.Values
                              .SelectMany<PopulationData, GClass107>(gclass146_0 => gclass146_0.list_0)
                              .ToList<GClass107>())
                 {
@@ -3814,7 +3814,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (ResearchProject gclass161 in this.PopulationDataDictionary.Values
+                foreach (ResearchProject gclass161 in this.Populations.Values
                              .SelectMany<PopulationData, ResearchProject>(gclass146_0 => gclass146_0.dictionary_1.Values)
                              .ToList<ResearchProject>())
                 {
@@ -3848,7 +3848,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass62 gclass62 in this.FCTRaceRecordDic.Values
+                foreach (GClass62 gclass62 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass62>(
                                  gclass21_0 => gclass21_0.dictionary_2.Values).ToList<GClass62>())
                 {
@@ -3882,7 +3882,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (AlienRaceInfo gclass110 in this.FCTRaceRecordDic.Values
+                foreach (AlienRaceInfo gclass110 in this.GameRaces.Values
                              .SelectMany<GameRace, AlienRaceInfo>(gclass21_0 => gclass21_0.PerceivedAliens.Values).ToList<AlienRaceInfo>())
                 {
                     int num = 0;
@@ -3913,7 +3913,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@RandomNameOrder", gclass110.RandomNameOrder);
                     sqLiteCommand.Parameters.AddWithValue("@PortraitShown", gclass110.bPortraitShown);
                     sqLiteCommand.ExecuteNonQuery();
-                    foreach (GClass194 gclass194 in gclass110.dictionary_0.Values)
+                    foreach (Species gclass194 in gclass110.dictionary_0.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_AlienRaceSpecies (AlienRaceID, SpeciesID, DetectRaceID, GameID ) VALUES ( @AlienRaceID, @SpeciesID, @DetectRaceID, @GameID )";
@@ -3924,7 +3924,7 @@ public partial class GClass0
                         sqLiteCommand.ExecuteNonQuery();
                     }
 
-                    foreach (SystemData200 gclass200 in gclass110.dictionary_1.Values)
+                    foreach (StarSystem gclass200 in gclass110.dictionary_1.Values)
                     {
                         sqLiteCommand.CommandText =
                             "INSERT INTO FCT_AlienSystem (GameID, SystemID, AlienRaceID, DetectRaceID ) VALUES ( @GameID, @SystemID, @AlienRaceID, @DetectRaceID )";
@@ -3957,7 +3957,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass115 gclass115 in this.FCTRaceRecordDic.Values
+                foreach (GClass115 gclass115 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass115>(gclass21_0 => gclass21_0.dictionary_11.Values).ToList<GClass115>())
                 {
                     sqLiteCommand.CommandText =
@@ -3965,7 +3965,7 @@ public partial class GClass0
                     sqLiteCommand.Parameters.AddWithValue("@AlienClassID", gclass115.int_0);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@AlienRaceID", gclass115.gclass21_0.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@ActualClassID", gclass115.gclass22_0.int_0);
+                    sqLiteCommand.Parameters.AddWithValue("@ActualClassID", gclass115.gclass22_0.ShipClassID);
                     sqLiteCommand.Parameters.AddWithValue("@ViewRaceID", gclass115.gclass21_1.RaceID);
                     sqLiteCommand.Parameters.AddWithValue("@HullID", gclass115.gclass76_0.ShipHullDescriptionID);
                     sqLiteCommand.Parameters.AddWithValue("@ClassName", gclass115.ClassName);
@@ -4041,7 +4041,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass118 gclass118 in this.FCTRaceRecordDic.Values
+                foreach (GClass118 gclass118 in this.GameRaces.Values
                              .SelectMany<GameRace,
                                  AlienRaceInfo>(gclass21_0 => gclass21_0.PerceivedAliens.Values)
                              .SelectMany<AlienRaceInfo, GClass118>(gclass110_0 => gclass110_0.dictionary_2.Values)
@@ -4053,7 +4053,7 @@ public partial class GClass0
                     if (gclass118.gclass230_0 != null)
                         num1 = gclass118.gclass230_0.int_0;
                     if (gclass118.gclass129_0 != null)
-                        num2 = gclass118.gclass129_0.int_0;
+                        num2 = gclass118.gclass129_0.MissileID;
                     if (gclass118.gclass101_0 != null)
                         num3 = gclass118.gclass101_0.ClassID;
                     sqLiteCommand.CommandText =
@@ -4088,7 +4088,7 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass117 gclass117 in this.FCTRaceRecordDic.Values
+                foreach (GClass117 gclass117 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass117>(gclass21_0 => gclass21_0.dictionary_12.Values).ToList<GClass117>())
                 {
                     sqLiteCommand.CommandText =
@@ -4130,7 +4130,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass114 gclass114 in this.FCTRaceRecordDic.Values
+                foreach (GClass114 gclass114 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass114>(gclass21_0 => gclass21_0.dictionary_14.Values).ToList<GClass114>())
                 {
                     int num = 0;
@@ -4166,7 +4166,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GClass113 gclass113 in this.FCTRaceRecordDic.Values
+                foreach (GClass113 gclass113 in this.GameRaces.Values
                              .SelectMany<GameRace, GClass113>(gclass21_0 => gclass21_0.dictionary_13.Values).ToList<GClass113>())
                 {
                     sqLiteCommand.CommandText =
@@ -4241,7 +4241,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GameRace gclass21 in this.FCTRaceRecordDic.Values)
+                foreach (GameRace gclass21 in this.GameRaces.Values)
                 {
                     foreach (TechSystem gclass164 in gclass21.list_18)
                     {
@@ -4596,7 +4596,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (EventColourSetting gclass90 in this.FCTRaceRecordDic.Values
+                foreach (EventColourSetting gclass90 in this.GameRaces.Values
                              .SelectMany<GameRace, EventColourSetting>(
                                  gclass21_0 => gclass21_0.EventColourSettings.Values).Distinct<EventColourSetting>()
                              .ToList<EventColourSetting>())
@@ -4682,7 +4682,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (OrganizationNodeC93 gclass93 in this.FCTRaceRecordDic.Values
+                foreach (OrganizationNodeC93 gclass93 in this.GameRaces.Values
                              .SelectMany<GameRace, OrganizationNodeC93>(gclass21_0 => gclass21_0.OrganizationNodeDictionary.Values).ToList<OrganizationNodeC93>())
                 {
                     int num1 = 0;
@@ -4719,7 +4719,7 @@ public partial class GClass0
                 .ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (RankThemeEntry gclass61 in this.FCTRaceRecordDic.Values
+                foreach (RankThemeEntry gclass61 in this.GameRaces.Values
                              .SelectMany<GameRace, RankThemeEntry>(
                                  gclass21_0 => gclass21_0.RacialRankDictionary.Values).ToList<RankThemeEntry>())
                 {
@@ -4779,7 +4779,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                List<RacialSystemSurvey> list = this.FCTRaceRecordDic.Values
+                List<RacialSystemSurvey> list = this.GameRaces.Values
                     .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
                     .ToList<RacialSystemSurvey>();
                 foreach (RacialSystemSurvey gclass202 in list)
@@ -4800,7 +4800,7 @@ public partial class GClass0
                         "INSERT INTO FCT_RaceSysSurvey (GameID, RaceID, SystemID, Name, DangerRating, RaidRating, SysTPStatus, ControlRaceID, ForeignFleetRaceID, SectorID, NameThemeID, Discovered, Xcor, Ycor, ClosedWP, SurveyDone, GeoSurveyDefaultDone, SelectedBodyXcor, SelectedBodyYcor, KmPerPixel, DiscoveredTime, NoAutoRoute, MilitaryRestrictedSystem, SystemValue, AutoProtectionStatus, MineralSearchFlag ) \r\n                        VALUES (@GameID, @RaceID, @SystemID, @Name, @DangerRating, @RaidRating, @SysTPStatus, @ControlRaceID, @ForeignFleetRaceID, @SectorID, @NameThemeID, @Discovered, @Xcor, @Ycor, @ClosedWP, @SurveyDone, @GeoSurveyDefaultDone, @SelectedBodyXcor, @SelectedBodyYcor, @KmPerPixel, @DiscoveredTime, @NoAutoRoute, @MilitaryRestrictedSystem, @SystemValue, @AutoProtectionStatus, @MineralSearchFlag )";
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
                     sqLiteCommand.Parameters.AddWithValue("@RaceID", gclass202.Race.RaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass202.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass202.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@Name", gclass202.Name);
                     sqLiteCommand.Parameters.AddWithValue("@DangerRating", gclass202.DangerRating);
                     sqLiteCommand.Parameters.AddWithValue("@RaidRating", gclass202.RaidRating);
@@ -4829,7 +4829,7 @@ public partial class GClass0
                 }
 
                 foreach (RaceJumpPointSurvey gclass203 in this.JumpPointDictionary.Values
-                             .SelectMany<JumpPoint120, RaceJumpPointSurvey>(gclass120_0 => gclass120_0.RacialJumpPointSurveys.Values)
+                             .SelectMany<JumpPoint, RaceJumpPointSurvey>(gclass120_0 => gclass120_0.RacialJumpPointSurveys.Values)
                              .ToList<RaceJumpPointSurvey>())
                 {
                     sqLiteCommand.CommandText =
@@ -4853,7 +4853,7 @@ public partial class GClass0
                     sqLiteCommand.CommandText =
                         "INSERT INTO FCT_AlienRaceSystemStatus (AlienRaceID, SystemID, ProtectionStatusID, GameID, ViewingRaceID ) \r\n                        VALUES (@AlienRaceID, @SystemID, @ProtectionStatusID, @GameID, @ViewingRaceID )";
                     sqLiteCommand.Parameters.AddWithValue("@AlienRaceID", gclass111.gclass110_0.ActualAlienRaceID);
-                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass111.gclass202_0.ActualSystemData.SystemID);
+                    sqLiteCommand.Parameters.AddWithValue("@SystemID", gclass111.gclass202_0.ActualSystem.SystemID);
                     sqLiteCommand.Parameters.AddWithValue("@ProtectionStatusID",
                         gclass111.auroraSystemProtectionStatus_0);
                     sqLiteCommand.Parameters.AddWithValue("@GameID", this.GameID);
@@ -4879,7 +4879,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (DesignDoctrine gclass20 in this.FCTRaceRecordDic.Values
+                foreach (DesignDoctrine gclass20 in this.GameRaces.Values
                              .Select<GameRace, DesignDoctrine>(gclass21_0 => gclass21_0.DesignDoctrine)
                              .ToList<DesignDoctrine>())
                 {

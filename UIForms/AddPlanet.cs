@@ -116,13 +116,13 @@ public class AddPlanet : Form
             this.double_4 = 1.4 * Math.Pow(this.gclass197_0.Luminosity, 0.5);
             this.gclass0_0.method_601(this.lstvZones, "", "m km", null);
             this.gclass0_0.method_597(this.lstvZones, "Life Zone Start",
-                AuroraUtils.smethod_44(this.double_2 * AuroraUtils.double_14 / 1000000.0, 2));
+                AuroraUtils.FormatDoubleToPrecision(this.double_2 * AuroraUtils.double_14 / 1000000.0, 2));
             this.gclass0_0.method_597(this.lstvZones, "Life Zone End",
-                AuroraUtils.smethod_44(this.double_4 * AuroraUtils.double_14 / 1000000.0, 2));
+                AuroraUtils.FormatDoubleToPrecision(this.double_4 * AuroraUtils.double_14 / 1000000.0, 2));
             this.gclass0_0.method_597(this.lstvZones, "Inner System End",
-                AuroraUtils.smethod_44(this.double_0 * AuroraUtils.double_14 / 1000000.0, 2));
+                AuroraUtils.FormatDoubleToPrecision(this.double_0 * AuroraUtils.double_14 / 1000000.0, 2));
             this.gclass0_0.method_597(this.lstvZones, "Outer System End",
-                AuroraUtils.smethod_44(this.double_1 * AuroraUtils.double_14 / 1000000.0, 2));
+                AuroraUtils.FormatDoubleToPrecision(this.double_1 * AuroraUtils.double_14 / 1000000.0, 2));
             this.gclass0_0.method_597(this.lstvZones, "Extreme", "Beyond Outer");
         }
         catch (Exception ex)

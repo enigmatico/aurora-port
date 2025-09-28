@@ -12,7 +12,7 @@ using System.Windows.Forms;
 public class GClass210
 {
     private GClass0 gclass0_0;
-    public SystemData200 gclass200_0;
+    public StarSystem gclass200_0;
     public int int_0;
     public Decimal decimal_0;
     public double double_0;

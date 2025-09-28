@@ -5,9 +5,9 @@ public partial class SystemBodyData
     {
         public AtmosphericGasDefinition gclass223_0;
 
-        internal bool method_0(GClass224 gclass224_0)
+        internal bool method_0(SystemBodyAtmosphericGas gclass224_0)
         {
-            return gclass224_0.gclass223_0 == this.gclass223_0;
+            return gclass224_0.Gas == this.gclass223_0;
         }
     }
 
@@ -111,9 +111,9 @@ public partial class SystemBodyData
         public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
-        internal bool method_0(GClass215 gclass215_0)
+        internal bool method_0(RacialSystemBodySurvey gclass215_0)
         {
-            return gclass215_0.gclass21_0 == this.gclass21_0 && gclass215_0.gclass1_0 == this.gclass1_0;
+            return gclass215_0.Race == this.gclass21_0 && gclass215_0.SystemBody == this.gclass1_0;
         }
     }
 
@@ -123,20 +123,20 @@ public partial class SystemBodyData
         public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
-        internal bool method_0(GClass215 gclass215_0)
+        internal bool method_0(RacialSystemBodySurvey gclass215_0)
         {
-            return gclass215_0.gclass21_0 == this.gclass21_0 && gclass215_0.gclass1_0 == this.gclass1_0;
+            return gclass215_0.Race == this.gclass21_0 && gclass215_0.SystemBody == this.gclass1_0;
         }
     }
 
 
     private sealed class Class315
     {
-        public GClass194 gclass194_0;
+        public Species gclass194_0;
 
-        internal bool method_0(GClass224 gclass224_0)
+        internal bool method_0(SystemBodyAtmosphericGas gclass224_0)
         {
-            return gclass224_0.gclass223_0.Dangerous > 0 && gclass224_0.gclass223_0 != this.gclass194_0.gclass223_0;
+            return gclass224_0.Gas.Dangerous > 0 && gclass224_0.Gas != this.gclass194_0.gclass223_0;
         }
     }
 
@@ -145,9 +145,9 @@ public partial class SystemBodyData
     {
         public AtmosphericGasDefinition gclass223_0;
 
-        internal bool method_0(GClass224 gclass224_0)
+        internal bool method_0(SystemBodyAtmosphericGas gclass224_0)
         {
-            return gclass224_0.gclass223_0 == this.gclass223_0;
+            return gclass224_0.Gas == this.gclass223_0;
         }
     }
 
@@ -159,7 +159,7 @@ public partial class SystemBodyData
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData == this.gclass21_0 && gclass146_0.SystemBodyData == this.gclass1_0;
+            return gclass146_0.Race == this.gclass21_0 && gclass146_0.SystemBodyData == this.gclass1_0;
         }
     }
 
@@ -171,7 +171,7 @@ public partial class SystemBodyData
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData == this.gclass202_0.Race && gclass146_0.SystemBodyData == this.gclass1_0;
+            return gclass146_0.Race == this.gclass202_0.Race && gclass146_0.SystemBodyData == this.gclass1_0;
         }
     }
 
@@ -181,9 +181,9 @@ public partial class SystemBodyData
         public GameRace gclass21_0;
         public SystemBodyData gclass1_0;
 
-        internal bool method_0(GClass215 gclass215_0)
+        internal bool method_0(RacialSystemBodySurvey gclass215_0)
         {
-            return gclass215_0.gclass21_0 == this.gclass21_0 && gclass215_0.gclass1_0 == this.gclass1_0;
+            return gclass215_0.Race == this.gclass21_0 && gclass215_0.SystemBody == this.gclass1_0;
         }
     }
 
@@ -191,9 +191,9 @@ public partial class SystemBodyData
     {
         public GameRace gclass21_0;
 
-        internal bool method_0(GClass218 gclass218_0)
+        internal bool method_0(RaceSystemBodyName gclass218_0)
         {
-            return gclass218_0.gclass21_0 == this.gclass21_0;
+            return gclass218_0.Race == this.gclass21_0;
         }
     }
 
@@ -202,9 +202,9 @@ public partial class SystemBodyData
     {
         public GameRace gclass21_0;
 
-        internal bool method_0(GClass218 gclass218_0)
+        internal bool method_0(RaceSystemBodyName gclass218_0)
         {
-            return gclass218_0.gclass21_0 == this.gclass21_0;
+            return gclass218_0.Race == this.gclass21_0;
         }
     }
 }

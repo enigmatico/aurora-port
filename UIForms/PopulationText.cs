@@ -14,7 +14,7 @@ public class PopulationText : Form
 {
     private PopulationData gclass146_0;
     private FleetData gclass85_0;
-    private GClass22 gclass22_0;
+    private ShipClass gclass22_0;
     private GroundUnitFormationTemplateData gclass102_0;
     private GameRace gclass21_0;
     private AlienRaceInfo gclass110_0;
@@ -47,7 +47,7 @@ public class PopulationText : Form
         this.checkState_1 = checkState_3;
     }
 
-    public PopulationText(GClass22 gclass22_1, GClass0 gclass0_1)
+    public PopulationText(ShipClass gclass22_1, GClass0 gclass0_1)
     {
         this.InitializeComponent();
         this.gclass22_0 = gclass22_1;

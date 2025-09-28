@@ -12,10 +12,10 @@ using System.Collections.Generic;
 public class GClass13
 {
     private GClass0 gclass0_0;
-    public Dictionary<AuroraContactType, GClass65> dictionary_0 = new Dictionary<AuroraContactType, GClass65>();
+    public Dictionary<AuroraContactType, Contact> dictionary_0 = new Dictionary<AuroraContactType, Contact>();
     public PopulationData gclass146_0;
     public GClass113 gclass113_0;
-    public GClass65 gclass65_0;
+    public Contact gclass65_0;
     public double double_0;
     public double double_1;
     public double double_2;
@@ -31,9 +31,9 @@ public class GClass13
         try
         {
             Decimal num = this.gclass113_0.decimal_2 / 25M;
-            if (this.gclass65_0.auroraContactType_0 == AuroraContactType.Population)
+            if (this.gclass65_0.ContactType == AuroraContactType.Population)
                 return num;
-            return this.gclass65_0.auroraContactType_0 == AuroraContactType.Shipyard ? num / 10M : num * 5M;
+            return this.gclass65_0.ContactType == AuroraContactType.Shipyard ? num / 10M : num * 5M;
         }
         catch (Exception ex)
         {

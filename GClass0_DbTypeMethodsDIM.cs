@@ -296,7 +296,7 @@ public partial class GClass0
                          .ExecuteQuery("SELECT * FROM DIM_Gases").Rows)
             {
                 AtmosphericGasDefinition gclass223 = new AtmosphericGasDefinition();
-                gclass223.AtmosphericGas = (AtmosphericGas)Convert.ToInt32(row["GasID"]);
+                gclass223.Type = (GasType)Convert.ToInt32(row["GasID"]);
                 gclass223.Dangerous = Convert.ToInt32(row["Dangerous"]);
                 gclass223.DangerousLevel = Convert.ToInt32(row["DangerousLevel"]);
                 gclass223.BoilingPoint = Convert.ToInt32(row["BoilingPoint"]);
@@ -304,7 +304,7 @@ public partial class GClass0
                 gclass223.AntiGHGas = Convert.ToBoolean(row["AntiGHGas"]);
                 gclass223.Name = row["Name"].ToString();
                 gclass223.Symbol = row["Symbol"].ToString();
-                this.AtmosphericGasDictionary.Add(gclass223.AtmosphericGas, gclass223);
+                this.AtmosphericGasDictionary.Add(gclass223.Type, gclass223);
             }
         }
         catch (DbException ex)
@@ -485,7 +485,7 @@ public partial class GClass0
                 gclass157.MineralCost.Uridium = Convert.ToDecimal(row["Uridium"]);
                 gclass157.MineralCost.Corundium = Convert.ToDecimal(row["Corundium"]);
                 gclass157.MineralCost.Gallicite = Convert.ToDecimal(row["Gallicite"]);
-                this.PlanetaryInstallationDictionary.Add(gclass157.InstallationType, gclass157);
+                this.InstallationTypes.Add(gclass157.InstallationType, gclass157);
             }
         }
         catch (DbException ex)
@@ -1189,9 +1189,9 @@ public partial class GClass0
                 {
                     TemperatureBand = Convert.ToInt32(row["TempBand"]),
                     MaxChance = Convert.ToInt32(row["MaxChance"]),
-                    Gas1 = (AtmosphericGas)Convert.ToInt32(row["Gas1"]),
-                    Gas2 = (AtmosphericGas)Convert.ToInt32(row["Gas2"]),
-                    Gas3 = (AtmosphericGas)Convert.ToInt32(row["Gas3"]),
+                    Gas1 = (GasType)Convert.ToInt32(row["Gas1"]),
+                    Gas2 = (GasType)Convert.ToInt32(row["Gas2"]),
+                    Gas3 = (GasType)Convert.ToInt32(row["Gas3"]),
                     Description = row["Description"].ToString()
                 });
         }
@@ -1524,7 +1524,7 @@ public partial class GClass0
     }
 
     public void LoadSolSystemBodiesFromDB(
-        SystemData200 paramSystemData,
+        StarSystem paramSystemData,
         Star197 paramStar,
         Decimal paramDecimalValue,
         bool paramBool)
@@ -1721,7 +1721,7 @@ public partial class GClass0
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
-                class285.gclass1_0.double_26 = class285.gclass1_0.OrbitalDistance *
+                class285.gclass1_0.OrbitalSemiMinorAxis = class285.gclass1_0.OrbitalDistance *
                                                Math.Sqrt(1.0 - class285.gclass1_0.Eccentricity *
                                                    class285.gclass1_0.Eccentricity);
                 // ISSUE: reference to a compiler-generated field
@@ -1794,20 +1794,20 @@ public partial class GClass0
                 if (class285.gclass1_0.Name == "Earth")
                 {
                     // ISSUE: reference to a compiler-generated field
-                    GClass224 gclass224_1 = new GClass224(class285.gclass1_0,
-                        this.AtmosphericGasDictionary[AtmosphericGas.Nitrogen], 0.79, 79.0);
+                    SystemBodyAtmosphericGas gclass224_1 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                        this.AtmosphericGasDictionary[GasType.Nitrogen], 0.79, 79.0);
                     // ISSUE: reference to a compiler-generated field
-                    class285.gclass1_0.list_0.Add(gclass224_1);
+                    class285.gclass1_0.AtmosphericGasList.Add(gclass224_1);
                     // ISSUE: reference to a compiler-generated field
-                    GClass224 gclass224_2 = new GClass224(class285.gclass1_0,
-                        this.AtmosphericGasDictionary[AtmosphericGas.Oxygen], 0.2, 20.0);
+                    SystemBodyAtmosphericGas gclass224_2 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                        this.AtmosphericGasDictionary[GasType.Oxygen], 0.2, 20.0);
                     // ISSUE: reference to a compiler-generated field
-                    class285.gclass1_0.list_0.Add(gclass224_2);
+                    class285.gclass1_0.AtmosphericGasList.Add(gclass224_2);
                     // ISSUE: reference to a compiler-generated field
-                    GClass224 gclass224_3 = new GClass224(class285.gclass1_0,
-                        this.AtmosphericGasDictionary[AtmosphericGas.Argon], 0.01, 1.0);
+                    SystemBodyAtmosphericGas gclass224_3 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                        this.AtmosphericGasDictionary[GasType.Argon], 0.01, 1.0);
                     // ISSUE: reference to a compiler-generated field
-                    class285.gclass1_0.list_0.Add(gclass224_3);
+                    class285.gclass1_0.AtmosphericGasList.Add(gclass224_3);
                 }
                 else
                 {
@@ -1815,15 +1815,15 @@ public partial class GClass0
                     if (class285.gclass1_0.Name == "Venus")
                     {
                         // ISSUE: reference to a compiler-generated field
-                        GClass224 gclass224_4 = new GClass224(class285.gclass1_0,
-                            this.AtmosphericGasDictionary[AtmosphericGas.CarbonDioxide], 89.745, 96.5);
+                        SystemBodyAtmosphericGas gclass224_4 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                            this.AtmosphericGasDictionary[GasType.CarbonDioxide], 89.745, 96.5);
                         // ISSUE: reference to a compiler-generated field
-                        class285.gclass1_0.list_0.Add(gclass224_4);
+                        class285.gclass1_0.AtmosphericGasList.Add(gclass224_4);
                         // ISSUE: reference to a compiler-generated field
-                        GClass224 gclass224_5 = new GClass224(class285.gclass1_0,
-                            this.AtmosphericGasDictionary[AtmosphericGas.Nitrogen], 3.255, 3.5);
+                        SystemBodyAtmosphericGas gclass224_5 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                            this.AtmosphericGasDictionary[GasType.Nitrogen], 3.255, 3.5);
                         // ISSUE: reference to a compiler-generated field
-                        class285.gclass1_0.list_0.Add(gclass224_5);
+                        class285.gclass1_0.AtmosphericGasList.Add(gclass224_5);
                     }
                     else
                     {
@@ -1831,20 +1831,20 @@ public partial class GClass0
                         if (class285.gclass1_0.Name == "Mars")
                         {
                             // ISSUE: reference to a compiler-generated field
-                            GClass224 gclass224_6 = new GClass224(class285.gclass1_0,
-                                this.AtmosphericGasDictionary[AtmosphericGas.CarbonDioxide], 0.005742, 95.7);
+                            SystemBodyAtmosphericGas gclass224_6 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                                this.AtmosphericGasDictionary[GasType.CarbonDioxide], 0.005742, 95.7);
                             // ISSUE: reference to a compiler-generated field
-                            class285.gclass1_0.list_0.Add(gclass224_6);
+                            class285.gclass1_0.AtmosphericGasList.Add(gclass224_6);
                             // ISSUE: reference to a compiler-generated field
-                            GClass224 gclass224_7 = new GClass224(class285.gclass1_0,
-                                this.AtmosphericGasDictionary[AtmosphericGas.Nitrogen], 0.000162, 2.7);
+                            SystemBodyAtmosphericGas gclass224_7 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                                this.AtmosphericGasDictionary[GasType.Nitrogen], 0.000162, 2.7);
                             // ISSUE: reference to a compiler-generated field
-                            class285.gclass1_0.list_0.Add(gclass224_7);
+                            class285.gclass1_0.AtmosphericGasList.Add(gclass224_7);
                             // ISSUE: reference to a compiler-generated field
-                            GClass224 gclass224_8 = new GClass224(class285.gclass1_0,
-                                this.AtmosphericGasDictionary[AtmosphericGas.Argon], 9.6E-05, 1.6);
+                            SystemBodyAtmosphericGas gclass224_8 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                                this.AtmosphericGasDictionary[GasType.Argon], 9.6E-05, 1.6);
                             // ISSUE: reference to a compiler-generated field
-                            class285.gclass1_0.list_0.Add(gclass224_8);
+                            class285.gclass1_0.AtmosphericGasList.Add(gclass224_8);
                         }
                         else
                         {
@@ -1852,20 +1852,20 @@ public partial class GClass0
                             if (class285.gclass1_0.Name == "Titan")
                             {
                                 // ISSUE: reference to a compiler-generated field
-                                GClass224 gclass224_9 = new GClass224(class285.gclass1_0,
-                                    this.AtmosphericGasDictionary[AtmosphericGas.Nitrogen], 1.4268, 98.4);
+                                SystemBodyAtmosphericGas gclass224_9 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                                    this.AtmosphericGasDictionary[GasType.Nitrogen], 1.4268, 98.4);
                                 // ISSUE: reference to a compiler-generated field
-                                class285.gclass1_0.list_0.Add(gclass224_9);
+                                class285.gclass1_0.AtmosphericGasList.Add(gclass224_9);
                                 // ISSUE: reference to a compiler-generated field
-                                GClass224 gclass224_10 = new GClass224(class285.gclass1_0,
-                                    this.AtmosphericGasDictionary[AtmosphericGas.Methane], 0.0203, 1.4);
+                                SystemBodyAtmosphericGas gclass224_10 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                                    this.AtmosphericGasDictionary[GasType.Methane], 0.0203, 1.4);
                                 // ISSUE: reference to a compiler-generated field
-                                class285.gclass1_0.list_0.Add(gclass224_10);
+                                class285.gclass1_0.AtmosphericGasList.Add(gclass224_10);
                                 // ISSUE: reference to a compiler-generated field
-                                GClass224 gclass224_11 = new GClass224(class285.gclass1_0,
-                                    this.AtmosphericGasDictionary[AtmosphericGas.Hydrogen], 0.0029, 0.2);
+                                SystemBodyAtmosphericGas gclass224_11 = new SystemBodyAtmosphericGas(class285.gclass1_0,
+                                    this.AtmosphericGasDictionary[GasType.Hydrogen], 0.0029, 0.2);
                                 // ISSUE: reference to a compiler-generated field
-                                class285.gclass1_0.list_0.Add(gclass224_11);
+                                class285.gclass1_0.AtmosphericGasList.Add(gclass224_11);
                             }
                         }
                     }
@@ -2161,13 +2161,13 @@ public partial class GClass0
             foreach (DataRow row in (InternalDataCollectionBase)new SQLiteDatabaseC1181()
                          .ExecuteQuery("select * from DIM_TradeGoods").Rows)
             {
-                TradeGoodsDefinition gclass189 = new TradeGoodsDefinition();
-                gclass189.int_0 = Convert.ToInt32(row["TradeGoodID"]);
+                TradeGood gclass189 = new TradeGood();
+                gclass189.TradeGoodID = Convert.ToInt32(row["TradeGoodID"]);
                 gclass189.genum49_0 = (GEnum49)Convert.ToInt32(row["Category"]);
                 gclass189.decimal_0 = Convert.ToDecimal(row["PopRequired"]);
                 gclass189.bool_0 = Convert.ToBoolean(row["RareGood"]);
                 gclass189.string_0 = row["Description"].ToString();
-                this.TradeGoodsDictionary.Add(gclass189.int_0, gclass189);
+                this.TradeGoodsDictionary.Add(gclass189.TradeGoodID, gclass189);
             }
         }
         catch (Exception ex)

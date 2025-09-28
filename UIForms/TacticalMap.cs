@@ -34,7 +34,7 @@ public class TacticalMap : Form
     public int int_4;
     public bool bool_0;
     public bool bool_1;
-    public GClass214 gclass214_0;
+    public Waypoint gclass214_0;
     private GClass227 gclass227_0;
     private bool bool_2;
     private DateTime dateTime_0;
@@ -304,7 +304,7 @@ public class TacticalMap : Form
                 if (this.gclass0_0 == null)
                     return;
                 this.gclass0_0.InitializeGame();
-                foreach (GameRace gclass21 in this.gclass0_0.FCTRaceRecordDic.Values
+                foreach (GameRace gclass21 in this.gclass0_0.GameRaces.Values
                              .Where<GameRace>(gclass21_0 =>
                                  gclass21_0.NPR && gclass21_0.SpecialNPRID == SpecialNPRIDs.const_0)
                              .ToList<GameRace>())
@@ -516,8 +516,8 @@ public class TacticalMap : Form
             this.gclass0_0.bool_9 = true;
             if (this.gclass202_0 != null)
             {
-                if (this.Race.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
-                    gclass202 = this.Race.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
+                if (this.Race.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystem.SystemID))
+                    gclass202 = this.Race.RacialSystemDictionary[this.gclass202_0.ActualSystem.SystemID];
             }
             else
                 gclass202 = this.Race.method_190();
@@ -552,8 +552,8 @@ public class TacticalMap : Form
             this.gclass0_0.bool_9 = true;
             if (this.gclass202_0 != null)
             {
-                if (this.Race.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
-                    gclass202 = this.Race.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
+                if (this.Race.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystem.SystemID))
+                    gclass202 = this.Race.RacialSystemDictionary[this.gclass202_0.ActualSystem.SystemID];
             }
             else
                 gclass202 = this.Race.method_190();
@@ -655,7 +655,7 @@ public class TacticalMap : Form
             if (this.gclass202_0 == null)
                 return;
             this.Race = (GameRace)this.cboRaces.SelectedValue;
-            this.Race.method_340(this.gclass202_0.ActualSystemData, this.tvMinerals, this.txtMinerals);
+            this.Race.method_340(this.gclass202_0.ActualSystem, this.tvMinerals, this.txtMinerals);
             this.gclass202_0.method_14(this.lstvWaypoints);
             this.method_20();
             this.Race.method_385(this.gclass202_0, this.tvSystemBodies);
@@ -1119,15 +1119,15 @@ public class TacticalMap : Form
         {
             if (e.Node.Tag is FleetData)
                 this.gclass0_0.method_522((FleetData)e.Node.Tag);
-            else if (e.Node.Tag is GClass22)
+            else if (e.Node.Tag is ShipClass)
             {
                 int num1 = (int)MessageBox.Show("ShipClass");
             }
             else
             {
-                if (!(e.Node.Tag is FCTShipData40))
+                if (!(e.Node.Tag is ShipData))
                     return;
-                int num2 = (int)MessageBox.Show(((FCTShipData40)e.Node.Tag).ShipName);
+                int num2 = (int)MessageBox.Show(((ShipData)e.Node.Tag).ShipName);
             }
         }
         catch (Exception ex)
@@ -1141,9 +1141,9 @@ public class TacticalMap : Form
         try
         {
             if (this.ckNoSensors.CheckState == CheckState.Checked)
-                this.gclass202_0.ActualSystemData.NoSensorChecks = 1;
+                this.gclass202_0.ActualSystem.NoSensorChecks = 1;
             else
-                this.gclass202_0.ActualSystemData.NoSensorChecks = 0;
+                this.gclass202_0.ActualSystem.NoSensorChecks = 0;
         }
         catch (Exception ex)
         {
@@ -1258,10 +1258,10 @@ public class TacticalMap : Form
             }
             else
             {
-                GClass214 tag = (GClass214)this.lstvWaypoints.SelectedItems[0].Tag;
+                Waypoint tag = (Waypoint)this.lstvWaypoints.SelectedItems[0].Tag;
                 if (tag == null)
                     return;
-                this.gclass0_0.method_712(tag.double_0, tag.double_1, this.gclass202_0);
+                this.gclass0_0.method_712(tag.Xcor, tag.Ycor, this.gclass202_0);
                 this.Refresh();
             }
         }
@@ -1285,11 +1285,11 @@ public class TacticalMap : Form
             }
             else
             {
-                GClass214 tag = (GClass214)this.lstvWaypoints.SelectedItems[0].Tag;
+                Waypoint tag = (Waypoint)this.lstvWaypoints.SelectedItems[0].Tag;
                 if (tag == null || MessageBox.Show($" Are you sure you want to delete {tag.method_2(true)}?",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                this.gclass0_0.dictionary_13.Remove(tag.int_0);
+                this.gclass0_0.Waypoints.Remove(tag.WaypointID);
                 this.gclass202_0.method_14(this.lstvWaypoints);
                 this.gclass0_0.method_703(this.gclass202_0);
                 this.Refresh();
@@ -1357,7 +1357,7 @@ public class TacticalMap : Form
                     if (this.wayPointType_0 == WayPointType.DeepSpaceLocation)
                     {
                         Star197 gclass197_0_1 = this.gclass0_0.StarDictionary.Values.FirstOrDefault<Star197>(
-                            gclass197_0 => gclass197_0.SystemData == this.gclass202_0.ActualSystemData &&
+                            gclass197_0 => gclass197_0.SystemData == this.gclass202_0.ActualSystem &&
                                            gclass197_0.Component == 1);
                         GClass221 gclass221 =
                             this.gclass0_0.method_716(this.gclass202_0, mouseEventArgs.X, mouseEventArgs.Y);
@@ -1386,9 +1386,9 @@ public class TacticalMap : Form
                         }
 
                         SystemBodyData gclass1_0_2 = this.gclass0_0.method_649(this.Race,
-                            this.gclass202_0.ActualSystemData, gclass197_0_1, gclass221.double_0, gclass221.double_1,
+                            this.gclass202_0.ActualSystem, gclass197_0_1, gclass221.double_0, gclass221.double_1,
                             string_10, gclass1_1);
-                        GClass194 gclass194_1 = this.Race.method_164();
+                        Species gclass194_1 = this.Race.method_164();
                         this.Race.method_275(gclass1_0_2, gclass194_1);
                         gclass1_0_2.method_37(this.Race);
                         this.Cursor = Cursors.Default;
@@ -1416,14 +1416,14 @@ public class TacticalMap : Form
 
                 if (gclass1_0_1 != null)
                 {
-                    this.Race.method_188(this.gclass202_0.ActualSystemData, gclass1_0_1, null, this.wayPointType_0,
+                    this.Race.method_188(this.gclass202_0.ActualSystem, gclass1_0_1, null, this.wayPointType_0,
                         gclass1_0_1.XCoordinate, gclass1_0_1.YCoordinate, string_10, this.int_4);
                 }
                 else
                 {
                     GClass221 gclass221 =
                         this.gclass0_0.method_716(this.gclass202_0, mouseEventArgs.X, mouseEventArgs.Y);
-                    this.Race.method_188(this.gclass202_0.ActualSystemData, null, null, this.wayPointType_0,
+                    this.Race.method_188(this.gclass202_0.ActualSystem, null, null, this.wayPointType_0,
                         gclass221.double_0, gclass221.double_1, string_10, this.int_4);
                 }
             }
@@ -1431,19 +1431,19 @@ public class TacticalMap : Form
             {
                 if (gclass1_0_1 != null)
                 {
-                    this.gclass214_0.gclass1_0 = gclass1_0_1;
-                    this.gclass214_0.int_1 = gclass1_0_1.SystemBodyID;
-                    this.gclass214_0.double_0 = gclass1_0_1.XCoordinate;
-                    this.gclass214_0.double_1 = gclass1_0_1.YCoordinate;
+                    this.gclass214_0.OrbitBody = gclass1_0_1;
+                    this.gclass214_0.OrbitBodyID = gclass1_0_1.SystemBodyID;
+                    this.gclass214_0.Xcor = gclass1_0_1.XCoordinate;
+                    this.gclass214_0.Ycor = gclass1_0_1.YCoordinate;
                 }
                 else
                 {
                     GClass221 gclass221 =
                         this.gclass0_0.method_716(this.gclass202_0, mouseEventArgs.X, mouseEventArgs.Y);
-                    this.gclass214_0.gclass1_0 = null;
-                    this.gclass214_0.int_1 = 0;
-                    this.gclass214_0.double_0 = gclass221.double_0;
-                    this.gclass214_0.double_1 = gclass221.double_1;
+                    this.gclass214_0.OrbitBody = null;
+                    this.gclass214_0.OrbitBodyID = 0;
+                    this.gclass214_0.Xcor = gclass221.double_0;
+                    this.gclass214_0.Ycor = gclass221.double_1;
                 }
 
                 this.gclass214_0 = null;
@@ -1633,14 +1633,14 @@ public class TacticalMap : Form
     {
         try
         {
-            if (this.Race == null || !(e.Node.Tag is FCTShipData40))
+            if (this.Race == null || !(e.Node.Tag is ShipData))
                 return;
-            var cgc40_0 = (FCTShipData40)e.Node.Tag;
+            var cgc40_0 = (ShipData)e.Node.Tag;
             if (cgc40_0 == null)
                 return;
-            GClass65 gclass65 = this.gclass0_0.dictionary_28.Values
-                .Where<GClass65>(gc65 => gc65.gclass40_0 == cgc40_0 && gc65.gclass21_0 == this.Race)
-                .OrderByDescending<GClass65, Decimal>(gclass65_0 => gclass65_0.decimal_3).FirstOrDefault<GClass65>();
+            Contact gclass65 = this.gclass0_0.Contacts.Values
+                .Where<Contact>(gc65 => gc65.TargetShip == cgc40_0 && gc65.ContactRace == this.Race)
+                .OrderByDescending<Contact, Decimal>(gclass65_0 => gclass65_0.LastUpdate).FirstOrDefault<Contact>();
             if (gclass65 == null)
                 return;
             this.lblLocation.Text = gclass65.method_0();
@@ -1699,9 +1699,9 @@ public class TacticalMap : Form
             }
             else
             {
-                foreach (FCTShipData40 gclass40 in this.gclass0_0.FCTShipDataDictionary.Values
-                             .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.Race)
-                             .Where<FCTShipData40>(gclass40_0 => !gclass40_0.gclass22_0.bool_2).ToList<FCTShipData40>())
+                foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
+                             .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.Race)
+                             .Where<ShipData>(gclass40_0 => !gclass40_0.gclass22_0.Commercial).ToList<ShipData>())
                     gclass40.method_31(GEnum61.const_2);
             }
         }
@@ -1725,12 +1725,12 @@ public class TacticalMap : Form
             }
             else
             {
-                this.gclass214_0 = (GClass214)this.lstvWaypoints.SelectedItems[0].Tag;
+                this.gclass214_0 = (Waypoint)this.lstvWaypoints.SelectedItems[0].Tag;
                 if (this.gclass214_0 == null)
                     return;
-                foreach (GClass132 gclass132 in this.gclass0_0.dictionary_6.Values.Where<GClass132>(gclass132_0 =>
+                foreach (MissileSalvo gclass132 in this.gclass0_0.MissileSalvoes.Values.Where<MissileSalvo>(gclass132_0 =>
                              gclass132_0.auroraContactType_0 == AuroraContactType.WayPoint &&
-                             gclass132_0.int_0 == this.gclass214_0.int_0).ToList<GClass132>())
+                             gclass132_0.int_0 == this.gclass214_0.WaypointID).ToList<MissileSalvo>())
                 {
                     gclass132.int_0 = 0;
                     gclass132.auroraContactType_0 = AuroraContactType.None;
@@ -1775,9 +1775,9 @@ public class TacticalMap : Form
                     return;
                 foreach (ListViewItem listViewItem in this.lstvWaypoints.Items)
                 {
-                    GClass214 tag = (GClass214)listViewItem.Tag;
+                    Waypoint tag = (Waypoint)listViewItem.Tag;
                     if (tag != null)
-                        this.gclass0_0.dictionary_13.Remove(tag.int_0);
+                        this.gclass0_0.Waypoints.Remove(tag.WaypointID);
                 }
 
                 this.gclass202_0.method_14(this.lstvWaypoints);
@@ -2032,12 +2032,12 @@ public class TacticalMap : Form
                         .ToList<SystemBodyData>();
                     List<FleetData> list1 = source.SelectMany<GClass222, FleetData>(gclass222_0 => gclass222_0.list_4)
                         .Distinct<FleetData>().ToList<FleetData>();
-                    List<JumpPoint120> list2 = source
-                        .SelectMany<GClass222, JumpPoint120>(gclass222_0 => gclass222_0.list_2).ToList<JumpPoint120>();
+                    List<JumpPoint> list2 = source
+                        .SelectMany<GClass222, JumpPoint>(gclass222_0 => gclass222_0.list_2).ToList<JumpPoint>();
 
-                    foreach (PopulationData gclass146 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(
+                    foreach (PopulationData gclass146 in this.gclass0_0.Populations.Values.Where<PopulationData>(
                                      gc146 => capturedList.Contains(gc146.SystemBodyData) &&
-                                              gc146.RaceData == this.Race)
+                                              gc146.Race == this.Race)
                                  .ToList<PopulationData>())
                     {
                         // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください
@@ -2054,7 +2054,7 @@ public class TacticalMap : Form
                         contextMenuStrip.Items.Add(menuItem);
                     }
 
-                    foreach (JumpPoint120 gclass120 in list2)
+                    foreach (JumpPoint gclass120 in list2)
                     {
                         if (gclass120.method_0(this.Race))
                         {
@@ -2117,8 +2117,8 @@ public class TacticalMap : Form
                         }
 
                         break;
-                    case GClass132 _:
-                        this.gclass202_0.gclass132_0 = (GClass132)gclass1_0;
+                    case MissileSalvo _:
+                        this.gclass202_0.gclass132_0 = (MissileSalvo)gclass1_0;
                         this.gclass202_0.gclass85_0 = null;
                         this.gclass202_0.gclass1_0 = null;
                         break;

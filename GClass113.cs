@@ -66,12 +66,12 @@ public class GClass113
             {
                 this.decimal_1 = this.gclass146_0.decimal_30;
                 this.int_0 = (int)this.gclass146_0.dictionary_0.Values
-                    .Where<GClass158>(gclass158_0 => gclass158_0.gclass157_0.Cost > 6M)
-                    .Sum<GClass158>(gclass158_0 => gclass158_0.decimal_0);
+                    .Where<PopulationInstallation>(gclass158_0 => gclass158_0.InstallationType.Cost > 6M)
+                    .Sum<PopulationInstallation>(gclass158_0 => gclass158_0.Amount);
                 if (this.double_2 < 100.0)
                     this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                         $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has a population of {AuroraUtils.FormatNumberToDigits(this.decimal_1, 1)}m and {this.int_0.ToString()} installations",
-                        this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                        this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                         this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
             }
 
@@ -91,17 +91,17 @@ public class GClass113
                 {
                     this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                         $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has {this.int_2.ToString()} factories and {this.int_1.ToString()} mines",
-                        this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                        this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                         this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
                     if (this.bool_0)
                         this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                             $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has a spaceport",
-                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                             this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
                     if (this.bool_5)
                         this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                             $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has a cargo shuttle station",
-                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                             this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
                 }
             }
@@ -118,17 +118,17 @@ public class GClass113
                 {
                     this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                         $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has {this.int_3.ToString()} refineries and {this.int_5.ToString()} maintenance facilities",
-                        this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                        this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                         this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
                     if (this.bool_4)
                         this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                             $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has an ordnance transfer station",
-                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                             this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
                     if (this.bool_3)
                         this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                             $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has a refuelling station",
-                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                            this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                             this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
                 }
             }
@@ -145,18 +145,18 @@ public class GClass113
                 return;
             this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                 $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has {this.int_4.ToString()} research facilities and {this.int_6.ToString()} ground force construction complexes",
-                this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                 this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
             if (this.bool_1)
                 this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                     $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has an naval headquarters",
-                    this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                    this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                     this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
             if (!this.bool_2)
                 return;
             this.gclass0_0.gclass92_0.method_2(EventType.const_66,
                 $"Analysis of emissions from the {this.gclass110_0.AlienRaceName} colony on {this.string_0} reveals it has a sector command",
-                this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystemData, this.gclass146_0.method_87(),
+                this.gclass21_0, this.gclass146_0.gclass202_0.ActualSystem, this.gclass146_0.method_87(),
                 this.gclass146_0.method_88(), AuroraEventCategory.Intelligence);
         }
         catch (Exception ex)

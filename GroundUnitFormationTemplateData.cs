@@ -79,7 +79,7 @@ public class GroundUnitFormationTemplateData
     {
         try
         {
-            return this.gclass0_0.PopulationDataDictionary.Values
+            return this.gclass0_0.Populations.Values
                 .SelectMany<PopulationData, GClass106>(gclass146_0 => gclass146_0.dictionary_3.Values)
                 .Count<GClass106>(gclass106_0 => gclass106_0.gclass102_0 == this) > 0;
         }
@@ -101,17 +101,17 @@ public class GroundUnitFormationTemplateData
                 if (gclass146_0 != null && gclass39.GroundUnitClass.dictionary_0.Count > 0)
                 {
                     if (gclass39.GroundUnitClass.dictionary_0.ContainsKey(GroundUnitCapability.const_2) &&
-                        gclass146_0.SystemBodyData.Gravity > gclass146_0.SpeciesData.double_8)
+                        gclass146_0.SystemBodyData.Gravity > gclass146_0.Species.double_8)
                         decimal3 /= this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_2].CostMultiplier;
                     if (gclass39.GroundUnitClass.dictionary_0.ContainsKey(GroundUnitCapability.const_3) &&
-                        gclass146_0.SystemBodyData.Gravity < gclass146_0.SpeciesData.double_7)
+                        gclass146_0.SystemBodyData.Gravity < gclass146_0.Species.double_7)
                         decimal3 /= this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_3].CostMultiplier;
                     if (gclass39.GroundUnitClass.dictionary_0.ContainsKey(GroundUnitCapability.const_8) &&
-                        gclass146_0.SystemBodyData.AtmospherePressure > gclass146_0.SpeciesData.double_2)
+                        gclass146_0.SystemBodyData.AtmospherePressure > gclass146_0.Species.double_2)
                         decimal3 /= this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_8].CostMultiplier;
                     if (gclass39.GroundUnitClass.dictionary_0.ContainsKey(GroundUnitCapability.const_4) &&
-                        (gclass146_0.SystemBodyData.SurfaceTemp > gclass146_0.SpeciesData.double_11 ||
-                         gclass146_0.SystemBodyData.SurfaceTemp < gclass146_0.SpeciesData.double_12))
+                        (gclass146_0.SystemBodyData.SurfaceTemp > gclass146_0.Species.double_11 ||
+                         gclass146_0.SystemBodyData.SurfaceTemp < gclass146_0.Species.double_12))
                         decimal3 /= this.gclass0_0.GroundUnitCapabilityDictionary[GroundUnitCapability.const_4].CostMultiplier;
                     if (gclass39.GroundUnitClass.dictionary_0.ContainsKey(GroundUnitCapability.const_5) &&
                         gclass146_0.SystemBodyData.DominantTerrain.BaseTerrainType == PlanetDominantTerrain.const_2)

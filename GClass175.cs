@@ -73,8 +73,8 @@ public class GClass175
                 ? $"{this.int_1.ToString()} abandoned {AuroraUtils.smethod_11(gclass230_0.Name)}"
                 : "an abandoned " + gclass230_0.Name;
             this.gclass0_0.gclass92_0.method_2(EventType.const_65,
-                $"{gclass39_0.Formation.Name} has recovered {this.string_0} on {gclass146_0.SystemBodyData.method_78(gclass146_0.RaceData)}",
-                gclass146_0.RaceData, gclass146_0.gclass202_0.ActualSystemData, gclass146_0.method_87(),
+                $"{gclass39_0.Formation.Name} has recovered {this.string_0} on {gclass146_0.SystemBodyData.method_78(gclass146_0.Race)}",
+                gclass146_0.Race, gclass146_0.gclass202_0.ActualSystem, gclass146_0.method_87(),
                 gclass146_0.method_88(), AuroraEventCategory.PopGroundUnits);
             return true;
         }

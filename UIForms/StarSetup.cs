@@ -16,7 +16,7 @@ public class StarSetup : Form
 {
     private GClass0 gclass0_0;
     private Star197 gclass197_0;
-    private SystemData200 gclass200_0;
+    private StarSystem gclass200_0;
     private IContainer icontainer_0;
     private ComboBox cboStellarType;
     private Button cmdCancel;
@@ -38,7 +38,7 @@ public class StarSetup : Form
     private Label label5;
     private TextBox txtEccDirection;
 
-    public StarSetup(GClass0 gclass0_1, Star197 gclass197_1, SystemData200 gclass200_1)
+    public StarSetup(GClass0 gclass0_1, Star197 gclass197_1, StarSystem gclass200_1)
     {
         this.InitializeComponent();
         this.gclass0_0 = gclass0_1;
@@ -59,10 +59,10 @@ public class StarSetup : Form
             if (this.gclass197_0 != null)
             {
                 this.cboStellarType.SelectedItem = this.gclass197_0.StellarType;
-                this.txtBearing.Text = AuroraUtils.smethod_44(this.gclass197_0.Bearing, 2);
-                this.txtOrbit.Text = AuroraUtils.smethod_44(this.gclass197_0.OrbitalDistance, 2);
-                this.txtEccentricity.Text = AuroraUtils.smethod_44(this.gclass197_0.Eccentricity, 3);
-                this.txtEccDirection.Text = AuroraUtils.smethod_44(this.gclass197_0.EccentricityDirection, 3);
+                this.txtBearing.Text = AuroraUtils.FormatDoubleToPrecision(this.gclass197_0.Bearing, 2);
+                this.txtOrbit.Text = AuroraUtils.FormatDoubleToPrecision(this.gclass197_0.OrbitalDistance, 2);
+                this.txtEccentricity.Text = AuroraUtils.FormatDoubleToPrecision(this.gclass197_0.Eccentricity, 3);
+                this.txtEccDirection.Text = AuroraUtils.FormatDoubleToPrecision(this.gclass197_0.EccentricityDirection, 3);
             }
             else
             {

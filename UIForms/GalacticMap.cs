@@ -463,7 +463,7 @@ public class GalacticMap : Form
             if (this.chkDistanceFromSelected.CheckState == CheckState.Checked ||
                 this.chkDistanceFromSelectedMR.CheckState == CheckState.Checked ||
                 this.chkDistanceRealSpace.CheckState == CheckState.Checked)
-                this.gclass0_0.method_37(this.gclass202_0.ActualSystemData, this.gclass21_0,
+                this.gclass0_0.method_37(this.gclass202_0.ActualSystem, this.gclass21_0,
                     this.chkDistanceFromSelectedMR.CheckState, this.chkDistanceRealSpace.CheckState);
             if (this.chkContactsCurrentSystem.CheckState == CheckState.Checked)
                 this.method_11();
@@ -691,7 +691,7 @@ public class GalacticMap : Form
                 this.method_2(false);
             if ((checkBox.Name == "chkDistanceFromSelected" || checkBox.Name == "chkDistanceFromSelectedMR" ||
                  checkBox.Name == "chkDistanceRealSpace") && this.gclass202_0 != null)
-                this.gclass0_0.method_37(this.gclass202_0.ActualSystemData, this.gclass21_0,
+                this.gclass0_0.method_37(this.gclass202_0.ActualSystem, this.gclass21_0,
                     this.chkDistanceFromSelectedMR.CheckState, this.chkDistanceRealSpace.CheckState);
             this.Refresh();
         }
@@ -783,11 +783,11 @@ public class GalacticMap : Form
         {
             if (this.gclass21_0 == null || this.gclass202_0 == null)
                 return;
-            List<GClass132> list = this.gclass0_0.dictionary_6.Values
-                .Where<GClass132>(gclass132_0 =>
-                    gclass132_0.gclass21_0 == this.gclass21_0 &&
-                    gclass132_0.gclass200_0 == this.gclass202_0.ActualSystemData)
-                .OrderBy<GClass132, int>(gclass132_0 => gclass132_0.int_1).ToList<GClass132>();
+            List<MissileSalvo> list = this.gclass0_0.MissileSalvoes.Values
+                .Where<MissileSalvo>(gclass132_0 =>
+                    gclass132_0.Race == this.gclass21_0 &&
+                    gclass132_0.System == this.gclass202_0.ActualSystem)
+                .OrderBy<MissileSalvo, int>(gclass132_0 => gclass132_0.int_1).ToList<MissileSalvo>();
             this.lstvMissiles.Items.Clear();
             this.lstvMissiles.Items.Add(new ListViewItem("Missile")
             {
@@ -796,9 +796,9 @@ public class GalacticMap : Form
                     "Location"
                 }
             });
-            foreach (GClass132 gclass132 in list)
+            foreach (MissileSalvo gclass132 in list)
                 this.lstvMissiles.Items.Add(
-                    new ListViewItem($"{gclass132.dictionary_2.Count.ToString()}x {gclass132.gclass129_0.Name}")
+                    new ListViewItem($"{gclass132.RemainingDecoys.Count.ToString()}x {gclass132.RaceMissile.Name}")
                     {
                         SubItems =
                         {
@@ -966,9 +966,9 @@ public class GalacticMap : Form
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
 
-                var localList_0 = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass85_0.System == this.gclass202_0)
-                    .ToList<FCTShipData40>();
+                var localList_0 = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(gclass40_0 => gclass40_0.gclass85_0.System == this.gclass202_0)
+                    .ToList<ShipData>();
                 var localList_1 = this.gclass0_0.FormationDictionary.Values
                     .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.PopulationData != null)
                     .Where<GroundUnitFormationData>(gclass103_0 => gclass103_0.PopulationData.gclass202_0 == this.gclass202_0)
@@ -1176,7 +1176,7 @@ public class GalacticMap : Form
                         $" Are you sure you want to trigger a supernova in {this.gclass202_0.Name}? This will cause massive radiation damage to many systems and potentially destroy shipping.",
                         "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-                this.gclass202_0.ActualSystemData.method_1(1.0);
+                this.gclass202_0.ActualSystem.method_1(1.0);
                 this.method_2(false);
                 this.Refresh();
             }
@@ -1310,7 +1310,7 @@ public class GalacticMap : Form
         {
             if (this.gclass0_0.bool_9)
                 return;
-            this.gclass21_0.SelectedClass = (GClass22)this.cboClassIcon.SelectedValue;
+            this.gclass21_0.SelectedClass = (ShipClass)this.cboClassIcon.SelectedValue;
             this.Refresh();
         }
         catch (Exception ex)
@@ -1608,14 +1608,14 @@ public class GalacticMap : Form
                 menuItem1.Tag = local202;
                 contextMenu.Items.Add(menuItem1);
                 var localGClass1List = this.gclass0_0.SystemBodyRecordDic.Values
-                    .Where<SystemBodyData>(gc1 => gc1.SystemData == local202.ActualSystemData)
+                    .Where<SystemBodyData>(gc1 => gc1.SystemData == local202.ActualSystem)
                     .ToList<SystemBodyData>();
                 List<FleetData> list = this.gclass0_0.FleetDictionary.Values.Where<FleetData>(gc85 =>
                         gc85.Race == this.gclass21_0 && gc85.System == local202 && gc85.ShippingLine == null)
                     .ToList<FleetData>();
 
-                foreach (PopulationData gclass146 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(v =>
-                             localGClass1List.Contains(v.SystemBodyData) && v.RaceData == this.gclass21_0
+                foreach (PopulationData gclass146 in this.gclass0_0.Populations.Values.Where<PopulationData>(v =>
+                             localGClass1List.Contains(v.SystemBodyData) && v.Race == this.gclass21_0
                          ).ToList<PopulationData>())
                 {
                     // TODO MenuItem は現在サポートされていません。代わりに ToolStripMenuItem を使用してください。詳細については、https://docs.microsoft.com/en-us/dotnet/core/compatibility/winforms#removed-controls を参照してください

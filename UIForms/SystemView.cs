@@ -20,8 +20,8 @@ public class SystemView : Form
     private GameRace gclass21_0;
     private Star197 gclass197_0;
     private SystemBodyData gclass1_0;
-    private JumpPoint120 gclass120_0;
-    private GClass194 gclass194_0;
+    private JumpPoint gclass120_0;
+    private Species gclass194_0;
     private GEnum1 genum1_0;
     private GEnum1 genum1_1 = GEnum1.const_2;
     private GEnum1 genum1_2 = GEnum1.const_1;
@@ -368,12 +368,12 @@ public class SystemView : Form
                 this.method_5();
             if (this.gclass0_0.bool_18)
                 this.method_3();
-            foreach (SystemData200 gclass200 in this.gclass0_0.SystemBodyRecordDic.Values
+            foreach (StarSystem gclass200 in this.gclass0_0.SystemBodyRecordDic.Values
                          .Where<SystemBodyData>(body =>
                              body.BodyTypeId == AuroraSystemBodyType.Asteroid && body.OrbitNumber == 0)
-                         .Select<SystemBodyData, SystemData200>(body => body.SystemData)
-                         .Where<SystemData200>(gclass200_0 => !gclass200_0.IsSolSystem).Distinct<SystemData200>()
-                         .ToList<SystemData200>())
+                         .Select<SystemBodyData, StarSystem>(body => body.SystemData)
+                         .Where<StarSystem>(gclass200_0 => !gclass200_0.IsSolSystem).Distinct<StarSystem>()
+                         .ToList<StarSystem>())
                 gclass200.method_0();
         }
         catch (Exception ex)
@@ -428,8 +428,8 @@ public class SystemView : Form
                 return;
             this.gclass21_0 = (GameRace)this.cboRaces.SelectedValue;
             this.gclass21_0.method_260(this.cboSpecies);
-            if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
-                this.gclass202_0 = this.gclass21_0.RacialSystemDictionary[this.gclass202_0.ActualSystemData.SystemID];
+            if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystem.SystemID))
+                this.gclass202_0 = this.gclass21_0.RacialSystemDictionary[this.gclass202_0.ActualSystem.SystemID];
             this.method_5();
             if (!this.bool_1)
                 this.gclass0_0.method_511(this.gclass21_0, this);
@@ -499,7 +499,7 @@ public class SystemView : Form
             this.gclass0_0.bool_9 = false;
             if (this.gclass202_0 != null)
             {
-                if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystemData.SystemID))
+                if (this.gclass21_0.RacialSystemDictionary.Keys.Contains<int>(this.gclass202_0.ActualSystem.SystemID))
                     this.cboSystems.SelectedItem = this.gclass202_0;
                 else
                     this.gclass202_0 = null;
@@ -554,10 +554,10 @@ public class SystemView : Form
     {
         try
         {
-            this.gclass194_0 = (GClass194)this.cboSpecies.SelectedValue;
+            this.gclass194_0 = (Species)this.cboSpecies.SelectedValue;
             this.gclass194_0.method_0(this.lblGravity, this.lblOxygen, this.lblTemperature, this.lblBreathe,
                 this.lblPressure);
-            this.pbSpecies.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass194_0.string_0}");
+            this.pbSpecies.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{this.gclass194_0.RaceImageFileName}");
         }
         catch (Exception ex)
         {
@@ -672,7 +672,7 @@ public class SystemView : Form
                     " Are you really sure? This will delete all populations and military forces in the system",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            this.gclass0_0.method_545(this.gclass202_0.ActualSystemData, false);
+            this.gclass0_0.method_545(this.gclass202_0.ActualSystem, false);
             this.gclass202_0 = null;
             this.method_5();
         }
@@ -688,7 +688,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null)
                 return;
-            this.gclass202_0.Race.method_258(this.gclass202_0.ActualSystemData, false);
+            this.gclass202_0.Race.method_258(this.gclass202_0.ActualSystem, false);
             this.gclass202_0.method_40(this.lblAge, this.lblDiscovered, this.lblJSP, this.lblJPSurvey,
                 this.lblSBSurvey);
             this.method_12();
@@ -722,7 +722,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null)
                 return;
-            this.gclass202_0.Race.method_259(this.gclass202_0.ActualSystemData);
+            this.gclass202_0.Race.method_259(this.gclass202_0.ActualSystem);
             this.gclass0_0.bool_22 = true;
             this.gclass202_0.method_40(this.lblAge, this.lblDiscovered, this.lblJSP, this.lblJPSurvey,
                 this.lblSBSurvey);
@@ -740,7 +740,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null)
                 return;
-            this.gclass202_0.ActualSystemData.method_13();
+            this.gclass202_0.ActualSystem.method_13();
             this.method_12();
             if (this.gclass1_0 == null)
                 return;
@@ -792,7 +792,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null)
                 return;
-            this.gclass202_0.ActualSystemData.method_14(false);
+            this.gclass202_0.ActualSystem.method_14(false);
             this.gclass202_0.method_39(this.lstvJP);
         }
         catch (Exception ex)
@@ -808,7 +808,7 @@ public class SystemView : Form
             if (this.gclass202_0 == null || this.lstvJP.SelectedItems.Count <= 0 ||
                 this.lstvJP.SelectedItems[0].Tag == null)
                 return;
-            this.gclass120_0 = (JumpPoint120)this.lstvJP.SelectedItems[0].Tag;
+            this.gclass120_0 = (JumpPoint)this.lstvJP.SelectedItems[0].Tag;
             if (this.gclass120_0.method_0(this.gclass202_0.Race))
             {
                 this.cmdExploreJP.Visible = false;
@@ -833,7 +833,7 @@ public class SystemView : Form
             if (this.gclass120_0 == null || MessageBox.Show(" Are you sure you want to delete the selected jump point?",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            this.gclass202_0.ActualSystemData.method_15(this.gclass120_0);
+            this.gclass202_0.ActualSystem.method_15(this.gclass120_0);
             this.gclass202_0.method_39(this.lstvJP);
         }
         catch (Exception ex)
@@ -863,10 +863,10 @@ public class SystemView : Form
                     this.gclass1_0.UnknownEnumDBUpdateNeedState = Unknown_SystemBodyDataUpdateLevel.ExtendedUpdate;
                 this.gclass1_0.RuinRaceID = 0;
                 this.gclass1_0.RuinRaceData = null;
-                if (this.gclass1_0.gclass220_0 != null)
+                if (this.gclass1_0.AncientConstruct != null)
                 {
-                    this.gclass0_0.dictionary_27.Remove(this.gclass1_0.gclass220_0.int_0);
-                    this.gclass1_0.gclass220_0 = null;
+                    this.gclass0_0.AncientConstructsOnSystemBodies.Remove(this.gclass1_0.AncientConstruct.AncientConstructID);
+                    this.gclass1_0.AncientConstruct = null;
                 }
             }
             else
@@ -1003,7 +1003,7 @@ public class SystemView : Form
                 this.gclass120_0.Distance = Convert.ToDouble(this.gclass0_0.string_4) / 150.0;
             if (this.gclass0_0.string_5 != str2)
                 this.gclass120_0.Bearing = Convert.ToInt32(this.gclass0_0.string_5);
-            double num2 = 40.0 * this.gclass202_0.ActualSystemData.method_12();
+            double num2 = 40.0 * this.gclass202_0.ActualSystem.method_12();
             if (this.gclass120_0.Distance > num2)
                 this.gclass120_0.Distance = num2;
             GClass221 gclass221 = this.gclass0_0.method_592(0.0, 0.0, this.gclass120_0.Distance * AuroraUtils.double_14,
@@ -1078,12 +1078,12 @@ public class SystemView : Form
         {
             if (this.gclass1_0 == null || !this.gclass1_0.method_23(false))
                 return;
-            Dictionary<AuroraElement, GClass124> dictionary0 = this.gclass1_0.dictionary_0;
+            Dictionary<AuroraElement, MineralDeposit> dictionary0 = this.gclass1_0.MineralDeposits;
             GameRace gclass21 = this.gclass0_0.method_536(this.gclass1_0, 0, GEnum82.const_0, true, false,
                 false, false, SpecialNPRIDs.const_0, 0, true, null, 0);
             if (gclass21 == null)
             {
-                this.gclass1_0.dictionary_0 = dictionary0;
+                this.gclass1_0.MineralDeposits = dictionary0;
             }
             else
             {
@@ -1156,9 +1156,9 @@ public class SystemView : Form
             int num = (int)new MessageEntry(this.gclass0_0).ShowDialog();
             if (!(this.gclass0_0.string_4 != this.gclass202_0.Name) || this.gclass0_0.bool_21)
                 return;
-            foreach (RacialSystemSurvey gclass202 in this.gclass0_0.FCTRaceRecordDic.Values
+            foreach (RacialSystemSurvey gclass202 in this.gclass0_0.GameRaces.Values
                          .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
-                         .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.ActualSystemData == this.gclass202_0.ActualSystemData)
+                         .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.ActualSystem == this.gclass202_0.ActualSystem)
                          .ToList<RacialSystemSurvey>())
                 gclass202.Name = this.gclass0_0.string_4;
             this.method_5();
@@ -1181,9 +1181,9 @@ public class SystemView : Form
             int num = (int)new MessageEntry(this.gclass0_0).ShowDialog();
             if (!(this.gclass0_0.string_4 != str) || this.gclass0_0.bool_21)
                 return;
-            foreach (GameRace gclass21_0 in this.gclass0_0.FCTRaceRecordDic.Values
+            foreach (GameRace gclass21_0 in this.gclass0_0.GameRaces.Values
                          .SelectMany<GameRace, RacialSystemSurvey>(gclass21_0 => gclass21_0.RacialSystemDictionary.Values)
-                         .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.ActualSystemData == this.gclass202_0.ActualSystemData)
+                         .Where<RacialSystemSurvey>(gclass202_1 => gclass202_1.ActualSystem == this.gclass202_0.ActualSystem)
                          .Select<RacialSystemSurvey, GameRace>(gclass202_0 => gclass202_0.Race)
                          .ToList<GameRace>())
                 this.gclass1_0.method_80(gclass21_0, this.gclass0_0.string_4);
@@ -1203,12 +1203,12 @@ public class SystemView : Form
                 return;
             SystemBodyData gclass1_1_1 =
                 this.gclass0_0.SystemBodyRecordDic.Values
-                    .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.gclass202_0.ActualSystemData)
+                    .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.gclass202_0.ActualSystem)
                     .Where<SystemBodyData>(gclass1_0 => gclass1_0.method_17() > 4.0)
                     .Where<SystemBodyData>(gclass1_0 => gclass1_0.method_16(50, false))
                     .OrderByDescending<SystemBodyData, double>(gclass1_0 => gclass1_0.method_17())
                     .FirstOrDefault<SystemBodyData>() ?? this.gclass0_0.SystemBodyRecordDic.Values
-                    .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.gclass202_0.ActualSystemData)
+                    .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.gclass202_0.ActualSystem)
                     .OrderBy<SystemBodyData, int>(gclass1_0 => gclass1_0.PlanetNumber)
                     .FirstOrDefault<SystemBodyData>();
             if (gclass1_1_1 == null)
@@ -1262,11 +1262,11 @@ public class SystemView : Form
                              .ToList<SystemBodyData>())
                 {
                     if (!gclass1.dictionary_1.ContainsKey(this.gclass21_0.RaceID))
-                        gclass1.dictionary_1.Add(this.gclass21_0.RaceID, new GClass218()
+                        gclass1.dictionary_1.Add(this.gclass21_0.RaceID, new RaceSystemBodyName()
                         {
-                            gclass21_0 = this.gclass21_0,
-                            string_0 = gclass1.Name,
-                            int_0 = gclass1.SystemBodyID
+                            Race = this.gclass21_0,
+                            Name = gclass1.Name,
+                            SystemBodyID = gclass1.SystemBodyID
                         });
                 }
 
@@ -1401,7 +1401,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null || this.gclass197_0 == null)
                 return;
-            int num = (int)new StarSetup(this.gclass0_0, this.gclass197_0, this.gclass202_0.ActualSystemData).ShowDialog();
+            int num = (int)new StarSetup(this.gclass0_0, this.gclass197_0, this.gclass202_0.ActualSystem).ShowDialog();
             if (this.gclass0_0.bool_21)
                 return;
             this.method_6();
@@ -1419,7 +1419,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null)
                 return;
-            int num = (int)new StarSetup(this.gclass0_0, null, this.gclass202_0.ActualSystemData).ShowDialog();
+            int num = (int)new StarSetup(this.gclass0_0, null, this.gclass202_0.ActualSystem).ShowDialog();
             if (this.gclass0_0.bool_21)
                 return;
             this.method_6();
@@ -1550,8 +1550,8 @@ public class SystemView : Form
         try
         {
             if (this.gclass202_0 == null || this.gclass197_0 == null || this.gclass1_0 == null ||
-                this.gclass0_0.dictionary_14.Values.FirstOrDefault<GClass212>(gclass212_0 =>
-                    gclass212_0.gclass1_0 == this.gclass1_0) != null)
+                this.gclass0_0.LagrangePoints.Values.FirstOrDefault<LagrangePoint>(gclass212_0 =>
+                    gclass212_0.Planet == this.gclass1_0) != null)
                 return;
             this.gclass0_0.ModifyForJupiter(this.gclass1_0, false);
             if (this.gclass0_0.bool_21)
@@ -1626,8 +1626,8 @@ public class SystemView : Form
             if (this.gclass202_0 == null || this.gclass1_0 == null)
                 return;
             var cgc212 =
-                this.gclass0_0.dictionary_14.Values.FirstOrDefault<GClass212>(gclass212_0 =>
-                    gclass212_0.gclass1_0 == this.gclass1_0);
+                this.gclass0_0.LagrangePoints.Values.FirstOrDefault<LagrangePoint>(gclass212_0 =>
+                    gclass212_0.Planet == this.gclass1_0);
             if (cgc212 == null)
             {
                 int num = (int)MessageBox.Show("This system body does not have a Lagrange Point");
@@ -1641,7 +1641,7 @@ public class SystemView : Form
                 foreach (FleetData gclass85 in this.gclass0_0.FleetDictionary.Values
                              .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                              .Where<MoveOrder>(gc139 =>
-                                 gc139.DestinationType == DestinationType.const_8 && gc139.DestinationID == cgc212.int_0)
+                                 gc139.DestinationType == DestinationType.const_8 && gc139.DestinationID == cgc212.LaGrangePointID)
                              .Select<MoveOrder, FleetData>(gclass139_0 => gclass139_0.Fleet).ToList<FleetData>())
                 {
                     if (gclass85.CivilianFunction == CivilanFunctionType.const_1 || gclass85.CivilianFunction == CivilanFunctionType.const_2)
@@ -1649,8 +1649,8 @@ public class SystemView : Form
                     gclass85.method_263();
                 }
 
-                this.gclass0_0.dictionary_14.Remove(cgc212.int_0);
-                this.gclass202_0.ActualSystemData.method_28();
+                this.gclass0_0.LagrangePoints.Remove(cgc212.LaGrangePointID);
+                this.gclass202_0.ActualSystem.method_28();
                 this.method_12();
                 this.gclass0_0.tacticalMap_0.method_10();
             }
@@ -1667,7 +1667,7 @@ public class SystemView : Form
         {
             if (this.gclass202_0 == null || this.gclass1_0 == null)
                 return;
-            this.gclass1_0.dictionary_0.Clear();
+            this.gclass1_0.MineralDeposits.Clear();
             this.gclass1_0.GroundMineralSurveyState = AuroraGroundMineralSurvey.Completed;
             this.gclass1_0.method_68(this.lstvMinerals, this.gclass21_0);
         }
@@ -1695,7 +1695,7 @@ public class SystemView : Form
             }
             else
             {
-                this.gclass1_0.dictionary_0 = new Dictionary<AuroraElement, GClass124>();
+                this.gclass1_0.MineralDeposits = new Dictionary<AuroraElement, MineralDeposit>();
                 this.gclass0_0.method_669(this.gclass1_0, false);
             }
 
@@ -1853,18 +1853,18 @@ public class SystemView : Form
                     $" Are you sure you want to remove and regenerate the jump points in {this.gclass202_0.Name}?",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            foreach (JumpPoint120 gclass120_1 in this.gclass0_0.JumpPointDictionary.Values
-                         .Where<JumpPoint120>(gclass120_1 => gclass120_1.SystemData == this.gclass202_0.ActualSystemData)
-                         .ToList<JumpPoint120>())
-                this.gclass202_0.ActualSystemData.method_15(gclass120_1);
+            foreach (JumpPoint gclass120_1 in this.gclass0_0.JumpPointDictionary.Values
+                         .Where<JumpPoint>(gclass120_1 => gclass120_1.SystemData == this.gclass202_0.ActualSystem)
+                         .ToList<JumpPoint>())
+                this.gclass202_0.ActualSystem.method_15(gclass120_1);
             this.gclass0_0.string_3 = "Min Jump Points";
             this.gclass0_0.string_4 = "0";
             int num = (int)new MessageEntry(this.gclass0_0).ShowDialog();
             int int_136 = (int)Math.Floor(AuroraUtils.ParseDecimalOrDefault(this.gclass0_0.string_4, 0M));
             if (int_136 < 0)
                 int_136 = 0;
-            this.gclass0_0.method_690(this.gclass202_0.ActualSystemData, int_136, false,
-                this.gclass202_0.ActualSystemData.IsSolSystem);
+            this.gclass0_0.method_690(this.gclass202_0.ActualSystem, int_136, false,
+                this.gclass202_0.ActualSystem.IsSolSystem);
             this.gclass202_0.method_39(this.lstvJP);
         }
         catch (Exception ex)
@@ -1881,16 +1881,16 @@ public class SystemView : Form
                     $"Are you sure you want to remove and regenerate the minerals on all system bodies in {this.gclass202_0.Name}, except for those with existing colonies?",
                     "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
-            List<SystemBodyData> list1 = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0.ActualSystemData == this.gclass202_0.ActualSystemData)
+            List<SystemBodyData> list1 = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_0 => gclass146_0.gclass202_0.ActualSystem == this.gclass202_0.ActualSystem)
                 .Select<PopulationData, SystemBodyData>(gclass146_0 => gclass146_0.SystemBodyData)
                 .ToList<SystemBodyData>();
             List<SystemBodyData> list2 = this.gclass0_0.SystemBodyRecordDic.Values
-                .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.gclass202_0.ActualSystemData)
+                .Where<SystemBodyData>(gclass1_1 => gclass1_1.SystemData == this.gclass202_0.ActualSystem)
                 .Except<SystemBodyData>(list1).ToList<SystemBodyData>();
             foreach (SystemBodyData gclass1_1 in list2)
             {
-                gclass1_1.dictionary_0.Clear();
+                gclass1_1.MineralDeposits.Clear();
                 gclass1_1.GroundMineralSurveyState = AuroraGroundMineralSurvey.Completed;
                 if (this.gclass1_0.RuinData != null)
                 {
@@ -1899,10 +1899,10 @@ public class SystemView : Form
                     this.gclass1_0.AbandonedFactories = 0;
                     this.gclass1_0.RuinRaceID = 0;
                     this.gclass1_0.RuinRaceData = null;
-                    if (this.gclass1_0.gclass220_0 != null)
+                    if (this.gclass1_0.AncientConstruct != null)
                     {
-                        this.gclass0_0.dictionary_27.Remove(this.gclass1_0.gclass220_0.int_0);
-                        this.gclass1_0.gclass220_0 = null;
+                        this.gclass0_0.AncientConstructsOnSystemBodies.Remove(this.gclass1_0.AncientConstruct.AncientConstructID);
+                        this.gclass1_0.AncientConstruct = null;
                     }
                 }
 
@@ -1918,7 +1918,7 @@ public class SystemView : Form
                     this.gclass0_0.method_669(gclass1_1, false);
             }
 
-            if (this.gclass202_0.ActualSystemData.IsSolSystem)
+            if (this.gclass202_0.ActualSystem.IsSolSystem)
             {
                 foreach (SystemBodyData gclass1_1 in list2)
                     this.gclass0_0.method_648(gclass1_1);
@@ -1941,7 +1941,7 @@ public class SystemView : Form
             if (this.gclass202_0 == null || this.gclass21_0 == null)
                 return;
             for (int key = 1; key < 31 /*0x1F*/; ++key)
-                this.gclass202_0.ActualSystemData.SurveyLocationDictionary[key].list_0.Remove(this.gclass21_0.RaceID);
+                this.gclass202_0.ActualSystem.SurveyLocationDictionary[key].RaceIDs.Remove(this.gclass21_0.RaceID);
             this.gclass202_0.method_40(this.lblAge, this.lblDiscovered, this.lblJSP, this.lblJPSurvey,
                 this.lblSBSurvey);
             this.method_12();

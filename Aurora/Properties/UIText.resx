@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="StarTypeRangeIDNotFoundErrMsg" xml:space="preserve">
+        <value>Error: Star Type Age Range ID {0} not found</value>
+    </data>
+    <data name="Asteroids" xml:space="preserve">
+        <value>Asteroids</value>
+    </data>
+    <data name="LuminosityKeyCountErrMsg" xml:space="preserve">
+        <value>Error: Luminosity Key Count is {0}</value>
+    </data>
+    <data name="Comets" xml:space="preserve">
+        <value>Comets</value>
+    </data>
+    <data name="GravityTooLowForHomeworld" xml:space="preserve">
+        <value>The gravity of this planet is too low for it to serve as a homeworld (minimum required 0.1G)</value>
+    </data>
+    <data name="SurfaceTemperatureTooLowForHomeworld" xml:space="preserve">
+        <value>The surface temperature of this planet is too low for it to serve as a homeworld (minimum required -70C)</value>
+    </data>
+    <data name="InsufficientWaterForHomeworld" xml:space="preserve">
+        <value>This planet has insufficient water to serve as a homeworld (minimum required 20%)</value>
+    </data>
+    <data name="SurfaceTemperatureTooHighForHomeworld" xml:space="preserve">
+        <value>The surface temperature of this planet is too high for it to serve as a homeworld (maximum allowed 70C)</value>
+    </data>
+    <data name="DangerousAtmosphereForHomeworld" xml:space="preserve">
+        <value>This planet has a dangerous in its atmosphere and is not suitable as a homeworld</value>
+    </data>
+    <data name="InsufficientOxygenForHomeworld" xml:space="preserve">
+        <value>This planet has insufficient oxygen for it to serve as a homeworld (minimum required 0.05 atm)</value>
+    </data>
+    <data name="TooMuchOxygenForHomeworld" xml:space="preserve">
+        <value>This oxygen content of the atmosphere is too high for the planet to serve as a homeworld (maximum allowed 30%)</value>
+    </data>
+    <data name="CanRetainAtmoSphereYes" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="CanRetainAtmoSphereNo" xml:space="preserve">
+        <value>No</value>
+    </data>
+    <data name="TimeSpanWeek" xml:space="preserve">
+        <value>Week</value>
+    </data>
+    <data name="TimeSpanMonth" xml:space="preserve">
+        <value>Month</value>
+    </data>
+    <data name="TimeSpanQuarter" xml:space="preserve">
+        <value>Quarter</value>
+    </data>
+    <data name="TimeSpanYear" xml:space="preserve">
+        <value>Year</value>
+    </data>
+    <data name="TimeSpan5Y" xml:space="preserve">
+        <value>5Y</value>
+    </data>
+    <data name="TimeSpan25Y" xml:space="preserve">
+        <value>25Y</value>
+    </data>
+    <data name="TimeSpan100Y" xml:space="preserve">
+        <value>100Y</value>
+    </data>
+    <data name="SystemBodyPeriod" xml:space="preserve">
+        <value>Period</value>
+    </data>
+    <data name="SpeciesNameHuman" xml:space="preserve">
+        <value>Human</value>
+    </data>
+    <data name="SpeciesNamePrecursor" xml:space="preserve">
+        <value>Precursor</value>
+    </data>
+    <data name="SpeciesNameStarSwarm" xml:space="preserve">
+        <value>Star Swarm</value>
+    </data>
+    <data name="SpeciesNameRakhas" xml:space="preserve">
+        <value>Rakhas - #{0}</value>
+    </data>
+    <data name="SpeciesNameEldar" xml:space="preserve">
+        <value>Eldar</value>
+    </data>
+    <data name="ClimateChangeEventMsg" xml:space="preserve">
+        <value>Due to changes in climate, the dominant terrain on {0} has changed from {1} to {2}</value>
+    </data>
+    <data name="IceSheetMeltEventMsg" xml:space="preserve">
+        <value>Due to increasing temperature the ice sheet on {0} has melted, raising the Albedo from {1} to {2}. This has caused a sudden temperature increase from {3}C to {4}C.</value>
+    </data>
+    <data name="IceSheetFrozenEventMsg" xml:space="preserve">
+        <value>Due to decreasing temperature the ice sheet on {0} has frozen, lowering the Albedo from {1} to {2}. This has caused a sudden temperature decrease from {3}C to {4}C.</value>
+    </data>
+    <data name="VenusianAtmosphere" xml:space="preserve">
+        <value>Venusian</value>
+    </data>
+    <data name="VaporFormWater" xml:space="preserve">
+        <value>Water</value>
+    </data>
+    <data name="GasNone" xml:space="preserve">
+        <value>None</value>
+    </data>
+    <data name="GasHydrogen" xml:space="preserve">
+        <value>Hydrogen</value>
+    </data>
+    <data name="GasHelium" xml:space="preserve">
+        <value>Helium</value>
+    </data>
+    <data name="GasMethane" xml:space="preserve">
+        <value>Methane</value>
+    </data>
+    <data name="GasAmmonia" xml:space="preserve">
+        <value>Ammonia</value>
+    </data>
+    <data name="GasWaterVapor" xml:space="preserve">
+        <value>WaterVapor</value>
+    </data>
+    <data name="GasNeon" xml:space="preserve">
+        <value>Neon</value>
+    </data>
+    <data name="GasNitrogen" xml:space="preserve">
+        <value>Nitrogen</value>
+    </data>
+    <data name="GasCarbonMonoxide" xml:space="preserve">
+        <value>CarbonMonoxide</value>
+    </data>
+    <data name="GasNitrogenOxide" xml:space="preserve">
+        <value>NitrogenOxide</value>
+    </data>
+    <data name="GasOxygen" xml:space="preserve">
+        <value>Oxygen</value>
+    </data>
+    <data name="GasHydrogenSulfide" xml:space="preserve">
+        <value>HydrogenSulfide</value>
+    </data>
+    <data name="GasArgon" xml:space="preserve">
+        <value>Argon</value>
+    </data>
+    <data name="GasCarbonDioxide" xml:space="preserve">
+        <value>CarbonDioxide</value>
+    </data>
+    <data name="GasNitrogenDioxide" xml:space="preserve">
+        <value>NitrogenDioxide</value>
+    </data>
+    <data name="GasSulfurDioxide" xml:space="preserve">
+        <value>SulfurDioxide</value>
+    </data>
+    <data name="GasChlorine" xml:space="preserve">
+        <value>Chlorine</value>
+    </data>
+    <data name="GasFluorine" xml:space="preserve">
+        <value>Fluorine</value>
+    </data>
+    <data name="GasBromine" xml:space="preserve">
+        <value>Bromine</value>
+    </data>
+    <data name="GasIodine" xml:space="preserve">
+        <value>Iodine</value>
+    </data>
+    <data name="GasAestusium" xml:space="preserve">
+        <value>Aestusium</value>
+    </data>
+    <data name="GasFrigusium" xml:space="preserve">
+        <value>Frigusium</value>
+    </data>
+    <data name="TidalLockYes" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="TidalLockYesMoon" xml:space="preserve">
+        <value>Yes - M</value>
+    </data>
+    <data name="NameLiteral" xml:space="preserve">
+        <value>Name</value>
+    </data>
+    <data name="ColonyCost" xml:space="preserve">
+        <value>Colony Cost</value>
+    </data>
+    <data name="OrbitalDistance" xml:space="preserve">
+        <value>Orbital Distance</value>
+    </data>
+    <data name="Temperature" xml:space="preserve">
+        <value>Temperature</value>
+    </data>
+    <data name="MaxColonyCost" xml:space="preserve">
+        <value>Max Colony Cost</value>
+    </data>
+    <data name="BodyType" xml:space="preserve">
+        <value>Body Type</value>
+    </data>
+    <data name="Diameter" xml:space="preserve">
+        <value>Diameter</value>
+    </data>
+    <data name="CurrentDistance" xml:space="preserve">
+        <value>Current Distance</value>
+    </data>
+    <data name="Perihelion" xml:space="preserve">
+        <value>Perihelion</value>
+    </data>
+    <data name="Aphelion" xml:space="preserve">
+        <value>Aphelion</value>
+    </data>
+    <data name="Eccentricity" xml:space="preserve">
+        <value>Eccentricity</value>
+    </data>
+    <data name="Inclination" xml:space="preserve">
+        <value>Inclination</value>
+    </data>
+    <data name="Gravity" xml:space="preserve">
+        <value>Gravity</value>
+    </data>
+    <data name="Atmosphere" xml:space="preserve">
+        <value>Atmosphere</value>
+    </data>
+    <data name="AtmosphericPressure" xml:space="preserve">
+        <value>Atmospheric Pressure</value>
+    </data>
+    <data name="Hydrosphere" xml:space="preserve">
+        <value>Hydrosphere</value>
+    </data>
+    <data name="HydroExtent" xml:space="preserve">
+        <value>Hydro Extent</value>
+    </data>
+    <data name="Year" xml:space="preserve">
+        <value>Year</value>
+    </data>
+    <data name="Day" xml:space="preserve">
+        <value>Day</value>
+    </data>
+    <data name="SurfaceTemperature" xml:space="preserve">
+        <value>SurfaceTemperature</value>
+    </data>
+    <data name="Tectonics" xml:space="preserve">
+        <value>SurfaceTemperature</value>
+    </data>
+    <data name="Mass" xml:space="preserve">
+        <value>Mass</value>
+    </data>
+    <data name="Density" xml:space="preserve">
+        <value>Density</value>
+    </data>
+    <data name="TidalLockLiteral" xml:space="preserve">
+        <value>Tidal Lock</value>
+    </data>
+    <data name="GreenhouseFactor" xml:space="preserve">
+        <value>Greenhouse Factor</value>
+    </data>
+    <data name="AntiGHFactor" xml:space="preserve">
+        <value>Anti-GH Factor</value>
+    </data>
+    <data name="Albedo" xml:space="preserve">
+        <value>Albedo</value>
+    </data>
+    <data name="__tons" xml:space="preserve">
+        <value>  tons</value>
+    </data>
+    <data name="__Acc" xml:space="preserve">
+        <value>  Acc</value>
+    </data>
+    <data name="NoSurvey" xml:space="preserve">
+        <value>NoSurvey</value>
+    </data>
+    <data name="SurveyReportFormat" xml:space="preserve">
+        <value>Survey Report Format</value>
+    </data>
+    <data name="GasLiteral" xml:space="preserve">
+        <value>Gas</value>
+    </data>
+    <data name="GreenHouseGasPressure" xml:space="preserve">
+        <value>Green House Gas Pressure</value>
+    </data>
+    <data name="AntiGreenHouseGasPressure" xml:space="preserve">
+        <value>Anti Green House Gas Pressure</value>
+    </data>
+    <data name="DustEffectiveAtm" xml:space="preserve">
+        <value>Dust EffectiveAtm</value>
+    </data>
+    <data name="AlbedoFactor" xml:space="preserve">
+        <value>Albedo Factor</value>
+    </data>
+</root>

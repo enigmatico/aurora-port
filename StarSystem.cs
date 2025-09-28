@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using aurora;
 
 #nullable disable
 public class StarSystem
@@ -1401,7 +1402,7 @@ public class StarSystem
                 if (gclass1List1.Count > 0)
                 {
                     TreeNode node3 = new TreeNode();
-                    node3.Text = "Asteroids";
+                    node3.Text = UITextHelper.GetLocalizedStringFor(LocalizedText.Asteroids);
                     foreach (SystemBodyData gclass1 in gclass1List1)
                         node3.Nodes.Add(new TreeNode()
                         {
@@ -1416,7 +1417,7 @@ public class StarSystem
                 if (gclass1List2.Count > 0)
                 {
                     TreeNode node4 = new TreeNode();
-                    node4.Text = "Comets";
+                    node4.Text = UITextHelper.GetLocalizedStringFor(LocalizedText.Comets);
                     foreach (SystemBodyData gclass1 in gclass1List2)
                         node4.Nodes.Add(new TreeNode()
                         {

@@ -13,7 +13,7 @@ public class MoveOrder
     public GameRace Race;
     public RacialSystemSurvey StartSystem;
     public RacialSystemSurvey NewSystem;
-    public JumpPoint120 NewJumpPoint;
+    public JumpPoint NewJumpPoint;
     public DestinationType DestinationType;
     public PopulationData Population;
     public MoveActionDefinition MoveActionType;

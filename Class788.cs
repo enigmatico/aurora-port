@@ -452,7 +452,7 @@ internal class Class788
         GroundUnitClassType genum115_0,
         string string_0,
         int int_0,
-        GClass194 gclass194_0,
+        Species gclass194_0,
         bool bool_0)
     {
         // ISSUE: object of a compiler-generated type is created
@@ -1123,7 +1123,7 @@ internal class Class788
         GameRace gclass21_0,
         AutomatedGroundTemplateElement gclass24_0,
         int int_0,
-        GClass194 gclass194_0,
+        Species gclass194_0,
         bool bool_0)
     {
         // ISSUE: object of a compiler-generated type is created
@@ -1156,7 +1156,7 @@ internal class Class788
     public GroundUnitFormationTemplateData method_2(
         GameRace gclass21_0,
         AutomatedGroundTemplateDesignType genum116_0,
-        GClass194 gclass194_0,
+        Species gclass194_0,
         bool bool_0)
     {
         try
@@ -1256,7 +1256,7 @@ internal class Class788
         }
     }
 
-    public void method_3(GClass194 gclass194_0)
+    public void method_3(Species gclass194_0)
     {
         try
         {

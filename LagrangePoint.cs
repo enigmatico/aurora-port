@@ -42,15 +42,15 @@ public class LagrangePoint
                         num = 0.0;
                     if (num > 360.0)
                         num -= 360.0;
-                    this.double_4 = this.Planet.OrbitalDistance * this.Planet.double_26 / Math.Sqrt(
-                        Math.Pow(this.Planet.double_26 * Math.Cos(num * Math.PI / 180.0), 2.0) +
+                    this.double_4 = this.Planet.OrbitalDistance * this.Planet.OrbitalSemiMinorAxis / Math.Sqrt(
+                        Math.Pow(this.Planet.OrbitalSemiMinorAxis * Math.Cos(num * Math.PI / 180.0), 2.0) +
                         Math.Pow(this.Planet.OrbitalDistance * Math.Sin(num * Math.PI / 180.0), 2.0));
                 }
                 else
                     this.double_4 = this.Planet.OrbitalDistance;
             }
             else
-                this.double_4 = this.Planet.double_26;
+                this.double_4 = this.Planet.OrbitalSemiMinorAxis;
         }
         catch (Exception ex)
         {

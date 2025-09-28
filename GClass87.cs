@@ -12,7 +12,7 @@ public class GClass87
 {
     public GameRace gclass21_0;
     public DIMEventTypeData88 gclass88_0;
-    public SystemData200 gclass200_0;
+    public StarSystem gclass200_0;
     public PopulationData gclass146_0;
     public GClass91 gclass91_0;
     public AuroraEventCategory auroraEventCategory_0;

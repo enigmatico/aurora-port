@@ -14,9 +14,9 @@ public class GClass59
 {
     private GClass0 gclass0_0;
     public GameRace gclass21_0;
-    public GClass194 gclass194_0;
-    public SystemData200 gclass200_0;
-    public GClass22 gclass22_0;
+    public Species gclass194_0;
+    public StarSystem gclass200_0;
+    public ShipClass gclass22_0;
     public int int_0;
     public int int_1;
     public double double_0;
@@ -57,7 +57,7 @@ public class GClass59
                 s = $"{str2}   {str1}";
             }
             else
-                s = $"{gclass202_0.Race.method_324(this.gclass22_0.int_0)} life pods #{this.int_0.ToString()}";
+                s = $"{gclass202_0.Race.method_324(this.gclass22_0.ShipClassID)} life pods #{this.int_0.ToString()}";
 
             GClass221 gclass221 = new GClass221();
             gclass221.double_0 = x + AuroraUtils.int_61 + 5.0;

@@ -10,13 +10,13 @@ using System;
 public class GClass74
 {
     public int int_0;
-    public GClass22 gclass22_0;
+    public ShipClass gclass22_0;
 
     public string Combined { get; set; }
 
     public string method_0()
     {
         return
-            $"{this.int_0.ToString()}x {this.gclass22_0.ClassName} {this.gclass22_0.gclass76_0.Description}   Speed: {this.gclass22_0.int_32.ToString()} km/s    Size: {AuroraUtils.FormatNumberToDigits(this.gclass22_0.decimal_14, 2)}{Environment.NewLine}";
+            $"{this.int_0.ToString()}x {this.gclass22_0.ClassName} {this.gclass22_0.ShipHull.Description}   Speed: {this.gclass22_0.MaxSpeed.ToString()} km/s    Size: {AuroraUtils.FormatNumberToDigits(this.gclass22_0.Size, 2)}{Environment.NewLine}";
     }
 }

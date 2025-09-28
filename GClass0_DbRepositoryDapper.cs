@@ -76,7 +76,7 @@ public partial class GClass0
                 sqliteConnection_0).ExecuteNonQuery();
             using (SQLiteCommand sqLiteCommand = new SQLiteCommand(sqliteConnection_0))
             {
-                foreach (GameRace race in this.FCTRaceRecordDic.Values)
+                foreach (GameRace race in this.GameRaces.Values)
                 {
                     try
                     {

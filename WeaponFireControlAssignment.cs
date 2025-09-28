@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class WeaponFireControlAssignment
 {
-    public FCTShipData40 Ship;
+    public ShipData Ship;
     public ShipComponent WeaponComponent;
     public ShipComponent FireControlComponent;
     public int WeaponNum;

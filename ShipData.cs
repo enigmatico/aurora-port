@@ -24,8 +24,8 @@ public partial class ShipData
     public List<GClass35> list_6 = new List<GClass35>();
     public List<WeaponComponentRechargeStatus> list_7 = new List<WeaponComponentRechargeStatus>();
     public List<GClass28> list_8 = new List<GClass28>();
-    public List<GClass130> list_9 = new List<GClass130>();
-    public List<GClass130> list_10 = new List<GClass130>();
+    public List<PopOrdnanceStock> list_9 = new List<PopOrdnanceStock>();
+    public List<PopOrdnanceStock> list_10 = new List<PopOrdnanceStock>();
     public List<GClass177> list_11 = new List<GClass177>();
     public List<GClass178> list_12 = new List<GClass178>();
     public List<DamageControlQueue> DamageControlQueue = new List<DamageControlQueue>();
@@ -271,7 +271,7 @@ public partial class ShipData
                 if (gclass230_0.genum87_0 == GEnum87.const_3)
                     int_136 = 0;
             }
-            else if (gclass129_0 != null && gclass129_0.decimal_1 > 0M)
+            else if (gclass129_0 != null && gclass129_0.LaserWarhead > 0M)
                 int_136 = 3;
 
             int num8 = 0;
@@ -1434,24 +1434,24 @@ public partial class ShipData
         try
         {
             int num1 = 0;
-            if (this.list_10.Sum<GClass130>(gclass130_0 => gclass130_0.int_0 * gclass130_0.gclass129_0.decimal_4) == 0M)
+            if (this.list_10.Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount * gclass130_0.RaceMissile.Size) == 0M)
                 return 0;
             Decimal num2 = this.method_181();
             Decimal num3 = num2 + gclass228_0.gclass230_0.decimal_3;
             Decimal num4 = 1M - num2 / num3;
-            foreach (GClass130 gclass130 in this.list_10
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0).ToList<GClass130>())
+            foreach (PopOrdnanceStock gclass130 in this.list_10
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0).ToList<PopOrdnanceStock>())
             {
-                int num5 = (int)Math.Ceiling(gclass130.int_0 * num4);
-                gclass130.int_0 -= num5;
+                int num5 = (int)Math.Ceiling(gclass130.Amount * num4);
+                gclass130.Amount -= num5;
                 if (bool_22)
-                    num1 += (int)Math.Floor(num5 * gclass130.gclass129_0.decimal_0);
-                if (gclass130.gclass129_0.gclass129_0 != null)
-                    num1 += (int)Math.Floor(num5 * gclass130.gclass129_0.int_16 *
-                                            gclass130.gclass129_0.gclass129_0.decimal_0);
+                    num1 += (int)Math.Floor(num5 * gclass130.RaceMissile.WarheadStrength);
+                if (gclass130.RaceMissile.SecondStageMissile != null)
+                    num1 += (int)Math.Floor(num5 * gclass130.RaceMissile.NumSS *
+                                            gclass130.RaceMissile.SecondStageMissile.WarheadStrength);
             }
 
-            this.list_10 = this.list_10.Where<GClass130>(gclass130_0 => gclass130_0.int_0 > 0).ToList<GClass130>();
+            this.list_10 = this.list_10.Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount > 0).ToList<PopOrdnanceStock>();
             return num1;
         }
         catch (Exception ex)
@@ -2381,7 +2381,7 @@ public partial class ShipData
 
     public void method_35(
         WeaponFireControlAssignment gclass31_0_1,
-        GClass130 gclass130_0,
+        PopOrdnanceStock gclass130_0,
         CheckState checkState_0,
         CheckState checkState_1,
         int int_40)
@@ -2399,7 +2399,7 @@ public partial class ShipData
                 MissileAssignment gclass30 = this.FiredMissiles.Where<MissileAssignment>(class861.method_0).FirstOrDefault<MissileAssignment>();
                 if (gclass30 != null)
                 {
-                    gclass30.Missile = gclass130_0.gclass129_0;
+                    gclass30.Missile = gclass130_0.RaceMissile;
                 }
                 else
                 {
@@ -2409,7 +2409,7 @@ public partial class ShipData
                     {
                         FiringWeaponComponent = class861.gclass31_0.WeaponComponent,
                         WeaponNum = class861.gclass31_0.WeaponNum,
-                        Missile = gclass130_0.gclass129_0
+                        Missile = gclass130_0.RaceMissile
                     });
                 }
             }
@@ -2427,7 +2427,7 @@ public partial class ShipData
                     MissileAssignment gclass30 = this.FiredMissiles.Where<MissileAssignment>(class862.method_0).FirstOrDefault<MissileAssignment>();
                     if (gclass30 != null)
                     {
-                        gclass30.Missile = gclass130_0.gclass129_0;
+                        gclass30.Missile = gclass130_0.RaceMissile;
                     }
                     else
                     {
@@ -2437,7 +2437,7 @@ public partial class ShipData
                         {
                             FiringWeaponComponent = class862.gclass31_0.WeaponComponent,
                             WeaponNum = class862.gclass31_0.WeaponNum,
-                            Missile = gclass130_0.gclass129_0
+                            Missile = gclass130_0.RaceMissile
                         });
                     }
                 }
@@ -2460,7 +2460,7 @@ public partial class ShipData
                     MissileAssignment gclass30 = this.FiredMissiles.Where<MissileAssignment>(class863.method_0).FirstOrDefault<MissileAssignment>();
                     if (gclass30 != null)
                     {
-                        gclass30.Missile = gclass130_0.gclass129_0;
+                        gclass30.Missile = gclass130_0.RaceMissile;
                     }
                     else
                     {
@@ -2470,7 +2470,7 @@ public partial class ShipData
                         {
                             FiringWeaponComponent = class863.gclass31_0.WeaponComponent,
                             WeaponNum = class863.gclass31_0.WeaponNum,
-                            Missile = gclass130_0.gclass129_0
+                            Missile = gclass130_0.RaceMissile
                         });
                     }
                 }
@@ -2484,7 +2484,7 @@ public partial class ShipData
 
     public void method_36(
         FCTDecoyAssignmentData32 gclass32_0_1,
-        GClass130 gclass130_0,
+        PopOrdnanceStock gclass130_0,
         CheckState checkState_0,
         CheckState checkState_1,
         int int_40)
@@ -2502,7 +2502,7 @@ public partial class ShipData
                 MissileAssignment gclass30 = this.FiredMissiles.Where<MissileAssignment>(class864.method_0).FirstOrDefault<MissileAssignment>();
                 if (gclass30 != null)
                 {
-                    gclass30.Missile = gclass130_0.gclass129_0;
+                    gclass30.Missile = gclass130_0.RaceMissile;
                 }
                 else
                 {
@@ -2512,7 +2512,7 @@ public partial class ShipData
                     {
                         FiringWeaponComponent = class864.gclass32_0.LauncherData,
                         WeaponNum = class864.gclass32_0.LauncherNum,
-                        Missile = gclass130_0.gclass129_0
+                        Missile = gclass130_0.RaceMissile
                     });
                 }
             }
@@ -2531,7 +2531,7 @@ public partial class ShipData
                     MissileAssignment gclass30 = this.FiredMissiles.Where<MissileAssignment>(class865.method_0).FirstOrDefault<MissileAssignment>();
                     if (gclass30 != null)
                     {
-                        gclass30.Missile = gclass130_0.gclass129_0;
+                        gclass30.Missile = gclass130_0.RaceMissile;
                     }
                     else
                     {
@@ -2541,7 +2541,7 @@ public partial class ShipData
                         {
                             FiringWeaponComponent = class865.gclass32_0.LauncherData,
                             WeaponNum = class865.gclass32_0.LauncherNum,
-                            Missile = gclass130_0.gclass129_0
+                            Missile = gclass130_0.RaceMissile
                         });
                     }
                 }
@@ -2565,7 +2565,7 @@ public partial class ShipData
                     MissileAssignment gclass30 = this.FiredMissiles.Where<MissileAssignment>(class866.method_0).FirstOrDefault<MissileAssignment>();
                     if (gclass30 != null)
                     {
-                        gclass30.Missile = gclass130_0.gclass129_0;
+                        gclass30.Missile = gclass130_0.RaceMissile;
                     }
                     else
                     {
@@ -2575,7 +2575,7 @@ public partial class ShipData
                         {
                             FiringWeaponComponent = class866.gclass32_0.LauncherData,
                             WeaponNum = class866.gclass32_0.LauncherNum,
-                            Missile = gclass130_0.gclass129_0
+                            Missile = gclass130_0.RaceMissile
                         });
                     }
                 }
@@ -2835,9 +2835,9 @@ public partial class ShipData
                 node6.Text = "Available Missiles";
                 node6.Tag = null;
                 treeView_0.Nodes.Add(node6);
-                foreach (GClass130 gclass130 in this.list_10)
+                foreach (PopOrdnanceStock gclass130 in this.list_10)
                 {
-                    string str = $"{gclass130.int_0.ToString()}x {gclass130.gclass129_0.Name}";
+                    string str = $"{gclass130.Amount.ToString()}x {gclass130.RaceMissile.Name}";
                     node6.Nodes.Add(new TreeNode()
                     {
                         Text = str,
@@ -4049,7 +4049,7 @@ public partial class ShipData
             else
             {
                 foreach (MissileAssignment gclass30 in this.FiredMissiles
-                             .Where<MissileAssignment>(gclass30_0 => gclass30_0.Missile.decimal_18 > 0M).ToList<MissileAssignment>())
+                             .Where<MissileAssignment>(gclass30_0 => gclass30_0.Missile.GroundDamage > 0M).ToList<MissileAssignment>())
                 {
                     GroundUnitFormationElement gclass39 = gclass39_0_1;
                     if (gclass39 == null)
@@ -4077,14 +4077,14 @@ public partial class ShipData
                     }
 
                     Decimal num8 = num6 / num7;
-                    this.method_58(gclass39.GroundUnitClass, (int)gclass30.Missile.decimal_19, 0, 0, 0);
-                    for (int index = 1; index <= gclass30.Missile.decimal_19; ++index)
+                    this.method_58(gclass39.GroundUnitClass, (int)gclass30.Missile.GroundShots, 0, 0, 0);
+                    for (int index = 1; index <= gclass30.Missile.GroundShots; ++index)
                     {
                         gclass39.Formation.PopulationData.method_38(this.gclass21_0,
-                            Math.Pow((double)gclass30.Missile.decimal_20, 3.0));
+                            Math.Pow((double)gclass30.Missile.GroundBaseDamage, 3.0));
                         if (!(AuroraUtils.GetRandomInteger(10000) > num8))
                             decimal_42_1 += gclass39.method_6(null, this, gclass1_0, null,
-                                gclass30.Missile.decimal_17, gclass30.Missile.decimal_18, false);
+                                gclass30.Missile.GroundAP, gclass30.Missile.GroundDamage, false);
                     }
                 }
             }
@@ -4167,14 +4167,14 @@ public partial class ShipData
         try
         {
             this.list_10.Clear();
-            List<GClass130> gclass130List = this.gclass22_0.list_0;
+            List<PopOrdnanceStock> gclass130List = this.gclass22_0.list_0;
             if (bool_22 && this.list_9.Count > 0)
                 gclass130List = this.list_9;
-            foreach (GClass130 gclass130 in gclass130List)
-                this.list_10.Add(new GClass130()
+            foreach (PopOrdnanceStock gclass130 in gclass130List)
+                this.list_10.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = gclass130.gclass129_0,
-                    int_0 = gclass130.int_0
+                    RaceMissile = gclass130.RaceMissile,
+                    Amount = gclass130.Amount
                 });
         }
         catch (Exception ex)
@@ -4190,10 +4190,10 @@ public partial class ShipData
             listView_0.Items.Clear();
             this.gclass0_0.method_601(listView_0, "Ship Template Loadout", "Num", null);
             this.gclass0_0.method_594(listView_0, "");
-            List<GClass130> list = this.list_9.OrderBy<GClass130, string>(gclass130_0 => gclass130_0.gclass129_0.Name)
-                .ToList<GClass130>();
-            foreach (GClass130 object_1 in list)
-                this.gclass0_0.method_598(listView_0, object_1.gclass129_0.Name, AuroraUtils.smethod_37(object_1.int_0),
+            List<PopOrdnanceStock> list = this.list_9.OrderBy<PopOrdnanceStock, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
+                .ToList<PopOrdnanceStock>();
+            foreach (PopOrdnanceStock object_1 in list)
+                this.gclass0_0.method_598(listView_0, object_1.RaceMissile.Name, AuroraUtils.smethod_37(object_1.Amount),
                     object_1);
             Decimal decimal_73_1 = this.method_70();
             Decimal decimal_73_2 = this.method_71();
@@ -4215,10 +4215,10 @@ public partial class ShipData
             listView_0.Items.Clear();
             this.gclass0_0.method_601(listView_0, "Current Loadout", "Num", null);
             this.gclass0_0.method_594(listView_0, "");
-            List<GClass130> list = this.list_10.OrderBy<GClass130, string>(gclass130_0 => gclass130_0.gclass129_0.Name)
-                .ToList<GClass130>();
-            foreach (GClass130 object_1 in list)
-                this.gclass0_0.method_598(listView_0, object_1.gclass129_0.Name, AuroraUtils.smethod_37(object_1.int_0),
+            List<PopOrdnanceStock> list = this.list_10.OrderBy<PopOrdnanceStock, string>(gclass130_0 => gclass130_0.RaceMissile.Name)
+                .ToList<PopOrdnanceStock>();
+            foreach (PopOrdnanceStock object_1 in list)
+                this.gclass0_0.method_598(listView_0, object_1.RaceMissile.Name, AuroraUtils.smethod_37(object_1.Amount),
                     object_1);
             Decimal decimal_73_1 = this.method_208();
             Decimal decimal_73_2 = this.method_209();
@@ -4238,11 +4238,11 @@ public partial class ShipData
         try
         {
             this.list_9.Clear();
-            foreach (GClass130 gclass130 in this.gclass22_0.list_0)
-                this.list_9.Add(new GClass130()
+            foreach (PopOrdnanceStock gclass130 in this.gclass22_0.list_0)
+                this.list_9.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = gclass130.gclass129_0,
-                    int_0 = gclass130.int_0
+                    RaceMissile = gclass130.RaceMissile,
+                    Amount = gclass130.Amount
                 });
         }
         catch (Exception ex)
@@ -4256,11 +4256,11 @@ public partial class ShipData
         try
         {
             this.gclass22_0.list_0.Clear();
-            foreach (GClass130 gclass130 in this.list_9)
-                this.gclass22_0.list_0.Add(new GClass130()
+            foreach (PopOrdnanceStock gclass130 in this.list_9)
+                this.gclass22_0.list_0.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = gclass130.gclass129_0,
-                    int_0 = gclass130.int_0
+                    RaceMissile = gclass130.RaceMissile,
+                    Amount = gclass130.Amount
                 });
         }
         catch (Exception ex)
@@ -4278,11 +4278,11 @@ public partial class ShipData
                              gclass40_4 != this && gclass40_4.gclass22_0 == this.gclass22_0).ToList<ShipData>())
             {
                 gclass40.list_9.Clear();
-                foreach (GClass130 gclass130 in this.list_9)
-                    gclass40.list_9.Add(new GClass130()
+                foreach (PopOrdnanceStock gclass130 in this.list_9)
+                    gclass40.list_9.Add(new PopOrdnanceStock()
                     {
-                        gclass129_0 = gclass130.gclass129_0,
-                        int_0 = gclass130.int_0
+                        RaceMissile = gclass130.RaceMissile,
+                        Amount = gclass130.Amount
                     });
             }
         }
@@ -4305,40 +4305,40 @@ public partial class ShipData
             if (int_40 == 0 || class814.gclass129_0 == null)
                 return;
             // ISSUE: reference to a compiler-generated field
-            if (class814.gclass129_0.int_14 == 0)
+            if (class814.gclass129_0.ShipDecoy == 0)
             {
                 Decimal num = this.method_70();
                 // ISSUE: reference to a compiler-generated field
-                if (class814.gclass129_0.decimal_4 * int_40 > num)
+                if (class814.gclass129_0.Size * int_40 > num)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    int_40 = (int)(num / class814.gclass129_0.decimal_4);
+                    int_40 = (int)(num / class814.gclass129_0.Size);
                 }
             }
             else
             {
                 Decimal num = this.method_71();
                 // ISSUE: reference to a compiler-generated field
-                if (class814.gclass129_0.decimal_4 * int_40 > num)
+                if (class814.gclass129_0.Size * int_40 > num)
                 {
                     // ISSUE: reference to a compiler-generated field
-                    int_40 = (int)(num / class814.gclass129_0.decimal_4);
+                    int_40 = (int)(num / class814.gclass129_0.Size);
                 }
             }
 
             // ISSUE: reference to a compiler-generated method
-            List<GClass130> list = this.list_9.Where<GClass130>(class814.method_0).ToList<GClass130>();
+            List<PopOrdnanceStock> list = this.list_9.Where<PopOrdnanceStock>(class814.method_0).ToList<PopOrdnanceStock>();
             if (list.Count == 1)
             {
-                list[0].int_0 += int_40;
+                list[0].Amount += int_40;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_9.Add(new GClass130()
+                this.list_9.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = class814.gclass129_0,
-                    int_0 = int_40
+                    RaceMissile = class814.gclass129_0,
+                    Amount = int_40
                 });
             }
         }
@@ -4348,7 +4348,7 @@ public partial class ShipData
         }
     }
 
-    public void method_69(GClass130 gclass130_0, int int_40)
+    public void method_69(PopOrdnanceStock gclass130_0, int int_40)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -4360,12 +4360,12 @@ public partial class ShipData
             if (int_40 == 0)
                 return;
             // ISSUE: reference to a compiler-generated method
-            List<GClass130> list = this.list_9.Where<GClass130>(class815.method_0).ToList<GClass130>();
+            List<PopOrdnanceStock> list = this.list_9.Where<PopOrdnanceStock>(class815.method_0).ToList<PopOrdnanceStock>();
             if (list.Count != 1)
                 return;
-            if (list[0].int_0 > int_40)
+            if (list[0].Amount > int_40)
             {
-                list[0].int_0 -= int_40;
+                list[0].Amount -= int_40;
             }
             else
             {
@@ -4384,9 +4384,9 @@ public partial class ShipData
         try
         {
             Decimal num = 0M;
-            foreach (GClass130 gclass130 in this.list_9
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0).ToList<GClass130>())
-                num += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_9
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0).ToList<PopOrdnanceStock>())
+                num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.method_181() - num;
         }
         catch (Exception ex)
@@ -4401,9 +4401,9 @@ public partial class ShipData
         try
         {
             Decimal num = 0M;
-            foreach (GClass130 gclass130 in this.list_9
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 1).ToList<GClass130>())
-                num += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_9
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 1).ToList<PopOrdnanceStock>())
+                num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.method_182() - num;
         }
         catch (Exception ex)
@@ -4470,9 +4470,9 @@ public partial class ShipData
                 return 0.0;
             if (num2 > 0 && this.list_10.Count > 0)
             {
-                double num4 = (double)this.list_10.Select<GClass130, RaceMissile>(gclass130_0 => gclass130_0.gclass129_0)
-                    .Distinct<RaceMissile>().OrderByDescending<RaceMissile, Decimal>(gclass129_0 => gclass129_0.decimal_5)
-                    .FirstOrDefault<RaceMissile>().decimal_5 / int_40 * AuroraUtils.int_9 * 0.01;
+                double num4 = (double)this.list_10.Select<PopOrdnanceStock, RaceMissile>(gclass130_0 => gclass130_0.RaceMissile)
+                    .Distinct<RaceMissile>().OrderByDescending<RaceMissile, Decimal>(gclass129_0 => gclass129_0.Speed)
+                    .FirstOrDefault<RaceMissile>().Speed / int_40 * AuroraUtils.int_9 * 0.01;
                 num1 += num2 * num4;
             }
 
@@ -4557,7 +4557,7 @@ public partial class ShipData
             return source.Count == 0
                 ? 0M
                 : source.Select<WeaponFireControlAssignment, MissileAssignment>(class818.method_2).ToList<MissileAssignment>()
-                    .Sum<MissileAssignment>(gclass30_0 => gclass30_0.Missile.decimal_4);
+                    .Sum<MissileAssignment>(gclass30_0 => gclass30_0.Missile.Size);
         }
         catch (Exception ex)
         {
@@ -4588,7 +4588,7 @@ public partial class ShipData
             return source.Count == 0
                 ? 0M
                 : source.Select<WeaponFireControlAssignment, MissileAssignment>(class819.method_2).ToList<MissileAssignment>()
-                    .Sum<MissileAssignment>(gclass30_0 => gclass30_0.Missile.decimal_4);
+                    .Sum<MissileAssignment>(gclass30_0 => gclass30_0.Missile.Size);
         }
         catch (Exception ex)
         {
@@ -5109,17 +5109,17 @@ public partial class ShipData
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated method
-                    GClass130 gclass130 = this.list_10
-                        .Where<GClass130>(class825.func_0 ?? (class825.func_0 = class825.method_0))
-                        .OrderByDescending<GClass130, Decimal>(gclass130_0 => gclass130_0.gclass129_0.decimal_4)
-                        .ThenByDescending<GClass130, int>(gclass130_0 => gclass130_0.gclass129_0.int_12)
-                        .FirstOrDefault<GClass130>();
+                    PopOrdnanceStock gclass130 = this.list_10
+                        .Where<PopOrdnanceStock>(class825.func_0 ?? (class825.func_0 = class825.method_0))
+                        .OrderByDescending<PopOrdnanceStock, Decimal>(gclass130_0 => gclass130_0.RaceMissile.Size)
+                        .ThenByDescending<PopOrdnanceStock, int>(gclass130_0 => gclass130_0.RaceMissile.MissileECM)
+                        .FirstOrDefault<PopOrdnanceStock>();
                     if (gclass130 != null)
                         this.FiredMissiles.Add(new MissileAssignment()
                         {
                             FiringWeaponComponent = gclass32.LauncherData,
                             WeaponNum = gclass32.LauncherNum,
-                            Missile = gclass130.gclass129_0
+                            Missile = gclass130.RaceMissile
                         });
                 }
             }
@@ -5237,21 +5237,21 @@ public partial class ShipData
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated field
                                 // ISSUE: reference to a compiler-generated method
-                                GClass130 gclass130 = this.list_10
-                                    .Where<GClass130>(class826.func_0 ?? (class826.func_0 = class826.method_0))
-                                    .OrderByDescending<GClass130,
-                                        Decimal>(gclass130_0 => gclass130_0.gclass129_0.decimal_4)
-                                    .ThenByDescending<GClass130, Decimal>(gclass130_0 =>
-                                        gclass130_0.gclass129_0.decimal_0)
-                                    .ThenByDescending<GClass130, Decimal>(gclass130_0 =>
-                                        gclass130_0.gclass129_0.decimal_5).FirstOrDefault<GClass130>();
+                                PopOrdnanceStock gclass130 = this.list_10
+                                    .Where<PopOrdnanceStock>(class826.func_0 ?? (class826.func_0 = class826.method_0))
+                                    .OrderByDescending<PopOrdnanceStock,
+                                        Decimal>(gclass130_0 => gclass130_0.RaceMissile.Size)
+                                    .ThenByDescending<PopOrdnanceStock, Decimal>(gclass130_0 =>
+                                        gclass130_0.RaceMissile.WarheadStrength)
+                                    .ThenByDescending<PopOrdnanceStock, Decimal>(gclass130_0 =>
+                                        gclass130_0.RaceMissile.Speed).FirstOrDefault<PopOrdnanceStock>();
                                 if (gclass130 != null)
                                 {
                                     this.FiredMissiles.Add(new MissileAssignment()
                                     {
                                         FiringWeaponComponent = gclass31.WeaponComponent,
                                         WeaponNum = gclass31.WeaponNum,
-                                        Missile = gclass130.gclass129_0
+                                        Missile = gclass130.RaceMissile
                                     });
                                     break;
                                 }
@@ -5438,17 +5438,17 @@ public partial class ShipData
         try
         {
             // ISSUE: reference to a compiler-generated method
-            GClass130 gclass130 = this.list_10.FirstOrDefault<GClass130>(class831.method_0);
+            PopOrdnanceStock gclass130 = this.list_10.FirstOrDefault<PopOrdnanceStock>(class831.method_0);
             if (gclass130 == null)
                 return false;
-            if (gclass130.int_0 <= 0)
+            if (gclass130.Amount <= 0)
             {
                 this.list_10.Remove(gclass130);
                 return false;
             }
 
-            --gclass130.int_0;
-            if (gclass130.int_0 == 0)
+            --gclass130.Amount;
+            if (gclass130.Amount == 0)
                 this.list_10.Remove(gclass130);
             return true;
         }
@@ -5802,18 +5802,18 @@ public partial class ShipData
         try
         {
             // ISSUE: reference to a compiler-generated method
-            GClass130 gclass130 = this.list_10.FirstOrDefault<GClass130>(class835.method_0);
+            PopOrdnanceStock gclass130 = this.list_10.FirstOrDefault<PopOrdnanceStock>(class835.method_0);
             if (gclass130 != null)
             {
-                gclass130.int_0 += int_40;
+                gclass130.Amount += int_40;
             }
             else
             {
                 // ISSUE: reference to a compiler-generated field
-                this.list_10.Add(new GClass130()
+                this.list_10.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = class835.gclass129_0,
-                    int_0 = int_40
+                    RaceMissile = class835.gclass129_0,
+                    Amount = int_40
                 });
             }
         }
@@ -7848,12 +7848,12 @@ public partial class ShipData
                 flowLayoutPanel_0.Visible = true;
             else
                 flowLayoutPanel_0.Visible = false;
-            gclass22.list_0 = new List<GClass130>();
-            foreach (GClass130 gclass130 in this.list_10)
-                gclass22.list_0.Add(new GClass130()
+            gclass22.list_0 = new List<PopOrdnanceStock>();
+            foreach (PopOrdnanceStock gclass130 in this.list_10)
+                gclass22.list_0.Add(new PopOrdnanceStock()
                 {
-                    gclass129_0 = gclass130.gclass129_0,
-                    int_0 = gclass130.int_0
+                    RaceMissile = gclass130.RaceMissile,
+                    Amount = gclass130.Amount
                 });
             gclass22.list_1.Clear();
             foreach (GClass228 gclass228_0 in gclass22.dictionary_0.Values)
@@ -7931,9 +7931,9 @@ public partial class ShipData
             this.method_161(listView_7);
             if (this.gclass21_0.SpecialNPRID == SpecialNPRIDs.StarSwarm)
                 this.gclass0_0.method_597(listView_0, "Bio-Energy", AuroraUtils.smethod_39(this.decimal_17));
-            foreach (GClass130 gclass130 in this.list_10)
-                this.gclass0_0.method_597(listView_3, gclass130.gclass129_0.Name,
-                    AuroraUtils.smethod_37(gclass130.int_0));
+            foreach (PopOrdnanceStock gclass130 in this.list_10)
+                this.gclass0_0.method_597(listView_3, gclass130.RaceMissile.Name,
+                    AuroraUtils.smethod_37(gclass130.Amount));
             foreach (PopulationInstallation gclass158 in this.TransportedInstallations.Values)
                 this.gclass0_0.method_597(listView_3, gclass158.InstallationType.Name,
                     AuroraUtils.FormatNumberToDigits(gclass158.Amount, 2));
@@ -8864,15 +8864,15 @@ public partial class ShipData
                         if (num1 < 0M)
                         {
                             Decimal num2 = this.gclass22_0.MagazineCapacity / (Math.Abs(num1) + this.gclass22_0.MagazineCapacity);
-                            foreach (GClass130 gclass130 in this.list_10
-                                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0)
-                                         .ToList<GClass130>())
+                            foreach (PopOrdnanceStock gclass130 in this.list_10
+                                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0)
+                                         .ToList<PopOrdnanceStock>())
                             {
-                                int num3 = (int)Math.Floor(gclass130.int_0 * num2);
-                                if (num3 != gclass130.int_0)
+                                int num3 = (int)Math.Floor(gclass130.Amount * num2);
+                                if (num3 != gclass130.Amount)
                                 {
-                                    gclass146_0.method_149(gclass130.gclass129_0, gclass130.int_0 - num3);
-                                    gclass130.int_0 = num3;
+                                    gclass146_0.method_149(gclass130.RaceMissile, gclass130.Amount - num3);
+                                    gclass130.Amount = num3;
                                 }
                             }
                         }
@@ -8949,8 +8949,8 @@ public partial class ShipData
     {
         try
         {
-            foreach (GClass130 gclass130 in this.list_10)
-                gclass146_0.method_149(gclass130.gclass129_0, gclass130.int_0);
+            foreach (PopOrdnanceStock gclass130 in this.list_10)
+                gclass146_0.method_149(gclass130.RaceMissile, gclass130.Amount);
             this.list_10.Clear();
         }
         catch (Exception ex)
@@ -9078,9 +9078,9 @@ public partial class ShipData
         try
         {
             Decimal num = 0M;
-            foreach (GClass130 gclass130 in this.list_10
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0).ToList<GClass130>())
-                num += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_10
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0).ToList<PopOrdnanceStock>())
+                num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.method_181() - num;
         }
         catch (Exception ex)
@@ -9095,9 +9095,9 @@ public partial class ShipData
         try
         {
             Decimal num = 0M;
-            foreach (GClass130 gclass130 in this.list_10
-                         .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 1).ToList<GClass130>())
-                num += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_10
+                         .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 1).ToList<PopOrdnanceStock>())
+                num += gclass130.RaceMissile.Size * gclass130.Amount;
             return this.method_182() - num;
         }
         catch (Exception ex)
@@ -9144,8 +9144,8 @@ public partial class ShipData
             Decimal num2 = this.method_183();
             if (num2 == 0M)
                 return 0M;
-            foreach (GClass130 gclass130 in this.list_10)
-                num1 += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.list_10)
+                num1 += gclass130.RaceMissile.Size * gclass130.Amount;
             return num1 / num2 * 100M;
         }
         catch (Exception ex)
@@ -9213,21 +9213,21 @@ public partial class ShipData
                 return gclass71;
             }
 
-            List<GClass130> list2 = this.list_10.Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0)
-                .ToList<GClass130>();
+            List<PopOrdnanceStock> list2 = this.list_10.Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0)
+                .ToList<PopOrdnanceStock>();
             if (list2.Count == 0)
                 return gclass71;
-            foreach (GClass130 gclass130 in list2)
+            foreach (PopOrdnanceStock gclass130 in list2)
             {
-                gclass71.int_1 += gclass130.int_0;
-                if (gclass130.gclass129_0.double_4 > gclass71.double_0 &&
-                    gclass130.gclass129_0.decimal_4 <= gclass71.decimal_0)
-                    gclass71.double_0 = gclass130.gclass129_0.double_4;
-                if (gclass130.gclass129_0.decimal_5 > gclass71.int_2 &&
-                    gclass130.gclass129_0.decimal_4 <= gclass71.decimal_0)
+                gclass71.int_1 += gclass130.Amount;
+                if (gclass130.RaceMissile.CombinatedMaxRange > gclass71.double_0 &&
+                    gclass130.RaceMissile.Size <= gclass71.decimal_0)
+                    gclass71.double_0 = gclass130.RaceMissile.CombinatedMaxRange;
+                if (gclass130.RaceMissile.Speed > gclass71.int_2 &&
+                    gclass130.RaceMissile.Size <= gclass71.decimal_0)
                 {
-                    gclass71.gclass129_0 = gclass130.gclass129_0;
-                    gclass71.int_2 = (int)gclass130.gclass129_0.decimal_5;
+                    gclass71.gclass129_0 = gclass130.RaceMissile;
+                    gclass71.int_2 = (int)gclass130.RaceMissile.Speed;
                 }
             }
 
@@ -9268,10 +9268,10 @@ public partial class ShipData
 
             gclass72.decimal_0 = gclass72.list_0.Min<ShipData>(gclass40_0 => gclass40_0.method_166()) / 2.5M;
             gclass72.decimal_1 = gclass72.list_0.Min<ShipData>(gclass40_0 => gclass40_0.method_171(false));
-            List<GClass130> list = gclass72.list_0
-                .SelectMany<ShipData, GClass130>(gclass40_0 => gclass40_0.list_10).ToList<GClass130>();
+            List<PopOrdnanceStock> list = gclass72.list_0
+                .SelectMany<ShipData, PopOrdnanceStock>(gclass40_0 => gclass40_0.list_10).ToList<PopOrdnanceStock>();
             if (list.Count > 0)
-                gclass72.int_1 = list.Sum<GClass130>(gclass130_0 => gclass130_0.int_0);
+                gclass72.int_1 = list.Sum<PopOrdnanceStock>(gclass130_0 => gclass130_0.Amount);
             return gclass72;
         }
         catch (Exception ex)
@@ -9677,8 +9677,8 @@ public partial class ShipData
                                 graphics_0.DrawEllipse(pen, (float)(gclass222_0.double_2 - key),
                                     (float)(gclass222_0.double_3 - key), (float)key * 2f, (float)key * 2f);
                                 string str2 = gclass118.double_0 <= 10000000.0
-                                    ? AuroraUtils.smethod_44(gclass118.double_0 / 1000000.0, 1)
-                                    : AuroraUtils.smethod_44(gclass118.double_0 / 1000000.0, 0);
+                                    ? AuroraUtils.FormatDoubleToPrecision(gclass118.double_0 / 1000000.0, 1)
+                                    : AuroraUtils.FormatDoubleToPrecision(gclass118.double_0 / 1000000.0, 0);
                                 string str3 = $"{gclass118.string_0}  {str2}m  R{gclass118.int_1.ToString()}";
                                 float num = graphics_0.MeasureString(str3, font_0).Width / 2f;
                                 if (gclass222_0.dictionary_0.ContainsKey(key))

@@ -448,27 +448,27 @@ public partial class GroundUnitDesign : Form
                 {
                     // ISSUE: reference to a compiler-generated method
                     // ISSUE: reference to a compiler-generated method
-                    List<FCTShipData40> list1 = this.gclass0_0.FleetDictionary.Values
+                    List<ShipData> list1 = this.gclass0_0.FleetDictionary.Values
                         .SelectMany<FleetData, MoveOrder>(gclass85_0 => gclass85_0.MoveOrderDictionary.Values)
                         .Where<MoveOrder>(class1053.method_0)
                         .Select<MoveOrder, FleetData>(gclass139_0 => gclass139_0.Fleet)
                         .Where<FleetData>(class1053.method_1)
-                        .SelectMany<FleetData, FCTShipData40>(gclass85_0 => gclass85_0.method_176())
-                        .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 == null)
-                        .OrderByDescending<FCTShipData40, Decimal>(gclass40_0 => gclass40_0.gclass22_0.decimal_14)
-                        .ThenBy<FCTShipData40, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
-                        .ThenBy<FCTShipData40, string>(gclass40_0 => gclass40_0.ShipName).ToList<FCTShipData40>();
+                        .SelectMany<FleetData, ShipData>(gclass85_0 => gclass85_0.method_176())
+                        .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 == null)
+                        .OrderByDescending<ShipData, Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                        .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
+                        .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.ShipName).ToList<ShipData>();
                     // ISSUE: reference to a compiler-generated method
                     List<GroundUnitFormationData> list2 = this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(class1053.method_2)
                         .ToList<GroundUnitFormationData>();
                     // ISSUE: reference to a compiler-generated method
-                    List<FCTShipData40> list3 = list1.Where<FCTShipData40>(class1053.method_3).ToList<FCTShipData40>();
+                    List<ShipData> list3 = list1.Where<ShipData>(class1053.method_3).ToList<ShipData>();
                     if (list3.Count > 0 || list2.Count > 0)
                     {
                         this.gclass0_0.method_594(this.lstvFormationUnitList, "");
                         foreach (GroundUnitFormationData gclass103 in list2)
                             this.gclass0_0.method_597(this.lstvFormationUnitList, "SUP", gclass103.method_45());
-                        foreach (FCTShipData40 gclass40 in list3)
+                        foreach (ShipData gclass40 in list3)
                             this.gclass0_0.method_597(this.lstvFormationUnitList, "SUP", gclass40.method_187());
                     }
 
@@ -484,7 +484,7 @@ public partial class GroundUnitDesign : Form
                         // ISSUE: reference to a compiler-generated field
                         if (this.flpAssign.Visible && this.gclass146_0 == class1053.gclass103_0.PopulationData)
                             return;
-                        foreach (FCTShipData40 gclass40 in list1)
+                        foreach (ShipData gclass40 in list1)
                             gclass40.ShipNameWithHullAndClass =
                                 $"{gclass40.method_187()}  ({gclass40.gclass22_0.ClassName})";
                         this.tvFormations.Height = 675;
@@ -1121,12 +1121,12 @@ public partial class GroundUnitDesign : Form
                         return;
                     }
                 }
-                else if (data.Tag is FCTShipData40 && nodeAt.Tag is GroundUnitFormationData)
+                else if (data.Tag is ShipData && nodeAt.Tag is GroundUnitFormationData)
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
                     GroundUnitDesign.Class1055 class1055 = new GroundUnitDesign.Class1055();
-                    FCTShipData40 tag = (FCTShipData40)data.Tag;
+                    ShipData tag = (ShipData)data.Tag;
                     // ISSUE: reference to a compiler-generated field
                     class1055.gclass103_0 = (GroundUnitFormationData)nodeAt.Tag;
                     // ISSUE: reference to a compiler-generated field
@@ -1152,12 +1152,12 @@ public partial class GroundUnitDesign : Form
 
                     // ISSUE: reference to a compiler-generated method
                     // ISSUE: reference to a compiler-generated method
-                    int num6 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1055.method_0)
-                        .Count<FCTShipData40>(class1055.method_1);
+                    int num6 = this.gclass0_0.Ships.Values.Where<ShipData>(class1055.method_0)
+                        .Count<ShipData>(class1055.method_1);
                     // ISSUE: reference to a compiler-generated method
                     // ISSUE: reference to a compiler-generated method
-                    int num7 = 6 * this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1055.method_2)
-                        .Count<FCTShipData40>(class1055.method_3);
+                    int num7 = 6 * this.gclass0_0.Ships.Values.Where<ShipData>(class1055.method_2)
+                        .Count<ShipData>(class1055.method_3);
                     int num8 = 1;
                     if (tag.gclass85_0.method_42(MoveActionType.ProvideOrbitalBombardmentSupport))
                         num8 = 6;
@@ -1244,7 +1244,7 @@ public partial class GroundUnitDesign : Form
                         return;
                     string string4_2 = this.gclass0_0.string_4;
                     GroundUnitFormationData gclass103 =
-                        tag5.Formation.RaceData.method_159(string4_1, string4_2, tag6, null, tag6.SpeciesData);
+                        tag5.Formation.RaceData.method_159(string4_1, string4_2, tag6, null, tag6.Species);
                     int num12 = tag5.UnitCount;
                     if (this.chkPartial.CheckState == CheckState.Checked)
                     {
@@ -1652,7 +1652,7 @@ public partial class GroundUnitDesign : Form
                         // ISSUE: reference to a compiler-generated field
                         tag.method_4(class1057.gclass146_0, list1, bool_7);
                         // ISSUE: reference to a compiler-generated field
-                        if (class1057.gclass146_0.RaceData.NPR)
+                        if (class1057.gclass146_0.Race.NPR)
                         {
                             // ISSUE: reference to a compiler-generated method
                             List<GroundUnitFormationData> list2 = this.gclass0_0.FormationDictionary.Values
@@ -2066,8 +2066,8 @@ public partial class GroundUnitDesign : Form
     private void method_11(object sender, EventArgs e)
     {
         this.gclass0_0.method_538(this.gclass21_0, this.gclass21_0.method_164(),
-            this.gclass0_0.PopulationDataDictionary.Values.FirstOrDefault<PopulationData>(gclass146_1 =>
-                gclass146_1.RaceData == this.gclass21_0));
+            this.gclass0_0.Populations.Values.FirstOrDefault<PopulationData>(gclass146_1 =>
+                gclass146_1.Race == this.gclass21_0));
     }
 
     private void cmdObsolete_Click(object sender, EventArgs e)
@@ -2260,17 +2260,17 @@ public partial class GroundUnitDesign : Form
             // ISSUE: reference to a compiler-generated field
             if (class1063.gclass103_0 == null)
                 return;
-            FCTShipData40 selectedValue = (FCTShipData40)this.cboAssign.SelectedValue;
+            ShipData selectedValue = (ShipData)this.cboAssign.SelectedValue;
             if (selectedValue == null)
                 return;
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            int num1 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1063.method_0)
-                .Count<FCTShipData40>(class1063.method_1);
+            int num1 = this.gclass0_0.Ships.Values.Where<ShipData>(class1063.method_0)
+                .Count<ShipData>(class1063.method_1);
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
-            int num2 = 6 * this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1063.method_2)
-                .Count<FCTShipData40>(class1063.method_3);
+            int num2 = 6 * this.gclass0_0.Ships.Values.Where<ShipData>(class1063.method_2)
+                .Count<ShipData>(class1063.method_3);
             int num3 = 1;
             if (selectedValue.gclass85_0.method_42(MoveActionType.ProvideOrbitalBombardmentSupport))
                 num3 = 6;

@@ -40,8 +40,8 @@ public class GClass176
                 this.int_1 = AuroraUtils.smethod_21(5) * 200;
                 if (num == 1)
                     this.int_1 *= 2;
-                gclass146_0.CurrentMinerals.method_33((AuroraElement)num, this.int_1);
-                if (!gclass146_0.RaceData.NPR)
+                gclass146_0.CurrentMinerals.AddSpecific((AuroraElement)num, this.int_1);
+                if (!gclass146_0.Race.NPR)
                     gclass146_0.method_21(MineralUsage.const_10, (AuroraElement)num, this.int_1);
                 this.string_0 =
                     $"{AuroraUtils.smethod_37(this.int_1)} tons of {AuroraUtils.smethod_82((AuroraElement)num)}";
@@ -61,27 +61,27 @@ public class GClass176
             else if (this.genum39_0 == GEnum39.const_4)
             {
                 this.int_1 = AuroraUtils.smethod_21(5) * 200;
-                gclass146_0.RaceData.method_300(this.int_1, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_28]);
+                gclass146_0.Race.method_300(this.int_1, this.gclass0_0.WealthUsageDictionary[WealthUsage.const_28]);
                 this.string_0 = AuroraUtils.smethod_37(this.int_1) + " wealth";
             }
             else if (this.genum39_0 == GEnum39.const_6)
             {
-                GClass190 gclass190 =
-                    gclass146_0.dictionary_4.Values.FirstOrDefault<GClass190>(gclass190_0 =>
-                        gclass190_0.gclass189_0.int_0 == 15);
+                PopTradeBalance gclass190 =
+                    gclass146_0.TradeBalances.Values.FirstOrDefault<PopTradeBalance>(gclass190_0 =>
+                        gclass190_0.TradeGood.TradeGoodID == 15);
                 if (gclass190 == null)
                 {
-                    gclass190 = new GClass190();
-                    gclass190.gclass146_0 = gclass146_0;
-                    gclass190.gclass189_0 = this.gclass0_0.TradeGoodsDictionary[15];
-                    gclass190.decimal_1 = 0M;
-                    gclass190.decimal_2 = 0M;
-                    gclass190.decimal_0 = 0M;
-                    gclass146_0.dictionary_4.Add(gclass190.gclass189_0.int_0, gclass190);
+                    gclass190 = new PopTradeBalance();
+                    gclass190.Population = gclass146_0;
+                    gclass190.TradeGood = this.gclass0_0.TradeGoodsDictionary[15];
+                    gclass190.TradeBalance = 0M;
+                    gclass190.LastTradeBalance = 0M;
+                    gclass190.ProductionRate = 0M;
+                    gclass146_0.TradeBalances.Add(gclass190.TradeGood.TradeGoodID, gclass190);
                 }
 
                 this.int_1 = AuroraUtils.smethod_22(50, 4);
-                gclass190.decimal_1 += this.int_1;
+                gclass190.TradeBalance += this.int_1;
                 this.string_0 = AuroraUtils.smethod_37(this.int_1) + " alien artifacts";
             }
             else if (this.genum39_0 == GEnum39.const_2)
@@ -108,7 +108,7 @@ public class GClass176
                 {
                     if (this.genum122_0 == TechType.None)
                         this.genum122_0 = this.gclass0_0.method_494(this.gclass162_0);
-                    TechSystem gclass164_1 = gclass146_0.RaceData.method_387(this.genum122_0);
+                    TechSystem gclass164_1 = gclass146_0.Race.method_387(this.genum122_0);
                     TechSystem gclass164_2 =
                         this.gclass0_0.method_493(this.genum122_0, gclass146_0.SystemBodyData.RuinRaceData.Level);
                     if (gclass164_2 != null)
@@ -118,8 +118,8 @@ public class GClass176
                             num = gclass164_1.int_4;
                         if (gclass164_2.int_4 > num)
                         {
-                            TechSystem gclass164_0 = gclass146_0.RaceData.method_392(this.genum122_0);
-                            gclass146_0.RaceData.method_282(gclass164_0, null, null, null, true, false);
+                            TechSystem gclass164_0 = gclass146_0.Race.method_392(this.genum122_0);
+                            gclass146_0.Race.method_282(gclass164_0, null, null, null, true, false);
                             this.string_0 = $"{this.string_0} plus technical information on {gclass164_0.Name}";
                         }
                     }
@@ -128,8 +128,8 @@ public class GClass176
 
             if (this.genum39_0 != GEnum39.const_2)
                 this.gclass0_0.gclass92_0.method_2(EventType.const_65,
-                    $"{gclass39_0.Formation.Name} has recovered {this.string_0} on {gclass146_0.SystemBodyData.method_78(gclass146_0.RaceData)}",
-                    gclass146_0.RaceData, gclass146_0.gclass202_0.ActualSystemData, gclass146_0.method_87(),
+                    $"{gclass39_0.Formation.Name} has recovered {this.string_0} on {gclass146_0.SystemBodyData.method_78(gclass146_0.Race)}",
+                    gclass146_0.Race, gclass146_0.gclass202_0.ActualSystem, gclass146_0.method_87(),
                     gclass146_0.method_88(), AuroraEventCategory.PopGroundUnits);
             return true;
         }

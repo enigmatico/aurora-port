@@ -60,7 +60,7 @@ public class GroundUnitFormationData
 
     private sealed class Class1045
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(GClass117 gclass117_0)
         {
@@ -102,7 +102,7 @@ public class GroundUnitFormationData
     {
         public GroundUnitFormationData gclass103_0;
         public PopulationData gclass146_0;
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_1)
         {
@@ -142,7 +142,7 @@ public class GroundUnitFormationData
     public GameRace RaceData;
     public RankThemeEntry RequiredRankData;
     public PopulationData PopulationData;
-    public FCTShipData40 ShipData;
+    public ShipData ShipData;
     public GClass55 gclass55_0;
     public GroundUnitFormationData ParentFormationData;
     public GroundUnitFormationData AssignedFormationData;
@@ -193,7 +193,7 @@ public class GroundUnitFormationData
     public bool bool_5;
     public int int_7;
     public int int_8;
-    public List<FCTShipData40> list_2 = new List<FCTShipData40>();
+    public List<ShipData> list_2 = new List<ShipData>();
     public long long_0;
     public long long_1;
     public int int_9;
@@ -315,13 +315,13 @@ public class GroundUnitFormationData
         }
     }
 
-    public List<GClass65> method_3()
+    public List<Contact> method_3()
     {
         try
         {
-            return this.gclass0_0.dictionary_28.Values.Where<GClass65>(gclass65_0 =>
-                    gclass65_0.auroraContactType_0 == AuroraContactType.GroundUnit && gclass65_0.int_1 == this.FormationID)
-                .ToList<GClass65>();
+            return this.gclass0_0.Contacts.Values.Where<Contact>(gclass65_0 =>
+                    gclass65_0.ContactType == AuroraContactType.GroundUnit && gclass65_0.ContactID == this.FormationID)
+                .ToList<Contact>();
         }
         catch (Exception ex)
         {
@@ -336,15 +336,15 @@ public class GroundUnitFormationData
         {
             if (this.gclass55_0 != null)
                 this.gclass55_0.method_40(true);
-            this.RaceData = gclass146_1.RaceData;
+            this.RaceData = gclass146_1.Race;
             this.PopulationData = gclass146_1;
             this.RequiredRankData = list_3.FirstOrDefault<RankThemeEntry>(gclass61_1 => gclass61_1.RankNum == this.RequiredRankData.RankNum);
             this.AssignedFormationData = null;
             this.gclass103_2 = null;
             this.OriginalTemplateData = null;
             this.ReplacementTemplateData = null;
-            foreach (GClass65 gclass65 in this.method_3())
-                this.gclass0_0.dictionary_28.Remove(gclass65.int_0);
+            foreach (Contact gclass65 in this.method_3())
+                this.gclass0_0.Contacts.Remove(gclass65.UniqueID);
             if (!bool_7)
                 return;
             foreach (GroundUnitFormationData gclass103 in this.gclass0_0.FormationDictionary.Values
@@ -369,7 +369,7 @@ public class GroundUnitFormationData
                     gclass39.UnitCount -= num;
                     this.gclass0_0.gclass92_0.method_2(EventType.const_61,
                         $"Due to external damage during boarding combat, {num.ToString()}x {gclass39.GroundUnitClass.ClassName} from {this.Name} have been lost",
-                        this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                        this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                         this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                         AuroraEventCategory.Ship);
                 }
@@ -494,21 +494,21 @@ public class GroundUnitFormationData
     {
         try
         {
-            if (!this.gclass0_0.dictionary_28.ContainsKey(gclass139_0.DestinationID))
+            if (!this.gclass0_0.Contacts.ContainsKey(gclass139_0.DestinationID))
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_120,
                     $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as the target ship does not exist",
-                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 return false;
             }
 
-            FCTShipData40 gclass400 = this.gclass0_0.dictionary_28[gclass139_0.DestinationID].gclass40_0;
+            ShipData gclass400 = this.gclass0_0.Contacts[gclass139_0.DestinationID].TargetShip;
             if (gclass400 != null)
                 return this.method_11(gclass400);
             this.gclass0_0.gclass92_0.method_2(EventType.const_120,
                 $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as the target contact is not a ship",
-                this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                 this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
             return false;
         }
@@ -519,7 +519,7 @@ public class GroundUnitFormationData
         }
     }
 
-    public bool method_11(FCTShipData40 gclass40_1)
+    public bool method_11(ShipData gclass40_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type
@@ -533,7 +533,7 @@ public class GroundUnitFormationData
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_120,
                     $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as the target ship is moving faster than the ship from which the formation is making the boarding attempt",
-                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 return false;
             }
@@ -542,7 +542,7 @@ public class GroundUnitFormationData
             {
                 this.gclass0_0.gclass92_0.method_2(EventType.const_120,
                     $"{this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}) was unable to launch a boarding attempt as it contains non-infantry elements",
-                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord, AuroraEventCategory.Ship);
                 return false;
             }
@@ -574,7 +574,7 @@ public class GroundUnitFormationData
                             {
                                 this.gclass0_0.gclass92_0.method_2(EventType.const_63,
                                     $"{gclass550.string_0}( {gclass550.method_17(false)}) has been killed during a boarding attempt on {gclass117.method_11()}",
-                                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                                    this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                     this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                     AuroraEventCategory.Ship);
                                 gclass550.method_46("Killed during a boarding attempt on " + gclass117.method_11(),
@@ -588,7 +588,7 @@ public class GroundUnitFormationData
                             this.ElementList.Remove(gclass39);
                             this.gclass0_0.gclass92_0.method_2(EventType.const_120,
                                 $"{num2.ToString()}x {gclass39.GroundUnitClass.ClassName} were lost in the boarding attempt by {this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}). No more units of this type remain within the formation",
-                                this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                                this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                 this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                 AuroraEventCategory.Ship);
                             this.ShipData = null;
@@ -598,7 +598,7 @@ public class GroundUnitFormationData
                             gclass39.UnitCount -= num2;
                             this.gclass0_0.gclass92_0.method_2(EventType.const_120,
                                 $"{num2.ToString()}x {gclass39.GroundUnitClass.ClassName} were lost in the boarding attempt by {this.Name} (FLT: {this.ShipData.gclass85_0.FleetName}). {gclass39.UnitCount.ToString()} of this type remain within the formation",
-                                this.RaceData, this.ShipData.gclass85_0.System.ActualSystemData,
+                                this.RaceData, this.ShipData.gclass85_0.System.ActualSystem,
                                 this.ShipData.gclass85_0.XCoord, this.ShipData.gclass85_0.YCoord,
                                 AuroraEventCategory.Ship);
                         }
@@ -625,8 +625,8 @@ public class GroundUnitFormationData
         try
         {
             return this.gclass0_0.FormationDictionary.Values.Where<GroundUnitFormationData>(gclass103_3 => gclass103_3.AssignedFormationData == this)
-                .Count<GroundUnitFormationData>() > 0 || this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_1 => gclass40_1.gclass103_0 == this).Count<FCTShipData40>() > 0;
+                .Count<GroundUnitFormationData>() > 0 || this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_1 => gclass40_1.gclass103_0 == this).Count<ShipData>() > 0;
         }
         catch (Exception ex)
         {
@@ -915,7 +915,7 @@ public class GroundUnitFormationData
         }
     }
 
-    public List<GroundUnitFormationData> method_22(PopulationData gclass146_1, FCTShipData40 gclass40_1)
+    public List<GroundUnitFormationData> method_22(PopulationData gclass146_1, ShipData gclass40_1)
     {
         // ISSUE: object of a compiler-generated type is created
         // ISSUE: variable of a compiler-generated type

@@ -985,16 +985,16 @@ public class Diplomacy : Form
             this.gclass0_0.string_8 = "";
             this.gclass0_0.string_9 = "";
             this.gclass0_0.list_32 = new List<string>();
-            foreach (GClass194 gclass194 in this.gclass0_0.PopulationDataDictionary.Values
-                         .Where<PopulationData>(gclass146_0 => gclass146_0.RaceData == this.gclass21_0)
-                         .Select<PopulationData, GClass194>(gclass146_0 => gclass146_0.SpeciesData).Distinct<GClass194>()
-                         .OrderBy<GClass194, string>(gclass194_0 => gclass194_0.SpeciesName).ToList<GClass194>())
+            foreach (Species gclass194 in this.gclass0_0.Populations.Values
+                         .Where<PopulationData>(gclass146_0 => gclass146_0.Race == this.gclass21_0)
+                         .Select<PopulationData, Species>(gclass146_0 => gclass146_0.Species).Distinct<Species>()
+                         .OrderBy<Species, string>(gclass194_0 => gclass194_0.SpeciesName).ToList<Species>())
                 this.gclass0_0.list_32.Add(gclass194.SpeciesName);
             int num = (int)new UserSelection(this.gclass0_0).ShowDialog();
             if (this.gclass0_0.bool_21)
                 return;
             this.gclass21_0.method_163(this.gclass110_0,
-                this.gclass0_0.SpeciesDictionary.Values.FirstOrDefault<GClass194>(gclass194_0 =>
+                this.gclass0_0.SpeciesDictionary.Values.FirstOrDefault<Species>(gclass194_0 =>
                     gclass194_0.SpeciesName == this.gclass0_0.string_4), GEnum25.const_0);
             this.method_1();
         }
@@ -1037,9 +1037,9 @@ public class Diplomacy : Form
                 this.method_4(tag);
                 this.tabIntelligence.SelectTab(this.tabGroundUnits);
             }
-            else if (treeNode_1.Tag is GClass194)
+            else if (treeNode_1.Tag is Species)
             {
-                GClass194 tag = (GClass194)treeNode_1.Tag;
+                Species tag = (Species)treeNode_1.Tag;
                 if (tag == null)
                     return;
                 this.gclass21_0.method_27(this.lstvKnownSpecies, tag);
@@ -1216,17 +1216,17 @@ public class Diplomacy : Form
             }
             else
             {
-                GClass194 gclass194 = this.gclass110_0.ActualAlienRace.method_164();
+                Species gclass194 = this.gclass110_0.ActualAlienRace.method_164();
                 if (gclass194 == null)
                     return;
                 string str = AuroraUtils.smethod_18("Races");
                 if (str != "")
                 {
                     int num2 = str.LastIndexOf("\\");
-                    gclass194.string_0 = str.Substring(num2 + 1);
+                    gclass194.RaceImageFileName = str.Substring(num2 + 1);
                 }
 
-                this.pbRace.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{gclass194.string_0}");
+                this.pbRace.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{gclass194.RaceImageFileName}");
             }
         }
         catch (Exception ex)
@@ -1325,7 +1325,7 @@ public class Diplomacy : Form
             }
             else
             {
-                GClass194 gclass194 = this.gclass110_0.ActualAlienRace.method_164();
+                Species gclass194 = this.gclass110_0.ActualAlienRace.method_164();
                 if (gclass194 == null)
                     return;
                 this.gclass0_0.string_3 = "Enter New Species Name";

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 #nullable disable
-public partial class FCTShipData40
+public partial class ShipData
 {
     private sealed class staticCompGen
     {
@@ -26,60 +26,60 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class802
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public int int_0;
 
         internal bool method_0(GClass193 gclass193_0)
         {
-            return gclass193_0.gclass146_0 == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+            return gclass193_0.gclass146_0 == this.gclass40_0.gclass0_0.Populations[this.int_0];
         }
 
         internal bool method_1(GroundUnitFormationData gclass103_0)
         {
-            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.Populations[this.int_0];
         }
 
         internal bool method_2(GroundUnitFormationData gclass103_0)
         {
-            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.Populations[this.int_0];
         }
 
         internal bool method_3(GroundUnitFormationData gclass103_0)
         {
-            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.PopulationDataDictionary[this.int_0];
+            return gclass103_0.PopulationData == this.gclass40_0.gclass0_0.Populations[this.int_0];
         }
     }
 
     [CompilerGenerated]
     private sealed class Class803
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public GameRace gclass21_0;
         public GClass37 gclass37_0;
         public Func<GClass117, bool> func_0;
         public Func<GClass117, bool> func_1;
         public Func<GClass113, bool> func_2;
 
-        internal bool method_0(GClass65 gclass65_0)
+        internal bool method_0(Contact gclass65_0)
         {
-            return gclass65_0.gclass40_0 == this.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.GameTime;
+            return gclass65_0.TargetShip == this.gclass40_0 && gclass65_0.DetectRace != this.gclass21_0 &&
+                   gclass65_0.LastUpdate == this.gclass40_0.gclass0_0.GameTime;
         }
 
-        internal bool method_1(GClass65 gclass65_0)
+        internal bool method_1(Contact gclass65_0)
         {
-            return gclass65_0.gclass40_0 == this.gclass37_0.gclass40_0 && gclass65_0.gclass21_1 != this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.GameTime &&
-                   gclass65_0.genum10_0 == GEnum10.const_0;
+            return gclass65_0.TargetShip == this.gclass37_0.gclass40_0 && gclass65_0.DetectRace != this.gclass21_0 &&
+                   gclass65_0.LastUpdate == this.gclass40_0.gclass0_0.GameTime &&
+                   gclass65_0.ContactMethod == ContactDetectMethod.const_0;
         }
 
-        internal bool method_2(GClass65 gclass65_0)
+        internal bool method_2(Contact gclass65_0)
         {
-            return gclass65_0.gclass146_0 == this.gclass37_0.gclass39_0.Formation.PopulationData &&
-                   gclass65_0.gclass21_1 != this.gclass21_0 &&
-                   gclass65_0.decimal_3 == this.gclass40_0.gclass0_0.GameTime &&
-                   gclass65_0.genum10_0 == GEnum10.const_0 &&
-                   gclass65_0.auroraContactType_0 == AuroraContactType.STOGroundUnit;
+            return gclass65_0.TargetPopulation == this.gclass37_0.gclass39_0.Formation.PopulationData &&
+                   gclass65_0.DetectRace != this.gclass21_0 &&
+                   gclass65_0.LastUpdate == this.gclass40_0.gclass0_0.GameTime &&
+                   gclass65_0.ContactMethod == ContactDetectMethod.const_0 &&
+                   gclass65_0.ContactType == AuroraContactType.STOGroundUnit;
         }
 
         internal bool method_3(GClass117 gclass117_0)
@@ -126,14 +126,14 @@ public partial class FCTShipData40
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass73 gclass73_0)
+        internal bool method_0(TransportedComponent gclass73_0)
         {
-            return gclass73_0.gclass230_0 == this.gclass230_0;
+            return gclass73_0.Component == this.gclass230_0;
         }
 
-        internal bool method_1(GClass73 gclass73_0)
+        internal bool method_1(TransportedComponent gclass73_0)
         {
-            return gclass73_0.gclass230_0 != this.gclass230_0;
+            return gclass73_0.Component != this.gclass230_0;
         }
     }
 
@@ -153,7 +153,7 @@ public partial class FCTShipData40
     {
         public FCTSquadronData70 gclass70_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.SquadronData == this.gclass70_0;
         }
@@ -224,18 +224,18 @@ public partial class FCTShipData40
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(GClass130 gclass130_0)
+        internal bool method_0(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0 == this.gclass129_0;
+            return gclass130_0.RaceMissile == this.gclass129_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class815
     {
-        public GClass130 gclass130_0;
+        public PopOrdnanceStock gclass130_0;
 
-        internal bool method_0(GClass130 gclass130_1)
+        internal bool method_0(PopOrdnanceStock gclass130_1)
         {
             return gclass130_1 == this.gclass130_0;
         }
@@ -263,8 +263,8 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class817
     {
-        public FCTShipData40 gclass40_0;
-        public FCTShipData40 gclass40_1;
+        public ShipData gclass40_0;
+        public ShipData gclass40_1;
 
         internal bool method_0(FireControlAssignment gclass36_0)
         {
@@ -282,8 +282,8 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class818
     {
-        public FCTShipData40 gclass40_0;
-        public FCTShipData40 gclass40_1;
+        public ShipData gclass40_0;
+        public ShipData gclass40_1;
 
         internal bool method_0(FireControlAssignment gclass36_0)
         {
@@ -307,7 +307,7 @@ public partial class FCTShipData40
     private sealed class Class819
     {
         public PopulationData gclass146_0;
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(FireControlAssignment gclass36_0)
         {
@@ -411,12 +411,12 @@ public partial class FCTShipData40
     private sealed class Class825
     {
         public GClass228 gclass228_0;
-        public Func<GClass130, bool> func_0;
+        public Func<PopOrdnanceStock, bool> func_0;
 
-        internal bool method_0(GClass130 gclass130_0)
+        internal bool method_0(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.decimal_4 <= this.gclass228_0.gclass230_0.decimal_3 &&
-                   gclass130_0.gclass129_0.int_14 == 1;
+            return gclass130_0.RaceMissile.Size <= this.gclass228_0.gclass230_0.decimal_3 &&
+                   gclass130_0.RaceMissile.ShipDecoy == 1;
         }
     }
 
@@ -424,11 +424,11 @@ public partial class FCTShipData40
     private sealed class Class826
     {
         public GClass228 gclass228_0;
-        public Func<GClass130, bool> func_0;
+        public Func<PopOrdnanceStock, bool> func_0;
 
-        internal bool method_0(GClass130 gclass130_0)
+        internal bool method_0(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0.decimal_4 <= this.gclass228_0.gclass230_0.decimal_3;
+            return gclass130_0.RaceMissile.Size <= this.gclass228_0.gclass230_0.decimal_3;
         }
     }
 
@@ -465,16 +465,16 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class829
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public MissileAssignment gclass30_0;
         public FireControlAssignment gclass36_0;
         public int int_0;
 
-        internal bool method_0(GClass132 gclass132_0)
+        internal bool method_0(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass40_0 == this.gclass40_0 &&
+            return gclass132_0.Ship == this.gclass40_0 &&
                    gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.GameTime &&
-                   gclass132_0.gclass129_0 == this.gclass30_0.Missile &&
+                   gclass132_0.RaceMissile == this.gclass30_0.Missile &&
                    gclass132_0.gclass230_0 == this.gclass36_0.FCComponent &&
                    gclass132_0.int_2 == this.gclass36_0.FCNum && gclass132_0.int_0 == this.int_0;
         }
@@ -483,15 +483,15 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class830
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public MissileAssignment gclass30_0;
         public int int_0;
 
-        internal bool method_0(GClass132 gclass132_0)
+        internal bool method_0(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass40_0 == this.gclass40_0 &&
+            return gclass132_0.Ship == this.gclass40_0 &&
                    gclass132_0.decimal_0 == this.gclass40_0.gclass0_0.GameTime &&
-                   gclass132_0.gclass129_0 == this.gclass30_0.Missile && gclass132_0.int_0 == this.int_0;
+                   gclass132_0.RaceMissile == this.gclass30_0.Missile && gclass132_0.int_0 == this.int_0;
         }
     }
 
@@ -500,9 +500,9 @@ public partial class FCTShipData40
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(GClass130 gclass130_0)
+        internal bool method_0(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0 == this.gclass129_0;
+            return gclass130_0.RaceMissile == this.gclass129_0;
         }
     }
 
@@ -544,9 +544,9 @@ public partial class FCTShipData40
     {
         public RaceMissile gclass129_0;
 
-        internal bool method_0(GClass130 gclass130_0)
+        internal bool method_0(PopOrdnanceStock gclass130_0)
         {
-            return gclass130_0.gclass129_0 == this.gclass129_0;
+            return gclass130_0.RaceMissile == this.gclass129_0;
         }
     }
 
@@ -594,24 +594,24 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class839
     {
-        public GClass180 gclass180_0;
+        public Survivors gclass180_0;
 
         internal bool method_0(GClass147 gclass147_0)
         {
-            return gclass147_0.gclass21_0 == this.gclass180_0.gclass21_0 &&
-                   gclass147_0.gclass194_0 == this.gclass180_0.gclass194_0;
+            return gclass147_0.gclass21_0 == this.gclass180_0.Race &&
+                   gclass147_0.gclass194_0 == this.gclass180_0.Species;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class840
     {
-        public GClass180 gclass180_0;
+        public Survivors gclass180_0;
 
-        internal bool method_0(GClass180 gclass180_1)
+        internal bool method_0(Survivors gclass180_1)
         {
-            return gclass180_1.gclass21_0 == this.gclass180_0.gclass21_0 &&
-                   gclass180_1.gclass194_0 == this.gclass180_0.gclass194_0;
+            return gclass180_1.Race == this.gclass180_0.Race &&
+                   gclass180_1.Species == this.gclass180_0.Species;
         }
     }
 
@@ -635,11 +635,11 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class842
     {
-        public GClass235 gclass235_0;
+        public WreckComponents gclass235_0;
 
-        internal bool method_0(GClass73 gclass73_0)
+        internal bool method_0(TransportedComponent gclass73_0)
         {
-            return gclass73_0.int_0 == this.gclass235_0.gclass230_0.int_0;
+            return gclass73_0.int_0 == this.gclass235_0.Component.int_0;
         }
     }
 
@@ -648,12 +648,12 @@ public partial class FCTShipData40
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass73 gclass73_0)
+        internal bool method_0(TransportedComponent gclass73_0)
         {
             return gclass73_0.int_0 == this.gclass230_0.int_0;
         }
 
-        internal bool method_1(GClass73 gclass73_0)
+        internal bool method_1(TransportedComponent gclass73_0)
         {
             return gclass73_0.int_0 == this.gclass230_0.int_0;
         }
@@ -670,7 +670,7 @@ public partial class FCTShipData40
     {
         public GClass228 gclass228_0;
         public int int_0;
-        public FCTShipData40.Class844 class844_0;
+        public ShipData.Class844 class844_0;
         public Func<FireControlAssignment, bool> func_0;
 
         internal bool method_0(FireControlAssignment gclass36_0)
@@ -686,9 +686,9 @@ public partial class FCTShipData40
     {
         public AuroraInstallationType auroraInstallationType_0;
 
-        internal bool method_0(GClass158 gclass158_0)
+        internal bool method_0(PopulationInstallation gclass158_0)
         {
-            return gclass158_0.gclass157_0.InstallationType == this.auroraInstallationType_0;
+            return gclass158_0.InstallationType.InstallationType == this.auroraInstallationType_0;
         }
     }
 
@@ -697,9 +697,9 @@ public partial class FCTShipData40
     {
         public AuroraInstallationType auroraInstallationType_0;
 
-        internal bool method_0(GClass158 gclass158_0)
+        internal bool method_0(PopulationInstallation gclass158_0)
         {
-            return gclass158_0.gclass157_0.InstallationType == this.auroraInstallationType_0;
+            return gclass158_0.InstallationType.InstallationType == this.auroraInstallationType_0;
         }
     }
 
@@ -708,17 +708,17 @@ public partial class FCTShipData40
     {
         public ShipComponent gclass230_0;
 
-        internal bool method_0(GClass73 gclass73_0)
+        internal bool method_0(TransportedComponent gclass73_0)
         {
-            return gclass73_0.gclass230_0 == this.gclass230_0;
+            return gclass73_0.Component == this.gclass230_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class849
     {
-        public List<FCTShipData40> list_0;
-        public FCTShipData40 gclass40_0;
+        public List<ShipData> list_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(GroundUnitFormationData gclass103_0)
         {
@@ -735,9 +735,9 @@ public partial class FCTShipData40
     private sealed class Class850
     {
         public int int_0;
-        public FCTShipData40.Class849 class849_0;
+        public ShipData.Class849 class849_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.int_38 >= this.int_0;
         }
@@ -747,9 +747,9 @@ public partial class FCTShipData40
     private sealed class Class851
     {
         public GClass71 gclass71_0;
-        public FCTShipData40.Class850 class850_0;
+        public ShipData.Class850 class850_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return this.class850_0.class849_0.gclass40_0.gclass0_0.GetDistanceBetween(
                 this.class850_0.class849_0.gclass40_0.gclass85_0.XCoord,
@@ -762,9 +762,9 @@ public partial class FCTShipData40
     private sealed class Class852
     {
         public double double_0;
-        public FCTShipData40.Class850 class850_0;
+        public ShipData.Class850 class850_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return this.class850_0.class849_0.gclass40_0.gclass0_0.GetDistanceBetween(
                 this.class850_0.class849_0.gclass40_0.gclass85_0.XCoord,
@@ -1045,12 +1045,12 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class871
     {
-        public GClass65 gclass65_0;
+        public Contact gclass65_0;
 
-        internal bool method_0(GClass65 gclass65_1)
+        internal bool method_0(Contact gclass65_1)
         {
-            return gclass65_1.auroraContactType_0 == AuroraContactType.Population &&
-                   gclass65_1.int_1 == this.gclass65_0.int_1;
+            return gclass65_1.ContactType == AuroraContactType.Population &&
+                   gclass65_1.ContactID == this.gclass65_0.ContactID;
         }
     }
 
@@ -1059,7 +1059,7 @@ public partial class FCTShipData40
     {
         public AlienRaceInfo gclass110_0;
 
-        internal bool method_0(GClass65 gclass65_0)
+        internal bool method_0(Contact gclass65_0)
         {
             return gclass65_0.gclass110_0 == this.gclass110_0;
         }
@@ -1125,7 +1125,7 @@ public partial class FCTShipData40
     private sealed class Class878
     {
         public int int_0;
-        public FCTShipData40.Class877 class877_0;
+        public ShipData.Class877 class877_0;
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
@@ -1142,7 +1142,7 @@ public partial class FCTShipData40
     private sealed class Class879
     {
         public Decimal decimal_0;
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(GClass228 gclass228_0)
         {
@@ -1186,55 +1186,55 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class882
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(GClass65 gclass65_0)
+        internal bool method_0(Contact gclass65_0)
         {
-            return gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.gclass21_1 == this.gclass202_0.Race &&
-                   gclass65_0.gclass200_0 == this.gclass202_0.ActualSystemData;
+            return gclass65_0.ContactID == this.gclass40_0.int_8 && gclass65_0.DetectRace == this.gclass202_0.Race &&
+                   gclass65_0.System == this.gclass202_0.ActualSystem;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class883
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(GClass65 gclass65_0)
+        internal bool method_0(Contact gclass65_0)
         {
-            return gclass65_0.int_1 == this.gclass40_0.int_8 && gclass65_0.gclass21_1 == this.gclass202_0.Race &&
-                   gclass65_0.gclass200_0 == this.gclass202_0.ActualSystemData;
+            return gclass65_0.ContactID == this.gclass40_0.int_8 && gclass65_0.DetectRace == this.gclass202_0.Race &&
+                   gclass65_0.System == this.gclass202_0.ActualSystem;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class884
     {
-        public FCTShipData40 gclass40_0;
-        public GClass233 gclass233_0;
+        public ShipData gclass40_0;
+        public Wreck gclass233_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
-            return this.gclass40_0.gclass0_0.method_520(gclass1_0.XCoordinate, this.gclass233_0.double_0,
-                       gclass1_0.YCoordinate, this.gclass233_0.double_1) &&
-                   gclass1_0.SystemData == this.gclass233_0.gclass200_0;
+            return this.gclass40_0.gclass0_0.method_520(gclass1_0.XCoordinate, this.gclass233_0.Xcor,
+                       gclass1_0.YCoordinate, this.gclass233_0.Ycor) &&
+                   gclass1_0.SystemData == this.gclass233_0.System;
         }
 
-        internal bool method_1(FCTShipData40 gclass40_1)
+        internal bool method_1(ShipData gclass40_1)
         {
-            return gclass40_1.gclass85_0.System.ActualSystemData == this.gclass233_0.gclass200_0;
+            return gclass40_1.gclass85_0.System.ActualSystem == this.gclass233_0.System;
         }
 
         internal bool method_2(PopulationData gclass146_0)
         {
-            return gclass146_0.gclass202_0.ActualSystemData == this.gclass233_0.gclass200_0;
+            return gclass146_0.gclass202_0.ActualSystem == this.gclass233_0.System;
         }
 
         internal bool method_3(GameRace gclass21_0)
         {
-            return gclass21_0 != this.gclass233_0.gclass21_0;
+            return gclass21_0 != this.gclass233_0.Race;
         }
     }
 
@@ -1253,7 +1253,7 @@ public partial class FCTShipData40
     private sealed class Class886
     {
         public GClass228 gclass228_0;
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(GClass178 gclass178_0)
         {
@@ -1270,7 +1270,7 @@ public partial class FCTShipData40
     private sealed class Class887
     {
         public int int_0;
-        public FCTShipData40.Class886 class886_0;
+        public ShipData.Class886 class886_0;
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
@@ -1293,7 +1293,7 @@ public partial class FCTShipData40
     private sealed class Class888
     {
         public FireControlAssignment gclass36_0;
-        public FCTShipData40.Class887 class887_0;
+        public ShipData.Class887 class887_0;
 
         internal bool method_0(WeaponFireControlAssignment gclass31_0)
         {
@@ -1301,9 +1301,9 @@ public partial class FCTShipData40
                    gclass31_0.FireControlNum == this.gclass36_0.FCNum;
         }
 
-        internal bool method_1(GClass132 gclass132_0)
+        internal bool method_1(MissileSalvo gclass132_0)
         {
-            return gclass132_0.gclass40_0 == this.class887_0.class886_0.gclass40_0 &&
+            return gclass132_0.Ship == this.class887_0.class886_0.gclass40_0 &&
                    gclass132_0.gclass230_0 == this.class887_0.class886_0.gclass228_0.gclass230_0 &&
                    gclass132_0.int_2 == this.gclass36_0.FCNum;
         }
@@ -1312,11 +1312,11 @@ public partial class FCTShipData40
     [CompilerGenerated]
     private sealed class Class889
     {
-        public GClass158 gclass158_0;
+        public PopulationInstallation gclass158_0;
 
-        internal bool method_0(GClass148 gclass148_0)
+        internal bool method_0(PopInstallationDemand gclass148_0)
         {
-            return gclass148_0.gclass157_0 == this.gclass158_0.gclass157_0 && !gclass148_0.bool_0;
+            return gclass148_0.InstallationType == this.gclass158_0.InstallationType && !gclass148_0.Export;
         }
     }
 
@@ -1325,10 +1325,10 @@ public partial class FCTShipData40
     {
         public MoveOrder gclass139_0;
 
-        internal bool method_0(GClass148 gclass148_0)
+        internal bool method_0(PopInstallationDemand gclass148_0)
         {
-            return gclass148_0.gclass157_0.InstallationType == (AuroraInstallationType)this.gclass139_0.DestinationItemID &&
-                   gclass148_0.bool_0;
+            return gclass148_0.InstallationType.InstallationType == (AuroraInstallationType)this.gclass139_0.DestinationItemID &&
+                   gclass148_0.Export;
         }
     }
 
@@ -1337,10 +1337,10 @@ public partial class FCTShipData40
     {
         public MoveOrder gclass139_0;
 
-        internal bool method_0(GClass148 gclass148_0)
+        internal bool method_0(PopInstallationDemand gclass148_0)
         {
-            return gclass148_0.gclass157_0.InstallationType == (AuroraInstallationType)this.gclass139_0.DestinationItemID &&
-                   !gclass148_0.bool_0;
+            return gclass148_0.InstallationType.InstallationType == (AuroraInstallationType)this.gclass139_0.DestinationItemID &&
+                   !gclass148_0.Export;
         }
     }
 }

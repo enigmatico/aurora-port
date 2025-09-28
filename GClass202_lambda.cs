@@ -8,9 +8,9 @@ using Aurora;
 public partial class RacialSystemSurvey
 {
     [CompilerGenerated]
-    private bool method_48(JumpPoint120 gclass120_0)
+    private bool method_48(JumpPoint gclass120_0)
     {
-        return gclass120_0.SystemData == this.ActualSystemData &&
+        return gclass120_0.SystemData == this.ActualSystem &&
                gclass120_0.RacialJumpPointSurveys[this.Race.RaceID].MilitaryRestricted == 0 &&
                gclass120_0.RacialJumpPointSurveys[this.Race.RaceID].Explored == 1;
     }
@@ -50,19 +50,19 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private bool method_54(FCTMassDriverPacket126 gclass126_0)
     {
-        return gclass126_0.System == this.ActualSystemData && gclass126_0.Race == this.Race;
+        return gclass126_0.System == this.ActualSystem && gclass126_0.Race == this.Race;
     }
 
     [CompilerGenerated]
-    private bool method_55(GClass214 gclass214_0)
+    private bool method_55(Waypoint gclass214_0)
     {
-        return gclass214_0.gclass200_0 == this.ActualSystemData && gclass214_0.gclass21_0 == this.Race;
+        return gclass214_0.System == this.ActualSystem && gclass214_0.Race == this.Race;
     }
 
     [CompilerGenerated]
-    private bool method_56(GClass65 gclass65_0)
+    private bool method_56(Contact gclass65_0)
     {
-        return gclass65_0.gclass200_0 == this.ActualSystemData && gclass65_0.gclass21_1 == this.Race &&
+        return gclass65_0.System == this.ActualSystem && gclass65_0.DetectRace == this.Race &&
                gclass65_0.method_5() == AuroraContactStatus.Hostile;
     }
 
@@ -73,30 +73,30 @@ public partial class RacialSystemSurvey
     }
 
     [CompilerGenerated]
-    private bool method_58(SurveyLocation213 gclass213_0)
+    private bool method_58(SurveyLocation gclass213_0)
     {
-        return gclass213_0.list_0.Contains(this.Race.RaceID);
+        return gclass213_0.RaceIDs.Contains(this.Race.RaceID);
     }
 
     [CompilerGenerated]
     private bool method_59(Star197 gclass197_0)
     {
-        return gclass197_0.SystemData == this.ActualSystemData;
+        return gclass197_0.SystemData == this.ActualSystem;
     }
 
     [CompilerGenerated]
-    private bool method_60(FCTShipData40 gclass40_0)
+    private bool method_60(ShipData gclass40_0)
     {
         return gclass40_0.gclass22_0 == this.Race.SelectedClass;
     }
 
     [CompilerGenerated]
-    private bool method_61(GClass65 gclass65_0)
+    private bool method_61(Contact gclass65_0)
     {
-        return gclass65_0.gclass21_1 == this.Race &&
-               gclass65_0.gclass21_0 == this.Race.gclass112_0.gclass110_0.ActualAlienRace &&
-               gclass65_0.decimal_3 >= this.gclass0_0.GameTime - this.Race.int_47 &&
-               gclass65_0.gclass200_0 == this.ActualSystemData;
+        return gclass65_0.DetectRace == this.Race &&
+               gclass65_0.ContactRace == this.Race.gclass112_0.gclass110_0.ActualAlienRace &&
+               gclass65_0.LastUpdate >= this.gclass0_0.GameTime - this.Race.int_47 &&
+               gclass65_0.System == this.ActualSystem;
     }
 
     [CompilerGenerated]
@@ -106,47 +106,47 @@ public partial class RacialSystemSurvey
     }
 
     [CompilerGenerated]
-    private bool method_63(JumpPoint120 gclass120_0)
+    private bool method_63(JumpPoint gclass120_0)
     {
-        return gclass120_0.SystemData == this.ActualSystemData &&
+        return gclass120_0.SystemData == this.ActualSystem &&
                gclass120_0.RacialJumpPointSurveys.ContainsKey(this.Race.RaceID);
     }
 
     [CompilerGenerated]
-    private bool method_64(SurveyLocation213 gclass213_0)
+    private bool method_64(SurveyLocation gclass213_0)
     {
-        return gclass213_0.list_0.Contains(this.Race.RaceID);
+        return gclass213_0.RaceIDs.Contains(this.Race.RaceID);
     }
 
     [CompilerGenerated]
     private bool method_65(SystemBodyData gclass1_1)
     {
-        return gclass1_1.SystemData == this.ActualSystemData;
+        return gclass1_1.SystemData == this.ActualSystem;
     }
 
     [CompilerGenerated]
-    private bool method_66(SurveyLocation213 gclass213_0)
+    private bool method_66(SurveyLocation gclass213_0)
     {
-        return gclass213_0.list_0.Contains(this.Race.RaceID);
+        return gclass213_0.RaceIDs.Contains(this.Race.RaceID);
     }
 
     [CompilerGenerated]
     private bool method_67(SystemBodyData gclass1_1)
     {
-        return gclass1_1.SystemData == this.ActualSystemData;
+        return gclass1_1.SystemData == this.ActualSystem;
     }
 
     [CompilerGenerated]
     private bool method_68(PopulationData gclass146_0)
     {
-        return gclass146_0.RaceData == this.Race && gclass146_0.gclass202_0 == this;
+        return gclass146_0.Race == this.Race && gclass146_0.gclass202_0 == this;
     }
 
     [CompilerGenerated]
     [Serializable]
     private sealed class compStatics
     {
-        internal SystemData200 method_0(JumpPoint120 gclass120_0)
+        internal StarSystem method_0(JumpPoint gclass120_0)
         {
             return gclass120_0.LinkedJumpPoint.SystemData;
         }
@@ -181,9 +181,9 @@ public partial class RacialSystemSurvey
             return !gclass202_0.method_21();
         }
 
-        internal int method_7(GClass214 gclass214_0)
+        internal int method_7(Waypoint gclass214_0)
         {
-            return gclass214_0.int_3;
+            return gclass214_0.Number;
         }
 
         internal bool method_8(AlienRaceInfo gclass110_0)
@@ -198,22 +198,22 @@ public partial class RacialSystemSurvey
 
         internal bool method_10(PopulationData gclass146_0)
         {
-            return gclass146_0.dictionary_4.Values.FirstOrDefault<GClass190>(method_11) != null;
+            return gclass146_0.TradeBalances.Values.FirstOrDefault<PopTradeBalance>(method_11) != null;
         }
 
-        internal bool method_11(GClass190 gclass190_0)
+        internal bool method_11(PopTradeBalance gclass190_0)
         {
-            return gclass190_0.decimal_1 > 10M;
+            return gclass190_0.TradeBalance > 10M;
         }
 
-        internal IEnumerable<FCTShipData40> method_12(FleetData gclass85_0)
+        internal IEnumerable<ShipData> method_12(FleetData gclass85_0)
         {
             return gclass85_0.method_176();
         }
 
-        internal Decimal method_13(FCTShipData40 gclass40_0)
+        internal Decimal method_13(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0.decimal_10;
+            return gclass40_0.gclass22_0.ProtectionValue;
         }
 
         internal bool method_14(SystemBodyData gclass1_0)
@@ -236,12 +236,12 @@ public partial class RacialSystemSurvey
             return gclass197_0.Component;
         }
 
-        internal double method_18(JumpPoint120 gclass120_0)
+        internal double method_18(JumpPoint gclass120_0)
         {
             return gclass120_0.Distance;
         }
 
-        internal double method_19(JumpPoint120 gclass120_0)
+        internal double method_19(JumpPoint gclass120_0)
         {
             return gclass120_0.Distance;
         }
@@ -256,22 +256,22 @@ public partial class RacialSystemSurvey
             return gclass146_0.method_62(AuroraProductionCategory.NavalHeadquarters);
         }
 
-        internal SystemData200 method_22(JumpPoint120 gclass120_0)
+        internal StarSystem method_22(JumpPoint gclass120_0)
         {
             return gclass120_0.LinkedJumpPoint.SystemData;
         }
 
-        internal SystemData200 method_23(JumpPoint120 gclass120_0)
+        internal StarSystem method_23(JumpPoint gclass120_0)
         {
             return gclass120_0.LinkedJumpPoint.SystemData;
         }
 
-        internal SystemData200 method_24(JumpPoint120 gclass120_0)
+        internal StarSystem method_24(JumpPoint gclass120_0)
         {
             return gclass120_0.LinkedJumpPoint.SystemData;
         }
 
-        internal double method_25(JumpPoint120 gclass120_0)
+        internal double method_25(JumpPoint gclass120_0)
         {
             return gclass120_0.Distance;
         }
@@ -290,11 +290,11 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1182
     {
-        public List<SystemData200> list_0;
+        public List<StarSystem> list_0;
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
-            return this.list_0.Contains(gclass202_0.ActualSystemData);
+            return this.list_0.Contains(gclass202_0.ActualSystem);
         }
     }
 
@@ -315,12 +315,12 @@ public partial class RacialSystemSurvey
         public RacialSystemSurvey gclass202_0;
         public RacialSystemSurvey gclass202_1;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData && gclass120_0.LinkedJumpPoint != null;
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem && gclass120_0.LinkedJumpPoint != null;
         }
 
-        internal RacialSystemSurvey method_1(JumpPoint120 gclass120_0)
+        internal RacialSystemSurvey method_1(JumpPoint gclass120_0)
         {
             return this.gclass202_1.Race.method_128(gclass120_0.LinkedJumpPoint.SystemData);
         }
@@ -345,21 +345,21 @@ public partial class RacialSystemSurvey
         public RacialSystemSurvey gclass202_0;
         public RacialSystemSurvey gclass202_1;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData &&
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem &&
                    gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass202_0.Race.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             return gclass120_0.RacialJumpPointSurveys[this.gclass202_0.Race.RaceID].Explored == 1 &&
                    gclass120_0.LinkedJumpPoint != null;
         }
 
-        internal bool method_2(JumpPoint120 gclass120_0)
+        internal bool method_2(JumpPoint gclass120_0)
         {
-            return gclass120_0.LinkedJumpPoint.SystemData == this.gclass202_1.ActualSystemData;
+            return gclass120_0.LinkedJumpPoint.SystemData == this.gclass202_1.ActualSystem;
         }
     }
 
@@ -398,7 +398,7 @@ public partial class RacialSystemSurvey
 
         internal double method_0(PopulationData gclass146_0)
         {
-            return this.gclass202_0.ActualSystemData.method_3(this.double_0, this.double_1, gclass146_0.method_87(),
+            return this.gclass202_0.ActualSystem.method_3(this.double_0, this.double_1, gclass146_0.method_87(),
                 gclass146_0.method_88());
         }
     }
@@ -410,19 +410,19 @@ public partial class RacialSystemSurvey
 
         internal bool method_0(PopulationData gclass146_0)
         {
-            return this.list_0.Contains(gclass146_0.RaceData);
+            return this.list_0.Contains(gclass146_0.Race);
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1190
     {
-        public GClass194 gclass194_0;
+        public Species gclass194_0;
         public RacialSystemSurvey gclass202_0;
 
         internal bool method_0(SystemBodyData gclass1_0)
         {
-            return gclass1_0.SystemData == this.gclass202_0.ActualSystemData;
+            return gclass1_0.SystemData == this.gclass202_0.ActualSystem;
         }
     }
 
@@ -499,10 +499,10 @@ public partial class RacialSystemSurvey
             return gclass1_0.MaxColonyCost >= 3M * this.decimal_0 && gclass1_0.MaxColonyCost < 5M * this.decimal_0;
         }
 
-        internal bool method_12(GClass215 gclass215_0)
+        internal bool method_12(RacialSystemBodySurvey gclass215_0)
         {
-            return gclass215_0.gclass21_0 == this.class1190_0.gclass202_0.Race &&
-                   this.list_0.Contains(gclass215_0.gclass1_0);
+            return gclass215_0.Race == this.class1190_0.gclass202_0.Race &&
+                   this.list_0.Contains(gclass215_0.SystemBody);
         }
     }
 
@@ -513,13 +513,13 @@ public partial class RacialSystemSurvey
         public bool bool_0;
         public bool bool_1;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData &&
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem &&
                    gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass202_0.Race.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             if (gclass120_0.RacialJumpPointSurveys[this.gclass202_0.Race.RaceID].Explored != 1 ||
                 gclass120_0.LinkedJumpPoint == null)
@@ -536,13 +536,13 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1193
     {
-        public List<SystemData200> list_0;
+        public List<StarSystem> list_0;
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
             RacialSystemSurvey.Class1194 class1194 = new RacialSystemSurvey.Class1194();
             class1194.gclass202_0 = gclass202_0;
-            return this.list_0.Any<SystemData200>(class1194.method_0);
+            return this.list_0.Any<StarSystem>(class1194.method_0);
         }
     }
 
@@ -551,9 +551,9 @@ public partial class RacialSystemSurvey
     {
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(SystemData200 gclass200_0)
+        internal bool method_0(StarSystem gclass200_0)
         {
-            return gclass200_0 == this.gclass202_0.ActualSystemData;
+            return gclass200_0 == this.gclass202_0.ActualSystem;
         }
     }
 
@@ -563,13 +563,13 @@ public partial class RacialSystemSurvey
         public RacialSystemSurvey gclass202_0;
         public bool bool_0;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData &&
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem &&
                    gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass202_0.Race.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             if (gclass120_0.RacialJumpPointSurveys[this.gclass202_0.Race.RaceID].Explored != 1 ||
                 gclass120_0.LinkedJumpPoint == null)
@@ -581,13 +581,13 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1196
     {
-        public List<SystemData200> list_0;
+        public List<StarSystem> list_0;
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
             RacialSystemSurvey.Class1197 class1197 = new RacialSystemSurvey.Class1197();
             class1197.gclass202_0 = gclass202_0;
-            return this.list_0.Any<SystemData200>(class1197.method_0);
+            return this.list_0.Any<StarSystem>(class1197.method_0);
         }
     }
 
@@ -596,9 +596,9 @@ public partial class RacialSystemSurvey
     {
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(SystemData200 gclass200_0)
+        internal bool method_0(StarSystem gclass200_0)
         {
-            return gclass200_0 == this.gclass202_0.ActualSystemData;
+            return gclass200_0 == this.gclass202_0.ActualSystem;
         }
     }
 
@@ -609,13 +609,13 @@ public partial class RacialSystemSurvey
         public bool bool_0;
         public GEnum96 genum96_0;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData &&
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem &&
                    gclass120_0.RacialJumpPointSurveys.ContainsKey(this.gclass202_0.Race.RaceID);
         }
 
-        internal bool method_1(JumpPoint120 gclass120_0)
+        internal bool method_1(JumpPoint gclass120_0)
         {
             if (gclass120_0.RacialJumpPointSurveys[this.gclass202_0.Race.RaceID].Explored != 1 ||
                 gclass120_0.LinkedJumpPoint == null)
@@ -627,14 +627,14 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1199
     {
-        public List<SystemData200> list_0;
+        public List<StarSystem> list_0;
         public RacialSystemSurvey.Class1198 class1198_0;
 
         internal bool method_0(RacialSystemSurvey gclass202_0)
         {
             RacialSystemSurvey.Class1200 class1200 = new RacialSystemSurvey.Class1200();
             class1200.gclass202_0 = gclass202_0;
-            return this.list_0.Any<SystemData200>(class1200.method_0) &&
+            return this.list_0.Any<StarSystem>(class1200.method_0) &&
                    class1200.gclass202_0.gclass3_0.genum96_0 <= this.class1198_0.genum96_0;
         }
     }
@@ -644,9 +644,9 @@ public partial class RacialSystemSurvey
     {
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(SystemData200 gclass200_0)
+        internal bool method_0(StarSystem gclass200_0)
         {
-            return gclass200_0 == this.gclass202_0.ActualSystemData;
+            return gclass200_0 == this.gclass202_0.ActualSystem;
         }
     }
 
@@ -656,9 +656,9 @@ public partial class RacialSystemSurvey
         public List<SystemBodyData> list_0;
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(GClass215 gclass215_0)
+        internal bool method_0(RacialSystemBodySurvey gclass215_0)
         {
-            return gclass215_0.gclass21_0 == this.gclass202_0.Race && this.list_0.Contains(gclass215_0.gclass1_0);
+            return gclass215_0.Race == this.gclass202_0.Race && this.list_0.Contains(gclass215_0.SystemBody);
         }
     }
 
@@ -679,9 +679,9 @@ public partial class RacialSystemSurvey
         public List<SystemBodyData> list_0;
         public RacialSystemSurvey gclass202_0;
 
-        internal bool method_0(GClass215 gclass215_0)
+        internal bool method_0(RacialSystemBodySurvey gclass215_0)
         {
-            return gclass215_0.gclass21_0 == this.gclass202_0.Race && this.list_0.Contains(gclass215_0.gclass1_0);
+            return gclass215_0.Race == this.gclass202_0.Race && this.list_0.Contains(gclass215_0.SystemBody);
         }
     }
 
@@ -692,9 +692,9 @@ public partial class RacialSystemSurvey
         public GameRace gclass21_0;
         public Func<AlienRaceInfo, bool> func_0;
 
-        internal bool method_0(JumpPoint120 gclass120_0)
+        internal bool method_0(JumpPoint gclass120_0)
         {
-            return gclass120_0.SystemData == this.gclass202_0.ActualSystemData;
+            return gclass120_0.SystemData == this.gclass202_0.ActualSystem;
         }
 
         internal bool method_1(AlienRaceInfo gclass110_0)
@@ -706,9 +706,9 @@ public partial class RacialSystemSurvey
     [CompilerGenerated]
     private sealed class Class1205
     {
-        public JumpPoint120 gclass120_0;
+        public JumpPoint gclass120_0;
 
-        internal double method_0(SurveyLocation213 gclass213_0)
+        internal double method_0(SurveyLocation gclass213_0)
         {
             return Math.Pow(gclass213_0.XCoord - this.gclass120_0.XCoord, 2.0) +
                    Math.Pow(gclass213_0.YCoord - this.gclass120_0.YCoord, 2.0);
@@ -720,7 +720,7 @@ public partial class RacialSystemSurvey
     {
         public double double_0;
 
-        internal bool method_0(SurveyLocation213 gclass213_0)
+        internal bool method_0(SurveyLocation gclass213_0)
         {
             return Math.Pow(gclass213_0.XCoord, 2.0) + Math.Pow(gclass213_0.YCoord, 2.0) > this.double_0;
         }

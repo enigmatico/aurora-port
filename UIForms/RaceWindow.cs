@@ -204,11 +204,11 @@ public class RaceWindow : Form
     {
         try
         {
-            GClass194 gclass194 = this.gclass21_0.method_164();
+            Species gclass194 = this.gclass21_0.method_164();
             this.gclass21_0.method_298();
             try
             {
-                this.pbRaceImage.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{gclass194.string_0}");
+                this.pbRaceImage.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{gclass194.RaceImageFileName}");
             }
             catch
             {
@@ -229,8 +229,8 @@ public class RaceWindow : Form
             this.gclass21_0.method_260(this.cboSpecies);
             this.cboSpecies.SelectedItem = gclass194;
             this.gclass21_0.method_119(this.lstvNameThemes, this.txtPrimaryNameTheme);
-            List<PopulationData> list = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_0 => gclass146_0.RaceData == this.gclass21_0).ToList<PopulationData>();
+            List<PopulationData> list = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_0 => gclass146_0.Race == this.gclass21_0).ToList<PopulationData>();
             this.gclass21_0.method_121(this.lstvPopSummary, list);
             this.gclass21_0.method_123(this.lstvTechnology);
             this.gclass21_0.method_122(this.lstvSupplies, list);
@@ -282,30 +282,30 @@ public class RaceWindow : Form
             var capturedthis = this;
             if (this.gclass0_0.bool_9 || this.cboSpecies.SelectedValue == null)
                 return;
-            var capturedSboSpeciesSelectedValue = (GClass194)this.cboSpecies.SelectedValue;
+            var capturedSboSpeciesSelectedValue = (Species)this.cboSpecies.SelectedValue;
 
-            Decimal num1 = this.gclass0_0.PopulationDataDictionary.Values
-                .Where<PopulationData>(gclass146_0 => gclass146_0.RaceData == this.gclass21_0)
+            Decimal num1 = this.gclass0_0.Populations.Values
+                .Where<PopulationData>(gclass146_0 => gclass146_0.Race == this.gclass21_0)
                 .Sum<PopulationData>(gclass146_0 => gclass146_0.Population);
-            Decimal num2 = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(v =>
-                v.RaceData == capturedthis.gclass21_0 && v.SpeciesData == capturedSboSpeciesSelectedValue
+            Decimal num2 = this.gclass0_0.Populations.Values.Where<PopulationData>(v =>
+                v.Race == capturedthis.gclass21_0 && v.Species == capturedSboSpeciesSelectedValue
             ).Sum<PopulationData>(gclass146_0 => gclass146_0.Population);
-            Decimal num3 = num1 + this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
-                .SelectMany<FCTShipData40, GClass181>(gclass40_0 => gclass40_0.list_18)
-                .Sum<GClass181>(gclass181_0 => gclass181_0.int_0) / 1000000M;
-            Decimal decimal_73 = num2 + this.gclass0_0.FCTShipDataDictionary.Values
-                .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
-                .SelectMany<FCTShipData40, GClass181>(gclass40_0 => gclass40_0.list_18)
-                .Where<GClass181>(v181 => v181.gclass194_0 == capturedSboSpeciesSelectedValue)
-                .Sum<GClass181>(gclass181_0 => gclass181_0.int_0) / 1000000M;
+            Decimal num3 = num1 + this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
+                .SelectMany<ShipData, TransportedColonist>(gclass40_0 => gclass40_0.TransportedColonists)
+                .Sum<TransportedColonist>(gclass181_0 => gclass181_0.Amount) / 1000000M;
+            Decimal decimal_73 = num2 + this.gclass0_0.Ships.Values
+                .Where<ShipData>(gclass40_0 => gclass40_0.gclass21_0 == this.gclass21_0)
+                .SelectMany<ShipData, TransportedColonist>(gclass40_0 => gclass40_0.TransportedColonists)
+                .Where<TransportedColonist>(v181 => v181.Species == capturedSboSpeciesSelectedValue)
+                .Sum<TransportedColonist>(gclass181_0 => gclass181_0.Amount) / 1000000M;
             this.txtSpeciesTotalPop.Text = AuroraUtils.smethod_39(decimal_73);
             if (num3 > 0M)
                 this.txtPercentPop.Text = AuroraUtils.FormatNumberToDigits(decimal_73 / num3 * 100M, 1) + "%";
             else
                 this.txtPercentPop.Text = "N/A";
             this.pbSpecies.Image =
-                Image.FromFile($"{Application.StartupPath}\\Races\\{capturedSboSpeciesSelectedValue.string_0}");
+                Image.FromFile($"{Application.StartupPath}\\Races\\{capturedSboSpeciesSelectedValue.RaceImageFileName}");
             this.txtSpeciesName.Text = capturedSboSpeciesSelectedValue.SpeciesName;
             this.txtGravity.Text = AuroraUtils.smethod_46(capturedSboSpeciesSelectedValue.double_5, 2);
             this.txtGravityDev.Text = AuroraUtils.smethod_46(capturedSboSpeciesSelectedValue.double_6, 2);
@@ -340,7 +340,7 @@ public class RaceWindow : Form
         {
             if (this.cboSpecies.SelectedValue == null)
                 return;
-            GClass194 selectedValue = (GClass194)this.cboSpecies.SelectedValue;
+            Species selectedValue = (Species)this.cboSpecies.SelectedValue;
             selectedValue.SpeciesName = this.txtSpeciesName.Text;
             selectedValue.int_7 = Convert.ToInt32(this.txtDet.Text);
             selectedValue.int_3 = Convert.ToInt32(this.txtDip.Text);
@@ -465,17 +465,17 @@ public class RaceWindow : Form
     {
         try
         {
-            GClass194 selectedValue = (GClass194)this.cboSpecies.SelectedValue;
+            Species selectedValue = (Species)this.cboSpecies.SelectedValue;
             if (selectedValue == null)
                 return;
             string str = AuroraUtils.smethod_18("Races");
             if (str != "")
             {
                 int num = str.LastIndexOf("\\");
-                selectedValue.string_0 = str.Substring(num + 1);
+                selectedValue.RaceImageFileName = str.Substring(num + 1);
             }
 
-            this.pbRaceImage.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{selectedValue.string_0}");
+            this.pbRaceImage.Image = Image.FromFile($"{Application.StartupPath}\\Races\\{selectedValue.RaceImageFileName}");
         }
         catch (Exception ex)
         {
@@ -626,8 +626,8 @@ public class RaceWindow : Form
             this.gclass21_0.TrainingLevel = Convert.ToInt32((string)this.cboTrainingLevel.SelectedItem);
             this.gclass21_0.AcademyCrewmen = num / this.gclass21_0.TrainingLevel;
             this.gclass21_0.method_120(this.lstvAcademies,
-                this.gclass0_0.PopulationDataDictionary.Values
-                    .Where<PopulationData>(gclass146_0 => gclass146_0.RaceData == this.gclass21_0).ToList<PopulationData>(),
+                this.gclass0_0.Populations.Values
+                    .Where<PopulationData>(gclass146_0 => gclass146_0.Race == this.gclass21_0).ToList<PopulationData>(),
                 null);
         }
         catch (Exception ex)

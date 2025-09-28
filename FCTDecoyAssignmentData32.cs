@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class FCTDecoyAssignmentData32
 {
-    public FCTShipData40 FCTShipData;
+    public ShipData ShipData;
     public ShipComponent LauncherData;
     public MissileAssignment gclass30_0;
     public int LauncherNum;

@@ -9,7 +9,7 @@ using System;
 #nullable disable
 public class AcidAttack
 {
-    public FCTShipData40 TargetShip;
+    public ShipData TargetShip;
     public int ArmourColumn;
     public int PointOfDamageTime;
     public int RemainingDamage;

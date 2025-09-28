@@ -13,7 +13,7 @@ using System.Linq;
 public class GClass5
 {
     private GClass0 gclass0_0;
-    private FCTShipData40 gclass40_0;
+    private ShipData gclass40_0;
     public RaceMissile gclass129_0;
     public GEnum99 genum99_0 = GEnum99.const_4;
     public GEnum101 genum101_0 = GEnum101.const_3;
@@ -29,7 +29,7 @@ public class GClass5
     public double double_5;
     public bool bool_0;
 
-    public GClass5(GClass0 gclass0_1, FCTShipData40 gclass40_1)
+    public GClass5(GClass0 gclass0_1, ShipData gclass40_1)
     {
         this.gclass0_0 = gclass0_1;
         this.gclass40_0 = gclass40_1;
@@ -39,16 +39,16 @@ public class GClass5
     {
         try
         {
-            if (this.gclass40_0.gclass22_0.gclass14_0.SurrenderStatus == SurrenderStatusDesignType.const_0)
+            if (this.gclass40_0.gclass22_0.AutomatedClassDesign.SurrenderStatus == SurrenderStatusDesignType.const_0)
                 return false;
-            if (this.gclass40_0.gclass22_0.gclass14_0.SurrenderStatus == SurrenderStatusDesignType.const_1)
+            if (this.gclass40_0.gclass22_0.AutomatedClassDesign.SurrenderStatus == SurrenderStatusDesignType.const_1)
                 return true;
-            if (this.gclass40_0.gclass22_0.gclass14_0.SurrenderStatus == SurrenderStatusDesignType.const_2)
+            if (this.gclass40_0.gclass22_0.AutomatedClassDesign.SurrenderStatus == SurrenderStatusDesignType.const_2)
             {
                 if (this.gclass40_0.gclass5_0.genum99_0 == GEnum99.const_0)
                     return true;
             }
-            else if (this.gclass40_0.gclass22_0.gclass14_0.SurrenderStatus == SurrenderStatusDesignType.const_3 &&
+            else if (this.gclass40_0.gclass22_0.AutomatedClassDesign.SurrenderStatus == SurrenderStatusDesignType.const_3 &&
                      (this.gclass40_0.gclass5_0.genum99_0 == GEnum99.const_0 ||
                       this.gclass40_0.gclass5_0.genum103_0 == GEnum103.const_0))
                 return true;
@@ -62,13 +62,13 @@ public class GClass5
         }
     }
 
-    public bool method_1(FCTShipData40 gclass40_1, double double_6)
+    public bool method_1(ShipData gclass40_1, double double_6)
     {
         try
         {
             this.method_13(gclass40_1.method_51(), false);
-            double num = this.double_1 / (double)this.gclass129_0.decimal_5;
-            this.double_5 = this.double_1 - gclass40_1.gclass22_0.int_32 * num;
+            double num = this.double_1 / (double)this.gclass129_0.Speed;
+            this.double_5 = this.double_1 - gclass40_1.gclass22_0.MaxSpeed * num;
             return double_6 < this.double_5;
         }
         catch (Exception ex)
@@ -97,19 +97,19 @@ public class GClass5
         try
         {
             int num = (int)this.gclass40_0.method_171(false);
-            if (num == this.gclass40_0.gclass22_0.int_32)
+            if (num == this.gclass40_0.gclass22_0.MaxSpeed)
                 return;
-            if (num > this.gclass40_0.gclass22_0.int_32 * 0.75)
+            if (num > this.gclass40_0.gclass22_0.MaxSpeed * 0.75)
             {
                 this.method_5(GEnum99.const_3);
                 this.method_6(GEnum102.const_1);
             }
-            else if (num >= this.gclass40_0.gclass22_0.int_32 * 0.5)
+            else if (num >= this.gclass40_0.gclass22_0.MaxSpeed * 0.5)
             {
                 this.method_5(GEnum99.const_2);
                 this.method_6(GEnum102.const_1);
             }
-            else if (num > this.gclass40_0.gclass22_0.int_32 * 0.25)
+            else if (num > this.gclass40_0.gclass22_0.MaxSpeed * 0.25)
             {
                 this.method_5(GEnum99.const_1);
                 this.method_6(GEnum102.const_0);
@@ -130,20 +130,20 @@ public class GClass5
     {
         try
         {
-            if (this.gclass40_0.gclass22_0.int_63 == 0)
+            if (this.gclass40_0.gclass22_0.FuelCapacity == 0)
                 return;
             this.genum101_0 = GEnum101.const_3;
-            if (this.gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Harvester)
+            if (this.gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Harvester)
                 return;
-            if (this.gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.Tanker)
+            if (this.gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.Tanker)
             {
-                if (this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.int_63 * 0.1))
+                if (this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.FuelCapacity * 0.1))
                 {
                     this.genum101_0 = GEnum101.const_2;
                 }
                 else
                 {
-                    if (!(this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.int_63 * 0.05)))
+                    if (!(this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.FuelCapacity * 0.05)))
                         return;
                     this.genum101_0 = GEnum101.const_1;
                 }
@@ -153,19 +153,19 @@ public class GClass5
                 this.genum99_0 = GEnum99.const_0;
                 this.genum101_0 = GEnum101.const_0;
             }
-            else if (this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.int_63 * 0.2))
+            else if (this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.FuelCapacity * 0.2))
             {
                 this.method_5(GEnum99.const_1);
                 this.genum101_0 = GEnum101.const_1;
             }
-            else if (this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.int_63 * 0.3))
+            else if (this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.FuelCapacity * 0.3))
             {
                 this.method_5(GEnum99.const_2);
                 this.genum101_0 = GEnum101.const_2;
             }
             else
             {
-                if (!(this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.int_63 * 0.4)))
+                if (!(this.gclass40_0.decimal_14 < (int)(this.gclass40_0.gclass22_0.FuelCapacity * 0.4)))
                     return;
                 this.method_5(GEnum99.const_3);
             }
@@ -208,10 +208,10 @@ public class GClass5
     {
         try
         {
-            if (this.gclass40_0.gclass22_0.int_37 == 1)
+            if (this.gclass40_0.gclass22_0.NoArmour == 1)
                 return;
             double num = this.gclass40_0.dictionary_5.Values.Sum() /
-                         (double)(this.gclass40_0.gclass22_0.int_3 * this.gclass40_0.gclass22_0.int_2);
+                         (double)(this.gclass40_0.gclass22_0.ArmourWidth * this.gclass40_0.gclass22_0.ArmourThickness);
             if (num > 0.6)
                 this.method_6(GEnum102.const_0);
             else if (num > 0.4)
@@ -314,17 +314,17 @@ public class GClass5
             Decimal num1 = 0M;
             Decimal num2 = 0M;
             this.genum103_0 = GEnum103.const_3;
-            if (this.gclass40_0.gclass22_0.gclass14_0.MissileDesignType == MissileDesignType.const_0)
+            if (this.gclass40_0.gclass22_0.AutomatedClassDesign.MissileDesignType == MissileDesignType.const_0)
                 return;
             Decimal num3 = this.gclass40_0.gclass22_0.list_0
-                .Where<GClass130>(gclass130_0 => gclass130_0.gclass129_0.int_14 == 0)
-                .Select<GClass130, Decimal>(gclass130_0 => gclass130_0.gclass129_0.decimal_4)
+                .Where<PopOrdnanceStock>(gclass130_0 => gclass130_0.RaceMissile.ShipDecoy == 0)
+                .Select<PopOrdnanceStock, Decimal>(gclass130_0 => gclass130_0.RaceMissile.Size)
                 .DefaultIfEmpty<Decimal>(0M).Min<Decimal>(decimal_0 => decimal_0);
             Decimal num4 = this.gclass40_0.method_208();
             if (num4 < num3)
                 return;
-            foreach (GClass130 gclass130 in this.gclass40_0.list_10)
-                num1 += gclass130.gclass129_0.decimal_4 * gclass130.int_0;
+            foreach (PopOrdnanceStock gclass130 in this.gclass40_0.list_10)
+                num1 += gclass130.RaceMissile.Size * gclass130.Amount;
             if (num1 == 0M)
             {
                 this.method_5(GEnum99.const_0);
@@ -452,7 +452,7 @@ public class GClass5
                 this.genum101_0 = GEnum101.const_3;
             else
                 this.method_4();
-            switch (this.gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID)
+            switch (this.gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID)
             {
                 case AutomatedClassDesignType.SmallFreighter:
                 case AutomatedClassDesignType.LargeFreighter:
@@ -592,7 +592,7 @@ public class GClass5
                         this.genum102_0 = GEnum102.const_1;
                     }
 
-                    if (this.gclass40_0.gclass22_0.gclass14_0.AutomatedClassDesignTypeID == AutomatedClassDesignType.CarrierBattle)
+                    if (this.gclass40_0.gclass22_0.AutomatedClassDesign.AutomatedClassDesignTypeID == AutomatedClassDesignType.CarrierBattle)
                     {
                         this.method_10(AuroraComponentType.HangarDeck);
                         break;
@@ -605,7 +605,7 @@ public class GClass5
                 case AutomatedClassDesignType.CarrierMissile:
                 case AutomatedClassDesignType.CarrierEnergy:
                     this.method_10(AuroraComponentType.HangarDeck);
-                    if (this.gclass40_0.gclass22_0.int_29 > 0 &&
+                    if (this.gclass40_0.gclass22_0.JumpRating > 0 &&
                         this.gclass40_0.method_157(AuroraComponentType.JumpDrive, false) == 0M)
                     {
                         this.method_5(GEnum99.const_2);
@@ -691,10 +691,10 @@ public class GClass5
                 this.gclass40_0.gclass5_0.double_0 = this.gclass40_0.method_215(decimal_0);
                 if (this.gclass40_0.gclass5_0.double_0 == 0.0)
                     this.gclass40_0.gclass5_0.double_1 = 0.0;
-                else if (this.gclass40_0.gclass5_0.double_0 < this.gclass40_0.gclass5_0.gclass129_0.double_4)
+                else if (this.gclass40_0.gclass5_0.double_0 < this.gclass40_0.gclass5_0.gclass129_0.CombinatedMaxRange)
                     this.gclass40_0.gclass5_0.double_1 = this.gclass40_0.gclass5_0.double_0;
                 else
-                    this.gclass40_0.gclass5_0.double_1 = this.gclass40_0.gclass5_0.gclass129_0.double_4;
+                    this.gclass40_0.gclass5_0.double_1 = this.gclass40_0.gclass5_0.gclass129_0.CombinatedMaxRange;
             }
         }
         catch (Exception ex)
@@ -726,14 +726,14 @@ public class GClass5
                 }
             }
 
-            foreach (GClass130 gclass130 in this.gclass40_0.list_10)
+            foreach (PopOrdnanceStock gclass130 in this.gclass40_0.list_10)
             {
-                if (!(gclass130.gclass129_0.decimal_4 > num))
+                if (!(gclass130.RaceMissile.Size > num))
                 {
                     if (this.gclass129_0 == null)
-                        this.gclass129_0 = gclass130.gclass129_0;
-                    else if (gclass130.gclass129_0.double_4 > this.gclass129_0.double_4)
-                        this.gclass129_0 = gclass130.gclass129_0;
+                        this.gclass129_0 = gclass130.RaceMissile;
+                    else if (gclass130.RaceMissile.CombinatedMaxRange > this.gclass129_0.CombinatedMaxRange)
+                        this.gclass129_0 = gclass130.RaceMissile;
                 }
             }
         }

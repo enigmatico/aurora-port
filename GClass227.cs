@@ -117,7 +117,7 @@ public class GClass227
                 str = " LY";
             }
 
-            return AuroraUtils.smethod_44(num3 / num4, int_72) + str;
+            return AuroraUtils.FormatDoubleToPrecision(num3 / num4, int_72) + str;
         }
         catch (Exception ex)
         {

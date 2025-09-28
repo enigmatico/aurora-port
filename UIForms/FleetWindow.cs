@@ -22,7 +22,7 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1015
     {
-        public List<FCTShipData40> list_0;
+        public List<ShipData> list_0;
         public List<GroundUnitFormationData> list_1;
 
         internal bool method_0(GClass55 gclass55_0)
@@ -46,7 +46,7 @@ public class FleetWindow : Form
     {
         public SubFleet gclass84_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass84_0 == this.gclass84_0;
         }
@@ -57,7 +57,7 @@ public class FleetWindow : Form
     {
         public FCTSquadronData70 gclass70_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.SquadronData == this.gclass70_0;
         }
@@ -79,7 +79,7 @@ public class FleetWindow : Form
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass40_0.gclass85_0 != this.gclass85_0;
         }
@@ -99,12 +99,12 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1021
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
         public int int_0;
 
-        internal bool method_0(FCTShipData40 gclass40_1)
+        internal bool method_0(ShipData gclass40_1)
         {
-            return gclass40_1.gclass22_0.gclass76_0 == this.gclass40_0.gclass22_0.gclass76_0 &&
+            return gclass40_1.gclass22_0.ShipHull == this.gclass40_0.gclass22_0.ShipHull &&
                    gclass40_1.int_20 == this.int_0;
         }
     }
@@ -112,7 +112,7 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1022
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
         internal bool method_0(SubFleet gclass84_0)
         {
@@ -125,7 +125,7 @@ public class FleetWindow : Form
     {
         public ShippingLineData gclass187_0;
 
-        internal bool method_0(GClass22 gclass22_0)
+        internal bool method_0(ShipClass gclass22_0)
         {
             return gclass22_0.gclass187_0 == this.gclass187_0;
         }
@@ -134,9 +134,9 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1024
     {
-        public GClass22 gclass22_0;
+        public ShipClass gclass22_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0 == this.gclass22_0;
         }
@@ -147,7 +147,7 @@ public class FleetWindow : Form
     {
         public SubFleet gclass84_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass84_0 == this.gclass84_0;
         }
@@ -158,7 +158,7 @@ public class FleetWindow : Form
     {
         public SubFleet gclass84_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass84_0 == this.gclass84_0;
         }
@@ -167,9 +167,9 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1027
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
-        internal bool method_0(FCTShipData40 gclass40_1)
+        internal bool method_0(ShipData gclass40_1)
         {
             return gclass40_1.gclass40_0 == this.gclass40_0;
         }
@@ -178,9 +178,9 @@ public class FleetWindow : Form
     [CompilerGenerated]
     private sealed class Class1028
     {
-        public FCTShipData40 gclass40_0;
+        public ShipData gclass40_0;
 
-        internal bool method_0(FCTShipData40 gclass40_1)
+        internal bool method_0(ShipData gclass40_1)
         {
             return gclass40_1.gclass40_0 == this.gclass40_0;
         }
@@ -224,7 +224,7 @@ public class FleetWindow : Form
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass40_0.gclass85_0 != this.gclass85_0;
         }
@@ -235,7 +235,7 @@ public class FleetWindow : Form
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass40_0.gclass85_0 != this.gclass85_0;
         }
@@ -246,7 +246,7 @@ public class FleetWindow : Form
     {
         public FleetData gclass85_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass40_0.gclass85_0 != this.gclass85_0;
         }
@@ -262,31 +262,31 @@ public class FleetWindow : Form
             return gclass178_0.gclass230_0 == this.gclass228_0.gclass230_0;
         }
 
-        internal bool method_1(GClass26 gclass26_0)
+        internal bool method_1(DamageControlQueue gclass26_0)
         {
-            return gclass26_0.gclass230_0 == this.gclass228_0.gclass230_0;
+            return gclass26_0.Component == this.gclass228_0.gclass230_0;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1036
     {
-        public GClass26 gclass26_0;
+        public DamageControlQueue gclass26_0;
 
-        internal bool method_0(GClass26 gclass26_1)
+        internal bool method_0(DamageControlQueue gclass26_1)
         {
-            return gclass26_1.int_0 == this.gclass26_0.int_0 - 1;
+            return gclass26_1.RepairOrder == this.gclass26_0.RepairOrder - 1;
         }
     }
 
     [CompilerGenerated]
     private sealed class Class1037
     {
-        public GClass26 gclass26_0;
+        public DamageControlQueue gclass26_0;
 
-        internal bool method_0(GClass26 gclass26_1)
+        internal bool method_0(DamageControlQueue gclass26_1)
         {
-            return gclass26_1.int_0 == this.gclass26_0.int_0 + 1;
+            return gclass26_1.RepairOrder == this.gclass26_0.RepairOrder + 1;
         }
     }
 
@@ -299,11 +299,11 @@ public class FleetWindow : Form
     private PopulationData gclass146_0;
     private NavalAdminCommand gclass83_0;
     private NavalAdminCommandType gclass79_0;
-    private FCTShipData40 gclass40_0;
-    private FCTShipData40 gclass40_1;
+    private ShipData gclass40_0;
+    private ShipData gclass40_1;
     private ShippingLineData gclass187_0;
     private RaceMissile gclass129_0;
-    private GClass132 gclass132_0;
+    private MissileSalvo gclass132_0;
     private bool bool_1;
     private bool bool_2;
     private IContainer icontainer_0;
@@ -1081,8 +1081,8 @@ public class FleetWindow : Form
                             class1025.gclass84_0.Race == tag.Race)
                         {
                             // ISSUE: reference to a compiler-generated method
-                            List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values
-                                .Where<FCTShipData40>(class1025.method_0).ToList<FCTShipData40>();
+                            List<ShipData> list = this.gclass0_0.Ships.Values
+                                .Where<ShipData>(class1025.method_0).ToList<ShipData>();
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             class1025.gclass84_0.Race.method_270(list, class1025.gclass84_0.ParentFleet,
@@ -1127,8 +1127,8 @@ public class FleetWindow : Form
                             class1026.gclass84_0.Race == tag.Race)
                         {
                             // ISSUE: reference to a compiler-generated method
-                            List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values
-                                .Where<FCTShipData40>(class1026.method_0).ToList<FCTShipData40>();
+                            List<ShipData> list = this.gclass0_0.Ships.Values
+                                .Where<ShipData>(class1026.method_0).ToList<ShipData>();
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
                             class1026.gclass84_0.Race.method_270(list, class1026.gclass84_0.ParentFleet, tag,
@@ -1147,7 +1147,7 @@ public class FleetWindow : Form
                     }
                 }
 
-                if (nodeAt.Tag is NavalAdminCommand || nodeAt.Tag is FCTShipData40)
+                if (nodeAt.Tag is NavalAdminCommand || nodeAt.Tag is ShipData)
                 {
                     int num = (int)MessageBox.Show(
                         "Sub-fleets may only be moved within their current fleet (including sub-fleets) or to a fleet or sub-fleet of the same race in the same location as their parent fleet");
@@ -1155,7 +1155,7 @@ public class FleetWindow : Form
                 }
             }
 
-            if (data.Tag is FCTShipData40)
+            if (data.Tag is ShipData)
             {
                 if (nodeAt.Tag is SubFleet)
                 {
@@ -1163,7 +1163,7 @@ public class FleetWindow : Form
                     // ISSUE: variable of a compiler-generated type
                     FleetWindow.Class1027 class1027 = new FleetWindow.Class1027();
                     // ISSUE: reference to a compiler-generated field
-                    class1027.gclass40_0 = (FCTShipData40)data.Tag;
+                    class1027.gclass40_0 = (ShipData)data.Tag;
                     SubFleet tag = (SubFleet)nodeAt.Tag;
                     // ISSUE: reference to a compiler-generated field
                     if (class1027.gclass40_0.gclass85_0 == tag.ParentFleet)
@@ -1175,8 +1175,8 @@ public class FleetWindow : Form
                         // ISSUE: reference to a compiler-generated field
                         class1027.gclass40_0.gclass40_0 = null;
                         // ISSUE: reference to a compiler-generated method
-                        foreach (FCTShipData40 gclass40 in this.gclass0_0.FCTShipDataDictionary.Values
-                                     .Where<FCTShipData40>(class1027.method_0).ToList<FCTShipData40>())
+                        foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
+                                     .Where<ShipData>(class1027.method_0).ToList<ShipData>())
                         {
                             // ISSUE: reference to a compiler-generated field
                             gclass40.gclass84_0 = class1027.gclass40_0.gclass84_0;
@@ -1211,7 +1211,7 @@ public class FleetWindow : Form
 
                 if (nodeAt.Tag is FCTSquadronData70)
                 {
-                    FCTShipData40 tag1 = (FCTShipData40)data.Tag;
+                    ShipData tag1 = (ShipData)data.Tag;
                     FCTSquadronData70 tag2 = (FCTSquadronData70)nodeAt.Tag;
                     if (this.gclass0_0.method_520(tag1.gclass85_0.XCoord, tag2.ParentShipData.gclass85_0.XCoord,
                             tag1.gclass85_0.YCoord, tag2.ParentShipData.gclass85_0.YCoord) &&
@@ -1219,7 +1219,7 @@ public class FleetWindow : Form
                     {
                         if (tag1.gclass40_0 != tag2.ParentShipData)
                         {
-                            if (tag2.ParentShipData.method_125() >= tag1.gclass22_0.decimal_14)
+                            if (tag2.ParentShipData.method_125() >= tag1.gclass22_0.Size)
                             {
                                 tag1.gclass40_0 = tag2.ParentShipData;
                                 tag1.gclass40_1 = tag2.ParentShipData;
@@ -1252,7 +1252,7 @@ public class FleetWindow : Form
                     // ISSUE: variable of a compiler-generated type
                     FleetWindow.Class1028 class1028 = new FleetWindow.Class1028();
                     // ISSUE: reference to a compiler-generated field
-                    class1028.gclass40_0 = (FCTShipData40)data.Tag;
+                    class1028.gclass40_0 = (ShipData)data.Tag;
                     FleetData tag = (FleetData)nodeAt.Tag;
                     // ISSUE: reference to a compiler-generated field
                     if (class1028.gclass40_0.gclass85_0 == tag)
@@ -1262,8 +1262,8 @@ public class FleetWindow : Form
                         // ISSUE: reference to a compiler-generated field
                         class1028.gclass40_0.gclass40_0 = null;
                         // ISSUE: reference to a compiler-generated method
-                        foreach (FCTShipData40 gclass40 in this.gclass0_0.FCTShipDataDictionary.Values
-                                     .Where<FCTShipData40>(class1028.method_0).ToList<FCTShipData40>())
+                        foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
+                                     .Where<ShipData>(class1028.method_0).ToList<ShipData>())
                             gclass40.gclass84_0 = null;
                     }
                     else
@@ -1291,7 +1291,7 @@ public class FleetWindow : Form
                     }
                 }
 
-                if (nodeAt.Tag is NavalAdminCommand || nodeAt.Tag is FCTShipData40)
+                if (nodeAt.Tag is NavalAdminCommand || nodeAt.Tag is ShipData)
                 {
                     int num = (int)MessageBox.Show(
                         "Ships may only be moved to their parent fleet or to a sub-fleet of their parent fleet");
@@ -1299,18 +1299,18 @@ public class FleetWindow : Form
                 }
             }
 
-            if (data.Tag is FCTSquadronData70 && nodeAt.Tag is FCTShipData40)
+            if (data.Tag is FCTSquadronData70 && nodeAt.Tag is ShipData)
             {
                 FCTSquadronData70 tag3 = (FCTSquadronData70)data.Tag;
-                FCTShipData40 tag4 = (FCTShipData40)nodeAt.Tag;
+                ShipData tag4 = (ShipData)nodeAt.Tag;
                 if (this.gclass0_0.method_520(tag3.ParentShipData.gclass85_0.XCoord, tag4.gclass85_0.XCoord,
                         tag3.ParentShipData.gclass85_0.YCoord, tag4.gclass85_0.YCoord) &&
                     tag3.ParentShipData.gclass85_0.System == tag4.gclass85_0.System)
                 {
-                    List<FCTShipData40> source = tag3.method_0();
-                    if (tag4.method_125() >= source.Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_14))
+                    List<ShipData> source = tag3.method_0();
+                    if (tag4.method_125() >= source.Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size))
                     {
-                        foreach (FCTShipData40 gclass40 in source)
+                        foreach (ShipData gclass40 in source)
                         {
                             gclass40.gclass40_0 = tag4;
                             gclass40.gclass40_1 = tag4;
@@ -1368,7 +1368,7 @@ public class FleetWindow : Form
                         {
                             foreach (ListViewItem selectedItem in this.lstvShips.SelectedItems)
                             {
-                                FCTShipData40 tag9 = (FCTShipData40)selectedItem.Tag;
+                                ShipData tag9 = (ShipData)selectedItem.Tag;
                                 tag9.gclass84_0 = gclass84_0;
                                 tag9.method_185(tag8, true, false, false, false);
                             }
@@ -1398,11 +1398,11 @@ public class FleetWindow : Form
                             tag11.ParentShipData.gclass85_0.YCoord, tag10.YCoord) &&
                         tag11.ParentShipData.gclass85_0.System == tag10.System)
                     {
-                        List<FCTShipData40> source = tag10.method_177();
+                        List<ShipData> source = tag10.method_177();
                         if (tag11.ParentShipData.method_125() >=
-                            source.Sum<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.decimal_14))
+                            source.Sum<ShipData>(gclass40_0 => gclass40_0.gclass22_0.Size))
                         {
-                            foreach (FCTShipData40 gclass40 in source)
+                            foreach (ShipData gclass40 in source)
                             {
                                 gclass40.gclass40_0 = tag11.ParentShipData;
                                 gclass40.gclass40_1 = tag11.ParentShipData;
@@ -1560,7 +1560,7 @@ public class FleetWindow : Form
                 else
                 {
                     PopulationData gclass1460 = tag.gclass146_0;
-                    FCTShipData40 gclass40_1 = null;
+                    ShipData gclass40_1 = null;
                     if (this.gclass146_0 != null)
                         gclass1460 = this.gclass146_0;
                     else if (this.gclass40_1 != null)
@@ -1737,7 +1737,7 @@ public class FleetWindow : Form
                         return;
                     gclass84.bool_0 = true;
                     foreach (ListViewItem selectedItem in this.lstvShips.SelectedItems)
-                        ((FCTShipData40)selectedItem.Tag).gclass84_0 = gclass84;
+                        ((ShipData)selectedItem.Tag).gclass84_0 = gclass84;
                     this.gclass21_0.genum42_0 = GEnum42.const_3;
                     this.gclass21_0.int_43 = gclass84.SubFleetID;
                     this.gclass21_0.method_355(this.tvFleetList, null, false,
@@ -1880,14 +1880,14 @@ public class FleetWindow : Form
                     this.gclass21_0.genum42_0 = GEnum42.const_1;
                     this.gclass21_0.int_43 = this.gclass83_0.int_0;
                 }
-                else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+                else if (this.tvFleetList.SelectedNode.Tag is ShipData)
                 {
-                    this.gclass40_0 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                    this.gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                     this.cmdDetach.Visible = true;
                     this.cmdSelectName.Visible = true;
                     this.cmdCreateSquadron.Visible = true;
                     if (this.gclass40_0.gclass85_0.method_176()
-                            .Count<FCTShipData40>(gclass40_2 => gclass40_2.gclass40_0 == this.gclass40_0) > 0)
+                            .Count<ShipData>(gclass40_2 => gclass40_2.gclass40_0 == this.gclass40_0) > 0)
                         this.cmdLaunchAll.Visible = true;
                     this.method_9();
                 }
@@ -1941,8 +1941,8 @@ public class FleetWindow : Form
                 this.cmdScrap.Visible = false;
                 this.cmdScrapAll.Visible = false;
                 this.tvFleetCargo.Height = 641;
-                List<FCTShipData40> list1 = gclass85_0.method_176().ToList<FCTShipData40>();
-                if (list1.Count<FCTShipData40>(gclass40_0 => gclass40_0.list_17.Count > 0) > 0 &&
+                List<ShipData> list1 = gclass85_0.method_176().ToList<ShipData>();
+                if (list1.Count<ShipData>(gclass40_0 => gclass40_0.TransportedComponents.Count > 0) > 0 &&
                     gclass85_0.method_125(AuroraComponentType.SalvageModule) > 0M)
                 {
                     this.cmdScrap.Visible = true;
@@ -1950,21 +1950,21 @@ public class FleetWindow : Form
                     this.tvFleetCargo.Height = 611;
                 }
 
-                if (list1.Count<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null) > 0)
+                if (list1.Count<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null) > 0)
                     this.cmdLaunchAll.Visible = true;
-                if (list1.Count<FCTShipData40>(gclass40_0 => gclass40_0.genum29_0 == GEnum29.const_1) > 0)
+                if (list1.Count<ShipData>(gclass40_0 => gclass40_0.genum29_0 == GEnum29.const_1) > 0)
                     this.cmdEndOverhaul.Visible = true;
-                List<FCTShipData40> list2 = list1.Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 == null)
-                    .ToList<FCTShipData40>();
-                if (list2.Count<FCTShipData40>(gclass40_0 => gclass40_0.bool_8) > 0)
+                List<ShipData> list2 = list1.Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 == null)
+                    .ToList<ShipData>();
+                if (list2.Count<ShipData>(gclass40_0 => gclass40_0.bool_8) > 0)
                     this.cmdActive2.Text = "Active Off";
                 else
                     this.cmdActive2.Text = "Active On";
-                int num = list2.Count<FCTShipData40>(gclass40_0 => gclass40_0.gclass22_0.int_42 > 0);
+                int num = list2.Count<ShipData>(gclass40_0 => gclass40_0.gclass22_0.ShieldStrength > 0);
                 if (num > 0)
                 {
                     this.cmdFleetShields.Visible = true;
-                    if (list2.Count<FCTShipData40>(gclass40_0 => gclass40_0.bool_10) == num)
+                    if (list2.Count<ShipData>(gclass40_0 => gclass40_0.bool_10) == num)
                         this.cmdFleetShields.Text = "Lower Shields";
                     else
                         this.cmdFleetShields.Text = "Raise Shields";
@@ -2015,7 +2015,7 @@ public class FleetWindow : Form
                 }
 
                 if (gclass84_0 == null ||
-                    gclass84_0.method_0().Count<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null) <= 0)
+                    gclass84_0.method_0().Count<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null) <= 0)
                     return;
                 this.cmdLaunchAll.Visible = true;
             }
@@ -2102,7 +2102,7 @@ public class FleetWindow : Form
                     this.cmdActive2.Text = "Active On";
             }
 
-            if (this.gclass40_0.gclass22_0.int_42 > 0)
+            if (this.gclass40_0.gclass22_0.ShieldStrength > 0)
             {
                 this.cmdFleetShields.Visible = true;
                 if (this.gclass40_0.bool_10)
@@ -2143,9 +2143,9 @@ public class FleetWindow : Form
             {
                 int num2 = (int)MessageBox.Show("Please select an item to delete");
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (MessageBox.Show($" Are you sure you want to delete {tag.ShipName}?", "Confirmation Required",
                         MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
@@ -2239,9 +2239,9 @@ public class FleetWindow : Form
                     tag.FleetName = str;
                 this.tvFleetList.SelectedNode.Text = tag.FleetName;
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 string str = this.gclass0_0.method_562("Enter New Ship Name", tag.ShipName);
                 if (str != "")
                     tag.ShipName = str;
@@ -2299,8 +2299,8 @@ public class FleetWindow : Form
                 return;
             if (e.Node.Tag is FleetData)
                 ((FleetData)e.Node.Tag).bool_16 = true;
-            else if (e.Node.Tag is FCTShipData40)
-                ((FCTShipData40)e.Node.Tag).bool_12 = true;
+            else if (e.Node.Tag is ShipData)
+                ((ShipData)e.Node.Tag).bool_12 = true;
             else if (e.Node.Tag is FCTSquadronData70)
                 ((FCTSquadronData70)e.Node.Tag).bool_0 = true;
             else if (e.Node.Tag is SubFleet)
@@ -2328,8 +2328,8 @@ public class FleetWindow : Form
                 return;
             if (e.Node.Tag is FleetData)
                 ((FleetData)e.Node.Tag).bool_16 = false;
-            else if (e.Node.Tag is FCTShipData40)
-                ((FCTShipData40)e.Node.Tag).bool_12 = false;
+            else if (e.Node.Tag is ShipData)
+                ((ShipData)e.Node.Tag).bool_12 = false;
             else if (e.Node.Tag is FCTSquadronData70)
                 ((FCTSquadronData70)e.Node.Tag).bool_0 = false;
             else if (e.Node.Tag is SubFleet)
@@ -2677,7 +2677,7 @@ public class FleetWindow : Form
                             bool_25 = true;
                         RacialSystemSurvey gclass202_1 = tag1.method_261();
                         tag1.method_237(gclass202_1, GEnum109.const_41, "Move to Target System", bool_25,
-                            tag5.ActualSystemData.SystemID, false, false, true);
+                            tag5.ActualSystem.SystemID, false, false, true);
                         tag1.method_258(this.lstvOrders);
                         this.rdoSL.Checked = true;
                     }
@@ -2787,15 +2787,15 @@ public class FleetWindow : Form
             {
                 WeaponFireControlAssignment tag1 = (WeaponFireControlAssignment)this.tvCombatAssignment.SelectedNode.Tag;
             }
-            else if (this.tvCombatAssignment.SelectedNode.Tag is GClass130)
+            else if (this.tvCombatAssignment.SelectedNode.Tag is PopOrdnanceStock)
             {
-                GClass130 tag2 = (GClass130)this.tvCombatAssignment.SelectedNode.Tag;
+                PopOrdnanceStock tag2 = (PopOrdnanceStock)this.tvCombatAssignment.SelectedNode.Tag;
             }
             else
             {
-                if (!(this.tvCombatAssignment.SelectedNode.Tag is GClass65))
+                if (!(this.tvCombatAssignment.SelectedNode.Tag is Contact))
                     return;
-                GClass65 tag3 = (GClass65)this.tvCombatAssignment.SelectedNode.Tag;
+                Contact tag3 = (Contact)this.tvCombatAssignment.SelectedNode.Tag;
             }
         }
         catch (Exception ex)
@@ -2808,9 +2808,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag1 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag1 = (ShipData)this.tvFleetList.SelectedNode.Tag;
             TreeNode nodeAt =
                 this.tvCombatAssignment.GetNodeAt(this.tvCombatAssignment.PointToClient(new Point(e.X, e.Y)));
             TreeNode data = (TreeNode)e.Data.GetData(typeof(TreeNode));
@@ -2917,20 +2917,20 @@ public class FleetWindow : Form
                     flag = true;
                 }
             }
-            else if (data.Tag is GClass130)
+            else if (data.Tag is PopOrdnanceStock)
             {
-                GClass130 tag6 = (GClass130)data.Tag;
+                PopOrdnanceStock tag6 = (PopOrdnanceStock)data.Tag;
                 if (nodeAt.Tag is WeaponFireControlAssignment)
                 {
                     WeaponFireControlAssignment tag7 = (WeaponFireControlAssignment)nodeAt.Tag;
-                    if (tag6.gclass129_0.int_14 == 1 && tag7.WeaponComponent.gclass231_0.ComponentTypeID !=
+                    if (tag6.RaceMissile.ShipDecoy == 1 && tag7.WeaponComponent.gclass231_0.ComponentTypeID !=
                         AuroraComponentType.DecoyMissileLauncher)
                     {
                         int num = (int)MessageBox.Show("Decoy Missiles can only be assigned to Decoy Launchers");
                         return;
                     }
 
-                    if (tag6.gclass129_0.int_14 == 0 && tag7.WeaponComponent.gclass231_0.ComponentTypeID ==
+                    if (tag6.RaceMissile.ShipDecoy == 0 && tag7.WeaponComponent.gclass231_0.ComponentTypeID ==
                         AuroraComponentType.DecoyMissileLauncher)
                     {
                         int num = (int)MessageBox.Show("Only Decoy Missiles can be assigned to Decoy Launchers");
@@ -3008,9 +3008,9 @@ public class FleetWindow : Form
                     flag = true;
                 }
             }
-            else if (data.Tag is GClass65)
+            else if (data.Tag is Contact)
             {
-                GClass65 tag15 = (GClass65)data.Tag;
+                Contact tag15 = (Contact)data.Tag;
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     if (this.chkDragAll.CheckState == CheckState.Unchecked)
@@ -3034,9 +3034,9 @@ public class FleetWindow : Form
                     }
                 }
             }
-            else if (data.Tag is GClass214)
+            else if (data.Tag is Waypoint)
             {
-                GClass214 tag17 = (GClass214)data.Tag;
+                Waypoint tag17 = (Waypoint)data.Tag;
                 if (nodeAt.Tag is FireControlAssignment)
                 {
                     FireControlAssignment tag18 = (FireControlAssignment)nodeAt.Tag;
@@ -3152,9 +3152,9 @@ public class FleetWindow : Form
                 }
 
                 if (this.gclass0_0.InexpFleets != 1 || !this.method_18() ||
-                    !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+                    !(this.tvFleetList.SelectedNode.Tag is ShipData))
                     return;
-                FCTShipData40 tag2 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag2 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (tag2.bool_15)
                     return;
                 tag2.int_13 = tag2.method_86(GEnum14.const_0);
@@ -3175,9 +3175,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (this.cmdOpenFireAll.Text == "Open Fire All")
             {
                 tag.method_31(GEnum61.const_1);
@@ -3207,9 +3207,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (this.cmdActive2.Text == "Active On")
             {
                 tag.bool_8 = true;
@@ -3231,9 +3231,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_0);
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_0);
         }
         catch (Exception ex)
         {
@@ -3245,9 +3245,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_1);
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_1);
         }
         catch (Exception ex)
         {
@@ -3259,9 +3259,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_2);
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_2);
         }
         catch (Exception ex)
         {
@@ -3273,9 +3273,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_3);
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).method_24(GEnum35.const_3);
         }
         catch (Exception ex)
         {
@@ -3287,9 +3287,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (this.cmdSyncFire.Text == "Sync Fire On")
             {
                 tag.int_17 = 1;
@@ -3313,9 +3313,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).gclass85_0.method_65(1,
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).gclass85_0.method_65(1,
                 this.tvFleetList.SelectedNode.Parent);
         }
         catch (Exception ex)
@@ -3328,9 +3328,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).gclass85_0.method_65(0,
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).gclass85_0.method_65(0,
                 this.tvFleetList.SelectedNode.Parent);
         }
         catch (Exception ex)
@@ -3421,9 +3421,9 @@ public class FleetWindow : Form
             }
             else
             {
-                if (!(this.lstvPopulation.SelectedItems[0].Tag is FCTShipData40))
+                if (!(this.lstvPopulation.SelectedItems[0].Tag is ShipData))
                     return;
-                this.gclass40_1 = (FCTShipData40)this.lstvPopulation.SelectedItems[0].Tag;
+                this.gclass40_1 = (ShipData)this.lstvPopulation.SelectedItems[0].Tag;
             }
         }
         catch (Exception ex)
@@ -3461,9 +3461,9 @@ public class FleetWindow : Form
                 int num2 = (int)MessageBox.Show(
                     "Please select a ship or sub-fleet to detach or select multiple ships to detach from a fleet");
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 tag.gclass40_0 = null;
                 tag.gclass85_0.method_75(tag, OperationalGroupID.None, false);
                 tag.gclass84_0 = null;
@@ -3509,7 +3509,7 @@ public class FleetWindow : Form
 
                 if (this.lstvShips.SelectedItems.Count == 1)
                 {
-                    FCTShipData40 tag = (FCTShipData40)this.lstvShips.SelectedItems[0].Tag;
+                    ShipData tag = (ShipData)this.lstvShips.SelectedItems[0].Tag;
                     if (tag != null)
                         string_10 = tag.method_187();
                 }
@@ -3532,7 +3532,7 @@ public class FleetWindow : Form
 
                 foreach (ListViewItem selectedItem in this.lstvShips.SelectedItems)
                 {
-                    FCTShipData40 tag = (FCTShipData40)selectedItem.Tag;
+                    ShipData tag = (ShipData)selectedItem.Tag;
                     if (tag != null)
                     {
                         if (tag.SquadronData != null)
@@ -3549,9 +3549,9 @@ public class FleetWindow : Form
 
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                foreach (FCTShipData40 gclass40 in class1032.gclass85_0.method_176()
-                             .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null)
-                             .Where<FCTShipData40>(class1032.method_0).ToList<FCTShipData40>())
+                foreach (ShipData gclass40 in class1032.gclass85_0.method_176()
+                             .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
+                             .Where<ShipData>(class1032.method_0).ToList<ShipData>())
                     gclass40.gclass40_0 = null;
                 this.gclass21_0.genum42_0 = GEnum42.const_2;
                 // ISSUE: reference to a compiler-generated field
@@ -3576,9 +3576,9 @@ public class FleetWindow : Form
                 this.gclass21_0.int_43 = class1033.gclass85_0.FleetID;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                foreach (FCTShipData40 gclass40 in class1033.gclass85_0.method_176()
-                             .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null)
-                             .Where<FCTShipData40>(class1033.method_0).ToList<FCTShipData40>())
+                foreach (ShipData gclass40 in class1033.gclass85_0.method_176()
+                             .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
+                             .Where<ShipData>(class1033.method_0).ToList<ShipData>())
                     gclass40.gclass40_0 = null;
                 this.gclass21_0.method_355(this.tvFleetList, null, false,
                     AuroraUtils.smethod_27(this.chkIncludeCivilians.CheckState), this.txtSystemOOB);
@@ -3598,9 +3598,9 @@ public class FleetWindow : Form
                 this.gclass21_0.int_43 = class1034.gclass85_0.FleetID;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                foreach (FCTShipData40 gclass40 in class1034.gclass85_0.method_176()
-                             .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null)
-                             .Where<FCTShipData40>(class1034.method_0).ToList<FCTShipData40>())
+                foreach (ShipData gclass40 in class1034.gclass85_0.method_176()
+                             .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
+                             .Where<ShipData>(class1034.method_0).ToList<ShipData>())
                     gclass40.gclass40_0 = null;
                 this.gclass21_0.method_355(this.tvFleetList, null, false,
                     AuroraUtils.smethod_27(this.chkIncludeCivilians.CheckState), this.txtSystemOOB);
@@ -3628,9 +3628,9 @@ public class FleetWindow : Form
             }
             else
             {
-                if (!(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+                if (!(this.tvFleetList.SelectedNode.Tag is ShipData))
                     return;
-                ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).auroraRefuelStatus_0 =
+                ((ShipData)this.tvFleetList.SelectedNode.Tag).auroraRefuelStatus_0 =
                     (AuroraRefuelStatus)this.cboRefuelActive.SelectedIndex;
             }
         }
@@ -3656,9 +3656,9 @@ public class FleetWindow : Form
             }
             else
             {
-                if (!(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+                if (!(this.tvFleetList.SelectedNode.Tag is ShipData))
                     return;
-                ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).auroraOrdnanceTransferStatus_0 =
+                ((ShipData)this.tvFleetList.SelectedNode.Tag).auroraOrdnanceTransferStatus_0 =
                     (AuroraOrdnanceTransferStatus)this.cboTransferActive.SelectedIndex;
             }
         }
@@ -3860,9 +3860,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).genum43_0 = (GEnum43)this.cboHangar.SelectedIndex;
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).genum43_0 = (GEnum43)this.cboHangar.SelectedIndex;
         }
         catch (Exception ex)
         {
@@ -3887,7 +3887,7 @@ public class FleetWindow : Form
                 FleetWindow.Class1035 class1035 = new FleetWindow.Class1035();
                 // ISSUE: reference to a compiler-generated field
                 class1035.gclass228_0 = (GClass228)this.lstvDAC.SelectedItems[0].Tag;
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated method
                 int num2 = tag.list_12.Where<GClass178>(class1035.method_0)
                     .Select<GClass178, int>(gclass178_0 => gclass178_0.int_0).FirstOrDefault<int>();
@@ -3898,20 +3898,20 @@ public class FleetWindow : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated method
-                    if (tag.list_13.Where<GClass26>(class1035.method_1).Count<GClass26>() >= num2)
+                    if (tag.DamageControlQueue.Where<DamageControlQueue>(class1035.method_1).Count<DamageControlQueue>() >= num2)
                     {
                         int num4 = (int)MessageBox.Show("All damaged components of this type are scheduled for repair");
                     }
                     else
                     {
                         // ISSUE: reference to a compiler-generated field
-                        tag.list_13.Add(new GClass26()
+                        tag.DamageControlQueue.Add(new DamageControlQueue()
                         {
-                            gclass230_0 = class1035.gclass228_0.gclass230_0,
-                            gclass40_0 = tag,
-                            int_0 = tag.list_13.Count <= 0
+                            Component = class1035.gclass228_0.gclass230_0,
+                            Ship = tag,
+                            RepairOrder = tag.DamageControlQueue.Count <= 0
                                 ? 1
-                                : tag.list_13.Max<GClass26>(gclass26_0 => gclass26_0.int_0) + 1
+                                : tag.DamageControlQueue.Max<DamageControlQueue>(gclass26_0 => gclass26_0.RepairOrder) + 1
                         });
                         int int_40 = AuroraUtils.smethod_67(this.txtRepairChanceTime.Text);
                         tag.method_89(this.lstvDamageControlQueue, int_40);
@@ -3939,11 +3939,11 @@ public class FleetWindow : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a component to remove");
             }
-            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is GClass26)
+            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is DamageControlQueue)
             {
-                GClass26 tag1 = (GClass26)this.lstvDamageControlQueue.SelectedItems[0].Tag;
-                FCTShipData40 tag2 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
-                tag2.list_13.Remove(tag1);
+                DamageControlQueue tag1 = (DamageControlQueue)this.lstvDamageControlQueue.SelectedItems[0].Tag;
+                ShipData tag2 = (ShipData)this.tvFleetList.SelectedNode.Tag;
+                tag2.DamageControlQueue.Remove(tag1);
                 tag2.method_91();
                 tag2.method_89(this.lstvDamageControlQueue, AuroraUtils.smethod_67(this.txtRepairChanceTime.Text));
             }
@@ -3968,11 +3968,11 @@ public class FleetWindow : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a component to prioritise");
             }
-            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is GClass26)
+            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is DamageControlQueue)
             {
-                GClass26 tag1 = (GClass26)this.lstvDamageControlQueue.SelectedItems[0].Tag;
-                FCTShipData40 tag2 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
-                tag1.int_0 = 0;
+                DamageControlQueue tag1 = (DamageControlQueue)this.lstvDamageControlQueue.SelectedItems[0].Tag;
+                ShipData tag2 = (ShipData)this.tvFleetList.SelectedNode.Tag;
+                tag1.RepairOrder = 0;
                 tag2.method_91();
                 tag2.method_89(this.lstvDamageControlQueue, AuroraUtils.smethod_67(this.txtRepairChanceTime.Text));
                 foreach (ListViewItem listViewItem in this.lstvDamageControlQueue.Items)
@@ -4002,21 +4002,21 @@ public class FleetWindow : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a component to move");
             }
-            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is GClass26)
+            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is DamageControlQueue)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 FleetWindow.Class1036 class1036 = new FleetWindow.Class1036();
                 // ISSUE: reference to a compiler-generated field
-                class1036.gclass26_0 = (GClass26)this.lstvDamageControlQueue.SelectedItems[0].Tag;
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                class1036.gclass26_0 = (DamageControlQueue)this.lstvDamageControlQueue.SelectedItems[0].Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated method
-                GClass26 gclass26 = tag.list_13.FirstOrDefault<GClass26>(class1036.method_0);
+                DamageControlQueue gclass26 = tag.DamageControlQueue.FirstOrDefault<DamageControlQueue>(class1036.method_0);
                 if (gclass26 == null)
                     return;
                 // ISSUE: reference to a compiler-generated field
-                --class1036.gclass26_0.int_0;
-                ++gclass26.int_0;
+                --class1036.gclass26_0.RepairOrder;
+                ++gclass26.RepairOrder;
                 tag.method_91();
                 int int_40 = AuroraUtils.smethod_67(this.txtRepairChanceTime.Text);
                 tag.method_89(this.lstvDamageControlQueue, int_40);
@@ -4048,21 +4048,21 @@ public class FleetWindow : Form
             {
                 int num1 = (int)MessageBox.Show("Please select a component to move");
             }
-            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is GClass26)
+            else if (this.lstvDamageControlQueue.SelectedItems[0].Tag is DamageControlQueue)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 FleetWindow.Class1037 class1037 = new FleetWindow.Class1037();
                 // ISSUE: reference to a compiler-generated field
-                class1037.gclass26_0 = (GClass26)this.lstvDamageControlQueue.SelectedItems[0].Tag;
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                class1037.gclass26_0 = (DamageControlQueue)this.lstvDamageControlQueue.SelectedItems[0].Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated method
-                GClass26 gclass26 = tag.list_13.FirstOrDefault<GClass26>(class1037.method_0);
+                DamageControlQueue gclass26 = tag.DamageControlQueue.FirstOrDefault<DamageControlQueue>(class1037.method_0);
                 if (gclass26 == null)
                     return;
                 // ISSUE: reference to a compiler-generated field
-                ++class1037.gclass26_0.int_0;
-                --gclass26.int_0;
+                ++class1037.gclass26_0.RepairOrder;
+                --gclass26.RepairOrder;
                 tag.method_91();
                 int int_40 = AuroraUtils.smethod_67(this.txtRepairChanceTime.Text);
                 tag.method_89(this.lstvDamageControlQueue, int_40);
@@ -4114,14 +4114,14 @@ public class FleetWindow : Form
         {
             if (!this.method_18())
                 return;
-            FCTShipData40 tag1 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag1 = (ShipData)this.tvFleetList.SelectedNode.Tag;
             int num1 = AuroraUtils.smethod_67(this.txtManualDamage.Text);
             if (num1 < 1)
                 return;
             Decimal decimal_42 = 0M;
             ShipComponent gclass230_0 = null;
             if (this.lstvWeapons.SelectedItems[0].Tag is RaceMissile)
-                decimal_42 = ((RaceMissile)this.lstvWeapons.SelectedItems[0].Tag).decimal_0;
+                decimal_42 = ((RaceMissile)this.lstvWeapons.SelectedItems[0].Tag).WarheadStrength;
             else if (this.lstvWeapons.SelectedItems[0].Tag is ShipComponent)
             {
                 ShipComponent tag2 = (ShipComponent)this.lstvWeapons.SelectedItems[0].Tag;
@@ -4152,7 +4152,7 @@ public class FleetWindow : Form
         {
             if (!this.method_18())
                 return;
-            this.gclass40_0 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            this.gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (this.gclass40_0 == null || !(this.txtFuelPriority.Text != ""))
                 return;
             this.gclass40_0.int_18 = Convert.ToInt32(this.txtFuelPriority.Text);
@@ -4172,7 +4172,7 @@ public class FleetWindow : Form
         {
             if (!this.method_18())
                 return;
-            this.gclass40_0 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            this.gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (this.gclass40_0 == null || !(this.txtSupplyPriority.Text != ""))
                 return;
             this.gclass40_0.int_19 = Convert.ToInt32(this.txtSupplyPriority.Text);
@@ -4190,9 +4190,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).auroraResupplyStatus_0 =
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).auroraResupplyStatus_0 =
                 (AuroraResupplyStatus)this.cboResupplyActive.SelectedIndex;
         }
         catch (Exception ex)
@@ -4205,9 +4205,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).bool_14 =
+            ((ShipData)this.tvFleetList.SelectedNode.Tag).bool_14 =
                 AuroraUtils.smethod_27(this.chkAutoDC.CheckState);
         }
         catch (Exception ex)
@@ -4224,9 +4224,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             int int_40 = AuroraUtils.smethod_67(this.txtRepairChanceTime.Text);
             if (int_40 <= 0)
                 return;
@@ -4242,9 +4242,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             tag.list_12.Clear();
             tag.dictionary_5.Clear();
         }
@@ -4282,9 +4282,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             tag.method_87();
             tag.method_89(this.lstvDamageControlQueue, AuroraUtils.smethod_67(this.txtRepairChanceTime.Text));
         }
@@ -4363,7 +4363,7 @@ public class FleetWindow : Form
                 if (tag2.genum13_0 != DestinationType.const_1 || tag2.gclass146_0 != null)
                     return;
                 SystemBodyData gclass1_0 = this.gclass0_0.SystemBodyRecordDic[tag2.int_0];
-                List<GClass194> source = this.gclass21_0.method_261(true);
+                List<Species> source = this.gclass21_0.method_261(true);
                 if (source.Count == 1)
                 {
                     this.gclass21_0.method_275(gclass1_0, source[0]);
@@ -4375,12 +4375,12 @@ public class FleetWindow : Form
                     this.gclass0_0.string_8 = "";
                     this.gclass0_0.string_9 = "";
                     this.gclass0_0.list_32 = new List<string>();
-                    foreach (GClass194 gclass194 in source)
+                    foreach (Species gclass194 in source)
                         this.gclass0_0.list_32.Add(gclass194.SpeciesName);
                     int num3 = (int)new UserSelection(this.gclass0_0).ShowDialog();
                     if (this.gclass0_0.bool_21)
                         return;
-                    GClass194 gclass194_1 = source.FirstOrDefault<GClass194>(gclass194_0 =>
+                    Species gclass194_1 = source.FirstOrDefault<Species>(gclass194_0 =>
                         gclass194_0.SpeciesName == this.gclass0_0.string_4);
                     if (gclass194_1 != null)
                         this.gclass21_0.method_275(gclass1_0, gclass194_1);
@@ -4453,12 +4453,12 @@ public class FleetWindow : Form
             {
                 int num2 = (int)MessageBox.Show("Please select a ship");
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
-                ((FCTShipData40)this.tvFleetList.SelectedNode.Tag).method_83();
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
+                ((ShipData)this.tvFleetList.SelectedNode.Tag).method_83();
             else if (this.tvFleetList.SelectedNode.Tag is FleetData)
             {
                 FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                foreach (FCTShipData40 gclass40 in tag.method_176())
+                foreach (ShipData gclass40 in tag.method_176())
                     gclass40.method_83();
                 tag.method_167(this.lstvShips, null, null, this.lblLocation, this.lblCommander, this.lblFleetData,
                     this.lblCapacity, this.lblDefault, this.lblClassSummary, this.lstvHistory, this.chkCycle,
@@ -4501,10 +4501,10 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
-            tag.decimal_14 = tag.gclass22_0.int_63;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
+            tag.decimal_14 = tag.gclass22_0.FuelCapacity;
             this.method_9();
         }
         catch (Exception ex)
@@ -4517,7 +4517,7 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
             this.gclass0_0.string_3 = "Enter Amount of Fuel";
             this.gclass0_0.string_4 = "0";
@@ -4525,7 +4525,7 @@ public class FleetWindow : Form
             if (this.gclass0_0.bool_21)
                 return;
             int int32 = Convert.ToInt32(this.gclass0_0.string_4);
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             Decimal num2 = tag.method_151();
             tag.decimal_14 = !(num2 < int32) ? int32 : num2;
             this.method_9();
@@ -4540,9 +4540,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (!this.method_18() || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (MessageBox.Show($" Are you sure you want to abandon {tag.ShipName}?", "Confirmation Required",
                     MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
@@ -4699,12 +4699,12 @@ public class FleetWindow : Form
             // ISSUE: variable of a compiler-generated type
             FleetWindow.Class1015 class1015 = new FleetWindow.Class1015();
             // ISSUE: reference to a compiler-generated field
-            class1015.list_0 = new List<FCTShipData40>();
+            class1015.list_0 = new List<ShipData>();
             string str = "";
             GClass55 gclass55 = null;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                this.gclass40_0 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                this.gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated field
                 class1015.list_0.Add(this.gclass40_0);
                 str = this.gclass40_0.method_187();
@@ -4725,8 +4725,8 @@ public class FleetWindow : Form
                 class1016.gclass84_0 = (SubFleet)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                class1015.list_0 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1016.method_0)
-                    .ToList<FCTShipData40>();
+                class1015.list_0 = this.gclass0_0.Ships.Values.Where<ShipData>(class1016.method_0)
+                    .ToList<ShipData>();
                 // ISSUE: reference to a compiler-generated field
                 str = class1016.gclass84_0.SubFleetName;
             }
@@ -4739,8 +4739,8 @@ public class FleetWindow : Form
                 class1017.gclass70_0 = (FCTSquadronData70)this.tvFleetList.SelectedNode.Tag;
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                class1015.list_0 = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(class1017.method_0)
-                    .ToList<FCTShipData40>();
+                class1015.list_0 = this.gclass0_0.Ships.Values.Where<ShipData>(class1017.method_0)
+                    .ToList<ShipData>();
                 // ISSUE: reference to a compiler-generated field
                 str = class1017.gclass70_0.SquadronName;
             }
@@ -4849,8 +4849,8 @@ public class FleetWindow : Form
             }
             else
             {
-                this.gclass129_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0 =
-                    !this.gclass129_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0;
+                this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0 =
+                    !this.gclass129_0.TechSystem.dictionary_0[this.gclass21_0.RaceID].bool_0;
                 this.gclass21_0.method_316(this.lstvOrdnance, this.chkObsoleteMissiles.CheckState, false);
             }
         }
@@ -4925,7 +4925,7 @@ public class FleetWindow : Form
         {
             if (this.lstvShipTemplate.SelectedItems.Count == 0)
                 return;
-            this.gclass40_0.method_69((GClass130)this.lstvShipTemplate.SelectedItems[0].Tag, this.method_19());
+            this.gclass40_0.method_69((PopOrdnanceStock)this.lstvShipTemplate.SelectedItems[0].Tag, this.method_19());
             this.method_9();
         }
         catch (Exception ex)
@@ -4940,9 +4940,9 @@ public class FleetWindow : Form
         {
             if (this.gclass40_0 == null)
                 return;
-            foreach (FCTShipData40 gclass40 in this.gclass0_0.FCTShipDataDictionary.Values
-                         .Where<FCTShipData40>(gclass40_2 => gclass40_2.gclass22_0 == this.gclass40_0.gclass22_0)
-                         .ToList<FCTShipData40>())
+            foreach (ShipData gclass40 in this.gclass0_0.Ships.Values
+                         .Where<ShipData>(gclass40_2 => gclass40_2.gclass22_0 == this.gclass40_0.gclass22_0)
+                         .ToList<ShipData>())
                 gclass40.method_62(false);
         }
         catch (Exception ex)
@@ -5019,12 +5019,12 @@ public class FleetWindow : Form
         try
         {
             FleetData gclass85 = null;
-            FCTShipData40 gclass40_1 = null;
+            ShipData gclass40_1 = null;
             if (this.tvFleetList.SelectedNode == null)
                 return;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                gclass40_1 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                gclass40_1 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (gclass40_1 != null)
                     gclass85 = gclass40_1.gclass85_0;
             }
@@ -5033,8 +5033,8 @@ public class FleetWindow : Form
 
             if (gclass85 == null)
                 return;
-            List<FCTShipData40> gclass40List = new List<FCTShipData40>();
-            foreach (FCTShipData40 gclass40_2 in genum61_0 != GEnum61.const_2
+            List<ShipData> gclass40List = new List<ShipData>();
+            foreach (ShipData gclass40_2 in genum61_0 != GEnum61.const_2
                          ? gclass85.method_177()
                          : gclass85.method_176())
             {
@@ -5061,12 +5061,12 @@ public class FleetWindow : Form
         try
         {
             FleetData gclass85 = null;
-            FCTShipData40 gclass40_1 = null;
+            ShipData gclass40_1 = null;
             if (this.tvFleetList.SelectedNode == null)
                 return;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                gclass40_1 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                gclass40_1 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (gclass40_1 != null)
                     gclass85 = gclass40_1.gclass85_0;
             }
@@ -5075,7 +5075,7 @@ public class FleetWindow : Form
 
             if (gclass85 == null)
                 return;
-            foreach (FCTShipData40 gclass40_2 in gclass85.method_177())
+            foreach (ShipData gclass40_2 in gclass85.method_177())
             {
                 gclass40_2.method_32(null);
                 if (this.gclass0_0.InexpFleets == 1)
@@ -5134,12 +5134,12 @@ public class FleetWindow : Form
         try
         {
             FleetData gclass85 = null;
-            FCTShipData40 gclass40 = null;
+            ShipData gclass40 = null;
             if (this.tvFleetList.SelectedNode == null)
                 return;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                gclass40 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                gclass40 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (gclass40 != null)
                     gclass85 = gclass40.gclass85_0;
             }
@@ -5203,9 +5203,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (tag == null)
                 return;
             tag.int_14 = AuroraUtils.CheckStateToInt(this.chkRetainData.CheckState);
@@ -5220,9 +5220,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (tag == null)
                 return;
             int num = (int)new cmdSelect(this.gclass0_0).ShowDialog();
@@ -5245,9 +5245,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag1 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag1 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (this.tvCombatAssignment.SelectedNode == null)
                 {
                     int num = (int)MessageBox.Show("Please select a fire control");
@@ -5279,9 +5279,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 foreach (FireControlAssignment gclass36 in this.gclass40_0.list_4)
                 {
                     gclass36.TargetID = 0;
@@ -5428,18 +5428,18 @@ public class FleetWindow : Form
                 }
                 else
                 {
-                    GClass214 selectedValue = (GClass214)this.lstMoveWP.SelectedValue;
+                    Waypoint selectedValue = (Waypoint)this.lstMoveWP.SelectedValue;
                     if (selectedValue == null)
                     {
                         int num4 = (int)MessageBox.Show("Please select a waypoint as the destination");
                     }
                     else
                     {
-                        tag.OrbitingBody = selectedValue.gclass1_0;
-                        tag.System = tag.Race.method_128(selectedValue.gclass200_0);
+                        tag.OrbitingBody = selectedValue.OrbitBody;
+                        tag.System = tag.Race.method_128(selectedValue.System);
                         tag.method_6();
-                        tag.XCoord = selectedValue.double_0;
-                        tag.YCoord = selectedValue.double_1;
+                        tag.XCoord = selectedValue.Xcor;
+                        tag.YCoord = selectedValue.Ycor;
                         tag.method_167(this.lstvShips, null, null, this.lblLocation, this.lblCommander,
                             this.lblFleetData, this.lblCapacity, this.lblDefault, this.lblClassSummary,
                             this.lstvHistory, this.chkCycle, this.txtSurveyRadius);
@@ -5755,9 +5755,9 @@ public class FleetWindow : Form
                     class1019.gclass85_0 = gclass84_0.ParentFleet.method_70(gclass84_0, false);
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated method
-                    foreach (FCTShipData40 gclass40 in class1019.gclass85_0.method_176()
-                                 .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null)
-                                 .Where<FCTShipData40>(class1019.method_0).ToList<FCTShipData40>())
+                    foreach (ShipData gclass40 in class1019.gclass85_0.method_176()
+                                 .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
+                                 .Where<ShipData>(class1019.method_0).ToList<ShipData>())
                         gclass40.gclass40_0 = null;
                 }
 
@@ -5816,9 +5816,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             tag.method_32(null);
             if (this.gclass0_0.InexpFleets == 1)
             {
@@ -5860,9 +5860,9 @@ public class FleetWindow : Form
                     return;
                 FireControlAssignment tag1 = (FireControlAssignment)this.tvCombatAssignment.SelectedNode.Tag;
                 if (this.gclass0_0.InexpFleets != 1 || !this.method_18() ||
-                    !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+                    !(this.tvFleetList.SelectedNode.Tag is ShipData))
                     return;
-                FCTShipData40 tag2 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag2 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 tag2.method_32(tag1);
                 if (this.gclass0_0.InexpFleets != 1)
                     return;
@@ -5945,12 +5945,12 @@ public class FleetWindow : Form
             if (this.tvFleetList.SelectedNode == null || this.tvFleetList.SelectedNode.Tag == null ||
                 !(this.tvFleetList.SelectedNode.Tag is FleetData) || this.lstvShips.SelectedItems.Count == 0)
                 return;
-            FCTShipData40 tag1 = (FCTShipData40)this.lstvShips.SelectedItems[0].Tag;
+            ShipData tag1 = (ShipData)this.lstvShips.SelectedItems[0].Tag;
             if (tag1 == null)
                 return;
             if (Control.ModifierKeys == Keys.Control)
             {
-                FCTShipData40 tag2 = (FCTShipData40)this.lstvShips.HitTest(e.X, e.Y).Item.Tag;
+                ShipData tag2 = (ShipData)this.lstvShips.HitTest(e.X, e.Y).Item.Tag;
                 if (tag2 == null)
                     return;
                 GClass55 gclass55_0 = tag2.method_192(AuroraCommandType.Ship);
@@ -6027,9 +6027,9 @@ public class FleetWindow : Form
         {
             if (this.tvFleetList.SelectedNode == null)
                 return;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (this.cmdActive2.Text == "Active On")
                 {
                     tag.bool_8 = true;
@@ -6046,16 +6046,16 @@ public class FleetWindow : Form
                 if (!(this.tvFleetList.SelectedNode.Tag is FleetData))
                     return;
                 FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                List<FCTShipData40> gclass40List = tag.method_177();
+                List<ShipData> gclass40List = tag.method_177();
                 if (this.cmdActive2.Text == "Active On")
                 {
-                    foreach (FCTShipData40 gclass40 in gclass40List)
+                    foreach (ShipData gclass40 in gclass40List)
                         gclass40.bool_8 = true;
                     this.cmdActive2.Text = "Active Off";
                 }
                 else
                 {
-                    foreach (FCTShipData40 gclass40 in gclass40List)
+                    foreach (ShipData gclass40 in gclass40List)
                         gclass40.bool_8 = false;
                     this.cmdActive2.Text = "Active On";
                 }
@@ -6115,9 +6115,9 @@ public class FleetWindow : Form
         {
             if (this.tvFleetList.SelectedNode == null)
                 return;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 if (this.cmdFleetShields.Text == "Raise Shields")
                 {
                     tag.bool_10 = true;
@@ -6135,16 +6135,16 @@ public class FleetWindow : Form
                 if (!(this.tvFleetList.SelectedNode.Tag is FleetData))
                     return;
                 FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                List<FCTShipData40> gclass40List = tag.method_177();
+                List<ShipData> gclass40List = tag.method_177();
                 if (this.cmdFleetShields.Text == "Raise Shields")
                 {
-                    foreach (FCTShipData40 gclass40 in gclass40List)
+                    foreach (ShipData gclass40 in gclass40List)
                         gclass40.bool_10 = true;
                     this.cmdFleetShields.Text = "Lower Shields";
                 }
                 else
                 {
-                    foreach (FCTShipData40 gclass40 in gclass40List)
+                    foreach (ShipData gclass40 in gclass40List)
                     {
                         gclass40.bool_10 = false;
                         gclass40.decimal_3 = 0M;
@@ -6397,13 +6397,13 @@ public class FleetWindow : Form
             {
                 int num2 = (int)MessageBox.Show("Please select a ship to renumber");
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
                 // ISSUE: object of a compiler-generated type is created
                 // ISSUE: variable of a compiler-generated type
                 FleetWindow.Class1021 class1021 = new FleetWindow.Class1021()
                 {
-                    gclass40_0 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag
+                    gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag
                 };
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -6417,22 +6417,22 @@ public class FleetWindow : Form
                 else
                 {
                     // ISSUE: reference to a compiler-generated field
-                    if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(class1021.gclass40_0.gclass22_0.gclass76_0))
+                    if (!this.gclass21_0.ShipHullCountDictionary.ContainsKey(class1021.gclass40_0.gclass22_0.ShipHull))
                     {
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
                         class1021.gclass40_0.int_20 = class1021.int_0;
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        this.gclass21_0.ShipHullCountDictionary.Add(class1021.gclass40_0.gclass22_0.gclass76_0, class1021.int_0);
+                        this.gclass21_0.ShipHullCountDictionary.Add(class1021.gclass40_0.gclass22_0.ShipHull, class1021.int_0);
                         // ISSUE: reference to a compiler-generated field
                         this.tvFleetList.SelectedNode.Text = class1021.gclass40_0.method_187();
                     }
                     else
                     {
                         // ISSUE: reference to a compiler-generated method
-                        FCTShipData40 gclass40 =
-                            this.gclass0_0.FCTShipDataDictionary.Values.FirstOrDefault<FCTShipData40>(
+                        ShipData gclass40 =
+                            this.gclass0_0.Ships.Values.FirstOrDefault<ShipData>(
                                 class1021.method_0);
                         if (gclass40 != null)
                         {
@@ -6447,11 +6447,11 @@ public class FleetWindow : Form
                         class1021.gclass40_0.int_20 = class1021.int_0;
                         // ISSUE: reference to a compiler-generated field
                         // ISSUE: reference to a compiler-generated field
-                        if (class1021.int_0 > this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.gclass22_0.gclass76_0])
+                        if (class1021.int_0 > this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.gclass22_0.ShipHull])
                         {
                             // ISSUE: reference to a compiler-generated field
                             // ISSUE: reference to a compiler-generated field
-                            this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.gclass22_0.gclass76_0] = class1021.int_0;
+                            this.gclass21_0.ShipHullCountDictionary[class1021.gclass40_0.gclass22_0.ShipHull] = class1021.int_0;
                         }
 
                         // ISSUE: reference to a compiler-generated field
@@ -6491,9 +6491,9 @@ public class FleetWindow : Form
             {
                 int num2 = (int)MessageBox.Show("Please select a parent ship for the new squadron");
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 FCTSquadronData70 gclass70 = this.gclass21_0.method_342(tag);
                 if (gclass70 == null)
                     return;
@@ -6519,7 +6519,7 @@ public class FleetWindow : Form
     {
         try
         {
-            List<FCTShipData40> source1 = new List<FCTShipData40>();
+            List<ShipData> source1 = new List<ShipData>();
             FleetData gclass85_1 = new FleetData(this.gclass0_0);
             if (this.gclass21_0 == null)
             {
@@ -6534,33 +6534,33 @@ public class FleetWindow : Form
                 if (this.tvFleetList.SelectedNode.Tag is FleetData)
                 {
                     FleetData tag = (FleetData)this.tvFleetList.SelectedNode.Tag;
-                    source1 = tag.method_176().Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null)
-                        .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
-                        .ToList<FCTShipData40>();
+                    source1 = tag.method_176().Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
+                        .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
+                        .ToList<ShipData>();
                     gclass85_1 = this.gclass21_0.method_308(tag.FleetName + " Strikegroup", tag.ParentNavalCommand,
                         tag.System, tag.XCoord, tag.YCoord, tag.OrbitingBody, OperationalGroupID.None);
                 }
                 else if (this.tvFleetList.SelectedNode.Tag is SubFleet)
                 {
                     SubFleet tag = (SubFleet)this.tvFleetList.SelectedNode.Tag;
-                    source1 = tag.method_0().Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0 != null)
-                        .Where<FCTShipData40>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
-                        .ToList<FCTShipData40>();
+                    source1 = tag.method_0().Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0 != null)
+                        .Where<ShipData>(gclass40_0 => gclass40_0.gclass40_0.gclass40_0 == null)
+                        .ToList<ShipData>();
                     gclass85_1 = this.gclass21_0.method_308(tag.SubFleetName + " Strikegroup", tag.ParentFleet.ParentNavalCommand,
                         tag.ParentFleet.System, tag.ParentFleet.XCoord, tag.ParentFleet.YCoord,
                         tag.ParentFleet.OrbitingBody, OperationalGroupID.None);
                 }
-                else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+                else if (this.tvFleetList.SelectedNode.Tag is ShipData)
                 {
-                    FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                    ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
                     source1 = tag.method_205();
                     gclass85_1 = this.gclass21_0.method_308(tag.ShipName + " Strikegroup", tag.gclass85_0.ParentNavalCommand,
                         tag.gclass85_0.System, tag.gclass85_0.XCoord, tag.gclass85_0.YCoord,
                         tag.gclass85_0.OrbitingBody, OperationalGroupID.None);
                 }
 
-                List<FCTSquadronData70> list = source1.Where<FCTShipData40>(gclass40_0 => gclass40_0.SquadronData != null)
-                    .Select<FCTShipData40, FCTSquadronData70>(gclass40_0 => gclass40_0.SquadronData)
+                List<FCTSquadronData70> list = source1.Where<ShipData>(gclass40_0 => gclass40_0.SquadronData != null)
+                    .Select<ShipData, FCTSquadronData70>(gclass40_0 => gclass40_0.SquadronData)
                     .Distinct<FCTSquadronData70>().ToList<FCTSquadronData70>();
                 List<SubFleet> source2 = new List<SubFleet>();
                 foreach (FCTSquadronData70 gclass70 in list)
@@ -6569,7 +6569,7 @@ public class FleetWindow : Form
                     source2.Add(gclass84);
                 }
 
-                foreach (FCTShipData40 gclass40 in source1)
+                foreach (ShipData gclass40 in source1)
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: variable of a compiler-generated type
@@ -6702,9 +6702,9 @@ public class FleetWindow : Form
     {
         try
         {
-            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is FCTShipData40))
+            if (this.tvFleetList.SelectedNode == null || !(this.tvFleetList.SelectedNode.Tag is ShipData))
                 return;
-            FCTShipData40 tag = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+            ShipData tag = (ShipData)this.tvFleetList.SelectedNode.Tag;
             if (tag == null)
                 return;
             tag.int_24 = AuroraUtils.CheckStateToInt(this.ckhTarget.CheckState);
@@ -6721,7 +6721,7 @@ public class FleetWindow : Form
         {
             if (this.lstvSalvos.SelectedItems.Count <= 0)
                 return;
-            this.gclass132_0 = (GClass132)this.lstvSalvos.SelectedItems[0].Tag;
+            this.gclass132_0 = (MissileSalvo)this.lstvSalvos.SelectedItems[0].Tag;
         }
         catch (Exception ex)
         {
@@ -6812,20 +6812,20 @@ public class FleetWindow : Form
                 // ISSUE: reference to a compiler-generated field
                 class1023.gclass187_0 = gclass187;
                 // ISSUE: reference to a compiler-generated method
-                foreach (GClass22 gclass22 in this.gclass0_0.dictionary_3.Values.Where<GClass22>(class1023.method_0)
-                             .ToList<GClass22>())
+                foreach (ShipClass gclass22 in this.gclass0_0.ShipClasses.Values.Where<ShipClass>(class1023.method_0)
+                             .ToList<ShipClass>())
                 {
                     // ISSUE: object of a compiler-generated type is created
                     // ISSUE: reference to a compiler-generated method
-                    List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values.Where<FCTShipData40>(
+                    List<ShipData> list = this.gclass0_0.Ships.Values.Where<ShipData>(
                         new FleetWindow.Class1024()
                         {
                             gclass22_0 = gclass22
-                        }.method_0).ToList<FCTShipData40>();
+                        }.method_0).ToList<ShipData>();
                     if (list.Count > 15)
                     {
                         int num = list.Count - 15;
-                        foreach (FCTShipData40 gclass40 in list)
+                        foreach (ShipData gclass40 in list)
                         {
                             gclass40.gclass21_0.method_302(gclass40.gclass85_0, false);
                             --num;
@@ -6869,7 +6869,7 @@ public class FleetWindow : Form
                     else if (this.tvFleetCargo.SelectedNode.Tag is ShipComponent)
                     {
                         ShipComponent tag2 = (ShipComponent)this.tvFleetCargo.SelectedNode.Tag;
-                        foreach (FCTShipData40 gclass40 in tag1.method_176())
+                        foreach (ShipData gclass40 in tag1.method_176())
                             gclass40.method_47(tag2);
                         this.gclass21_0.method_101(this.tvFleetCargo, tag1, null, null);
                         foreach (global::Events events in Application.OpenForms.OfType<global::Events>())
@@ -6916,25 +6916,25 @@ public class FleetWindow : Form
                             $"Are you sure you want to scrap all components in {tag.FleetName}, except for researched non-obsolete components or those that can be disassembled?",
                             "Confirmation Required", MessageBoxButtons.YesNo) != DialogResult.Yes)
                         return;
-                    List<FCTShipData40> source = tag.method_176();
-                    List<GClass73> list1 = source
-                        .SelectMany<FCTShipData40, GClass73>(gclass40_0 => gclass40_0.list_17).ToList<GClass73>();
-                    foreach (GClass73 gclass73 in list1)
+                    List<ShipData> source = tag.method_176();
+                    List<TransportedComponent> list1 = source
+                        .SelectMany<ShipData, TransportedComponent>(gclass40_0 => gclass40_0.TransportedComponents).ToList<TransportedComponent>();
+                    foreach (TransportedComponent gclass73 in list1)
                     {
                         gclass73.bool_0 = true;
-                        if (gclass73.gclass230_0.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
+                        if (gclass73.Component.gclass164_0.dictionary_0.ContainsKey(this.gclass21_0.RaceID))
                         {
-                            if (!gclass73.gclass230_0.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
+                            if (!gclass73.Component.gclass164_0.dictionary_0[this.gclass21_0.RaceID].bool_0)
                                 gclass73.bool_0 = false;
                         }
-                        else if (this.gclass21_0.method_103(gclass73.gclass230_0))
+                        else if (this.gclass21_0.method_103(gclass73.Component))
                             gclass73.bool_0 = false;
                     }
 
-                    List<ShipComponent> list2 = list1.Where<GClass73>(gclass73_0 => gclass73_0.bool_0)
-                        .Select<GClass73, ShipComponent>(gclass73_0 => gclass73_0.gclass230_0).Distinct<ShipComponent>()
+                    List<ShipComponent> list2 = list1.Where<TransportedComponent>(gclass73_0 => gclass73_0.bool_0)
+                        .Select<TransportedComponent, ShipComponent>(gclass73_0 => gclass73_0.Component).Distinct<ShipComponent>()
                         .ToList<ShipComponent>();
-                    foreach (FCTShipData40 gclass40 in source)
+                    foreach (ShipData gclass40 in source)
                     {
                         foreach (ShipComponent gclass230_0 in list2)
                             gclass40.method_47(gclass230_0);
@@ -6971,7 +6971,7 @@ public class FleetWindow : Form
                 gclass85.bool_16 = false;
             foreach (SubFleet gclass84 in this.gclass0_0.SubFleetDictionary.Values)
                 gclass84.bool_0 = false;
-            foreach (FCTShipData40 gclass40 in this.gclass0_0.FCTShipDataDictionary.Values)
+            foreach (ShipData gclass40 in this.gclass0_0.Ships.Values)
             {
                 gclass40.bool_12 = false;
                 foreach (FCTSquadronData70 gclass70 in gclass40.ChildSquadronDictionary.Values)
@@ -7559,12 +7559,12 @@ public class FleetWindow : Form
         {
             this.gclass40_0 = null;
             FleetData gclass85;
-            if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
-                this.gclass40_0 = (FCTShipData40)this.tvFleetList.SelectedNode.Tag;
+                this.gclass40_0 = (ShipData)this.tvFleetList.SelectedNode.Tag;
                 gclass85 = this.gclass40_0.gclass85_0;
             }
-            else if (this.tvFleetList.SelectedNode.Tag is FCTShipData40)
+            else if (this.tvFleetList.SelectedNode.Tag is ShipData)
             {
                 gclass85 = (FleetData)this.tvFleetList.SelectedNode.Tag;
             }
@@ -7574,7 +7574,7 @@ public class FleetWindow : Form
                 return;
             }
 
-            foreach (FCTShipData40 gclass40 in gclass85.list_3)
+            foreach (ShipData gclass40 in gclass85.list_3)
             {
                 foreach (FireControlAssignment gclass36 in gclass40.list_4)
                 {

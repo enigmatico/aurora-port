@@ -77,7 +77,7 @@ public class GClass55
 
         internal bool method_2(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData == this.gclass55_0.gclass21_0 && gclass146_0.genum64_0 != GEnum64.const_2;
+            return gclass146_0.Race == this.gclass55_0.gclass21_0 && gclass146_0.genum64_0 != GEnum64.const_2;
         }
 
         internal bool method_3(PopulationData gclass146_0)
@@ -93,7 +93,7 @@ public class GClass55
 
         internal bool method_5(PopulationData gclass146_0)
         {
-            return gclass146_0.RaceData == this.gclass55_0.gclass21_0 &&
+            return gclass146_0.Race == this.gclass55_0.gclass21_0 &&
                    gclass146_0.method_73(AuroraInstallationType.MilitaryAcademy) > 0;
         }
 
@@ -102,54 +102,54 @@ public class GClass55
             return gclass146_0.method_82() == null || this.checkBox_1.CheckState == CheckState.Unchecked;
         }
 
-        internal bool method_7(FCTShipData40 gclass40_0)
+        internal bool method_7(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0.gclass61_0.RankNum >= this.gclass55_0.gclass61_0.RankNum ||
+            return gclass40_0.gclass22_0.RankTheme.RankNum >= this.gclass55_0.gclass61_0.RankNum ||
                    this.checkBox_0.CheckState == CheckState.Unchecked;
         }
 
-        internal bool method_8(FCTShipData40 gclass40_0)
+        internal bool method_8(ShipData gclass40_0)
         {
             return gclass40_0.method_192(this.gclass49_0.ShipboardPosition) == null ||
                    this.checkBox_1.CheckState == CheckState.Unchecked;
         }
 
-        internal bool method_9(FCTShipData40 gclass40_0)
+        internal bool method_9(ShipData gclass40_0)
         {
-            return gclass40_0.gclass22_0.gclass61_0.RankNum + this.gclass49_0.RankPriorityModifier == this.gclass55_0.gclass61_0.RankNum;
+            return gclass40_0.gclass22_0.RankTheme.RankNum + this.gclass49_0.RankPriorityModifier == this.gclass55_0.gclass61_0.RankNum;
         }
 
-        internal bool method_10(FCTShipData40 gclass40_0)
+        internal bool method_10(ShipData gclass40_0)
         {
             return gclass40_0.method_192(this.gclass49_0.ShipboardPosition) == null ||
                    this.checkBox_1.CheckState == CheckState.Unchecked;
         }
 
-        internal bool method_11(FCTShipData40 gclass40_0)
+        internal bool method_11(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0.method_35(GEnum118.const_58) ||
                    this.gclass49_0.ShipboardPosition != AuroraCommandType.ExecutiveOfficer;
         }
 
-        internal bool method_12(FCTShipData40 gclass40_0)
+        internal bool method_12(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0.method_35(GEnum118.const_59) ||
                    this.gclass49_0.ShipboardPosition != AuroraCommandType.ChiefEngineer;
         }
 
-        internal bool method_13(FCTShipData40 gclass40_0)
+        internal bool method_13(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0.method_35(GEnum118.const_62) ||
                    this.gclass49_0.ShipboardPosition != AuroraCommandType.CAG;
         }
 
-        internal bool method_14(FCTShipData40 gclass40_0)
+        internal bool method_14(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0.method_35(GEnum118.const_61) ||
                    this.gclass49_0.ShipboardPosition != AuroraCommandType.ScienceOfficer;
         }
 
-        internal bool method_15(FCTShipData40 gclass40_0)
+        internal bool method_15(ShipData gclass40_0)
         {
             return gclass40_0.gclass22_0.method_35(GEnum118.const_60) ||
                    this.gclass49_0.ShipboardPosition != AuroraCommandType.TacticalOfficer;
@@ -189,14 +189,14 @@ public class GClass55
         public int int_0;
         public GClass55.Class911 class911_0;
 
-        internal bool method_0(FCTShipData40 gclass40_0)
+        internal bool method_0(ShipData gclass40_0)
         {
             return gclass40_0.gclass21_0 == this.class911_0.gclass55_0.gclass21_0 &&
-                   gclass40_0.gclass22_0.bool_1 == this.class911_0.gclass49_0.IsForFighter &&
-                   gclass40_0.gclass22_0.bool_2 == this.class911_0.gclass49_0.IsForFreighters &&
-                   (gclass40_0.gclass22_0.decimal_10 > 0M || !this.class911_0.gclass49_0.IsForArmedShip) &&
-                   gclass40_0.gclass187_0 == null && gclass40_0.gclass22_0.int_15 == 0 &&
-                   gclass40_0.gclass22_0.gclass61_0.RankNum <= this.int_0 - this.class911_0.gclass49_0.RankPriorityModifier;
+                   gclass40_0.gclass22_0.FighterClass == this.class911_0.gclass49_0.IsForFighter &&
+                   gclass40_0.gclass22_0.Commercial == this.class911_0.gclass49_0.IsForFreighters &&
+                   (gclass40_0.gclass22_0.ProtectionValue > 0M || !this.class911_0.gclass49_0.IsForArmedShip) &&
+                   gclass40_0.gclass187_0 == null && gclass40_0.gclass22_0.NoOfficers == 0 &&
+                   gclass40_0.gclass22_0.RankTheme.RankNum <= this.int_0 - this.class911_0.gclass49_0.RankPriorityModifier;
         }
     }
 
@@ -205,20 +205,20 @@ public class GClass55
     private GClass0 gclass0_0;
     public GameRace gclass21_0;
     public GameRace gclass21_1;
-    public GClass194 gclass194_0;
+    public Species gclass194_0;
     public RankThemeEntry gclass61_0;
     public PopulationData gclass146_0;
     public PopulationData gclass146_1;
     public PopulationData gclass146_2;
     public PopulationData gclass146_3;
     public SystemBodyData gclass1_0;
-    public FCTShipData40 gclass40_0;
-    public FCTShipData40 gclass40_1;
-    public FCTShipData40 gclass40_2;
-    public FCTShipData40 gclass40_3;
-    public FCTShipData40 gclass40_4;
-    public FCTShipData40 gclass40_5;
-    public FCTShipData40 gclass40_6;
+    public ShipData gclass40_0;
+    public ShipData gclass40_1;
+    public ShipData gclass40_2;
+    public ShipData gclass40_3;
+    public ShipData gclass40_4;
+    public ShipData gclass40_5;
+    public ShipData gclass40_6;
     public GClass62 gclass62_0;
     public ResearchProject gclass161_0;
     public GroundUnitFormationData gclass103_0;
@@ -545,7 +545,7 @@ public class GClass55
         }
     }
 
-    public void method_11(GClass22 gclass22_0, Decimal decimal_4)
+    public void method_11(ShipClass gclass22_0, Decimal decimal_4)
     {
         try
         {
@@ -558,46 +558,46 @@ public class GClass55
                     this.method_10(CommanderBonusType.Reaction, decimal_4, true);
                     break;
                 default:
-                    if (gclass22_0.auroraClassMainFunction_0 == AuroraClassMainFunction.IntelligenceShip)
+                    if (gclass22_0.MainFunction == AuroraClassMainFunction.IntelligenceShip)
                     {
                         this.method_10(CommanderBonusType.Intelligence, decimal_4, true);
                         break;
                     }
 
-                    if (gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.OrbitalMiner &&
-                        gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.FuelHarvester)
+                    if (gclass22_0.MainFunction != AuroraClassMainFunction.OrbitalMiner &&
+                        gclass22_0.MainFunction != AuroraClassMainFunction.FuelHarvester)
                     {
-                        if (gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.ColonyShip &&
-                            gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.Freighter &&
-                            gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.Liner &&
-                            gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.TroopTransport)
+                        if (gclass22_0.MainFunction != AuroraClassMainFunction.ColonyShip &&
+                            gclass22_0.MainFunction != AuroraClassMainFunction.Freighter &&
+                            gclass22_0.MainFunction != AuroraClassMainFunction.Liner &&
+                            gclass22_0.MainFunction != AuroraClassMainFunction.TroopTransport)
                         {
-                            if (gclass22_0.auroraClassMainFunction_0 == AuroraClassMainFunction.Terraformer)
+                            if (gclass22_0.MainFunction == AuroraClassMainFunction.Terraformer)
                             {
                                 this.method_10(CommanderBonusType.Terraforming, decimal_4, true);
                                 break;
                             }
 
-                            if (gclass22_0.auroraClassMainFunction_0 == AuroraClassMainFunction.Carrier)
+                            if (gclass22_0.MainFunction == AuroraClassMainFunction.Carrier)
                             {
                                 this.method_10(CommanderBonusType.CarrierOperations, decimal_4, true);
                                 break;
                             }
 
-                            if (gclass22_0.auroraClassMainFunction_0 == AuroraClassMainFunction.Fighter)
+                            if (gclass22_0.MainFunction == AuroraClassMainFunction.Fighter)
                             {
                                 this.method_10(CommanderBonusType.FighterCombat, decimal_4, true);
                                 break;
                             }
 
-                            if (gclass22_0.auroraClassMainFunction_0 == AuroraClassMainFunction.GroundSupportFighter)
+                            if (gclass22_0.MainFunction == AuroraClassMainFunction.GroundSupportFighter)
                             {
                                 this.method_10(CommanderBonusType.GroundSupport, decimal_4, true);
                                 break;
                             }
 
-                            if (gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.ConstructionShip &&
-                                gclass22_0.auroraClassMainFunction_0 != AuroraClassMainFunction.Salvager)
+                            if (gclass22_0.MainFunction != AuroraClassMainFunction.ConstructionShip &&
+                                gclass22_0.MainFunction != AuroraClassMainFunction.Salvager)
                             {
                                 switch (AuroraUtils.GetRandomInteger(5))
                                 {
@@ -1167,7 +1167,7 @@ public class GClass55
         }
     }
 
-    public void method_22(FCTShipData40 gclass40_7, AuroraCommandType auroraCommandType_1)
+    public void method_22(ShipData gclass40_7, AuroraCommandType auroraCommandType_1)
     {
         try
         {
@@ -1228,7 +1228,7 @@ public class GClass55
             gclass40_7.method_204($"{this.method_36()} assigned as {str}");
             this.gclass0_0.gclass92_0.method_2(EventType.const_78,
                 $"{this.method_36()} assigned as {str} of {gclass40_7.method_187()}", this.gclass21_0,
-                gclass40_7.gclass85_0.System.ActualSystemData, gclass40_7.gclass85_0.XCoord,
+                gclass40_7.gclass85_0.System.ActualSystem, gclass40_7.gclass85_0.XCoord,
                 gclass40_7.gclass85_0.YCoord, AuroraEventCategory.Commander);
         }
         catch (Exception ex)
@@ -1351,18 +1351,18 @@ public class GClass55
 
             if (gclass49_0.IsForShip)
             {
-                FCTShipData40 tag = (FCTShipData40)listView_0.SelectedItems[0].Tag;
+                ShipData tag = (ShipData)listView_0.SelectedItems[0].Tag;
                 if (tag != null)
                 {
                     if (gclass49_0.ShipboardPosition == AuroraCommandType.Ship &&
-                        this.gclass61_0.RankNum > tag.gclass22_0.gclass61_0.RankNum)
+                        this.gclass61_0.RankNum > tag.gclass22_0.RankTheme.RankNum)
                     {
                         int num = (int)MessageBox.Show(this.string_0 + " is too junior for this assignment");
                         return;
                     }
 
                     if (gclass49_0.ShipboardPosition != AuroraCommandType.Ship && this.gclass61_0.RankNum !=
-                        tag.gclass22_0.gclass61_0.RankNum + gclass49_0.RankPriorityModifier)
+                        tag.gclass22_0.RankTheme.RankNum + gclass49_0.RankPriorityModifier)
                     {
                         int num = (int)MessageBox.Show(this.string_0 + " is not the required rank for this assignment");
                         return;
@@ -1479,7 +1479,7 @@ public class GClass55
                 listView_0.Columns[2].Width = 0;
                 listView_0.Columns[3].Width = 0;
                 // ISSUE: reference to a compiler-generated method
-                List<PopulationData> list = this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class911.method_2)
+                List<PopulationData> list = this.gclass0_0.Populations.Values.Where<PopulationData>(class911.method_2)
                     .ToList<PopulationData>();
                 foreach (PopulationData gclass146 in list)
                     gclass146.method_152();
@@ -1508,7 +1508,7 @@ public class GClass55
                 listView_0.Columns[3].Width = 0;
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated method
-                foreach (PopulationData object_1 in this.gclass0_0.PopulationDataDictionary.Values.Where<PopulationData>(class911.method_5)
+                foreach (PopulationData object_1 in this.gclass0_0.Populations.Values.Where<PopulationData>(class911.method_5)
                              .Where<PopulationData>(class911.method_6)
                              .OrderByDescending<PopulationData, int>(gclass146_0 =>
                                  gclass146_0.method_73(AuroraInstallationType.MilitaryAcademy))
@@ -1545,7 +1545,7 @@ public class GClass55
                     }
                     else if (this.auroraCommanderType_0 == AuroraCommanderType.Naval)
                     {
-                        RankThemeEntry gclass61 = this.gclass21_0.method_253((GEnum15)genum15_0, AuroraCommanderType.Naval);
+                        RankThemeEntry gclass61 = this.gclass21_0.GetRankThemeForCommanderLevel((CommanderLevel)genum15_0, AuroraCommanderType.Naval);
                         if (gclass61 != null && this.gclass61_0.RankNum <= gclass61.RankNum)
                         {
                             if (gclass55 == null)
@@ -1558,7 +1558,7 @@ public class GClass55
                     else if (this.auroraCommanderType_0 == AuroraCommanderType.GroundForce)
                     {
                         RankThemeEntry gclass61 =
-                            this.gclass21_0.method_253((GEnum15)genum15_0, AuroraCommanderType.GroundForce);
+                            this.gclass21_0.GetRankThemeForCommanderLevel((CommanderLevel)genum15_0, AuroraCommanderType.GroundForce);
                         if (gclass61 != null && this.gclass61_0.RankNum <= gclass61.RankNum)
                         {
                             if (gclass55 == null)
@@ -1586,8 +1586,8 @@ public class GClass55
                 // ISSUE: reference to a compiler-generated field
                 class912.int_0 = this.gclass21_0.method_232();
                 // ISSUE: reference to a compiler-generated method
-                List<FCTShipData40> list = this.gclass0_0.FCTShipDataDictionary.Values
-                    .Where<FCTShipData40>(class912.method_0).ToList<FCTShipData40>();
+                List<ShipData> list = this.gclass0_0.Ships.Values
+                    .Where<ShipData>(class912.method_0).ToList<ShipData>();
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated field
@@ -1608,33 +1608,33 @@ public class GClass55
                 // ISSUE: reference to a compiler-generated method
                 // ISSUE: reference to a compiler-generated field
                 // ISSUE: reference to a compiler-generated method
-                foreach (FCTShipData40 object_1 in
+                foreach (ShipData object_1 in
                          class912.class911_0.gclass49_0.ShipboardPosition != AuroraCommandType.Ship
-                             ? list.Where<FCTShipData40>(class912.class911_0.method_9)
-                                 .Where<FCTShipData40>(class912.class911_0.method_10)
-                                 .Where<FCTShipData40>(class912.class911_0.method_11)
-                                 .Where<FCTShipData40>(class912.class911_0.method_12)
-                                 .Where<FCTShipData40>(class912.class911_0.method_13)
-                                 .Where<FCTShipData40>(class912.class911_0.method_14)
-                                 .Where<FCTShipData40>(class912.class911_0.method_15)
-                                 .OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.gclass22_0.gclass61_0.RankNum)
-                                 .ThenByDescending<FCTShipData40,
-                                     Decimal>(gclass40_0 => gclass40_0.gclass22_0.decimal_14)
-                                 .ThenBy<FCTShipData40, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
-                                 .ThenBy<FCTShipData40, string>(gclass40_0 => gclass40_0.ShipName)
-                                 .ToList<FCTShipData40>()
-                             : list.Where<FCTShipData40>(class912.class911_0.method_7)
-                                 .Where<FCTShipData40>(class912.class911_0.method_8)
-                                 .OrderBy<FCTShipData40, int>(gclass40_0 => gclass40_0.gclass22_0.gclass61_0.RankNum)
-                                 .ThenByDescending<FCTShipData40,
-                                     Decimal>(gclass40_0 => gclass40_0.gclass22_0.decimal_14)
-                                 .ThenBy<FCTShipData40, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
-                                 .ThenBy<FCTShipData40, string>(gclass40_0 => gclass40_0.ShipName)
-                                 .ToList<FCTShipData40>())
+                             ? list.Where<ShipData>(class912.class911_0.method_9)
+                                 .Where<ShipData>(class912.class911_0.method_10)
+                                 .Where<ShipData>(class912.class911_0.method_11)
+                                 .Where<ShipData>(class912.class911_0.method_12)
+                                 .Where<ShipData>(class912.class911_0.method_13)
+                                 .Where<ShipData>(class912.class911_0.method_14)
+                                 .Where<ShipData>(class912.class911_0.method_15)
+                                 .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.gclass22_0.RankTheme.RankNum)
+                                 .ThenByDescending<ShipData,
+                                     Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                                 .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
+                                 .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.ShipName)
+                                 .ToList<ShipData>()
+                             : list.Where<ShipData>(class912.class911_0.method_7)
+                                 .Where<ShipData>(class912.class911_0.method_8)
+                                 .OrderBy<ShipData, int>(gclass40_0 => gclass40_0.gclass22_0.RankTheme.RankNum)
+                                 .ThenByDescending<ShipData,
+                                     Decimal>(gclass40_0 => gclass40_0.gclass22_0.Size)
+                                 .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.gclass22_0.ClassName)
+                                 .ThenBy<ShipData, string>(gclass40_0 => gclass40_0.ShipName)
+                                 .ToList<ShipData>())
                 {
                     // ISSUE: reference to a compiler-generated field
                     // ISSUE: reference to a compiler-generated field
-                    RankThemeEntry gclass61 = object_1.gclass22_0.gclass61_0.method_2(class912.class911_0.gclass49_0.RankPriorityModifier);
+                    RankThemeEntry gclass61 = object_1.gclass22_0.RankTheme.method_2(class912.class911_0.gclass49_0.RankPriorityModifier);
                     if (gclass61 != null)
                     {
                         // ISSUE: reference to a compiler-generated field
@@ -2184,7 +2184,7 @@ public class GClass55
         }
     }
 
-    public FCTShipData40 method_44()
+    public ShipData method_44()
     {
         try
         {
@@ -2211,7 +2211,7 @@ public class GClass55
     {
         try
         {
-            FCTShipData40 gclass40 = this.method_44();
+            ShipData gclass40 = this.method_44();
             if (gclass40 != null)
                 return;
             string str = this.method_43();

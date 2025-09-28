@@ -13,7 +13,7 @@ public class FCTMassDriverPacket126
 {
     public AllMineralsValue MineralsValue;
     public GameRace Race;
-    public SystemData200 System;
+    public StarSystem System;
     public PopulationData gclass146_0;
     public int PacketID;
     public Decimal Speed;
